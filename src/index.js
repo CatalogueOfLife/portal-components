@@ -1,9 +1,7 @@
-import React, {Component} from 'react'
+import colTree from "./ColTree"
+import taxon from "./Taxon"
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+export const Tree = colTree;
+export const Taxon = taxon;
+
+

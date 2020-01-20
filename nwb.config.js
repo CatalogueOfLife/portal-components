@@ -3,7 +3,8 @@ module.exports = {
   npm: {
     esModules: true,
     umd: {
-      global: 'ColTreeBrowser',
+      global: 'ColBrowser',
+      entry: './src/umd.js',
       externals: {
         react: 'React'
       }

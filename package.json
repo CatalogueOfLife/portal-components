@@ -19,7 +19,15 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "antd": "^3.19.8",
+    "axios": "^0.18.1",
+    "dataloader": "^1.4.0",
+    "history": "^4.7.2",
+    "lodash": ">=4.6.2",
+    "query-string": "~5.1.1",
+    "react-jss": "^10.0.3"
+  },
   "peerDependencies": {
     "react": "16.x"
   },
