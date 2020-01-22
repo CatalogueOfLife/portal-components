@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import history from "../history";
+import {withRouter} from "react-router-dom";
 import axios from "axios";
-import { Tree, Spin, Alert, Button} from "antd";
+import { Tree, Spin, Alert, Button, Skeleton} from "antd";
 import ErrorMsg from "../components/ErrorMsg";
 import config from "../config"
 import { getSectorsBatch } from "../api/sector";
@@ -10,22 +11,13 @@ import DataLoader from "dataloader";
 import qs from "query-string";
 import _ from "lodash";
 import ColTreeNode from "./ColTreeNode"
-import 'antd/dist/antd.css';
-
-
+import ColTreeActions from "./ColTreeActions"
 
 const sectorLoader = new DataLoader(ids => getSectorsBatch(ids));
 const datasetLoader = new DataLoader(ids => getDatasetsBatch(ids));
 const TreeNode = Tree.TreeNode;
 const CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
-const IRREGULAR_RANKS = [
-  "unranked",
-  "other",
-  "infraspecific name",
-  "infrageneric name",
-  "infrasubspecific name",
-  "suprageneric name"
-];
+
 
 class LoadMoreChildrenTreeNode extends React.Component {
   constructor(props) {
@@ -66,9 +58,9 @@ class ColTree extends Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.loadRoot();
-
+    ColTreeActions.on('refreshTree', this.reloadRoot);
   };
 
   componentDidUpdate = (prevProps) => {
@@ -78,17 +70,22 @@ class ColTree extends Component {
 
   }
 
+  componentWillUnmount = () => {
+    
+    ColTreeActions.removeListener(refreshEvent, this.reloadRoot);
+  };
+
   reloadRoot = () => this.setState({ treeData: []}, this.loadRoot);
 
   loadRoot = () => {
     const {
       showSourceTaxon,
       catalogueKey,
-      defaultExpandKey,
+      //defaultExpandKey,
       pathToTaxon
     } = this.props;
-    const {location} = history;
-    // const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+    const {location} = this.props;
+    const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
 
     this.setState({rootLoading: true})
     let p = defaultExpandKey
@@ -493,11 +490,11 @@ class ColTree extends Component {
               
             )}
             
-        
-       {!error && treeData.length < rootTotal && <Button loading={rootLoading} onClick={this.loadRoot}>Load more </Button>}
+       {treeData.length === 0 &&  rootLoading && <Skeleton active paragraph={{ rows: 8 }} />} 
+       {!error && treeData.length > 0 && treeData.length < rootTotal && <Button loading={rootLoading} onClick={this.loadRoot}>Load more </Button>}
       </div>
     );
   }
 }
 
-export default ColTree;
+export default withRouter(ColTree);

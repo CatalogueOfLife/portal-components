@@ -20,21 +20,26 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "antd": "^3.19.8",
+    "antd": "^3.26.7",
     "axios": "^0.18.1",
     "dataloader": "^1.4.0",
     "history": "^4.7.2",
     "lodash": ">=4.6.2",
     "query-string": "~5.1.1",
-    "react-jss": "^10.0.3"
+    "react-jss": "^10.0.3",
+    "react-router-dom": "^4.3.1"
   },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
     "nwb": "0.23.x",
+    "nwb-less": "^0.7.1",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "webpack": "^4.41.5"
   },
   "author": "",
   "homepage": "",

@@ -16,7 +16,7 @@ class TaxonSources extends React.Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     const { datasetSectors } = this.props;
 
     if (Object.keys(datasetSectors).length < 4) {

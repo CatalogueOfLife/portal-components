@@ -15,7 +15,7 @@ class NameSearchAutocomplete extends React.Component {
         this.getNames = debounce(this.getNames, 500);
         this.state = {
             names: [],
-            value: ''
+            value: this.props.defaultValue || ''
         }
     }
 

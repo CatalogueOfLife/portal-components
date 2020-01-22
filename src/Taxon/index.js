@@ -42,7 +42,7 @@ class TaxonPage extends React.Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getTaxon();
     this.getInfo();
     this.getClassification();
@@ -211,6 +211,7 @@ class TaxonPage extends React.Component {
     
         <React.Fragment>
           <div
+            className="catalogue-of-life"
             style={{
               background: "#fff",
               padding: 24,
@@ -226,7 +227,7 @@ class TaxonPage extends React.Component {
               <Row>
                 <Col span={this.state.logoUrl ? 18 : 21}>
                   <h1
-                    style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block'}}
+                    style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
                     dangerouslySetInnerHTML={{
                       __html: taxon.labelHtml
                     }}
