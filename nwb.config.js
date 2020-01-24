@@ -10,6 +10,9 @@ module.exports = {
               javascriptEnabled: true
             }
           }
+        },
+        extractCSS: {
+          filename: '[name].css'
         }
      
   },

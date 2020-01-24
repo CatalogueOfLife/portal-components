@@ -109,7 +109,7 @@ class VernacularNamesTable extends React.Component {
         className="colplus-taxon-page-list"
         columns={columns}
         dataSource={data}
-        rowKey="key"
+        rowKey="id"
         pagination={false}
         size="middle"
       />

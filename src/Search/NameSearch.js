@@ -32,10 +32,10 @@ const getColumns = (pathToTaxon) => [
     dataIndex: "usage.labelHtml",
     key: "scientificName",
     render: (text, record) => {
-
+      const id = record.usage.synonym ? _.get(record, 'usage.accepted.id') : _.get(record, 'usage.id')
       return (
 
-          <a onClick={() => {window.location.href =  `${pathToTaxon}${record.usage.id}`}}  dangerouslySetInnerHTML={{ __html: text }} />
+          <a onClick={() => {window.location.href =  `${pathToTaxon}${id}`}}  dangerouslySetInnerHTML={{ __html: text }} />
       );
     },
     width: 200,
