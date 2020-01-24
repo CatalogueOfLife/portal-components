@@ -94126,7 +94126,7 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
       className: "colplus-taxon-page-list",
       columns: columns,
       dataSource: data,
-      rowKey: "key",
+      rowKey: "id",
       pagination: false,
       size: "middle"
     });
@@ -94983,9 +94983,9 @@ var Taxon_TaxonPage = function (_React$Component) {
         // sector keys are only present if its a catalogue
         if (lodash_default.a.get(res, "data.sectorKey")) {
           axios_default()(src_config.dataApi + "sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
-            axios_default()(src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.datasetKey") + "/logo").then(function () {
+            axios_default()(src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo").then(function () {
               _this.setState({
-                logoUrl: src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.datasetKey") + "/logo"
+                logoUrl: src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo?size=MEDIUM"
               });
             }).catch(function () {
               // ignore, there is no logo
@@ -97478,9 +97478,9 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     dataIndex: "usage.labelHtml",
     key: "scientificName",
     render: function render(text, record) {
-
+      var id = record.usage.synonym ? lodash_default.a.get(record, 'usage.accepted.id') : lodash_default.a.get(record, 'usage.id');
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { onClick: function onClick() {
-          window.location.href = "" + pathToTaxon + record.usage.id;
+          window.location.href = "" + pathToTaxon + id;
         }, dangerouslySetInnerHTML: { __html: text } });
     },
     width: 200,

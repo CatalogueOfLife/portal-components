@@ -1,7 +1,7 @@
 {
-  "name": "col-tree-browser",
-  "version": "1.0.0",
-  "description": "col-tree-browser React component",
+  "name": "col-browser",
+  "version": "0.1.0",
+  "description": "Catalogue of Life browse and search React components",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -44,8 +44,13 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Sp2000/colplus-portal-components.git"
+  },
   "keywords": [
-    "react-component"
+    "react-component",
+    "taxonomy",
+    "catalogue of life"
   ]
 }
