@@ -32,8 +32,8 @@ This will create a global `ColBrowser` library variable that has three indvidual
 
 
 ### ColBrowser.Tree
-A browsable taxonomic tree, takes two properties: 
-1. `catalogueKey` - the dataset key from the Catalogue of Life clearinghouse 
+A [browsable taxonomic tree](https://col-website-demo.netlify.com/data/browse), takes two properties: 
+1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/) 
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
 
 ````
@@ -58,8 +58,8 @@ ReactDOM.render(e(Tree), domContainer);
 </script>
 ````
 ### ColBrowser.Search
-Search component with table view, takes two properties: 
-1. `catalogueKey` - the dataset key from the Catalogue of Life clearinghouse 
+[Search component with table view](https://col-website-demo.netlify.com/data/search), takes two properties: 
+1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
 
 ````
@@ -85,8 +85,8 @@ ReactDOM.render(e(Search), domContainer);
 ````
 
 ### ColBrowser.Taxon
-Taxon detail page, takes two properties: 
-1. `catalogueKey` - the dataset key from the Catalogue of Life clearinghouse 
+[Taxon detail page](https://col-website-demo.netlify.com/data/taxon/41117128-65e0-428c-a293-f34ddc16da32), takes two properties: 
+1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxon classification to point towards).
 
 ````
