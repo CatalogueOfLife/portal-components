@@ -4,8 +4,7 @@ import {
   Icon
 } from "antd";
 import _ from "lodash";
-import { stringToColour } from "../util";
-
+import config from "../config";
 import TaxonSources from "./TaxonSources"
 
 
@@ -69,9 +68,15 @@ class ColTreeNode extends React.Component {
         {sector && (
           <span>
             <span> • </span>
-            <Tag color={stringToColour(sectorSourceDataset.title)}>
-                {sectorSourceDataset.alias || sectorSourceDataset.key}
-              </Tag> 
+            <a 
+        onClick={()=> {
+          const uri =  `${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${sectorSourceDataset.key}/meta`;
+          const win = window.open(uri, '_blank');
+          win.focus();
+        }}
+      > {sectorSourceDataset.alias || sectorSourceDataset.key} {sectorSourceDataset.logo && <img style={{maxHeight: '24px',
+        width: 'auto'}} src={`${config.dataApi}dataset/${sectorSourceDataset.key}/logo`} />}</a>
+             
           </span>
         )}
       </div>

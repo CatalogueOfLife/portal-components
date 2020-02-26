@@ -53,6 +53,8 @@ class ColTree extends Component {
     this.state = {
       rootLoading: true,
       treeData: [],
+      loadedKeys: [],
+      expandedKeys: [],
       rootTotal: 0,
       error: null
     };
@@ -77,72 +79,38 @@ class ColTree extends Component {
 
   reloadRoot = () => this.setState({ treeData: []}, this.loadRoot);
 
-  loadRoot = () => {
-    const {
-      showSourceTaxon,
-      catalogueKey,
-      //defaultExpandKey,
-      pathToTaxon
-    } = this.props;
+
+  loadRoot = async () => {
     const {location} = this.props;
     const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
 
-    this.setState({rootLoading: true})
-    let p = defaultExpandKey
-      ? axios(
-          `${config.dataApi}dataset/${catalogueKey}/tree/${
-            defaultExpandKey
-          }?catalogueKey=${catalogueKey}`
-        )
-          .then(res => {
-            // Load the siblings of the default expanded taxon
-            return _.get(res, "data[1]")
-              ? axios(
-                  `${config.dataApi}dataset/${catalogueKey}/tree/${
-                    _.get(res, "data[1].id") //taxonKey
-                  }/children?limit=${CHILD_PAGE_SIZE}&offset=0&insertPlaceholder=true&catalogueKey=${
-                    catalogueKey
-                  }`
-                )
-                  .then(this.decorateWithSectorsAndDataset)
-                  .then(children => {
-                    // Remove the the default expanded taxon as it will be loaded
-                    if (
-                      children.data.result &&
-                      children.data.result.length > 0
-                    ) {
-                      res.data[1].children = children.data.result.filter(
-                        i => i.id !== defaultExpandKey
-                      );
-                    }
-                    return res;
-                  })
-              : res;
-          })
-          .then(res =>
-            this.decorateWithSectorsAndDataset({
-              data: { result: res.data }
-            }).then(() => res)
-          )
-      : Promise.resolve(false);
-    var defaultExpandedNodes;
-    return Promise.all([
-      axios(
-        `${config.dataApi}dataset/${catalogueKey}/tree?catalogueKey=${
-          catalogueKey
-        }&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}`
-      ).then(this.decorateWithSectorsAndDataset),
-      p
-    ])
-      .then(values => {
-        const mainTreeData = values[0].data.result;
-        const rootTotal = values[0].data.total;
-        const defaultExpanded = values[1] ? values[1].data : null;
+    if(defaultExpandKey){
+      this.expandToTaxon(defaultExpandKey)
+    } else {
+      this.loadRoot_()
+    }
+  }
+
+  loadRoot_ = async () => {
+    const {
+      showSourceTaxon,
+      catalogueKey,
+      pathToTaxon
+
+    } = this.props;
+    this.setState({rootLoading: true, treeData: []})
+    return axios(
+      `${config.dataApi}dataset/${catalogueKey}/tree?catalogueKey=${
+        catalogueKey
+      }&type=CATALOGUE&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}`
+    ).then(this.decorateWithSectorsAndDataset)
+      .then(res => {
+        const mainTreeData = res.data.result || [];
+        const rootTotal = res.data.total;
         const treeData = mainTreeData.map(tx => {
           let dataRef = {
             taxon: tx,
             key: tx.id,
-            datasetKey: catalogueKey,
             childCount: tx.childCount,
             childOffset: 0
           };
@@ -152,124 +120,167 @@ class ColTree extends Component {
               pathToTaxon={pathToTaxon}
               catalogueKey={catalogueKey}
               showSourceTaxon={showSourceTaxon}
-              reloadSelfAndSiblings={this.loadRoot}
               reloadChildren={() => this.fetchChildPage(dataRef, true)}
             />
           );
           return dataRef;
         });
-
-        if (defaultExpanded && defaultExpanded.length == 0) {
-          this.setState(
-            {
-              nodeNotFoundErr: (
-                <span>
-                  Cannot find taxon {defaultExpandKey} in tree &#128549;
-                </span>
-              )
-            }
-          );
-        }
-        if (defaultExpanded && defaultExpanded.length > 0) {
-          defaultExpandedNodes = _.map(defaultExpanded, "id");
-          let root_ = _.find(treeData, [
-            "key",
-            defaultExpanded[defaultExpanded.length - 1].id
-          ]);
-          const nodes = defaultExpanded
-            .slice(0, defaultExpanded.length - 1)
-            .reverse();
-
-          nodes.reduce((root, tx) => {
-            let node = {
-              taxon: tx,
-              key: tx.id,
-              childCount: tx.childCount,
-              childOffset: 0
-            };
-            
-            node.title = (
-              <ColTreeNode
-                taxon={tx}
-                pathToTaxon={pathToTaxon}
-                catalogueKey={catalogueKey}
-                showSourceTaxon={showSourceTaxon}
-                reloadChildren={() => this.fetchChildPage(node, true)}
-              />
-            );
-
-            root.children = _.get(root, "taxon.children")
-              ? [
-                  ...root.taxon.children.map(c => {
-                    let ref = {
-                      taxon: c,
-                      key: c.id,
-                      childCount: c.childCount,
-                      childOffset: 0
-
-                    }; 
-                   
-                    ref.title = (
-                      <ColTreeNode
-                        taxon={c}
-                        pathToTaxon={pathToTaxon}
-                        catalogueKey={catalogueKey}
-                        showSourceTaxon={showSourceTaxon}       
-                        reloadChildren={() => this.fetchChildPage(ref, true)}
-                      />
-                    );
-                    return ref;
-                  }),
-                  node
-                ].sort((a, b) => {
-                  if (a.taxon.rank === b.taxon.rank) {
-                    return a.taxon.name < b.taxon.name
-                      ? -1
-                      : a.taxon.name > b.taxon.name
-                      ? 1
-                      : 0;
-                  } else {
-                    return (
-                      this.props.rank.indexOf(a.taxon.rank) -
-                      this.props.rank.indexOf(b.taxon.rank)
-                    );
-                  }
-                })
-              : [node];
-            return node;
-          }, root_);
-        }
-        if (defaultExpandedNodes && defaultExpandKey) {
+      
           this.setState({
             rootTotal: rootTotal,
             rootLoading: false,
-            treeData:[...this.state.treeData,...treeData],
-            defaultExpandAll: !defaultExpanded && treeData.length < 10,
-            error: null,
-            defaultExpandedKeys: defaultExpandedNodes
-          });
-        } else {
-          this.setState({
-            rootTotal: rootTotal,
-            rootLoading: false,
-            treeData:[...this.state.treeData, ...treeData],
-            defaultExpandAll: treeData.length < 10,
+            treeData:[...treeData],
+            expandedKeys: treeData.length < 10 ? treeData.map(n => n.taxon.id): [],
             error: null
           });
           if (treeData.length === 1) {
             this.fetchChildPage(treeData[treeData.length - 1]);
           }
-        }
+        
       })
       .catch(err => {
         this.setState({
           treeData: [],
           rootLoading: false,
-          defaultExpandedKeys: null,
+          expandedKeys: [],
+          loadedKeys: [],
           error: err
         });
       });
-  };
+  };  
+ 
+  findNode = (id, nodeArray) => {    
+    let node = null;
+
+    node = nodeArray.find((n)=> _.get(n, 'taxon.id') === id );
+
+    if(node){
+      return node;
+    } else {
+      const children = nodeArray.map(n => _.get(n, 'children') || [])
+      const flattenedChildren = children.flat()
+      if (flattenedChildren.length === 0){
+        return null;
+      } else {
+        return this.findNode(id, flattenedChildren)
+      }
+    }
+  
+  }
+
+  expandToTaxon = async (defaultExpandKey) => {
+    const {
+      showSourceTaxon,
+      catalogueKey,
+      pathToTaxon
+    } = this.props;
+
+    this.setState({rootLoading: true, treeData: []})
+    const {data} = await axios(
+          `${config.dataApi}dataset/${catalogueKey}/tree/${
+            defaultExpandKey
+          }?catalogueKey=${catalogueKey}&type=CATALOGUE`
+        ).then(res =>
+          this.decorateWithSectorsAndDataset({
+            data: { result: res.data }
+          }).then(() => res)
+        )
+    if(!data || data.length === 0) {
+      this.setState({error: {message: "The taxon was not found :-("}, rootLoading: false})
+    } else {     
+    const tx = data[data.length-1]
+    let root = {
+      taxon: tx,
+      key: tx.id,
+      childCount: tx.childCount,
+      childOffset: 0}
+      root.title = (
+        <ColTreeNode
+          taxon={tx}
+          pathToTaxon={pathToTaxon}
+          catalogueKey={catalogueKey}
+          showSourceTaxon={showSourceTaxon}
+          reloadChildren={() => this.fetchChildPage(root, true)}
+        />
+      )
+
+      const root_ = root;
+      for(let i= data.length-2; i >= 0; i--){
+        const tx = data[i];
+        const node  = {
+          taxon: tx,
+          key: tx.id,
+          childCount: tx.childCount,
+          childOffset: 0}
+          node.title = (
+            <ColTreeNode
+              taxon={tx}
+              pathToTaxon={pathToTaxon}
+              catalogueKey={catalogueKey}
+              showSourceTaxon={showSourceTaxon}
+              reloadChildren={() => this.fetchChildPage(node, true)}
+            />
+          )
+
+          root.children = [node];
+          root = node;
+      }
+
+    const treeData = [
+     root_
+    ]
+
+     const loadedKeys = [...data.map(t => t.id).reverse()]
+
+     this.setState({treeData, rootLoading: false}, () => this.reloadLoadedKeys(loadedKeys))
+  }
+  }
+
+  reloadLoadedKeys = async (keys) => {
+    const {loadedKeys: storedKeys} = this.state;
+    const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+
+    let {treeData} = this.state;
+    const targetTaxon = defaultExpandKey ? this.findNode(defaultExpandKey, treeData) : null;
+    const loadedKeys = keys || storedKeys;
+    for (let index = 0; index < loadedKeys.length; index++) {
+      const node = this.findNode(loadedKeys[index], treeData);
+      if(node){
+        await this.fetchChildPage(node, true, true)
+        if(targetTaxon 
+          && index === loadedKeys.length - 2 
+          && _.isArray(node.children)  
+          && !node.children.find(c => _.get(c, 'taxon.id') === _.get(targetTaxon, 'taxon.id')) ){
+            if (
+              node.children.length - 1 === CHILD_PAGE_SIZE){
+              // its the parent of the taxon we are after - if its not in the first page, insert it
+              node.children = [targetTaxon, ...node.children]
+              this.setState({treeData: [...this.state.treeData]})
+            } else {
+              // It has gone missing from the tree
+                this.setState(
+                  {
+                    nodeNotFoundErr: (
+                      <span>
+                        Cannot find taxon {defaultExpandKey} in tree &#128549;
+                      </span>
+                    )
+                  },
+                  () => {
+                    if (
+                      this.props.treeType === "CATALOGUE" &&
+                      typeof this.props.addMissingTargetKey === "function"
+                    ) {
+                      this.props.addMissingTargetKey(defaultExpandKey);
+                    }
+                  }
+                ); 
+            }
+        }
+      } 
+    }
+    this.setState({expandedKeys: loadedKeys, loadedKeys, rootLoading: false})
+  }
 
   fetchChildPage = (dataRef, reloadAll) => {
     const { showSourceTaxon, catalogueKey, pathToTaxon} = this.props;
@@ -425,7 +436,9 @@ class ColTree extends Component {
       treeData,
       defaultExpandAll,
       defaultExpandedKeys,
-      nodeNotFoundErr
+      nodeNotFoundErr,
+      loadedKeys,
+      expandedKeys
     } = this.state;
     const location = history.location;
     const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
@@ -455,12 +468,16 @@ class ColTree extends Component {
                 showLine={true}
                 defaultExpandAll={defaultExpandAll}
                 defaultExpandedKeys={defaultExpandedKeys}
-
+                onLoad={loadedKeys => this.setState({loadedKeys})}
+                loadedKeys={loadedKeys}
+                expandedKeys={expandedKeys}
                 loadData={this.onLoadData}
                 filterTreeNode={node =>
                   node.props.dataRef.key === defaultExpandKey
                 }
                  onExpand={(expandedKeys, obj) => {
+                  this.setState({expandedKeys})
+
                   if (obj.expanded) {
                     if (_.get(obj, 'node.props.dataRef.childCount') && _.get(obj, 'node.props.dataRef.childCount') > 0 && !_.get(obj, 'node.props.dataRef.children')){
                       this.fetchChildPage(obj.node.props.dataRef, true)
