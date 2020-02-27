@@ -12,14 +12,14 @@ These components can be included in any html page.
 Include dependencies, React and React Dom:
 
 ````
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" ></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" ></script>
 ````
 
 Include the Library:
 
 ````
-<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.1/umd/col-tree-browser.min.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.1/umd/col-tree-browser.min.js" ></script>
 ````
 
 And the styles:
