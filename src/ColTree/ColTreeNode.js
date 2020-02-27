@@ -74,7 +74,7 @@ class ColTreeNode extends React.Component {
           const win = window.open(uri, '_blank');
           win.focus();
         }}
-      > {sectorSourceDataset.alias || sectorSourceDataset.key} {sectorSourceDataset.logo && <img style={{maxHeight: '24px',
+      > {sectorSourceDataset.alias || sectorSourceDataset.key} {sectorSourceDataset.logo && <img style={{maxHeight: '20px',
         width: 'auto'}} src={`${config.dataApi}dataset/${sectorSourceDataset.key}/logo`} />}</a>
              
           </span>

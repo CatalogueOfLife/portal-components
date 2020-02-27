@@ -78275,7 +78275,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
             " ",
             sectorSourceDataset.alias || sectorSourceDataset.key,
             " ",
-            sectorSourceDataset.logo && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { style: { maxHeight: '24px',
+            sectorSourceDataset.logo && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { style: { maxHeight: '20px',
                 width: 'auto' }, src: src_config.dataApi + "dataset/" + sectorSourceDataset.key + "/logo" })
           )
         )
