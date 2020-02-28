@@ -13,8 +13,6 @@ import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
 
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
 const PAGE_SIZE = 50;
 const defaultParams = {
   limit: 50,
@@ -150,9 +148,10 @@ class NameSearchPage extends React.Component {
     const { catalogueKey } = this.props;
    
     const url =  `${config.dataApi}dataset/${catalogueKey}/nameusage/search`;
+    const params_ = _.get(params, 'status') ? params : { ...params, status: "_NOT_NULL"}
     axios(
       `${url}?${qs.stringify(
-        params
+        params_
       )}`
     )
       .then(res => {
@@ -322,33 +321,7 @@ class NameSearchPage extends React.Component {
             </div>
             <div style={{ marginTop: "10px" }}>
 
-<FormItem style={{
-      marginLeft: "10px",
-      marginBottom: "10px"
-    }}>
-    <RadioGroup
-    
-      onChange={evt => {
-        if (typeof evt.target.value === "undefined") {
-          this.setState(
-            {
-              params: _.omit(this.state.params, [
-                "status"
-              ])
-            },
-            this.getData
-          );
-        } else {
-          this.updateSearch({ status: evt.target.value });
-        }
-      }}
-      value={params.status}
-    >
-      <Radio value="_NOT_NULL">Exclude bare names</Radio>
-      <Radio value="_NULL">Only bare names</Radio>
-      <Radio value={undefined}>All</Radio>
-    </RadioGroup>
-    </FormItem>
+
     </div>
           </Col>
           <Col span={12}>

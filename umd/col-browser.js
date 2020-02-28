@@ -96234,6 +96234,105 @@ var Taxon_TaxonPage = function (_React$Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var Taxon = (Taxon_TaxonPage);
+// CONCATENATED MODULE: ./src/Search/Classification.js
+
+
+/* harmony default export */ var Search_Classification = (function (_ref) {
+    var classification = _ref.classification,
+        pathToTaxon = _ref.pathToTaxon,
+        _ref$maxParents = _ref.maxParents,
+        maxParents = _ref$maxParents === undefined ? classification.length : _ref$maxParents;
+
+    var clazzification = classification.slice(Math.max(classification.length - maxParents));
+
+    return clazzification.map(function (t, key) {
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
+            { key: key },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                "a",
+                { onClick: function onClick() {
+                        window.location.href = "" + pathToTaxon + t.id;
+                    } },
+                t.name
+            ),
+            !Object.is(clazzification.length - 1, key) && " > "
+        );
+    });
+});
+// CONCATENATED MODULE: ./src/Search/SearchBox.js
+function SearchBox_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function SearchBox_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function SearchBox_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+// test
+var SearchBox_Search = es_input.Search;
+
+var SearchBox_SearchBox = function (_React$Component) {
+  SearchBox_inherits(SearchBox, _React$Component);
+
+  function SearchBox(props) {
+    SearchBox_classCallCheck(this, SearchBox);
+
+    var _this = SearchBox_possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.componentWillMount = function () {
+      if (_this.props.defaultValue) {
+        _this.setState({ search: _this.props.defaultValue });
+      }
+    };
+
+    _this.componentDidUpdate = function (prevProps) {
+
+      if (prevProps.defaultValue !== _this.props.defaultValue) {
+        _this.setState({ search: _this.props.defaultValue });
+      }
+    };
+
+    _this.resetSearch = function () {
+      _this.setState({ search: "" }, function () {
+        _this.props.onSearch(_this.state.search);
+      });
+    };
+
+    _this.render = function () {
+      var suffix = _this.state.search ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icon, {
+        type: "close-circle",
+        key: "suffix",
+        style: { marginRight: "6px" },
+        onClick: _this.resetSearch
+      }) : null;
+
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SearchBox_Search, {
+        placeholder: "input search text",
+        value: _this.state.search,
+        onSearch: function onSearch(value) {
+          return _this.props.onSearch(_this.state.search);
+        },
+        onChange: function onChange(event) {
+          return _this.setState({ search: event.target.value });
+        },
+        enterButton: true,
+        autoFocus: true,
+        suffix: suffix
+
+      });
+    };
+
+    _this.state = {
+      search: ""
+    };
+    return _this;
+  }
+
+  return SearchBox;
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
+
+/* harmony default export */ var Search_SearchBox = (SearchBox_SearchBox);
 // EXTERNAL MODULE: ./node_modules/dom-scroll-into-view/lib/index.js
 var dom_scroll_into_view_lib = __webpack_require__(66);
 var dom_scroll_into_view_lib_default = /*#__PURE__*/__webpack_require__.n(dom_scroll_into_view_lib);
@@ -98097,105 +98196,6 @@ Form_Form.create = function create() {
 /* harmony default export */ var es_form = (Form_Form);
 //# sourceMappingURL=index.js.map
 
-// CONCATENATED MODULE: ./src/Search/Classification.js
-
-
-/* harmony default export */ var Search_Classification = (function (_ref) {
-    var classification = _ref.classification,
-        pathToTaxon = _ref.pathToTaxon,
-        _ref$maxParents = _ref.maxParents,
-        maxParents = _ref$maxParents === undefined ? classification.length : _ref$maxParents;
-
-    var clazzification = classification.slice(Math.max(classification.length - maxParents));
-
-    return clazzification.map(function (t, key) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-            { key: key },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "a",
-                { onClick: function onClick() {
-                        window.location.href = "" + pathToTaxon + t.id;
-                    } },
-                t.name
-            ),
-            !Object.is(clazzification.length - 1, key) && " > "
-        );
-    });
-});
-// CONCATENATED MODULE: ./src/Search/SearchBox.js
-function SearchBox_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function SearchBox_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function SearchBox_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-// test
-var SearchBox_Search = es_input.Search;
-
-var SearchBox_SearchBox = function (_React$Component) {
-  SearchBox_inherits(SearchBox, _React$Component);
-
-  function SearchBox(props) {
-    SearchBox_classCallCheck(this, SearchBox);
-
-    var _this = SearchBox_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentWillMount = function () {
-      if (_this.props.defaultValue) {
-        _this.setState({ search: _this.props.defaultValue });
-      }
-    };
-
-    _this.componentDidUpdate = function (prevProps) {
-
-      if (prevProps.defaultValue !== _this.props.defaultValue) {
-        _this.setState({ search: _this.props.defaultValue });
-      }
-    };
-
-    _this.resetSearch = function () {
-      _this.setState({ search: "" }, function () {
-        _this.props.onSearch(_this.state.search);
-      });
-    };
-
-    _this.render = function () {
-      var suffix = _this.state.search ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icon, {
-        type: "close-circle",
-        key: "suffix",
-        style: { marginRight: "6px" },
-        onClick: _this.resetSearch
-      }) : null;
-
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SearchBox_Search, {
-        placeholder: "input search text",
-        value: _this.state.search,
-        onSearch: function onSearch(value) {
-          return _this.props.onSearch(_this.state.search);
-        },
-        onChange: function onChange(event) {
-          return _this.setState({ search: event.target.value });
-        },
-        enterButton: true,
-        autoFocus: true,
-        suffix: suffix
-
-      });
-    };
-
-    _this.state = {
-      search: ""
-    };
-    return _this;
-  }
-
-  return SearchBox;
-}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
-/* harmony default export */ var Search_SearchBox = (SearchBox_SearchBox);
 // CONCATENATED MODULE: ./src/Search/MultiValueFilter.js
 var MultiValueFilter_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -98375,8 +98375,6 @@ function NameSearch_inherits(subClass, superClass) { if (typeof superClass !== "
 
 
 
-var NameSearch_FormItem = es_form.Item;
-var NameSearch_RadioGroup = es_radio.Group;
 var PAGE_SIZE = 50;
 var defaultParams = {
   limit: 50,
@@ -98494,7 +98492,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
 
 
       var url = src_config.dataApi + "dataset/" + catalogueKey + "/nameusage/search";
-      axios_default()(url + "?" + query_string_default.a.stringify(params)).then(function (res) {
+      var params_ = lodash_default.a.get(params, 'status') ? params : NameSearch_extends({}, params, { status: "_NOT_NULL" });
+      axios_default()(url + "?" + query_string_default.a.stringify(params_)).then(function (res) {
         var pagination = NameSearch_extends({}, _this.state.pagination);
         pagination.total = res.data.total;
 
@@ -98687,48 +98686,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             }),
             " "
           ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { marginTop: "10px" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              NameSearch_FormItem,
-              { style: {
-                  marginLeft: "10px",
-                  marginBottom: "10px"
-                } },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                NameSearch_RadioGroup,
-                {
-
-                  onChange: function onChange(evt) {
-                    if (typeof evt.target.value === "undefined") {
-                      _this2.setState({
-                        params: lodash_default.a.omit(_this2.state.params, ["status"])
-                      }, _this2.getData);
-                    } else {
-                      _this2.updateSearch({ status: evt.target.value });
-                    }
-                  },
-                  value: params.status
-                },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_radio,
-                  { value: "_NOT_NULL" },
-                  "Exclude bare names"
-                ),
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_radio,
-                  { value: "_NULL" },
-                  "Only bare names"
-                ),
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_radio,
-                  { value: undefined },
-                  "All"
-                )
-              )
-            )
-          )
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { style: { marginTop: "10px" } })
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           col,
