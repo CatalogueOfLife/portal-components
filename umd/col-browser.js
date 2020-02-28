@@ -78206,7 +78206,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
           datasetSectors = _this$props$taxon.datasetSectors,
           catalogueKey = _this$props.catalogueKey,
           pathToTaxon = _this$props.pathToTaxon;
-
+      var loading = _this.state.loading;
 
       var sectorSourceDataset = lodash_default.a.get(sector, 'dataset');
 
@@ -78284,7 +78284,8 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
 
     _this.state = {
       style: {},
-      provisional: _this.props.taxon.status === 'provisionally accepted'
+      provisional: _this.props.taxon.status === 'provisionally accepted',
+      loading: false
     };
     return _this;
   }
@@ -78623,7 +78624,7 @@ var ColTree_ColTree = function (_Component) {
                   }).reverse());
 
 
-                  _this2.setState({ treeData: treeData, rootLoading: false }, function () {
+                  _this2.setState({ treeData: treeData }, function () {
                     return _this2.reloadLoadedKeys(loadedKeys);
                   });
                 }
@@ -78643,7 +78644,7 @@ var ColTree_ColTree = function (_Component) {
 
     _this2.reloadLoadedKeys = function () {
       var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4(keys) {
-        var storedKeys, defaultExpandKey, treeData, targetTaxon, loadedKeys, index, _node;
+        var storedKeys, defaultExpandKey, treeData, targetTaxon, loadedKeys, index, _node, parentNode;
 
         return regenerator_default.a.wrap(function _callee4$(_context4) {
           while (1) {
@@ -78653,26 +78654,38 @@ var ColTree_ColTree = function (_Component) {
                 defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), 'taxonKey');
                 treeData = _this2.state.treeData;
                 targetTaxon = defaultExpandKey ? _this2.findNode(defaultExpandKey, treeData) : null;
-                loadedKeys = keys || storedKeys;
+                loadedKeys = [].concat(keys) || [].concat(storedKeys);
                 index = 0;
 
               case 6:
                 if (!(index < loadedKeys.length)) {
-                  _context4.next = 15;
+                  _context4.next = 16;
                   break;
                 }
 
                 _node = _this2.findNode(loadedKeys[index], treeData);
 
+                if (!_node && targetTaxon && loadedKeys[index - 1]) {
+                  // If the node is not found look for insertae sedis nodes in the children of the parent and insert the 'Not assigned' between the parent and the node 
+                  parentNode = _this2.findNode(loadedKeys[index - 1], treeData);
+
+                  if (parentNode && lodash_default.a.isArray(lodash_default.a.get(parentNode, 'children')) && parentNode.children.length > 0) {
+                    _node = parentNode.children.find(function (c) {
+                      return c.taxon.id.indexOf('incertae-sedis') > -1;
+                    });
+                    loadedKeys.splice(index, 0, _node.taxon.id);
+                  }
+                }
+
                 if (!_node) {
-                  _context4.next = 12;
+                  _context4.next = 13;
                   break;
                 }
 
-                _context4.next = 11;
+                _context4.next = 12;
                 return _this2.fetchChildPage(_node, true, true);
 
-              case 11:
+              case 12:
                 if (targetTaxon && index === loadedKeys.length - 2 && lodash_default.a.isArray(_node.children) && !_node.children.find(function (c) {
                   return lodash_default.a.get(c, 'taxon.id') === lodash_default.a.get(targetTaxon, 'taxon.id');
                 })) {
@@ -78698,15 +78711,15 @@ var ColTree_ColTree = function (_Component) {
                   }
                 }
 
-              case 12:
+              case 13:
                 index++;
                 _context4.next = 6;
                 break;
 
-              case 15:
+              case 16:
                 _this2.setState({ expandedKeys: loadedKeys, loadedKeys: loadedKeys, rootLoading: false });
 
-              case 16:
+              case 17:
               case "end":
                 return _context4.stop();
             }
@@ -78728,7 +78741,6 @@ var ColTree_ColTree = function (_Component) {
       var childcount = lodash_default.a.get(dataRef, "childCount");
       var limit = CHILD_PAGE_SIZE;
       var offset = lodash_default.a.get(dataRef, "childOffset");
-
       return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + dataRef.taxon.id //taxonKey
       + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
         return res.data.result ? res.data.result.map(function (tx) {

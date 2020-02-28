@@ -15,7 +15,8 @@ class ColTreeNode extends React.Component {
     super(props);
     this.state = {
       style: {},
-      provisional: this.props.taxon.status === 'provisionally accepted'
+      provisional: this.props.taxon.status === 'provisionally accepted',
+      loading: false
     };
   }
 
@@ -25,8 +26,10 @@ class ColTreeNode extends React.Component {
       taxon: { sector, datasetSectors },
       catalogueKey,
       pathToTaxon
+      
     } = this.props;
 
+    const {loading} = this.state;
     const sectorSourceDataset = _.get(sector, 'dataset') ;
 
 
@@ -79,6 +82,7 @@ class ColTreeNode extends React.Component {
              
           </span>
         )}
+        
       </div>
     );
   };

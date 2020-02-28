@@ -232,7 +232,7 @@ class ColTree extends Component {
 
      const loadedKeys = [...data.map(t => t.id).reverse()]
 
-     this.setState({treeData, rootLoading: false}, () => this.reloadLoadedKeys(loadedKeys))
+     this.setState({treeData}, () => this.reloadLoadedKeys(loadedKeys))
   }
   }
 
@@ -242,9 +242,17 @@ class ColTree extends Component {
 
     let {treeData} = this.state;
     const targetTaxon = defaultExpandKey ? this.findNode(defaultExpandKey, treeData) : null;
-    const loadedKeys = keys || storedKeys;
+    const loadedKeys = [...keys] || [...storedKeys];
     for (let index = 0; index < loadedKeys.length; index++) {
-      const node = this.findNode(loadedKeys[index], treeData);
+      let node = this.findNode(loadedKeys[index], treeData);
+      if (!node && targetTaxon && loadedKeys[index-1]){
+        // If the node is not found look for insertae sedis nodes in the children of the parent and insert the 'Not assigned' between the parent and the node 
+        const parentNode = this.findNode(loadedKeys[index-1], treeData);
+        if(parentNode && _.isArray(_.get(parentNode, 'children')) && parentNode.children.length > 0) {
+          node = parentNode.children.find(c => c.taxon.id.indexOf('incertae-sedis') > -1)
+          loadedKeys.splice(index, 0, node.taxon.id)
+        } 
+      }
       if(node){
         await this.fetchChildPage(node, true, true)
         if(targetTaxon 
@@ -277,7 +285,7 @@ class ColTree extends Component {
                 ); 
             }
         }
-      } 
+      }
     }
     this.setState({expandedKeys: loadedKeys, loadedKeys, rootLoading: false})
   }
@@ -287,7 +295,6 @@ class ColTree extends Component {
     const childcount = _.get(dataRef, "childCount");
     const limit = CHILD_PAGE_SIZE;
     const offset = _.get(dataRef, "childOffset");
-
     return axios(
       `${config.dataApi}dataset/${catalogueKey}/tree/${
         dataRef.taxon.id //taxonKey
