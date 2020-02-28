@@ -1,5 +1,5 @@
 /*!
- * col-browser v0.1.0
+ * col-browser v0.2.3
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -94947,7 +94947,10 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         _this.setState({ data: newData });
         return Promise.all(newData.map(_this.decorateWithLanguageByCode));
       }).then(function () {
-        return _this.setState({ data: [].concat(_this.state.data) });
+        _this.state.data.sort(function (a, b) {
+          return a.languageName > b.languageName ? 1 : -1;
+        });
+        _this.setState({ data: [].concat(_this.state.data) });
       });
     };
 
@@ -94977,18 +94980,18 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
       columns: [{
         title: "name",
         dataIndex: "name",
-        key: "name",
-        width: 150
+        key: "name"
+
       }, {
         title: "latin",
         dataIndex: "latin",
-        key: "latin",
-        width: 150
+        key: "latin"
+
       }, {
         title: "language",
         dataIndex: "language",
         key: "language",
-        width: 150,
+
         render: function render(text, record) {
           return record.languageName ? record.languageName : text;
         }
@@ -94997,7 +95000,7 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         title: "country",
         dataIndex: "country",
         key: "country",
-        width: 150,
+
         render: function render(text, record) {
           return record.countryTitle ? record.countryTitle : text;
         }
@@ -95236,6 +95239,7 @@ PresentationItem_PresentationItem.propTypes = {
 
 var Classification_ClassificationTable = function ClassificationTable(_ref) {
   var data = _ref.data,
+      taxon = _ref.taxon,
       style = _ref.style,
       pathToTree = _ref.pathToTree;
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -95251,7 +95255,13 @@ var Classification_ClassificationTable = function ClassificationTable(_ref) {
           }, dangerouslySetInnerHTML: { __html: t.labelHtml } })
       );
     }),
-    " "
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      components_PresentationItem,
+      { md: 6, label: lodash_default.a.get(taxon, 'name.rank') ? lodash_default.a.startCase(taxon.name.rank) : '', classes: { formItem: { borderBottom: 'none' } } },
+      taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { onClick: function onClick() {
+          window.location.href = pathToTree + "?taxonKey=" + taxon.id;
+        }, dangerouslySetInnerHTML: { __html: taxon.labelHtml } })
+    )
   );
 };
 
@@ -96158,6 +96168,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Classification, {
             style: { marginTop: "-3px", marginLeft: "-3px" },
             data: classification,
+            taxon: taxon,
             catalogueKey: catalogueKey,
             pathToTree: pathToTree
           })

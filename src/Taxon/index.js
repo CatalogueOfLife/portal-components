@@ -387,6 +387,7 @@ class TaxonPage extends React.Component {
                 <Classification
                   style={{ marginTop: "-3px", marginLeft: "-3px" }}
                   data={classification}
+                  taxon={taxon}
                   catalogueKey={catalogueKey}
                   pathToTree={pathToTree}
                 />

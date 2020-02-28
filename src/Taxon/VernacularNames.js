@@ -21,19 +21,19 @@ class VernacularNamesTable extends React.Component {
           title: "name",
           dataIndex: "name",
           key: "name",
-          width: 150
+       
         },
         {
           title: "latin",
           dataIndex: "latin",
           key: "latin",
-          width: 150
+        
         },
         {
           title: "language",
           dataIndex: "language",
           key: "language",
-          width: 150,
+       
           render: (text, record) => record.languageName ?  record.languageName : text
           
         },
@@ -41,7 +41,7 @@ class VernacularNamesTable extends React.Component {
           title: "country",
           dataIndex: "country",
           key: "country",
-          width: 150,
+          
           render: (text, record) => record.countryTitle ?  record.countryTitle : text
       
         },
@@ -74,7 +74,10 @@ class VernacularNamesTable extends React.Component {
         newData.map(this.decorateWithLanguageByCode)
         )
     })
-    .then(() => this.setState({data: [...this.state.data]}))
+    .then(() => {
+      this.state.data.sort((a, b) => (a.languageName > b.languageName) ? 1 : -1)
+      this.setState({data: [...this.state.data]})
+    })
 
   }
 
