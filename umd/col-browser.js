@@ -17288,7 +17288,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(36), __webpack_require__(59)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(36), __webpack_require__(60)(module)))
 
 /***/ }),
 /* 4 */
@@ -21896,7 +21896,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(60)(module)))
 
 /***/ }),
 /* 5 */
@@ -22163,7 +22163,7 @@ module.exports = __webpack_require__(314);
 /* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(47);
 /* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(17);
 /* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(warning__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _TreeNode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(65);
+/* harmony import */ var _TreeNode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(66);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -25657,7 +25657,7 @@ SubPopupMenu_SubPopupMenu.defaultProps = {
 var SubPopupMenu_connected = Object(lib["connect"])()(SubPopupMenu_SubPopupMenu);
 /* harmony default export */ var es_SubPopupMenu = (SubPopupMenu_connected);
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var warning = __webpack_require__(64);
+var warning = __webpack_require__(65);
 
 // CONCATENATED MODULE: ./node_modules/rc-menu/es/utils/legacyUtil.js
 function legacyUtil_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { legacyUtil_typeof = function _typeof(obj) { return typeof obj; }; } else { legacyUtil_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return legacyUtil_typeof(obj); }
@@ -25958,7 +25958,7 @@ Menu_Menu.defaultProps = {
 };
 /* harmony default export */ var es_Menu = (Menu_Menu);
 // EXTERNAL MODULE: ./node_modules/dom-scroll-into-view/lib/index.js
-var dom_scroll_into_view_lib = __webpack_require__(66);
+var dom_scroll_into_view_lib = __webpack_require__(67);
 var dom_scroll_into_view_lib_default = /*#__PURE__*/__webpack_require__.n(dom_scroll_into_view_lib);
 
 // CONCATENATED MODULE: ./node_modules/rc-menu/es/MenuItem.js
@@ -27745,7 +27745,7 @@ exports.f = __webpack_require__(40) ? Object.defineProperty : function definePro
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(60)(function () {
+module.exports = !__webpack_require__(61)(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
@@ -27871,7 +27871,7 @@ function withSuffix(name, theme) {
             throw new TypeError('Unknown theme type: ' + theme + ', name: ' + name);
     }
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(58)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)))
 
 /***/ }),
 /* 42 */
@@ -29377,7 +29377,7 @@ function addEventListenerWrap(target, eventType, cb, option) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(39);
-var createDesc = __webpack_require__(61);
+var createDesc = __webpack_require__(62);
 module.exports = __webpack_require__(40) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -29776,6 +29776,325 @@ module.exports = hoistNonReactStatics;
 
 /***/ }),
 /* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process, setImmediate) {function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * A `DataLoader` creates a public API for loading data from a particular
+ * data back-end with unique keys such as the `id` column of a SQL table or
+ * document name in a MongoDB database, given a batch loading function.
+ *
+ * Each `DataLoader` instance contains a unique memoized cache. Use caution when
+ * used in long-lived applications or those which serve many users with
+ * different access permissions and consider creating a new instance per
+ * web request.
+ */
+
+
+// Optionally turn off batching or caching or provide a cache key function or a
+// custom cache instance.
+var DataLoader = function () {
+  function DataLoader(batchLoadFn, options) {
+    _classCallCheck(this, DataLoader);
+
+    if (typeof batchLoadFn !== 'function') {
+      throw new TypeError('DataLoader must be constructed with a function which accepts ' + ('Array<key> and returns Promise<Array<value>>, but got: ' + batchLoadFn + '.'));
+    }
+    this._batchLoadFn = batchLoadFn;
+    this._options = options;
+    this._promiseCache = getValidCacheMap(options);
+    this._queue = [];
+  }
+
+  // Private
+
+
+  /**
+   * Loads a key, returning a `Promise` for the value represented by that key.
+   */
+  DataLoader.prototype.load = function load(key) {
+    var _this = this;
+
+    if (key === null || key === undefined) {
+      throw new TypeError('The loader.load() function must be called with a value,' + ('but got: ' + String(key) + '.'));
+    }
+
+    // Determine options
+    var options = this._options;
+    var shouldBatch = !options || options.batch !== false;
+    var shouldCache = !options || options.cache !== false;
+    var cacheKeyFn = options && options.cacheKeyFn;
+    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
+
+    // If caching and there is a cache-hit, return cached Promise.
+    if (shouldCache) {
+      var cachedPromise = this._promiseCache.get(cacheKey);
+      if (cachedPromise) {
+        return cachedPromise;
+      }
+    }
+
+    // Otherwise, produce a new Promise for this value.
+    var promise = new Promise(function (resolve, reject) {
+      // Enqueue this Promise to be dispatched.
+      _this._queue.push({ key: key, resolve: resolve, reject: reject });
+
+      // Determine if a dispatch of this queue should be scheduled.
+      // A single dispatch should be scheduled per queue at the time when the
+      // queue changes from "empty" to "full".
+      if (_this._queue.length === 1) {
+        if (shouldBatch) {
+          // If batching, schedule a task to dispatch the queue.
+          enqueuePostPromiseJob(function () {
+            return dispatchQueue(_this);
+          });
+        } else {
+          // Otherwise dispatch the (queue of one) immediately.
+          dispatchQueue(_this);
+        }
+      }
+    });
+
+    // If caching, cache this promise.
+    if (shouldCache) {
+      this._promiseCache.set(cacheKey, promise);
+    }
+
+    return promise;
+  };
+
+  /**
+   * Loads multiple keys, promising an array of values:
+   *
+   *     var [ a, b ] = await myLoader.loadMany([ 'a', 'b' ]);
+   *
+   * This is equivalent to the more verbose:
+   *
+   *     var [ a, b ] = await Promise.all([
+   *       myLoader.load('a'),
+   *       myLoader.load('b')
+   *     ]);
+   *
+   */
+
+
+  DataLoader.prototype.loadMany = function loadMany(keys) {
+    var _this2 = this;
+
+    if (!Array.isArray(keys)) {
+      throw new TypeError('The loader.loadMany() function must be called with Array<key> ' + ('but got: ' + keys + '.'));
+    }
+    return Promise.all(keys.map(function (key) {
+      return _this2.load(key);
+    }));
+  };
+
+  /**
+   * Clears the value at `key` from the cache, if it exists. Returns itself for
+   * method chaining.
+   */
+
+
+  DataLoader.prototype.clear = function clear(key) {
+    var cacheKeyFn = this._options && this._options.cacheKeyFn;
+    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
+    this._promiseCache.delete(cacheKey);
+    return this;
+  };
+
+  /**
+   * Clears the entire cache. To be used when some event results in unknown
+   * invalidations across this particular `DataLoader`. Returns itself for
+   * method chaining.
+   */
+
+
+  DataLoader.prototype.clearAll = function clearAll() {
+    this._promiseCache.clear();
+    return this;
+  };
+
+  /**
+   * Adds the provided key and value to the cache. If the key already
+   * exists, no change is made. Returns itself for method chaining.
+   */
+
+
+  DataLoader.prototype.prime = function prime(key, value) {
+    var cacheKeyFn = this._options && this._options.cacheKeyFn;
+    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
+
+    // Only add the key if it does not already exist.
+    if (this._promiseCache.get(cacheKey) === undefined) {
+      // Cache a rejected promise if the value is an Error, in order to match
+      // the behavior of load(key).
+      var promise = value instanceof Error ? Promise.reject(value) : Promise.resolve(value);
+
+      this._promiseCache.set(cacheKey, promise);
+    }
+
+    return this;
+  };
+
+  return DataLoader;
+}();
+
+// Private: Enqueue a Job to be executed after all "PromiseJobs" Jobs.
+//
+// ES6 JavaScript uses the concepts Job and JobQueue to schedule work to occur
+// after the current execution context has completed:
+// http://www.ecma-international.org/ecma-262/6.0/#sec-jobs-and-job-queues
+//
+// Node.js uses the `process.nextTick` mechanism to implement the concept of a
+// Job, maintaining a global FIFO JobQueue for all Jobs, which is flushed after
+// the current call stack ends.
+//
+// When calling `then` on a Promise, it enqueues a Job on a specific
+// "PromiseJobs" JobQueue which is flushed in Node as a single Job on the
+// global JobQueue.
+//
+// DataLoader batches all loads which occur in a single frame of execution, but
+// should include in the batch all loads which occur during the flushing of the
+// "PromiseJobs" JobQueue after that same execution frame.
+//
+// In order to avoid the DataLoader dispatch Job occuring before "PromiseJobs",
+// A Promise Job is created with the sole purpose of enqueuing a global Job,
+// ensuring that it always occurs after "PromiseJobs" ends.
+//
+// Node.js's job queue is unique. Browsers do not have an equivalent mechanism
+// for enqueuing a job to be performed after promise microtasks and before the
+// next macrotask. For browser environments, a macrotask is used (via
+// setImmediate or setTimeout) at a potential performance penalty.
+
+
+// If a custom cache is provided, it must be of this type (a subset of ES6 Map).
+
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+// A Function, which when given an Array of keys, returns a Promise of an Array
+// of values or Errors.
+
+
+var enqueuePostPromiseJob = typeof process === 'object' && typeof process.nextTick === 'function' ? function (fn) {
+  if (!resolvedPromise) {
+    resolvedPromise = Promise.resolve();
+  }
+  resolvedPromise.then(function () {
+    return process.nextTick(fn);
+  });
+} : setImmediate || setTimeout;
+
+// Private: cached resolved Promise instance
+var resolvedPromise;
+
+// Private: given the current state of a Loader instance, perform a batch load
+// from its current queue.
+function dispatchQueue(loader) {
+  // Take the current loader queue, replacing it with an empty queue.
+  var queue = loader._queue;
+  loader._queue = [];
+
+  // If a maxBatchSize was provided and the queue is longer, then segment the
+  // queue into multiple batches, otherwise treat the queue as a single batch.
+  var maxBatchSize = loader._options && loader._options.maxBatchSize;
+  if (maxBatchSize && maxBatchSize > 0 && maxBatchSize < queue.length) {
+    for (var i = 0; i < queue.length / maxBatchSize; i++) {
+      dispatchQueueBatch(loader, queue.slice(i * maxBatchSize, (i + 1) * maxBatchSize));
+    }
+  } else {
+    dispatchQueueBatch(loader, queue);
+  }
+}
+
+function dispatchQueueBatch(loader, queue) {
+  // Collect all keys to be loaded in this dispatch
+  var keys = queue.map(function (_ref) {
+    var key = _ref.key;
+    return key;
+  });
+
+  // Call the provided batchLoadFn for this loader with the loader queue's keys.
+  var batchLoadFn = loader._batchLoadFn;
+  var batchPromise = batchLoadFn(keys);
+
+  // Assert the expected response from batchLoadFn
+  if (!batchPromise || typeof batchPromise.then !== 'function') {
+    return failedDispatch(loader, queue, new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise: ' + String(batchPromise) + '.')));
+  }
+
+  // Await the resolution of the call to batchLoadFn.
+  batchPromise.then(function (values) {
+
+    // Assert the expected resolution from batchLoadFn.
+    if (!Array.isArray(values)) {
+      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise of an Array: ' + String(values) + '.'));
+    }
+    if (values.length !== keys.length) {
+      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + 'not return a Promise of an Array of the same length as the Array ' + 'of keys.' + ('\n\nKeys:\n' + String(keys)) + ('\n\nValues:\n' + String(values)));
+    }
+
+    // Step through the values, resolving or rejecting each Promise in the
+    // loaded queue.
+    queue.forEach(function (_ref2, index) {
+      var resolve = _ref2.resolve,
+          reject = _ref2.reject;
+
+      var value = values[index];
+      if (value instanceof Error) {
+        reject(value);
+      } else {
+        resolve(value);
+      }
+    });
+  }).catch(function (error) {
+    return failedDispatch(loader, queue, error);
+  });
+}
+
+// Private: do not cache individual loads if the entire batch dispatch fails,
+// but still reject each request so they do not hang.
+function failedDispatch(loader, queue, error) {
+  queue.forEach(function (_ref3) {
+    var key = _ref3.key,
+        reject = _ref3.reject;
+
+    loader.clear(key);
+    reject(error);
+  });
+}
+
+// Private: given the DataLoader's options, produce a CacheMap to be used.
+function getValidCacheMap(options) {
+  var cacheMap = options && options.cacheMap;
+  if (!cacheMap) {
+    return new Map();
+  }
+  var cacheFunctions = ['get', 'set', 'delete', 'clear'];
+  var missingFunctions = cacheFunctions.filter(function (fnName) {
+    return cacheMap && typeof cacheMap[fnName] !== 'function';
+  });
+  if (missingFunctions.length !== 0) {
+    throw new TypeError('Custom cacheMap missing methods: ' + missingFunctions.join(', '));
+  }
+  return cacheMap;
+}
+
+// Private
+
+
+module.exports = DataLoader;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59), __webpack_require__(331).setImmediate))
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -29965,7 +30284,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29993,7 +30312,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = function (exec) {
@@ -30006,7 +30325,7 @@ module.exports = function (exec) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -30020,14 +30339,14 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(105),
@@ -30061,7 +30380,7 @@ module.exports = baseGetTag;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30100,7 +30419,7 @@ function noteOnce(valid, message) {
 /* eslint-enable */
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30636,332 +30955,13 @@ ContextTreeNode.isTreeNode = 1;
 /* harmony default export */ __webpack_exports__["a"] = (ContextTreeNode);
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = __webpack_require__(396);
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process, setImmediate) {function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * A `DataLoader` creates a public API for loading data from a particular
- * data back-end with unique keys such as the `id` column of a SQL table or
- * document name in a MongoDB database, given a batch loading function.
- *
- * Each `DataLoader` instance contains a unique memoized cache. Use caution when
- * used in long-lived applications or those which serve many users with
- * different access permissions and consider creating a new instance per
- * web request.
- */
-
-
-// Optionally turn off batching or caching or provide a cache key function or a
-// custom cache instance.
-var DataLoader = function () {
-  function DataLoader(batchLoadFn, options) {
-    _classCallCheck(this, DataLoader);
-
-    if (typeof batchLoadFn !== 'function') {
-      throw new TypeError('DataLoader must be constructed with a function which accepts ' + ('Array<key> and returns Promise<Array<value>>, but got: ' + batchLoadFn + '.'));
-    }
-    this._batchLoadFn = batchLoadFn;
-    this._options = options;
-    this._promiseCache = getValidCacheMap(options);
-    this._queue = [];
-  }
-
-  // Private
-
-
-  /**
-   * Loads a key, returning a `Promise` for the value represented by that key.
-   */
-  DataLoader.prototype.load = function load(key) {
-    var _this = this;
-
-    if (key === null || key === undefined) {
-      throw new TypeError('The loader.load() function must be called with a value,' + ('but got: ' + String(key) + '.'));
-    }
-
-    // Determine options
-    var options = this._options;
-    var shouldBatch = !options || options.batch !== false;
-    var shouldCache = !options || options.cache !== false;
-    var cacheKeyFn = options && options.cacheKeyFn;
-    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
-
-    // If caching and there is a cache-hit, return cached Promise.
-    if (shouldCache) {
-      var cachedPromise = this._promiseCache.get(cacheKey);
-      if (cachedPromise) {
-        return cachedPromise;
-      }
-    }
-
-    // Otherwise, produce a new Promise for this value.
-    var promise = new Promise(function (resolve, reject) {
-      // Enqueue this Promise to be dispatched.
-      _this._queue.push({ key: key, resolve: resolve, reject: reject });
-
-      // Determine if a dispatch of this queue should be scheduled.
-      // A single dispatch should be scheduled per queue at the time when the
-      // queue changes from "empty" to "full".
-      if (_this._queue.length === 1) {
-        if (shouldBatch) {
-          // If batching, schedule a task to dispatch the queue.
-          enqueuePostPromiseJob(function () {
-            return dispatchQueue(_this);
-          });
-        } else {
-          // Otherwise dispatch the (queue of one) immediately.
-          dispatchQueue(_this);
-        }
-      }
-    });
-
-    // If caching, cache this promise.
-    if (shouldCache) {
-      this._promiseCache.set(cacheKey, promise);
-    }
-
-    return promise;
-  };
-
-  /**
-   * Loads multiple keys, promising an array of values:
-   *
-   *     var [ a, b ] = await myLoader.loadMany([ 'a', 'b' ]);
-   *
-   * This is equivalent to the more verbose:
-   *
-   *     var [ a, b ] = await Promise.all([
-   *       myLoader.load('a'),
-   *       myLoader.load('b')
-   *     ]);
-   *
-   */
-
-
-  DataLoader.prototype.loadMany = function loadMany(keys) {
-    var _this2 = this;
-
-    if (!Array.isArray(keys)) {
-      throw new TypeError('The loader.loadMany() function must be called with Array<key> ' + ('but got: ' + keys + '.'));
-    }
-    return Promise.all(keys.map(function (key) {
-      return _this2.load(key);
-    }));
-  };
-
-  /**
-   * Clears the value at `key` from the cache, if it exists. Returns itself for
-   * method chaining.
-   */
-
-
-  DataLoader.prototype.clear = function clear(key) {
-    var cacheKeyFn = this._options && this._options.cacheKeyFn;
-    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
-    this._promiseCache.delete(cacheKey);
-    return this;
-  };
-
-  /**
-   * Clears the entire cache. To be used when some event results in unknown
-   * invalidations across this particular `DataLoader`. Returns itself for
-   * method chaining.
-   */
-
-
-  DataLoader.prototype.clearAll = function clearAll() {
-    this._promiseCache.clear();
-    return this;
-  };
-
-  /**
-   * Adds the provided key and value to the cache. If the key already
-   * exists, no change is made. Returns itself for method chaining.
-   */
-
-
-  DataLoader.prototype.prime = function prime(key, value) {
-    var cacheKeyFn = this._options && this._options.cacheKeyFn;
-    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
-
-    // Only add the key if it does not already exist.
-    if (this._promiseCache.get(cacheKey) === undefined) {
-      // Cache a rejected promise if the value is an Error, in order to match
-      // the behavior of load(key).
-      var promise = value instanceof Error ? Promise.reject(value) : Promise.resolve(value);
-
-      this._promiseCache.set(cacheKey, promise);
-    }
-
-    return this;
-  };
-
-  return DataLoader;
-}();
-
-// Private: Enqueue a Job to be executed after all "PromiseJobs" Jobs.
-//
-// ES6 JavaScript uses the concepts Job and JobQueue to schedule work to occur
-// after the current execution context has completed:
-// http://www.ecma-international.org/ecma-262/6.0/#sec-jobs-and-job-queues
-//
-// Node.js uses the `process.nextTick` mechanism to implement the concept of a
-// Job, maintaining a global FIFO JobQueue for all Jobs, which is flushed after
-// the current call stack ends.
-//
-// When calling `then` on a Promise, it enqueues a Job on a specific
-// "PromiseJobs" JobQueue which is flushed in Node as a single Job on the
-// global JobQueue.
-//
-// DataLoader batches all loads which occur in a single frame of execution, but
-// should include in the batch all loads which occur during the flushing of the
-// "PromiseJobs" JobQueue after that same execution frame.
-//
-// In order to avoid the DataLoader dispatch Job occuring before "PromiseJobs",
-// A Promise Job is created with the sole purpose of enqueuing a global Job,
-// ensuring that it always occurs after "PromiseJobs" ends.
-//
-// Node.js's job queue is unique. Browsers do not have an equivalent mechanism
-// for enqueuing a job to be performed after promise microtasks and before the
-// next macrotask. For browser environments, a macrotask is used (via
-// setImmediate or setTimeout) at a potential performance penalty.
-
-
-// If a custom cache is provided, it must be of this type (a subset of ES6 Map).
-
-/**
- *  Copyright (c) 2015, Facebook, Inc.
- *  All rights reserved.
- *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- */
-
-// A Function, which when given an Array of keys, returns a Promise of an Array
-// of values or Errors.
-
-
-var enqueuePostPromiseJob = typeof process === 'object' && typeof process.nextTick === 'function' ? function (fn) {
-  if (!resolvedPromise) {
-    resolvedPromise = Promise.resolve();
-  }
-  resolvedPromise.then(function () {
-    return process.nextTick(fn);
-  });
-} : setImmediate || setTimeout;
-
-// Private: cached resolved Promise instance
-var resolvedPromise;
-
-// Private: given the current state of a Loader instance, perform a batch load
-// from its current queue.
-function dispatchQueue(loader) {
-  // Take the current loader queue, replacing it with an empty queue.
-  var queue = loader._queue;
-  loader._queue = [];
-
-  // If a maxBatchSize was provided and the queue is longer, then segment the
-  // queue into multiple batches, otherwise treat the queue as a single batch.
-  var maxBatchSize = loader._options && loader._options.maxBatchSize;
-  if (maxBatchSize && maxBatchSize > 0 && maxBatchSize < queue.length) {
-    for (var i = 0; i < queue.length / maxBatchSize; i++) {
-      dispatchQueueBatch(loader, queue.slice(i * maxBatchSize, (i + 1) * maxBatchSize));
-    }
-  } else {
-    dispatchQueueBatch(loader, queue);
-  }
-}
-
-function dispatchQueueBatch(loader, queue) {
-  // Collect all keys to be loaded in this dispatch
-  var keys = queue.map(function (_ref) {
-    var key = _ref.key;
-    return key;
-  });
-
-  // Call the provided batchLoadFn for this loader with the loader queue's keys.
-  var batchLoadFn = loader._batchLoadFn;
-  var batchPromise = batchLoadFn(keys);
-
-  // Assert the expected response from batchLoadFn
-  if (!batchPromise || typeof batchPromise.then !== 'function') {
-    return failedDispatch(loader, queue, new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise: ' + String(batchPromise) + '.')));
-  }
-
-  // Await the resolution of the call to batchLoadFn.
-  batchPromise.then(function (values) {
-
-    // Assert the expected resolution from batchLoadFn.
-    if (!Array.isArray(values)) {
-      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise of an Array: ' + String(values) + '.'));
-    }
-    if (values.length !== keys.length) {
-      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + 'not return a Promise of an Array of the same length as the Array ' + 'of keys.' + ('\n\nKeys:\n' + String(keys)) + ('\n\nValues:\n' + String(values)));
-    }
-
-    // Step through the values, resolving or rejecting each Promise in the
-    // loaded queue.
-    queue.forEach(function (_ref2, index) {
-      var resolve = _ref2.resolve,
-          reject = _ref2.reject;
-
-      var value = values[index];
-      if (value instanceof Error) {
-        reject(value);
-      } else {
-        resolve(value);
-      }
-    });
-  }).catch(function (error) {
-    return failedDispatch(loader, queue, error);
-  });
-}
-
-// Private: do not cache individual loads if the entire batch dispatch fails,
-// but still reject each request so they do not hang.
-function failedDispatch(loader, queue, error) {
-  queue.forEach(function (_ref3) {
-    var key = _ref3.key,
-        reject = _ref3.reject;
-
-    loader.clear(key);
-    reject(error);
-  });
-}
-
-// Private: given the DataLoader's options, produce a CacheMap to be used.
-function getValidCacheMap(options) {
-  var cacheMap = options && options.cacheMap;
-  if (!cacheMap) {
-    return new Map();
-  }
-  var cacheFunctions = ['get', 'set', 'delete', 'clear'];
-  var missingFunctions = cacheFunctions.filter(function (fnName) {
-    return cacheMap && typeof cacheMap[fnName] !== 'function';
-  });
-  if (missingFunctions.length !== 0) {
-    throw new TypeError('Custom cacheMap missing methods: ' + missingFunctions.join(', '));
-  }
-  return cacheMap;
-}
-
-// Private
-
-
-module.exports = DataLoader;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(58), __webpack_require__(331).setImmediate))
 
 /***/ }),
 /* 68 */
@@ -31199,7 +31199,7 @@ module.exports = function (it) {
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(63),
+var baseGetTag = __webpack_require__(64),
     isObjectLike = __webpack_require__(53);
 
 /** `Object#toString` result references. */
@@ -32400,7 +32400,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(58)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)))
 
 /***/ }),
 /* 92 */
@@ -33005,7 +33005,7 @@ module.exports = getNative;
 /* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(63),
+var baseGetTag = __webpack_require__(64),
     isObject = __webpack_require__(33);
 
 /** `Object#toString` result references. */
@@ -39248,7 +39248,7 @@ Tree_Tree.defaultProps = {
 Object(react_lifecycles_compat_es["polyfill"])(Tree_Tree);
 /* harmony default export */ var es_Tree = (Tree_Tree);
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/TreeNode.js
-var TreeNode = __webpack_require__(65);
+var TreeNode = __webpack_require__(66);
 
 // CONCATENATED MODULE: ./node_modules/rc-tree/es/index.js
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "a", function() { return TreeNode["a" /* default */]; });
@@ -39513,7 +39513,7 @@ module.exports = Cancel;
 /* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(40) && !__webpack_require__(60)(function () {
+module.exports = !__webpack_require__(40) && !__webpack_require__(61)(function () {
   return Object.defineProperty(__webpack_require__(131)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
@@ -39612,7 +39612,7 @@ var LIBRARY = __webpack_require__(73);
 var $export = __webpack_require__(43);
 var redefine = __webpack_require__(137);
 var hide = __webpack_require__(49);
-var Iterators = __webpack_require__(62);
+var Iterators = __webpack_require__(63);
 var $iterCreate = __webpack_require__(345);
 var setToStringTag = __webpack_require__(102);
 var getPrototypeOf = __webpack_require__(348);
@@ -39703,7 +39703,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE = __webpack_require__(75);
-var createDesc = __webpack_require__(61);
+var createDesc = __webpack_require__(62);
 var toIObject = __webpack_require__(52);
 var toPrimitive = __webpack_require__(93);
 var has = __webpack_require__(44);
@@ -40167,7 +40167,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(60)(module)))
 
 /***/ }),
 /* 154 */
@@ -57379,7 +57379,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(36), __webpack_require__(58)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(36), __webpack_require__(59)))
 
 /***/ }),
 /* 333 */
@@ -57545,7 +57545,7 @@ var IObject = __webpack_require__(133);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(60)(function () {
+module.exports = !$assign || __webpack_require__(61)(function () {
   var A = {};
   var B = {};
   // eslint-disable-next-line no-undef
@@ -57661,7 +57661,7 @@ module.exports = function (TO_STRING) {
 "use strict";
 
 var create = __webpack_require__(101);
-var descriptor = __webpack_require__(61);
+var descriptor = __webpack_require__(62);
 var setToStringTag = __webpack_require__(102);
 var IteratorPrototype = {};
 
@@ -57727,7 +57727,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 __webpack_require__(350);
 var global = __webpack_require__(38);
 var hide = __webpack_require__(49);
-var Iterators = __webpack_require__(62);
+var Iterators = __webpack_require__(63);
 var TO_STRING_TAG = __webpack_require__(32)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
@@ -57753,7 +57753,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 var addToUnscopables = __webpack_require__(351);
 var step = __webpack_require__(352);
-var Iterators = __webpack_require__(62);
+var Iterators = __webpack_require__(63);
 var toIObject = __webpack_require__(52);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -57832,7 +57832,7 @@ var DESCRIPTORS = __webpack_require__(40);
 var $export = __webpack_require__(43);
 var redefine = __webpack_require__(137);
 var META = __webpack_require__(356).KEY;
-var $fails = __webpack_require__(60);
+var $fails = __webpack_require__(61);
 var shared = __webpack_require__(98);
 var setToStringTag = __webpack_require__(102);
 var uid = __webpack_require__(74);
@@ -57846,7 +57846,7 @@ var isObject = __webpack_require__(51);
 var toObject = __webpack_require__(76);
 var toIObject = __webpack_require__(52);
 var toPrimitive = __webpack_require__(93);
-var createDesc = __webpack_require__(61);
+var createDesc = __webpack_require__(62);
 var _create = __webpack_require__(101);
 var gOPNExt = __webpack_require__(359);
 var $GOPD = __webpack_require__(139);
@@ -58084,7 +58084,7 @@ var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
 };
-var FREEZE = !__webpack_require__(60)(function () {
+var FREEZE = !__webpack_require__(61)(function () {
   return isExtensible(Object.preventExtensions({}));
 });
 var setMeta = function (it) {
@@ -59527,7 +59527,7 @@ module.exports = objectToString;
 
 //# sourceMappingURL=performance-now.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(58)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)))
 
 /***/ }),
 /* 386 */
@@ -64560,7 +64560,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var dom_scroll_into_view_1 = __importDefault(__webpack_require__(66));
+var dom_scroll_into_view_1 = __importDefault(__webpack_require__(67));
 
 var PropTypes = __importStar(__webpack_require__(1));
 
@@ -66957,7 +66957,7 @@ function cloneBuffer(buffer, isDeep) {
 
 module.exports = cloneBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(60)(module)))
 
 /***/ }),
 /* 448 */
@@ -67126,7 +67126,7 @@ module.exports = overArg;
 /* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(63),
+var baseGetTag = __webpack_require__(64),
     isObjectLike = __webpack_require__(53);
 
 /** `Object#toString` result references. */
@@ -67213,7 +67213,7 @@ module.exports = stubFalse;
 /* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(63),
+var baseGetTag = __webpack_require__(64),
     getPrototype = __webpack_require__(151),
     isObjectLike = __webpack_require__(53);
 
@@ -67281,7 +67281,7 @@ module.exports = isPlainObject;
 /* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(63),
+var baseGetTag = __webpack_require__(64),
     isLength = __webpack_require__(114),
     isObjectLike = __webpack_require__(53);
 
@@ -67398,7 +67398,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(59)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(60)(module)))
 
 /***/ }),
 /* 462 */
@@ -70358,7 +70358,7 @@ module.exports = function (iterator, fn, value, entries) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators = __webpack_require__(62);
+var Iterators = __webpack_require__(63);
 var ITERATOR = __webpack_require__(32)('iterator');
 var ArrayProto = Array.prototype;
 
@@ -70374,7 +70374,7 @@ module.exports = function (it) {
 "use strict";
 
 var $defineProperty = __webpack_require__(39);
-var createDesc = __webpack_require__(61);
+var createDesc = __webpack_require__(62);
 
 module.exports = function (object, index, value) {
   if (index in object) $defineProperty.f(object, index, createDesc(0, value));
@@ -70388,7 +70388,7 @@ module.exports = function (object, index, value) {
 
 var classof = __webpack_require__(506);
 var ITERATOR = __webpack_require__(32)('iterator');
-var Iterators = __webpack_require__(62);
+var Iterators = __webpack_require__(63);
 module.exports = __webpack_require__(31).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
     || it['@@iterator']
@@ -74646,7 +74646,7 @@ function IconFont_create() {
 //# sourceMappingURL=IconFont.js.map
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var es_warning = __webpack_require__(64);
+var es_warning = __webpack_require__(65);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/warning.js
 
@@ -76959,9 +76959,9 @@ var reflect = function reflect(p) {
   });
 };
 
-var sector_getSectorsBatch = function getSectorsBatch(ids) {
+var sector_getSectorsBatch = function getSectorsBatch(ids, catalogueKey) {
   return Promise.all(ids.map(function (i) {
-    return reflect(axios_default()(src_config.dataApi + "sector/" + i));
+    return reflect(axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/sector/" + i));
   }));
 };
 // CONCATENATED MODULE: ./src/api/dataset.js
@@ -76994,7 +76994,7 @@ var dataset_getDataset = function getDataset(datasetKey) {
     return axios_default()(src_config.dataApi + "dataset/" + datasetKey);
 };
 // EXTERNAL MODULE: ./node_modules/dataloader/index.js
-var dataloader = __webpack_require__(67);
+var dataloader = __webpack_require__(58);
 var dataloader_default = /*#__PURE__*/__webpack_require__.n(dataloader);
 
 // EXTERNAL MODULE: ./node_modules/query-string/index.js
@@ -78422,6 +78422,9 @@ var ColTree_ColTree = function (_Component) {
     _this2.componentDidMount = function () {
       _this2.loadRoot();
       ColTree_ColTreeActions.on('refreshTree', _this2.reloadRoot);
+      _this2.sectorLoader = new dataloader_default.a(function (ids) {
+        return sector_getSectorsBatch(ids, _this2.props.catalogueKey);
+      });
     };
 
     _this2.componentDidUpdate = function (prevProps) {
@@ -78742,7 +78745,7 @@ var ColTree_ColTree = function (_Component) {
       var limit = CHILD_PAGE_SIZE;
       var offset = lodash_default.a.get(dataRef, "childOffset");
       return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + dataRef.taxon.id //taxonKey
-      + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
+      + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE").then(_this2.decorateWithSectorsAndDataset).then(function (res) {
         return res.data.result ? res.data.result.map(function (tx) {
           var childDataRef = {
             taxon: tx,
@@ -78805,7 +78808,7 @@ var ColTree_ColTree = function (_Component) {
       return Promise.all(res.data.result.filter(function (tx) {
         return !!tx.sectorKey;
       }).map(function (tx) {
-        return sectorLoader.load(tx.sectorKey).then(function (r) {
+        return _this2.sectorLoader.load(tx.sectorKey).then(function (r) {
           tx.sector = r;
           return ColTree_datasetLoader.load(r.subjectDatasetKey).then(function (dataset) {
             return tx.sector.dataset = dataset;
@@ -95906,7 +95909,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         }
         // sector keys are only present if its a catalogue
         if (lodash_default.a.get(res, "data.sectorKey")) {
-          axios_default()(src_config.dataApi + "sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
+          axios_default()(src_config.dataApi + "/dataset/" + datasetKey + "/sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
             axios_default()(src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo").then(function () {
               _this.setState({
                 logoUrl: src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo?size=MEDIUM"
@@ -96346,7 +96349,7 @@ var SearchBox_SearchBox = function (_React$Component) {
 
 /* harmony default export */ var Search_SearchBox = (SearchBox_SearchBox);
 // EXTERNAL MODULE: ./node_modules/dom-scroll-into-view/lib/index.js
-var dom_scroll_into_view_lib = __webpack_require__(66);
+var dom_scroll_into_view_lib = __webpack_require__(67);
 var dom_scroll_into_view_lib_default = /*#__PURE__*/__webpack_require__.n(dom_scroll_into_view_lib);
 
 // EXTERNAL MODULE: ./node_modules/lodash/has.js

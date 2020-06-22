@@ -63,6 +63,8 @@ class ColTree extends Component {
   componentDidMount = () => {
     this.loadRoot();
     ColTreeActions.on('refreshTree', this.reloadRoot);
+    this.sectorLoader = new DataLoader((ids) => getSectorsBatch(ids, this.props.catalogueKey));
+
   };
 
   componentDidUpdate = (prevProps) => {
@@ -300,7 +302,7 @@ class ColTree extends Component {
         dataRef.taxon.id //taxonKey
       }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${
         catalogueKey
-      }`
+      }&type=CATALOGUE`
     )
 
       .then(this.decorateWithSectorsAndDataset)
@@ -385,7 +387,7 @@ class ColTree extends Component {
       res.data.result
         .filter(tx => !!tx.sectorKey)
         .map(tx =>
-          sectorLoader.load(tx.sectorKey).then(r => {
+          this.sectorLoader.load(tx.sectorKey).then(r => {
             tx.sector = r;
             return datasetLoader
               .load(r.subjectDatasetKey)
