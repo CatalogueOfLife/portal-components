@@ -20,7 +20,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "antd": "^3.26.7",
+    "antd": "^4.3.5",
     "axios": "^0.18.1",
     "dataloader": "^1.4.0",
     "history": "^4.7.2",
@@ -45,8 +45,8 @@
   "homepage": "",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Sp2000/colplus-portal-components.git"
+    "type": "git",
+    "url": "https://github.com/Sp2000/colplus-portal-components.git"
   },
   "keywords": [
     "react-component",
