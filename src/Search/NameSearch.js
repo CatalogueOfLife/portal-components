@@ -304,12 +304,11 @@ class NameSearchPage extends React.Component {
           <Col
             span={12}
           >
-           <FormItem> <SearchBox
+           <SearchBox
               defaultValue={_.get(qs.parse(_.get(this.props, "location.search")), "q")}
               onSearch={value => this.updateSearch({ q: value })}
-              style={{ marginBottom: "10px", width: "100%" }}
+              style={{ marginBottom: "8px", width: "100%" }}
             />
-            </FormItem>
            
               <NameAutocomplete
                 datasetKey={catalogueKey}

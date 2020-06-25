@@ -103,8 +103,8 @@ class NameSearchAutocomplete extends React.Component {
       ""
     );
     return (
-    <FormItem> <AutoComplete
-        style={{ width: "100%", marginBottom: '8px' }}
+    <AutoComplete
+        style={this.props.style ? this.props.style : { width: "100%" }}
         options={options}
         onSelect={this.onSelectName}
         onSearch={this.getNames}
@@ -116,7 +116,7 @@ class NameSearchAutocomplete extends React.Component {
         <Input.Search suffix={suffix} 
  />
       </AutoComplete>
-      </FormItem> 
+    
     );
   };
 }

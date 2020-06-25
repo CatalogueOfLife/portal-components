@@ -19,6 +19,7 @@ class ColTreeWrapper extends React.Component {
           <div className="catalogue-of-life">
             <NameAutocomplete
               datasetKey={catalogueKey}
+              style={{width: '100%', marginBottom: '8px'}}
               defaultTaxonKey={_.get(params, "taxonKey") || null}
               onSelectName={name => {
     

@@ -29,19 +29,16 @@ class SearchBox extends React.Component {
     });
   }
   render = () => {
-    const suffix = this.state.search ? (
-      <CloseCircleOutlined key="suffix" style={{ marginRight: "6px" }} onClick={this.resetSearch} />
-    ) : null;
-
+    
     return (
       <Search
+        style={this.props.style || null}
         placeholder="input search text"
         value={this.state.search}
         onSearch={value => this.props.onSearch(this.state.search)}
         onChange={event => this.setState({ search: event.target.value})}
         allowClear
         autoFocus={true}
-        style={{marginBottom: '8px'}}
       />
     );
   };

@@ -86929,26 +86929,21 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
       });
       var suffix = value ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, { key: "suffix", onClick: _this.onReset, style: { marginRight: "6px" } }) : "";
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        NameAutocomplete_FormItem,
-        null,
-        " ",
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          auto_complete,
-          {
-            style: { width: "100%", marginBottom: '8px' },
-            options: options,
-            onSelect: _this.onSelectName,
-            onSearch: _this.getNames,
-            placeholder: placeHolder || "Find taxon",
-            onChange: function onChange(value) {
-              return _this.setState({ value: value });
-            },
-            value: value,
-            autoFocus: autoFocus === false ? false : true
+        auto_complete,
+        {
+          style: _this.props.style ? _this.props.style : { width: "100%" },
+          options: options,
+          onSelect: _this.onSelectName,
+          onSearch: _this.getNames,
+          placeholder: placeHolder || "Find taxon",
+          onChange: function onChange(value) {
+            return _this.setState({ value: value });
           },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { suffix: suffix
-          })
-        )
+          value: value,
+          autoFocus: autoFocus === false ? false : true
+        },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { suffix: suffix
+        })
       );
     };
 
@@ -87007,6 +87002,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
           { className: "catalogue-of-life" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
+            style: { width: '100%', marginBottom: '8px' },
             defaultTaxonKey: lodash_default.a.get(params, "taxonKey") || null,
             onSelectName: function onSelectName(name) {
 
@@ -102545,9 +102541,9 @@ var SearchBox_SearchBox = function (_React$Component) {
     };
 
     _this.render = function () {
-      var suffix = _this.state.search ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, { key: "suffix", style: { marginRight: "6px" }, onClick: _this.resetSearch }) : null;
 
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SearchBox_Search, {
+        style: _this.props.style || null,
         placeholder: "input search text",
         value: _this.state.search,
         onSearch: function onSearch(value) {
@@ -102557,8 +102553,7 @@ var SearchBox_SearchBox = function (_React$Component) {
           return _this.setState({ search: event.target.value });
         },
         allowClear: true,
-        autoFocus: true,
-        style: { marginBottom: '8px' }
+        autoFocus: true
       });
     };
 
@@ -103041,18 +103036,13 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           {
             span: 12
           },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            NameSearch_FormItem,
-            null,
-            " ",
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
-              defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
-              onSearch: function onSearch(value) {
-                return _this2.updateSearch({ q: value });
-              },
-              style: { marginBottom: "10px", width: "100%" }
-            })
-          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
+            defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
+            onSearch: function onSearch(value) {
+              return _this2.updateSearch({ q: value });
+            },
+            style: { marginBottom: "8px", width: "100%" }
+          }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
             defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || null,
