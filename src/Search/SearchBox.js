@@ -39,10 +39,10 @@ class SearchBox extends React.Component {
         value={this.state.search}
         onSearch={value => this.props.onSearch(this.state.search)}
         onChange={event => this.setState({ search: event.target.value})}
-        enterButton
+        allowClear
         autoFocus={true}
-        suffix={suffix}
-        
+        className="colplus-input"
+        style={{marginBottom: '8px'}}
       />
     );
   };

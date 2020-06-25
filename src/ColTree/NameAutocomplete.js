@@ -105,6 +105,7 @@ class NameSearchAutocomplete extends React.Component {
     return (
     <FormItem> <AutoComplete
         style={{ width: "100%", marginBottom: '8px' }}
+        className="colplus-input"
         options={options}
         onSelect={this.onSelectName}
         onSearch={this.getNames}
@@ -113,7 +114,8 @@ class NameSearchAutocomplete extends React.Component {
         value={value}
         autoFocus={autoFocus === false ? false : true}
       >
-        <Input.Search suffix={suffix}/>
+        <Input.Search suffix={suffix} 
+ />
       </AutoComplete>
       </FormItem> 
     );

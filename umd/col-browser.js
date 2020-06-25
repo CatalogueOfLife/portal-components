@@ -86936,6 +86936,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           auto_complete,
           {
             style: { width: "100%", marginBottom: '8px' },
+            className: "colplus-input",
             options: options,
             onSelect: _this.onSelectName,
             onSearch: _this.getNames,
@@ -86946,7 +86947,8 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
             value: value,
             autoFocus: autoFocus === false ? false : true
           },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { suffix: suffix })
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { suffix: suffix
+          })
         )
       );
     };
@@ -102555,10 +102557,10 @@ var SearchBox_SearchBox = function (_React$Component) {
         onChange: function onChange(event) {
           return _this.setState({ search: event.target.value });
         },
-        enterButton: true,
+        allowClear: true,
         autoFocus: true,
-        suffix: suffix
-
+        className: "colplus-input",
+        style: { marginBottom: '8px' }
       });
     };
 
