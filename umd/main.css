@@ -19003,8 +19003,8 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 .catalogue-of-life .ant-tree-node-content-wrapper {
   margin-left: 6px;
 }
-.catalogue-of-life .colplus-input {
-  height: 32px !important;
+.catalogue-of-life .ant-input-search > input {
+  height: 24px !important;
 }
 /* 
 The ant autocomplete injects the list in the bottom of the body, and therefore it is outside the catalogue of life class

@@ -41,7 +41,6 @@ class SearchBox extends React.Component {
         onChange={event => this.setState({ search: event.target.value})}
         allowClear
         autoFocus={true}
-        className="colplus-input"
         style={{marginBottom: '8px'}}
       />
     );

@@ -105,7 +105,6 @@ class NameSearchAutocomplete extends React.Component {
     return (
     <FormItem> <AutoComplete
         style={{ width: "100%", marginBottom: '8px' }}
-        className="colplus-input"
         options={options}
         onSelect={this.onSelectName}
         onSearch={this.getNames}
