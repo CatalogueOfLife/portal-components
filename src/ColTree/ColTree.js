@@ -111,7 +111,7 @@ class ColTree extends React.Component {
           let dataRef = {
             taxon: tx,
             key: tx.id,
-            datasetKey: id,
+            datasetKey: catalogueKey,
             childCount: tx.childCount,
             isLeaf: tx.childCount === 0,
             childOffset: 0

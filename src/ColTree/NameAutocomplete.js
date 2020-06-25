@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 import config from "../config";
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { AutoComplete, Input } from "antd";
+import { AutoComplete, Input, Form } from "antd";
 import _ from "lodash";
 import {debounce} from 'lodash';
 import Highlighter from "react-highlight-words";
 
-const Option = AutoComplete.Option;
+const FormItem = Form.Item;
 
 class NameSearchAutocomplete extends React.Component {
   constructor(props) {
@@ -103,7 +103,7 @@ class NameSearchAutocomplete extends React.Component {
       ""
     );
     return (
-      <AutoComplete
+    <FormItem> <AutoComplete
         style={{ width: "100%" }}
         options={options}
         onSelect={this.onSelectName}
@@ -115,6 +115,7 @@ class NameSearchAutocomplete extends React.Component {
       >
         <Input.Search suffix={suffix}/>
       </AutoComplete>
+      </FormItem> 
     );
   };
 }

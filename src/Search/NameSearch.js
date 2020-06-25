@@ -3,7 +3,7 @@ import axios from "axios";
 import {withRouter} from "react-router-dom";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 
-import { Table, Alert, Radio, Row, Col, Button } from "antd";
+import { Table, Alert, Form, Row, Col, Button } from "antd";
 import config from "../config";
 import qs from "query-string";
 import history from "../history";
@@ -14,6 +14,8 @@ import RowDetail from "./RowDetail";
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
+
+const FormItem = Form.Item;
 
 
 const PAGE_SIZE = 50;
@@ -303,13 +305,13 @@ class NameSearchPage extends React.Component {
             span={12}
             style={{ display: "flex", flexFlow: "column", height: "165px" }}
           >
-            <SearchBox
+           <FormItem> <SearchBox
               defaultValue={_.get(qs.parse(_.get(this.props, "location.search")), "q")}
               onSearch={value => this.updateSearch({ q: value })}
               style={{ marginBottom: "10px", width: "100%" }}
             />
-            <div style={{ marginTop: "10px" }}>
-              {" "}
+            </FormItem>
+           
               <NameAutocomplete
                 datasetKey={catalogueKey}
                 defaultTaxonKey={_.get(params, "TAXON_ID") || null}
@@ -321,13 +323,8 @@ class NameSearchPage extends React.Component {
                 sortBy="TAXONOMIC"
                 autoFocus={false}
                 
-              />{" "}
-             
-            </div>
-            <div style={{ marginTop: "10px" }}>
-
-
-    </div>
+              />
+            
           </Col>
           <Col span={12}>
 {/*             <MultiValueFilter
