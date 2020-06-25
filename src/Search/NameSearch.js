@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
-import { Table, Alert, Radio, Row, Col, Button, Icon, Form } from "antd";
+import { UpOutlined, DownOutlined } from "@ant-design/icons";
+
+import { Table, Alert, Radio, Row, Col, Button } from "antd";
 import config from "../config";
 import qs from "query-string";
 import history from "../history";
@@ -12,6 +14,7 @@ import RowDetail from "./RowDetail";
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
+
 
 const PAGE_SIZE = 50;
 const defaultParams = {
@@ -27,7 +30,7 @@ const defaultParams = {
 const getColumns = (pathToTaxon) => [
   {
     title: "Scientific Name",
-    dataIndex: "usage.labelHtml",
+    dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
     render: (text, record) => {
       const id = record.usage.synonym ? _.get(record, 'usage.accepted.id') : _.get(record, 'usage.id')
@@ -41,7 +44,7 @@ const getColumns = (pathToTaxon) => [
   },
   {
     title: "Status",
-    dataIndex: "usage.status",
+    dataIndex: ["usage", "status"],
     key: "status",
     width: 200,
     render: (text, record) => {
@@ -61,14 +64,14 @@ const getColumns = (pathToTaxon) => [
   },
   {
     title: "Rank",
-    dataIndex: "usage.name.rank",
+    dataIndex: ["usage", "name", "rank"],
     key: "rank",
     width: 60,
     sorter: true
   },
   {
     title: "Parents",
-    dataIndex: "usage.classification",
+    dataIndex: ["usage", "classification"],
     key: "parents",
     width: 180,
     render: (text, record) => {
@@ -309,6 +312,7 @@ class NameSearchPage extends React.Component {
               {" "}
               <NameAutocomplete
                 datasetKey={catalogueKey}
+                defaultTaxonKey={_.get(params, "TAXON_ID") || null}
                 onSelectName={value => {
                   this.updateSearch({ TAXON_ID: value.key });
                 }}
@@ -318,6 +322,7 @@ class NameSearchPage extends React.Component {
                 autoFocus={false}
                 
               />{" "}
+             
             </div>
             <div style={{ marginTop: "10px" }}>
 
@@ -372,7 +377,7 @@ class NameSearchPage extends React.Component {
                 onClick={this.toggleAdvancedFilters}
               >
                 Advanced{" "}
-                <Icon type={this.state.advancedFilters ? "up" : "down"} />
+                {this.state.advancedFilters ? <UpOutlined /> : <DownOutlined />}
               </a>
 
               {/* <Switch checkedChildren="Advanced" unCheckedChildren="Advanced" onChange={this.toggleAdvancedFilters} /> */}
@@ -400,6 +405,7 @@ class NameSearchPage extends React.Component {
             pagination={this.state.pagination}
             onChange={this.handleTableChange}
             rowKey={record => record.usage.id}
+            showSorterTooltip={false}
             expandedRowRender={record => <RowDetail {...record} catalogueKey={catalogueKey} pathToTaxon={pathToTaxon}/>}
           />
         )}

@@ -1,4 +1,6 @@
 
+const path = require('path');
+
 module.exports = {
   type: 'react-component',
   webpack : {
@@ -7,7 +9,9 @@ module.exports = {
           less : {
             loader: "less-loader",
             options: {
-              javascriptEnabled: true
+              
+                javascriptEnabled: true
+              
             }
           }
         },

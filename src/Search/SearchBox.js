@@ -1,5 +1,6 @@
 import React from "react";
-import { Input, Icon } from "antd";
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { Input } from "antd";
 // test
 const Search = Input.Search;
 
@@ -29,12 +30,7 @@ class SearchBox extends React.Component {
   }
   render = () => {
     const suffix = this.state.search ? (
-      <Icon
-        type="close-circle"
-        key="suffix"
-        style={{ marginRight: "6px" }}
-        onClick={this.resetSearch}
-      />
+      <CloseCircleOutlined key="suffix" style={{ marginRight: "6px" }} onClick={this.resetSearch} />
     ) : null;
 
     return (

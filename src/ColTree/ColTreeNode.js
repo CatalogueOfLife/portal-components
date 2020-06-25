@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  Tag,
-  Icon
-} from "antd";
+import { Tag } from "antd";
 import _ from "lodash";
 import config from "../config";
 import TaxonSources from "./TaxonSources"

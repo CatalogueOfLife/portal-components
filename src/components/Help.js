@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tooltip, Icon } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 import injectSheet from 'react-jss';
 
 const styles = {
@@ -17,7 +18,7 @@ const Help = ({ title, classes }) => {
     <React.Fragment>
       {title && <span className={classes.tip}>
         <Tooltip title={title}>
-          <Icon type="question-circle-o" className={classes.icon}/>
+          <QuestionCircleOutlined className={classes.icon} />
         </Tooltip>
       </span>}
     </React.Fragment>

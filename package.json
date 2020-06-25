@@ -26,20 +26,21 @@
     "history": "^4.7.2",
     "lodash": ">=4.6.2",
     "query-string": "~5.1.1",
+    "react-highlight-words": "^0.16.0",
     "react-jss": "^10.0.3",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^5.2.0"
   },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
     "less": "^2.7.2",
-    "less-loader": "^4.0.5",
+    "less-loader": "^5.0.0",
     "nwb": "0.23.x",
     "nwb-less": "^0.7.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "webpack": "^4.41.5"
+    "webpack": "^4.43.0"
   },
   "author": "",
   "homepage": "",

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select, Form } from "antd";
+import { Form, Select } from "antd";
 import _ from "lodash";
 
 
