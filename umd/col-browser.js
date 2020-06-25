@@ -86935,7 +86935,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           auto_complete,
           {
-            style: { width: "100%" },
+            style: { width: "100%", marginBottom: '8px' },
             options: options,
             onSelect: _this.onSelectName,
             onSearch: _this.getNames,
@@ -103039,21 +103039,15 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_col,
           {
-            span: 12,
-            style: { display: "flex", flexFlow: "column", height: "165px" }
+            span: 12
           },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            NameSearch_FormItem,
-            null,
-            " ",
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
-              defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
-              onSearch: function onSearch(value) {
-                return _this2.updateSearch({ q: value });
-              },
-              style: { marginBottom: "10px", width: "100%" }
-            })
-          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
+            defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
+            onSearch: function onSearch(value) {
+              return _this2.updateSearch({ q: value });
+            },
+            style: { marginBottom: "8px", width: "100%" }
+          }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
             defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || null,
