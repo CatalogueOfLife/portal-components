@@ -18987,6 +18987,11 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 .catalogue-of-life .ant-table-small > .ant-table-content > .ant-table-body {
   margin: 0px !important;
 }
+.catalogue-of-life table tr.even,
+.catalogue-of-life table tr.alt,
+.catalogue-of-life table tr:nth-of-type(even) {
+  background: white !important;
+}
 .catalogue-of-life .colplus-taxon-page-list tbody tr:last-child > td {
   border-bottom: none !important;
 }
