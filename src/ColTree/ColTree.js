@@ -226,7 +226,7 @@ class ColTree extends React.Component {
   }
   
   fetchChildPage = (dataRef, reloadAll, dontUpdateState) => {
-    const { showSourceTaxon, dataset, treeType, catalogueKey, onDeleteSector } = this.props;
+    const { showSourceTaxon, treeType, catalogueKey,  pathToTaxon } = this.props;
     const {treeData} = this.state;
     const childcount = _.get(dataRef, "childCount");
     const limit = CHILD_PAGE_SIZE;
@@ -239,23 +239,7 @@ class ColTree extends React.Component {
         catalogueKey
       }&type=CATALOGUE`
     )
-      .then(res => {
-        if (_.get(res, 'data.empty') !== true && treeType === "SOURCE" && _.get(dataRef, "taxon.sectorKey")) {
-          // If it is a source and the parent has a sectorKey, copy it to children
-          return {
-            ...res,
-            data: {
-              ...res.data,
-              result: res.data.result.map(r => ({
-                ...r,
-                sectorKey: _.get(dataRef, "taxon.sectorKey")
-              }))
-            }
-          };
-        } else {
-          return res;
-        }
-      })
+
       .then(this.decorateWithSectorsAndDataset)
       .then(res =>
         res.data.result
@@ -273,18 +257,12 @@ class ColTree extends React.Component {
 
               childDataRef.title = (
                 <ColTreeNode
-                  confirmVisible={false}
-                  taxon={tx}
-                  datasetKey={catalogueKey}
-                  onDeleteSector={onDeleteSector}
-                  treeType={this.props.treeType}
-                  reloadSelfAndSiblings={() => {
-                    const loadedChildIds = dataRef.children ? dataRef.children.filter(c => c.children && c.children.length > 0).map(c => c.key) : null;
-                    return this.fetchChildPage(dataRef, true).then(() => loadedChildIds? this.reloadLoadedKeys(loadedChildIds, false) : false)
-                  }}
-                  reloadChildren={() => this.fetchChildPage(childDataRef, true)}
-                  showSourceTaxon={showSourceTaxon}
-                />
+            taxon={tx}
+            pathToTaxon={pathToTaxon}
+            catalogueKey={catalogueKey}
+            showSourceTaxon={showSourceTaxon}
+            reloadChildren={() => this.fetchChildPage(childDataRef, true)}
+          />
               );
               childDataRef.ref = childDataRef;
 

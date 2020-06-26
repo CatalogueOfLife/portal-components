@@ -79520,10 +79520,9 @@ var ColTree_ColTree = function (_React$Component2) {
     _this2.fetchChildPage = function (dataRef, reloadAll, dontUpdateState) {
       var _this2$props3 = _this2.props,
           showSourceTaxon = _this2$props3.showSourceTaxon,
-          dataset = _this2$props3.dataset,
           treeType = _this2$props3.treeType,
           catalogueKey = _this2$props3.catalogueKey,
-          onDeleteSector = _this2$props3.onDeleteSector;
+          pathToTaxon = _this2$props3.pathToTaxon;
       var treeData = _this2.state.treeData;
 
       var childcount = lodash_default.a.get(dataRef, "childCount");
@@ -79531,22 +79530,7 @@ var ColTree_ColTree = function (_React$Component2) {
       var offset = lodash_default.a.get(dataRef, "childOffset");
 
       return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + dataRef.taxon.id //taxonKey
-      + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE").then(function (res) {
-        if (lodash_default.a.get(res, 'data.empty') !== true && treeType === "SOURCE" && lodash_default.a.get(dataRef, "taxon.sectorKey")) {
-          // If it is a source and the parent has a sectorKey, copy it to children
-          return ColTree_extends({}, res, {
-            data: ColTree_extends({}, res.data, {
-              result: res.data.result.map(function (r) {
-                return ColTree_extends({}, r, {
-                  sectorKey: lodash_default.a.get(dataRef, "taxon.sectorKey")
-                });
-              })
-            })
-          });
-        } else {
-          return res;
-        }
-      }).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
+      + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE").then(_this2.decorateWithSectorsAndDataset).then(function (res) {
         return res.data.result ? res.data.result.map(function (tx) {
           var childDataRef = {
             taxon: tx,
@@ -79560,25 +79544,13 @@ var ColTree_ColTree = function (_React$Component2) {
           };
 
           childDataRef.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
-            confirmVisible: false,
             taxon: tx,
-            datasetKey: catalogueKey,
-            onDeleteSector: onDeleteSector,
-            treeType: _this2.props.treeType,
-            reloadSelfAndSiblings: function reloadSelfAndSiblings() {
-              var loadedChildIds = dataRef.children ? dataRef.children.filter(function (c) {
-                return c.children && c.children.length > 0;
-              }).map(function (c) {
-                return c.key;
-              }) : null;
-              return _this2.fetchChildPage(dataRef, true).then(function () {
-                return loadedChildIds ? _this2.reloadLoadedKeys(loadedChildIds, false) : false;
-              });
-            },
+            pathToTaxon: pathToTaxon,
+            catalogueKey: catalogueKey,
+            showSourceTaxon: showSourceTaxon,
             reloadChildren: function reloadChildren() {
               return _this2.fetchChildPage(childDataRef, true);
-            },
-            showSourceTaxon: showSourceTaxon
+            }
           });
           childDataRef.ref = childDataRef;
 
