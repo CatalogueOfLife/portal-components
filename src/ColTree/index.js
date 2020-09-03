@@ -12,7 +12,7 @@ class ColTreeWrapper extends React.Component {
   }
 
   render = () => {
-    const {catalogueKey, pathToTaxon } = this.props;
+    const {catalogueKey, pathToTaxon, pathToDataset } = this.props;
     const params = qs.parse(_.get(location, "search"));
       return (
         <Router history={history}>
@@ -46,6 +46,8 @@ class ColTreeWrapper extends React.Component {
             <ColTree
               catalogueKey={catalogueKey}
               pathToTaxon={pathToTaxon}
+              pathToDataset={pathToDataset}
+              
               treeRef={ref => (this.treeRef = ref)}
             />
           </div>

@@ -20,7 +20,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "antd": "^4.3.5",
+    "antd": "^4.6.2",
     "axios": "^0.18.1",
     "dataloader": "^1.4.0",
     "history": "^4.7.2",

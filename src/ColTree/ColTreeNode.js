@@ -22,27 +22,23 @@ class ColTreeNode extends React.Component {
       taxon,
       taxon: { sector, datasetSectors },
       catalogueKey,
-      pathToTaxon
+      pathToTaxon,
+      pathToDataset
       
     } = this.props;
 
-    const {loading} = this.state;
     const sectorSourceDataset = _.get(sector, 'dataset') ;
 
 
     return (
         <div >
-        <span 
-        onContextMenu={()=> {
-          const uri = catalogueKey === taxon.datasetKey ? `/catalogue/${catalogueKey}/taxon/${taxon.id}` : `/catalogue/${catalogueKey}/dataset/${selectedSourceDatasetKey}/taxon/${taxon.id}`
-          const win = window.open(uri, '_blank');
-          win.focus();
-        }}>
-        <span style={{ color: "rgba(0, 0, 0, 0.45)" }}>
+        <span >
+        <span className="tree-node-rank">
           {taxon.rank}:{" "}
         </span>
         <a 
         dangerouslySetInnerHTML={{ __html: taxon.name }}
+        href={`${pathToTaxon}${taxon.id}`}
         onClick={()=> {
             window.location.href =  `${pathToTaxon}${taxon.id}`;
             
@@ -68,13 +64,9 @@ class ColTreeNode extends React.Component {
         {sector && (
           <span>
             <span> • </span>
-            <a 
-        onClick={()=> {
-          const uri =  `${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${sectorSourceDataset.key}/meta`;
-          const win = window.open(uri, '_blank');
-          win.focus();
-        }}
-      > {sectorSourceDataset.alias || sectorSourceDataset.key} {sectorSourceDataset.logo && <img style={{maxHeight: '20px',
+            <a href={`${pathToDataset}${sectorSourceDataset.key}`} onClick={() => {window.location.href =  `${pathToDataset}${sectorSourceDataset.key}`}}  >
+
+      {sectorSourceDataset.alias || sectorSourceDataset.key} {sectorSourceDataset.logo && <img style={{maxHeight: '20px',
         width: 'auto'}} src={`${config.dataApi}dataset/${sectorSourceDataset.key}/logo`} />}</a>
              
           </span>

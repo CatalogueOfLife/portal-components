@@ -74,7 +74,7 @@ class NameSearchAutocomplete extends React.Component {
     this.props.onSelectName({ key: obj.key, title: val});
   };
   onReset = () => {
-    this.setState({ value: "", names: [] });
+    this.setState({ value: "", names: [], open: false });
     this.props.onResetSearch();
   };
 
@@ -82,7 +82,7 @@ class NameSearchAutocomplete extends React.Component {
 
   render = () => {
     const { placeHolder, autoFocus } = this.props;
-    const { value } = this.state;
+    const { value, open } = this.state;
     const options = this.state.names.map((o) => {
         return {
             key: o.key,
@@ -111,6 +111,8 @@ class NameSearchAutocomplete extends React.Component {
         placeholder={placeHolder || "Find taxon"}
         onChange={(value) => this.setState({ value })}
         value={value}
+        open={open}
+        onDropdownVisibleChange={open => this.setState({open})}
         autoFocus={autoFocus === false ? false : true}
       >
         <Input.Search suffix={suffix} 

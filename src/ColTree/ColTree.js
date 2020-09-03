@@ -14,7 +14,7 @@ import {withRouter} from "react-router-dom";
 
 
 const datasetLoader = new DataLoader(ids => getDatasetsBatch(ids));
-const CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
+const CHILD_PAGE_SIZE = 10000; // How many children will we load at a time
 
 
 class LoadMoreChildrenTreeNode extends React.Component {
@@ -55,6 +55,7 @@ class ColTree extends React.Component {
       error: null,
       nodeNotFoundErr: null
     };
+    this.treeRef = React.createRef();
   }
 
   componentDidMount = () => {
@@ -95,7 +96,8 @@ class ColTree extends React.Component {
     const {
         showSourceTaxon,
         catalogueKey,
-        pathToTaxon
+        pathToTaxon,
+        pathToDataset
   
       } = this.props;
     this.setState({rootLoading: true, treeData: []})
@@ -120,6 +122,7 @@ class ColTree extends React.Component {
             <ColTreeNode
             taxon={tx}
             pathToTaxon={pathToTaxon}
+            pathToDataset={pathToDataset}
             catalogueKey={catalogueKey}
             showSourceTaxon={showSourceTaxon}
             reloadChildren={() => this.fetchChildPage(dataRef, true)}
@@ -155,7 +158,8 @@ class ColTree extends React.Component {
     const {
         showSourceTaxon,
         catalogueKey,
-        pathToTaxon
+        pathToTaxon,
+        pathToDataset
       } = this.props;
 
     this.setState({rootLoading: true, treeData: []})
@@ -184,6 +188,7 @@ class ColTree extends React.Component {
         <ColTreeNode
           taxon={tx}
           pathToTaxon={pathToTaxon}
+          pathToDataset={pathToDataset}
           catalogueKey={catalogueKey}
           showSourceTaxon={showSourceTaxon}
           reloadChildren={() => this.fetchChildPage(root, true)}
@@ -205,6 +210,7 @@ class ColTree extends React.Component {
             <ColTreeNode
           taxon={tx}
           pathToTaxon={pathToTaxon}
+          pathToDataset={pathToDataset}
           catalogueKey={catalogueKey}
           showSourceTaxon={showSourceTaxon}
           reloadChildren={() => this.fetchChildPage(node, true)}
@@ -226,7 +232,7 @@ class ColTree extends React.Component {
   }
   
   fetchChildPage = (dataRef, reloadAll, dontUpdateState) => {
-    const { showSourceTaxon, treeType, catalogueKey,  pathToTaxon } = this.props;
+    const { showSourceTaxon,  catalogueKey,  pathToTaxon, pathToDataset } = this.props;
     const {treeData} = this.state;
     const childcount = _.get(dataRef, "childCount");
     const limit = CHILD_PAGE_SIZE;
@@ -259,6 +265,7 @@ class ColTree extends React.Component {
                 <ColTreeNode
             taxon={tx}
             pathToTaxon={pathToTaxon}
+            pathToDataset={pathToDataset}
             catalogueKey={catalogueKey}
             showSourceTaxon={showSourceTaxon}
             reloadChildren={() => this.fetchChildPage(childDataRef, true)}
@@ -372,7 +379,7 @@ class ColTree extends React.Component {
   reloadLoadedKeys = async (keys, expandAll = true) => {
     this.setState({rootLoading: true})
     const {loadedKeys: storedKeys} = this.state;
-    const {defaultExpandKey} = this.props;
+    const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
 
     let {treeData} = this.state;
     const targetTaxon = defaultExpandKey ? this.findNode(defaultExpandKey, treeData) : null;
@@ -398,7 +405,14 @@ class ColTree extends React.Component {
               node.children.length - 1 === CHILD_PAGE_SIZE){
               // its the parent of the taxon we are after - if its not in the first page, insert it
               node.children = [targetTaxon, ...node.children]
-              this.setState({treeData: [...this.state.treeData]})
+              this.setState({treeData: [...this.state.treeData]}, () => {
+                setTimeout(()=>{
+                  if(_.get(this, 'treeRef.current')){
+                    this.treeRef.current.scrollTo({ key: defaultExpandKey });
+                }
+                } , 100)
+                              
+              })
             } else {
               // It has gone missing from the tree
                 this.setState(
@@ -426,7 +440,15 @@ class ColTree extends React.Component {
     if (expandAll) {
       newState.expandedKeys = loadedKeys;
     }
-    this.setState(newState)
+    this.setState(newState, () => {
+      if(defaultExpandKey){
+        setTimeout(()=>{
+          if(_.get(this, 'treeRef.current')){
+            this.treeRef.current.scrollTo({ key: defaultExpandKey });
+        }
+        } , 100)
+      }             
+    })
   }
 
 
@@ -441,7 +463,9 @@ class ColTree extends React.Component {
       loadedKeys,
       expandedKeys
         } = this.state;
-    const { draggable, onDragStart, location, treeType, dataset } = this.props;
+    const { location, treeType, dataset } = this.props;
+    const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+
     return (
       <div>
        
@@ -480,19 +504,16 @@ class ColTree extends React.Component {
           
               <Tree
                 showLine={true}
+                ref={this.treeRef}
                 defaultExpandAll={defaultExpandAll}
+                height={this.props.height || 500}
                // defaultExpandedKeys={defaultExpandedKeys}
-                draggable={draggable}
-                onDrop={e => this.handleDrop(e, mode)}
-                onDragStart={onDragStart}
                 loadData={this.onLoadData}
                 onLoad={loadedKeys => this.setState({loadedKeys})}
                 loadedKeys={loadedKeys}
                 expandedKeys={expandedKeys}
                 treeData={treeData}
-                filterTreeNode={node =>
-                  node.key === this.props.defaultExpandKey
-                }
+                filterTreeNode={node =>  node.key === defaultExpandKey}
                 onExpand={(expandedKeys, obj) => {
                   this.setState({expandedKeys})
                   if (obj.expanded) {

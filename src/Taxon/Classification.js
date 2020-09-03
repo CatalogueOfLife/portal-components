@@ -7,7 +7,7 @@ const ClassificationTable = ({ data, taxon, style,  pathToTree }) => (
   <div style={style}> {_.reverse([...data]).map(t => (
     <PresentationItem md={6} label={_.startCase(t.name.rank)} classes={{formItem: {borderBottom: 'none'}}} key={t.name.rank}>
 
-        <a onClick={() => {window.location.href =  `${pathToTree}?taxonKey=${t.id}`}} dangerouslySetInnerHTML={{ __html: t.labelHtml }} />
+        <a href={`${pathToTree}?taxonKey=${t.id}`} onClick={() => {window.location.href =  `${pathToTree}?taxonKey=${t.id}`}} dangerouslySetInnerHTML={{ __html: t.labelHtml }} />
       
     </PresentationItem>
   ))} 

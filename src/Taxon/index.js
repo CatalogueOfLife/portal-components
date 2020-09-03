@@ -11,13 +11,13 @@ import Classification from "./Classification";
 import NameRelations from "./NameRelations";
 import References from "./References"
 import ErrorMsg from "../components/ErrorMsg";
-import _ from "lodash";
+import _, { includes } from "lodash";
 import PresentationItem from "../components/PresentationItem";
 import moment from "moment";
 import history from "../history";
 import BooleanValue from "../components/BooleanValue";
-import ReferencePopover from "./ReferencePopover"
-
+// import ReferencePopover from "./ReferencePopover"
+import IncludesTable from "./Includes"
 
 
 const md = 5;
@@ -40,7 +40,9 @@ class TaxonPage extends React.Component {
       verbatimError: null,
       verbatim: null,
       logoUrl: null,
-      sourceDataset: null
+      sourceDataset: null,
+      includes: [],
+      rank: null
     };
   }
 
@@ -48,6 +50,8 @@ class TaxonPage extends React.Component {
     this.getTaxon();
     this.getInfo();
     this.getClassification();
+    this.getRank();
+    this.getIncludes();
   };
 
 
@@ -163,6 +167,11 @@ class TaxonPage extends React.Component {
       });
   };
 
+  getRank = () => {
+    axios(
+      `${config.dataApi}vocab/rank`
+    ).then(res => this.setState({rank: res.data.map(r => r.name)}))
+  }
   getClassification = () => {
     const {
       catalogueKey: datasetKey
@@ -190,16 +199,45 @@ class TaxonPage extends React.Component {
       });
   };
 
+  getIncludes = () => {
+    const {
+      catalogueKey: datasetKey
+    } = this.props;
+    const {location: path} = history;
+    const taxonKey = path.pathname.split('/taxon/')[1]
+
+    axios(
+      `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${
+        taxonKey
+      }&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
+    )
+    .then(res => {
+      this.setState({
+        includesLoading: false,
+        includes: _.get(res, 'data.facets.rank') || [],
+      });
+    })
+    .catch(err => {
+      this.setState({
+        includesLoading: false,
+        includes: []
+      });
+    });
+  }
+
   render() {
     const {
       catalogueKey,
-      pathToTree
+      pathToTree,
+      pathToSearch
     } = this.props;
     const {
       taxon,
       info,
       classification,
       sourceDataset,
+      includes,
+      rank,
       taxonError,
       synonymsError,
       classificationError,
@@ -394,6 +432,18 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
+          {includes.length > 1 && rank && taxon && (
+            <PresentationItem md={md} label="Includes">
+              <IncludesTable
+                style={{ marginTop: "-3px", marginLeft: "-3px" }}
+                data={includes}
+                rank={rank}
+                taxon={taxon}
+                pathToSearch={pathToSearch}
+              />
+            </PresentationItem>
+          )}
+          
                     {_.get(info, 'references') && !_.isEmpty(_.get(info, 'references')) && (
            <PresentationItem md={md} label="References">
               <References
