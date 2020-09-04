@@ -76758,12 +76758,67 @@ var TaxonSources_TaxonSources = function (_React$Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var ColTree_TaxonSources = (TaxonSources_TaxonSources);
+// CONCATENATED MODULE: ./src/components/DatasetlogoWithFallback.js
+function DatasetlogoWithFallback_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function DatasetlogoWithFallback_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function DatasetlogoWithFallback_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Component) {
+  DatasetlogoWithFallback_inherits(DatasetlogoWithStatusText, _React$Component);
+
+  function DatasetlogoWithStatusText(props) {
+    DatasetlogoWithFallback_classCallCheck(this, DatasetlogoWithStatusText);
+
+    var _this = DatasetlogoWithFallback_possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.state = { error: true, loading: true };
+    return _this;
+  }
+
+  DatasetlogoWithStatusText.prototype.render = function render() {
+    var _this2 = this;
+
+    var _props = this.props,
+        _props$fallBack = _props.fallBack,
+        fallBack = _props$fallBack === undefined ? null : _props$fallBack,
+        datasetKey = _props.datasetKey,
+        style = _props.style,
+        _props$size = _props.size,
+        size = _props$size === undefined ? 'MEDIUM' : _props$size;
+    var _state = this.state,
+        error = _state.error,
+        loading = _state.loading;
+
+    return loading || !error ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+      style: style,
+      src: src_config.dataApi + "dataset/" + datasetKey + "/logo?size=" + size,
+      onLoad: function onLoad() {
+        return _this2.setState({ error: false, loading: false });
+      },
+      onError: function onError() {
+        return _this2.setState({ error: true, loading: false });
+      }
+    }) : fallBack;
+
+    ;
+  };
+
+  return DatasetlogoWithStatusText;
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
+
+/* harmony default export */ var DatasetlogoWithFallback = (DatasetlogoWithFallback_DatasetlogoWithStatusText);
 // CONCATENATED MODULE: ./src/ColTree/ColTreeNode.js
 function ColTreeNode_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function ColTreeNode_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function ColTreeNode_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -76848,8 +76903,8 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
               } },
             sectorSourceDataset.alias || sectorSourceDataset.key,
             " ",
-            sectorSourceDataset.logo && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { style: { maxHeight: '20px',
-                width: 'auto' }, src: src_config.dataApi + "dataset/" + sectorSourceDataset.key + "/logo" })
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { style: { maxHeight: '20px',
+                width: 'auto' }, datasetKey: sector.subjectDatasetKey, size: "SMALL" })
           )
         )
       );
@@ -79352,7 +79407,7 @@ var ColTree_ColTree = function (_React$Component2) {
         showLine: true,
         ref: this.treeRef,
         defaultExpandAll: defaultExpandAll,
-        height: this.props.height || 500
+        height: this.props.height || 700
         // defaultExpandedKeys={defaultExpandedKeys}
         , loadData: this.onLoadData,
         onLoad: function onLoad(loadedKeys) {
@@ -79367,9 +79422,7 @@ var ColTree_ColTree = function (_React$Component2) {
         onExpand: function onExpand(expandedKeys, obj) {
           _this4.setState({ expandedKeys: expandedKeys });
           if (obj.expanded) {
-            if (lodash_default.a.get(obj, 'node.childCount') > 0) {
-              // this.fetchChildPage(obj.node, true)
-            }
+
             var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
             var newParams = ColTree_extends({}, params, { taxonKey: obj.node.key });
 
@@ -101829,6 +101882,7 @@ function Taxon_inherits(subClass, superClass) { if (typeof superClass !== "funct
 // import ReferencePopover from "./ReferencePopover"
 
 
+
 var Taxon_md = 5;
 
 var Taxon_TaxonPage = function (_React$Component) {
@@ -101986,7 +102040,8 @@ var Taxon_TaxonPage = function (_React$Component) {
     var _props = this.props,
         catalogueKey = _props.catalogueKey,
         pathToTree = _props.pathToTree,
-        pathToSearch = _props.pathToSearch;
+        pathToSearch = _props.pathToSearch,
+        pathToDataset = _props.pathToDataset;
     var _state = this.state,
         taxon = _state.taxon,
         info = _state.info,
@@ -102028,7 +102083,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           null,
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: this.state.logoUrl ? 18 : 21 },
+            { span: sourceDataset ? 18 : 23 },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h1", {
               style: { fontSize: "30px", fontWeight: '400', paddingLeft: "10px", display: 'inline-block', textTransform: 'none' },
               dangerouslySetInnerHTML: {
@@ -102039,17 +102094,17 @@ var Taxon_TaxonPage = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: 3 },
+            { span: 1 },
             taxon.provisional && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               tag,
               { color: "red" },
               "Provisional"
             )
           ),
-          this.state.logoUrl && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          sourceDataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: 3 },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { src: this.state.logoUrl })
+            { span: 5, style: { textAlign: 'right' } },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { style: { maxWidth: '100%', height: 'auto', marginRight: '8px' }, datasetKey: sourceDataset.key })
           )
         ),
         lodash_default.a.get(taxon, "name.publishedIn.citation") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -102214,15 +102269,6 @@ var Taxon_TaxonPage = function (_React$Component) {
               "" + lodash_default.a.get(taxon, "accordingTo"),
               lodash_default.a.get(taxon, "accordingToDate") && ", " + moment_default()(lodash_default.a.get(taxon, "accordingToDate")).format("LL")
             )
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: 12 },
-            lodash_default.a.get(taxon, "origin") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              components_PresentationItem,
-              { md: Taxon_md * 2, label: "Origin" },
-              lodash_default.a.get(taxon, "origin")
-            )
           )
         ),
         lodash_default.a.get(sourceDataset, "title") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -102235,11 +102281,9 @@ var Taxon_TaxonPage = function (_React$Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "a",
               {
-
+                href: "" + pathToDataset + lodash_default.a.get(sourceDataset, "key"),
                 onClick: function onClick() {
-                  var uri = src_config.clearingHouseUrl + "catalogue/" + catalogueKey + "/dataset/" + lodash_default.a.get(sourceDataset, "key") + "/meta";
-                  var win = window.open(uri, '_blank');
-                  win.focus();
+                  window.location = "" + pathToDataset + lodash_default.a.get(sourceDataset, "key");
                 } },
               lodash_default.a.get(sourceDataset, "title")
             ),
@@ -103125,6 +103169,8 @@ function Dataset_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
+
+
 // import ReferencePopover from "./ReferencePopover"
 
 
@@ -103200,7 +103246,7 @@ var Dataset_DatasetPage = function (_React$Component) {
           null,
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: data.logo ? 12 : 24 },
+            { span: 12 },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "h1",
               {
@@ -103210,10 +103256,10 @@ var Dataset_DatasetPage = function (_React$Component) {
               data.title
             )
           ),
-          data.logo && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
             { span: 12, style: { textAlign: 'right' } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { style: { maxWidth: '100%', height: 'auto' }, src: src_config.dataApi + "dataset/" + data.key + "/logo?size=MEDIUM" })
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { style: { maxWidth: '100%', height: 'auto', marginRight: '8px' }, datasetKey: data.key })
           )
         ),
         data && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(

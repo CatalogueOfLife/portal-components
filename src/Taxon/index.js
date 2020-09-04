@@ -18,6 +18,7 @@ import history from "../history";
 import BooleanValue from "../components/BooleanValue";
 // import ReferencePopover from "./ReferencePopover"
 import IncludesTable from "./Includes"
+import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 
 
 const md = 5;
@@ -229,7 +230,8 @@ class TaxonPage extends React.Component {
     const {
       catalogueKey,
       pathToTree,
-      pathToSearch
+      pathToSearch,
+      pathToDataset
     } = this.props;
     const {
       taxon,
@@ -264,7 +266,7 @@ class TaxonPage extends React.Component {
           )}
           {taxon && (
             <Row>
-              <Col span={this.state.logoUrl ? 18 : 21}>
+              <Col span={sourceDataset ? 18 : 23}>
                 <h1
                   style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
                   dangerouslySetInnerHTML={{
@@ -273,13 +275,13 @@ class TaxonPage extends React.Component {
                 />
 {/*                {taxon.referenceIds && <div style={{display: 'inline-block', paddingLeft: "10px"}}><ReferencePopover datasetKey={catalogueKey} referenceId={taxon.referenceIds} placement="bottom"/></div>}
  */}              </Col>
-              <Col span={3}>
+              <Col span={1}>
                 {taxon.provisional && <Tag color="red">Provisional</Tag>}
                 
               </Col>
-              {this.state.logoUrl && (
-                <Col span={3}>
-                  <img src={this.state.logoUrl} />
+              {sourceDataset && (
+                <Col span={5} style={{textAlign: 'right'}}>
+                  <DatasetlogoWithFallback style={{maxWidth: '100%',height: 'auto', marginRight: '8px'}} datasetKey={sourceDataset.key} />
                 </Col>
               )}
             </Row>
@@ -465,13 +467,13 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           
           </Col>)}
-          <Col span={12}>
+{/*           <Col span={12}>
           {_.get(taxon, "origin") && (
             <PresentationItem md={md * 2} label="Origin">
               {_.get(taxon, "origin")}
             </PresentationItem>
           )}
-          </Col>  
+          </Col>   */}
 
           </Row>
 
@@ -481,11 +483,10 @@ class TaxonPage extends React.Component {
               <div style={{ display: "inline-block" }}>
                 {" "}
                 <a
-                  
+                  href={`${pathToDataset}${_.get(sourceDataset, "key")}`}
                   onClick={()=> {
-                    const uri =  `${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${_.get(sourceDataset, "key")}/meta`;
-                    const win = window.open(uri, '_blank');
-                    win.focus();
+                    window.location =  `${pathToDataset}${_.get(sourceDataset, "key")}`;
+                    
                   }}                  >
                   {_.get(sourceDataset, "title")}
                 </a>

@@ -506,7 +506,7 @@ class ColTree extends React.Component {
                 showLine={true}
                 ref={this.treeRef}
                 defaultExpandAll={defaultExpandAll}
-                height={this.props.height || 500}
+                height={this.props.height || 700}
                // defaultExpandedKeys={defaultExpandedKeys}
                 loadData={this.onLoadData}
                 onLoad={loadedKeys => this.setState({loadedKeys})}
@@ -517,9 +517,7 @@ class ColTree extends React.Component {
                 onExpand={(expandedKeys, obj) => {
                   this.setState({expandedKeys})
                   if (obj.expanded) {
-                    if (_.get(obj, 'node.childCount') > 0 ){
-                     // this.fetchChildPage(obj.node, true)
-                    }
+      
                     const params = qs.parse(_.get(location, "search"));
                     const newParams = {...params, taxonKey : obj.node.key}
                      

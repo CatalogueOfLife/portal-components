@@ -3,6 +3,7 @@ import { Tag } from "antd";
 import _ from "lodash";
 import config from "../config";
 import TaxonSources from "./TaxonSources"
+import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 
 
 
@@ -66,8 +67,8 @@ class ColTreeNode extends React.Component {
             <span> • </span>
             <a href={`${pathToDataset}${sectorSourceDataset.key}`} onClick={() => {window.location.href =  `${pathToDataset}${sectorSourceDataset.key}`}}  >
 
-      {sectorSourceDataset.alias || sectorSourceDataset.key} {sectorSourceDataset.logo && <img style={{maxHeight: '20px',
-        width: 'auto'}} src={`${config.dataApi}dataset/${sectorSourceDataset.key}/logo`} />}</a>
+      {sectorSourceDataset.alias || sectorSourceDataset.key} <DatasetlogoWithFallback style={{maxHeight: '20px',
+        width: 'auto'}} datasetKey={sector.subjectDatasetKey} size="SMALL" /></a>
              
           </span>
         )}

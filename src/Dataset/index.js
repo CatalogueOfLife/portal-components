@@ -4,6 +4,8 @@ import config from "../config";
 import axios from "axios";
 import { Alert,  Rate, Row, Col } from "antd";
 import ErrorMsg from "../components/ErrorMsg";
+import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
+
 import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
 import history from "../history";
@@ -85,18 +87,18 @@ class DatasetPage extends React.Component {
           )}
                     {data && (
             <Row>
-              <Col span={data.logo ? 12 : 24}>
+              <Col span={12}>
                 <h1
                   style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
                   
                     >{data.title}</h1>
               </Col>
               
-              {data.logo && (
+           
                 <Col span={12} style={{textAlign: 'right'}}>
-                  <img style={{maxWidth: '100%',height: 'auto'}} src={`${config.dataApi}dataset/${data.key}/logo?size=MEDIUM`} />
+                  <DatasetlogoWithFallback style={{maxWidth: '100%',height: 'auto', marginRight: '8px'}} datasetKey={data.key} />
                 </Col>
-              )}
+            
             </Row>
           )}
 
