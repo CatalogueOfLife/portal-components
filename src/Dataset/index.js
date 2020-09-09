@@ -5,7 +5,7 @@ import axios from "axios";
 import { Alert,  Rate, Row, Col } from "antd";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
-
+import Metrics from "./Metrics"
 import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
 import history from "../history";
@@ -120,7 +120,7 @@ class DatasetPage extends React.Component {
           <PresentationItem label="English name of the Group">
             {data.group}
           </PresentationItem>
-            {/** STATS HERE */}
+           <Metrics catalogueKey={catalogueKey} dataset={data} /> 
             <PresentationItem label="Abstract">
             {data.description}
           </PresentationItem>

@@ -9,14 +9,34 @@ import NameAutocomplete from "./NameAutocomplete";
 class ColTreeWrapper extends React.Component {
   constructor(props) {
     super(props);
+    this.wrapperRef = React.createRef();
+    this.state = {
+      height: 600
+    }
+  }
+
+  componentDidMount = () => {
+    this.resizeHandler()
+    window.addEventListener('resize', this.resizeHandler)
+  }
+
+  resizeHandler = () => {
+    const height = _.get(this.wrapperRef, 'current.clientHeight');
+    if(height){
+      this.setState({ height })
+    } 
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize', this.resizeHandler);
   }
 
   render = () => {
     const {catalogueKey, pathToTaxon, pathToDataset } = this.props;
     const params = qs.parse(_.get(location, "search"));
+    const { height } = this.state;
       return (
         <Router history={history}>
-          <div className="catalogue-of-life">
+          <div className="catalogue-of-life" ref={this.wrapperRef}>
             <NameAutocomplete
               datasetKey={catalogueKey}
               style={{width: '100%', marginBottom: '8px'}}
@@ -47,7 +67,7 @@ class ColTreeWrapper extends React.Component {
               catalogueKey={catalogueKey}
               pathToTaxon={pathToTaxon}
               pathToDataset={pathToDataset}
-              
+              height={height}
               treeRef={ref => (this.treeRef = ref)}
             />
           </div>

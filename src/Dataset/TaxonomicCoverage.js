@@ -1,6 +1,7 @@
 import React from "react";
 import config from "../config";
 import axios from "axios";
+import {Skeleton} from "antd";
 const _ = require("lodash");
 
 class TaxonomicCoverage extends React.Component {
@@ -8,10 +9,7 @@ class TaxonomicCoverage extends React.Component {
     super(props);
 
     this.state = {
-      data: [],
-      groups: {},
-      selectedGroup: "default",
-      loading: false,
+      loading: true,
     };
   }
 
@@ -48,7 +46,7 @@ class TaxonomicCoverage extends React.Component {
             }
           })
         )
-      ).then(() => this.setState({ taxonMap }));
+      ).then(() => this.setState({ taxonMap, loading: false }));
     });
   };
 
@@ -67,7 +65,9 @@ class TaxonomicCoverage extends React.Component {
             ))}
           </div>
         ))
-      : null;
+      : 
+        <Skeleton active paragraph={{ rows: 4 }} />
+      ;
   };
 }
 

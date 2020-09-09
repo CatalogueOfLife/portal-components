@@ -19243,6 +19243,9 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 .catalogue-of-life .ant-rate-star-half .ant-rate-star-first {
   color: inherit;
 }
+.catalogue-of-life button.ant-pagination-item-link {
+  padding: 0;
+}
 /* 
 The ant autocomplete injects the list in the bottom of the body, and therefore it is outside the catalogue of life class
  */

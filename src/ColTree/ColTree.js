@@ -463,9 +463,10 @@ class ColTree extends React.Component {
       loadedKeys,
       expandedKeys
         } = this.state;
-    const { location, treeType, dataset } = this.props;
+    const { location, treeType, dataset, height } = this.props;
+    console.log(height)
     const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
-
+       
     return (
       <div>
        
@@ -506,7 +507,7 @@ class ColTree extends React.Component {
                 showLine={true}
                 ref={this.treeRef}
                 defaultExpandAll={defaultExpandAll}
-                height={this.props.height || 700}
+                height={height || 700}
                // defaultExpandedKeys={defaultExpandedKeys}
                 loadData={this.onLoadData}
                 onLoad={loadedKeys => this.setState({loadedKeys})}

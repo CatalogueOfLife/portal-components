@@ -54,15 +54,15 @@ class NameSearchAutocomplete extends React.Component {
 
     axios(`${url}?vernaculars=false&fuzzy=false&limit=25&q=${q}`)
       .then((res) => {
-        const names = res.data.result ? res.data.result.map((name) => ({
+/*         const names = res.data.result ? res.data.result.map((name) => ({
             key: name.usage.name.id,
             title: name.usage.name.scientificName,
           })) : res.data.suggestions.map((name) => ({
             key: name.usageId ,
             title: name.suggestion 
-          }));
+          })); */
         this.setState({
-          names
+          names: res.data.suggestions || []
         });
       })
       .catch((err) => {
@@ -70,8 +70,11 @@ class NameSearchAutocomplete extends React.Component {
       });
   };
   onSelectName = (val, obj) => {
+    const selectedTaxon = _.get(obj, 'data.acceptedUsageId') ? 
+    {key: _.get(obj, 'data.acceptedUsageId'), title: _.get(obj, 'data.parentOrAcceptedName')} :
+    {key: _.get(obj, 'data.usageId'), title: _.get(obj, 'data.name')}
     this.setState({ value: val });
-    this.props.onSelectName({ key: obj.key, title: val});
+    this.props.onSelectName(selectedTaxon);
   };
   onReset = () => {
     this.setState({ value: "", names: [], open: false });
@@ -85,16 +88,17 @@ class NameSearchAutocomplete extends React.Component {
     const { value, open } = this.state;
     const options = this.state.names.map((o) => {
         return {
-            key: o.key,
-            value: o.title,
-            label: (
-                <Highlighter
-                highlightStyle={{ fontWeight: "bold", padding: 0 }}
-                searchWords={value.split(" ")}
-                autoEscape
-                textToHighlight={o.title}
-              /> 
-            ),
+          key: o.usageId,
+          value: o.suggestion,
+          label: (
+              <Highlighter
+              highlightStyle={{ fontWeight: "bold", padding: 0 }}
+              searchWords={value.split(" ")}
+              autoEscape
+              textToHighlight={o.suggestion}
+            /> 
+          ),
+          data: o
           }
     });
     const suffix = value ? (
