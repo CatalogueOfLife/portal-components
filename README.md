@@ -5,6 +5,7 @@ This is a small React Component library consisting of
 1. Tree browser
 2. Taxon search page, table view
 3. Taxon page
+4. Dataset page
 
 
 ## Usage
@@ -19,13 +20,13 @@ Include dependencies, React and React Dom:
 Include the Library:
 
 ````
-<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.1/umd/col-tree-browser.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.4/umd/col-tree-browser.min.js" ></script>
 ````
 
 And the styles:
 
 ````
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.1/umd/main.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.4/umd/main.css">
  ````
 
 This will create a global `ColBrowser` library variable that has three indvidual components:
