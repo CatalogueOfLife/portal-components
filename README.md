@@ -5,6 +5,7 @@ This is a small React Component library consisting of
 1. Tree browser
 2. Taxon search page, table view
 3. Taxon page
+4. Dataset page
 
 
 ## Usage
@@ -19,22 +20,23 @@ Include dependencies, React and React Dom:
 Include the Library:
 
 ````
-<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.1/umd/col-tree-browser.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.4/umd/col-tree-browser.min.js" ></script>
 ````
 
 And the styles:
 
 ````
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.1/umd/main.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.4/umd/main.css">
  ````
 
 This will create a global `ColBrowser` library variable that has three indvidual components:
 
 
 ### ColBrowser.Tree
-A [browsable taxonomic tree](https://col-website-demo.netlify.com/data/browse), takes two properties: 
+A [browsable taxonomic tree](https://www.dev.catalogue.life/data/browse.html), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/) 
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
+3. `pathToDataset` - The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
@@ -48,7 +50,7 @@ class Tree extends React.Component {
        
       return e(
         ColBrowser.Tree,
-        { catalogueKey: 9999 , pathToTaxon: '/mytaxonomy/taxon/' }
+        { catalogueKey: 9999 , pathToTaxon: '/mytaxonomy/taxon/', pathToDataset: '/sourcedatasets/' }
       );
     }
   }
@@ -58,7 +60,7 @@ ReactDOM.render(e(Tree), domContainer);
 </script>
 ````
 ### ColBrowser.Search
-[Search component with table view](https://col-website-demo.netlify.com/data/search), takes two properties: 
+[Search component with table view](https://www.dev.catalogue.life/data/search.html), takes two properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
 
@@ -85,9 +87,10 @@ ReactDOM.render(e(Search), domContainer);
 ````
 
 ### ColBrowser.Taxon
-[Taxon detail page](https://col-website-demo.netlify.com/data/taxon/41117128-65e0-428c-a293-f34ddc16da32), takes two properties: 
+[Taxon detail page](https://www.dev.catalogue.life/data/taxon/1981d777-6127-4ca5-b960-078fe254caef), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxon classification to point towards).
+3. `pathToDataset` - The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
@@ -101,12 +104,39 @@ class Taxon extends React.Component {
        
       return e(
         ColBrowser.Taxon,
-        { catalogueKey: 9999 , pathToTree: '/mytaxonomy/browse' }
+        { catalogueKey: 9999 , pathToTree: '/mytaxonomy/browse', pathToDataset: '/sourcedatasets/' }
       );
     }
   }
 
 const domContainer = document.querySelector('#taxon');
 ReactDOM.render(e(Taxon), domContainer);
+</script>
+````
+
+### ColBrowser.Dataset
+[Dataset detail page](https://www.dev.catalogue.life/data/dataset/2073), takes two properties: 
+1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
+2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxonomic coverage section to point towards).
+
+````
+<div id="dataset"></div> <!- Dom element for the dataset details to attach to -->
+............
+<script >
+'use strict';
+const e = React.createElement;
+class Dataset extends React.Component {
+
+    render() {
+       
+      return e(
+        ColBrowser.Taxon,
+        { catalogueKey: 9999 , pathToTree: '/mytaxonomy/browse' }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#dataset');
+ReactDOM.render(e(Dataset), domContainer);
 </script>
 ````
