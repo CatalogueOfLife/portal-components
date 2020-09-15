@@ -23011,6 +23011,12 @@ module.exports = _slicedToArray;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(321);
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23047,12 +23053,6 @@ function noteOnce(valid, message) {
 }
 /* harmony default export */ __webpack_exports__["a"] = (warningOnce);
 /* eslint-enable */
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(321);
 
 /***/ }),
 /* 9 */,
@@ -23757,10 +23757,10 @@ module.exports = _toConsumableArray;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getTreeNodeProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return convertNodePropsToEventData; });
 /* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(32);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(41);
 /* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(34);
-/* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
 
 
@@ -24085,7 +24085,7 @@ function convertNodePropsToEventData(props) {
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(41);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _TreeNode__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49);
 
 
@@ -25061,7 +25061,8 @@ exports.parseUrl = function (str, opts) {
 
 
 /***/ }),
-/* 31 */
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -25079,7 +25080,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25122,7 +25123,6 @@ function _objectSpread2(target) {
 }
 
 /***/ }),
-/* 33 */,
 /* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -26910,7 +26910,7 @@ var defineProperty = __webpack_require__(25);
 var objectWithoutProperties = __webpack_require__(41);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(32);
+var objectSpread2 = __webpack_require__(33);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(96);
@@ -27475,7 +27475,7 @@ var esm_typeof = __webpack_require__(63);
 var objectSpread2 = __webpack_require__(23);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var warning = __webpack_require__(7);
+var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
 var commonUtil = __webpack_require__(37);
@@ -31206,7 +31206,7 @@ var findDOMNode = __webpack_require__(47);
 var toArray = __webpack_require__(34);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var warning = __webpack_require__(7);
+var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
 var es_ref = __webpack_require__(27);
@@ -33477,7 +33477,7 @@ SubPopupMenu_SubPopupMenu.defaultProps = {
 var SubPopupMenu_connected = connect()(SubPopupMenu_SubPopupMenu);
 /* harmony default export */ var es_SubPopupMenu = (SubPopupMenu_connected);
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var warning = __webpack_require__(7);
+var warning = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./node_modules/rc-menu/es/utils/legacyUtil.js
 
@@ -34307,7 +34307,7 @@ function _toConsumableArray(arr) {
 "use strict";
 /* unused harmony export isCheckDisabled */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return conductCheck; });
-/* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
 
 
 function removeFromCheckedKeys(halfCheckedKeys, checkedKeys) {
@@ -38912,7 +38912,7 @@ module.exports.insertCss = insertCss;
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(32);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -39850,7 +39850,7 @@ cssAnimation.isCssAnimationSupported = isCssAnimationSupported;
 var defineProperty = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(32);
+var objectSpread2 = __webpack_require__(33);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js + 3 modules
 var toConsumableArray = __webpack_require__(60);
@@ -39874,7 +39874,7 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var KeyCode = __webpack_require__(10);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var warning = __webpack_require__(7);
+var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(1);
@@ -73091,6 +73091,7 @@ __webpack_require__.d(src_namespaceObject_0, "Tree", function() { return src_Tre
 __webpack_require__.d(src_namespaceObject_0, "Taxon", function() { return src_Taxon; });
 __webpack_require__.d(src_namespaceObject_0, "Search", function() { return src_Search_0; });
 __webpack_require__.d(src_namespaceObject_0, "Dataset", function() { return src_Dataset; });
+__webpack_require__.d(src_namespaceObject_0, "DatasetSearch", function() { return src_DatasetSearch; });
 
 // EXTERNAL MODULE: ./src/index.less
 var src = __webpack_require__(317);
@@ -75446,7 +75447,7 @@ var wave_Wave = /*#__PURE__*/function (_React$Component) {
 
 wave_Wave.contextType = ConfigContext;
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
-var warning = __webpack_require__(7);
+var warning = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/devWarning.js
 
@@ -75802,7 +75803,7 @@ var lodash = __webpack_require__(4);
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
-var axios = __webpack_require__(8);
+var axios = __webpack_require__(7);
 var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./src/config.js
@@ -78102,7 +78103,7 @@ var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 var inheritsLoose = __webpack_require__(35);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(31);
+var prop_types = __webpack_require__(32);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./node_modules/mini-create-react-context/dist/esm/index.js
@@ -102662,7 +102663,7 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     key: "scientificName",
     render: function render(text, record) {
       var id = record.usage.synonym ? lodash_default.a.get(record, 'usage.accepted.id') : lodash_default.a.get(record, 'usage.id');
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { onClick: function onClick() {
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" + pathToTaxon + id, onClick: function onClick() {
           window.location.href = "" + pathToTaxon + id;
         }, dangerouslySetInnerHTML: { __html: text } });
     },
@@ -103087,6 +103088,13 @@ function Metrics_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 var Metrics_ = __webpack_require__(4);
 
+var getLivingTaxa = function getLivingTaxa(metrics, rank) {
+  return (Metrics_.get(metrics, "taxaByRankCount." + rank) || 0) - (Metrics_.get(metrics, "extinctTaxaByRankCount." + rank) || 0);
+};
+var getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
+  return Metrics_.get(metrics, "extinctTaxaByRankCount." + rank) || 0;
+};
+
 var Metrics_Metrics = function (_React$Component) {
   Metrics_inherits(Metrics, _React$Component);
 
@@ -103124,24 +103132,49 @@ var Metrics_Metrics = function (_React$Component) {
       return metrics && rank ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
         null,
-        " ",
-        Object.keys(metrics.taxaByRankCount).sort(function (a, b) {
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
+          null,
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Living species" },
+            getLivingTaxa(metrics, "species").toLocaleString("en-GB")
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Extinct species" },
+            getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
+          )
+        ),
+        Object.keys(metrics.taxaByRankCount).filter(function (r) {
+          return rank.indexOf(r) < rank.indexOf("species");
+        }).sort(function (a, b) {
           return rank.indexOf(b) - rank.indexOf(a);
         }).map(function (k) {
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: Metrics_.startCase(k), key: k },
-            metrics.taxaByRankCount[k]
+            { label: "" + Metrics_.startCase(k), key: k },
+            metrics.taxaByRankCount[k].toLocaleString("en-GB")
           );
         }),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { label: "Synonyms", key: "Synonyms" },
-          metrics.synonymCount
+          (metrics.synonymCount || 0).toLocaleString("en-GB")
+        ),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { label: "Common names", key: "vernaculars" },
+          (metrics.vernacularCount || 0).toLocaleString("en-GB")
+        ),
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { label: "Total number of names", key: "names" },
+          (metrics.nameCount || 0).toLocaleString("en-GB")
         )
       ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         components_PresentationItem,
-        null,
+        { label: "" },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { active: true, paragraph: { rows: 4 } })
       );
     };
@@ -103462,7 +103495,182 @@ var Dataset_DatasetPage = function (_React$Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var Dataset = (Dataset_DatasetPage);
+// CONCATENATED MODULE: ./src/DatasetSearch/index.js
+var DatasetSearch_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function DatasetSearch_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function DatasetSearch_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function DatasetSearch_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+var DatasetSearch_getLivingSpecies = function getLivingSpecies(record) {
+  return (lodash_default.a.get(record, 'metrics.taxaByRankCount.species') || 0) - (lodash_default.a.get(record, 'metrics.extinctTaxaByRankCount.species') || 0);
+};
+var DatasetSearch_getExtinctSpecies = function getExtinctSpecies(record) {
+  return lodash_default.a.get(record, 'metrics.extinctTaxaByRankCount.species') || 0;
+};
+
+var DatasetSearch_getColumns = function getColumns(pathToDataset) {
+  return [{
+    title: "Title",
+    dataIndex: ["title"],
+    key: "title",
+    render: function render(text, record) {
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" + pathToDataset + record.key, onClick: function onClick() {
+          window.location.href = "" + pathToDataset + record.key;
+        }, dangerouslySetInnerHTML: { __html: text } });
+    },
+    width: "50%",
+    sorter: function sorter(a, b) {
+      return a.title.localeCompare(b.title);
+    },
+    defaultSortOrder: 'ascend'
+  }, {
+    title: "",
+    dataIndex: ["logo"],
+    key: "logo",
+    render: function render(text, record) {
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
+    }
+  }, {
+    title: "English name of the group",
+    dataIndex: ["group"],
+    key: "group"
+  }, {
+    title: "Living Species",
+    dataIndex: ["metrics", "taxaByRankCount", "species"],
+    key: "livingSpecies",
+    render: function render(text, record) {
+      return DatasetSearch_getLivingSpecies(record);
+    },
+    sorter: function sorter(a, b) {
+      return DatasetSearch_getLivingSpecies(a) - DatasetSearch_getLivingSpecies(b);
+    }
+
+  }, {
+    title: "Extinct Species",
+    dataIndex: ["metrics", "extinctTaxaByRankCount", "species"],
+    key: "extinctSpecies",
+    render: function render(text, record) {
+      return DatasetSearch_getExtinctSpecies(record);
+    },
+    sorter: function sorter(a, b) {
+      return DatasetSearch_getExtinctSpecies(a) - DatasetSearch_getExtinctSpecies(b);
+    }
+
+  }];
+};
+
+var DatasetSearch_DatasetSearchPage = function (_React$Component) {
+  DatasetSearch_inherits(DatasetSearchPage, _React$Component);
+
+  function DatasetSearchPage(props) {
+    DatasetSearch_classCallCheck(this, DatasetSearchPage);
+
+    var _this = DatasetSearch_possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.componentDidMount = function () {
+      _this.getData();
+    };
+
+    _this.getData = function () {
+      _this.setState({ loading: true });
+      var catalogueKey = _this.props.catalogueKey;
+
+
+      axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source").then(function (res) {
+        return Promise.all(res.data.map(function (r) {
+          return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + r.key + "/metrics").then(function (res) {
+            return DatasetSearch_extends({}, r, { metrics: res.data });
+          });
+        }));
+      }).then(function (data) {
+
+        _this.setState({
+          loading: false,
+          data: data,
+          err: null
+        });
+      }).catch(function (err) {
+        _this.setState({ loading: false, error: err, data: [] });
+      });
+    };
+
+    _this.state = {
+      data: [],
+      loading: false
+    };
+    return _this;
+  }
+
+  DatasetSearchPage.prototype.render = function render() {
+    var _state = this.state,
+        data = _state.data,
+        loading = _state.loading,
+        error = _state.error;
+    var pathToDataset = this.props.pathToDataset;
+
+
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "div",
+      {
+        className: "catalogue-of-life",
+
+        style: {
+          background: "#fff",
+          padding: 24,
+          minHeight: 280,
+          margin: "16px 0"
+        }
+      },
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        es_row,
+        null,
+        error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+          style: { marginBottom: "10px" },
+          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: error }),
+          type: "error"
+        })
+      ),
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        es_row,
+        null,
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          es_col,
+          { span: 24, style: { textAlign: "right", marginBottom: "8px" } },
+          "Source datasets: " + data.length.toLocaleString('en-GB')
+        )
+      ),
+      !error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
+        size: "small",
+        columns: DatasetSearch_getColumns(pathToDataset),
+        dataSource: data,
+        loading: loading,
+        rowKey: function rowKey(record) {
+          return record.key;
+        },
+        showSorterTooltip: false,
+        pagination: { pageSize: 200 }
+      })
+    );
+  };
+
+  return DatasetSearchPage;
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
+
+/* harmony default export */ var DatasetSearch = (DatasetSearch_DatasetSearchPage);
 // CONCATENATED MODULE: ./src/index.js
+
 
 
 
@@ -103473,6 +103681,7 @@ var src_Tree = src_ColTree;
 var src_Taxon = Taxon;
 var src_Search_0 = src_Search;
 var src_Dataset = Dataset;
+var src_DatasetSearch = DatasetSearch;
 // CONCATENATED MODULE: ./src/umd.js
 
 /* harmony default export */ var umd = __webpack_exports__["default"] = (src_namespaceObject_0);
