@@ -6,7 +6,7 @@ import config from "../config";
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback"
-
+import MetricsPresentation from "../Dataset/MetricsPresentation"
 
 const getLivingSpecies = (record) => ( (_.get(record, 'metrics.taxaByRankCount.species') || 0) - (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0))
 const getExtinctSpecies = (record) => (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0)
@@ -15,7 +15,7 @@ const getExtinctSpecies = (record) => (_.get(record, 'metrics.extinctTaxaByRankC
 const getColumns = (pathToDataset) => [
   {
     title: "Title",
-    dataIndex: ["title"],
+    dataIndex: ["alias"],
     key: "title",
     render: (text, record) => {
       return (
@@ -23,8 +23,8 @@ const getColumns = (pathToDataset) => [
           <a href={`${pathToDataset}${record.key}`} onClick={() => {window.location.href =  `${pathToDataset}${record.key}`}}  dangerouslySetInnerHTML={{ __html: text }} />
       );
     },
-    width: "50%",
-    sorter: (a, b) => a.title.localeCompare(b.title),
+    width: "30%",
+    sorter: (a, b) => a.alias.localeCompare(b.alias),
     defaultSortOrder: 'ascend'
   },
   {
@@ -42,7 +42,7 @@ const getColumns = (pathToDataset) => [
     title: "Living Species",
     dataIndex: ["metrics", "taxaByRankCount", "species"],
     key: "livingSpecies",
-    render: (text, record) => getLivingSpecies(record),
+    render: (text, record) => getLivingSpecies(record).toLocaleString("en-GB"),
     sorter: (a, b) => getLivingSpecies(a) - getLivingSpecies(b)
 
   },
@@ -50,7 +50,7 @@ const getColumns = (pathToDataset) => [
     title: "Extinct Species",
     dataIndex: ["metrics", "extinctTaxaByRankCount", "species"],
     key: "extinctSpecies",
-    render: (text, record) => getExtinctSpecies(record),
+    render: (text, record) => getExtinctSpecies(record).toLocaleString("en-GB"),
     sorter: (a, b) => getExtinctSpecies(a) - getExtinctSpecies(b)
 
   }
@@ -62,12 +62,14 @@ class DatasetSearchPage extends React.Component {
     super(props);
     this.state = {
       data: [],
+      rank: null,
       loading: false
     };
   }
 
   componentDidMount = () => {
-    this.getData()
+    this.getData();
+    this.getRank();
   }
   
 
@@ -101,12 +103,17 @@ class DatasetSearchPage extends React.Component {
   };
 
 
-
+  getRank = () => {
+    axios(`${config.dataApi}vocab/rank`).then((res) =>
+      this.setState({ rank: res.data.map((r) => r.name) })
+    );
+  };
 
   render() {
     const {
       data,
       loading,
+      rank,
       error
     } = this.state;
     const {pathToDataset} = this.props;
@@ -149,12 +156,12 @@ class DatasetSearchPage extends React.Component {
             rowKey={record => record.key}
             showSorterTooltip={false}
             pagination={{pageSize: 200}}
+            expandedRowRender={({metrics}) => <MetricsPresentation metrics={metrics} rank={rank} style={{marginLeft: '40px'}}/>}
           />
         )}
       </div>
     );
   }
 }
-
 
 export default DatasetSearchPage;
