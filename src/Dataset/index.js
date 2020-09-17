@@ -33,14 +33,16 @@ class DatasetPage extends React.Component {
 
 
   getData = () => {
-    
+    const {
+        catalogueKey
+      } = this.props;
     
     const {location: path} = history;
     const pathParts = path.pathname.split('/');
     const datasetKey = pathParts[pathParts.length-1]
 
     axios(
-        `${config.dataApi}dataset/${datasetKey}`
+        `${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}`
       ).then(dataset => {
         this.setState({ data: dataset.data, datasetError: null });
       })
@@ -91,7 +93,7 @@ class DatasetPage extends React.Component {
                 <h1
                   style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
                   
-                    >{data.title}</h1>
+                    >Database details</h1>
               </Col>
               
            
@@ -108,10 +110,13 @@ class DatasetPage extends React.Component {
             <PresentationItem label="Short name">
             {data.alias}
           </PresentationItem>
+          <PresentationItem label="Full name">
+            {data.title}
+          </PresentationItem>
           <PresentationItem label="Version">
             {(data.version || data.released) && `${data.version ? data.version : ''}${data.released ? ' Received by CoL: '+data.released : ''}`}
           </PresentationItem>
-          <PresentationItem label="Authors and Editors">
+          <PresentationItem label="Authors/Editors">
             {data.authorsAndEditors}
           </PresentationItem>
           <PresentationItem label="Taxonomic coverage">
