@@ -24748,7 +24748,8 @@ if (true) {
 
 
 /***/ }),
-/* 29 */
+/* 29 */,
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(349)
@@ -24830,7 +24831,7 @@ module.exports.polyfill = function(object) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(54)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25061,7 +25062,6 @@ exports.parseUrl = function (str, opts) {
 
 
 /***/ }),
-/* 31 */,
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25357,7 +25357,7 @@ var classnames = __webpack_require__(1);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(29);
+var raf = __webpack_require__(30);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/rc-motion/es/util/motion.js
@@ -28111,7 +28111,7 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(29);
+var raf = __webpack_require__(30);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/rc-align/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
@@ -75192,7 +75192,7 @@ var react_dom = __webpack_require__(28);
 var Event = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(29);
+var raf = __webpack_require__(30);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/raf.js
@@ -78096,7 +78096,7 @@ function createMemoryHistory(props) {
 
 /* harmony default export */ var src_history = (createBrowserHistory());
 // EXTERNAL MODULE: ./node_modules/query-string/index.js
-var query_string = __webpack_require__(30);
+var query_string = __webpack_require__(31);
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
@@ -86368,27 +86368,6 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var src_ColTree = (ColTree_ColTreeWrapper);
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/LinkOutlined.js
-// This icon file is generated automatically.
-var LinkOutlined_LinkOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
-/* harmony default export */ var asn_LinkOutlined = (LinkOutlined_LinkOutlined);
-
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/icons/LinkOutlined.js
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-
-
-
-
-var icons_LinkOutlined_LinkOutlined = function LinkOutlined(props, ref) {
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](AntdIcon, Object.assign({}, props, {
-    ref: ref,
-    icon: asn_LinkOutlined
-  }));
-};
-
-icons_LinkOutlined_LinkOutlined.displayName = 'LinkOutlined';
-/* harmony default export */ var icons_LinkOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_LinkOutlined_LinkOutlined));
 // CONCATENATED MODULE: ./node_modules/antd/es/row/index.js
 
 /* harmony default export */ var es_row = (grid_row);
@@ -101928,7 +101907,7 @@ var Taxon_TaxonPage = function (_React$Component) {
       var datasetKey = _this.props.catalogueKey;
       var path = src_history.location;
 
-      var taxonKey = path.pathname.split('/taxon/')[1];
+      var taxonKey = path.pathname.split("/taxon/")[1];
       _this.setState({ loading: true });
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey).then(function (res) {
         var promises = [res];
@@ -101982,7 +101961,7 @@ var Taxon_TaxonPage = function (_React$Component) {
       var datasetKey = _this.props.catalogueKey;
       var path = src_history.location;
 
-      var taxonKey = path.pathname.split('/taxon/')[1];
+      var taxonKey = path.pathname.split("/taxon/")[1];
 
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/info").then(function (res) {
         _this.setState({ infoLoading: false, info: res.data, infoError: null });
@@ -102003,7 +101982,7 @@ var Taxon_TaxonPage = function (_React$Component) {
       var datasetKey = _this.props.catalogueKey;
       var path = src_history.location;
 
-      var taxonKey = path.pathname.split('/taxon/')[1];
+      var taxonKey = path.pathname.split("/taxon/")[1];
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification").then(function (res) {
         _this.setState({
           classificationLoading: false,
@@ -102023,12 +102002,12 @@ var Taxon_TaxonPage = function (_React$Component) {
       var datasetKey = _this.props.catalogueKey;
       var path = src_history.location;
 
-      var taxonKey = path.pathname.split('/taxon/')[1];
+      var taxonKey = path.pathname.split("/taxon/")[1];
 
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/nameusage/search?TAXON_ID=" + taxonKey + "&facet=rank&status=accepted&status=provisionally%20accepted&limit=0").then(function (res) {
         _this.setState({
           includesLoading: false,
-          includes: lodash_default.a.get(res, 'data.facets.rank') || []
+          includes: lodash_default.a.get(res, "data.facets.rank") || []
         });
       }).catch(function (err) {
         _this.setState({
@@ -102079,10 +102058,10 @@ var Taxon_TaxonPage = function (_React$Component) {
 
 
     var synonyms = info && info.synonyms && info.synonyms.length > 0 ? info.synonyms.filter(function (s) {
-      return s.status !== 'misapplied';
+      return s.status !== "misapplied";
     }) : [];
     var misapplied = info && info.synonyms && info.synonyms.length > 0 ? info.synonyms.filter(function (s) {
-      return s.status === 'misapplied';
+      return s.status === "misapplied";
     }) : [];
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -102108,12 +102087,17 @@ var Taxon_TaxonPage = function (_React$Component) {
             es_col,
             { span: sourceDataset ? 18 : 23 },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h1", {
-              style: { fontSize: "30px", fontWeight: '400', paddingLeft: "10px", display: 'inline-block', textTransform: 'none' },
+              style: {
+                fontSize: "30px",
+                fontWeight: "400",
+                paddingLeft: "10px",
+                display: "inline-block",
+                textTransform: "none"
+              },
               dangerouslySetInnerHTML: {
                 __html: taxon.labelHtml
               }
-            }),
-            "              "
+            })
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
@@ -102126,55 +102110,40 @@ var Taxon_TaxonPage = function (_React$Component) {
           ),
           sourceDataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: 5, style: { textAlign: 'right' } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { style: { maxWidth: '100%', height: 'auto', marginRight: '8px' }, datasetKey: sourceDataset.key })
+            { span: 5, style: { textAlign: "right" } },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
+              style: {
+                maxWidth: "100%",
+                height: "auto",
+                marginRight: "8px"
+              },
+              datasetKey: sourceDataset.key
+            })
           )
+        ),
+        lodash_default.a.get(taxon, "labelHtml") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "Name" },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+            dangerouslySetInnerHTML: {
+              __html: taxon.labelHtml
+            }
+          })
         ),
         lodash_default.a.get(taxon, "name.publishedIn.citation") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "Published in" },
           lodash_default.a.get(taxon, "name.publishedIn.citation")
         ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_row,
-          { style: { borderBottom: '1px solid #eee' } },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: 12 },
-            lodash_default.a.get(taxon, "name.rank") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              components_PresentationItem,
-              { md: Taxon_md * 2, label: "Rank" },
-              lodash_default.a.get(taxon, "name.rank")
-            )
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: 12 },
-            lodash_default.a.get(taxon, "status") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              components_PresentationItem,
-              { md: Taxon_md * 2, label: "Status" },
-              lodash_default.a.get(taxon, "status")
-            )
-          )
-        ),
-        lodash_default.a.get(taxon, "webpage") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        lodash_default.a.get(taxon, "status") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
-          { md: Taxon_md, label: "External webpage" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "a",
-            { href: lodash_default.a.get(taxon, "webpage") },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null)
-          )
+          { md: Taxon_md, label: "Status" },
+          lodash_default.a.get(taxon, "status") + " " + lodash_default.a.get(taxon, "name.rank")
         ),
         lodash_default.a.get(taxon, "name.nomStatus") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "Nomenclatural Status" },
           lodash_default.a.get(taxon, "name.nomStatus")
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Extinct" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BooleanValue, { value: lodash_default.a.get(taxon, "extinct") })
         ),
         lodash_default.a.get(taxon, "name.relations") && taxon.name.relations.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
@@ -102211,39 +102180,7 @@ var Taxon_TaxonPage = function (_React$Component) {
             catalogueKey: catalogueKey
           })
         ),
-        synonymsError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: synonymsError }),
-          type: "error"
-        }),
-        lodash_default.a.get(taxon, "lifezones") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Lifezones" },
-          lodash_default.a.get(taxon, "lifezones").join(", ")
-        ),
-        lodash_default.a.get(info, "vernacularNames") && taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Vernacular names" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(VernacularNames, {
-            style: { marginTop: "-3px", marginLeft: "-3px" },
-            data: info.vernacularNames,
-            datasetKey: taxon.datasetKey,
-            catalogueKey: catalogueKey
-          })
-        ),
-        lodash_default.a.get(info, "distributions") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Distributions" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Distributions, {
-            style: { marginTop: "-3px" },
-            data: info.distributions,
-            datasetKey: catalogueKey
-          })
-        ),
-        lodash_default.a.get(taxon, "remarks") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Remarks" },
-          taxon.remarks
-        ),
+        synonymsError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, { message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: synonymsError }), type: "error" }),
         classificationError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
           message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: classificationError }),
           type: "error"
@@ -102270,11 +102207,40 @@ var Taxon_TaxonPage = function (_React$Component) {
             pathToSearch: pathToSearch
           })
         ),
-        lodash_default.a.get(info, 'references') && !lodash_default.a.isEmpty(lodash_default.a.get(info, 'references')) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        lodash_default.a.get(info, "vernacularNames") && taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "Vernacular names" },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(VernacularNames, {
+            style: { marginTop: "-3px", marginLeft: "-3px" },
+            data: info.vernacularNames,
+            datasetKey: taxon.datasetKey,
+            catalogueKey: catalogueKey
+          })
+        ),
+        lodash_default.a.get(info, "distributions") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "Distributions" },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Distributions, {
+            style: { marginTop: "-3px" },
+            data: info.distributions,
+            datasetKey: catalogueKey
+          })
+        ),
+        lodash_default.a.get(taxon, "environments") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "Environment(s)" },
+          lodash_default.a.get(taxon, "environments").join(", ")
+        ),
+        lodash_default.a.get(taxon, "remarks") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "Additional Data" },
+          taxon.remarks
+        ),
+        lodash_default.a.get(info, "references") && !lodash_default.a.isEmpty(lodash_default.a.get(info, "references")) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "References" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(References, {
-            data: Object.keys(lodash_default.a.get(info, 'references')).map(function (k) {
+            data: Object.keys(lodash_default.a.get(info, "references")).map(function (k) {
               return lodash_default.a.get(info, "references[" + k + "]");
             }),
             style: { marginTop: "-3px" }
@@ -102307,8 +102273,9 @@ var Taxon_TaxonPage = function (_React$Component) {
                 href: "" + pathToDataset + lodash_default.a.get(sourceDataset, "key"),
                 onClick: function onClick() {
                   window.location = "" + pathToDataset + lodash_default.a.get(sourceDataset, "key");
-                } },
-              lodash_default.a.get(sourceDataset, "title")
+                }
+              },
+              lodash_default.a.get(sourceDataset, "alias") + ": " + lodash_default.a.get(sourceDataset, "title")
             ),
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "span",
@@ -102320,6 +102287,15 @@ var Taxon_TaxonPage = function (_React$Component) {
               value: lodash_default.a.get(sourceDataset, "confidence"),
               disabled: true
             })
+          )
+        ),
+        lodash_default.a.get(taxon, "link") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "Link to original resource" },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "a",
+            { href: lodash_default.a.get(taxon, "link") },
+            lodash_default.a.get(taxon, "link")
           )
         )
       )
@@ -103074,6 +103050,72 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon })
   );
 });
+// CONCATENATED MODULE: ./src/Dataset/MetricsPresentation.js
+
+
+
+var MetricsPresentation_ = __webpack_require__(4);
+
+var getLivingTaxa = function getLivingTaxa(metrics, rank) {
+  return (MetricsPresentation_.get(metrics, "taxaByRankCount." + rank) || 0) - (MetricsPresentation_.get(metrics, "extinctTaxaByRankCount." + rank) || 0);
+};
+var getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
+  return MetricsPresentation_.get(metrics, "extinctTaxaByRankCount." + rank) || 0;
+};
+
+/* harmony default export */ var MetricsPresentation = (function (_ref) {
+  var metrics = _ref.metrics,
+      rank = _ref.rank,
+      style = _ref.style;
+  return metrics && rank ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+    "div",
+    { style: style },
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
+      null,
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        components_PresentationItem,
+        { label: "Living species" },
+        getLivingTaxa(metrics, "species").toLocaleString("en-GB")
+      ),
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        components_PresentationItem,
+        { label: "Extinct species" },
+        getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
+      )
+    ),
+    Object.keys(metrics.taxaByRankCount).filter(function (r) {
+      return rank.indexOf(r) < rank.indexOf("species");
+    }).sort(function (a, b) {
+      return rank.indexOf(b) - rank.indexOf(a);
+    }).map(function (k) {
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        components_PresentationItem,
+        { label: "" + MetricsPresentation_.startCase(k), key: k },
+        metrics.taxaByRankCount[k].toLocaleString("en-GB")
+      );
+    }),
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      components_PresentationItem,
+      { label: "Synonyms", key: "Synonyms" },
+      (metrics.synonymCount || 0).toLocaleString("en-GB")
+    ),
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      components_PresentationItem,
+      { label: "Common names", key: "vernaculars" },
+      (metrics.vernacularCount || 0).toLocaleString("en-GB")
+    ),
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      components_PresentationItem,
+      { label: "Total number of names", key: "names" },
+      (metrics.nameCount || 0).toLocaleString("en-GB")
+    )
+  ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+    components_PresentationItem,
+    { label: "" },
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { active: true, paragraph: { rows: 4 } })
+  );
+});
 // CONCATENATED MODULE: ./src/Dataset/Metrics.js
 function Metrics_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -103086,12 +103128,13 @@ function Metrics_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
+
 var Metrics_ = __webpack_require__(4);
 
-var getLivingTaxa = function getLivingTaxa(metrics, rank) {
+var Metrics_getLivingTaxa = function getLivingTaxa(metrics, rank) {
   return (Metrics_.get(metrics, "taxaByRankCount." + rank) || 0) - (Metrics_.get(metrics, "extinctTaxaByRankCount." + rank) || 0);
 };
-var getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
+var Metrics_getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
   return Metrics_.get(metrics, "extinctTaxaByRankCount." + rank) || 0;
 };
 
@@ -103122,65 +103165,12 @@ var Metrics_Metrics = function (_React$Component) {
     };
 
     _this.render = function () {
-      var _this$state = _this.state,
-          metrics = _this$state.metrics,
-          rank = _this$state.rank;
-      var _this$props2 = _this.props,
-          style = _this$props2.style,
-          pathToTree = _this$props2.pathToTree;
-
-      return metrics && rank ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-        null,
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-          null,
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Living species" },
-            getLivingTaxa(metrics, "species").toLocaleString("en-GB")
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Extinct species" },
-            getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
-          )
-        ),
-        Object.keys(metrics.taxaByRankCount).filter(function (r) {
-          return rank.indexOf(r) < rank.indexOf("species");
-        }).sort(function (a, b) {
-          return rank.indexOf(b) - rank.indexOf(a);
-        }).map(function (k) {
-          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "" + Metrics_.startCase(k), key: k },
-            metrics.taxaByRankCount[k].toLocaleString("en-GB")
-          );
-        }),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { label: "Synonyms", key: "Synonyms" },
-          (metrics.synonymCount || 0).toLocaleString("en-GB")
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { label: "Common names", key: "vernaculars" },
-          (metrics.vernacularCount || 0).toLocaleString("en-GB")
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { label: "Total number of names", key: "names" },
-          (metrics.nameCount || 0).toLocaleString("en-GB")
-        )
-      ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        components_PresentationItem,
-        { label: "" },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { active: true, paragraph: { rows: 4 } })
-      );
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, _this.state);
     };
 
     _this.state = {
       metrics: null,
+      rank: null,
       loading: true
     };
     return _this;
@@ -103329,12 +103319,13 @@ var Dataset_DatasetPage = function (_React$Component) {
     };
 
     _this.getData = function () {
+      var catalogueKey = _this.props.catalogueKey;
       var path = src_history.location;
 
       var pathParts = path.pathname.split('/');
       var datasetKey = pathParts[pathParts.length - 1];
 
-      axios_default()(src_config.dataApi + "dataset/" + datasetKey).then(function (dataset) {
+      axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey).then(function (dataset) {
         _this.setState({ data: dataset.data, datasetError: null });
       }).catch(function (err) {
         return _this.setState({ datasetError: err, data: null });
@@ -103414,12 +103405,17 @@ var Dataset_DatasetPage = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
+            { label: "Full name" },
+            data.title
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
             { label: "Version" },
             (data.version || data.released) && "" + (data.version ? data.version : '') + (data.released ? ' Received by CoL: ' + data.released : '')
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Authors and Editors" },
+            { label: "Authors/Editors" },
             data.authorsAndEditors
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -103513,6 +103509,7 @@ function DatasetSearch_inherits(subClass, superClass) { if (typeof superClass !=
 
 
 
+
 var DatasetSearch_getLivingSpecies = function getLivingSpecies(record) {
   return (lodash_default.a.get(record, 'metrics.taxaByRankCount.species') || 0) - (lodash_default.a.get(record, 'metrics.extinctTaxaByRankCount.species') || 0);
 };
@@ -103523,16 +103520,16 @@ var DatasetSearch_getExtinctSpecies = function getExtinctSpecies(record) {
 var DatasetSearch_getColumns = function getColumns(pathToDataset) {
   return [{
     title: "Title",
-    dataIndex: ["title"],
+    dataIndex: ["alias"],
     key: "title",
     render: function render(text, record) {
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" + pathToDataset + record.key, onClick: function onClick() {
           window.location.href = "" + pathToDataset + record.key;
         }, dangerouslySetInnerHTML: { __html: text } });
     },
-    width: "50%",
+    width: "30%",
     sorter: function sorter(a, b) {
-      return a.title.localeCompare(b.title);
+      return a.alias.localeCompare(b.alias);
     },
     defaultSortOrder: 'ascend'
   }, {
@@ -103551,7 +103548,7 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset) {
     dataIndex: ["metrics", "taxaByRankCount", "species"],
     key: "livingSpecies",
     render: function render(text, record) {
-      return DatasetSearch_getLivingSpecies(record);
+      return DatasetSearch_getLivingSpecies(record).toLocaleString("en-GB");
     },
     sorter: function sorter(a, b) {
       return DatasetSearch_getLivingSpecies(a) - DatasetSearch_getLivingSpecies(b);
@@ -103562,7 +103559,7 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset) {
     dataIndex: ["metrics", "extinctTaxaByRankCount", "species"],
     key: "extinctSpecies",
     render: function render(text, record) {
-      return DatasetSearch_getExtinctSpecies(record);
+      return DatasetSearch_getExtinctSpecies(record).toLocaleString("en-GB");
     },
     sorter: function sorter(a, b) {
       return DatasetSearch_getExtinctSpecies(a) - DatasetSearch_getExtinctSpecies(b);
@@ -103581,6 +103578,7 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
 
     _this.componentDidMount = function () {
       _this.getData();
+      _this.getRank();
     };
 
     _this.getData = function () {
@@ -103606,8 +103604,17 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
       });
     };
 
+    _this.getRank = function () {
+      axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
+        return _this.setState({ rank: res.data.map(function (r) {
+            return r.name;
+          }) });
+      });
+    };
+
     _this.state = {
       data: [],
+      rank: null,
       loading: false
     };
     return _this;
@@ -103617,6 +103624,7 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
     var _state = this.state,
         data = _state.data,
         loading = _state.loading,
+        rank = _state.rank,
         error = _state.error;
     var pathToDataset = this.props.pathToDataset;
 
@@ -103660,7 +103668,11 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
           return record.key;
         },
         showSorterTooltip: false,
-        pagination: { pageSize: 200 }
+        pagination: { pageSize: 200 },
+        expandedRowRender: function expandedRowRender(_ref) {
+          var metrics = _ref.metrics;
+          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, { metrics: metrics, rank: rank, style: { marginLeft: '40px' } });
+        }
       })
     );
   };
