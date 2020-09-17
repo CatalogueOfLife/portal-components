@@ -259,7 +259,7 @@ class TaxonPage extends React.Component {
           {taxon && (
             <Row>
               <Col span={sourceDataset ? 18 : 23}>
-                <h1
+{/*                 <h1
                   style={{
                     fontSize: "30px",
                     fontWeight: "400",
@@ -269,9 +269,21 @@ class TaxonPage extends React.Component {
                   }}
                 >
                   Taxon Details
-                </h1>
-                {/*                {taxon.referenceIds && <div style={{display: 'inline-block', paddingLeft: "10px"}}><ReferencePopover datasetKey={catalogueKey} referenceId={taxon.referenceIds} placement="bottom"/></div>}
-                 */}{" "}
+                </h1> */}
+                <h1
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "400",
+                    paddingLeft: "10px",
+                    display: "inline-block",
+                    textTransform: "none",
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: taxon.labelHtml,
+                  }}
+                />
+                  
+               
               </Col>
               <Col span={1}>
                 {taxon.provisional && <Tag color="red">Provisional</Tag>}

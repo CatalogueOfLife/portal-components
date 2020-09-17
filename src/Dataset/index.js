@@ -90,10 +90,14 @@ class DatasetPage extends React.Component {
                     {data && (
             <Row>
               <Col span={12}>
-                <h1
+{/*                 <h1
                   style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
                   
-                    >Database details</h1>
+                    >Database details</h1> */}
+                    <h1
+                  style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
+                  
+                    >{data.title}</h1>
               </Col>
               
            
