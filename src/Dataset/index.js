@@ -121,7 +121,7 @@ class DatasetPage extends React.Component {
             {(data.version || data.released) && `${data.version ? data.version : ''}${data.released ? ' Received by CoL: '+data.released : ''}`}
           </PresentationItem>
           <PresentationItem label="Authors/Editors">
-            {data.authorsAndEditors}
+          {data.authorsAndEditors && _.isArray(data.authorsAndEditors) && data.authorsAndEditors.map(a => a.name).join(', ')}
           </PresentationItem>
           <PresentationItem label="Taxonomic coverage">
             <TaxonomicCoverage dataset={data} catalogueKey={catalogueKey} pathToTree={pathToTree}/>

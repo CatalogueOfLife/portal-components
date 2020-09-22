@@ -1,5 +1,5 @@
 /*!
- * col-browser v0.2.6
+ * col-browser v0.4.4
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -103416,7 +103416,9 @@ var Dataset_DatasetPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Authors/Editors" },
-            data.authorsAndEditors
+            data.authorsAndEditors && lodash_default.a.isArray(data.authorsAndEditors) && data.authorsAndEditors.map(function (a) {
+              return a.name;
+            }).join(', ')
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
