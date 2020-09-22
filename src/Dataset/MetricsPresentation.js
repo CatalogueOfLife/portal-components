@@ -19,7 +19,7 @@ const getExtinctTaxa = (metrics, rank) =>
             {getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}
           </PresentationItem>
         </React.Fragment>
-        {Object.keys(metrics.taxaByRankCount)
+        {metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)
           .filter((r) => rank.indexOf(r) < rank.indexOf("species"))
           .sort((a, b) => rank.indexOf(b) - rank.indexOf(a))
           .map((k) => (
