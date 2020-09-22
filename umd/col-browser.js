@@ -103084,7 +103084,7 @@ var getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
         getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
       )
     ),
-    Object.keys(metrics.taxaByRankCount).filter(function (r) {
+    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).filter(function (r) {
       return rank.indexOf(r) < rank.indexOf("species");
     }).sort(function (a, b) {
       return rank.indexOf(b) - rank.indexOf(a);
