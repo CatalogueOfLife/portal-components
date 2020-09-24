@@ -15,7 +15,6 @@ import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
 
-const FormItem = Form.Item;
 
 
 const PAGE_SIZE = 50;
@@ -35,7 +34,7 @@ const getColumns = (pathToTaxon) => [
     dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
     render: (text, record) => {
-      const id = record.usage.synonym ? _.get(record, 'usage.accepted.id') : _.get(record, 'usage.id')
+      const id =  _.get(record, 'usage.accepted.id') || _.get(record, 'usage.id')
       return (
 
           <a href={`${pathToTaxon}${id}`} onClick={() => {window.location.href =  `${pathToTaxon}${id}`}}  dangerouslySetInnerHTML={{ __html: text }} />
@@ -186,16 +185,13 @@ class NameSearchPage extends React.Component {
       offset: (pager.current - 1) * pager.pageSize,
       ...filters
     });
-
     if (sorter && sorter.field) {
-      let split = sorter.field.split(".");
-
-      if (split[split.length - 1] === "labelHtml") {
+      if (sorter.field[sorter.field.length - 1] === "labelHtml") {
         query.sortBy = "name";
-      } else if (split[split.length - 1] === "rank") {
+      } else if (sorter.field[sorter.field.length - 1] === "rank") {
         query.sortBy = "taxonomic";
       } else {
-        query.sortBy = split[split.length - 1];
+        query.sortBy = sorter.field[sorter.field.length - 1];
       }
     }
     if (sorter && sorter.order === "descend") {
@@ -212,7 +208,8 @@ class NameSearchPage extends React.Component {
     _.forEach(params, (v, k) => {
       newParams[k] = v;
     });
-    this.setState({ params: newParams}, () => this.pushParams(newParams));
+    const notNullParams = Object.keys(newParams).reduce((acc, cur) => (newParams[cur] !== null && (acc[cur] = newParams[cur]), acc ),{})
+    this.setState({ params: notNullParams}, () => this.pushParams(notNullParams));
   };
   
 
@@ -316,7 +313,9 @@ class NameSearchPage extends React.Component {
                 onSelectName={value => {
                   this.updateSearch({ TAXON_ID: value.key });
                 }}
-                onResetSearch={this.resetSearch}
+                onResetSearch={value => {
+                  this.updateSearch({ TAXON_ID: null });
+                }}
                 placeHolder="Search by higher taxon"
                 sortBy="TAXONOMIC"
                 autoFocus={false}

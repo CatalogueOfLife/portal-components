@@ -73912,8 +73912,8 @@ var InfoCircleOutlined = __webpack_require__(285);
 var InfoCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(InfoCircleOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CloseCircleOutlined.js
-var icons_CloseCircleOutlined = __webpack_require__(286);
-var CloseCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(icons_CloseCircleOutlined);
+var CloseCircleOutlined = __webpack_require__(286);
+var CloseCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(CloseCircleOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CheckCircleFilled.js
 var CheckCircleFilled = __webpack_require__(93);
@@ -79453,90 +79453,7 @@ var ColTree_ColTree = function (_React$Component2) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var src_ColTree_ColTree = (withRouter(ColTree_ColTree));
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/CloseCircleOutlined.js
-// This icon file is generated automatically.
-var CloseCircleOutlined_CloseCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M685.4 354.8c0-4.4-3.6-8-8-8l-66 .3L512 465.6l-99.3-118.4-66.1-.3c-4.4 0-8 3.5-8 8 0 1.9.7 3.7 1.9 5.2l130.1 155L340.5 670a8.32 8.32 0 00-1.9 5.2c0 4.4 3.6 8 8 8l66.1-.3L512 564.4l99.3 118.4 66 .3c4.4 0 8-3.5 8-8 0-1.9-.7-3.7-1.9-5.2L553.5 515l130.1-155c1.2-1.4 1.8-3.3 1.8-5.2z" } }, { "tag": "path", "attrs": { "d": "M512 65C264.6 65 64 265.6 64 513s200.6 448 448 448 448-200.6 448-448S759.4 65 512 65zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }] }, "name": "close-circle", "theme": "outlined" };
-/* harmony default export */ var asn_CloseCircleOutlined = (CloseCircleOutlined_CloseCircleOutlined);
-
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
-
-
-
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function defineProperty_defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
 function esm_objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
@@ -79551,7 +79468,7 @@ function esm_objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, e
 
   return target;
 }
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
+// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
 
 function objectWithoutProperties_objectWithoutProperties(source, excluded) {
   if (source == null) return {};
@@ -79571,7 +79488,22 @@ function objectWithoutProperties_objectWithoutProperties(source, excluded) {
 
   return target;
 }
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
+// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function defineProperty_defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
 
 
 function objectSpread2_ownKeys(object, enumerableOnly) {
@@ -79607,368 +79539,8 @@ function _objectSpread2(target) {
 
   return target;
 }
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/typeof.js
-function typeof_typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    typeof_typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    typeof_typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return typeof_typeof(obj);
-}
-// EXTERNAL MODULE: ./node_modules/@ant-design/icons/node_modules/@ant-design/colors/lib/index.js
-var lib = __webpack_require__(116);
-
-// EXTERNAL MODULE: ./node_modules/insert-css/index.js
-var insert_css = __webpack_require__(117);
-
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/utils.js
-
-
-
-
-
-
-function utils_warning(valid, message) {
-  Object(warning["a" /* default */])(valid, "[@ant-design/icons] ".concat(message));
-}
-function isIconDefinition(target) {
-  return typeof_typeof(target) === 'object' && typeof target.name === 'string' && typeof target.theme === 'string' && (typeof_typeof(target.icon) === 'object' || typeof target.icon === 'function');
-}
-function normalizeAttrs() {
-  var attrs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object.keys(attrs).reduce(function (acc, key) {
-    var val = attrs[key];
-
-    switch (key) {
-      case 'class':
-        acc.className = val;
-        delete acc.class;
-        break;
-
-      default:
-        acc[key] = val;
-    }
-
-    return acc;
-  }, {});
-}
-function generate(node, key, rootProps) {
-  if (!rootProps) {
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(node.tag, _objectSpread2({
-      key: key
-    }, normalizeAttrs(node.attrs)), (node.children || []).map(function (child, index) {
-      return generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
-    }));
-  }
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(node.tag, _objectSpread2(_objectSpread2({
-    key: key
-  }, normalizeAttrs(node.attrs)), rootProps), (node.children || []).map(function (child, index) {
-    return generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
-  }));
-}
-function getSecondaryColor(primaryColor) {
-  // choose the second color
-  return Object(lib["generate"])(primaryColor)[0];
-}
-function normalizeTwoToneColors(twoToneColor) {
-  if (!twoToneColor) {
-    return [];
-  }
-
-  return Array.isArray(twoToneColor) ? twoToneColor : [twoToneColor];
-} // These props make sure that the SVG behaviours like general text.
-// Reference: https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
-
-var svgBaseProps = {
-  width: '1em',
-  height: '1em',
-  fill: 'currentColor',
-  'aria-hidden': 'true',
-  focusable: 'false'
-};
-var iconStyles = "\n.anticon {\n  display: inline-block;\n  color: inherit;\n  font-style: normal;\n  line-height: 0;\n  text-align: center;\n  text-transform: none;\n  vertical-align: -0.125em;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n.anticon > * {\n  line-height: 1;\n}\n\n.anticon svg {\n  display: inline-block;\n}\n\n.anticon::before {\n  display: none;\n}\n\n.anticon .anticon-icon {\n  display: block;\n}\n\n.anticon[tabindex] {\n  cursor: pointer;\n}\n\n.anticon-spin::before,\n.anticon-spin {\n  display: inline-block;\n  -webkit-animation: loadingCircle 1s infinite linear;\n  animation: loadingCircle 1s infinite linear;\n}\n\n@-webkit-keyframes loadingCircle {\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@keyframes loadingCircle {\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n";
-var cssInjectedFlag = false;
-var utils_useInsertStyles = function useInsertStyles() {
-  var styleStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : iconStyles;
-  Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
-    if (!cssInjectedFlag) {
-      Object(insert_css["insertCss"])(styleStr, {
-        prepend: true
-      });
-      cssInjectedFlag = true;
-    }
-  }, []);
-};
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/components/IconBase.js
-
-
-
-var twoToneColorPalette = {
-  primaryColor: '#333',
-  secondaryColor: '#E6E6E6',
-  calculated: false
-};
-
-function setTwoToneColors(_ref) {
-  var primaryColor = _ref.primaryColor,
-      secondaryColor = _ref.secondaryColor;
-  twoToneColorPalette.primaryColor = primaryColor;
-  twoToneColorPalette.secondaryColor = secondaryColor || getSecondaryColor(primaryColor);
-  twoToneColorPalette.calculated = !!secondaryColor;
-}
-
-function getTwoToneColors() {
-  return _objectSpread2({}, twoToneColorPalette);
-}
-
-var IconBase_IconBase = function IconBase(props) {
-  var icon = props.icon,
-      className = props.className,
-      onClick = props.onClick,
-      style = props.style,
-      primaryColor = props.primaryColor,
-      secondaryColor = props.secondaryColor,
-      restProps = objectWithoutProperties_objectWithoutProperties(props, ["icon", "className", "onClick", "style", "primaryColor", "secondaryColor"]);
-
-  var colors = twoToneColorPalette;
-
-  if (primaryColor) {
-    colors = {
-      primaryColor: primaryColor,
-      secondaryColor: secondaryColor || getSecondaryColor(primaryColor)
-    };
-  }
-
-  utils_useInsertStyles();
-  utils_warning(isIconDefinition(icon), "icon should be icon definiton, but got ".concat(icon));
-
-  if (!isIconDefinition(icon)) {
-    return null;
-  }
-
-  var target = icon;
-
-  if (target && typeof target.icon === 'function') {
-    target = _objectSpread2(_objectSpread2({}, target), {}, {
-      icon: target.icon(colors.primaryColor, colors.secondaryColor)
-    });
-  }
-
-  return generate(target.icon, "svg-".concat(target.name), _objectSpread2({
-    className: className,
-    onClick: onClick,
-    style: style,
-    'data-icon': target.name,
-    width: '1em',
-    height: '1em',
-    fill: 'currentColor',
-    'aria-hidden': 'true'
-  }, restProps));
-};
-
-IconBase_IconBase.displayName = 'IconReact';
-IconBase_IconBase.getTwoToneColors = getTwoToneColors;
-IconBase_IconBase.setTwoToneColors = setTwoToneColors;
-/* harmony default export */ var components_IconBase = (IconBase_IconBase);
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/components/twoTonePrimaryColor.js
-
-
-
-function setTwoToneColor(twoToneColor) {
-  var _normalizeTwoToneColo = normalizeTwoToneColors(twoToneColor),
-      _normalizeTwoToneColo2 = _slicedToArray(_normalizeTwoToneColo, 2),
-      primaryColor = _normalizeTwoToneColo2[0],
-      secondaryColor = _normalizeTwoToneColo2[1];
-
-  return components_IconBase.setTwoToneColors({
-    primaryColor: primaryColor,
-    secondaryColor: secondaryColor
-  });
-}
-function getTwoToneColor() {
-  var colors = components_IconBase.getTwoToneColors();
-
-  if (!colors.calculated) {
-    return colors.primaryColor;
-  }
-
-  return [colors.primaryColor, colors.secondaryColor];
-}
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/components/AntdIcon.js
-
-
-
-
-
-
-
- // Initial setting
-// should move it to antd main repo?
-
-setTwoToneColor('#1890ff');
-var Icon = external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](function (props, ref) {
-  var className = props.className,
-      icon = props.icon,
-      spin = props.spin,
-      rotate = props.rotate,
-      tabIndex = props.tabIndex,
-      onClick = props.onClick,
-      twoToneColor = props.twoToneColor,
-      restProps = objectWithoutProperties_objectWithoutProperties(props, ["className", "icon", "spin", "rotate", "tabIndex", "onClick", "twoToneColor"]);
-
-  var classString = classnames_default()('anticon', defineProperty_defineProperty({}, "anticon-".concat(icon.name), Boolean(icon.name)), className);
-  var svgClassString = classnames_default()({
-    'anticon-spin': !!spin || icon.name === 'loading'
-  });
-  var iconTabIndex = tabIndex;
-
-  if (iconTabIndex === undefined && onClick) {
-    iconTabIndex = -1;
-  }
-
-  var svgStyle = rotate ? {
-    msTransform: "rotate(".concat(rotate, "deg)"),
-    transform: "rotate(".concat(rotate, "deg)")
-  } : undefined;
-
-  var _normalizeTwoToneColo = normalizeTwoToneColors(twoToneColor),
-      _normalizeTwoToneColo2 = _slicedToArray(_normalizeTwoToneColo, 2),
-      primaryColor = _normalizeTwoToneColo2[0],
-      secondaryColor = _normalizeTwoToneColo2[1];
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"]("span", Object.assign({
-    role: "img",
-    "aria-label": icon.name
-  }, restProps, {
-    ref: ref,
-    tabIndex: iconTabIndex,
-    onClick: onClick,
-    className: classString
-  }), external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](components_IconBase, {
-    className: svgClassString,
-    icon: icon,
-    primaryColor: primaryColor,
-    secondaryColor: secondaryColor,
-    style: svgStyle
-  }));
-});
-Icon.displayName = 'AntdIcon';
-Icon.getTwoToneColor = getTwoToneColor;
-Icon.setTwoToneColor = setTwoToneColor;
-/* harmony default export */ var AntdIcon = (Icon);
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/icons/CloseCircleOutlined.js
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-
-
-
-
-var icons_CloseCircleOutlined_CloseCircleOutlined = function CloseCircleOutlined(props, ref) {
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](AntdIcon, Object.assign({}, props, {
-    ref: ref,
-    icon: asn_CloseCircleOutlined
-  }));
-};
-
-icons_CloseCircleOutlined_CloseCircleOutlined.displayName = 'CloseCircleOutlined';
-/* harmony default export */ var es_icons_CloseCircleOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_CloseCircleOutlined_CloseCircleOutlined));
-// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-function helpers_esm_objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
-
-function esm_objectWithoutProperties_objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = helpers_esm_objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded);
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function esm_defineProperty_defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-// CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-
-
-function esm_objectSpread2_ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function objectSpread2_objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      esm_objectSpread2_ownKeys(Object(source), true).forEach(function (key) {
-        esm_defineProperty_defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      esm_objectSpread2_ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-function arrayLikeToArray_arrayLikeToArray(arr, len) {
+function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
 
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -79980,7 +79552,7 @@ function arrayLikeToArray_arrayLikeToArray(arr, len) {
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
 
 function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray_arrayLikeToArray(arr);
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/iterableToArray.js
 function _iterableToArray(iter) {
@@ -79988,13 +79560,13 @@ function _iterableToArray(iter) {
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
 
-function unsupportedIterableToArray_unsupportedIterableToArray(o, minLen) {
+function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray_arrayLikeToArray(o, minLen);
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray_arrayLikeToArray(o, minLen);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
 function _nonIterableSpread() {
@@ -80006,7 +79578,7 @@ function _nonIterableSpread() {
 
 
 function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || unsupportedIterableToArray_unsupportedIterableToArray(arr) || _nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function classCallCheck_classCallCheck(instance, Constructor) {
@@ -80076,20 +79648,20 @@ function _isNativeReflectConstruct() {
   }
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/typeof.js
-function esm_typeof_typeof(obj) {
+function typeof_typeof(obj) {
   "@babel/helpers - typeof";
 
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    esm_typeof_typeof = function _typeof(obj) {
+    typeof_typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
-    esm_typeof_typeof = function _typeof(obj) {
+    typeof_typeof = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return esm_typeof_typeof(obj);
+  return typeof_typeof(obj);
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
 function _assertThisInitialized(self) {
@@ -80103,7 +79675,7 @@ function _assertThisInitialized(self) {
 
 
 function possibleConstructorReturn_possibleConstructorReturn(self, call) {
-  if (call && (esm_typeof_typeof(call) === "object" || typeof call === "function")) {
+  if (call && (typeof_typeof(call) === "object" || typeof call === "function")) {
     return call;
   }
 
@@ -80248,9 +79820,9 @@ function set_nonIterableSpread() { throw new TypeError("Invalid attempt to sprea
 
 function set_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return set_arrayLikeToArray(arr); }
 
-function _toArray(arr) { return set_arrayWithHoles(arr) || set_iterableToArray(arr) || set_unsupportedIterableToArray(arr) || set_nonIterableRest(); }
+function _toArray(arr) { return _arrayWithHoles(arr) || set_iterableToArray(arr) || set_unsupportedIterableToArray(arr) || _nonIterableRest(); }
 
-function set_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
 function set_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return set_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return set_arrayLikeToArray(o, minLen); }
 
@@ -80258,7 +79830,7 @@ function set_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) l
 
 function set_iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
-function set_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function set_set(entity, paths, value) {
   if (!paths.length) {
@@ -80323,7 +79895,7 @@ function containsNamePath(namePathList, namePath) {
 }
 
 function isObject(obj) {
-  return esm_typeof_typeof(obj) === 'object' && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
+  return typeof_typeof(obj) === 'object' && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
 }
 /**
  * Copy values into store and return a new values object
@@ -80332,7 +79904,7 @@ function isObject(obj) {
 
 
 function internalSetValues(store, values) {
-  var newStore = Array.isArray(store) ? _toConsumableArray(store) : objectSpread2_objectSpread2({}, store);
+  var newStore = Array.isArray(store) ? _toConsumableArray(store) : _objectSpread2({}, store);
 
   if (!values) {
     return newStore;
@@ -80375,7 +79947,7 @@ function isSimilar(source, target) {
     return false;
   }
 
-  if (!source || !target || esm_typeof_typeof(source) !== 'object' || esm_typeof_typeof(target) !== 'object') {
+  if (!source || !target || typeof_typeof(source) !== 'object' || typeof_typeof(target) !== 'object') {
     return false;
   }
 
@@ -80516,14 +80088,14 @@ function replaceMessage(template, kv) {
 
 
 function convertMessages(messages, name, rule, messageVariables) {
-  var kv = objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, rule), {}, {
+  var kv = _objectSpread2(_objectSpread2({}, rule), {}, {
     name: name,
     enum: (rule.enum || []).join(', ')
   });
 
   var replaceFunc = function replaceFunc(template, additionalKV) {
     return function () {
-      return replaceMessage(template, objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, kv), additionalKV));
+      return replaceMessage(template, _objectSpread2(_objectSpread2({}, kv), additionalKV));
     };
   };
   /* eslint-disable no-param-reassign */
@@ -80536,7 +80108,7 @@ function convertMessages(messages, name, rule, messageVariables) {
 
       if (typeof value === 'string') {
         target[ruleName] = replaceFunc(value, messageVariables);
-      } else if (value && esm_typeof_typeof(value) === 'object') {
+      } else if (value && typeof_typeof(value) === 'object') {
         target[ruleName] = {};
         fillTemplate(value, target[ruleName]);
       } else {
@@ -80567,7 +80139,7 @@ function _validateRule() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            cloneRule = objectSpread2_objectSpread2({}, rule); // We should special handle array validate
+            cloneRule = _objectSpread2({}, rule); // We should special handle array validate
 
             subRuleField = null;
 
@@ -80576,13 +80148,13 @@ function _validateRule() {
               delete cloneRule.defaultField;
             }
 
-            validator = new AsyncValidator(esm_defineProperty_defineProperty({}, name, [cloneRule]));
+            validator = new AsyncValidator(defineProperty_defineProperty({}, name, [cloneRule]));
             messages = convertMessages(options.validateMessages, name, cloneRule, messageVariables);
             validator.messages(messages);
             result = [];
             _context2.prev = 7;
             _context2.next = 10;
-            return Promise.resolve(validator.validate(esm_defineProperty_defineProperty({}, name, value), objectSpread2_objectSpread2({}, options)));
+            return Promise.resolve(validator.validate(defineProperty_defineProperty({}, name, value), _objectSpread2({}, options)));
 
           case 10:
             _context2.next = 15;
@@ -80646,7 +80218,7 @@ function validateRules(namePath, value, rules, options, validateFirst, messageVa
       return currentRule;
     }
 
-    return objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, currentRule), {}, {
+    return _objectSpread2(_objectSpread2({}, currentRule), {}, {
       validator: function validator(rule, val, callback) {
         var hasPromise = false; // Wrap callback only accept when promise not provided
 
@@ -81131,7 +80703,7 @@ var Field_Field = /*#__PURE__*/function (_React$Component) {
       if (typeof children === 'function') {
         var meta = _this.getMeta();
 
-        return objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, _this.getOnlyChild(children(_this.getControlled(), meta, _this.context))), {}, {
+        return _objectSpread2(_objectSpread2({}, _this.getOnlyChild(children(_this.getControlled(), meta, _this.context))), {}, {
           isFunction: true
         });
       } // Filed element only
@@ -81184,13 +80756,13 @@ var Field_Field = /*#__PURE__*/function (_React$Component) {
       var value = _this.getValue();
 
       var mergedGetValueProps = getValueProps || function (val) {
-        return esm_defineProperty_defineProperty({}, valuePropName, val);
+        return defineProperty_defineProperty({}, valuePropName, val);
       }; // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 
       var originTriggerFunc = childProps[trigger];
 
-      var control = objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, childProps), mergedGetValueProps(value)); // Add trigger
+      var control = _objectSpread2(_objectSpread2({}, childProps), mergedGetValueProps(value)); // Add trigger
 
 
       control[trigger] = function () {
@@ -81322,7 +80894,7 @@ Field_Field.defaultProps = {
 
 var Field_WrapperField = function WrapperField(_ref4) {
   var name = _ref4.name,
-      restProps = esm_objectWithoutProperties_objectWithoutProperties(_ref4, ["name"]);
+      restProps = objectWithoutProperties_objectWithoutProperties(_ref4, ["name"]);
 
   var namePath = name !== undefined ? getNamePath(name) : undefined;
   var key = 'keep';
@@ -81378,7 +80950,7 @@ var List_List = function List(_ref) {
   };
 
   return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](FieldContext.Provider, {
-    value: objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, context), {}, {
+    value: _objectSpread2(_objectSpread2({}, context), {}, {
       prefixName: prefixName
     })
   }, external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](es_Field, {
@@ -81480,7 +81052,7 @@ function arrayWithHoles_arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
-function iterableToArrayLimit_iterableToArrayLimit(arr, i) {
+function _iterableToArrayLimit(arr, i) {
   if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
@@ -81515,8 +81087,8 @@ function nonIterableRest_nonIterableRest() {
 
 
 
-function slicedToArray_slicedToArray(arr, i) {
-  return arrayWithHoles_arrayWithHoles(arr) || iterableToArrayLimit_iterableToArrayLimit(arr, i) || unsupportedIterableToArray_unsupportedIterableToArray(arr, i) || nonIterableRest_nonIterableRest();
+function _slicedToArray(arr, i) {
+  return arrayWithHoles_arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || nonIterableRest_nonIterableRest();
 }
 // CONCATENATED MODULE: ./node_modules/rc-field-form/es/utils/asyncUtil.js
 function allPromiseFinish(promiseList) {
@@ -82042,7 +81614,7 @@ var useForm_FormStore = function FormStore(forceRootUpdate) {
     fields.forEach(function (fieldData) {
       var name = fieldData.name,
           errors = fieldData.errors,
-          data = esm_objectWithoutProperties_objectWithoutProperties(fieldData, ["name", "errors"]);
+          data = objectWithoutProperties_objectWithoutProperties(fieldData, ["name", "errors"]);
 
       var namePath = getNamePath(name); // Value
 
@@ -82064,7 +81636,7 @@ var useForm_FormStore = function FormStore(forceRootUpdate) {
       var namePath = field.getNamePath();
       var meta = field.getMeta();
 
-      var fieldData = objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, meta), {}, {
+      var fieldData = _objectSpread2(_objectSpread2({}, meta), {}, {
         name: namePath,
         value: _this.getFieldValue(namePath)
       });
@@ -82145,7 +81717,7 @@ var useForm_FormStore = function FormStore(forceRootUpdate) {
 
   this.notifyObservers = function (prevStore, namePathList, info) {
     if (_this.subscribable) {
-      var mergedInfo = objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, info), {}, {
+      var mergedInfo = _objectSpread2(_objectSpread2({}, info), {}, {
         store: _this.getFieldsValue(true)
       });
 
@@ -82299,8 +81871,8 @@ var useForm_FormStore = function FormStore(forceRootUpdate) {
       var fieldNamePath = field.getNamePath(); // Add field validate rule in to promise list
 
       if (!provideNameList || containsNamePath(namePathList, fieldNamePath)) {
-        var promise = field.validateRules(objectSpread2_objectSpread2({
-          validateMessages: objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, defaultValidateMessages), _this.validateMessages)
+        var promise = field.validateRules(_objectSpread2({
+          validateMessages: _objectSpread2(_objectSpread2({}, defaultValidateMessages), _this.validateMessages)
         }, options)); // Wrap promise with field
 
         promiseList.push(promise.then(function () {
@@ -82388,7 +81960,7 @@ function useForm(form) {
   var formRef = external_root_React_commonjs2_react_commonjs_react_amd_react_["useRef"]();
 
   var _React$useState = external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"](),
-      _React$useState2 = slicedToArray_slicedToArray(_React$useState, 2),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
       forceUpdate = _React$useState2[1];
 
   if (!formRef.current) {
@@ -82428,8 +82000,8 @@ var FormContext_FormProvider = function FormProvider(_ref) {
   var formContext = external_root_React_commonjs2_react_commonjs_react_amd_react_["useContext"](FormContext);
   var formsRef = external_root_React_commonjs2_react_commonjs_react_amd_react_["useRef"]({});
   return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](FormContext.Provider, {
-    value: objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, formContext), {}, {
-      validateMessages: objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, formContext.validateMessages), validateMessages),
+    value: _objectSpread2(_objectSpread2({}, formContext), {}, {
+      validateMessages: _objectSpread2(_objectSpread2({}, formContext.validateMessages), validateMessages),
       // =========================================================
       // =                  Global Form Control                  =
       // =========================================================
@@ -82455,13 +82027,13 @@ var FormContext_FormProvider = function FormProvider(_ref) {
       },
       registerForm: function registerForm(name, form) {
         if (name) {
-          formsRef.current = objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, formsRef.current), {}, esm_defineProperty_defineProperty({}, name, form));
+          formsRef.current = _objectSpread2(_objectSpread2({}, formsRef.current), {}, defineProperty_defineProperty({}, name, form));
         }
 
         formContext.registerForm(name, form);
       },
       unregisterForm: function unregisterForm(name) {
-        var newForms = objectSpread2_objectSpread2({}, formsRef.current);
+        var newForms = _objectSpread2({}, formsRef.current);
 
         delete newForms[name];
         formsRef.current = newForms;
@@ -82499,13 +82071,13 @@ var Form_Form = function Form(_ref, ref) {
       _onFieldsChange = _ref.onFieldsChange,
       _onFinish = _ref.onFinish,
       onFinishFailed = _ref.onFinishFailed,
-      restProps = esm_objectWithoutProperties_objectWithoutProperties(_ref, ["name", "initialValues", "fields", "form", "preserve", "children", "component", "validateMessages", "validateTrigger", "onValuesChange", "onFieldsChange", "onFinish", "onFinishFailed"]);
+      restProps = objectWithoutProperties_objectWithoutProperties(_ref, ["name", "initialValues", "fields", "form", "preserve", "children", "component", "validateMessages", "validateTrigger", "onValuesChange", "onFieldsChange", "onFinish", "onFinishFailed"]);
 
   var formContext = external_root_React_commonjs2_react_commonjs_react_amd_react_["useContext"](es_FormContext); // We customize handle event since Context will makes all the consumer re-render:
   // https://reactjs.org/docs/context.html#contextprovider
 
   var _useForm = es_useForm(form),
-      _useForm2 = slicedToArray_slicedToArray(_useForm, 1),
+      _useForm2 = _slicedToArray(_useForm, 1),
       formInstance = _useForm2[0];
 
   var _formInstance$getInte = formInstance.getInternalHooks(HOOK_MARK),
@@ -82527,7 +82099,7 @@ var Form_Form = function Form(_ref, ref) {
     };
   }, [formContext, formInstance, name]); // Pass props to store
 
-  setValidateMessages(objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, formContext.validateMessages), validateMessages));
+  setValidateMessages(_objectSpread2(_objectSpread2({}, formContext.validateMessages), validateMessages));
   setCallbacks({
     onValuesChange: onValuesChange,
     onFieldsChange: function onFieldsChange(changedFields) {
@@ -82580,7 +82152,7 @@ var Form_Form = function Form(_ref, ref) {
     prevFieldsRef.current = fields;
   }, [fields, formInstance]);
   var formContextValue = external_root_React_commonjs2_react_commonjs_react_amd_react_["useMemo"](function () {
-    return objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, formInstance), {}, {
+    return _objectSpread2(_objectSpread2({}, formInstance), {}, {
       validateTrigger: validateTrigger
     });
   }, [formInstance, validateTrigger]);
@@ -84566,7 +84138,7 @@ function convertChildrenToData(nodes) {
 var valueUtil = __webpack_require__(51);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/generate.js + 11 modules
-var es_generate = __webpack_require__(312);
+var generate = __webpack_require__(312);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
 var commonUtil = __webpack_require__(37);
@@ -84727,7 +84299,7 @@ function warningProps(props) {
 
 
 
-var RefSelect = Object(es_generate["a" /* default */])({
+var RefSelect = Object(generate["a" /* default */])({
   prefixCls: 'rc-select',
   components: {
     optionList: es_OptionList
@@ -86198,17 +85770,14 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     };
 
     _this.onReset = function () {
-      _this.setState({ value: "", names: [], open: false });
-      _this.props.onResetSearch();
+      _this.setState({ value: "", names: [] }, _this.props.onResetSearch);
     };
 
     _this.render = function () {
       var _this$props = _this.props,
           placeHolder = _this$props.placeHolder,
           autoFocus = _this$props.autoFocus;
-      var _this$state = _this.state,
-          value = _this$state.value,
-          open = _this$state.open;
+      var value = _this.state.value;
 
       var options = _this.state.names.map(function (o) {
         return {
@@ -86223,26 +85792,24 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           data: o
         };
       });
-      var suffix = value ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, { key: "suffix", onClick: _this.onReset, style: { marginRight: "6px" } }) : "";
+
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         auto_complete,
         {
           style: _this.props.style ? _this.props.style : { width: "100%" },
-          options: options,
+          options: value ? options : [],
           onSelect: _this.onSelectName,
-          onSearch: _this.getNames,
+          onSearch: function onSearch(q) {
+            return !!q ? _this.getNames(q) : _this.onReset();
+          },
           placeholder: placeHolder || "Find taxon",
           onChange: function onChange(value) {
             return _this.setState({ value: value });
           },
           value: value,
-          open: open,
-          onDropdownVisibleChange: function onDropdownVisibleChange(open) {
-            return _this.setState({ open: open });
-          },
           autoFocus: autoFocus === false ? false : true
         },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { suffix: suffix
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true
         })
       );
     };
@@ -86250,7 +85817,8 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     _this.getNames = Object(lodash["debounce"])(_this.getNames, 500);
     _this.state = {
       names: [],
-      value: ""
+      value: "",
+      open: false
     };
     return _this;
   }
@@ -86375,7 +85943,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
 
 /* harmony default export */ var es_col = (grid_col);
 // CONCATENATED MODULE: ./node_modules/rc-rate/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function helpers_esm_defineProperty_defineProperty(obj, key, value) {
+function esm_defineProperty_defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -86437,20 +86005,20 @@ function helpers_esm_inherits_inherits(subClass, superClass) {
   if (superClass) esm_setPrototypeOf_setPrototypeOf(subClass, superClass);
 }
 // CONCATENATED MODULE: ./node_modules/rc-rate/node_modules/@babel/runtime/helpers/esm/typeof.js
-function helpers_esm_typeof_typeof(obj) {
+function esm_typeof_typeof(obj) {
   "@babel/helpers - typeof";
 
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    helpers_esm_typeof_typeof = function _typeof(obj) {
+    esm_typeof_typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
-    helpers_esm_typeof_typeof = function _typeof(obj) {
+    esm_typeof_typeof = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return helpers_esm_typeof_typeof(obj);
+  return esm_typeof_typeof(obj);
 }
 // CONCATENATED MODULE: ./node_modules/rc-rate/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
 function esm_assertThisInitialized_assertThisInitialized(self) {
@@ -86464,7 +86032,7 @@ function esm_assertThisInitialized_assertThisInitialized(self) {
 
 
 function helpers_esm_possibleConstructorReturn_possibleConstructorReturn(self, call) {
-  if (call && (helpers_esm_typeof_typeof(call) === "object" || typeof call === "function")) {
+  if (call && (esm_typeof_typeof(call) === "object" || typeof call === "function")) {
     return call;
   }
 
@@ -86661,7 +86229,7 @@ var Star_Star = /*#__PURE__*/function (_React$Component) {
 
 function Rate_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function Rate_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Rate_ownKeys(Object(source), true).forEach(function (key) { helpers_esm_defineProperty_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Rate_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function Rate_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Rate_ownKeys(Object(source), true).forEach(function (key) { esm_defineProperty_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Rate_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function Rate_createSuper(Derived) { var hasNativeReflectConstruct = Rate_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = esm_getPrototypeOf_getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = esm_getPrototypeOf_getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return helpers_esm_possibleConstructorReturn_possibleConstructorReturn(this, result); }; }
 
@@ -86952,7 +86520,7 @@ var Rate_Rate = /*#__PURE__*/function (_React$Component) {
         }));
       }
 
-      var rateClassName = classnames_default()(prefixCls, disabledClass, className, helpers_esm_defineProperty_defineProperty({}, "".concat(prefixCls, "-rtl"), direction === 'rtl'));
+      var rateClassName = classnames_default()(prefixCls, disabledClass, className, esm_defineProperty_defineProperty({}, "".concat(prefixCls, "-rtl"), direction === 'rtl'));
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("ul", {
         className: rateClassName,
         style: style,
@@ -92819,6 +92387,413 @@ var BorderedListItem_BorderedListItem = function BorderedListItem(_ref) {
 var BookOutlined_BookOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 64H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32zm-260 72h96v209.9L621.5 312 572 347.4V136zm220 752H232V136h280v296.9c0 3.3 1 6.6 3 9.3a15.9 15.9 0 0022.3 3.7l83.8-59.9 81.4 59.4c2.7 2 6 3.1 9.4 3.1 8.8 0 16-7.2 16-16V136h64v752z" } }] }, "name": "book", "theme": "outlined" };
 /* harmony default export */ var asn_BookOutlined = (BookOutlined_BookOutlined);
 
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
+function esm_arrayWithHoles_arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
+function iterableToArrayLimit_iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
+function arrayLikeToArray_arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+
+function unsupportedIterableToArray_unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray_arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray_arrayLikeToArray(o, minLen);
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
+function esm_nonIterableRest_nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+
+
+
+
+function slicedToArray_slicedToArray(arr, i) {
+  return esm_arrayWithHoles_arrayWithHoles(arr) || iterableToArrayLimit_iterableToArrayLimit(arr, i) || unsupportedIterableToArray_unsupportedIterableToArray(arr, i) || esm_nonIterableRest_nonIterableRest();
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function helpers_esm_defineProperty_defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+function helpers_esm_objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
+
+function esm_objectWithoutProperties_objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = helpers_esm_objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
+
+
+function esm_objectSpread2_ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function objectSpread2_objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      esm_objectSpread2_ownKeys(Object(source), true).forEach(function (key) {
+        helpers_esm_defineProperty_defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      esm_objectSpread2_ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@babel/runtime/helpers/esm/typeof.js
+function helpers_esm_typeof_typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    helpers_esm_typeof_typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    helpers_esm_typeof_typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return helpers_esm_typeof_typeof(obj);
+}
+// EXTERNAL MODULE: ./node_modules/@ant-design/icons/node_modules/@ant-design/colors/lib/index.js
+var lib = __webpack_require__(116);
+
+// EXTERNAL MODULE: ./node_modules/insert-css/index.js
+var insert_css = __webpack_require__(117);
+
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/utils.js
+
+
+
+
+
+
+function utils_warning(valid, message) {
+  Object(warning["a" /* default */])(valid, "[@ant-design/icons] ".concat(message));
+}
+function isIconDefinition(target) {
+  return helpers_esm_typeof_typeof(target) === 'object' && typeof target.name === 'string' && typeof target.theme === 'string' && (helpers_esm_typeof_typeof(target.icon) === 'object' || typeof target.icon === 'function');
+}
+function normalizeAttrs() {
+  var attrs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return Object.keys(attrs).reduce(function (acc, key) {
+    var val = attrs[key];
+
+    switch (key) {
+      case 'class':
+        acc.className = val;
+        delete acc.class;
+        break;
+
+      default:
+        acc[key] = val;
+    }
+
+    return acc;
+  }, {});
+}
+function utils_generate(node, key, rootProps) {
+  if (!rootProps) {
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(node.tag, objectSpread2_objectSpread2({
+      key: key
+    }, normalizeAttrs(node.attrs)), (node.children || []).map(function (child, index) {
+      return utils_generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
+    }));
+  }
+
+  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(node.tag, objectSpread2_objectSpread2(objectSpread2_objectSpread2({
+    key: key
+  }, normalizeAttrs(node.attrs)), rootProps), (node.children || []).map(function (child, index) {
+    return utils_generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
+  }));
+}
+function getSecondaryColor(primaryColor) {
+  // choose the second color
+  return Object(lib["generate"])(primaryColor)[0];
+}
+function normalizeTwoToneColors(twoToneColor) {
+  if (!twoToneColor) {
+    return [];
+  }
+
+  return Array.isArray(twoToneColor) ? twoToneColor : [twoToneColor];
+} // These props make sure that the SVG behaviours like general text.
+// Reference: https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
+
+var svgBaseProps = {
+  width: '1em',
+  height: '1em',
+  fill: 'currentColor',
+  'aria-hidden': 'true',
+  focusable: 'false'
+};
+var iconStyles = "\n.anticon {\n  display: inline-block;\n  color: inherit;\n  font-style: normal;\n  line-height: 0;\n  text-align: center;\n  text-transform: none;\n  vertical-align: -0.125em;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n.anticon > * {\n  line-height: 1;\n}\n\n.anticon svg {\n  display: inline-block;\n}\n\n.anticon::before {\n  display: none;\n}\n\n.anticon .anticon-icon {\n  display: block;\n}\n\n.anticon[tabindex] {\n  cursor: pointer;\n}\n\n.anticon-spin::before,\n.anticon-spin {\n  display: inline-block;\n  -webkit-animation: loadingCircle 1s infinite linear;\n  animation: loadingCircle 1s infinite linear;\n}\n\n@-webkit-keyframes loadingCircle {\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@keyframes loadingCircle {\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n";
+var cssInjectedFlag = false;
+var utils_useInsertStyles = function useInsertStyles() {
+  var styleStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : iconStyles;
+  Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
+    if (!cssInjectedFlag) {
+      Object(insert_css["insertCss"])(styleStr, {
+        prepend: true
+      });
+      cssInjectedFlag = true;
+    }
+  }, []);
+};
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/components/IconBase.js
+
+
+
+var twoToneColorPalette = {
+  primaryColor: '#333',
+  secondaryColor: '#E6E6E6',
+  calculated: false
+};
+
+function setTwoToneColors(_ref) {
+  var primaryColor = _ref.primaryColor,
+      secondaryColor = _ref.secondaryColor;
+  twoToneColorPalette.primaryColor = primaryColor;
+  twoToneColorPalette.secondaryColor = secondaryColor || getSecondaryColor(primaryColor);
+  twoToneColorPalette.calculated = !!secondaryColor;
+}
+
+function getTwoToneColors() {
+  return objectSpread2_objectSpread2({}, twoToneColorPalette);
+}
+
+var IconBase_IconBase = function IconBase(props) {
+  var icon = props.icon,
+      className = props.className,
+      onClick = props.onClick,
+      style = props.style,
+      primaryColor = props.primaryColor,
+      secondaryColor = props.secondaryColor,
+      restProps = esm_objectWithoutProperties_objectWithoutProperties(props, ["icon", "className", "onClick", "style", "primaryColor", "secondaryColor"]);
+
+  var colors = twoToneColorPalette;
+
+  if (primaryColor) {
+    colors = {
+      primaryColor: primaryColor,
+      secondaryColor: secondaryColor || getSecondaryColor(primaryColor)
+    };
+  }
+
+  utils_useInsertStyles();
+  utils_warning(isIconDefinition(icon), "icon should be icon definiton, but got ".concat(icon));
+
+  if (!isIconDefinition(icon)) {
+    return null;
+  }
+
+  var target = icon;
+
+  if (target && typeof target.icon === 'function') {
+    target = objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, target), {}, {
+      icon: target.icon(colors.primaryColor, colors.secondaryColor)
+    });
+  }
+
+  return utils_generate(target.icon, "svg-".concat(target.name), objectSpread2_objectSpread2({
+    className: className,
+    onClick: onClick,
+    style: style,
+    'data-icon': target.name,
+    width: '1em',
+    height: '1em',
+    fill: 'currentColor',
+    'aria-hidden': 'true'
+  }, restProps));
+};
+
+IconBase_IconBase.displayName = 'IconReact';
+IconBase_IconBase.getTwoToneColors = getTwoToneColors;
+IconBase_IconBase.setTwoToneColors = setTwoToneColors;
+/* harmony default export */ var components_IconBase = (IconBase_IconBase);
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/components/twoTonePrimaryColor.js
+
+
+
+function setTwoToneColor(twoToneColor) {
+  var _normalizeTwoToneColo = normalizeTwoToneColors(twoToneColor),
+      _normalizeTwoToneColo2 = slicedToArray_slicedToArray(_normalizeTwoToneColo, 2),
+      primaryColor = _normalizeTwoToneColo2[0],
+      secondaryColor = _normalizeTwoToneColo2[1];
+
+  return components_IconBase.setTwoToneColors({
+    primaryColor: primaryColor,
+    secondaryColor: secondaryColor
+  });
+}
+function getTwoToneColor() {
+  var colors = components_IconBase.getTwoToneColors();
+
+  if (!colors.calculated) {
+    return colors.primaryColor;
+  }
+
+  return [colors.primaryColor, colors.secondaryColor];
+}
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/components/AntdIcon.js
+
+
+
+
+
+
+
+ // Initial setting
+// should move it to antd main repo?
+
+setTwoToneColor('#1890ff');
+var Icon = external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](function (props, ref) {
+  var className = props.className,
+      icon = props.icon,
+      spin = props.spin,
+      rotate = props.rotate,
+      tabIndex = props.tabIndex,
+      onClick = props.onClick,
+      twoToneColor = props.twoToneColor,
+      restProps = esm_objectWithoutProperties_objectWithoutProperties(props, ["className", "icon", "spin", "rotate", "tabIndex", "onClick", "twoToneColor"]);
+
+  var classString = classnames_default()('anticon', helpers_esm_defineProperty_defineProperty({}, "anticon-".concat(icon.name), Boolean(icon.name)), className);
+  var svgClassString = classnames_default()({
+    'anticon-spin': !!spin || icon.name === 'loading'
+  });
+  var iconTabIndex = tabIndex;
+
+  if (iconTabIndex === undefined && onClick) {
+    iconTabIndex = -1;
+  }
+
+  var svgStyle = rotate ? {
+    msTransform: "rotate(".concat(rotate, "deg)"),
+    transform: "rotate(".concat(rotate, "deg)")
+  } : undefined;
+
+  var _normalizeTwoToneColo = normalizeTwoToneColors(twoToneColor),
+      _normalizeTwoToneColo2 = slicedToArray_slicedToArray(_normalizeTwoToneColo, 2),
+      primaryColor = _normalizeTwoToneColo2[0],
+      secondaryColor = _normalizeTwoToneColo2[1];
+
+  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"]("span", Object.assign({
+    role: "img",
+    "aria-label": icon.name
+  }, restProps, {
+    ref: ref,
+    tabIndex: iconTabIndex,
+    onClick: onClick,
+    className: classString
+  }), external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](components_IconBase, {
+    className: svgClassString,
+    icon: icon,
+    primaryColor: primaryColor,
+    secondaryColor: secondaryColor,
+    style: svgStyle
+  }));
+});
+Icon.displayName = 'AntdIcon';
+Icon.getTwoToneColor = getTwoToneColor;
+Icon.setTwoToneColor = setTwoToneColor;
+/* harmony default export */ var AntdIcon = (Icon);
 // CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/icons/BookOutlined.js
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
@@ -93088,7 +93063,7 @@ function runtime_helpers_esm_typeof_typeof(obj) {
   return runtime_helpers_esm_typeof_typeof(obj);
 }
 // CONCATENATED MODULE: ./node_modules/rc-table/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-function esm_arrayWithHoles_arrayWithHoles(arr) {
+function helpers_esm_arrayWithHoles_arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 // CONCATENATED MODULE: ./node_modules/rc-table/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
@@ -93119,7 +93094,7 @@ function esm_iterableToArrayLimit_iterableToArrayLimit(arr, i) {
   return _arr;
 }
 // CONCATENATED MODULE: ./node_modules/rc-table/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-function esm_nonIterableRest_nonIterableRest() {
+function helpers_esm_nonIterableRest_nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 // CONCATENATED MODULE: ./node_modules/rc-table/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
@@ -93128,7 +93103,7 @@ function esm_nonIterableRest_nonIterableRest() {
 
 
 function esm_slicedToArray_slicedToArray(arr, i) {
-  return esm_arrayWithHoles_arrayWithHoles(arr) || esm_iterableToArrayLimit_iterableToArrayLimit(arr, i) || esm_unsupportedIterableToArray_unsupportedIterableToArray(arr, i) || esm_nonIterableRest_nonIterableRest();
+  return helpers_esm_arrayWithHoles_arrayWithHoles(arr) || esm_iterableToArrayLimit_iterableToArrayLimit(arr, i) || esm_unsupportedIterableToArray_unsupportedIterableToArray(arr, i) || helpers_esm_nonIterableRest_nonIterableRest();
 }
 // EXTERNAL MODULE: ./node_modules/shallowequal/index.js
 var shallowequal = __webpack_require__(66);
@@ -102395,7 +102370,7 @@ var SearchBox_SearchBox = function (_React$Component) {
 
     var _this = SearchBox_possibleConstructorReturn(this, _React$Component.call(this, props));
 
-    _this.componentWillMount = function () {
+    _this.componentDidMount = function () {
       if (_this.props.defaultValue) {
         _this.setState({ search: _this.props.defaultValue });
       }
@@ -102622,8 +102597,6 @@ function NameSearch_inherits(subClass, superClass) { if (typeof superClass !== "
 
 
 
-var NameSearch_FormItem = es_form.Item;
-
 var PAGE_SIZE = 50;
 var defaultParams = {
   limit: 50,
@@ -102638,7 +102611,7 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
     render: function render(text, record) {
-      var id = record.usage.synonym ? lodash_default.a.get(record, 'usage.accepted.id') : lodash_default.a.get(record, 'usage.id');
+      var id = lodash_default.a.get(record, 'usage.accepted.id') || lodash_default.a.get(record, 'usage.id');
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" + pathToTaxon + id, onClick: function onClick() {
           window.location.href = "" + pathToTaxon + id;
         }, dangerouslySetInnerHTML: { __html: text } });
@@ -102768,16 +102741,13 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         limit: pager.pageSize,
         offset: (pager.current - 1) * pager.pageSize
       }, filters));
-
       if (sorter && sorter.field) {
-        var split = sorter.field.split(".");
-
-        if (split[split.length - 1] === "labelHtml") {
+        if (sorter.field[sorter.field.length - 1] === "labelHtml") {
           query.sortBy = "name";
-        } else if (split[split.length - 1] === "rank") {
+        } else if (sorter.field[sorter.field.length - 1] === "rank") {
           query.sortBy = "taxonomic";
         } else {
-          query.sortBy = split[split.length - 1];
+          query.sortBy = sorter.field[sorter.field.length - 1];
         }
       }
       if (sorter && sorter.order === "descend") {
@@ -102796,8 +102766,11 @@ var NameSearch_NameSearchPage = function (_React$Component) {
       lodash_default.a.forEach(params, function (v, k) {
         newParams[k] = v;
       });
-      _this.setState({ params: newParams }, function () {
-        return _this.pushParams(newParams);
+      var notNullParams = Object.keys(newParams).reduce(function (acc, cur) {
+        return newParams[cur] !== null && (acc[cur] = newParams[cur]), acc;
+      }, {});
+      _this.setState({ params: notNullParams }, function () {
+        return _this.pushParams(notNullParams);
       });
     };
 
@@ -102923,7 +102896,9 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             onSelectName: function onSelectName(value) {
               _this2.updateSearch({ TAXON_ID: value.key });
             },
-            onResetSearch: this.resetSearch,
+            onResetSearch: function onResetSearch(value) {
+              _this2.updateSearch({ TAXON_ID: null });
+            },
             placeHolder: "Search by higher taxon",
             sortBy: "TAXONOMIC",
             autoFocus: false

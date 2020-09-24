@@ -11,7 +11,7 @@ class SearchBox extends React.Component {
       search: ""
     };
   }
-  componentWillMount = () => {
+  componentDidMount = () => {
     if (this.props.defaultValue) {
       this.setState({ search: this.props.defaultValue });
     }

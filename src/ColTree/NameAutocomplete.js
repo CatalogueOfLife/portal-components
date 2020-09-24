@@ -17,6 +17,7 @@ class NameSearchAutocomplete extends React.Component {
     this.state = {
       names: [],
       value: "",
+      open: false
     };
   }
 
@@ -77,15 +78,14 @@ class NameSearchAutocomplete extends React.Component {
     this.props.onSelectName(selectedTaxon);
   };
   onReset = () => {
-    this.setState({ value: "", names: [], open: false });
-    this.props.onResetSearch();
+    this.setState({ value: "", names: [] }, this.props.onResetSearch);
   };
 
 
 
   render = () => {
     const { placeHolder, autoFocus } = this.props;
-    const { value, open } = this.state;
+    const { value } = this.state;
     const options = this.state.names.map((o) => {
         return {
           key: o.usageId,
@@ -101,25 +101,19 @@ class NameSearchAutocomplete extends React.Component {
           data: o
           }
     });
-    const suffix = value ? (
-      <CloseCircleOutlined key="suffix" onClick={this.onReset} style={{ marginRight: "6px" }} />
-    ) : (
-      ""
-    );
+   
     return (
     <AutoComplete
         style={this.props.style ? this.props.style : { width: "100%" }}
-        options={options}
+        options={value ? options : []}
         onSelect={this.onSelectName}
-        onSearch={this.getNames}
+        onSearch={q => !!q ? this.getNames(q) : this.onReset()}
         placeholder={placeHolder || "Find taxon"}
         onChange={(value) => this.setState({ value })}
         value={value}
-        open={open}
-        onDropdownVisibleChange={open => this.setState({open})}
         autoFocus={autoFocus === false ? false : true}
       >
-        <Input.Search suffix={suffix} 
+        <Input.Search allowClear
  />
       </AutoComplete>
     
