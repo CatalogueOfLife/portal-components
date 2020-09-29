@@ -44,7 +44,7 @@ This will create a global `ColBrowser` library variable that has four indvidual 
 A [browsable taxonomic tree](https://www.dev.catalogue.life/data/browse.html), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/) 
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
-3. `pathToDataset` - The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
+3. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
@@ -98,7 +98,7 @@ ReactDOM.render(e(Search), domContainer);
 [Taxon detail page](https://www.dev.catalogue.life/data/taxon/1981d777-6127-4ca5-b960-078fe254caef), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxon classification to point towards).
-3. `pathToDataset` - The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
+3. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
