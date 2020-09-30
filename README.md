@@ -20,23 +20,31 @@ Include dependencies, React and React Dom:
 Include the Library:
 
 ````
-<script src="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.4/umd/col-tree-browser.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.5/umd/col-browser.min.js" ></script>
+````
+or get the latest version available:
+````
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components/umd/col-browser.min.js" ></script>
 ````
 
 And the styles:
 
 ````
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sp2000/colplus-portal-components@0.4/umd/main.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.5/umd/main.css">
+ ````
+ or get the the latest version available:
+ ````
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components/umd/main.css">
  ````
 
-This will create a global `ColBrowser` library variable that has three indvidual components:
+This will create a global `ColBrowser` library variable that has four indvidual components:
 
 
 ### ColBrowser.Tree
 A [browsable taxonomic tree](https://www.dev.catalogue.life/data/browse.html), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/) 
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
-3. `pathToDataset` - The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
+3. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
@@ -90,7 +98,7 @@ ReactDOM.render(e(Search), domContainer);
 [Taxon detail page](https://www.dev.catalogue.life/data/taxon/1981d777-6127-4ca5-b960-078fe254caef), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)  
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxon classification to point towards).
-3. `pathToDataset` - The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
+3. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
