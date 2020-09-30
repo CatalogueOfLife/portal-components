@@ -21,6 +21,7 @@
  * since chrome may update to redesign with its align logic.
  */
   /* Reset search input style */
+  background: inherit;
 }
 .catalogue-of-life [class^=ant-]::-ms-clear,
 .catalogue-of-life [class*= ant-]::-ms-clear,
@@ -19209,7 +19210,7 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 .catalogue-of-life table tr.even,
 .catalogue-of-life table tr.alt,
 .catalogue-of-life table tr:nth-of-type(even) {
-  background: white !important;
+  background: inherit;
 }
 .catalogue-of-life .colplus-taxon-page-list tbody tr:last-child > td {
   border-bottom: none !important;
@@ -19219,7 +19220,7 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
   padding: 5px 3px !important;
   font-size: 12px;
   border-bottom: none !important;
-  background-color: #fff;
+  background-color: inherit;
 }
 .catalogue-of-life .colplus-taxon-page-list table {
   border: none;
@@ -19245,6 +19246,22 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 }
 .catalogue-of-life button.ant-pagination-item-link {
   padding: 0;
+}
+.catalogue-of-life .ant-tree-show-line .ant-tree-switcher {
+  background: inherit;
+}
+.catalogue-of-life .ant-tree,
+.catalogue-of-life .ant-table,
+.catalogue-of-life .ant-tree-list,
+.catalogue-of-life .ant-tree-treenode,
+.catalogue-of-life .tree-node-rank,
+.catalogue-of-life .catalogue-of-life a,
+.catalogue-of-life .catalogue-of-life .ant-input-affix-wrapper,
+.catalogue-of-life .catalogue-of-life .ant-input,
+.catalogue-of-life .rc-virtual-list,
+.catalogue-of-life .ant-select-item-option-content {
+  background-color: inherit;
+  background: inherit;
 }
 /* 
 The ant autocomplete injects the list in the bottom of the body, and therefore it is outside the catalogue of life class

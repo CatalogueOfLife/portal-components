@@ -24834,6 +24834,24 @@ module.exports.polyfill = function(object) {
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (false) { var throwOnDirectAccess, ReactIs; } else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(401)();
+}
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 var strictUriEncode = __webpack_require__(367);
@@ -25059,24 +25077,6 @@ exports.parseUrl = function (str, opts) {
 		query: parse(extract(str), opts)
 	};
 };
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (false) { var throwOnDirectAccess, ReactIs; } else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(401)();
-}
 
 
 /***/ }),
@@ -38912,7 +38912,7 @@ module.exports.insertCss = insertCss;
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(32);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -78096,14 +78096,14 @@ function createMemoryHistory(props) {
 
 /* harmony default export */ var src_history = (createBrowserHistory());
 // EXTERNAL MODULE: ./node_modules/query-string/index.js
-var query_string = __webpack_require__(31);
+var query_string = __webpack_require__(32);
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
 var inheritsLoose = __webpack_require__(35);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(32);
+var prop_types = __webpack_require__(31);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./node_modules/mini-create-react-context/dist/esm/index.js
@@ -78903,24 +78903,33 @@ var ColTree_ColTree = function (_React$Component2) {
     };
 
     _this2.loadRoot = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-      var defaultExpandKey;
+      var defaultExpandKey, defaultTaxonKey;
       return regenerator_default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), 'taxonKey');
+              defaultTaxonKey = _this2.props.defaultTaxonKey;
 
               if (!defaultExpandKey) {
-                _context.next = 5;
+                _context.next = 6;
                 break;
               }
 
               return _context.abrupt("return", _this2.expandToTaxon(defaultExpandKey));
 
-            case 5:
+            case 6:
+              if (!defaultTaxonKey) {
+                _context.next = 10;
+                break;
+              }
+
+              return _context.abrupt("return", _this2.expandToTaxon(defaultTaxonKey));
+
+            case 10:
               return _context.abrupt("return", _this2.loadRoot_());
 
-            case 6:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -79083,7 +79092,7 @@ var ColTree_ColTree = function (_React$Component2) {
 
 
                 _this2.setState({ treeData: treeData }, function () {
-                  return _this2.reloadLoadedKeys(loadedKeys);
+                  return _this2.reloadLoadedKeys(loadedKeys, defaultExpandKey);
                 });
 
               case 17:
@@ -79227,10 +79236,10 @@ var ColTree_ColTree = function (_React$Component2) {
     };
 
     _this2.reloadLoadedKeys = function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4(keys) {
-        var expandAll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4(keys, expandKey) {
+        var expandAll = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-        var storedKeys, defaultExpandKey, treeData, targetTaxon, loadedKeys, index, _node, parentNode, newState;
+        var storedKeys, treeData, targetTaxon, loadedKeys, index, _node, parentNode, newState;
 
         return regenerator_default.a.wrap(function _callee4$(_context4) {
           while (1) {
@@ -79238,15 +79247,16 @@ var ColTree_ColTree = function (_React$Component2) {
               case 0:
                 _this2.setState({ rootLoading: true });
                 storedKeys = _this2.state.loadedKeys;
-                defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), 'taxonKey');
+                // const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+
                 treeData = _this2.state.treeData;
-                targetTaxon = defaultExpandKey ? _this2.findNode(defaultExpandKey, treeData) : null;
+                targetTaxon = expandKey ? _this2.findNode(expandKey, treeData) : null;
                 loadedKeys = keys ? [].concat(keys) : [].concat(storedKeys);
                 index = 0;
 
-              case 7:
+              case 6:
                 if (!(index < loadedKeys.length)) {
-                  _context4.next = 17;
+                  _context4.next = 16;
                   break;
                 }
 
@@ -79265,14 +79275,14 @@ var ColTree_ColTree = function (_React$Component2) {
                 }
 
                 if (!_node) {
-                  _context4.next = 14;
+                  _context4.next = 13;
                   break;
                 }
 
-                _context4.next = 13;
+                _context4.next = 12;
                 return _this2.fetchChildPage(_node, true, true);
 
-              case 13:
+              case 12:
                 if (targetTaxon && index === loadedKeys.length - 2 && lodash_default.a.get(_node, 'taxon.id') !== lodash_default.a.get(targetTaxon, 'taxon.id') && lodash_default.a.isArray(_node.children) && !_node.children.find(function (c) {
                   return lodash_default.a.get(c, 'taxon.id') === lodash_default.a.get(targetTaxon, 'taxon.id');
                 })) {
@@ -79282,7 +79292,7 @@ var ColTree_ColTree = function (_React$Component2) {
                     _this2.setState({ treeData: [].concat(_this2.state.treeData) }, function () {
                       setTimeout(function () {
                         if (lodash_default.a.get(_this2, 'treeRef.current')) {
-                          _this2.treeRef.current.scrollTo({ key: defaultExpandKey });
+                          _this2.treeRef.current.scrollTo({ key: expandKey });
                         }
                       }, 100);
                     });
@@ -79293,39 +79303,39 @@ var ColTree_ColTree = function (_React$Component2) {
                         "span",
                         null,
                         "Cannot find taxon ",
-                        defaultExpandKey,
+                        expandKey,
                         " in tree \uD83D\uDE25"
                       )
                     }, function () {
                       if (_this2.props.treeType === "CATALOGUE" && typeof _this2.props.addMissingTargetKey === "function") {
-                        _this2.props.addMissingTargetKey(defaultExpandKey);
+                        _this2.props.addMissingTargetKey(expandKey);
                       }
                     });
                   }
                 }
 
-              case 14:
+              case 13:
                 index++;
-                _context4.next = 7;
+                _context4.next = 6;
                 break;
 
-              case 17:
+              case 16:
                 newState = { loadedKeys: loadedKeys, rootLoading: false };
 
                 if (expandAll) {
                   newState.expandedKeys = loadedKeys;
                 }
                 _this2.setState(newState, function () {
-                  if (defaultExpandKey) {
+                  if (expandKey) {
                     setTimeout(function () {
                       if (lodash_default.a.get(_this2, 'treeRef.current')) {
-                        _this2.treeRef.current.scrollTo({ key: defaultExpandKey });
+                        _this2.treeRef.current.scrollTo({ key: expandKey });
                       }
                     }, 100);
                   }
                 });
 
-              case 20:
+              case 19:
               case "end":
                 return _context4.stop();
             }
@@ -79333,7 +79343,7 @@ var ColTree_ColTree = function (_React$Component2) {
         }, _callee4, _this3);
       }));
 
-      return function (_x3) {
+      return function (_x3, _x4) {
         return _ref5.apply(this, arguments);
       };
     }();
@@ -85872,7 +85882,8 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
       var _this$props = _this.props,
           catalogueKey = _this$props.catalogueKey,
           pathToTaxon = _this$props.pathToTaxon,
-          pathToDataset = _this$props.pathToDataset;
+          pathToDataset = _this$props.pathToDataset,
+          defaultTaxonKey = _this$props.defaultTaxonKey;
 
       var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
       var height = _this.state.height;
@@ -85912,6 +85923,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
             catalogueKey: catalogueKey,
             pathToTaxon: pathToTaxon,
             pathToDataset: pathToDataset,
+            defaultTaxonKey: defaultTaxonKey,
             height: height,
             treeRef: function treeRef(ref) {
               return _this.treeRef = ref;
@@ -102047,7 +102059,6 @@ var Taxon_TaxonPage = function (_React$Component) {
         {
           className: "catalogue-of-life",
           style: {
-            background: "#fff",
             padding: 24,
             minHeight: 280,
             margin: "16px 0",
@@ -102601,7 +102612,7 @@ var PAGE_SIZE = 50;
 var defaultParams = {
   limit: 50,
   offset: 0,
-  facet: ["rank", "issue", "status", "nomstatus", "type", "field"],
+  facet: ["rank", "issue", "status", "nomStatus", "nameType", "field"],
   sortBy: "taxonomic"
 };
 
@@ -102686,7 +102697,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         params = defaultParams;
         _this.pushParams(defaultParams);
       } else if (!params.facet) {
-        params.facet = ["rank", "issue", "status", "nomstatus", "type", "field"];
+        params.facet = ["rank", "issue", "status", "nomStatus", "nameType", "field"];
       }
 
       _this.setState({ params: params, pagination: {
@@ -102835,13 +102846,13 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
       };
     }) : null;
-    var facetNomStatus = lodash_default.a.get(facets, "nomstatus") ? facets.nomstatus.map(function (s) {
+    var facetNomStatus = lodash_default.a.get(facets, "nomStatus") ? facets.nomStatus.map(function (s) {
       return {
         value: s.value,
         label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
       };
     }) : null;
-    var facetNomType = lodash_default.a.get(facets, "type") ? facets.type.map(function (s) {
+    var facetNomType = lodash_default.a.get(facets, "nameType") ? facets.nameType.map(function (s) {
       return {
         value: s.value,
         label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
@@ -102860,7 +102871,6 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         className: "catalogue-of-life",
 
         style: {
-          background: "#fff",
           padding: 24,
           minHeight: 280,
           margin: "16px 0"
@@ -102887,6 +102897,9 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
             onSearch: function onSearch(value) {
               return _this2.updateSearch({ q: value });
+            },
+            onResetSearch: function onResetSearch(value) {
+              return _this2.updateSearch({ q: null });
             },
             style: { marginBottom: "8px", width: "100%" }
           }),

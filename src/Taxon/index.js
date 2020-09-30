@@ -246,7 +246,6 @@ class TaxonPage extends React.Component {
         <div
           className="catalogue-of-life"
           style={{
-            background: "#fff",
             padding: 24,
             minHeight: 280,
             margin: "16px 0",

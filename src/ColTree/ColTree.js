@@ -84,9 +84,11 @@ class ColTree extends React.Component {
 
   loadRoot = async () => {
     const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
-
+    const {defaultTaxonKey} = this.props;
     if(defaultExpandKey){
      return this.expandToTaxon(defaultExpandKey)
+    } else if(defaultTaxonKey){
+      return this.expandToTaxon(defaultTaxonKey)
     } else {
     return this.loadRoot_()
     }
@@ -227,7 +229,7 @@ class ColTree extends React.Component {
 
      const loadedKeys = [...data.map(t => t.id).reverse()]
 
-     this.setState({treeData}, () => this.reloadLoadedKeys(loadedKeys))
+     this.setState({treeData}, () => this.reloadLoadedKeys(loadedKeys, defaultExpandKey))
 
   }
   
@@ -376,13 +378,13 @@ class ColTree extends React.Component {
   }
 
   
-  reloadLoadedKeys = async (keys, expandAll = true) => {
+  reloadLoadedKeys = async (keys, expandKey, expandAll = true) => {
     this.setState({rootLoading: true})
     const {loadedKeys: storedKeys} = this.state;
-    const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+   // const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
 
     let {treeData} = this.state;
-    const targetTaxon = defaultExpandKey ? this.findNode(defaultExpandKey, treeData) : null;
+    const targetTaxon = expandKey ? this.findNode(expandKey, treeData) : null;
     const loadedKeys = keys ? [...keys] : [...storedKeys];
     for (let index = 0; index < loadedKeys.length; index++) {
       let node = this.findNode(loadedKeys[index], treeData);
@@ -408,7 +410,7 @@ class ColTree extends React.Component {
               this.setState({treeData: [...this.state.treeData]}, () => {
                 setTimeout(()=>{
                   if(_.get(this, 'treeRef.current')){
-                    this.treeRef.current.scrollTo({ key: defaultExpandKey });
+                    this.treeRef.current.scrollTo({ key: expandKey });
                 }
                 } , 100)
                               
@@ -419,7 +421,7 @@ class ColTree extends React.Component {
                   {
                     nodeNotFoundErr: (
                       <span>
-                        Cannot find taxon {defaultExpandKey} in tree &#128549;
+                        Cannot find taxon {expandKey} in tree &#128549;
                       </span>
                     )
                   },
@@ -428,7 +430,7 @@ class ColTree extends React.Component {
                       this.props.treeType === "CATALOGUE" &&
                       typeof this.props.addMissingTargetKey === "function"
                     ) {
-                      this.props.addMissingTargetKey(defaultExpandKey);
+                      this.props.addMissingTargetKey(expandKey);
                     }
                   }
                 ); 
@@ -441,10 +443,10 @@ class ColTree extends React.Component {
       newState.expandedKeys = loadedKeys;
     }
     this.setState(newState, () => {
-      if(defaultExpandKey){
+      if(expandKey){
         setTimeout(()=>{
           if(_.get(this, 'treeRef.current')){
-            this.treeRef.current.scrollTo({ key: defaultExpandKey });
+            this.treeRef.current.scrollTo({ key: expandKey });
         }
         } , 100)
       }             

@@ -21,7 +21,7 @@ const PAGE_SIZE = 50;
 const defaultParams = {
   limit: 50,
   offset: 0,
-  facet: ["rank", "issue", "status", "nomstatus", "type", "field"],
+  facet: ["rank", "issue", "status", "nomStatus", "nameType", "field"],
   sortBy: "taxonomic"
 };
 
@@ -126,7 +126,7 @@ class NameSearchPage extends React.Component {
       params = defaultParams;
       this.pushParams(defaultParams)
     } else if (!params.facet) {
-      params.facet = ["rank", "issue", "status", "nomstatus", "type", "field"];
+      params.facet = ["rank", "issue", "status", "nomStatus", "nameType", "field"];
     }
 
     this.setState({ params, pagination: {
@@ -257,14 +257,14 @@ class NameSearchPage extends React.Component {
           label: `${_.startCase(s.value)} (${s.count.toLocaleString('en-GB')})`
         }))
       : null;
-    const facetNomStatus = _.get(facets, "nomstatus")
-      ? facets.nomstatus.map(s => ({
+    const facetNomStatus = _.get(facets, "nomStatus")
+      ? facets.nomStatus.map(s => ({
           value: s.value,
           label: `${_.startCase(s.value)} (${s.count.toLocaleString('en-GB')})`
         }))
       : null;
-    const facetNomType = _.get(facets, "type")
-      ? facets.type.map(s => ({
+    const facetNomType = _.get(facets, "nameType")
+      ? facets.nameType.map(s => ({
           value: s.value,
           label: `${_.startCase(s.value)} (${s.count.toLocaleString('en-GB')})`
         }))
@@ -282,7 +282,6 @@ class NameSearchPage extends React.Component {
       className="catalogue-of-life"
 
         style={{
-          background: "#fff",
           padding: 24,
           minHeight: 280,
           margin: "16px 0"
@@ -304,6 +303,7 @@ class NameSearchPage extends React.Component {
            <SearchBox
               defaultValue={_.get(qs.parse(_.get(this.props, "location.search")), "q")}
               onSearch={value => this.updateSearch({ q: value })}
+              onResetSearch={value => this.updateSearch({ q: null })}
               style={{ marginBottom: "8px", width: "100%" }}
             />
            
