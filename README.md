@@ -5,7 +5,7 @@ This is a small React Component library consisting of
 1. Tree browser
 2. Taxon search page, table view
 3. Taxon page
-4. Dataset page
+4. Dataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
 
 
 ## Usage
@@ -20,7 +20,7 @@ Include dependencies, React and React Dom:
 Include the Library:
 
 ````
-<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.5/umd/col-browser.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.6/umd/col-browser.min.js" ></script>
 ````
 or get the latest version available:
 ````
@@ -30,7 +30,7 @@ or get the latest version available:
 And the styles:
 
 ````
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.5/umd/main.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.6/umd/main.css">
  ````
  or get the the latest version available:
  ````
@@ -44,6 +44,7 @@ This will create a global `ColBrowser` library variable that has four indvidual 
 A [browsable taxonomic tree](https://www.dev.catalogue.life/data/browse.html), takes three properties: 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/) 
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
+3. `defaultTaxonKey` - (Optional) Initially expand the tree down to this taxon.
 3. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards). 
 
 ````
@@ -58,7 +59,10 @@ class Tree extends React.Component {
        
       return e(
         ColBrowser.Tree,
-        { catalogueKey: 9999 , pathToTaxon: '/mytaxonomy/taxon/', pathToDataset: '/sourcedatasets/' }
+        { catalogueKey: 9999, 
+          pathToTaxon: '/mytaxonomy/taxon/',
+          defaultTaxonKey: 'urn:lsid:indexfungorum.org:names:814401',
+          pathToDataset: '/sourcedatasets/' }
       );
     }
   }
@@ -84,7 +88,8 @@ class Search extends React.Component {
        
       return e(
         ColBrowser.Search,
-        { catalogueKey: 9999 , pathToTaxon: '/mytaxonomy/taxon/' }
+        { catalogueKey: 9999, 
+          pathToTaxon: '/mytaxonomy/taxon/' }
       );
     }
   }
@@ -112,7 +117,9 @@ class Taxon extends React.Component {
        
       return e(
         ColBrowser.Taxon,
-        { catalogueKey: 9999 , pathToTree: '/mytaxonomy/browse', pathToDataset: '/sourcedatasets/' }
+        { catalogueKey: 9999, 
+          pathToTree: '/mytaxonomy/browse', 
+          pathToDataset: '/sourcedatasets/' }
       );
     }
   }
@@ -139,7 +146,8 @@ class Dataset extends React.Component {
        
       return e(
         ColBrowser.Taxon,
-        { catalogueKey: 9999 , pathToTree: '/mytaxonomy/browse' }
+        { catalogueKey: 9999, 
+          pathToTree: '/mytaxonomy/browse' }
       );
     }
   }
