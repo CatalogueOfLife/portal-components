@@ -76846,7 +76846,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
           pathToDataset = _this$props.pathToDataset;
 
 
-      var sectorSourceDataset = lodash_default.a.get(sector, 'dataset');
+      var sectorSourceDataset = lodash_default.a.get(sector, "dataset");
 
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         "div",
@@ -76858,8 +76858,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
             "span",
             { className: "tree-node-rank" },
             taxon.rank,
-            ":",
-            " "
+            ": "
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
             dangerouslySetInnerHTML: { __html: taxon.name },
@@ -76874,21 +76873,24 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
           null,
           " ",
           "\u2022 ",
-          lodash_default.a.get(taxon, 'estimate'),
+          lodash_default.a.get(taxon, "estimate"),
           " ",
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "span",
             null,
-            " est. "
-          ),
-          "described species"
+            " est. sp."
+          )
         ),
         taxon.status !== "accepted" && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           tag,
           { color: "red", style: { marginLeft: "6px" } },
           taxon.status
         ),
-        datasetSectors && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonSources, { datasetSectors: datasetSectors, taxon: taxon, catalogueKey: catalogueKey }),
+        datasetSectors && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonSources, {
+          datasetSectors: datasetSectors,
+          taxon: taxon,
+          catalogueKey: catalogueKey
+        }),
         sector && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "span",
           null,
@@ -76899,13 +76901,19 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "a",
-            { href: "" + pathToDataset + sectorSourceDataset.key, onClick: function onClick() {
+            {
+              href: "" + pathToDataset + sectorSourceDataset.key,
+              onClick: function onClick() {
                 window.location.href = "" + pathToDataset + sectorSourceDataset.key;
-              } },
+              }
+            },
             sectorSourceDataset.alias || sectorSourceDataset.key,
             " ",
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { style: { maxHeight: '20px',
-                width: 'auto' }, datasetKey: sector.subjectDatasetKey, size: "SMALL" })
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
+              style: { maxHeight: "20px", width: "auto" },
+              datasetKey: sector.subjectDatasetKey,
+              size: "SMALL"
+            })
           )
         )
       );
@@ -76913,7 +76921,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
 
     _this.state = {
       style: {},
-      provisional: _this.props.taxon.status === 'provisionally accepted',
+      provisional: _this.props.taxon.status === "provisionally accepted",
       loading: false
     };
     return _this;
@@ -100944,11 +100952,14 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
     };
 
     _this.decorateWithCountryByCode = function (name, countryAlpha2, countryAlpha3) {
-
       if (countryAlpha2 && name.country && name.country.length === 2) {
-        return VernacularNames_extends({}, name, { countryTitle: lodash_default.a.get(countryAlpha2, "[" + name.country + "].title") || "" });
+        return VernacularNames_extends({}, name, {
+          countryTitle: lodash_default.a.get(countryAlpha2, "[" + name.country + "].title") || ""
+        });
       } else if (countryAlpha3 && name.country && name.country.length === 3) {
-        return VernacularNames_extends({}, name, { countryTitle: lodash_default.a.get(countryAlpha3, "[" + name.country + "].title") || "" });
+        return VernacularNames_extends({}, name, {
+          countryTitle: lodash_default.a.get(countryAlpha3, "[" + name.country + "].title") || ""
+        });
       } else {
         return name;
       }
@@ -100967,42 +100978,41 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
       countryAlpha3: {},
       countryAlpha2: {},
       columns: [{
-        title: "name",
+        title: "Original name",
         dataIndex: "name",
         key: "name"
-
       }, {
-        title: "latin",
+        title: "Transliterated name",
         dataIndex: "latin",
         key: "latin"
-
       }, {
-        title: "language",
+        title: "Language",
         dataIndex: "language",
         key: "language",
 
         render: function render(text, record) {
           return record.languageName ? record.languageName : text;
         }
-
       }, {
-        title: "country",
+        title: "Country of use",
         dataIndex: "country",
         key: "country",
 
         render: function render(text, record) {
           return record.countryTitle ? record.countryTitle : text;
         }
-
       }, {
         title: "",
         dataIndex: "referenceId",
         key: "referenceId",
 
         render: function render(text, record) {
-          return text ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { referenceId: text, datasetKey: _this.props.datasetKey, placement: "left" }) : "";
+          return text ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
+            referenceId: text,
+            datasetKey: _this.props.datasetKey,
+            placement: "left"
+          }) : "";
         }
-
       }]
     };
     return _this;
@@ -101810,6 +101820,10 @@ var Includes_IncludesTable = function IncludesTable(_ref) {
       rank = _ref.rank,
       pathToSearch = _ref.pathToSearch,
       taxon = _ref.taxon;
+
+  var rankToPlural = rank.reduce(function (acc, cur) {
+    return acc[cur.value] = cur.plural, acc;
+  }, {});
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "div",
     { style: style },
@@ -101823,7 +101837,7 @@ var Includes_IncludesTable = function IncludesTable(_ref) {
         components_PresentationItem,
         {
           md: 6,
-          label: lodash_default.a.startCase(t.value),
+          label: lodash_default.a.startCase(rankToPlural[t.value] || t.value),
           classes: { formItem: { borderBottom: "none" } },
           key: t.value
         },
@@ -101888,6 +101902,7 @@ var Taxon_TaxonPage = function (_React$Component) {
       _this.getClassification();
       _this.getRank();
       _this.getIncludes();
+      _this.getNomStatus();
     };
 
     _this.getTaxon = function () {
@@ -101965,6 +101980,16 @@ var Taxon_TaxonPage = function (_React$Component) {
       });
     };
 
+    _this.getNomStatus = function () {
+      axios_default()(src_config.dataApi + "vocab/nomstatus").then(function (res) {
+        return _this.setState({
+          nomStatus: res.data.reduce(function (a, c) {
+            return a[c.name] = c, a;
+          }, {})
+        });
+      });
+    };
+
     _this.getClassification = function () {
       var datasetKey = _this.props.catalogueKey;
       var path = src_history.location;
@@ -102020,7 +102045,8 @@ var Taxon_TaxonPage = function (_React$Component) {
       logoUrl: null,
       sourceDataset: null,
       includes: [],
-      rank: null
+      rank: null,
+      nomStatus: null
     };
     return _this;
   }
@@ -102038,6 +102064,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         sourceDataset = _state.sourceDataset,
         includes = _state.includes,
         rank = _state.rank,
+        nomStatus = _state.nomStatus,
         taxonError = _state.taxonError,
         synonymsError = _state.synonymsError,
         classificationError = _state.classificationError,
@@ -102123,13 +102150,13 @@ var Taxon_TaxonPage = function (_React$Component) {
         ),
         lodash_default.a.get(taxon, "status") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
-          { md: Taxon_md, label: "Status" },
+          { md: Taxon_md, label: "Checklist status" },
           lodash_default.a.get(taxon, "status") + " " + lodash_default.a.get(taxon, "name.rank")
         ),
-        lodash_default.a.get(taxon, "name.nomStatus") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        lodash_default.a.get(taxon, "name.nomStatus") && nomStatus && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "Nomenclatural Status" },
-          lodash_default.a.get(taxon, "name.nomStatus")
+          nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoology")]
         ),
         lodash_default.a.get(taxon, "name.relations") && taxon.name.relations.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
@@ -102184,7 +102211,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         ),
         includes.length > 1 && rank && taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
-          { md: Taxon_md, label: "Includes" },
+          { md: Taxon_md, label: "Statistics" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Includes, {
             style: { marginTop: "-3px", marginLeft: "-3px" },
             data: includes,
@@ -103293,7 +103320,6 @@ function Dataset_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 // import ReferencePopover from "./ReferencePopover"
 
-
 var Dataset_DatasetPage = function (_React$Component) {
   Dataset_inherits(DatasetPage, _React$Component);
 
@@ -103310,7 +103336,7 @@ var Dataset_DatasetPage = function (_React$Component) {
       var catalogueKey = _this.props.catalogueKey;
       var path = src_history.location;
 
-      var pathParts = path.pathname.split('/');
+      var pathParts = path.pathname.split("/");
       var datasetKey = pathParts[pathParts.length - 1];
 
       axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey).then(function (dataset) {
@@ -103329,7 +103355,6 @@ var Dataset_DatasetPage = function (_React$Component) {
     };
 
     _this.state = {
-
       datasetLoading: true,
       data: null,
       rank: null
@@ -103371,16 +103396,28 @@ var Dataset_DatasetPage = function (_React$Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "h1",
               {
-                style: { fontSize: "30px", fontWeight: '400', paddingLeft: "10px", display: 'inline-block', textTransform: 'none' }
-
+                style: {
+                  fontSize: "30px",
+                  fontWeight: "400",
+                  paddingLeft: "10px",
+                  display: "inline-block",
+                  textTransform: "none"
+                }
               },
               data.title
             )
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: 12, style: { textAlign: 'right' } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { style: { maxWidth: '100%', height: 'auto', marginRight: '8px' }, datasetKey: data.key })
+            { span: 12, style: { textAlign: "right" } },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
+              style: {
+                maxWidth: "100%",
+                height: "auto",
+                marginRight: "8px"
+              },
+              datasetKey: data.key
+            })
           )
         ),
         data && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -103399,19 +103436,23 @@ var Dataset_DatasetPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Version" },
-            (data.version || data.released) && "" + (data.version ? data.version : '') + (data.released ? ' Received by CoL: ' + data.released : '')
+            (data.version || data.released) && "" + (data.version ? data.version : "") + (data.released ? " Received by CoL: " + data.released : "")
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Authors/Editors" },
             data.authorsAndEditors && lodash_default.a.isArray(data.authorsAndEditors) && data.authorsAndEditors.map(function (a) {
               return a.name;
-            }).join(', ')
+            }).join(", ")
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Taxonomic coverage" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_TaxonomicCoverage, { dataset: data, catalogueKey: catalogueKey, pathToTree: pathToTree })
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_TaxonomicCoverage, {
+              dataset: data,
+              catalogueKey: catalogueKey,
+              pathToTree: pathToTree
+            })
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
@@ -103426,8 +103467,8 @@ var Dataset_DatasetPage = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Organisations" },
-            data.organisations
+            { label: "Organisation" },
+            data.organisations && data.organisations.join(", ")
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
@@ -103441,7 +103482,7 @@ var Dataset_DatasetPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Geographic scope" },
-            data.geographicScope || '-'
+            data.geographicScope || "-"
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
@@ -103456,19 +103497,22 @@ var Dataset_DatasetPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Citation" },
-            data.citation || '-'
+            data.citation || "-"
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "License" },
-            data.license || '-'
+            data.license || "-"
           ),
           data.gbifKey && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "GBIF" },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "a",
-              { href: "https://www.gbif.org/dataset/" + data.gbifKey, target: "_blank" },
+              {
+                href: "https://www.gbif.org/dataset/" + data.gbifKey,
+                target: "_blank"
+              },
               "Browse in GBIF"
             )
           )
