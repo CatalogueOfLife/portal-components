@@ -2,19 +2,16 @@ import React from "react";
 import { Tag } from "antd";
 import _ from "lodash";
 import config from "../config";
-import TaxonSources from "./TaxonSources"
+import TaxonSources from "./TaxonSources";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
-
-
-
 
 class ColTreeNode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       style: {},
-      provisional: this.props.taxon.status === 'provisionally accepted',
-      loading: false
+      provisional: this.props.taxon.status === "provisionally accepted",
+      loading: false,
     };
   }
 
@@ -24,35 +21,27 @@ class ColTreeNode extends React.Component {
       taxon: { sector, datasetSectors },
       catalogueKey,
       pathToTaxon,
-      pathToDataset
-      
+      pathToDataset,
     } = this.props;
 
-    const sectorSourceDataset = _.get(sector, 'dataset') ;
-
+    const sectorSourceDataset = _.get(sector, "dataset");
 
     return (
-        <div >
-        <span >
-        <span className="tree-node-rank">
-          {taxon.rank}:{" "}
+      <div>
+        <span>
+          <span className="tree-node-rank">{taxon.rank}: </span>
+          <a
+            dangerouslySetInnerHTML={{ __html: taxon.name }}
+            href={`${pathToTaxon}${taxon.id}`}
+            onClick={() => {
+              window.location.href = `${pathToTaxon}${taxon.id}`;
+            }}
+          />
         </span>
-        <a 
-        dangerouslySetInnerHTML={{ __html: taxon.name }}
-        href={`${pathToTaxon}${taxon.id}`}
-        onClick={()=> {
-            window.location.href =  `${pathToTaxon}${taxon.id}`;
-            
-          }} 
-        />
-        </span>
-        {!_.isUndefined(taxon.estimate)  && (
+        {!_.isUndefined(taxon.estimate) && (
           <span>
             {" "}
-            • {_.get(taxon, 'estimate')}{" "}
-              <span> est. </span>
-          
-            described species
+            • {_.get(taxon, "estimate")} <span> est. sp.</span>
           </span>
         )}
         {taxon.status !== "accepted" && (
@@ -61,23 +50,34 @@ class ColTreeNode extends React.Component {
           </Tag>
         )}
 
-         {datasetSectors && <TaxonSources datasetSectors={datasetSectors} taxon={taxon} catalogueKey={catalogueKey} />} 
+        {datasetSectors && (
+          <TaxonSources
+            datasetSectors={datasetSectors}
+            taxon={taxon}
+            catalogueKey={catalogueKey}
+          />
+        )}
         {sector && (
           <span>
             <span> • </span>
-            <a href={`${pathToDataset}${sectorSourceDataset.key}`} onClick={() => {window.location.href =  `${pathToDataset}${sectorSourceDataset.key}`}}  >
-
-      {sectorSourceDataset.alias || sectorSourceDataset.key} <DatasetlogoWithFallback style={{maxHeight: '20px',
-        width: 'auto'}} datasetKey={sector.subjectDatasetKey} size="SMALL" /></a>
-             
+            <a
+              href={`${pathToDataset}${sectorSourceDataset.key}`}
+              onClick={() => {
+                window.location.href = `${pathToDataset}${sectorSourceDataset.key}`;
+              }}
+            >
+              {sectorSourceDataset.alias || sectorSourceDataset.key}{" "}
+              <DatasetlogoWithFallback
+                style={{ maxHeight: "20px", width: "auto" }}
+                datasetKey={sector.subjectDatasetKey}
+                size="SMALL"
+              />
+            </a>
           </span>
         )}
-        
       </div>
     );
   };
 }
 
 export default ColTreeNode;
-
-

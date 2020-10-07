@@ -43,6 +43,7 @@ class TaxonPage extends React.Component {
       sourceDataset: null,
       includes: [],
       rank: null,
+      nomStatus: null,
     };
   }
 
@@ -52,6 +53,7 @@ class TaxonPage extends React.Component {
     this.getClassification();
     this.getRank();
     this.getIncludes();
+    this.getNomStatus();
   };
 
   getTaxon = () => {
@@ -167,6 +169,15 @@ class TaxonPage extends React.Component {
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };
+
+  getNomStatus = () => {
+    axios(`${config.dataApi}vocab/nomstatus`).then((res) =>
+      this.setState({
+        nomStatus: res.data.reduce((a, c) => ((a[c.name] = c), a), {}),
+      })
+    );
+  };
+
   getClassification = () => {
     const { catalogueKey: datasetKey } = this.props;
     const { location: path } = history;
@@ -226,6 +237,7 @@ class TaxonPage extends React.Component {
       sourceDataset,
       includes,
       rank,
+      nomStatus,
       taxonError,
       synonymsError,
       classificationError,
@@ -258,7 +270,7 @@ class TaxonPage extends React.Component {
           {taxon && (
             <Row>
               <Col span={sourceDataset ? 18 : 23}>
-{/*                 <h1
+                {/*                 <h1
                   style={{
                     fontSize: "30px",
                     fontWeight: "400",
@@ -281,8 +293,6 @@ class TaxonPage extends React.Component {
                     __html: taxon.labelHtml,
                   }}
                 />
-                  
-               
               </Col>
               <Col span={1}>
                 {taxon.provisional && <Tag color="red">Provisional</Tag>}
@@ -317,14 +327,18 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
           {_.get(taxon, "status") && (
-            <PresentationItem md={md} label="Status">
+            <PresentationItem md={md} label="Checklist status">
               {`${_.get(taxon, "status")} ${_.get(taxon, "name.rank")}`}
             </PresentationItem>
           )}
 
-          {_.get(taxon, "name.nomStatus") && (
+          {_.get(taxon, "name.nomStatus") && nomStatus && (
             <PresentationItem md={md} label="Nomenclatural Status">
-              {_.get(taxon, "name.nomStatus")}
+              {
+                nomStatus[_.get(taxon, "name.nomStatus")][
+                  (_.get(taxon, "name.code"), "zoology")
+                ]
+              }
             </PresentationItem>
           )}
           {/*           <PresentationItem md={md} label="Extinct">
@@ -398,7 +412,7 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
           {includes.length > 1 && rank && taxon && (
-            <PresentationItem md={md} label="Includes">
+            <PresentationItem md={md} label="Statistics">
               <IncludesTable
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}
                 data={includes}
