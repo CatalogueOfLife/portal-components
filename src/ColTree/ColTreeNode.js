@@ -41,7 +41,7 @@ class ColTreeNode extends React.Component {
         {!_.isUndefined(taxon.estimate) && (
           <span>
             {" "}
-            • {_.get(taxon, "estimate")} <span> est. sp.</span>
+            • {_.get(taxon, "estimate")} <span> est. spp.</span>
           </span>
         )}
         {taxon.status !== "accepted" && (

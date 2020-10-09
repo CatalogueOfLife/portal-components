@@ -117,11 +117,16 @@ class DatasetPage extends React.Component {
                     data.released ? " Received by CoL: " + data.released : ""
                   }`}
               </PresentationItem>
-              <PresentationItem label="Authors/Editors">
-                {data.authorsAndEditors &&
-                  _.isArray(data.authorsAndEditors) &&
-                  data.authorsAndEditors.map((a) => a.name).join(", ")}
-              </PresentationItem>
+              {data.author && _.isArray(data.authors) && (
+                <PresentationItem label="Authors">
+                  {data.authors.map((a) => a.name).join(", ")}
+                </PresentationItem>
+              )}
+              {data.editors && _.isArray(data.editors) && (
+                <PresentationItem label="Editors">
+                  {data.editors.map((a) => a.name).join(", ")}
+                </PresentationItem>
+              )}
               <PresentationItem label="Taxonomic coverage">
                 <TaxonomicCoverage
                   dataset={data}

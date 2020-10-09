@@ -77629,7 +77629,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "span",
             null,
-            " est. sp."
+            " est. spp."
           )
         ),
         taxon.status !== "accepted" && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -103530,10 +103530,17 @@ var Dataset_DatasetPage = function (_React$Component) {
             { label: "Version" },
             (data.version || data.released) && "" + (data.version ? data.version : "") + (data.released ? " Received by CoL: " + data.released : "")
           ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          data.author && lodash_default.a.isArray(data.authors) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Authors/Editors" },
-            data.authorsAndEditors && lodash_default.a.isArray(data.authorsAndEditors) && data.authorsAndEditors.map(function (a) {
+            { label: "Authors" },
+            data.authors.map(function (a) {
+              return a.name;
+            }).join(", ")
+          ),
+          data.editors && lodash_default.a.isArray(data.editors) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Editors" },
+            data.editors.map(function (a) {
               return a.name;
             }).join(", ")
           ),
