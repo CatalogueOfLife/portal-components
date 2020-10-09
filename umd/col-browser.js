@@ -78835,7 +78835,6 @@ var ColTree_datasetLoader = new dataloader_default.a(function (ids) {
 });
 var CHILD_PAGE_SIZE = 10000; // How many children will we load at a time
 
-
 var ColTree_LoadMoreChildrenTreeNode = function (_React$Component) {
   ColTree_inherits(LoadMoreChildrenTreeNode, _React$Component);
 
@@ -78902,12 +78901,14 @@ var ColTree_ColTree = function (_React$Component2) {
     };
 
     _this2.reloadRoot = function () {
-      return _this2.setState({ rootLoading: true,
+      return _this2.setState({
+        rootLoading: true,
         treeData: [],
         loadedKeys: [],
         rootTotal: 0,
         error: null,
-        nodeNotFoundErr: null }, _this2.loadRoot);
+        nodeNotFoundErr: null
+      }, _this2.loadRoot);
     };
 
     _this2.loadRoot = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
@@ -78916,7 +78917,7 @@ var ColTree_ColTree = function (_React$Component2) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), 'taxonKey');
+              defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey");
               defaultTaxonKey = _this2.props.defaultTaxonKey;
 
               if (!defaultExpandKey) {
@@ -79039,7 +79040,11 @@ var ColTree_ColTree = function (_React$Component2) {
                   break;
                 }
 
-                return _context3.abrupt("return", _this2.setState({ error: { message: "No classification found for Taxon ID: " + defaultExpandKey } }, _this2.loadRoot_));
+                return _context3.abrupt("return", _this2.setState({
+                  error: {
+                    message: "No classification found for Taxon ID: " + defaultExpandKey
+                  }
+                }, _this2.loadRoot_));
 
               case 8:
                 tx = data[data.length - 1];
@@ -79049,7 +79054,8 @@ var ColTree_ColTree = function (_React$Component2) {
                   datasetKey: catalogueKey,
                   childCount: tx.childCount,
                   isLeaf: tx.childCount === 0,
-                  childOffset: 0 };
+                  childOffset: 0
+                };
 
                 root.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
                   taxon: tx,
@@ -79072,7 +79078,8 @@ var ColTree_ColTree = function (_React$Component2) {
                     datasetKey: catalogueKey,
                     childCount: tx.childCount,
                     isLeaf: tx.childCount === 0,
-                    childOffset: 0 };
+                    childOffset: 0
+                  };
                   node.ref = node;
                   node.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
                     taxon: tx,
@@ -79225,14 +79232,14 @@ var ColTree_ColTree = function (_React$Component2) {
       var node = null;
 
       node = nodeArray.find(function (n) {
-        return lodash_default.a.get(n, 'taxon.id') === id;
+        return lodash_default.a.get(n, "taxon.id") === id;
       });
 
       if (node) {
         return node;
       } else {
         var children = nodeArray.map(function (n) {
-          return lodash_default.a.get(n, 'children') || [];
+          return lodash_default.a.get(n, "children") || [];
         });
         var flattenedChildren = children.flat();
         if (flattenedChildren.length === 0) {
@@ -79271,12 +79278,12 @@ var ColTree_ColTree = function (_React$Component2) {
                 _node = _this2.findNode(loadedKeys[index], treeData);
 
                 if (!_node && targetTaxon && loadedKeys[index - 1]) {
-                  // If the node is not found look for insertae sedis nodes in the children of the parent and insert the 'Not assigned' between the parent and the node 
+                  // If the node is not found look for insertae sedis nodes in the children of the parent and insert the 'Not assigned' between the parent and the node
                   parentNode = _this2.findNode(loadedKeys[index - 1], treeData);
 
-                  if (parentNode && lodash_default.a.isArray(lodash_default.a.get(parentNode, 'children')) && parentNode.children.length > 0) {
+                  if (parentNode && lodash_default.a.isArray(lodash_default.a.get(parentNode, "children")) && parentNode.children.length > 0) {
                     _node = parentNode.children.find(function (c) {
-                      return c.taxon.id.indexOf('incertae-sedis') > -1;
+                      return c.taxon.id.indexOf("incertae-sedis") > -1;
                     });
                     loadedKeys.splice(index, 0, _node.taxon.id);
                   }
@@ -79291,15 +79298,15 @@ var ColTree_ColTree = function (_React$Component2) {
                 return _this2.fetchChildPage(_node, true, true);
 
               case 12:
-                if (targetTaxon && index === loadedKeys.length - 2 && lodash_default.a.get(_node, 'taxon.id') !== lodash_default.a.get(targetTaxon, 'taxon.id') && lodash_default.a.isArray(_node.children) && !_node.children.find(function (c) {
-                  return lodash_default.a.get(c, 'taxon.id') === lodash_default.a.get(targetTaxon, 'taxon.id');
+                if (targetTaxon && index === loadedKeys.length - 2 && lodash_default.a.get(_node, "taxon.id") !== lodash_default.a.get(targetTaxon, "taxon.id") && lodash_default.a.isArray(_node.children) && !_node.children.find(function (c) {
+                  return lodash_default.a.get(c, "taxon.id") === lodash_default.a.get(targetTaxon, "taxon.id");
                 })) {
                   if (_node.children.length - 1 === CHILD_PAGE_SIZE) {
                     // its the parent of the taxon we are after - if its not in the first page, insert it
                     _node.children = [targetTaxon].concat(_node.children);
                     _this2.setState({ treeData: [].concat(_this2.state.treeData) }, function () {
                       setTimeout(function () {
-                        if (lodash_default.a.get(_this2, 'treeRef.current')) {
+                        if (lodash_default.a.get(_this2, "treeRef.current")) {
                           _this2.treeRef.current.scrollTo({ key: expandKey });
                         }
                       }, 100);
@@ -79336,7 +79343,7 @@ var ColTree_ColTree = function (_React$Component2) {
                 _this2.setState(newState, function () {
                   if (expandKey) {
                     setTimeout(function () {
-                      if (lodash_default.a.get(_this2, 'treeRef.current')) {
+                      if (lodash_default.a.get(_this2, "treeRef.current")) {
                         _this2.treeRef.current.scrollTo({ key: expandKey });
                       }
                     }, 100);
@@ -79388,7 +79395,7 @@ var ColTree_ColTree = function (_React$Component2) {
         height = _props.height;
 
     console.log(height);
-    var defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), 'taxonKey');
+    var defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey");
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
@@ -79396,7 +79403,7 @@ var ColTree_ColTree = function (_React$Component2) {
       error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
         null,
-        lodash_default.a.get(error, 'response.data.code') !== 404 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+        lodash_default.a.get(error, "response.data.code") !== 404 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
           closable: true,
           onClose: function onClose() {
             return _this4.setState({ error: null });
@@ -79410,7 +79417,12 @@ var ColTree_ColTree = function (_React$Component2) {
             return _this4.setState({ error: null });
           },
           style: { marginTop: "8px" },
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Custom404, { error: error, treeType: treeType, dataset: dataset, loadRoot: this.loadRoot }),
+          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Custom404, {
+            error: error,
+            treeType: treeType,
+            dataset: dataset,
+            loadRoot: this.loadRoot
+          }),
           type: "warning"
         })
       ),
@@ -79425,7 +79437,6 @@ var ColTree_ColTree = function (_React$Component2) {
       }),
       rootLoading && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { paragraph: { rows: 10 }, active: true }),
       !rootLoading && treeData.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tree, {
-        showLine: true,
         ref: this.treeRef,
         defaultExpandAll: defaultExpandAll,
         height: height || 700
@@ -79443,7 +79454,6 @@ var ColTree_ColTree = function (_React$Component2) {
         onExpand: function onExpand(expandedKeys, obj) {
           _this4.setState({ expandedKeys: expandedKeys });
           if (obj.expanded) {
-
             var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
             var newParams = ColTree_extends({}, params, { taxonKey: obj.node.key });
 
@@ -79454,7 +79464,7 @@ var ColTree_ColTree = function (_React$Component2) {
           } else {
             src_history.push({
               pathname: location.path,
-              search: "?" + query_string_default.a.stringify(lodash_default.a.omit(query_string_default.a.parse(lodash_default.a.get(location, "search")), 'taxonKey'))
+              search: "?" + query_string_default.a.stringify(lodash_default.a.omit(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey"))
             });
           }
         }
@@ -79462,7 +79472,8 @@ var ColTree_ColTree = function (_React$Component2) {
       !error && treeData.length < rootTotal && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         es_button,
         { loading: rootLoading, onClick: this.loadRoot },
-        "Load more "
+        "Load more",
+        " "
       )
     );
   };
@@ -85761,18 +85772,20 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     };
 
     _this.getNames = function (q) {
-      var datasetKey = _this.props.datasetKey;
+      var _this$props = _this.props,
+          datasetKey = _this$props.datasetKey,
+          minRank = _this$props.minRank;
 
       var url = datasetKey ? src_config.dataApi + "dataset/" + datasetKey + "/nameusage/suggest" : src_config.dataApi + "name/search";
 
-      axios_default()(url + "?vernaculars=false&fuzzy=false&limit=25&q=" + q).then(function (res) {
+      axios_default()(url + "?vernaculars=false&fuzzy=false&limit=25&q=" + q + (minRank ? "&minRank=" + minRank : "")).then(function (res) {
         /*         const names = res.data.result ? res.data.result.map((name) => ({
-                    key: name.usage.name.id,
-                    title: name.usage.name.scientificName,
-                  })) : res.data.suggestions.map((name) => ({
-                    key: name.usageId ,
-                    title: name.suggestion 
-                  })); */
+            key: name.usage.name.id,
+            title: name.usage.name.scientificName,
+          })) : res.data.suggestions.map((name) => ({
+            key: name.usageId ,
+            title: name.suggestion 
+          })); */
         _this.setState({
           names: res.data.suggestions || []
         });
@@ -85782,7 +85795,10 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     };
 
     _this.onSelectName = function (val, obj) {
-      var selectedTaxon = lodash_default.a.get(obj, 'data.acceptedUsageId') ? { key: lodash_default.a.get(obj, 'data.acceptedUsageId'), title: lodash_default.a.get(obj, 'data.parentOrAcceptedName') } : { key: lodash_default.a.get(obj, 'data.usageId'), title: lodash_default.a.get(obj, 'data.name') };
+      var selectedTaxon = lodash_default.a.get(obj, "data.acceptedUsageId") ? {
+        key: lodash_default.a.get(obj, "data.acceptedUsageId"),
+        title: lodash_default.a.get(obj, "data.parentOrAcceptedName")
+      } : { key: lodash_default.a.get(obj, "data.usageId"), title: lodash_default.a.get(obj, "data.name") };
       _this.setState({ value: val });
       _this.props.onSelectName(selectedTaxon);
     };
@@ -85792,9 +85808,9 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     };
 
     _this.render = function () {
-      var _this$props = _this.props,
-          placeHolder = _this$props.placeHolder,
-          autoFocus = _this$props.autoFocus;
+      var _this$props2 = _this.props,
+          placeHolder = _this$props2.placeHolder,
+          autoFocus = _this$props2.autoFocus;
       var value = _this.state.value;
 
       var options = _this.state.names.map(function (o) {
@@ -85827,8 +85843,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           value: value,
           autoFocus: autoFocus === false ? false : true
         },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true
-        })
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
       );
     };
 
@@ -101262,6 +101277,7 @@ var Classification_ClassificationTable = function ClassificationTable(_ref) {
   var data = _ref.data,
       taxon = _ref.taxon,
       style = _ref.style,
+      pathToTaxon = _ref.pathToTaxon,
       pathToTree = _ref.pathToTree;
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "div",
@@ -101270,18 +101286,34 @@ var Classification_ClassificationTable = function ClassificationTable(_ref) {
     lodash_default.a.reverse([].concat(data)).map(function (t) {
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         components_PresentationItem,
-        { md: 6, label: lodash_default.a.startCase(t.name.rank), classes: { formItem: { borderBottom: 'none' } }, key: t.name.rank },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: pathToTree + "?taxonKey=" + t.id, onClick: function onClick() {
-            window.location.href = pathToTree + "?taxonKey=" + t.id;
-          }, dangerouslySetInnerHTML: { __html: t.labelHtml } })
+        {
+          md: 6,
+          label: lodash_default.a.startCase(t.name.rank),
+          classes: { formItem: { borderBottom: "none" } },
+          key: t.name.rank
+        },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+          href: "" + pathToTaxon + t.id,
+          onClick: function onClick() {
+            window.location.href = "" + pathToTaxon + t.id;
+          },
+          dangerouslySetInnerHTML: { __html: t.labelHtml }
+        })
       );
     }),
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       components_PresentationItem,
-      { md: 6, label: lodash_default.a.get(taxon, 'name.rank') ? lodash_default.a.startCase(taxon.name.rank) : '', classes: { formItem: { borderBottom: 'none' } } },
-      taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { onClick: function onClick() {
+      {
+        md: 6,
+        label: lodash_default.a.get(taxon, "name.rank") ? lodash_default.a.startCase(taxon.name.rank) : "",
+        classes: { formItem: { borderBottom: "none" } }
+      },
+      taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        onClick: function onClick() {
           window.location.href = pathToTree + "?taxonKey=" + taxon.id;
-        }, dangerouslySetInnerHTML: { __html: taxon.labelHtml } })
+        },
+        dangerouslySetInnerHTML: { __html: taxon.labelHtml }
+      })
     )
   );
 };
@@ -102054,9 +102086,10 @@ var Taxon_TaxonPage = function (_React$Component) {
   TaxonPage.prototype.render = function render() {
     var _props = this.props,
         catalogueKey = _props.catalogueKey,
-        pathToTree = _props.pathToTree,
+        pathToTaxon = _props.pathToTaxon,
         pathToSearch = _props.pathToSearch,
-        pathToDataset = _props.pathToDataset;
+        pathToDataset = _props.pathToDataset,
+        pathToTree = _props.pathToTree;
     var _state = this.state,
         taxon = _state.taxon,
         info = _state.info,
@@ -102115,6 +102148,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
             { span: 1 },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" }),
             taxon.provisional && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               tag,
               { color: "red" },
@@ -102206,6 +102240,7 @@ var Taxon_TaxonPage = function (_React$Component) {
             data: classification,
             taxon: taxon,
             catalogueKey: catalogueKey,
+            pathToTaxon: pathToTaxon,
             pathToTree: pathToTree
           })
         ),
@@ -102649,10 +102684,14 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
     render: function render(text, record) {
-      var id = lodash_default.a.get(record, 'usage.accepted.id') || lodash_default.a.get(record, 'usage.id');
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" + pathToTaxon + id, onClick: function onClick() {
+      var id = lodash_default.a.get(record, "usage.accepted.id") || lodash_default.a.get(record, "usage.id");
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        href: "" + pathToTaxon + id,
+        onClick: function onClick() {
           window.location.href = "" + pathToTaxon + id;
-        }, dangerouslySetInnerHTML: { __html: text } });
+        },
+        dangerouslySetInnerHTML: { __html: text }
+      });
     },
     width: 200,
     sorter: true
@@ -102727,11 +102766,13 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         params.facet = ["rank", "issue", "status", "nomStatus", "nameType", "field"];
       }
 
-      _this.setState({ params: params, pagination: {
+      _this.setState({
+        params: params,
+        pagination: {
           pageSize: Number(params.limit) || PAGE_SIZE,
           current: Number(params.offset || 0) / Number(params.limit || PAGE_SIZE) + 1
-
-        } }, _this.getData);
+        }
+      }, _this.getData);
     };
 
     _this.pushParams = function (params) {
@@ -102752,7 +102793,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
 
 
       var url = src_config.dataApi + "dataset/" + catalogueKey + "/nameusage/search";
-      var params_ = lodash_default.a.get(params, 'status') ? params : NameSearch_extends({}, params, { status: "_NOT_NULL" });
+      var params_ = lodash_default.a.get(params, "status") ? params : NameSearch_extends({}, params, { status: "_NOT_NULL" });
       axios_default()(url + "?" + query_string_default.a.stringify(params_)).then(function (res) {
         var pagination = NameSearch_extends({}, _this.state.pagination);
         pagination.total = res.data.total;
@@ -102799,7 +102840,6 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     };
 
     _this.updateSearch = function (params) {
-
       var newParams = NameSearch_extends({}, _this.state.params, { offset: 0, limit: 50 });
       lodash_default.a.forEach(params, function (v, k) {
         newParams[k] = v;
@@ -102858,37 +102898,37 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     var facetRanks = lodash_default.a.get(facets, "rank") ? facets.rank.map(function (r) {
       return {
         value: r.value,
-        label: lodash_default.a.startCase(r.value) + " (" + r.count.toLocaleString('en-GB') + ")"
+        label: lodash_default.a.startCase(r.value) + " (" + r.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
     var facetIssues = lodash_default.a.get(facets, "issue") ? facets.issue.map(function (i) {
       return {
         value: i.value,
-        label: lodash_default.a.startCase(i.value) + " (" + i.count.toLocaleString('en-GB') + ")"
+        label: lodash_default.a.startCase(i.value) + " (" + i.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
     var facetTaxonomicStatus = lodash_default.a.get(facets, "status") ? facets.status.map(function (s) {
       return {
         value: s.value,
-        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
     var facetNomStatus = lodash_default.a.get(facets, "nomStatus") ? facets.nomStatus.map(function (s) {
       return {
         value: s.value,
-        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
     var facetNomType = lodash_default.a.get(facets, "nameType") ? facets.nameType.map(function (s) {
       return {
         value: s.value,
-        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
     var facetNomField = lodash_default.a.get(facets, "field") ? facets.field.map(function (s) {
       return {
         value: s.value,
-        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString('en-GB') + ")"
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
 
@@ -102896,7 +102936,6 @@ var NameSearch_NameSearchPage = function (_React$Component) {
       "div",
       {
         className: "catalogue-of-life",
-
         style: {
           padding: 24,
           minHeight: 280,
@@ -102917,9 +102956,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         null,
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_col,
-          {
-            span: 12
-          },
+          { span: 12 },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
             defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
             onSearch: function onSearch(value) {
@@ -102932,6 +102969,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
+            minRank: "GENUS",
             defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || null,
             onSelectName: function onSelectName(value) {
               _this2.updateSearch({ TAXON_ID: value.key });
@@ -102942,7 +102980,6 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             placeHolder: "Search by higher taxon",
             sortBy: "TAXONOMIC",
             autoFocus: false
-
           })
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -103023,7 +103060,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_col,
           { span: 12, style: { textAlign: "right", marginBottom: "8px" } },
-          pagination && !isNaN(pagination.total) && "results: " + pagination.total.toLocaleString('en-GB')
+          pagination && !isNaN(pagination.total) && "results: " + pagination.total.toLocaleString("en-GB")
         )
       ),
       !error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
@@ -103038,7 +103075,10 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         },
         showSorterTooltip: false,
         expandedRowRender: function expandedRowRender(record) {
-          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_RowDetail, NameSearch_extends({}, record, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon }));
+          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_RowDetail, NameSearch_extends({}, record, {
+            catalogueKey: catalogueKey,
+            pathToTaxon: pathToTaxon
+          }));
         }
       })
     );

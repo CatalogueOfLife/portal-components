@@ -226,9 +226,10 @@ class TaxonPage extends React.Component {
   render() {
     const {
       catalogueKey,
-      pathToTree,
+      pathToTaxon,
       pathToSearch,
       pathToDataset,
+      pathToTree,
     } = this.props;
     const {
       taxon,
@@ -295,6 +296,7 @@ class TaxonPage extends React.Component {
                 />
               </Col>
               <Col span={1}>
+                <a href=""></a>
                 {taxon.provisional && <Tag color="red">Provisional</Tag>}
               </Col>
               {sourceDataset && (
@@ -407,6 +409,7 @@ class TaxonPage extends React.Component {
                 data={classification}
                 taxon={taxon}
                 catalogueKey={catalogueKey}
+                pathToTaxon={pathToTaxon}
                 pathToTree={pathToTree}
               />
             </PresentationItem>

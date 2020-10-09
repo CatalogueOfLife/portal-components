@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 import config from "../config";
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from "@ant-design/icons";
 import { AutoComplete, Input, Form } from "antd";
 import _ from "lodash";
-import {debounce} from 'lodash';
+import { debounce } from "lodash";
 import Highlighter from "react-highlight-words";
 
 const FormItem = Form.Item;
@@ -17,7 +17,7 @@ class NameSearchAutocomplete extends React.Component {
     this.state = {
       names: [],
       value: "",
-      open: false
+      open: false,
     };
   }
 
@@ -48,14 +48,18 @@ class NameSearchAutocomplete extends React.Component {
     });
   };
   getNames = (q) => {
-    const { datasetKey } = this.props;
+    const { datasetKey, minRank } = this.props;
     const url = datasetKey
       ? `${config.dataApi}dataset/${datasetKey}/nameusage/suggest`
       : `${config.dataApi}name/search`;
 
-    axios(`${url}?vernaculars=false&fuzzy=false&limit=25&q=${q}`)
+    axios(
+      `${url}?vernaculars=false&fuzzy=false&limit=25&q=${q}${
+        minRank ? `&minRank=${minRank}` : ""
+      }`
+    )
       .then((res) => {
-/*         const names = res.data.result ? res.data.result.map((name) => ({
+        /*         const names = res.data.result ? res.data.result.map((name) => ({
             key: name.usage.name.id,
             title: name.usage.name.scientificName,
           })) : res.data.suggestions.map((name) => ({
@@ -63,7 +67,7 @@ class NameSearchAutocomplete extends React.Component {
             title: name.suggestion 
           })); */
         this.setState({
-          names: res.data.suggestions || []
+          names: res.data.suggestions || [],
         });
       })
       .catch((err) => {
@@ -71,9 +75,12 @@ class NameSearchAutocomplete extends React.Component {
       });
   };
   onSelectName = (val, obj) => {
-    const selectedTaxon = _.get(obj, 'data.acceptedUsageId') ? 
-    {key: _.get(obj, 'data.acceptedUsageId'), title: _.get(obj, 'data.parentOrAcceptedName')} :
-    {key: _.get(obj, 'data.usageId'), title: _.get(obj, 'data.name')}
+    const selectedTaxon = _.get(obj, "data.acceptedUsageId")
+      ? {
+          key: _.get(obj, "data.acceptedUsageId"),
+          title: _.get(obj, "data.parentOrAcceptedName"),
+        }
+      : { key: _.get(obj, "data.usageId"), title: _.get(obj, "data.name") };
     this.setState({ value: val });
     this.props.onSelectName(selectedTaxon);
   };
@@ -81,42 +88,38 @@ class NameSearchAutocomplete extends React.Component {
     this.setState({ value: "", names: [] }, this.props.onResetSearch);
   };
 
-
-
   render = () => {
     const { placeHolder, autoFocus } = this.props;
     const { value } = this.state;
     const options = this.state.names.map((o) => {
-        return {
-          key: o.usageId,
-          value: o.suggestion,
-          label: (
-              <Highlighter
-              highlightStyle={{ fontWeight: "bold", padding: 0 }}
-              searchWords={value.split(" ")}
-              autoEscape
-              textToHighlight={o.suggestion}
-            /> 
-          ),
-          data: o
-          }
+      return {
+        key: o.usageId,
+        value: o.suggestion,
+        label: (
+          <Highlighter
+            highlightStyle={{ fontWeight: "bold", padding: 0 }}
+            searchWords={value.split(" ")}
+            autoEscape
+            textToHighlight={o.suggestion}
+          />
+        ),
+        data: o,
+      };
     });
-   
+
     return (
-    <AutoComplete
+      <AutoComplete
         style={this.props.style ? this.props.style : { width: "100%" }}
         options={value ? options : []}
         onSelect={this.onSelectName}
-        onSearch={q => !!q ? this.getNames(q) : this.onReset()}
+        onSearch={(q) => (!!q ? this.getNames(q) : this.onReset())}
         placeholder={placeHolder || "Find taxon"}
         onChange={(value) => this.setState({ value })}
         value={value}
         autoFocus={autoFocus === false ? false : true}
       >
-        <Input.Search allowClear
- />
+        <Input.Search allowClear />
       </AutoComplete>
-    
     );
   };
 }
