@@ -12,7 +12,6 @@ import history from "../history";
 import qs from "query-string";
 import { withRouter } from "react-router-dom";
 
-const datasetLoader = new DataLoader((ids) => getDatasetsBatch(ids));
 const CHILD_PAGE_SIZE = 10000; // How many children will we load at a time
 
 class LoadMoreChildrenTreeNode extends React.Component {
@@ -57,9 +56,14 @@ class ColTree extends React.Component {
   }
 
   componentDidMount = () => {
+    const { catalogueKey } = this.props;
     this.loadRoot();
+    this.datasetLoader = new DataLoader((ids) =>
+      getDatasetsBatch(ids, catalogueKey)
+    );
+
     this.sectorLoader = new DataLoader((ids) =>
-      getSectorsBatch(ids, this.props.catalogueKey)
+      getSectorsBatch(ids, catalogueKey)
     );
     const { treeRef } = this.props;
     treeRef(this);
@@ -351,7 +355,7 @@ class ColTree extends React.Component {
         .map((tx) =>
           this.sectorLoader.load(tx.sectorKey, catalogueKey).then((r) => {
             tx.sector = r;
-            return datasetLoader
+            return this.datasetLoader
               .load(r.subjectDatasetKey)
               .then((dataset) => (tx.sector.dataset = dataset));
           })

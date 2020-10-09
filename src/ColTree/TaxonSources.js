@@ -1,10 +1,10 @@
 import React from "react";
-import {Popover, Spin} from 'antd'
+import { Popover, Spin, Row, Col } from "antd";
 import { getDatasetsBatch } from "../api/dataset";
+import { CloseCircleOutlined } from "@ant-design/icons";
+
 import DataLoader from "dataloader";
 import config from "../config";
-const datasetLoader = new DataLoader(ids => getDatasetsBatch(ids));
-
 
 class TaxonSources extends React.Component {
   constructor(props) {
@@ -12,94 +12,112 @@ class TaxonSources extends React.Component {
     this.state = {
       data: [],
       showInNode: false,
-      loading: false
+      loading: false,
     };
   }
 
   componentDidMount = () => {
-    const { datasetSectors } = this.props;
-
+    const { datasetSectors, catalogueKey } = this.props;
+    this.datasetLoader = new DataLoader((ids) =>
+      getDatasetsBatch(ids, catalogueKey)
+    );
     if (Object.keys(datasetSectors).length < 4) {
-        this.setState({showInNode: true}, this.getData)
-    } 
+      this.setState({ showInNode: true }, this.getData);
+    }
   };
 
   getData = () => {
-    this.setState({ loading: true});
+    this.setState({ loading: true });
     const { datasetSectors } = this.props;
-    const promises = Object.keys(datasetSectors).map(s =>
-      datasetLoader.load(s).then(dataset => dataset)
+    const promises = Object.keys(datasetSectors).map((s) =>
+      this.datasetLoader.load(s).then((dataset) => dataset)
     );
 
-    Promise.all(promises).then(data => {
-      this.setState({ data , loading: false});
+    Promise.all(promises).then((data) => {
+      this.setState({ data, loading: false });
     });
   };
 
   render = () => {
     const { data, showInNode, popOverVisible, loading } = this.state;
-    const {taxon, catalogueKey} = this.props;
+    const { taxon, catalogueKey, pathToDataset } = this.props;
 
-    return (
-        showInNode ?  <React.Fragment>
-       {" •"} {data.map((d, index) => (
-                      <a key={d.key} 
-                        style={{ fontSize: "11px"}} 
-                        href={`${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${d.key}/meta`}
-                        onClick={()=> {
-                            const uri =  `${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${d.key}/meta`;
-                            const win = window.open(uri, '_blank');
-                            win.focus();
-                          }}
-                        >
-                      
-                   
-                      { (index ? ', ' : '') + (d.alias || d.key) }
+    return showInNode ? (
+      data
+        .filter((d) => !!d)
+        .map((d, index) => (
+          <a
+            key={d.key}
+            style={{ fontSize: "11px" }}
+            href={`${pathToDataset}${d.key}`}
+            onClick={() => {
+              window.location.href = `${pathToDataset}${d.key}`;
+            }}
+          >
+            {(index ? ", " : "") + (d.alias || d.key)}
+          </a>
+        ))
+    ) : (
+      <div style={{ display: "inline" }} id={`taxon_sources_${taxon.id}`}>
+        <Popover
+          getPopupContainer={() =>
+            document.getElementById(`taxon_sources_${taxon.id}`)
+          }
+          content={
+            loading ? (
+              <Spin />
+            ) : (
+              <div style={{ maxWidth: "400px" }}>
+                <span>Source databases: </span>{" "}
+                {data
+                  .filter((d) => !!d)
+                  .map((d, index) => (
+                    <a
+                      key={d.key}
+                      style={{ fontSize: "11px" }}
+                      href={`${pathToDataset}${d.key}`}
+                      onClick={() => {
+                        window.location.href = `${pathToDataset}${d.key}`;
+                      }}
+                    >
+                      {(index ? ", " : "") + (d.alias || d.key)}
                     </a>
-                    
                   ))}
-      </React.Fragment> :
-      <React.Fragment>
-             
-              <Popover
-                content={loading ? <Spin /> :
-                  <div style={{'maxWidth': '400px'}}>
-                   <span>Source databases: </span>   
-                  {data.map((d, index) => (
-                      <a key={d.key} 
-                        style={{ fontSize: "11px"}} 
-                        href={`${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${d.key}/meta`}
-                        onClick={()=> {
-                            const uri =  `${config.clearingHouseUrl}catalogue/${catalogueKey}/dataset/${d.key}/meta`;
-                            const win = window.open(uri, '_blank');
-                            win.focus();
-                          }}>
-                      
-                   
-                      { (index ? ', ' : '') + (d.alias || d.key) }
-                    </a>
-                    
-                  ))}
-                  </div>
-                }
-                title={<span 
-                    dangerouslySetInnerHTML={{ __html: taxon.name }} 
-                    />}
-                visible={popOverVisible}
-                onVisibleChange={() =>
-                  this.setState({ popOverVisible: !popOverVisible })
-                }
-                trigger="click"
-                placement="rightTop"
-              >
-                 {" •"} <a style={{ fontSize: "11px" }} 
-                           href="" 
-                           onClick={() => {this.getData(); this.setState({ popOverVisible: !popOverVisible })}}>
-                               Multiple providers 
-                               </a>
-              </Popover>
-    </React.Fragment>
-
+              </div>
+            )
+          }
+          title={
+            <Row>
+              <Col span={23}>
+                <span dangerouslySetInnerHTML={{ __html: taxon.name }} />
+              </Col>
+              <Col>
+                <span>
+                  <CloseCircleOutlined
+                    onClick={() => {
+                      this.setState({ popOverVisible: false });
+                    }}
+                  />
+                </span>
+              </Col>
+            </Row>
+          }
+          visible={popOverVisible}
+          onVisibleChange={(visible) =>
+            this.setState({ popOverVisible: visible }, () => {
+              if (visible && data.length === 0) {
+                this.getData();
+              }
+            })
+          }
+          trigger="click"
+          placement="rightTop"
+        >
+          <a style={{ fontSize: "11px" }} href="">
+            Multiple providers
+          </a>
+        </Popover>
+      </div>
     );
   };
 }

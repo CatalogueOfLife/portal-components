@@ -51,11 +51,15 @@ class ColTreeNode extends React.Component {
         )}
 
         {datasetSectors && (
-          <TaxonSources
-            datasetSectors={datasetSectors}
-            taxon={taxon}
-            catalogueKey={catalogueKey}
-          />
+          <React.Fragment>
+            {" •"}{" "}
+            <TaxonSources
+              datasetSectors={datasetSectors}
+              pathToDataset={pathToDataset}
+              taxon={taxon}
+              catalogueKey={catalogueKey}
+            />
+          </React.Fragment>
         )}
         {sector && (
           <span>
