@@ -65,12 +65,12 @@ class ColTreeNode extends React.Component {
           <span>
             <span> • </span>
             <a
-              href={`${pathToDataset}${sectorSourceDataset.key}`}
+              href={`${pathToDataset}${sector.subjectDatasetKey}`}
               onClick={() => {
-                window.location.href = `${pathToDataset}${sectorSourceDataset.key}`;
+                window.location.href = `${pathToDataset}${sector.subjectDatasetKey}`;
               }}
             >
-              {sectorSourceDataset.alias || sectorSourceDataset.key}{" "}
+              {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{" "}
               <DatasetlogoWithFallback
                 style={{ maxHeight: "20px", width: "auto" }}
                 datasetKey={sector.subjectDatasetKey}

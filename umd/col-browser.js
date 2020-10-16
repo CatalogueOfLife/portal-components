@@ -77461,7 +77461,7 @@ var TaxonSources_TaxonSources = function (_React$Component) {
               null,
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 es_col,
-                { span: 23 },
+                { flex: "auto" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: taxon.name } })
               ),
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -77660,12 +77660,12 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "a",
             {
-              href: "" + pathToDataset + sectorSourceDataset.key,
+              href: "" + pathToDataset + sector.subjectDatasetKey,
               onClick: function onClick() {
-                window.location.href = "" + pathToDataset + sectorSourceDataset.key;
+                window.location.href = "" + pathToDataset + sector.subjectDatasetKey;
               }
             },
-            sectorSourceDataset.alias || sectorSourceDataset.key,
+            lodash_default.a.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
             " ",
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
               style: { maxHeight: "20px", width: "auto" },
@@ -92972,22 +92972,28 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
 
 
       return referenceId ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        popover,
-        {
-          placement: _this.props.placement || "left",
-          title: "Reference",
-          onVisibleChange: function onVisibleChange(visible) {
-            return visible && _this.getData();
+        "div",
+        { id: "reference_" + referenceId },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          popover,
+          {
+            getPopupContainer: function getPopupContainer() {
+              return document.getElementById("reference_" + referenceId);
+            },
+            placement: _this.props.placement || "left",
+            title: "Reference",
+            onVisibleChange: function onVisibleChange(visible) {
+              return visible && _this.getData();
+            },
+            content: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              "div",
+              { style: { maxWidth: "500px" } },
+              _this.getContent()
+            ),
+            trigger: "click"
           },
-
-          content: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { maxWidth: "500px" } },
-            _this.getContent()
-          ),
-          trigger: "click"
-        },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_BookOutlined, { style: { cursor: "pointer" } })
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_BookOutlined, { style: { cursor: "pointer" } })
+        )
       ) : "";
     };
 

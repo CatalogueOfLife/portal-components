@@ -88,7 +88,7 @@ class TaxonSources extends React.Component {
           }
           title={
             <Row>
-              <Col span={23}>
+              <Col flex="auto">
                 <span dangerouslySetInnerHTML={{ __html: taxon.name }} />
               </Col>
               <Col>
