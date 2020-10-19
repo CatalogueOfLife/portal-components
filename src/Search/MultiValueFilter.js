@@ -10,11 +10,11 @@ const Option = Select.Option;
 
 const formItemLayout = {
     labelCol: {
-      xs: { span: 24 },
+      xs: { span: 8 },
       sm: { span: 8 },
     },
     wrapperCol: {
-      xs: { span: 24 },
+      xs: { span: 16 },
       sm: { span: 16 },
     },
   };
@@ -41,11 +41,11 @@ class MultiValueFilter extends React.Component {
         <FormItem
        {...formItemLayout}
         label={label}
-        style={{marginBottom: '8px'}}
+        style={{marginBottom: '8px', width: "100%"}}
       >
       <Select
         showSearch
-        style={{ width: "100%" }}
+       // style={{ width: "100%" }}
         mode="multiple"
         placeholder="Please select"
         value={defaultValue}

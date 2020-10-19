@@ -308,8 +308,8 @@ class NameSearchPage extends React.Component {
             />
           )}
         </Row>
-        <Row>
-          <Col span={12}>
+        <Row >
+          <Col xs={24} sm={24} md={12} style={{marginBottom: '8px'}}>
             <SearchBox
               defaultValue={_.get(
                 qs.parse(_.get(this.props, "location.search")),
@@ -335,7 +335,7 @@ class NameSearchPage extends React.Component {
               autoFocus={false}
             />
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12}>
             {/*             <MultiValueFilter
               defaultValue={_.get(params, "issue")}
               onChange={value => this.updateSearch({ issue: value })}
@@ -386,7 +386,6 @@ class NameSearchPage extends React.Component {
                 {this.state.advancedFilters ? <UpOutlined /> : <DownOutlined />}
               </a>
 
-              {/* <Switch checkedChildren="Advanced" unCheckedChildren="Advanced" onChange={this.toggleAdvancedFilters} /> */}
             </div>
           </Col>
         </Row>

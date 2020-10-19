@@ -102567,11 +102567,11 @@ var MultiValueFilter_Option = es_select.Option;
 
 var formItemLayout = {
   labelCol: {
-    xs: { span: 24 },
+    xs: { span: 8 },
     sm: { span: 8 }
   },
   wrapperCol: {
-    xs: { span: 24 },
+    xs: { span: 16 },
     sm: { span: 16 }
   }
 };
@@ -102601,14 +102601,14 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
         MultiValueFilter_FormItem,
         MultiValueFilter_extends({}, formItemLayout, {
           label: label,
-          style: { marginBottom: '8px' }
+          style: { marginBottom: '8px', width: "100%" }
         }),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_select,
           {
-            showSearch: true,
-            style: { width: "100%" },
-            mode: "multiple",
+            showSearch: true
+            // style={{ width: "100%" }}
+            , mode: "multiple",
             placeholder: "Please select",
             value: defaultValue,
             onChange: _this.handleChange
@@ -103014,7 +103014,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         null,
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_col,
-          { span: 12 },
+          { xs: 24, sm: 24, md: 12, style: { marginBottom: '8px' } },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
             defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
             onSearch: function onSearch(value) {
@@ -103042,7 +103042,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_col,
-          { span: 12 },
+          { xs: 24, sm: 24, md: 12 },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
             defaultValue: lodash_default.a.get(params, "rank"),
             onChange: function onChange(value) {
