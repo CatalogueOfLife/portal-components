@@ -103071,9 +103071,9 @@ var NameSearch_NameSearchPage = function (_React$Component) {
               label: "Nomenclatural status"
             }),
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-              defaultValue: lodash_default.a.get(params, "type"),
+              defaultValue: lodash_default.a.get(params, "nameType"),
               onChange: function onChange(value) {
-                return _this2.updateSearch({ type: value });
+                return _this2.updateSearch({ nameType: value });
               },
               vocab: facetNomType || [],
               label: "Name type"

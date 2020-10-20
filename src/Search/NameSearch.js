@@ -364,8 +364,8 @@ class NameSearchPage extends React.Component {
                   label="Nomenclatural status"
                 />
                 <MultiValueFilter
-                  defaultValue={_.get(params, "type")}
-                  onChange={(value) => this.updateSearch({ type: value })}
+                  defaultValue={_.get(params, "nameType")}
+                  onChange={(value) => this.updateSearch({ nameType: value })}
                   vocab={facetNomType || []}
                   label="Name type"
                 />
