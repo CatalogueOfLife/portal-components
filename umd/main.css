@@ -19247,8 +19247,33 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 .catalogue-of-life button.ant-pagination-item-link {
   padding: 0;
 }
-.catalogue-of-life .ant-tree-show-line .ant-tree-switcher {
+.catalogue-of-life .ant-tree .ant-tree-switcher {
   background: inherit;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+.catalogue-of-life .ant-tree .ant-tree-switcher .ant-select-tree-switcher-icon svg,
+.catalogue-of-life .ant-tree .ant-tree-switcher .ant-tree-switcher-icon svg {
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  -o-transition: transform .3s;
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+.catalogue-of-life .ant-tree .ant-tree-switcher_close .ant-tree-switcher-icon svg {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 .catalogue-of-life .ant-tree,
 .catalogue-of-life .ant-table,

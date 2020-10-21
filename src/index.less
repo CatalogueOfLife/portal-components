@@ -92,9 +92,31 @@ button.ant-pagination-item-link {
   padding: 0;
 }
 
-.ant-tree-show-line .ant-tree-switcher {
+.ant-tree .ant-tree-switcher {
   background: inherit;
+  flex: none;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
 }
+
+.ant-tree .ant-tree-switcher .ant-select-tree-switcher-icon svg, .ant-tree .ant-tree-switcher .ant-tree-switcher-icon svg {
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  -o-transition: transform .3s;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s;
+}
+
+.ant-tree .ant-tree-switcher_close .ant-tree-switcher-icon svg {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
 .ant-tree, .ant-table, .ant-tree-list, .ant-tree-treenode, .tree-node-rank, .catalogue-of-life a, .catalogue-of-life .ant-input-affix-wrapper, .catalogue-of-life .ant-input, .rc-virtual-list, .ant-select-item-option-content {
   background-color: inherit;
   background: inherit;
