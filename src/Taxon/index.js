@@ -19,13 +19,16 @@ import BooleanValue from "../components/BooleanValue";
 // import ReferencePopover from "./ReferencePopover"
 import IncludesTable from "./Includes";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
+import btoa from "btoa"
 
 const md = 5;
 
 class TaxonPage extends React.Component {
   constructor(props) {
     super(props);
-
+    if(this.props.auth){
+      axios.defaults.headers.common['Authorization'] = `Basic ${btoa(this.props.auth)}`;
+    } 
     this.state = {
       taxon: null,
       info: null,

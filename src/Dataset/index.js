@@ -1,6 +1,6 @@
 import React from "react";
 import config from "../config";
-
+import btoa from "btoa"
 import axios from "axios";
 import { Alert, Rate, Row, Col } from "antd";
 import ErrorMsg from "../components/ErrorMsg";
@@ -15,7 +15,9 @@ import TaxonomicCoverage from "./TaxonomicCoverage";
 class DatasetPage extends React.Component {
   constructor(props) {
     super(props);
-
+    if(this.props.auth){
+      axios.defaults.headers.common['Authorization'] = `Basic ${btoa(this.props.auth)}`;
+    } 
     this.state = {
       datasetLoading: true,
       data: null,

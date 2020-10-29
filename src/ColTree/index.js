@@ -5,10 +5,14 @@ import qs from "query-string";
 import _ from "lodash";
 import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
-
+import axios from 'axios'
+import btoa from "btoa"
 class ColTreeWrapper extends React.Component {
-  constructor(props) {
+  constructor(props) {    
     super(props);
+    if(this.props.auth){
+      axios.defaults.headers.common['Authorization'] = `Basic ${btoa(this.props.auth)}`;
+    } 
     this.wrapperRef = React.createRef();
     this.state = {
       height: 600

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Table, Alert, Row, Col } from "antd";
 import config from "../config";
-
+import btoa from "btoa"
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback"
@@ -60,6 +60,9 @@ const getColumns = (pathToDataset) => [
 class DatasetSearchPage extends React.Component {
   constructor(props) {
     super(props);
+    if(this.props.auth){
+      axios.defaults.headers.common['Authorization'] = `Basic ${btoa(this.props.auth)}`;
+    } 
     this.state = {
       data: [],
       rank: null,
