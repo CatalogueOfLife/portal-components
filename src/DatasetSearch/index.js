@@ -159,7 +159,7 @@ class DatasetSearchPage extends React.Component {
             rowKey={record => record.key}
             showSorterTooltip={false}
             pagination={{pageSize: 200}}
-            expandedRowRender={({metrics}) => <MetricsPresentation metrics={metrics} rank={rank} style={{marginLeft: '40px'}}/>}
+            expandedRowRender={(dataset) => <MetricsPresentation metrics={dataset.metrics} dataset={dataset} pathToSearch={this.props.pathToSearch} rank={rank} style={{marginLeft: '40px'}}/>}
           />
         )}
       </div>

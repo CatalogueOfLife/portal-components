@@ -14,7 +14,7 @@ import RowDetail from "./RowDetail";
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
-
+import DatasetAutocomplete from "../components/DatasetAutocomplete"
 const PAGE_SIZE = 50;
 const defaultParams = {
   limit: 50,
@@ -334,6 +334,25 @@ class NameSearchPage extends React.Component {
               sortBy="TAXONOMIC"
               autoFocus={false}
             />
+
+
+                  <div style={{ marginTop: "10px" }}>
+                    <DatasetAutocomplete
+                      contributesTo={Number(catalogueKey)}
+                      onSelectDataset={(value) => {
+                        this.updateSearch({ SECTOR_DATASET_KEY: value.key });
+                      }}
+                      defaultDatasetKey={
+                        _.get(params, "SECTOR_DATASET_KEY") || null
+                      }
+                      onResetSearch={(value) => {
+                        this.updateSearch({ SECTOR_DATASET_KEY: null });
+                      }}
+                      placeHolder="Filter by source dataset"
+                      autoFocus={false}
+                    />
+                  </div>
+               
           </Col>
           <Col xs={24} sm={24} md={12}>
             {/*             <MultiValueFilter

@@ -348,17 +348,12 @@ class ColTree extends React.Component {
 
   decorateWithSectorsAndDataset = (res) => {
     if (!res.data.result) return res;
-    const { catalogueKey } = this.props;
     return Promise.all(
       res.data.result
-        .filter((tx) => !!tx.sectorKey)
-        .map((tx) =>
-          this.sectorLoader.load(tx.sectorKey, catalogueKey).then((r) => {
-            tx.sector = r;
-            return this.datasetLoader
-              .load(r.subjectDatasetKey)
-              .then((dataset) => (tx.sector.dataset = dataset));
-          })
+        .filter((tx) => !!tx.sectorDatasetKey)
+        .map((tx) => this.datasetLoader
+        .load(tx.sectorDatasetKey)
+        .then((dataset) => (tx.sector = {id: tx.sectorKey, subjectDatasetKey: tx.sectorDatasetKey, dataset: dataset}))
         )
     ).then(() => res);
   };

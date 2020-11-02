@@ -42,7 +42,7 @@ class Metrics extends React.Component {
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };
-  render = () => <MetricsPresentation {...this.state}/>
+  render = () => <MetricsPresentation {...this.state} dataset={this.props.dataset} pathToSearch={this.props.pathToSearch}/>
 }
 
 export default Metrics;

@@ -139,13 +139,13 @@ class DatasetPage extends React.Component {
               <PresentationItem label="English name of the Group">
                 {data.group}
               </PresentationItem>
-              <Metrics catalogueKey={catalogueKey} dataset={data} />
+              {data && <Metrics catalogueKey={catalogueKey} dataset={data} pathToSearch={this.props.pathToSearch} />}
               <PresentationItem label="Abstract">
                 {data.description}
               </PresentationItem>
 
               <PresentationItem label="Organisation">
-                {data.organisations && data.organisations.join(", ")}
+                {_.isArray(data.organisations) && data.organisations.map(o => o.label).join(", ")}
               </PresentationItem>
               <PresentationItem label="Website">
                 {data.website && (
