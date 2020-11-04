@@ -7,6 +7,7 @@ import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback"
 import MetricsPresentation from "../Dataset/MetricsPresentation"
+import PresentationItem from "../components/PresentationItem";
 
 const getLivingSpecies = (record) => ( (_.get(record, 'metrics.taxaByRankCount.species') || 0) - (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0))
 const getExtinctSpecies = (record) => (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0)
@@ -159,7 +160,13 @@ class DatasetSearchPage extends React.Component {
             rowKey={record => record.key}
             showSorterTooltip={false}
             pagination={{pageSize: 200}}
-            expandedRowRender={(dataset) => <MetricsPresentation metrics={dataset.metrics} dataset={dataset} pathToSearch={this.props.pathToSearch} rank={rank} style={{marginLeft: '40px'}}/>}
+            expandedRowRender={(dataset) => <div style={{marginLeft: '40px'}}>
+              <MetricsPresentation metrics={dataset.metrics} dataset={dataset} pathToSearch={this.props.pathToSearch} rank={rank} />
+            {dataset.citation &&  <div style={{marginTop: "12px"}}><PresentationItem md={24}  label={`Citation`}>
+              {dataset.citation}
+          </PresentationItem></div>}
+              
+            </div>}
           />
         )}
       </div>

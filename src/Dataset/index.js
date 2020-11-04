@@ -119,7 +119,7 @@ class DatasetPage extends React.Component {
                     data.released ? " Received by CoL: " + data.released : ""
                   }`}
               </PresentationItem>
-              {data.author && _.isArray(data.authors) && (
+              {data.authors && _.isArray(data.authors) && (
                 <PresentationItem label="Authors">
                   {data.authors.map((a) => a.name).join(", ")}
                 </PresentationItem>
@@ -139,7 +139,7 @@ class DatasetPage extends React.Component {
               <PresentationItem label="English name of the Group">
                 {data.group}
               </PresentationItem>
-              {data && <Metrics catalogueKey={catalogueKey} dataset={data} pathToSearch={this.props.pathToSearch} />}
+               <Metrics catalogueKey={catalogueKey} dataset={data} pathToSearch={this.props.pathToSearch} />
               <PresentationItem label="Abstract">
                 {data.description}
               </PresentationItem>

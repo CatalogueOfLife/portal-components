@@ -105794,7 +105794,7 @@ var Dataset_DatasetPage = function (_React$Component) {
             { label: "Version" },
             (data.version || data.released) && "" + (data.version ? data.version : "") + (data.released ? " Received by CoL: " + data.released : "")
           ),
-          data.author && lodash_default.a.isArray(data.authors) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          data.authors && lodash_default.a.isArray(data.authors) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Authors" },
             data.authors.map(function (a) {
@@ -105822,7 +105822,7 @@ var Dataset_DatasetPage = function (_React$Component) {
             { label: "English name of the Group" },
             data.group
           ),
-          data && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_Metrics, { catalogueKey: catalogueKey, dataset: data, pathToSearch: this.props.pathToSearch }),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_Metrics, { catalogueKey: catalogueKey, dataset: data, pathToSearch: this.props.pathToSearch }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Abstract" },
@@ -105898,6 +105898,7 @@ function DatasetSearch_classCallCheck(instance, Constructor) { if (!(instance in
 function DatasetSearch_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function DatasetSearch_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -106074,7 +106075,20 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
         showSorterTooltip: false,
         pagination: { pageSize: 200 },
         expandedRowRender: function expandedRowRender(dataset) {
-          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, { metrics: dataset.metrics, dataset: dataset, pathToSearch: _this2.props.pathToSearch, rank: rank, style: { marginLeft: '40px' } });
+          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "div",
+            { style: { marginLeft: '40px' } },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, { metrics: dataset.metrics, dataset: dataset, pathToSearch: _this2.props.pathToSearch, rank: rank }),
+            dataset.citation && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              "div",
+              { style: { marginTop: "12px" } },
+              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                components_PresentationItem,
+                { md: 24, label: "Citation" },
+                dataset.citation
+              )
+            )
+          );
         }
       })
     );
