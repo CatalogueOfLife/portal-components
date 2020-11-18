@@ -79619,6 +79619,7 @@ var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Compone
     var _props = this.props,
         _props$fallBack = _props.fallBack,
         fallBack = _props$fallBack === undefined ? null : _props$fallBack,
+        catalogueKey = _props.catalogueKey,
         datasetKey = _props.datasetKey,
         style = _props.style,
         _props$size = _props.size,
@@ -79629,7 +79630,7 @@ var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Compone
 
     return loading || !error ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
       style: style,
-      src: src_config.dataApi + "dataset/" + datasetKey + "/logo?size=" + size,
+      src: src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size,
       onLoad: function onLoad() {
         return _this2.setState({ error: false, loading: false });
       },
@@ -79750,6 +79751,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
             " ",
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
               style: { maxHeight: "20px", width: "auto" },
+              catalogueKey: catalogueKey,
               datasetKey: sector.subjectDatasetKey,
               size: "SMALL"
             })
@@ -82276,7 +82278,7 @@ var ColTree_ColTree = function (_React$Component2) {
       !rootLoading && treeData.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tree, {
         ref: this.treeRef,
         defaultExpandAll: defaultExpandAll,
-        height: height || 700
+        height: height || 600
         // defaultExpandedKeys={defaultExpandedKeys}
         , loadData: this.onLoadData,
         onLoad: function onLoad(loadedKeys) {
@@ -88443,7 +88445,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
 
     _this.resizeHandler = function () {
       var height = lodash_default.a.get(_this.wrapperRef, 'current.clientHeight');
-      if (height) {
+      if (height && height > _this.state.height) {
         _this.setState({ height: height });
       }
     };
@@ -104311,6 +104313,7 @@ var Taxon_TaxonPage = function (_React$Component) {
                 height: "auto",
                 marginRight: "8px"
               },
+              catalogueKey: catalogueKey,
               datasetKey: sourceDataset.key
             })
           )
@@ -105772,6 +105775,7 @@ var Dataset_DatasetPage = function (_React$Component) {
                 height: "auto",
                 marginRight: "8px"
               },
+              catalogueKey: catalogueKey,
               datasetKey: data.key
             })
           )
@@ -105917,7 +105921,7 @@ var DatasetSearch_getExtinctSpecies = function getExtinctSpecies(record) {
   return lodash_default.a.get(record, 'metrics.extinctTaxaByRankCount.species') || 0;
 };
 
-var DatasetSearch_getColumns = function getColumns(pathToDataset) {
+var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey) {
   return [{
     title: "Title",
     dataIndex: ["alias"],
@@ -105937,7 +105941,7 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset) {
     dataIndex: ["logo"],
     key: "logo",
     render: function render(text, record) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { catalogueKey: catalogueKey, datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
     }
   }, {
     title: "English name of the group",
@@ -106031,7 +106035,9 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
         loading = _state.loading,
         rank = _state.rank,
         error = _state.error;
-    var pathToDataset = this.props.pathToDataset;
+    var _props = this.props,
+        pathToDataset = _props.pathToDataset,
+        catalogueKey = _props.catalogueKey;
 
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -106066,7 +106072,7 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
       ),
       !error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
         size: "small",
-        columns: DatasetSearch_getColumns(pathToDataset),
+        columns: DatasetSearch_getColumns(pathToDataset, catalogueKey),
         dataSource: data,
         loading: loading,
         rowKey: function rowKey(record) {

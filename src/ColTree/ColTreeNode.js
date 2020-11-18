@@ -27,7 +27,7 @@ class ColTreeNode extends React.Component {
     const sectorSourceDataset = _.get(sector, "dataset");
 
     return (
-      <div>
+      <div id={taxon.id}>
         <span>
           <span className="tree-node-rank">{taxon.rank}: </span>
           <a

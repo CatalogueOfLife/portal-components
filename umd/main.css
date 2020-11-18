@@ -19288,6 +19288,12 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
   background-color: inherit;
   background: inherit;
 }
+.catalogue-of-life :target {
+  display: block;
+  margin-top: -80px;
+  height: 80px;
+  width: 1px;
+}
 /* 
 The ant autocomplete injects the list in the bottom of the body, and therefore it is outside the catalogue of life class
  */

@@ -526,7 +526,8 @@ class ColTree extends React.Component {
           <Tree
             ref={this.treeRef}
             defaultExpandAll={defaultExpandAll}
-            height={height || 700}
+            //height={window.outerHeight}
+            height={height && height > 700 ? height : 700}
             // defaultExpandedKeys={defaultExpandedKeys}
             loadData={this.onLoadData}
             onLoad={(loadedKeys) => this.setState({ loadedKeys })}

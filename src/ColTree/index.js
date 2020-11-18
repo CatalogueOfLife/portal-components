@@ -26,7 +26,7 @@ class ColTreeWrapper extends React.Component {
 
   resizeHandler = () => {
     const height = _.get(this.wrapperRef, 'current.clientHeight');
-    if(height){
+    if(height && height > this.state.height){
       this.setState({ height })
     } 
   }
@@ -40,7 +40,7 @@ class ColTreeWrapper extends React.Component {
     const { height } = this.state;
       return (
         <Router history={history}>
-          <div className="catalogue-of-life" ref={this.wrapperRef}>
+          <div className="catalogue-of-life"  ref={this.wrapperRef}>
             <NameAutocomplete
               datasetKey={catalogueKey}
               style={{width: '100%', marginBottom: '8px'}}
