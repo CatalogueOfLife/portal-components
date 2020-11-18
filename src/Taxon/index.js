@@ -310,6 +310,7 @@ class TaxonPage extends React.Component {
                       height: "auto",
                       marginRight: "8px",
                     }}
+                    catalogueKey={catalogueKey}
                     datasetKey={sourceDataset.key}
                   />
                 </Col>

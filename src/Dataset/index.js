@@ -99,6 +99,7 @@ class DatasetPage extends React.Component {
                     height: "auto",
                     marginRight: "8px",
                   }}
+                  catalogueKey={catalogueKey}
                   datasetKey={data.key}
                 />
               </Col>

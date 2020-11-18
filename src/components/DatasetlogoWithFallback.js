@@ -8,12 +8,12 @@ class DatasetlogoWithStatusText extends React.Component {
   }
 
   render() {
-      const {fallBack = null, datasetKey, style, size = 'MEDIUM'} = this.props;
+      const {fallBack = null,catalogueKey, datasetKey, style, size = 'MEDIUM'} = this.props;
       const {error, loading} = this.state;
     return (loading || !error) ?  
         <img
           style={style}
-          src={`${config.dataApi}dataset/${datasetKey}/logo?size=${size}`}
+          src={`${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}/logo?size=${size}`}
           onLoad={() => this.setState({error: false, loading: false})}
           onError={() => this.setState({error: true, loading: false})}
         /> : fallBack;

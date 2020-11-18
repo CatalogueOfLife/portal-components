@@ -73,6 +73,7 @@ class ColTreeNode extends React.Component {
               {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{" "}
               <DatasetlogoWithFallback
                 style={{ maxHeight: "20px", width: "auto" }}
+                catalogueKey={catalogueKey}
                 datasetKey={sector.subjectDatasetKey}
                 size="SMALL"
               />
