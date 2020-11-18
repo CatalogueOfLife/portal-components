@@ -13,34 +13,17 @@ class ColTreeWrapper extends React.Component {
     if(this.props.auth){
       axios.defaults.headers.common['Authorization'] = `Basic ${btoa(this.props.auth)}`;
     } 
-    this.wrapperRef = React.createRef();
-    this.state = {
-      height: 600
-    }
+    
   }
 
-  componentDidMount = () => {
-    this.resizeHandler()
-    window.addEventListener('resize', this.resizeHandler)
-  }
 
-  resizeHandler = () => {
-    const height = _.get(this.wrapperRef, 'current.clientHeight');
-    if(height && height > this.state.height){
-      this.setState({ height })
-    } 
-  }
-  componentWillUnmount(){
-    window.removeEventListener('resize', this.resizeHandler);
-  }
 
   render = () => {
     const {catalogueKey, pathToTaxon, pathToDataset, defaultTaxonKey } = this.props;
     const params = qs.parse(_.get(location, "search"));
-    const { height } = this.state;
       return (
         <Router history={history}>
-          <div className="catalogue-of-life"  ref={this.wrapperRef}>
+          <div className="catalogue-of-life" >
             <NameAutocomplete
               datasetKey={catalogueKey}
               style={{width: '100%', marginBottom: '8px'}}
@@ -72,7 +55,6 @@ class ColTreeWrapper extends React.Component {
               pathToTaxon={pathToTaxon}
               pathToDataset={pathToDataset}
               defaultTaxonKey={defaultTaxonKey}
-              height={height}
               treeRef={ref => (this.treeRef = ref)}
             />
           </div>

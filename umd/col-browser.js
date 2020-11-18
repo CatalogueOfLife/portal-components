@@ -79683,7 +79683,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
 
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         "div",
-        null,
+        { id: taxon.id },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "span",
           null,
@@ -81671,7 +81671,7 @@ function ColTree_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
-var CHILD_PAGE_SIZE = 10000; // How many children will we load at a time
+var CHILD_PAGE_SIZE = 500; // How many children will we load at a time
 
 var ColTree_LoadMoreChildrenTreeNode = function (_React$Component) {
   ColTree_inherits(LoadMoreChildrenTreeNode, _React$Component);
@@ -81682,8 +81682,11 @@ var ColTree_LoadMoreChildrenTreeNode = function (_React$Component) {
     var _this = ColTree_possibleConstructorReturn(this, _React$Component.call(this, props));
 
     _this.onClick = function () {
-      _this.setState({ loading: true });
-      _this.props.onClick();
+      _this.setState({ loading: true }, function () {
+        return _this.props.onClick().then(function () {
+          return _this.setState({ loading: false });
+        });
+      });
     };
 
     _this.render = function () {
@@ -82019,12 +82022,16 @@ var ColTree_ColTree = function (_React$Component2) {
             if (dataRef.children[dataRef.children.length - 1].key === "__loadMoreBTN__") {
               dataRef.children = dataRef.children.slice(0, -1);
             }
-            _this2.setState({
-              treeData: [].concat(treeData),
-              defaultExpandAll: false
-            }, function () {
-              _this2.fetchChildPage(dataRef, false);
-            });
+            return _this2.fetchChildPage(dataRef, false);
+            /*  this.setState(
+               {
+                 treeData: [...treeData],
+                 defaultExpandAll: false,
+               },
+               () => {
+                 this.fetchChildPage(dataRef, false);
+               }
+             ); */
           };
           dataRef.children = [].concat(dataRef.children, [{
             title: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_LoadMoreChildrenTreeNode, {
@@ -82145,9 +82152,11 @@ var ColTree_ColTree = function (_React$Component2) {
                     _node.children = [targetTaxon].concat(_node.children);
                     _this2.setState({ treeData: [].concat(_this2.state.treeData) }, function () {
                       setTimeout(function () {
-                        if (lodash_default.a.get(_this2, "treeRef.current")) {
-                          _this2.treeRef.current.scrollTo({ key: expandKey });
-                        }
+                        var elmnt = document.getElementById(expandKey);
+                        elmnt.scrollIntoView();
+                        /* if (_.get(this, "treeRef.current")) {
+                          this.treeRef.current.scrollTo({ key: expandKey });
+                        } */
                       }, 100);
                     });
                   } else {
@@ -82182,9 +82191,11 @@ var ColTree_ColTree = function (_React$Component2) {
                 _this2.setState(newState, function () {
                   if (expandKey) {
                     setTimeout(function () {
-                      if (lodash_default.a.get(_this2, "treeRef.current")) {
-                        _this2.treeRef.current.scrollTo({ key: expandKey });
-                      }
+                      var elmnt = document.getElementById(expandKey);
+                      elmnt.scrollIntoView();
+                      /*           if (_.get(this, "treeRef.current")) {
+                                  this.treeRef.current.scrollTo({ key: expandKey });
+                                } */
                     }, 100);
                   }
                 });
@@ -82277,8 +82288,8 @@ var ColTree_ColTree = function (_React$Component2) {
       rootLoading && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { paragraph: { rows: 10 }, active: true }),
       !rootLoading && treeData.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tree, {
         ref: this.treeRef,
-        defaultExpandAll: defaultExpandAll,
-        height: height || 600
+        defaultExpandAll: defaultExpandAll
+        // height={height || 600}
         // defaultExpandedKeys={defaultExpandedKeys}
         , loadData: this.onLoadData,
         onLoad: function onLoad(loadedKeys) {
@@ -88438,18 +88449,6 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
 
     var _this = src_ColTree_possibleConstructorReturn(this, _React$Component.call(this, props));
 
-    _this.componentDidMount = function () {
-      _this.resizeHandler();
-      window.addEventListener('resize', _this.resizeHandler);
-    };
-
-    _this.resizeHandler = function () {
-      var height = lodash_default.a.get(_this.wrapperRef, 'current.clientHeight');
-      if (height && height > _this.state.height) {
-        _this.setState({ height: height });
-      }
-    };
-
     _this.render = function () {
       var _this$props = _this.props,
           catalogueKey = _this$props.catalogueKey,
@@ -88458,14 +88457,12 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
           defaultTaxonKey = _this$props.defaultTaxonKey;
 
       var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
-      var height = _this.state.height;
-
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         react_router_Router,
         { history: src_history },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "div",
-          { className: "catalogue-of-life", ref: _this.wrapperRef },
+          { className: "catalogue-of-life" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
             style: { width: '100%', marginBottom: '8px' },
@@ -88496,7 +88493,6 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
             pathToTaxon: pathToTaxon,
             pathToDataset: pathToDataset,
             defaultTaxonKey: defaultTaxonKey,
-            height: height,
             treeRef: function treeRef(ref) {
               return _this.treeRef = ref;
             }
@@ -88508,16 +88504,9 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
     if (_this.props.auth) {
       axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(_this.props.auth);
     }
-    _this.wrapperRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createRef();
-    _this.state = {
-      height: 600
-    };
+
     return _this;
   }
-
-  ColTreeWrapper.prototype.componentWillUnmount = function componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeHandler);
-  };
 
   return ColTreeWrapper;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);

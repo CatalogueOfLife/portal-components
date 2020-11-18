@@ -12,7 +12,7 @@ import history from "../history";
 import qs from "query-string";
 import { withRouter } from "react-router-dom";
 
-const CHILD_PAGE_SIZE = 10000; // How many children will we load at a time
+const CHILD_PAGE_SIZE = 500; // How many children will we load at a time
 
 class LoadMoreChildrenTreeNode extends React.Component {
   constructor(props) {
@@ -21,11 +21,10 @@ class LoadMoreChildrenTreeNode extends React.Component {
   }
 
   onClick = () => {
-    this.setState({ loading: true });
-    this.props.onClick();
+    this.setState({ loading: true }, () => this.props.onClick().then(() => this.setState({ loading: false })))
   };
   render = () => {
-    const { loading } = this.state;
+    const { loading} = this.state;
     return (
       <React.Fragment>
         {loading && <Spin />}
@@ -312,7 +311,8 @@ class ColTree extends React.Component {
             ) {
               dataRef.children = dataRef.children.slice(0, -1);
             }
-            this.setState(
+            return this.fetchChildPage(dataRef, false);
+           /*  this.setState(
               {
                 treeData: [...treeData],
                 defaultExpandAll: false,
@@ -320,7 +320,7 @@ class ColTree extends React.Component {
               () => {
                 this.fetchChildPage(dataRef, false);
               }
-            );
+            ); */
           };
           dataRef.children = [
             ...dataRef.children,
@@ -423,9 +423,11 @@ class ColTree extends React.Component {
             node.children = [targetTaxon, ...node.children];
             this.setState({ treeData: [...this.state.treeData] }, () => {
               setTimeout(() => {
-                if (_.get(this, "treeRef.current")) {
+                const elmnt = document.getElementById(expandKey);
+                elmnt.scrollIntoView();
+                /* if (_.get(this, "treeRef.current")) {
                   this.treeRef.current.scrollTo({ key: expandKey });
-                }
+                } */
               }, 100);
             });
           } else {
@@ -456,9 +458,11 @@ class ColTree extends React.Component {
     this.setState(newState, () => {
       if (expandKey) {
         setTimeout(() => {
-          if (_.get(this, "treeRef.current")) {
+          const elmnt = document.getElementById(expandKey);
+                elmnt.scrollIntoView();
+/*           if (_.get(this, "treeRef.current")) {
             this.treeRef.current.scrollTo({ key: expandKey });
-          }
+          } */
         }, 100);
       }
     });
@@ -526,8 +530,7 @@ class ColTree extends React.Component {
           <Tree
             ref={this.treeRef}
             defaultExpandAll={defaultExpandAll}
-            //height={window.outerHeight}
-            height={height && height > 700 ? height : 700}
+           // height={height || 600}
             // defaultExpandedKeys={defaultExpandedKeys}
             loadData={this.onLoadData}
             onLoad={(loadedKeys) => this.setState({ loadedKeys })}
