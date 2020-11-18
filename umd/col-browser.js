@@ -82153,7 +82153,7 @@ var ColTree_ColTree = function (_React$Component2) {
                     _this2.setState({ treeData: [].concat(_this2.state.treeData) }, function () {
                       setTimeout(function () {
                         var elmnt = document.getElementById(expandKey);
-                        elmnt.scrollIntoView();
+                        elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         /* if (_.get(this, "treeRef.current")) {
                           this.treeRef.current.scrollTo({ key: expandKey });
                         } */
@@ -82192,7 +82192,7 @@ var ColTree_ColTree = function (_React$Component2) {
                   if (expandKey) {
                     setTimeout(function () {
                       var elmnt = document.getElementById(expandKey);
-                      elmnt.scrollIntoView();
+                      elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' });
                       /*           if (_.get(this, "treeRef.current")) {
                                   this.treeRef.current.scrollTo({ key: expandKey });
                                 } */

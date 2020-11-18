@@ -424,7 +424,7 @@ class ColTree extends React.Component {
             this.setState({ treeData: [...this.state.treeData] }, () => {
               setTimeout(() => {
                 const elmnt = document.getElementById(expandKey);
-                elmnt.scrollIntoView();
+                elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 /* if (_.get(this, "treeRef.current")) {
                   this.treeRef.current.scrollTo({ key: expandKey });
                 } */
@@ -459,7 +459,7 @@ class ColTree extends React.Component {
       if (expandKey) {
         setTimeout(() => {
           const elmnt = document.getElementById(expandKey);
-                elmnt.scrollIntoView();
+                elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' });
 /*           if (_.get(this, "treeRef.current")) {
             this.treeRef.current.scrollTo({ key: expandKey });
           } */
