@@ -1,13 +1,11 @@
 import React from "react";
 import axios from "axios";
 import config from "../config";
-import { CloseCircleOutlined } from "@ant-design/icons";
-import { AutoComplete, Input, Form } from "antd";
+import { AutoComplete, Input } from "antd";
 import _ from "lodash";
 import { debounce } from "lodash";
 import Highlighter from "react-highlight-words";
 
-const FormItem = Form.Item;
 
 class NameSearchAutocomplete extends React.Component {
   constructor(props) {
@@ -15,9 +13,8 @@ class NameSearchAutocomplete extends React.Component {
 
     this.getNames = debounce(this.getNames, 500);
     this.state = {
-      names: [],
+      options: [],
       value: "",
-      open: false,
     };
   }
 
@@ -48,7 +45,7 @@ class NameSearchAutocomplete extends React.Component {
     });
   };
   getNames = (q) => {
-    const { datasetKey, minRank } = this.props;
+    const { datasetKey, minRank, hideExtinct } = this.props;
     const url = datasetKey
       ? `${config.dataApi}dataset/${datasetKey}/nameusage/suggest`
       : `${config.dataApi}name/search`;
@@ -56,7 +53,7 @@ class NameSearchAutocomplete extends React.Component {
     axios(
       `${url}?vernaculars=false&fuzzy=false&limit=25&q=${q}${
         minRank ? `&minRank=${minRank}` : ""
-      }`
+      }${hideExtinct ? `&extinct=false`:''}`
     )
       .then((res) => {
         /*         const names = res.data.result ? res.data.result.map((name) => ({
@@ -67,11 +64,12 @@ class NameSearchAutocomplete extends React.Component {
             title: name.suggestion 
           })); */
         this.setState({
-          names: res.data.suggestions || [],
+         // names: res.data.suggestions || [],
+          options: this.getOptions(res.data.suggestions || [])
         });
       })
       .catch((err) => {
-        this.setState({ names: [], err });
+        this.setState({  options: [], err });
       });
   };
   onSelectName = (val, obj) => {
@@ -85,20 +83,18 @@ class NameSearchAutocomplete extends React.Component {
     this.props.onSelectName(selectedTaxon);
   };
   onReset = () => {
-    this.setState({ value: "", names: [] }, this.props.onResetSearch);
+    this.setState({ value: "", options: [] }, this.props.onResetSearch);
   };
 
-  render = () => {
-    const { placeHolder, autoFocus } = this.props;
-    const { value } = this.state;
-    const options = this.state.names.map((o) => {
+  getOptions = (names, searchTerm) => {
+    return names.map((o) => {
       return {
         key: o.usageId,
         value: o.suggestion,
         label: (
           <Highlighter
             highlightStyle={{ fontWeight: "bold", padding: 0 }}
-            searchWords={value.split(" ")}
+            searchWords={searchTerm ? searchTerm.split(" ") : []}
             autoEscape
             textToHighlight={o.suggestion}
           />
@@ -106,17 +102,29 @@ class NameSearchAutocomplete extends React.Component {
         data: o,
       };
     });
+  }
+  render = () => {
+    const { placeHolder, autoFocus } = this.props;
+    const { value , options, open} = this.state;
+   // const options = this.getOptions(this.state.names, value)
 
     return (
       <AutoComplete
         style={this.props.style ? this.props.style : { width: "100%" }}
-        options={value ? options : []}
+        options={options}
         onSelect={this.onSelectName}
         onSearch={(q) => (!!q ? this.getNames(q) : this.onReset())}
         placeholder={placeHolder || "Find taxon"}
-        onChange={(value) => this.setState({ value })}
+        onChange={(value) => {
+          if(value){
+            this.setState({ value  })
+          } else {
+            setTimeout(this.onReset, 50); 
+          }
+        }}
         value={value}
         autoFocus={autoFocus === false ? false : true}
+        
       >
         <Input.Search allowClear />
       </AutoComplete>
