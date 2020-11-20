@@ -7,6 +7,7 @@ import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
 import axios from 'axios'
 import btoa from "btoa"
+import {Row, Col, Switch} from "antd";
 class ColTreeWrapper extends React.Component {
   constructor(props) {    
     super(props);
@@ -19,11 +20,13 @@ class ColTreeWrapper extends React.Component {
 
 
   render = () => {
-    const {catalogueKey, pathToTaxon, pathToDataset, defaultTaxonKey } = this.props;
+    const {catalogueKey, pathToTaxon, pathToDataset, defaultTaxonKey, showTreeOptions } = this.props;
     const params = qs.parse(_.get(location, "search"));
       return (
         <Router history={history}>
           <div className="catalogue-of-life" >
+            <Row>
+              <Col flex="auto">
             <NameAutocomplete
               datasetKey={catalogueKey}
               style={{width: '100%', marginBottom: '8px'}}
@@ -50,6 +53,19 @@ class ColTreeWrapper extends React.Component {
                 });
               }}
             />
+           </Col>
+            {showTreeOptions && <Col>
+              <Switch size="small" 
+               checkedChildren="Show info"
+               unCheckedChildren="Show info"
+              defaultChecked />
+              <Switch size="small" 
+              checkedChildren="Show extinct"
+              unCheckedChildren="Show extinct"
+              defaultChecked />
+            </Col>} 
+           
+           </Row>
             <ColTree
               catalogueKey={catalogueKey}
               pathToTaxon={pathToTaxon}
