@@ -3,6 +3,7 @@ import { Tag } from "antd";
 import _ from "lodash";
 // import config from "../config";
 import TaxonSources from "./TaxonSources";
+import TaxonEstimate from "./TaxonEstimate";
 // import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import {ColTreeContext} from "./ColTreeContext"
 
@@ -27,6 +28,7 @@ class ColTreeNode extends React.Component {
 
     const sectorSourceDataset = _.get(sector, "dataset");
 
+    const estimate = taxon.estimate && taxon.estimates ? taxon.estimates.find(e => e.estimate === taxon.estimate) : null;
     return (
       <ColTreeContext.Consumer>
                 {({ showInfo }) => (
@@ -42,22 +44,21 @@ class ColTreeNode extends React.Component {
                           />
                         </span>
                        {showInfo && <React.Fragment>
-                        {!_.isUndefined(taxon.estimate) && (
+                        {estimate && (
                           <span>
                             {" "}
-                            • {_.get(taxon, "estimate")} <span> est. spp.</span>
+                            • <TaxonEstimate estimate={estimate} taxon={taxon} />
                           </span>
                         )}
-                        {taxon.status !== "accepted" && (
-                          <Tag color="red" style={{ marginLeft: "6px" }}>
-                            {taxon.status}
+                        {taxon.status === "provisionally accepted" && (
+                          <React.Fragment> • <Tag color="warning" style={{marginRight: 0}}>
+                            prov.
                           </Tag>
+                          </React.Fragment>
                         )}
                 
                         {datasetSectors && (
-                          <React.Fragment>
-                            {" •"}{" "}
-                            <TaxonSources
+                          <React.Fragment> • <TaxonSources
                               datasetSectors={datasetSectors}
                               pathToDataset={pathToDataset}
                               taxon={taxon}

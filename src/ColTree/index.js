@@ -7,8 +7,10 @@ import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
 import axios from 'axios'
 import btoa from "btoa"
-import {Row, Col, Switch} from "antd";
+import {Row, Col, Switch, Checkbox, Form} from "antd";
 import {ColTreeContext} from "./ColTreeContext"
+
+const FormItem = Form.Item;
 
 class ColTreeWrapper extends React.Component {
   constructor(props) {    
@@ -18,7 +20,7 @@ class ColTreeWrapper extends React.Component {
     } 
     this.state = {
       hideExtinct: false,
-      showInfo: true
+      showInfo: false
     }
   }
 
@@ -38,7 +40,7 @@ class ColTreeWrapper extends React.Component {
             <NameAutocomplete
               hideExtinct={hideExtinct}
               datasetKey={catalogueKey}
-              style={{width: '100%', marginBottom: '8px'}}
+              style={{width: '100%', paddingTop: '5px', paddingBottom: '5px'}}
               defaultTaxonKey={_.get(params, "taxonKey") || null}
               onSelectName={name => {
     
@@ -63,18 +65,27 @@ class ColTreeWrapper extends React.Component {
               }}
             />
            </Col>
-            {showTreeOptions && <Col style={{padding: "6px"}}>
-              <Switch size="small" 
-               checkedChildren="Show info"
-               unCheckedChildren="Show info"
-               onChange={checked => this.setState({showInfo: checked})}
-              defaultChecked />
-              <Switch size="small" 
-              style={{marginLeft: "8px"}}
-              checkedChildren="Show extinct"
-              unCheckedChildren="Show extinct"
-              onChange={checked => this.setState({hideExtinct: !checked})}
-              defaultChecked />
+            {showTreeOptions && <Col style={{textAlign: 'right', paddingLeft: "10px"}}>
+            <Form layout="inline"> 
+            <FormItem label="Info">
+            <Checkbox 
+               onChange={({target: {checked}}) => {
+                console.log(checked) 
+                this.setState({showInfo: checked})}}
+               />
+                </FormItem>
+              
+            
+               <FormItem label="Extinct">
+            <Checkbox 
+              defaultChecked={true}
+               onChange={({target: {checked}}) => {
+                console.log(checked) 
+                this.setState({hideExtinct: !checked})}}
+               />
+                </FormItem>
+                </Form>
+              
             </Col>} 
            
            </Row>

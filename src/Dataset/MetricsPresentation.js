@@ -13,10 +13,10 @@ const getExtinctTaxa = (metrics, rank) =>
       <div style={style}>
         <React.Fragment>
           <PresentationItem label={`Living species`}>
-            {getLivingTaxa(metrics, "species").toLocaleString("en-GB")}
+          {dataset && pathToSearch ? <a href={`${pathToSearch}?SECTOR_DATASET_KEY=${dataset.key}&rank=species&extinct=false&extinct=_NULL`} >{getLivingTaxa(metrics, "species").toLocaleString("en-GB")}</a> : getLivingTaxa(metrics, "species").toLocaleString("en-GB")}
           </PresentationItem>
           <PresentationItem label={`Extinct species`}>
-            {getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}
+          {dataset && pathToSearch ? <a href={`${pathToSearch}?SECTOR_DATASET_KEY=${dataset.key}&rank=species&extinct=true`} >{getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}</a> : getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}
           </PresentationItem>
         </React.Fragment>
         {metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)

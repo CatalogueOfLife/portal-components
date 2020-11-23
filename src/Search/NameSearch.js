@@ -3,7 +3,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 
-import { Table, Alert, Form, Row, Col, Button } from "antd";
+import { Table, Alert, Switch,Checkbox, Row, Col, Button, Form, Radio } from "antd";
 import config from "../config";
 import qs from "query-string";
 import history from "../history";
@@ -15,6 +15,9 @@ import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
 import DatasetAutocomplete from "../components/DatasetAutocomplete"
+const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
+
 const PAGE_SIZE = 50;
 const defaultParams = {
   limit: 50,
@@ -336,7 +339,7 @@ class NameSearchPage extends React.Component {
             />
 
 
-                  <div style={{ marginTop: "10px" }}>
+                  <div style={{ marginTop: "8px" , marginBottom: "8px"}}>
                     <DatasetAutocomplete
                       contributesTo={Number(catalogueKey)}
                       onSelectDataset={(value) => {
@@ -352,6 +355,37 @@ class NameSearchPage extends React.Component {
                       autoFocus={false}
                     />
                   </div>
+                  <div style={{ marginTop: "10px" }}>
+              <Form layout="inline">
+                <FormItem label="Fuzzy">
+                  <Checkbox
+                    checked={params.fuzzy === true || params.fuzzy === "true"}
+                    onChange={({target: {checked}}) => this.updateSearch({ fuzzy: checked ? checked: null })}
+                  />
+                </FormItem>
+                <FormItem label="Extinct">
+                  <Checkbox
+                    checked={params.extinct !== false && params.extinct !== "false"}
+                    onChange={({target: {checked}}) =>
+                      this.updateSearch({ extinct: checked === false ? false : null })
+                    }
+                  />
+                </FormItem>
+                <FormItem label="Matching">
+                  <RadioGroup
+                    size="small"
+                    onChange={(evt) => {
+                      this.updateSearch({ type: evt.target.value });
+                    }}
+                    value={params.type || "WHOLE_WORDS"}
+                    optionType="button"
+                    options={[{value:"EXACT", label: "Exact" }, {value:"WHOLE_WORDS", label: "Words"}, {value:"PREFIX", label:"Partial"} ]}
+                  >
+                   
+                  </RadioGroup>
+                </FormItem>
+              </Form>
+            </div>
                
           </Col>
           <Col xs={24} sm={24} md={12}>

@@ -37,6 +37,7 @@ class SearchBox extends React.Component {
         value={this.state.search}
         onSearch={value => this.props.onSearch(this.state.search)}
         onChange={event => this.setState({ search: event.target.value})}
+        addonAfter={this.props.addonAfter}
         allowClear
         autoFocus={true}
       />

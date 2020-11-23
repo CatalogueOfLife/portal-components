@@ -19288,6 +19288,65 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
   background-color: inherit;
   background: inherit;
 }
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  z-index: 1;
+  color: #1890ff;
+  background: #fff;
+  border-color: #1890ff;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+  background-color: #1890ff;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
+  border-color: #1890ff;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: #40a9ff;
+  border-color: #40a9ff;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover::before {
+  background-color: #40a9ff;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active {
+  color: #096dd9;
+  border-color: #096dd9;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active::before {
+  background-color: #096dd9;
+}
+.catalogue-of-life .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):focus-within {
+  -webkit-box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.08);
+}
+.catalogue-of-life .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  color: #fff;
+  background: #1890ff;
+  border-color: #1890ff;
+}
+.catalogue-of-life .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: #fff;
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
+.catalogue-of-life .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active {
+  color: #fff;
+  background: #096dd9;
+  border-color: #096dd9;
+}
+.catalogue-of-life .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):focus-within {
+  -webkit-box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.08);
+}
+.catalogue-of-life .ant-radio-group-large .ant-radio-button-wrapper {
+  height: 40px;
+  font-size: 16px;
+  line-height: 38px;
+}
+.catalogue-of-life .ant-radio-group-small .ant-radio-button-wrapper {
+  height: 24px;
+  padding: 0 7px;
+  line-height: 22px;
+}
 .catalogue-of-life :target {
   display: block;
   margin-top: -80px;
