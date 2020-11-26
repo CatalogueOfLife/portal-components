@@ -46,6 +46,7 @@ class NameSearchAutocomplete extends React.Component {
   };
   getNames = (q) => {
     const { datasetKey, minRank, hideExtinct } = this.props;
+    const {value} = this.state;
     const url = datasetKey
       ? `${config.dataApi}dataset/${datasetKey}/nameusage/suggest`
       : `${config.dataApi}name/search`;
@@ -65,7 +66,7 @@ class NameSearchAutocomplete extends React.Component {
           })); */
         this.setState({
          // names: res.data.suggestions || [],
-          options: this.getOptions(res.data.suggestions || [])
+          options: this.getOptions(res.data.suggestions || [], value)
         });
       })
       .catch((err) => {
@@ -105,11 +106,13 @@ class NameSearchAutocomplete extends React.Component {
   }
   render = () => {
     const { placeHolder, autoFocus } = this.props;
-    const { value , options, open} = this.state;
+    const { value , options} = this.state;
+    const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
+
    // const options = this.getOptions(this.state.names, value)
 
     return (
-      <AutoComplete
+     <div id={`taxon_autocomplete_${randomID}`}><AutoComplete
         style={this.props.style ? this.props.style : { width: "100%" }}
         options={options}
         onSelect={this.onSelectName}
@@ -124,10 +127,13 @@ class NameSearchAutocomplete extends React.Component {
         }}
         value={value}
         autoFocus={autoFocus === false ? false : true}
+        getPopupContainer={() =>
+          document.getElementById(`taxon_autocomplete_${randomID}`)
+        }
         
       >
-        <Input.Search allowClear />
-      </AutoComplete>
+        <Input.Search  allowClear />
+      </AutoComplete></div> 
     );
   };
 }

@@ -378,7 +378,7 @@ class ColTree extends React.Component {
       return node;
     } else {
       const children = nodeArray.map((n) => _.get(n, "children") || []);
-      const flattenedChildren = children.flat();
+      const flattenedChildren = _.flatten(children); //.flat();
       if (flattenedChildren.length === 0) {
         return null;
       } else {

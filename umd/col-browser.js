@@ -82182,7 +82182,7 @@ var ColTree_ColTree = function (_React$Component2) {
         var children = nodeArray.map(function (n) {
           return lodash_default.a.get(n, "children") || [];
         });
-        var flattenedChildren = children.flat();
+        var flattenedChildren = lodash_default.a.flatten(children); //.flat();
         if (flattenedChildren.length === 0) {
           return null;
         } else {
@@ -84638,6 +84638,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           datasetKey = _this$props.datasetKey,
           minRank = _this$props.minRank,
           hideExtinct = _this$props.hideExtinct;
+      var value = _this.state.value;
 
       var url = datasetKey ? src_config.dataApi + "dataset/" + datasetKey + "/nameusage/suggest" : src_config.dataApi + "name/search";
 
@@ -84651,7 +84652,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           })); */
         _this.setState({
           // names: res.data.suggestions || [],
-          options: _this.getOptions(res.data.suggestions || [])
+          options: _this.getOptions(res.data.suggestions || [], value)
         });
       }).catch(function (err) {
         _this.setState({ options: [], err: err });
@@ -84693,32 +84694,41 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           autoFocus = _this$props2.autoFocus;
       var _this$state = _this.state,
           value = _this$state.value,
-          options = _this$state.options,
-          open = _this$state.open;
+          options = _this$state.options;
+
+      var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
+
       // const options = this.getOptions(this.state.names, value)
 
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        auto_complete,
-        {
-          style: _this.props.style ? _this.props.style : { width: "100%" },
-          options: options,
-          onSelect: _this.onSelectName,
-          onSearch: function onSearch(q) {
-            return !!q ? _this.getNames(q) : _this.onReset();
-          },
-          placeholder: placeHolder || "Find taxon",
-          onChange: function onChange(value) {
-            if (value) {
-              _this.setState({ value: value });
-            } else {
-              setTimeout(_this.onReset, 50);
+        "div",
+        { id: "taxon_autocomplete_" + randomID },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          auto_complete,
+          {
+            style: _this.props.style ? _this.props.style : { width: "100%" },
+            options: options,
+            onSelect: _this.onSelectName,
+            onSearch: function onSearch(q) {
+              return !!q ? _this.getNames(q) : _this.onReset();
+            },
+            placeholder: placeHolder || "Find taxon",
+            onChange: function onChange(value) {
+              if (value) {
+                _this.setState({ value: value });
+              } else {
+                setTimeout(_this.onReset, 50);
+              }
+            },
+            value: value,
+            autoFocus: autoFocus === false ? false : true,
+            getPopupContainer: function getPopupContainer() {
+              return document.getElementById("taxon_autocomplete_" + randomID);
             }
-          },
-          value: value,
-          autoFocus: autoFocus === false ? false : true
 
-        },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
+          },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
+        )
       );
     };
 
@@ -104986,6 +104996,8 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
           label = _this$props.label,
           vocab = _this$props.vocab;
 
+      var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
+
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         MultiValueFilter_FormItem,
         MultiValueFilter_extends({}, formItemLayout, {
@@ -104993,26 +105005,33 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
           style: { marginBottom: '8px', width: "100%" }
         }),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_select,
-          {
-            showSearch: true
-            // style={{ width: "100%" }}
-            , mode: "multiple",
-            placeholder: "Please select",
-            value: defaultValue,
-            onChange: _this.handleChange
-          },
-          vocab.map(function (i) {
-            return typeof i === 'string' ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              MultiValueFilter_Option,
-              { key: i, value: i },
-              lodash_default.a.startCase(i)
-            ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              MultiValueFilter_Option,
-              { key: i.value, value: i.value },
-              i.label
-            );
-          })
+          "div",
+          { id: lodash_default.a.snakeCase(label) + "_" + randomID },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            es_select,
+            {
+              showSearch: true
+              // style={{ width: "100%" }}
+              , mode: "multiple",
+              placeholder: "Please select",
+              value: defaultValue,
+              onChange: _this.handleChange,
+              getPopupContainer: function getPopupContainer() {
+                return document.getElementById(lodash_default.a.snakeCase(label) + "_" + randomID);
+              }
+            },
+            vocab.map(function (i) {
+              return typeof i === 'string' ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                MultiValueFilter_Option,
+                { key: i, value: i },
+                lodash_default.a.startCase(i)
+              ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                MultiValueFilter_Option,
+                { key: i.value, value: i.value },
+                i.label
+              );
+            })
+          )
         )
       );
     };
@@ -105165,6 +105184,7 @@ var DatasetAutocomplete_DatasetAutocomplete = function (_React$Component) {
             var value = _this.state.value;
             var style = _this.props.style;
 
+            var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
 
             var options = _this.state.datasets ? _this.state.datasets.map(function (o) {
                 var text = (o.alias || o.title) + ' [' + o.key + ']';
@@ -105182,22 +105202,29 @@ var DatasetAutocomplete_DatasetAutocomplete = function (_React$Component) {
             }) : [];
 
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                auto_complete,
-                {
-                    onSelect: _this.onSelectDataset,
-                    onSearch: function onSearch(q) {
-                        return !!q ? _this.getDatasets(q) : _this.onReset();
+                'div',
+                { id: 'dataset_autocomplete_' + randomID },
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    auto_complete,
+                    {
+                        onSelect: _this.onSelectDataset,
+                        onSearch: function onSearch(q) {
+                            return !!q ? _this.getDatasets(q) : _this.onReset();
+                        },
+                        options: options,
+                        placeholder: _this.props.placeHolder || "Find dataset",
+                        style: style ? style : { width: '100%' },
+                        onChange: function onChange(value) {
+                            return _this.setState({ value: value });
+                        },
+                        value: value,
+                        optionLabelProp: 'value',
+                        getPopupContainer: function getPopupContainer() {
+                            return document.getElementById('dataset_autocomplete_' + randomID);
+                        }
                     },
-                    options: options,
-                    placeholder: _this.props.placeHolder || "Find dataset",
-                    style: style ? style : { width: '100%' },
-                    onChange: function onChange(value) {
-                        return _this.setState({ value: value });
-                    },
-                    value: value,
-                    optionLabelProp: 'value'
-                },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
+                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
+                )
             );
         };
 

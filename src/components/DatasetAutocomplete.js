@@ -72,8 +72,8 @@ class DatasetAutocomplete extends React.Component {
     render = () => {
         const {value} = this.state;
         const {style} = this.props
-
-     
+        const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
+        
 
           const options = this.state.datasets ? this.state.datasets.map((o) => {
               const text = `${o.alias || o.title} [${o.key}]`;
@@ -93,7 +93,7 @@ class DatasetAutocomplete extends React.Component {
             
           }) : [];
 
-        return <AutoComplete
+        return <div id={`dataset_autocomplete_${randomID}`}><AutoComplete
             onSelect={this.onSelectDataset}
             onSearch={(q) => (!!q ? this.getDatasets(q) : this.onReset())}
             options={options}
@@ -102,9 +102,12 @@ class DatasetAutocomplete extends React.Component {
             onChange={(value) => this.setState({value})}
             value={value}
             optionLabelProp="value"
+            getPopupContainer={() =>
+                document.getElementById(`dataset_autocomplete_${randomID}`)
+              }
         >
             <Input.Search allowClear />
-        </AutoComplete>
+        </AutoComplete></div>
     }
 
 }
