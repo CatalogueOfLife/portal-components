@@ -104295,11 +104295,11 @@ function DatasetlogoWithFallback_inherits(subClass, superClass) { if (typeof sup
 
 
 
-var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Component) {
-  DatasetlogoWithFallback_inherits(DatasetlogoWithStatusText, _React$Component);
+var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component) {
+  DatasetlogoWithFallback_inherits(DatasetlogoWithFallback, _React$Component);
 
-  function DatasetlogoWithStatusText(props) {
-    DatasetlogoWithFallback_classCallCheck(this, DatasetlogoWithStatusText);
+  function DatasetlogoWithFallback(props) {
+    DatasetlogoWithFallback_classCallCheck(this, DatasetlogoWithFallback);
 
     var _this = DatasetlogoWithFallback_possibleConstructorReturn(this, _React$Component.call(this, props));
 
@@ -104307,9 +104307,10 @@ var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Compone
     return _this;
   }
 
-  DatasetlogoWithStatusText.prototype.render = function render() {
+  DatasetlogoWithFallback.prototype.render = function render() {
     var _this2 = this;
 
+    // Note that authenticated URLs will be blocked by chrome, IE and others. Seems to work in FF though
     var _props = this.props,
         _props$fallBack = _props.fallBack,
         fallBack = _props$fallBack === undefined ? null : _props$fallBack,
@@ -104317,14 +104318,19 @@ var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Compone
         datasetKey = _props.datasetKey,
         style = _props.style,
         _props$size = _props.size,
-        size = _props$size === undefined ? 'MEDIUM' : _props$size;
+        size = _props$size === undefined ? 'MEDIUM' : _props$size,
+        auth = _props.auth;
+
+    var dataApiParts = src_config.dataApi.split("//");
+    var protocol = dataApiParts[0] + "//";
+    var location = dataApiParts[1] + "dataset/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size;
     var _state = this.state,
         error = _state.error,
         loading = _state.loading;
 
     return loading || !error ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
       style: style,
-      src: src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size,
+      src: "" + protocol + (auth ? auth + "@" : "") + location,
       onLoad: function onLoad() {
         return _this2.setState({ error: false, loading: false });
       },
@@ -104336,10 +104342,10 @@ var DatasetlogoWithFallback_DatasetlogoWithStatusText = function (_React$Compone
     ;
   };
 
-  return DatasetlogoWithStatusText;
+  return DatasetlogoWithFallback;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
-/* harmony default export */ var DatasetlogoWithFallback = (DatasetlogoWithFallback_DatasetlogoWithStatusText);
+/* harmony default export */ var components_DatasetlogoWithFallback = (DatasetlogoWithFallback_DatasetlogoWithFallback);
 // CONCATENATED MODULE: ./src/Taxon/index.js
 function Taxon_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -104613,7 +104619,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           sourceDataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
             { span: 5, style: { textAlign: "right" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
               style: {
                 maxWidth: "100%",
                 height: "auto",
@@ -105370,11 +105376,19 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         params.facet = ["rank", "issue", "status", "nomStatus", "nameType", "field"];
       }
 
+      if (!params.limit) {
+        params.limit = PAGE_SIZE;
+      }
+      if (!params.offset) {
+        params.offset = 0;
+      }
       _this.setState({
         params: params,
         pagination: {
-          pageSize: Number(params.limit) || PAGE_SIZE,
-          current: Number(params.offset || 0) / Number(params.limit || PAGE_SIZE) + 1
+          pageSize: params.limit || PAGE_SIZE,
+          current: Number(params.offset || 0) / Number(params.limit || PAGE_SIZE) + 1,
+          showQuickJumper: true,
+          pageSizeOptions: [50, 100, 500, 1000]
         }
       }, _this.getData);
     };
@@ -105414,15 +105428,10 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     };
 
     _this.handleTableChange = function (pagination, filters, sorter) {
-      var pager = NameSearch_extends({}, _this.state.pagination);
-      pager.current = pagination.current;
 
-      _this.setState({
-        pagination: pager
-      });
       var query = lodash_default.a.merge(_this.state.params, NameSearch_extends({
-        limit: pager.pageSize,
-        offset: (pager.current - 1) * pager.pageSize
+        limit: pagination.pageSize,
+        offset: (pagination.current - 1) * pagination.pageSize
       }, filters));
       if (sorter && sorter.field) {
         if (sorter.field[sorter.field.length - 1] === "labelHtml") {
@@ -105476,7 +105485,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
       pagination: {
         pageSize: PAGE_SIZE,
         current: 1,
-        showQuickJumper: true
+        showQuickJumper: true,
+        pageSizeOptions: [50, 100, 500, 1000]
       },
       loading: false
     };
@@ -106147,7 +106157,8 @@ var Dataset_DatasetPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
             { span: 12, style: { textAlign: "right" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, {
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
+              auth: this.props.auth,
               style: {
                 maxWidth: "100%",
                 height: "auto",
@@ -106299,7 +106310,7 @@ var DatasetSearch_getExtinctSpecies = function getExtinctSpecies(record) {
   return lodash_default.a.get(record, 'metrics.extinctTaxaByRankCount.species') || 0;
 };
 
-var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey) {
+var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, auth) {
   return [{
     title: "Title",
     dataIndex: ["alias"],
@@ -106319,7 +106330,7 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey) 
     dataIndex: ["logo"],
     key: "logo",
     render: function render(text, record) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetlogoWithFallback, { catalogueKey: catalogueKey, datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
+      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, { auth: auth, catalogueKey: catalogueKey, datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
     }
   }, {
     title: "English name of the group",
@@ -106450,7 +106461,7 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
       ),
       !error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
         size: "small",
-        columns: DatasetSearch_getColumns(pathToDataset, catalogueKey),
+        columns: DatasetSearch_getColumns(pathToDataset, catalogueKey, this.props.auth),
         dataSource: data,
         loading: loading,
         rowKey: function rowKey(record) {

@@ -94,6 +94,7 @@ class DatasetPage extends React.Component {
 
               <Col span={12} style={{ textAlign: "right" }}>
                 <DatasetlogoWithFallback
+                  auth={this.props.auth}
                   style={{
                     maxWidth: "100%",
                     height: "auto",

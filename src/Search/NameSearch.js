@@ -107,6 +107,7 @@ class NameSearchPage extends React.Component {
         pageSize: PAGE_SIZE,
         current: 1,
         showQuickJumper: true,
+        pageSizeOptions: [50, 100, 500, 1000],
       },
       loading: false,
     };
@@ -140,13 +141,21 @@ class NameSearchPage extends React.Component {
       ];
     }
 
+    if (!params.limit) {
+      params.limit = PAGE_SIZE;
+    }
+    if (!params.offset) {
+      params.offset = 0;
+    }
     this.setState(
       {
         params,
         pagination: {
-          pageSize: Number(params.limit) || PAGE_SIZE,
+          pageSize: params.limit || PAGE_SIZE,
           current:
             Number(params.offset || 0) / Number(params.limit || PAGE_SIZE) + 1,
+          showQuickJumper: true,
+          pageSizeOptions: [50, 100, 500, 1000],
         },
       },
       this.getData
@@ -189,15 +198,10 @@ class NameSearchPage extends React.Component {
       });
   };
   handleTableChange = (pagination, filters, sorter) => {
-    const pager = { ...this.state.pagination };
-    pager.current = pagination.current;
-
-    this.setState({
-      pagination: pager,
-    });
+    
     let query = _.merge(this.state.params, {
-      limit: pager.pageSize,
-      offset: (pager.current - 1) * pager.pageSize,
+      limit: pagination.pageSize,
+      offset: (pagination.current - 1) * pagination.pageSize,
       ...filters,
     });
     if (sorter && sorter.field) {

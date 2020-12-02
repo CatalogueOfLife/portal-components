@@ -13,7 +13,7 @@ const getLivingSpecies = (record) => ( (_.get(record, 'metrics.taxaByRankCount.s
 const getExtinctSpecies = (record) => (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0)
 
 
-const getColumns = (pathToDataset, catalogueKey) => [
+const getColumns = (pathToDataset, catalogueKey, auth) => [
   {
     title: "Title",
     dataIndex: ["alias"],
@@ -32,7 +32,7 @@ const getColumns = (pathToDataset, catalogueKey) => [
     title: "",
     dataIndex: ["logo"],
     key: "logo",
-    render: (text, record) => <DatasetlogoWithFallback  catalogueKey={catalogueKey} datasetKey={record.key} style={{maxHeight: '32px'}} size="SMALL"/>
+    render: (text, record) => <DatasetlogoWithFallback  auth={auth} catalogueKey={catalogueKey} datasetKey={record.key} style={{maxHeight: '32px'}} size="SMALL"/>
   },
   {
     title: "English name of the group",
@@ -154,7 +154,7 @@ class DatasetSearchPage extends React.Component {
         {!error && (
           <Table
             size="small"
-            columns={getColumns(pathToDataset, catalogueKey)}
+            columns={getColumns(pathToDataset, catalogueKey, this.props.auth)}
             dataSource={data}
             loading={loading}
             rowKey={record => record.key}
