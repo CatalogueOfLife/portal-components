@@ -305,6 +305,7 @@ class TaxonPage extends React.Component {
               {sourceDataset && (
                 <Col span={5} style={{ textAlign: "right" }}>
                   <DatasetlogoWithFallback
+                    auth={this.props.auth}
                     style={{
                       maxWidth: "100%",
                       height: "auto",
@@ -332,6 +333,18 @@ class TaxonPage extends React.Component {
               {_.get(taxon, "name.publishedIn.citation")}
             </PresentationItem>
           )}
+          {_.get(taxon, "scrutinizer") && (
+              <Col span={12}>
+                <PresentationItem md={md * 2} label="Taxonomic scrutiny">
+                  {`${_.get(taxon, "scrutinizer")}${
+                    _.get(taxon, "scrutinizerDate")
+                      ? ", " +
+                        _.get(taxon, "scrutinizerDate")
+                      : ""
+                  }`}
+                </PresentationItem>
+              </Col>
+            )}
           {_.get(taxon, "status") && (
             <PresentationItem md={md} label="Checklist status">
               {`${_.get(taxon, "status")} ${_.get(taxon, "name.rank")}`}

@@ -61404,6 +61404,346 @@ var es_TextArea = /*#__PURE__*/function (_React$Component) {
 
 "use strict";
 
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+
+
+
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+// EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
+var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
+
+// EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 31 modules
+var es = __webpack_require__(58);
+
+// EXTERNAL MODULE: ./node_modules/classnames/index.js
+var classnames = __webpack_require__(1);
+var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
+
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/es/placements.js
+var autoAdjustOverflow = {
+  adjustX: 1,
+  adjustY: 1
+};
+var targetOffset = [0, 0];
+var placements_placements = {
+  topLeft: {
+    points: ['bl', 'tl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -4],
+    targetOffset: targetOffset
+  },
+  topCenter: {
+    points: ['bc', 'tc'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -4],
+    targetOffset: targetOffset
+  },
+  topRight: {
+    points: ['br', 'tr'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -4],
+    targetOffset: targetOffset
+  },
+  bottomLeft: {
+    points: ['tl', 'bl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 4],
+    targetOffset: targetOffset
+  },
+  bottomCenter: {
+    points: ['tc', 'bc'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 4],
+    targetOffset: targetOffset
+  },
+  bottomRight: {
+    points: ['tr', 'br'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 4],
+    targetOffset: targetOffset
+  }
+};
+/* harmony default export */ var es_placements = (placements_placements);
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/es/Dropdown.js
+
+
+
+
+
+
+
+
+function Dropdown(props, ref) {
+  var _props$arrow = props.arrow,
+      arrow = _props$arrow === void 0 ? false : _props$arrow,
+      _props$prefixCls = props.prefixCls,
+      prefixCls = _props$prefixCls === void 0 ? 'rc-dropdown' : _props$prefixCls,
+      transitionName = props.transitionName,
+      animation = props.animation,
+      align = props.align,
+      _props$placement = props.placement,
+      placement = _props$placement === void 0 ? 'bottomLeft' : _props$placement,
+      _props$placements = props.placements,
+      placements = _props$placements === void 0 ? es_placements : _props$placements,
+      getPopupContainer = props.getPopupContainer,
+      showAction = props.showAction,
+      hideAction = props.hideAction,
+      overlayClassName = props.overlayClassName,
+      overlayStyle = props.overlayStyle,
+      visible = props.visible,
+      _props$trigger = props.trigger,
+      trigger = _props$trigger === void 0 ? ['hover'] : _props$trigger,
+      otherProps = _objectWithoutProperties(props, ["arrow", "prefixCls", "transitionName", "animation", "align", "placement", "placements", "getPopupContainer", "showAction", "hideAction", "overlayClassName", "overlayStyle", "visible", "trigger"]);
+
+  var _React$useState = external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"](),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      triggerVisible = _React$useState2[0],
+      setTriggerVisible = _React$useState2[1];
+
+  var mergedVisible = 'visible' in props ? visible : triggerVisible;
+  var triggerRef = external_root_React_commonjs2_react_commonjs_react_amd_react_["useRef"](null);
+  external_root_React_commonjs2_react_commonjs_react_amd_react_["useImperativeHandle"](ref, function () {
+    return triggerRef.current;
+  });
+
+  var getOverlayElement = function getOverlayElement() {
+    var overlay = props.overlay;
+    var overlayElement;
+
+    if (typeof overlay === 'function') {
+      overlayElement = overlay();
+    } else {
+      overlayElement = overlay;
+    }
+
+    return overlayElement;
+  };
+
+  var onClick = function onClick(e) {
+    var onOverlayClick = props.onOverlayClick;
+    var overlayProps = getOverlayElement().props;
+    setTriggerVisible(false);
+
+    if (onOverlayClick) {
+      onOverlayClick(e);
+    }
+
+    if (overlayProps.onClick) {
+      overlayProps.onClick(e);
+    }
+  };
+
+  var onVisibleChange = function onVisibleChange(visible) {
+    var onVisibleChange = props.onVisibleChange;
+    setTriggerVisible(visible);
+
+    if (typeof onVisibleChange === 'function') {
+      onVisibleChange(visible);
+    }
+  };
+
+  var getMenuElement = function getMenuElement() {
+    var overlayElement = getOverlayElement();
+    var extraOverlayProps = {
+      prefixCls: "".concat(prefixCls, "-menu"),
+      onClick: onClick
+    };
+
+    if (typeof overlayElement.type === 'string') {
+      delete extraOverlayProps.prefixCls;
+    }
+
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](external_root_React_commonjs2_react_commonjs_react_amd_react_["Fragment"], null, arrow && external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"]("div", {
+      className: "".concat(prefixCls, "-arrow")
+    }), external_root_React_commonjs2_react_commonjs_react_amd_react_["cloneElement"](overlayElement, extraOverlayProps));
+  };
+
+  var getMenuElementOrLambda = function getMenuElementOrLambda() {
+    var overlay = props.overlay;
+
+    if (typeof overlay === 'function') {
+      return getMenuElement;
+    }
+
+    return getMenuElement();
+  };
+
+  var getMinOverlayWidthMatchTrigger = function getMinOverlayWidthMatchTrigger() {
+    var minOverlayWidthMatchTrigger = props.minOverlayWidthMatchTrigger,
+        alignPoint = props.alignPoint;
+
+    if ('minOverlayWidthMatchTrigger' in props) {
+      return minOverlayWidthMatchTrigger;
+    }
+
+    return !alignPoint;
+  };
+
+  var getOpenClassName = function getOpenClassName() {
+    var openClassName = props.openClassName;
+
+    if (openClassName !== undefined) {
+      return openClassName;
+    }
+
+    return "".concat(prefixCls, "-open");
+  };
+
+  var renderChildren = function renderChildren() {
+    var children = props.children;
+    var childrenProps = children.props ? children.props : {};
+    var childClassName = classnames_default()(childrenProps.className, getOpenClassName());
+    return triggerVisible && children ? external_root_React_commonjs2_react_commonjs_react_amd_react_["cloneElement"](children, {
+      className: childClassName
+    }) : children;
+  };
+
+  var triggerHideAction = hideAction;
+
+  if (!triggerHideAction && trigger.indexOf('contextMenu') !== -1) {
+    triggerHideAction = ['click'];
+  }
+
+  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](es["a" /* default */], Object.assign({}, otherProps, {
+    prefixCls: prefixCls,
+    ref: triggerRef,
+    popupClassName: classnames_default()(overlayClassName, _defineProperty({}, "".concat(prefixCls, "-show-arrow"), arrow)),
+    popupStyle: overlayStyle,
+    builtinPlacements: placements,
+    action: trigger,
+    showAction: showAction,
+    hideAction: triggerHideAction || [],
+    popupPlacement: placement,
+    popupAlign: align,
+    popupTransitionName: transitionName,
+    popupAnimation: animation,
+    popupVisible: mergedVisible,
+    stretch: getMinOverlayWidthMatchTrigger() ? 'minWidth' : '',
+    popup: getMenuElementOrLambda(),
+    onPopupVisibleChange: onVisibleChange,
+    getPopupContainer: getPopupContainer
+  }), renderChildren());
+}
+
+/* harmony default export */ var es_Dropdown = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](Dropdown));
+// CONCATENATED MODULE: ./node_modules/rc-dropdown/es/index.js
+
+/* harmony default export */ var rc_dropdown_es = __webpack_exports__["a"] = (es_Dropdown);
+
+/***/ }),
+/* 314 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
 // EXTERNAL MODULE: ./node_modules/rc-select/node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(24);
 
@@ -63156,346 +63496,6 @@ function generateSelector(config) {
   var RefSelect = external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](Select);
   return RefSelect;
 }
-
-/***/ }),
-/* 314 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
-
-
-
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-// EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
-var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
-
-// EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 31 modules
-var es = __webpack_require__(58);
-
-// EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
-var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
-
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/es/placements.js
-var autoAdjustOverflow = {
-  adjustX: 1,
-  adjustY: 1
-};
-var targetOffset = [0, 0];
-var placements_placements = {
-  topLeft: {
-    points: ['bl', 'tl'],
-    overflow: autoAdjustOverflow,
-    offset: [0, -4],
-    targetOffset: targetOffset
-  },
-  topCenter: {
-    points: ['bc', 'tc'],
-    overflow: autoAdjustOverflow,
-    offset: [0, -4],
-    targetOffset: targetOffset
-  },
-  topRight: {
-    points: ['br', 'tr'],
-    overflow: autoAdjustOverflow,
-    offset: [0, -4],
-    targetOffset: targetOffset
-  },
-  bottomLeft: {
-    points: ['tl', 'bl'],
-    overflow: autoAdjustOverflow,
-    offset: [0, 4],
-    targetOffset: targetOffset
-  },
-  bottomCenter: {
-    points: ['tc', 'bc'],
-    overflow: autoAdjustOverflow,
-    offset: [0, 4],
-    targetOffset: targetOffset
-  },
-  bottomRight: {
-    points: ['tr', 'br'],
-    overflow: autoAdjustOverflow,
-    offset: [0, 4],
-    targetOffset: targetOffset
-  }
-};
-/* harmony default export */ var es_placements = (placements_placements);
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/es/Dropdown.js
-
-
-
-
-
-
-
-
-function Dropdown(props, ref) {
-  var _props$arrow = props.arrow,
-      arrow = _props$arrow === void 0 ? false : _props$arrow,
-      _props$prefixCls = props.prefixCls,
-      prefixCls = _props$prefixCls === void 0 ? 'rc-dropdown' : _props$prefixCls,
-      transitionName = props.transitionName,
-      animation = props.animation,
-      align = props.align,
-      _props$placement = props.placement,
-      placement = _props$placement === void 0 ? 'bottomLeft' : _props$placement,
-      _props$placements = props.placements,
-      placements = _props$placements === void 0 ? es_placements : _props$placements,
-      getPopupContainer = props.getPopupContainer,
-      showAction = props.showAction,
-      hideAction = props.hideAction,
-      overlayClassName = props.overlayClassName,
-      overlayStyle = props.overlayStyle,
-      visible = props.visible,
-      _props$trigger = props.trigger,
-      trigger = _props$trigger === void 0 ? ['hover'] : _props$trigger,
-      otherProps = _objectWithoutProperties(props, ["arrow", "prefixCls", "transitionName", "animation", "align", "placement", "placements", "getPopupContainer", "showAction", "hideAction", "overlayClassName", "overlayStyle", "visible", "trigger"]);
-
-  var _React$useState = external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"](),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      triggerVisible = _React$useState2[0],
-      setTriggerVisible = _React$useState2[1];
-
-  var mergedVisible = 'visible' in props ? visible : triggerVisible;
-  var triggerRef = external_root_React_commonjs2_react_commonjs_react_amd_react_["useRef"](null);
-  external_root_React_commonjs2_react_commonjs_react_amd_react_["useImperativeHandle"](ref, function () {
-    return triggerRef.current;
-  });
-
-  var getOverlayElement = function getOverlayElement() {
-    var overlay = props.overlay;
-    var overlayElement;
-
-    if (typeof overlay === 'function') {
-      overlayElement = overlay();
-    } else {
-      overlayElement = overlay;
-    }
-
-    return overlayElement;
-  };
-
-  var onClick = function onClick(e) {
-    var onOverlayClick = props.onOverlayClick;
-    var overlayProps = getOverlayElement().props;
-    setTriggerVisible(false);
-
-    if (onOverlayClick) {
-      onOverlayClick(e);
-    }
-
-    if (overlayProps.onClick) {
-      overlayProps.onClick(e);
-    }
-  };
-
-  var onVisibleChange = function onVisibleChange(visible) {
-    var onVisibleChange = props.onVisibleChange;
-    setTriggerVisible(visible);
-
-    if (typeof onVisibleChange === 'function') {
-      onVisibleChange(visible);
-    }
-  };
-
-  var getMenuElement = function getMenuElement() {
-    var overlayElement = getOverlayElement();
-    var extraOverlayProps = {
-      prefixCls: "".concat(prefixCls, "-menu"),
-      onClick: onClick
-    };
-
-    if (typeof overlayElement.type === 'string') {
-      delete extraOverlayProps.prefixCls;
-    }
-
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](external_root_React_commonjs2_react_commonjs_react_amd_react_["Fragment"], null, arrow && external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"]("div", {
-      className: "".concat(prefixCls, "-arrow")
-    }), external_root_React_commonjs2_react_commonjs_react_amd_react_["cloneElement"](overlayElement, extraOverlayProps));
-  };
-
-  var getMenuElementOrLambda = function getMenuElementOrLambda() {
-    var overlay = props.overlay;
-
-    if (typeof overlay === 'function') {
-      return getMenuElement;
-    }
-
-    return getMenuElement();
-  };
-
-  var getMinOverlayWidthMatchTrigger = function getMinOverlayWidthMatchTrigger() {
-    var minOverlayWidthMatchTrigger = props.minOverlayWidthMatchTrigger,
-        alignPoint = props.alignPoint;
-
-    if ('minOverlayWidthMatchTrigger' in props) {
-      return minOverlayWidthMatchTrigger;
-    }
-
-    return !alignPoint;
-  };
-
-  var getOpenClassName = function getOpenClassName() {
-    var openClassName = props.openClassName;
-
-    if (openClassName !== undefined) {
-      return openClassName;
-    }
-
-    return "".concat(prefixCls, "-open");
-  };
-
-  var renderChildren = function renderChildren() {
-    var children = props.children;
-    var childrenProps = children.props ? children.props : {};
-    var childClassName = classnames_default()(childrenProps.className, getOpenClassName());
-    return triggerVisible && children ? external_root_React_commonjs2_react_commonjs_react_amd_react_["cloneElement"](children, {
-      className: childClassName
-    }) : children;
-  };
-
-  var triggerHideAction = hideAction;
-
-  if (!triggerHideAction && trigger.indexOf('contextMenu') !== -1) {
-    triggerHideAction = ['click'];
-  }
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](es["a" /* default */], Object.assign({}, otherProps, {
-    prefixCls: prefixCls,
-    ref: triggerRef,
-    popupClassName: classnames_default()(overlayClassName, _defineProperty({}, "".concat(prefixCls, "-show-arrow"), arrow)),
-    popupStyle: overlayStyle,
-    builtinPlacements: placements,
-    action: trigger,
-    showAction: showAction,
-    hideAction: triggerHideAction || [],
-    popupPlacement: placement,
-    popupAlign: align,
-    popupTransitionName: transitionName,
-    popupAnimation: animation,
-    popupVisible: mergedVisible,
-    stretch: getMinOverlayWidthMatchTrigger() ? 'minWidth' : '',
-    popup: getMenuElementOrLambda(),
-    onPopupVisibleChange: onVisibleChange,
-    getPopupContainer: getPopupContainer
-  }), renderChildren());
-}
-
-/* harmony default export */ var es_Dropdown = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](Dropdown));
-// CONCATENATED MODULE: ./node_modules/rc-dropdown/es/index.js
-
-/* harmony default export */ var rc_dropdown_es = __webpack_exports__["a"] = (es_Dropdown);
 
 /***/ }),
 /* 315 */
@@ -79778,13 +79778,6 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
             showInfo && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
               null,
-              estimate && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "span",
-                null,
-                " ",
-                "\u2022 ",
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonEstimate, { estimate: estimate, taxon: taxon })
-              ),
               taxon.status === "provisionally accepted" && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
                 null,
@@ -83029,7 +83022,7 @@ function convertChildrenToData(nodes) {
 var valueUtil = __webpack_require__(54);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/generate.js + 11 modules
-var es_generate = __webpack_require__(313);
+var es_generate = __webpack_require__(314);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
 var commonUtil = __webpack_require__(37);
@@ -99906,7 +99899,7 @@ var conductUtil = __webpack_require__(62);
 var useMergedState = __webpack_require__(67);
 
 // EXTERNAL MODULE: ./node_modules/rc-dropdown/es/index.js + 11 modules
-var rc_dropdown_es = __webpack_require__(314);
+var rc_dropdown_es = __webpack_require__(313);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/EllipsisOutlined.js
 var EllipsisOutlined = __webpack_require__(305);
@@ -104620,6 +104613,7 @@ var Taxon_TaxonPage = function (_React$Component) {
             es_col,
             { span: 5, style: { textAlign: "right" } },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
+              auth: this.props.auth,
               style: {
                 maxWidth: "100%",
                 height: "auto",
@@ -104643,6 +104637,15 @@ var Taxon_TaxonPage = function (_React$Component) {
           components_PresentationItem,
           { md: Taxon_md, label: "Published in" },
           lodash_default.a.get(taxon, "name.publishedIn.citation")
+        ),
+        lodash_default.a.get(taxon, "scrutinizer") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          es_col,
+          { span: 12 },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { md: Taxon_md * 2, label: "Taxonomic scrutiny" },
+            "" + lodash_default.a.get(taxon, "scrutinizer") + (lodash_default.a.get(taxon, "scrutinizerDate") ? ", " + lodash_default.a.get(taxon, "scrutinizerDate") : "")
+          )
         ),
         lodash_default.a.get(taxon, "status") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,

@@ -44,12 +44,12 @@ class ColTreeNode extends React.Component {
                           />
                         </span>
                        {showInfo && <React.Fragment>
-                        {estimate && (
+                        {/* estimate && (
                           <span>
                             {" "}
                             • <TaxonEstimate estimate={estimate} taxon={taxon} />
                           </span>
-                        )}
+                        ) */}
                         {taxon.status === "provisionally accepted" && (
                           <React.Fragment> • <Tag color="warning" style={{marginRight: 0}}>
                             prov.
