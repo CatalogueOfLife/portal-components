@@ -105,7 +105,7 @@ class TaxonPage extends React.Component {
         // sector keys are only present if its a catalogue
         if (_.get(res, "data.sectorKey")) {
           axios(
-            `${config.dataApi}/dataset/${datasetKey}/sector/${_.get(
+            `${config.dataApi}dataset/${datasetKey}/sector/${_.get(
               res,
               "data.sectorKey"
             )}`
@@ -333,18 +333,6 @@ class TaxonPage extends React.Component {
               {_.get(taxon, "name.publishedIn.citation")}
             </PresentationItem>
           )}
-          {_.get(taxon, "scrutinizer") && (
-              <Col span={12}>
-                <PresentationItem md={md * 2} label="Taxonomic scrutiny">
-                  {`${_.get(taxon, "scrutinizer")}${
-                    _.get(taxon, "scrutinizerDate")
-                      ? ", " +
-                        _.get(taxon, "scrutinizerDate")
-                      : ""
-                  }`}
-                </PresentationItem>
-              </Col>
-            )}
           {_.get(taxon, "status") && (
             <PresentationItem md={md} label="Checklist status">
               {`${_.get(taxon, "status")} ${_.get(taxon, "name.rank")}`}
@@ -508,9 +496,20 @@ class TaxonPage extends React.Component {
           )}
           </Col>   */}
           </Row>
-
+          {_.get(taxon, "scrutinizer") && (
+              <Col span={12}>
+                <PresentationItem md={md * 2} label="Taxonomic scrutiny">
+                  {`${_.get(taxon, "scrutinizer")}${
+                    _.get(taxon, "scrutinizerDate")
+                      ? ", " +
+                        _.get(taxon, "scrutinizerDate")
+                      : ""
+                  }`}
+                </PresentationItem>
+              </Col>
+            )}
           {_.get(sourceDataset, "title") && (
-            <PresentationItem md={md} label="Source database">
+            <PresentationItem md={md} label="Source dataset">
               <div style={{ display: "inline-block" }}>
                 {" "}
                 <a

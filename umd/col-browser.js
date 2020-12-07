@@ -104415,7 +104415,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         }
         // sector keys are only present if its a catalogue
         if (lodash_default.a.get(res, "data.sectorKey")) {
-          axios_default()(src_config.dataApi + "/dataset/" + datasetKey + "/sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
+          axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
             axios_default()(src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo").then(function () {
               _this.setState({
                 logoUrl: src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo?size=MEDIUM"
@@ -104638,15 +104638,6 @@ var Taxon_TaxonPage = function (_React$Component) {
           { md: Taxon_md, label: "Published in" },
           lodash_default.a.get(taxon, "name.publishedIn.citation")
         ),
-        lodash_default.a.get(taxon, "scrutinizer") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { span: 12 },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { md: Taxon_md * 2, label: "Taxonomic scrutiny" },
-            "" + lodash_default.a.get(taxon, "scrutinizer") + (lodash_default.a.get(taxon, "scrutinizerDate") ? ", " + lodash_default.a.get(taxon, "scrutinizerDate") : "")
-          )
-        ),
         lodash_default.a.get(taxon, "status") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "Checklist status" },
@@ -104773,9 +104764,18 @@ var Taxon_TaxonPage = function (_React$Component) {
             )
           )
         ),
+        lodash_default.a.get(taxon, "scrutinizer") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          es_col,
+          { span: 12 },
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { md: Taxon_md * 2, label: "Taxonomic scrutiny" },
+            "" + lodash_default.a.get(taxon, "scrutinizer") + (lodash_default.a.get(taxon, "scrutinizerDate") ? ", " + lodash_default.a.get(taxon, "scrutinizerDate") : "")
+          )
+        ),
         lodash_default.a.get(sourceDataset, "title") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
-          { md: Taxon_md, label: "Source database" },
+          { md: Taxon_md, label: "Source dataset" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "div",
             { style: { display: "inline-block" } },
