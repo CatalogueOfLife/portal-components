@@ -12,6 +12,17 @@ import {ColTreeContext} from "./ColTreeContext"
 
 const FormItem = Form.Item;
 
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 16 },
+    sm: { span: 16 },
+  },
+  wrapperCol: {
+    xs: { span: 6 },
+    sm: { span: 6 },
+  },
+};
+
 class ColTreeWrapper extends React.Component {
   constructor(props) {    
     super(props);
@@ -65,26 +76,22 @@ class ColTreeWrapper extends React.Component {
               }}
             />
            </Col>
-            {showTreeOptions && <Col style={{textAlign: 'right', paddingLeft: "10px"}}>
-            <Form layout="inline"> 
-            <FormItem label="Info">
+            {showTreeOptions && <Col >
+           
             <Checkbox 
                onChange={({target: {checked}}) => {
-                console.log(checked) 
                 this.setState({showInfo: checked})}}
-               />
-                </FormItem>
+               >Info</Checkbox>
               
             
-               <FormItem label="Extinct">
+               
             <Checkbox 
               defaultChecked={true}
                onChange={({target: {checked}}) => {
-                console.log(checked) 
                 this.setState({hideExtinct: !checked})}}
-               />
-                </FormItem>
-                </Form>
+               >Extinct</Checkbox>
+                
+               
               
             </Col>} 
            

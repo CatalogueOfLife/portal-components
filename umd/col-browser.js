@@ -89339,6 +89339,17 @@ function src_ColTree_inherits(subClass, superClass) { if (typeof superClass !== 
 
 var ColTree_FormItem = es_form.Item;
 
+var formItemLayout = {
+  labelCol: {
+    xs: { span: 16 },
+    sm: { span: 16 }
+  },
+  wrapperCol: {
+    xs: { span: 6 },
+    sm: { span: 6 }
+  }
+};
+
 var ColTree_ColTreeWrapper = function (_React$Component) {
   src_ColTree_inherits(ColTreeWrapper, _React$Component);
 
@@ -89401,35 +89412,29 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
               ),
               showTreeOptions && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 es_col,
-                { style: { textAlign: 'right', paddingLeft: "10px" } },
+                null,
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_form,
-                  { layout: "inline" },
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    ColTree_FormItem,
-                    { label: "Info" },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
-                      onChange: function onChange(_ref) {
-                        var checked = _ref.target.checked;
+                  es_checkbox,
+                  {
+                    onChange: function onChange(_ref) {
+                      var checked = _ref.target.checked;
 
-                        console.log(checked);
-                        _this.setState({ showInfo: checked });
-                      }
-                    })
-                  ),
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    ColTree_FormItem,
-                    { label: "Extinct" },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
-                      defaultChecked: true,
-                      onChange: function onChange(_ref2) {
-                        var checked = _ref2.target.checked;
+                      _this.setState({ showInfo: checked });
+                    }
+                  },
+                  "Info"
+                ),
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                  es_checkbox,
+                  {
+                    defaultChecked: true,
+                    onChange: function onChange(_ref2) {
+                      var checked = _ref2.target.checked;
 
-                        console.log(checked);
-                        _this.setState({ hideExtinct: !checked });
-                      }
-                    })
-                  )
+                      _this.setState({ hideExtinct: !checked });
+                    }
+                  },
+                  "Extinct"
                 )
               )
             ),
@@ -104973,7 +104978,7 @@ var MultiValueFilter_FormItem = es_form.Item;
 
 var MultiValueFilter_Option = es_select.Option;
 
-var formItemLayout = {
+var MultiValueFilter_formItemLayout = {
   labelCol: {
     xs: { span: 8 },
     sm: { span: 8 }
@@ -105009,7 +105014,7 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
 
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         MultiValueFilter_FormItem,
-        MultiValueFilter_extends({}, formItemLayout, {
+        MultiValueFilter_extends({}, MultiValueFilter_formItemLayout, {
           label: label,
           style: { marginBottom: '8px', width: "100%" }
         }),
@@ -106471,7 +106476,7 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
           return record.key;
         },
         showSorterTooltip: false,
-        pagination: { pageSize: 200 },
+        pagination: false,
         expandedRowRender: function expandedRowRender(dataset) {
           return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "div",
