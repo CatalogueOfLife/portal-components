@@ -76,7 +76,7 @@ class ColTreeWrapper extends React.Component {
               }}
             />
            </Col>
-            {showTreeOptions && <Col >
+            {showTreeOptions && <Col style={{paddingLeft: "8px"}}>
            
             <Checkbox 
                onChange={({target: {checked}}) => {

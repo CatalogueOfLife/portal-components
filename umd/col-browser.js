@@ -89412,7 +89412,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
               ),
               showTreeOptions && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 es_col,
-                null,
+                { style: { paddingLeft: "8px" } },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                   es_checkbox,
                   {
