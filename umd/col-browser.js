@@ -77889,8 +77889,7 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./src/config.js
 /* harmony default export */ var src_config = ({
-    clearingHouseUrl: "https://data.catalogue.life/",
-    dataApi: "https://api.catalogue.life/",
+    dataApi: "https://api.catalogueoflife.org/",
     catalogueKey: 3
 });
 // CONCATENATED MODULE: ./node_modules/antd/es/tag/CheckableTag.js

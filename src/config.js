@@ -1,5 +1,4 @@
 export default {
-    clearingHouseUrl: "https://data.catalogue.life/",
-    dataApi: "https://api.catalogue.life/",
+    dataApi: "https://api.catalogueoflife.org/",
     catalogueKey: 3
 }
