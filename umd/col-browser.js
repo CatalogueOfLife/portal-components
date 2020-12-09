@@ -84633,7 +84633,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
 
       var url = datasetKey ? src_config.dataApi + "dataset/" + datasetKey + "/nameusage/suggest" : src_config.dataApi + "name/search";
 
-      axios_default()(url + "?fuzzy=false&limit=25&q=" + q + (minRank ? "&minRank=" + minRank : "") + (hideExtinct ? "&extinct=false" : '')).then(function (res) {
+      axios_default()(url + "?fuzzy=false&limit=25&q=" + q + (minRank ? "&minRank=" + minRank : "") + (hideExtinct ? "&extinct=false&extinct=" : '')).then(function (res) {
         /*         const names = res.data.result ? res.data.result.map((name) => ({
             key: name.usage.name.id,
             title: name.usage.name.scientificName,

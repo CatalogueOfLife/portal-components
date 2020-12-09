@@ -54,7 +54,7 @@ class NameSearchAutocomplete extends React.Component {
     axios(
       `${url}?fuzzy=false&limit=25&q=${q}${
         minRank ? `&minRank=${minRank}` : ""
-      }${hideExtinct ? `&extinct=false`:''}`
+      }${hideExtinct ? `&extinct=false&extinct=`:''}`
     )
       .then((res) => {
         /*         const names = res.data.result ? res.data.result.map((name) => ({
