@@ -77889,8 +77889,7 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./src/config.js
 /* harmony default export */ var src_config = ({
-    dataApi: "https://api.catalogueoflife.org/",
-    catalogueKey: 3
+    dataApi: "https://api.catalogueoflife.org/"
 });
 // CONCATENATED MODULE: ./node_modules/antd/es/tag/CheckableTag.js
 
@@ -89433,7 +89432,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                       _this.setState({ hideExtinct: !checked });
                     }
                   },
-                  "Extinct"
+                  "Include extinct"
                 )
               )
             ),
@@ -95952,14 +95951,15 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
     _this.getData = function () {
       var _this$props = _this.props,
           referenceId = _this$props.referenceId,
-          datasetKey = _this$props.datasetKey;
+          datasetKey = _this$props.datasetKey,
+          references = _this$props.references;
 
       if (referenceId) {
         var refIds = !lodash_default.a.isArray(referenceId) ? [referenceId] : referenceId;
         var reference = [];
         _this.setState({ loading: true });
         Promise.all(refIds.map(function (id) {
-          return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/reference/" + id).then(function (res) {
+          return lodash_default.a.get(references, id) ? Promise.resolve(reference.push(references[id])) : axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/reference/" + id).then(function (res) {
             return reference.push(res.data);
           });
         })).then(function () {
@@ -95985,7 +95985,7 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
           reference.map(function (r) {
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "li",
-              null,
+              { key: r.id },
               r.citation
             );
           })
@@ -95994,16 +95994,12 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
     };
 
     _this.render = function () {
-      var _this$state2 = _this.state,
-          error = _this$state2.error,
-          reference = _this$state2.reference,
-          loading = _this$state2.loading;
       var referenceId = _this.props.referenceId;
 
 
       return referenceId ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         "div",
-        { id: "reference_" + referenceId },
+        { id: "reference_" + referenceId, key: "reference_" + referenceId, style: _this.props.style },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           popover,
           {
@@ -96047,7 +96043,8 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
 var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
   var data = _ref.data,
       style = _ref.style,
-      catalogueKey = _ref.catalogueKey;
+      catalogueKey = _ref.catalogueKey,
+      references = _ref.references;
 
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "div",
@@ -96070,7 +96067,7 @@ var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
           lodash_default.a.get(s, 'status') === 'misapplied' && lodash_default.a.get(s, 'accordingTo') ? lodash_default.a.get(s, 'accordingTo') : ''
         ),
         " ",
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { datasetKey: catalogueKey, referenceId: s.referenceIds, placement: "bottom" })
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { references: references, datasetKey: catalogueKey, referenceId: s.referenceIds, style: { display: 'inline-block' }, placement: "bottom" })
       );
     })
   );
@@ -103381,6 +103378,8 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
       });
     };
 
+    var references = _this.props.references;
+
     _this.state = {
       data: _this.props.data ? [].concat(_this.props.data) : [],
       countryAlpha3: {},
@@ -103417,6 +103416,7 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         render: function render(text, record) {
           return text ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
             referenceId: text,
+            references: references,
             datasetKey: _this.props.datasetKey,
             placement: "left"
           }) : "";
@@ -104393,13 +104393,18 @@ var Taxon_TaxonPage = function (_React$Component) {
     };
 
     _this.getTaxon = function () {
-      var datasetKey = _this.props.catalogueKey;
+      var _this$props = _this.props,
+          datasetKey = _this$props.catalogueKey,
+          pageTitleTemplate = _this$props.pageTitleTemplate;
       var path = src_history.location;
 
       var taxonKey = path.pathname.split("/taxon/")[1];
       _this.setState({ loading: true });
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey).then(function (res) {
         var promises = [res];
+        if (pageTitleTemplate && lodash_default.a.get(res, "data.label")) {
+          document.title = pageTitleTemplate.replace("__taxon__", res.data.label);
+        }
         if (lodash_default.a.get(res, "data.name.publishedInId")) {
           promises.push(axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/reference/" + lodash_default.a.get(res, "data.name.publishedInId")).then(function (publishedIn) {
             res.data.name.publishedIn = publishedIn.data;
@@ -104674,6 +104679,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           { md: Taxon_md, label: "Synonyms" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
             data: synonyms,
+            references: lodash_default.a.get(info, "references"),
             style: { marginTop: "-3px" },
             catalogueKey: catalogueKey
           })
@@ -104683,6 +104689,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           { md: Taxon_md, label: "Misapplied names" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
             data: misapplied,
+            references: lodash_default.a.get(info, "references"),
             style: { marginBottom: 16, marginTop: "-3px" },
             catalogueKey: catalogueKey
           })
@@ -104721,6 +104728,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(VernacularNames, {
             style: { marginTop: "-3px", marginLeft: "-3px" },
             data: info.vernacularNames,
+            references: lodash_default.a.get(info, "references"),
             datasetKey: taxon.datasetKey,
             catalogueKey: catalogueKey
           })
@@ -104744,11 +104752,11 @@ var Taxon_TaxonPage = function (_React$Component) {
           { md: Taxon_md, label: "Additional Data" },
           taxon.remarks
         ),
-        lodash_default.a.get(info, "references") && !lodash_default.a.isEmpty(lodash_default.a.get(info, "references")) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        lodash_default.a.get(info, "taxon.referenceIds[0]") && lodash_default.a.get(info, "references") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "References" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(References, {
-            data: Object.keys(lodash_default.a.get(info, "references")).map(function (k) {
+            data: lodash_default.a.get(info, "taxon.referenceIds").map(function (k) {
               return lodash_default.a.get(info, "references[" + k + "]");
             }),
             style: { marginTop: "-3px" }
@@ -106084,13 +106092,18 @@ var Dataset_DatasetPage = function (_React$Component) {
     };
 
     _this.getData = function () {
-      var catalogueKey = _this.props.catalogueKey;
+      var _this$props = _this.props,
+          catalogueKey = _this$props.catalogueKey,
+          pageTitleTemplate = _this$props.pageTitleTemplate;
       var path = src_history.location;
 
       var pathParts = path.pathname.split("/");
       var datasetKey = pathParts[pathParts.length - 1];
 
       axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey).then(function (dataset) {
+        if (pageTitleTemplate && lodash_default.a.get(dataset, "data.title")) {
+          document.title = pageTitleTemplate.replace("__dataset__", dataset.data.title);
+        }
         _this.setState({ data: dataset.data, datasetError: null });
       }).catch(function (err) {
         return _this.setState({ datasetError: err, data: null });

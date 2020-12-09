@@ -89,7 +89,7 @@ class ColTreeWrapper extends React.Component {
               defaultChecked={true}
                onChange={({target: {checked}}) => {
                 this.setState({hideExtinct: !checked})}}
-               >Extinct</Checkbox>
+               >Include extinct</Checkbox>
                 
                
               

@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import BorderedListItem from "./BorderedListItem"
 import ReferencePopover from "./ReferencePopover"
-const SynonymsTable = ({ data, style, catalogueKey }) => {
+const SynonymsTable = ({ data, style, catalogueKey, references }) => {
   return (
     <div style={style}>
       {data
@@ -17,7 +17,7 @@ const SynonymsTable = ({ data, style, catalogueKey }) => {
             {(_.get(s, 'name.homotypicNameId') && _.get(s, 'accepted.name.homotypicNameId') && _.get(s, 'accepted.name.homotypicNameId') === _.get(s, 'name.homotypicNameId') ) ? '≡ ' : '= '}  <span dangerouslySetInnerHTML={{ __html: _.get(s, 'labelHtml') }} /> {_.get(s, 'name.nomStatus') && `(${_.get(s, 'name.nomStatus')})`} {_.get(s, 'status') === 'misapplied' && _.get(s, 'accordingTo') ?  _.get(s, 'accordingTo') :''}
             </span> 
             {" "}
-              <ReferencePopover datasetKey={catalogueKey} referenceId={s.referenceIds} placement="bottom"/>
+              <ReferencePopover references={references} datasetKey={catalogueKey} referenceId={s.referenceIds} style={{display: 'inline-block'}} placement="bottom"/>
           </BorderedListItem>
         ))}
     </div>

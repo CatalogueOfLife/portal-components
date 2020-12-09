@@ -10,7 +10,7 @@ import { getCountries } from "../api/enumeration";
 class VernacularNamesTable extends React.Component {
   constructor(props) {
     super(props);
-
+    const {references} = this.props;
     this.state = {
       data: this.props.data ? [...this.props.data] : [],
       countryAlpha3: {},
@@ -51,6 +51,7 @@ class VernacularNamesTable extends React.Component {
             return text ? (
               <ReferencePopover
                 referenceId={text}
+                references={references}
                 datasetKey={this.props.datasetKey}
                 placement="left"
               ></ReferencePopover>

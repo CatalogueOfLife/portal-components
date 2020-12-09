@@ -30,7 +30,7 @@ class DatasetPage extends React.Component {
   };
 
   getData = () => {
-    const { catalogueKey } = this.props;
+    const { catalogueKey, pageTitleTemplate } = this.props;
 
     const { location: path } = history;
     const pathParts = path.pathname.split("/");
@@ -38,6 +38,9 @@ class DatasetPage extends React.Component {
 
     axios(`${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}`)
       .then((dataset) => {
+        if(pageTitleTemplate && _.get(dataset, "data.title")){
+          document.title = pageTitleTemplate.replace("__dataset__", dataset.data.title)
+        }
         this.setState({ data: dataset.data, datasetError: null });
       })
       .catch((err) => this.setState({ datasetError: err, data: null }));

@@ -60,13 +60,16 @@ class TaxonPage extends React.Component {
   };
 
   getTaxon = () => {
-    const { catalogueKey: datasetKey } = this.props;
+    const { catalogueKey: datasetKey, pageTitleTemplate } = this.props;
     const { location: path } = history;
     const taxonKey = path.pathname.split("/taxon/")[1];
     this.setState({ loading: true });
     axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`)
       .then((res) => {
         let promises = [res];
+        if(pageTitleTemplate && _.get(res, "data.label")){
+          document.title = pageTitleTemplate.replace("__taxon__", res.data.label)
+        }
         if (_.get(res, "data.name.publishedInId")) {
           promises.push(
             axios(
@@ -383,6 +386,7 @@ class TaxonPage extends React.Component {
             <PresentationItem md={md} label="Synonyms">
               <SynonymTable
                 data={synonyms}
+                references={_.get(info, "references")}
                 style={{ marginTop: "-3px" }}
                 catalogueKey={catalogueKey}
               />
@@ -393,6 +397,7 @@ class TaxonPage extends React.Component {
             <PresentationItem md={md} label="Misapplied names">
               <SynonymTable
                 data={misapplied}
+                references={_.get(info, "references")}
                 style={{ marginBottom: 16, marginTop: "-3px" }}
                 catalogueKey={catalogueKey}
               />
@@ -435,6 +440,7 @@ class TaxonPage extends React.Component {
               <VernacularNames
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}
                 data={info.vernacularNames}
+                references={_.get(info, "references")}
                 datasetKey={taxon.datasetKey}
                 catalogueKey={catalogueKey}
               />
@@ -468,10 +474,10 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
 
-          {_.get(info, "references") && !_.isEmpty(_.get(info, "references")) && (
+          {_.get(info, "taxon.referenceIds[0]") && _.get(info, "references") && (
             <PresentationItem md={md} label="References">
               <References
-                data={Object.keys(_.get(info, "references")).map((k) =>
+                data={_.get(info, "taxon.referenceIds").map((k) =>
                   _.get(info, `references[${k}]`)
                 )}
                 style={{ marginTop: "-3px" }}

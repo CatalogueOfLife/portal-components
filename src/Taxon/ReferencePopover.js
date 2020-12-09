@@ -17,16 +17,19 @@ class ReferencePopover extends React.Component {
   }
 
   getData = () => {
-    const { referenceId, datasetKey } = this.props;
-    if (referenceId) {
+    const { referenceId, datasetKey, references } = this.props;
+     if (referenceId) {
       const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
       const reference = [];
       this.setState({ loading: true });
       Promise.all(
-        refIds.map((id) =>
+        refIds.map((id) => _.get(references, id) ? Promise.resolve(reference.push(references[id])) :
+
           axios(
             `${config.dataApi}dataset/${datasetKey}/reference/${id}`
           ).then((res) => reference.push(res.data))
+
+     
         )
       ).then(() => this.setState({ reference, loading: false }));
     }
@@ -42,7 +45,7 @@ class ReferencePopover extends React.Component {
       return (
         <ul>
           {reference.map((r) => (
-            <li>{r.citation}</li>
+            <li key={r.id}>{r.citation}</li>
           ))}
         </ul>
       );
@@ -50,11 +53,10 @@ class ReferencePopover extends React.Component {
   };
 
   render = () => {
-    const { error, reference, loading } = this.state;
     const { referenceId } = this.props;
 
     return referenceId ? (
-      <div id={`reference_${referenceId}`}>
+      <div id={`reference_${referenceId}`} key={`reference_${referenceId}`} style={this.props.style}>
         <Popover
           getPopupContainer={() =>
             document.getElementById(`reference_${referenceId}`)

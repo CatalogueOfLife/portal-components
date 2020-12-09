@@ -114,8 +114,10 @@ ReactDOM.render(e(Search), domContainer);
 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxon classification to point towards).
-3. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
-4. `pathToTaxon=` - The local path to the taxon page of your website (the page where this component will placed).
+3. `pathToSearch` - The local path to the search page of your website (for links in the classification to point towards).
+4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
+5. `pathToTaxon=` - The local path to the taxon page of your website (the page where this component will placed).
+6. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__taxon__` that will be replaced with the taxon name.
 
 ```
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
@@ -131,8 +133,10 @@ class Taxon extends React.Component {
         ColBrowser.Taxon,
         { catalogueKey: 9999,
           pathToTree: '/mytaxonomy/browse',
+          pathToSearch= '/data/search',
           pathToDataset: '/sourcedatasets/',
-          pathToTaxon: '/mytaxonomy/taxon/' }
+          pathToTaxon: '/mytaxonomy/taxon/' 
+          pageTitleTemplate: 'COL | __taxon__'}
       );
     }
   }
@@ -148,6 +152,8 @@ ReactDOM.render(e(Taxon), domContainer);
 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxonomic coverage section to point towards).
+3. `pathToSearch` - The local path to the search page of your website (for links in the metrics section to point towards).
+4. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__dataset__` that will be replaced with the dataset title name.
 
 ```
 <div id="dataset"></div> <!- Dom element for the dataset details to attach to -->
@@ -162,7 +168,9 @@ class Dataset extends React.Component {
       return e(
         ColBrowser.Taxon,
         { catalogueKey: 9999,
-          pathToTree: '/mytaxonomy/browse' }
+          pathToTree: '/mytaxonomy/browse'
+          pathToSearch: '/data/search'
+          pageTitleTemplate: 'COL | __dataset__' }
       );
     }
   }
