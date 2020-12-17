@@ -19790,6 +19790,9 @@ The ant popover injects the list in the bottom of the body, and therefore it is 
 .ant-popover-placement-leftBottom > .ant-popover-content > .ant-popover-arrow {
   bottom: 12px;
 }
+td.ant-table-cell {
+  color: black;
+}
 
 
 /*# sourceMappingURL=main.css.map*/

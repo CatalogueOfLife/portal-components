@@ -96067,7 +96067,7 @@ var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
           lodash_default.a.get(s, 'status') === 'misapplied' && lodash_default.a.get(s, 'accordingTo') ? lodash_default.a.get(s, 'accordingTo') : ''
         ),
         " ",
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { references: references, datasetKey: catalogueKey, referenceId: s.referenceIds, style: { display: 'inline-block' }, placement: "bottom" })
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { references: references, datasetKey: catalogueKey, referenceId: lodash_default.a.get(s, "name.publishedInId") ? [lodash_default.a.get(s, "name.publishedInId")].concat(s.referenceIds || []) : s.referenceIds, style: { display: 'inline-block' }, placement: "bottom" })
       );
     })
   );
