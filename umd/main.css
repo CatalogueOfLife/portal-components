@@ -19353,6 +19353,10 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
   height: 80px;
   width: 1px;
 }
+.catalogue-of-life a.col-tree-data-source {
+  color: orange;
+  font-size: 11px;
+}
 /* 
 The ant autocomplete injects the list in the bottom of the body, and therefore it is outside the catalogue of life class
  */

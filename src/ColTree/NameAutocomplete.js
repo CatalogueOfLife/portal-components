@@ -77,9 +77,10 @@ class NameSearchAutocomplete extends React.Component {
     const selectedTaxon = _.get(obj, "data.acceptedUsageId")
       ? {
           key: _.get(obj, "data.acceptedUsageId"),
+          rank: _.get(obj, "data.rank"),
           title: _.get(obj, "data.parentOrAcceptedName"),
         }
-      : { key: _.get(obj, "data.usageId"), title: _.get(obj, "data.name") };
+      : { key: _.get(obj, "data.usageId"), rank: _.get(obj, "data.rank"), title: _.get(obj, "data.name") };
     this.setState({ value: val });
     this.props.onSelectName(selectedTaxon);
   };

@@ -47,8 +47,8 @@ class TaxonSources extends React.Component {
         .filter((d) => !!d)
         .map((d, index) => (
           <a
+            className="col-tree-data-source"
             key={d.key}
-            style={{ fontSize: "11px" }}
             href={`${pathToDataset}${d.key}`}
             onClick={() => {
               window.location.href = `${pathToDataset}${d.key}`;
@@ -73,8 +73,8 @@ class TaxonSources extends React.Component {
                   .filter((d) => !!d)
                   .map((d, index) => (
                     <a
+                      className="col-tree-data-source"
                       key={d.key}
-                      style={{ fontSize: "11px" }}
                       href={`${pathToDataset}${d.key}`}
                       onClick={() => {
                         window.location.href = `${pathToDataset}${d.key}`;
@@ -113,8 +113,8 @@ class TaxonSources extends React.Component {
           trigger="click"
           placement="rightTop"
         >
-          <a style={{ fontSize: "11px" }} href="">
-            Multiple providers
+          <a className="col-tree-data-source"  href="">
+            Multiple sources
           </a>
         </Popover>
       </div>

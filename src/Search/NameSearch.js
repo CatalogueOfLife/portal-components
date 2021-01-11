@@ -75,7 +75,7 @@ const getColumns = (pathToTaxon) => [
     sorter: true,
   },
   {
-    title: "Parents",
+    title: "Classification",
     dataIndex: ["usage", "classification"],
     key: "parents",
     width: 180,
@@ -84,9 +84,10 @@ const getColumns = (pathToTaxon) => [
         ""
       ) : (
         <Classification
+
           key={_.get(record, "usage.id")}
           classification={_.initial(record.classification)}
-          maxParents={2}
+          truncate={true}
           datasetKey={_.get(record, "usage.name.datasetKey")}
           pathToTaxon={pathToTaxon}
         />
@@ -124,7 +125,11 @@ class NameSearchPage extends React.Component {
       this.parseParamsAndGetData();
     }
   };
-
+  getRank = () => {
+    axios(`${config.dataApi}vocab/rank`).then((res) =>
+      this.setState({ rank: res.data.map((r) => r.name) })
+    );
+  };
   parseParamsAndGetData = () => {
     let params = qs.parse(_.get(this.props, "location.search"));
     if (_.isEmpty(params)) {
@@ -383,7 +388,7 @@ class NameSearchPage extends React.Component {
                     }}
                     value={params.type || "WHOLE_WORDS"}
                     optionType="button"
-                    options={[{value:"EXACT", label: "Exact" }, {value:"WHOLE_WORDS", label: "Words"}, {value:"PREFIX", label:"Partial"} ]}
+                    options={[{value:"EXACT", label: "Exact" }, {value:"WHOLE_WORDS", label: "Words"}, {value:"PREFIX", label:"Prefix"} ]}
                   >
                    
                   </RadioGroup>

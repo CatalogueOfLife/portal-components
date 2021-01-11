@@ -10,18 +10,7 @@ import btoa from "btoa"
 import {Row, Col, Switch, Checkbox, Form} from "antd";
 import {ColTreeContext} from "./ColTreeContext"
 
-const FormItem = Form.Item;
-
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 16 },
-    sm: { span: 16 },
-  },
-  wrapperCol: {
-    xs: { span: 6 },
-    sm: { span: 6 },
-  },
-};
+const INFRASPECIFIC_RANKS = ["infraspecific name", "species", "variety", "form"];
 
 class ColTreeWrapper extends React.Component {
   constructor(props) {    
@@ -38,7 +27,7 @@ class ColTreeWrapper extends React.Component {
 
 
   render = () => {
-    const {catalogueKey, pathToTaxon, pathToDataset, defaultTaxonKey, showTreeOptions } = this.props;
+    const {catalogueKey, pathToTaxon, pathToDataset, defaultTaxonKey, showTreeOptions, linkToSpeciesPage } = this.props;
     const {hideExtinct} = this.state;
     const params = qs.parse(_.get(location, "search"));
       return (
@@ -54,17 +43,20 @@ class ColTreeWrapper extends React.Component {
               style={{width: '100%', paddingTop: '5px', paddingBottom: '5px'}}
               defaultTaxonKey={_.get(params, "taxonKey") || null}
               onSelectName={name => {
-    
-                const newParams = {
-                  ...params,
-                  taxonKey: _.get(name, "key")
-                };
-    
-                history.push({
-                  pathname: location.path,
-                  search: `?${qs.stringify(newParams)}`
-                });
-                this.treeRef.reloadRoot()
+                if(linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(_.get(name, "rank"))){
+                  window.location.href = `${pathToTaxon}${_.get(name, "key")}`;
+                } else {
+                  const newParams = {
+                    ...params,
+                    taxonKey: _.get(name, "key")
+                  };
+      
+                  history.push({
+                    pathname: location.path,
+                    search: `?${qs.stringify(newParams)}`
+                  });
+                  this.treeRef.reloadRoot()
+                }
               }}
               onResetSearch={() => {
     

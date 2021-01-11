@@ -71,6 +71,7 @@ class ColTreeNode extends React.Component {
                             <span> • </span>
                             <a
                               href={`${pathToDataset}${sector.subjectDatasetKey}`}
+                              className="col-tree-data-source"
                               onClick={() => {
                                 window.location.href = `${pathToDataset}${sector.subjectDatasetKey}`;
                               }}

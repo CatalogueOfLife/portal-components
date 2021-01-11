@@ -52,6 +52,7 @@ A [browsable taxonomic tree](https://www.dev.catalogue.life/data/browse.html), t
 3. `defaultTaxonKey` - (Optional) Initially expand the tree down to this taxon.
 4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
 5. `showTreeOptions` - (Optional) show toggles for extinct taxa and info (estimates, providers etc)
+6. `linkToSpeciesPage`- (Optional) when the searchbox finds a species or infraspecific taxon, jump directly to the taxon page rather than opening the tree 
 
 ```
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
