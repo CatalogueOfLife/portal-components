@@ -1,5 +1,5 @@
 import React from "react";
-import svg404 from './404.svg';
+import svg404 from './svg404';
 export default () => (
   <React.Fragment>
     <div
@@ -12,7 +12,7 @@ export default () => (
       className="catalogue-of-life"
     >
         <div style={{
-                    backgroundImage: `url(${svg404})`,
+                    backgroundImage: `url("data:image/svg+xml,${svg404}")`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     padding: "200px 176px 200px 224px"

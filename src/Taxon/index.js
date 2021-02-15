@@ -242,7 +242,6 @@ class TaxonPage extends React.Component {
       `${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`
     )
       .then((res) => {
-        alert("Found a synonym")
         window.location.href = `${pathToTaxon}${_.get(res, 'data.accepted.id')}`;
       })
       .catch((err) => {
