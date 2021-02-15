@@ -150,7 +150,7 @@ class DatasetPage extends React.Component {
               </PresentationItem>
 
               <PresentationItem label="Organisation">
-                {_.isArray(data.organisations) && data.organisations.map(o => o.label).join(", ")}
+                {_.isArray(data.organisations) && data.organisations.map(o => <div>{o.label}</div>)}
               </PresentationItem>
               <PresentationItem label="Website">
                 {data.website && (

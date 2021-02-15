@@ -20,7 +20,7 @@ import BooleanValue from "../components/BooleanValue";
 import IncludesTable from "./Includes";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import btoa from "btoa"
-
+import Page404 from "../components/Page404"
 const md = 5;
 
 class TaxonPage extends React.Component {
@@ -152,6 +152,9 @@ class TaxonPage extends React.Component {
         });
       })
       .catch((err) => {
+        if(_.get(err, "response.status") === 404){
+          this.fetchSynonymAndRedirect(taxonKey)
+        }
         this.setState({ taxonLoading: false, taxonError: err, taxon: null });
       });
   };
@@ -166,6 +169,9 @@ class TaxonPage extends React.Component {
         this.setState({ infoLoading: false, info: res.data, infoError: null });
       })
       .catch((err) => {
+        if(_.get(err, "response.status") === 404){
+          this.fetchSynonymAndRedirect(taxonKey)
+        }
         this.setState({ infoLoading: false, infoError: err, info: null });
       });
   };
@@ -229,6 +235,23 @@ class TaxonPage extends React.Component {
       });
   };
 
+  fetchSynonymAndRedirect = (taxonKey) => {
+    const { catalogueKey: datasetKey, pathToTaxon } = this.props;
+
+    axios(
+      `${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`
+    )
+      .then((res) => {
+        alert("Found a synonym")
+        window.location.href = `${pathToTaxon}${_.get(res, 'data.accepted.id')}`;
+      })
+      .catch((err) => {
+        if(_.get(err, "response.status") === 404){
+          this.setState({status: 404})
+        }
+      });
+  }
+
   render() {
     const {
       catalogueKey,
@@ -249,6 +272,7 @@ class TaxonPage extends React.Component {
       synonymsError,
       classificationError,
       infoError,
+      status
     } = this.state;
 
     const synonyms =
@@ -260,7 +284,7 @@ class TaxonPage extends React.Component {
         ? info.synonyms.filter((s) => s.status === "misapplied")
         : [];
 
-    return (
+    return status === 404 ? <Page404 /> :
       <React.Fragment>
         <div
           className="catalogue-of-life"
@@ -553,7 +577,7 @@ class TaxonPage extends React.Component {
           )}
         </div>
       </React.Fragment>
-    );
+    
   }
 }
 

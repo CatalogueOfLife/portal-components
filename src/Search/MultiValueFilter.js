@@ -37,7 +37,7 @@ class MultiValueFilter extends React.Component {
 
   render = () => {
     const {defaultValue, label, vocab} = this.props;
-    const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
+    const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
     return (
         <FormItem

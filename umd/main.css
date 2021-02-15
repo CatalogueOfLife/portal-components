@@ -19215,6 +19215,9 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
 .catalogue-of-life .colplus-taxon-page-list tbody tr:last-child > td {
   border-bottom: none !important;
 }
+.catalogue-of-life .catalogue-of-life-404 {
+  min-height: calc(100vh - 80px);
+}
 .catalogue-of-life .colplus-taxon-page-list th,
 .catalogue-of-life .colplus-taxon-page-list td {
   padding: 5px 3px !important;
