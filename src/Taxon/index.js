@@ -154,8 +154,10 @@ class TaxonPage extends React.Component {
       .catch((err) => {
         if(_.get(err, "response.status") === 404){
           this.fetchSynonymAndRedirect(taxonKey)
+        } else {
+          this.setState({ taxonLoading: false, taxonError: err, taxon: null });
         }
-        this.setState({ taxonLoading: false, taxonError: err, taxon: null });
+        
       });
   };
 
@@ -171,8 +173,10 @@ class TaxonPage extends React.Component {
       .catch((err) => {
         if(_.get(err, "response.status") === 404){
           this.fetchSynonymAndRedirect(taxonKey)
+        } else {
+          this.setState({ infoLoading: false, infoError: err, info: null });
         }
-        this.setState({ infoLoading: false, infoError: err, info: null });
+        
       });
   };
 
@@ -247,7 +251,7 @@ class TaxonPage extends React.Component {
       .catch((err) => {
         if(_.get(err, "response.status") === 404){
           this.setState({status: 404})
-        }
+        } 
       });
   }
 

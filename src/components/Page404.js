@@ -15,7 +15,7 @@ export default () => (
                     backgroundImage: `url("data:image/svg+xml,${svg404}")`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
-                    padding: "200px 176px 200px 224px"
+                    padding: "170px 176px 200px 224px"
         }}>
       <div style={{ textAlign: "center", fontWeight: 800 }}>
         <h1>404</h1>

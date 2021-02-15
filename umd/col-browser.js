@@ -100504,7 +100504,7 @@ var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component
             backgroundImage: 'url("data:image/svg+xml,' + svg404 + '")',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            padding: "200px 176px 200px 224px"
+            padding: "170px 176px 200px 224px"
           } },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           'div',
@@ -100634,8 +100634,9 @@ var Taxon_TaxonPage = function (_React$Component) {
       }).catch(function (err) {
         if (lodash_default.a.get(err, "response.status") === 404) {
           _this.fetchSynonymAndRedirect(taxonKey);
+        } else {
+          _this.setState({ taxonLoading: false, taxonError: err, taxon: null });
         }
-        _this.setState({ taxonLoading: false, taxonError: err, taxon: null });
       });
     };
 
@@ -100650,8 +100651,9 @@ var Taxon_TaxonPage = function (_React$Component) {
       }).catch(function (err) {
         if (lodash_default.a.get(err, "response.status") === 404) {
           _this.fetchSynonymAndRedirect(taxonKey);
+        } else {
+          _this.setState({ infoLoading: false, infoError: err, info: null });
         }
-        _this.setState({ infoLoading: false, infoError: err, info: null });
       });
     };
 
