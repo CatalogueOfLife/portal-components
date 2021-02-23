@@ -106113,7 +106113,7 @@ var TaxonomicCoverage_TaxonomicCoverage = function (_React$Component) {
 
       var taxonMap = {};
       axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/sector?limit=1000&subjectDatasetKey=" + dataset.key).then(function (res) {
-        return Promise.all(res.data.result.map(function (t) {
+        return Promise.allSettled(res.data.result.map(function (t) {
           return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/nameusage/search?TAXON_ID=" + t.target.id + "&rank=" + t.subject.rank + "&q=" + t.subject.name).then(function (usages) {
             var taxon = TaxonomicCoverage_.get(usages, "data.result[0]");
             if (taxon) {
@@ -106126,6 +106126,9 @@ var TaxonomicCoverage_TaxonomicCoverage = function (_React$Component) {
                 taxonMap[path] = [taxon.classification[taxon.classification.length - 1]];
               }
             }
+          }).catch(function (err) {
+            console.log(t);
+            console.log(err);
           });
         })).then(function () {
           return _this.setState({ taxonMap: taxonMap, loading: false });

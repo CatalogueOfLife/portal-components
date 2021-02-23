@@ -23,7 +23,7 @@ class TaxonomicCoverage extends React.Component {
     axios(
       `${config.dataApi}dataset/${catalogueKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
     ).then((res) => {
-      return Promise.all(
+      return Promise.allSettled(
         res.data.result.map((t) =>
           axios(
             `${config.dataApi}dataset/${catalogueKey}/nameusage/search?TAXON_ID=${t.target.id}&rank=${t.subject.rank}&q=${t.subject.name}`
@@ -45,6 +45,9 @@ class TaxonomicCoverage extends React.Component {
               }
             }
           })
+          .catch(err => {
+            console.log(t)
+            console.log(err)})
         )
       ).then(() => this.setState({ taxonMap, loading: false }));
     });
