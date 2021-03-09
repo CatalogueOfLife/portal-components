@@ -100885,7 +100885,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         infoError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, { message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: infoError }), type: "error" }),
         synonyms && synonyms.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
-          { md: Taxon_md, label: "Synonyms" },
+          { md: Taxon_md, label: "Synonyms and Combinations" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
             data: synonyms,
             references: lodash_default.a.get(info, "references"),
