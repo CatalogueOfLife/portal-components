@@ -20,7 +20,7 @@ Include dependencies, React and React Dom:
 Include the Library:
 
 ```
-<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.6/umd/col-browser.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@<VERSION>/umd/col-browser.min.js" ></script>
 ```
 
 or get the latest version available:
@@ -32,7 +32,7 @@ or get the latest version available:
 And the styles:
 
 ```
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@0.4.6/umd/main.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@<VERSION>/umd/main.css">
 ```
 
 or get the the latest version available:
