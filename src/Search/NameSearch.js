@@ -372,7 +372,7 @@ class NameSearchPage extends React.Component {
                     onChange={({target: {checked}}) => this.updateSearch({ fuzzy: checked ? checked: null })}
                   />
                 </FormItem>
-                <FormItem label="Extinct">
+                <FormItem label="Include extinct">
                   <Checkbox
                     checked={params.extinct !== false && params.extinct !== "false"}
                     onChange={({target: {checked}}) =>

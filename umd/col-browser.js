@@ -100401,7 +100401,7 @@ var Includes_IncludesTable = function IncludesTable(_ref) {
           classes: { formItem: { borderBottom: "none" } },
           key: t.value
         },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "a",
           {
             href: pathToSearch + "?TAXON_ID=" + taxon.id + "&rank=" + t.value + "&status=accepted&status=provisionally%20accepted",
@@ -100410,7 +100410,7 @@ var Includes_IncludesTable = function IncludesTable(_ref) {
             }
           },
           t.count
-        )
+        ) : t.count
       );
     })
   );
@@ -105771,7 +105771,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
               ),
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 NameSearch_FormItem,
-                { label: "Extinct" },
+                { label: "Include extinct" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
                   checked: params.extinct !== false && params.extinct !== "false",
                   onChange: function onChange(_ref2) {

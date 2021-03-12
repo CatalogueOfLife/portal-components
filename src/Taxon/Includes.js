@@ -20,14 +20,14 @@ const IncludesTable = ({ data, style, rank, pathToSearch, taxon }) => {
             classes={{ formItem: { borderBottom: "none" } }}
             key={t.value}
           >
-            <a
+           {pathToSearch ? <a
               href={`${pathToSearch}?TAXON_ID=${taxon.id}&rank=${t.value}&status=accepted&status=provisionally%20accepted`}
               onClick={() => {
                 window.location.href = `${pathToSearch}?TAXON_ID=${taxon.id}&rank=${t.value}&status=accepted&status=provisionally%20accepted`;
               }}
             >
               {t.count}
-            </a>
+            </a> : t.count }
           </PresentationItem>
         ))}
     </div>
