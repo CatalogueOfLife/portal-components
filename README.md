@@ -85,6 +85,7 @@ ReactDOM.render(e(Tree), domContainer);
 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
+3. `fixedHigherTaxonKey` - (Optional) if the search should only be in a certain Family, Order etc
 
 ```
 <div id="search"></div> <!- Dom element for the search to attach to -->
