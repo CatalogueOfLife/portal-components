@@ -106,7 +106,7 @@ class NameSearchAutocomplete extends React.Component {
     });
   }
   render = () => {
-    const { placeHolder, autoFocus } = this.props;
+    const { placeHolder, autoFocus, disabled } = this.props;
     const { value , options} = this.state;
     const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
@@ -128,12 +128,13 @@ class NameSearchAutocomplete extends React.Component {
         }}
         value={value}
         autoFocus={autoFocus === false ? false : true}
+        disabled={disabled}
         getPopupContainer={() =>
           document.getElementById(`taxon_autocomplete_${randomID}`)
         }
         
       >
-        <Input.Search  allowClear />
+        <Input.Search allowClear />
       </AutoComplete></div> 
     );
   };

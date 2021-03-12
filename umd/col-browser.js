@@ -84684,7 +84684,8 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     _this.render = function () {
       var _this$props2 = _this.props,
           placeHolder = _this$props2.placeHolder,
-          autoFocus = _this$props2.autoFocus;
+          autoFocus = _this$props2.autoFocus,
+          disabled = _this$props2.disabled;
       var _this$state = _this.state,
           value = _this$state.value,
           options = _this$state.options;
@@ -84715,6 +84716,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
             },
             value: value,
             autoFocus: autoFocus === false ? false : true,
+            disabled: disabled,
             getPopupContainer: function getPopupContainer() {
               return document.getElementById("taxon_autocomplete_" + randomID);
             }
@@ -100569,21 +100571,24 @@ var Taxon_TaxonPage = function (_React$Component) {
     var _this = Taxon_possibleConstructorReturn(this, _React$Component.call(this, props));
 
     _this.componentDidMount = function () {
-      _this.getTaxon();
-      _this.getInfo();
-      _this.getClassification();
-      _this.getRank();
-      _this.getIncludes();
-      _this.getNomStatus();
+      var pathToTaxon = _this.props.pathToTaxon;
+      var location = src_history.location;
+
+      var uri = "" + location.pathname + location.search;
+      var taxonKey = uri.split(pathToTaxon)[1];
+      _this.getTaxon(taxonKey);
+      _this.getInfo(taxonKey);
+      _this.getClassification(taxonKey);
+      _this.getRank(taxonKey);
+      _this.getIncludes(taxonKey);
+      _this.getNomStatus(taxonKey);
     };
 
-    _this.getTaxon = function () {
+    _this.getTaxon = function (taxonKey) {
       var _this$props = _this.props,
           datasetKey = _this$props.catalogueKey,
           pageTitleTemplate = _this$props.pageTitleTemplate;
-      var path = src_history.location;
 
-      var taxonKey = path.pathname.split("/taxon/")[1];
       _this.setState({ loading: true });
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey).then(function (res) {
         var promises = [res];
@@ -100640,11 +100645,8 @@ var Taxon_TaxonPage = function (_React$Component) {
       });
     };
 
-    _this.getInfo = function () {
+    _this.getInfo = function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
-      var path = src_history.location;
-
-      var taxonKey = path.pathname.split("/taxon/")[1];
 
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/info").then(function (res) {
         _this.setState({ infoLoading: false, info: res.data, infoError: null });
@@ -100675,11 +100677,9 @@ var Taxon_TaxonPage = function (_React$Component) {
       });
     };
 
-    _this.getClassification = function () {
+    _this.getClassification = function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
-      var path = src_history.location;
 
-      var taxonKey = path.pathname.split("/taxon/")[1];
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification").then(function (res) {
         _this.setState({
           classificationLoading: false,
@@ -100695,11 +100695,9 @@ var Taxon_TaxonPage = function (_React$Component) {
       });
     };
 
-    _this.getIncludes = function () {
+    _this.getIncludes = function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
-      var path = src_history.location;
 
-      var taxonKey = path.pathname.split("/taxon/")[1];
 
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/nameusage/search?TAXON_ID=" + taxonKey + "&facet=rank&status=accepted&status=provisionally%20accepted&limit=0").then(function (res) {
         _this.setState({
@@ -105509,7 +105507,12 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     };
 
     _this.parseParamsAndGetData = function () {
+      var fixedHigherTaxonKey = _this.props.fixedHigherTaxonKey;
+
       var params = query_string_default.a.parse(lodash_default.a.get(_this.props, "location.search"));
+      if (fixedHigherTaxonKey) {
+        params.TAXON_ID = fixedHigherTaxonKey;
+      }
       if (lodash_default.a.isEmpty(params)) {
         params = defaultParams;
         _this.pushParams(defaultParams);
@@ -105648,7 +105651,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         advancedFilters = _state.advancedFilters;
     var _props = this.props,
         pathToTaxon = _props.pathToTaxon,
-        catalogueKey = _props.catalogueKey;
+        catalogueKey = _props.catalogueKey,
+        fixedHigherTaxonKey = _props.fixedHigherTaxonKey;
 
     var facetRanks = lodash_default.a.get(facets, "rank") ? facets.rank.map(function (r) {
       return {
@@ -105725,7 +105729,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
             minRank: "GENUS",
-            defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || null,
+            defaultTaxonKey: fixedHigherTaxonKey || lodash_default.a.get(params, "TAXON_ID") || null,
             onSelectName: function onSelectName(value) {
               _this2.updateSearch({ TAXON_ID: value.key });
             },
@@ -105734,7 +105738,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             },
             placeHolder: "Search by higher taxon",
             sortBy: "TAXONOMIC",
-            autoFocus: false
+            autoFocus: false,
+            disabled: fixedHigherTaxonKey ? true : false
           }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "div",
@@ -105914,6 +105919,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
 /* harmony default export */ var src_Search = (function (_ref) {
   var catalogueKey = _ref.catalogueKey,
       pathToTaxon = _ref.pathToTaxon,
+      fixedHigherTaxonKey = _ref.fixedHigherTaxonKey,
       auth = _ref.auth;
 
   if (auth) {
@@ -105923,7 +105929,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     react_router_Router,
     { history: src_history },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon })
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon, fixedHigherTaxonKey: fixedHigherTaxonKey })
   );
 });
 // CONCATENATED MODULE: ./src/Dataset/MetricsPresentation.js

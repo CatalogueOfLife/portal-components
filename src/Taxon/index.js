@@ -51,18 +51,20 @@ class TaxonPage extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getTaxon();
-    this.getInfo();
-    this.getClassification();
-    this.getRank();
-    this.getIncludes();
-    this.getNomStatus();
+    const { pathToTaxon } = this.props;
+    const { location } = history;
+    const uri = `${location.pathname}${location.search}`
+    const taxonKey = uri.split(pathToTaxon)[1];
+    this.getTaxon(taxonKey);
+    this.getInfo(taxonKey);
+    this.getClassification(taxonKey);
+    this.getRank(taxonKey);
+    this.getIncludes(taxonKey);
+    this.getNomStatus(taxonKey);
   };
 
-  getTaxon = () => {
+  getTaxon = (taxonKey) => {
     const { catalogueKey: datasetKey, pageTitleTemplate } = this.props;
-    const { location: path } = history;
-    const taxonKey = path.pathname.split("/taxon/")[1];
     this.setState({ loading: true });
     axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`)
       .then((res) => {
@@ -161,11 +163,8 @@ class TaxonPage extends React.Component {
       });
   };
 
-  getInfo = () => {
+  getInfo = (taxonKey) => {
     const { catalogueKey: datasetKey } = this.props;
-    const { location: path } = history;
-    const taxonKey = path.pathname.split("/taxon/")[1];
-
     axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`)
       .then((res) => {
         this.setState({ infoLoading: false, info: res.data, infoError: null });
@@ -194,10 +193,8 @@ class TaxonPage extends React.Component {
     );
   };
 
-  getClassification = () => {
+  getClassification = (taxonKey) => {
     const { catalogueKey: datasetKey } = this.props;
-    const { location: path } = history;
-    const taxonKey = path.pathname.split("/taxon/")[1];
     axios(
       `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/classification`
     )
@@ -217,10 +214,8 @@ class TaxonPage extends React.Component {
       });
   };
 
-  getIncludes = () => {
+  getIncludes = (taxonKey) => {
     const { catalogueKey: datasetKey } = this.props;
-    const { location: path } = history;
-    const taxonKey = path.pathname.split("/taxon/")[1];
 
     axios(
       `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
