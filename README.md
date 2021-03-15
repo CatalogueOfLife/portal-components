@@ -17,16 +17,10 @@ Include dependencies, React and React Dom:
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" ></script>
 ```
 
-Include the Library:
+Include the Library (current version can be found [here](https://github.com/CatalogueOfLife/portal-components/releases/latest).):
 
 ```
 <script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@<VERSION>/umd/col-browser.min.js" ></script>
-```
-
-or get the latest version available:
-
-```
-<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components/umd/col-browser.min.js" ></script>
 ```
 
 And the styles:
@@ -35,11 +29,6 @@ And the styles:
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@<VERSION>/umd/main.css">
 ```
 
-or get the the latest version available:
-
-```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components/umd/main.css">
-```
 
 This will create a global `ColBrowser` library variable that has four indvidual components:
 
