@@ -131,10 +131,10 @@ class NameSearchPage extends React.Component {
     );
   };
   parseParamsAndGetData = () => {
-    const {fixedHigherTaxonKey} = this.props;
+    const {defaultTaxonKey} = this.props;
     let params = qs.parse(_.get(this.props, "location.search"));
-    if(fixedHigherTaxonKey){
-      params.TAXON_ID = fixedHigherTaxonKey
+    if(defaultTaxonKey){
+      params.TAXON_ID = defaultTaxonKey
     }
     if (_.isEmpty(params)) {
       params = defaultParams;
@@ -268,7 +268,7 @@ class NameSearchPage extends React.Component {
       pagination,
       advancedFilters,
     } = this.state;
-    const { pathToTaxon, catalogueKey, fixedHigherTaxonKey } = this.props;
+    const { pathToTaxon, catalogueKey, defaultTaxonKey } = this.props;
     const facetRanks = _.get(facets, "rank")
       ? facets.rank.map((r) => ({
           value: r.value,
@@ -339,7 +339,7 @@ class NameSearchPage extends React.Component {
             <NameAutocomplete
               datasetKey={catalogueKey}
               minRank="GENUS"
-              defaultTaxonKey={fixedHigherTaxonKey || _.get(params, "TAXON_ID") || null}
+              defaultTaxonKey={defaultTaxonKey || _.get(params, "TAXON_ID") || null}
               onSelectName={(value) => {
                 this.updateSearch({ TAXON_ID: value.key });
               }}
@@ -349,7 +349,6 @@ class NameSearchPage extends React.Component {
               placeHolder="Search by higher taxon"
               sortBy="TAXONOMIC"
               autoFocus={false}
-              disabled={fixedHigherTaxonKey ? true : false}
             />
 
 

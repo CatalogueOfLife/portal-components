@@ -6,7 +6,7 @@ import NameSearch from "./NameSearch";
 import axios from "axios";
 import btoa from "btoa"
 
-export default   ({catalogueKey, pathToTaxon, fixedHigherTaxonKey, auth}) => {
+export default   ({catalogueKey, pathToTaxon, defaultTaxonKey, auth}) => {
   if(auth){
     
       axios.defaults.headers.common['Authorization'] = `Basic ${btoa(auth)}`;
@@ -14,7 +14,7 @@ export default   ({catalogueKey, pathToTaxon, fixedHigherTaxonKey, auth}) => {
   }
   return  <Router history={history}>
           
-                <NameSearch catalogueKey={catalogueKey} pathToTaxon={pathToTaxon} fixedHigherTaxonKey={fixedHigherTaxonKey}/>
+                <NameSearch catalogueKey={catalogueKey} pathToTaxon={pathToTaxon} defaultTaxonKey={defaultTaxonKey}/>
                     
           </Router>
 }
