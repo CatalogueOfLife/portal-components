@@ -2,8 +2,18 @@ import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
-
-import { Table, Alert, Switch,Checkbox, Row, Col, Button, Form, Radio } from "antd";
+import { getDataset } from "../api/dataset";
+import {
+  Table,
+  Alert,
+  Switch,
+  Checkbox,
+  Row,
+  Col,
+  Button,
+  Form,
+  Radio,
+} from "antd";
 import config from "../config";
 import qs from "query-string";
 import history from "../history";
@@ -14,7 +24,8 @@ import RowDetail from "./RowDetail";
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
-import DatasetAutocomplete from "../components/DatasetAutocomplete"
+import DatasetAutocomplete from "../components/DatasetAutocomplete";
+import Citation from "../components/DatasetCitation";
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 
@@ -84,7 +95,6 @@ const getColumns = (pathToTaxon) => [
         ""
       ) : (
         <Classification
-
           key={_.get(record, "usage.id")}
           classification={_.initial(record.classification)}
           truncate={true}
@@ -111,11 +121,17 @@ class NameSearchPage extends React.Component {
         pageSizeOptions: [50, 100, 500, 1000],
       },
       loading: false,
+      dataset: null,
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     this.parseParamsAndGetData();
+    const { catalogueKey, citation } = this.props;
+    try {
+      const { data: dataset } = await getDataset(catalogueKey);
+      this.setState({ dataset });
+    } catch (err) {}
   };
 
   componentDidUpdate = (prevProps) => {
@@ -125,16 +141,17 @@ class NameSearchPage extends React.Component {
       this.parseParamsAndGetData();
     }
   };
+
   getRank = () => {
     axios(`${config.dataApi}vocab/rank`).then((res) =>
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };
   parseParamsAndGetData = () => {
-    const {defaultTaxonKey} = this.props;
+    const { defaultTaxonKey } = this.props;
     let params = qs.parse(_.get(this.props, "location.search"));
-    if(defaultTaxonKey){
-      params.TAXON_ID = defaultTaxonKey
+    if (defaultTaxonKey) {
+      params.TAXON_ID = defaultTaxonKey;
     }
     if (_.isEmpty(params)) {
       params = defaultParams;
@@ -207,7 +224,6 @@ class NameSearchPage extends React.Component {
       });
   };
   handleTableChange = (pagination, filters, sorter) => {
-    
     let query = _.merge(this.state.params, {
       limit: pagination.pageSize,
       offset: (pagination.current - 1) * pagination.pageSize,
@@ -267,8 +283,9 @@ class NameSearchPage extends React.Component {
       params,
       pagination,
       advancedFilters,
+      dataset,
     } = this.state;
-    const { pathToTaxon, catalogueKey, defaultTaxonKey } = this.props;
+    const { pathToTaxon, catalogueKey, defaultTaxonKey, citation } = this.props;
     const facetRanks = _.get(facets, "rank")
       ? facets.rank.map((r) => ({
           value: r.value,
@@ -315,6 +332,8 @@ class NameSearchPage extends React.Component {
           margin: "16px 0",
         }}
       >
+        {citation === "top" && dataset && <Citation dataset={dataset} />}
+
         <Row>
           {error && (
             <Alert
@@ -324,8 +343,8 @@ class NameSearchPage extends React.Component {
             />
           )}
         </Row>
-        <Row >
-          <Col xs={24} sm={24} md={12} style={{marginBottom: '8px'}}>
+        <Row>
+          <Col xs={24} sm={24} md={12} style={{ marginBottom: "8px" }}>
             <SearchBox
               defaultValue={_.get(
                 qs.parse(_.get(this.props, "location.search")),
@@ -339,7 +358,9 @@ class NameSearchPage extends React.Component {
             <NameAutocomplete
               datasetKey={catalogueKey}
               minRank="GENUS"
-              defaultTaxonKey={defaultTaxonKey || _.get(params, "TAXON_ID") || null}
+              defaultTaxonKey={
+                defaultTaxonKey || _.get(params, "TAXON_ID") || null
+              }
               onSelectName={(value) => {
                 this.updateSearch({ TAXON_ID: value.key });
               }}
@@ -351,36 +372,45 @@ class NameSearchPage extends React.Component {
               autoFocus={false}
             />
 
-
-                  <div style={{ marginTop: "8px" , marginBottom: "8px"}}>
-                    <DatasetAutocomplete
-                      contributesTo={Number(catalogueKey)}
-                      onSelectDataset={(value) => {
-                        this.updateSearch({ SECTOR_DATASET_KEY: value.key });
-                      }}
-                      defaultDatasetKey={
-                        _.get(params, "SECTOR_DATASET_KEY") || null
-                      }
-                      onResetSearch={(value) => {
-                        this.updateSearch({ SECTOR_DATASET_KEY: null });
-                      }}
-                      placeHolder="Filter by source dataset"
-                      autoFocus={false}
-                    />
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
+            {dataset &&
+              (dataset.origin === "managed" ||
+                dataset.origin === "released") && (
+                <div style={{ marginTop: "8px", marginBottom: "8px" }}>
+                  <DatasetAutocomplete
+                    contributesTo={Number(catalogueKey)}
+                    onSelectDataset={(value) => {
+                      this.updateSearch({ SECTOR_DATASET_KEY: value.key });
+                    }}
+                    defaultDatasetKey={
+                      _.get(params, "SECTOR_DATASET_KEY") || null
+                    }
+                    onResetSearch={(value) => {
+                      this.updateSearch({ SECTOR_DATASET_KEY: null });
+                    }}
+                    placeHolder="Filter by source dataset"
+                    autoFocus={false}
+                  />
+                </div>
+              )}
+            <div style={{ marginTop: "10px" }}>
               <Form layout="inline">
                 <FormItem label="Fuzzy">
                   <Checkbox
                     checked={params.fuzzy === true || params.fuzzy === "true"}
-                    onChange={({target: {checked}}) => this.updateSearch({ fuzzy: checked ? checked: null })}
+                    onChange={({ target: { checked } }) =>
+                      this.updateSearch({ fuzzy: checked ? checked : null })
+                    }
                   />
                 </FormItem>
                 <FormItem label="Include extinct">
                   <Checkbox
-                    checked={params.extinct !== false && params.extinct !== "false"}
-                    onChange={({target: {checked}}) =>
-                      this.updateSearch({ extinct: checked === false ? false : null })
+                    checked={
+                      params.extinct !== false && params.extinct !== "false"
+                    }
+                    onChange={({ target: { checked } }) =>
+                      this.updateSearch({
+                        extinct: checked === false ? false : null,
+                      })
                     }
                   />
                 </FormItem>
@@ -392,14 +422,15 @@ class NameSearchPage extends React.Component {
                     }}
                     value={params.type || "WHOLE_WORDS"}
                     optionType="button"
-                    options={[{value:"EXACT", label: "Exact" }, {value:"WHOLE_WORDS", label: "Words"}, {value:"PREFIX", label:"Prefix"} ]}
-                  >
-                   
-                  </RadioGroup>
+                    options={[
+                      { value: "EXACT", label: "Exact" },
+                      { value: "WHOLE_WORDS", label: "Words" },
+                      { value: "PREFIX", label: "Prefix" },
+                    ]}
+                  ></RadioGroup>
                 </FormItem>
               </Form>
             </div>
-               
           </Col>
           <Col xs={24} sm={24} md={12}>
             {/*             <MultiValueFilter
@@ -451,7 +482,6 @@ class NameSearchPage extends React.Component {
                 Advanced{" "}
                 {this.state.advancedFilters ? <UpOutlined /> : <DownOutlined />}
               </a>
-
             </div>
           </Col>
         </Row>
@@ -486,6 +516,7 @@ class NameSearchPage extends React.Component {
             )}
           />
         )}
+        {citation === "bottom" && dataset && <Citation dataset={dataset} />}
       </div>
     );
   }

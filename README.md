@@ -53,6 +53,7 @@ A [browsable taxonomic tree](https://www.dev.catalogue.life/data/browse.html), t
 4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
 5. `showTreeOptions` - (Optional) show toggles for extinct taxa and info (estimates, providers etc)
 6. `linkToSpeciesPage`- (Optional) when the searchbox finds a species or infraspecific taxon, jump directly to the taxon page rather than opening the tree 
+7. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the tree component
 
 ```
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
@@ -85,7 +86,8 @@ ReactDOM.render(e(Tree), domContainer);
 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
-3. `fixedHigherTaxonKey` - (Optional) if the search should only be in a certain Family, Order etc
+3. `defaultTaxonKey` - (Optional) if the search should default to a certain Family, Order etc
+4. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the search component
 
 ```
 <div id="search"></div> <!- Dom element for the search to attach to -->

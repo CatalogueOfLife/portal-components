@@ -23757,9 +23757,9 @@ module.exports = _toConsumableArray;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getTreeNodeProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return convertNodePropsToEventData; });
 /* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(34);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(42);
-/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(34);
+/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35);
 /* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
 
@@ -24834,6 +24834,13 @@ module.exports.polyfill = function(object) {
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(320);
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -24849,7 +24856,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25080,7 +25087,7 @@ exports.parseUrl = function (str, opts) {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25123,7 +25130,7 @@ function _objectSpread2(target) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25154,7 +25161,7 @@ function toArray(children) {
 }
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25166,7 +25173,7 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26079,7 +26086,7 @@ function genCSSMotionList(transitionSupport) {
 /* harmony default export */ var es = __webpack_exports__["b"] = (es_CSSMotion);
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26192,13 +26199,6 @@ function getUUID() {
 
   return retId;
 }
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(320);
-
 
 /***/ }),
 /* 39 */
@@ -26967,7 +26967,7 @@ var defineProperty = __webpack_require__(25);
 var objectWithoutProperties = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(33);
+var objectSpread2 = __webpack_require__(34);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(97);
@@ -27535,7 +27535,7 @@ var objectSpread2 = __webpack_require__(23);
 var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
-var commonUtil = __webpack_require__(37);
+var commonUtil = __webpack_require__(38);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/utils/valueUtil.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return flattenOptions; });
@@ -29827,7 +29827,7 @@ RefAlign.displayName = 'Align';
 
 /* harmony default export */ var es = (es_Align);
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
-var rc_motion_es = __webpack_require__(36);
+var rc_motion_es = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./node_modules/rc-trigger/es/PopupInner.js
 
@@ -31227,7 +31227,7 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var findDOMNode = __webpack_require__(48);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Children/toArray.js
-var toArray = __webpack_require__(34);
+var toArray = __webpack_require__(35);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
 var warning = __webpack_require__(8);
@@ -32117,7 +32117,7 @@ var ResizeObserver_es = __webpack_require__(71);
 var rc_trigger_es = __webpack_require__(58);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
-var rc_motion_es = __webpack_require__(36);
+var rc_motion_es = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./node_modules/rc-menu/es/placements.js
 var autoAdjustOverflow = {
@@ -40659,8 +40659,8 @@ module.exports.insertCss = insertCss;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(31);
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(32);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -41598,7 +41598,7 @@ cssAnimation.isCssAnimationSupported = isCssAnimationSupported;
 var defineProperty = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(33);
+var objectSpread2 = __webpack_require__(34);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js + 3 modules
 var toConsumableArray = __webpack_require__(61);
@@ -41690,7 +41690,7 @@ var objectWithoutProperties = __webpack_require__(42);
 var es = __webpack_require__(108);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
-var rc_motion_es = __webpack_require__(36);
+var rc_motion_es = __webpack_require__(37);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/TreeNode.js + 1 modules
 var TreeNode = __webpack_require__(52);
@@ -61776,7 +61776,7 @@ var useMergedState = __webpack_require__(67);
 var pickAttrs = __webpack_require__(76);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
-var es = __webpack_require__(36);
+var es = __webpack_require__(37);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/TransBtn.js
 var TransBtn = __webpack_require__(66);
@@ -61884,7 +61884,7 @@ var RefInput = external_root_React_commonjs2_react_commonjs_react_amd_react_["fo
 RefInput.displayName = 'Input';
 /* harmony default export */ var Selector_Input = (RefInput);
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
-var commonUtil = __webpack_require__(37);
+var commonUtil = __webpack_require__(38);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/hooks/useLayoutEffect.js
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -75177,13 +75177,13 @@ __webpack_require__.d(src_namespaceObject_0, "DatasetSearch", function() { retur
 // EXTERNAL MODULE: ./src/index.less
 var src = __webpack_require__(318);
 
+// EXTERNAL MODULE: ./node_modules/babel-runtime/regenerator/index.js
+var regenerator = __webpack_require__(31);
+var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
-
-// EXTERNAL MODULE: ./node_modules/babel-runtime/regenerator/index.js
-var regenerator = __webpack_require__(38);
-var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: ./node_modules/antd/node_modules/@babel/runtime/helpers/extends.js
 var helpers_extends = __webpack_require__(2);
@@ -76013,7 +76013,7 @@ var CloseCircleFilled = __webpack_require__(57);
 var CloseCircleFilled_default = /*#__PURE__*/__webpack_require__.n(CloseCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
-var rc_motion_es = __webpack_require__(36);
+var rc_motion_es = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/getDataOrAriaProps.js
 function getDataOrAriaProps(props) {
@@ -81009,14 +81009,14 @@ function createMemoryHistory(props) {
 
 /* harmony default export */ var src_history = (createBrowserHistory());
 // EXTERNAL MODULE: ./node_modules/query-string/index.js
-var query_string = __webpack_require__(32);
+var query_string = __webpack_require__(33);
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
-var inheritsLoose = __webpack_require__(35);
+var inheritsLoose = __webpack_require__(36);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(31);
+var prop_types = __webpack_require__(32);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./node_modules/mini-create-react-context/dist/esm/index.js
@@ -82512,7 +82512,7 @@ var ColTree_ColTree = function (_React$Component2) {
 
 /* harmony default export */ var src_ColTree_ColTree = (withRouter(ColTree_ColTree));
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Children/toArray.js
-var toArray = __webpack_require__(34);
+var toArray = __webpack_require__(35);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function classCallCheck_classCallCheck(instance, Constructor) {
@@ -83024,7 +83024,7 @@ var valueUtil = __webpack_require__(54);
 var es_generate = __webpack_require__(314);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
-var commonUtil = __webpack_require__(37);
+var commonUtil = __webpack_require__(38);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/utils/warningPropsUtil.js
 
@@ -85442,8 +85442,41 @@ Checkbox_Checkbox.contextType = GroupContext;
 
 checkbox_Checkbox.Group = checkbox_Group;
 /* harmony default export */ var es_checkbox = (checkbox_Checkbox);
+// CONCATENATED MODULE: ./src/components/DatasetCitation.js
+
+
+var DatasetCitation_Citation = function Citation(_ref) {
+  var dataset = _ref.dataset;
+
+
+  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+    "div",
+    { className: "col-dataset-citation" },
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "div",
+      { className: "col-dataset-citation-title" },
+      dataset.citation || dataset.title
+    ),
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "div",
+      { className: "col-dataset-citation-source" },
+      " - accessed through ",
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "a",
+        { href: "https://data.catalogueoflife.org/dataset/" + dataset.key },
+        "Catalogue of Life Checklistbank"
+      )
+    )
+  );
+};
+
+/* harmony default export */ var DatasetCitation = (DatasetCitation_Citation);
 // CONCATENATED MODULE: ./src/ColTree/index.js
+
+
 var src_ColTree_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function ColTree_asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function src_ColTree_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -85463,25 +85496,70 @@ function src_ColTree_inherits(subClass, superClass) { if (typeof superClass !== 
 
 
 
+
+
 var INFRASPECIFIC_RANKS = ["infraspecific name", "species", "variety", "form"];
 
 var ColTree_ColTreeWrapper = function (_React$Component) {
   src_ColTree_inherits(ColTreeWrapper, _React$Component);
 
   function ColTreeWrapper(props) {
+    var _this2 = this;
+
     src_ColTree_classCallCheck(this, ColTreeWrapper);
 
     var _this = src_ColTree_possibleConstructorReturn(this, _React$Component.call(this, props));
 
+    _this.componentDidMount = ColTree_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+      var _this$props, catalogueKey, citation, _ref2, dataset;
+
+      return regenerator_default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this$props = _this.props, catalogueKey = _this$props.catalogueKey, citation = _this$props.citation;
+
+              if (!citation) {
+                _context.next = 12;
+                break;
+              }
+
+              _context.prev = 2;
+              _context.next = 5;
+              return dataset_getDataset(catalogueKey);
+
+            case 5:
+              _ref2 = _context.sent;
+              dataset = _ref2.data;
+
+              _this.setState({ dataset: dataset });
+              _context.next = 12;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](2);
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2, [[2, 10]]);
+    }));
+
     _this.render = function () {
-      var _this$props = _this.props,
-          catalogueKey = _this$props.catalogueKey,
-          pathToTaxon = _this$props.pathToTaxon,
-          pathToDataset = _this$props.pathToDataset,
-          defaultTaxonKey = _this$props.defaultTaxonKey,
-          showTreeOptions = _this$props.showTreeOptions,
-          linkToSpeciesPage = _this$props.linkToSpeciesPage;
-      var hideExtinct = _this.state.hideExtinct;
+      var _this$props2 = _this.props,
+          catalogueKey = _this$props2.catalogueKey,
+          pathToTaxon = _this$props2.pathToTaxon,
+          pathToDataset = _this$props2.pathToDataset,
+          defaultTaxonKey = _this$props2.defaultTaxonKey,
+          showTreeOptions = _this$props2.showTreeOptions,
+          linkToSpeciesPage = _this$props2.linkToSpeciesPage,
+          citation = _this$props2.citation;
+      var _this$state = _this.state,
+          hideExtinct = _this$state.hideExtinct,
+          dataset = _this$state.dataset;
 
       var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -85490,6 +85568,7 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "div",
           { className: "catalogue-of-life" },
+          citation === "top" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             ColTreeContext.Provider,
             { value: _this.state },
@@ -85502,7 +85581,11 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
                   hideExtinct: hideExtinct,
                   datasetKey: catalogueKey,
-                  style: { width: '100%', paddingTop: '5px', paddingBottom: '5px' },
+                  style: {
+                    width: "100%",
+                    paddingTop: "5px",
+                    paddingBottom: "5px"
+                  },
                   defaultTaxonKey: lodash_default.a.get(params, "taxonKey") || null,
                   onSelectName: function onSelectName(name) {
                     if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(lodash_default.a.get(name, "rank"))) {
@@ -85520,7 +85603,6 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                     }
                   },
                   onResetSearch: function onResetSearch() {
-
                     var newParams = src_ColTree_extends({}, params, { taxonKey: null });
                     src_history.push({
                       pathname: location.path,
@@ -85535,8 +85617,8 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                   es_checkbox,
                   {
-                    onChange: function onChange(_ref) {
-                      var checked = _ref.target.checked;
+                    onChange: function onChange(_ref3) {
+                      var checked = _ref3.target.checked;
 
                       _this.setState({ showInfo: checked });
                     }
@@ -85547,8 +85629,8 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                   es_checkbox,
                   {
                     defaultChecked: true,
-                    onChange: function onChange(_ref2) {
-                      var checked = _ref2.target.checked;
+                    onChange: function onChange(_ref4) {
+                      var checked = _ref4.target.checked;
 
                       _this.setState({ hideExtinct: !checked });
                     }
@@ -85567,17 +85649,19 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                 return _this.treeRef = ref;
               }
             })
-          )
+          ),
+          citation === "bottom" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset })
         )
       );
     };
 
     if (_this.props.auth) {
-      axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(_this.props.auth);
+      axios_default.a.defaults.headers.common["Authorization"] = "Basic " + btoa_default()(_this.props.auth);
     }
     _this.state = {
       hideExtinct: false,
-      showInfo: false
+      showInfo: false,
+      dataset: null
     };
     return _this;
   }
@@ -105382,13 +105466,18 @@ var DatasetAutocomplete_DatasetAutocomplete = function (_React$Component) {
 
 /* harmony default export */ var components_DatasetAutocomplete = (DatasetAutocomplete_DatasetAutocomplete);
 // CONCATENATED MODULE: ./src/Search/NameSearch.js
+
+
 var NameSearch_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function NameSearch_asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function NameSearch_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function NameSearch_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function NameSearch_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -105467,7 +105556,6 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     width: 180,
     render: function render(text, record) {
       return !lodash_default.a.get(record, "classification") ? "" : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_Classification, {
-
         key: lodash_default.a.get(record, "usage.id"),
         classification: lodash_default.a.initial(record.classification),
         truncate: true,
@@ -105482,13 +105570,44 @@ var NameSearch_NameSearchPage = function (_React$Component) {
   NameSearch_inherits(NameSearchPage, _React$Component);
 
   function NameSearchPage(props) {
+    var _this2 = this;
+
     NameSearch_classCallCheck(this, NameSearchPage);
 
     var _this = NameSearch_possibleConstructorReturn(this, _React$Component.call(this, props));
 
-    _this.componentDidMount = function () {
-      _this.parseParamsAndGetData();
-    };
+    _this.componentDidMount = NameSearch_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+      var _this$props, catalogueKey, citation, _ref2, dataset;
+
+      return regenerator_default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.parseParamsAndGetData();
+              _this$props = _this.props, catalogueKey = _this$props.catalogueKey, citation = _this$props.citation;
+              _context.prev = 2;
+              _context.next = 5;
+              return dataset_getDataset(catalogueKey);
+
+            case 5:
+              _ref2 = _context.sent;
+              dataset = _ref2.data;
+
+              _this.setState({ dataset: dataset });
+              _context.next = 12;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](2);
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2, [[2, 10]]);
+    }));
 
     _this.componentDidUpdate = function (prevProps) {
       var params = query_string_default.a.parse(lodash_default.a.get(_this.props, "location.search"));
@@ -105507,11 +105626,11 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     };
 
     _this.parseParamsAndGetData = function () {
-      var fixedHigherTaxonKey = _this.props.fixedHigherTaxonKey;
+      var defaultTaxonKey = _this.props.defaultTaxonKey;
 
       var params = query_string_default.a.parse(lodash_default.a.get(_this.props, "location.search"));
-      if (fixedHigherTaxonKey) {
-        params.TAXON_ID = fixedHigherTaxonKey;
+      if (defaultTaxonKey) {
+        params.TAXON_ID = defaultTaxonKey;
       }
       if (lodash_default.a.isEmpty(params)) {
         params = defaultParams;
@@ -105572,7 +105691,6 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     };
 
     _this.handleTableChange = function (pagination, filters, sorter) {
-
       var query = lodash_default.a.merge(_this.state.params, NameSearch_extends({
         limit: pagination.pageSize,
         offset: (pagination.current - 1) * pagination.pageSize
@@ -105632,13 +105750,14 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         showQuickJumper: true,
         pageSizeOptions: [50, 100, 500, 1000]
       },
-      loading: false
+      loading: false,
+      dataset: null
     };
     return _this;
   }
 
   NameSearchPage.prototype.render = function render() {
-    var _this2 = this;
+    var _this3 = this;
 
     var _state = this.state,
         _state$data = _state.data,
@@ -105648,11 +105767,13 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         error = _state.error,
         params = _state.params,
         pagination = _state.pagination,
-        advancedFilters = _state.advancedFilters;
+        advancedFilters = _state.advancedFilters,
+        dataset = _state.dataset;
     var _props = this.props,
         pathToTaxon = _props.pathToTaxon,
         catalogueKey = _props.catalogueKey,
-        fixedHigherTaxonKey = _props.fixedHigherTaxonKey;
+        defaultTaxonKey = _props.defaultTaxonKey,
+        citation = _props.citation;
 
     var facetRanks = lodash_default.a.get(facets, "rank") ? facets.rank.map(function (r) {
       return {
@@ -105701,6 +105822,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           margin: "16px 0"
         }
       },
+      citation === "top" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset }),
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         es_row,
         null,
@@ -105715,43 +105837,42 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         null,
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           es_col,
-          { xs: 24, sm: 24, md: 12, style: { marginBottom: '8px' } },
+          { xs: 24, sm: 24, md: 12, style: { marginBottom: "8px" } },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
             defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
             onSearch: function onSearch(value) {
-              return _this2.updateSearch({ q: value });
+              return _this3.updateSearch({ q: value });
             },
             onResetSearch: function onResetSearch(value) {
-              return _this2.updateSearch({ q: null });
+              return _this3.updateSearch({ q: null });
             },
             style: { marginBottom: "8px", width: "100%" }
           }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
             minRank: "GENUS",
-            defaultTaxonKey: fixedHigherTaxonKey || lodash_default.a.get(params, "TAXON_ID") || null,
+            defaultTaxonKey: defaultTaxonKey || lodash_default.a.get(params, "TAXON_ID") || null,
             onSelectName: function onSelectName(value) {
-              _this2.updateSearch({ TAXON_ID: value.key });
+              _this3.updateSearch({ TAXON_ID: value.key });
             },
             onResetSearch: function onResetSearch(value) {
-              _this2.updateSearch({ TAXON_ID: null });
+              _this3.updateSearch({ TAXON_ID: null });
             },
             placeHolder: "Search by higher taxon",
             sortBy: "TAXONOMIC",
-            autoFocus: false,
-            disabled: fixedHigherTaxonKey ? true : false
+            autoFocus: false
           }),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          dataset && (dataset.origin === "managed" || dataset.origin === "released") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             "div",
             { style: { marginTop: "8px", marginBottom: "8px" } },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetAutocomplete, {
               contributesTo: Number(catalogueKey),
               onSelectDataset: function onSelectDataset(value) {
-                _this2.updateSearch({ SECTOR_DATASET_KEY: value.key });
+                _this3.updateSearch({ SECTOR_DATASET_KEY: value.key });
               },
               defaultDatasetKey: lodash_default.a.get(params, "SECTOR_DATASET_KEY") || null,
               onResetSearch: function onResetSearch(value) {
-                _this2.updateSearch({ SECTOR_DATASET_KEY: null });
+                _this3.updateSearch({ SECTOR_DATASET_KEY: null });
               },
               placeHolder: "Filter by source dataset",
               autoFocus: false
@@ -105768,9 +105889,9 @@ var NameSearch_NameSearchPage = function (_React$Component) {
                 { label: "Fuzzy" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
                   checked: params.fuzzy === true || params.fuzzy === "true",
-                  onChange: function onChange(_ref) {
-                    var checked = _ref.target.checked;
-                    return _this2.updateSearch({ fuzzy: checked ? checked : null });
+                  onChange: function onChange(_ref3) {
+                    var checked = _ref3.target.checked;
+                    return _this3.updateSearch({ fuzzy: checked ? checked : null });
                   }
                 })
               ),
@@ -105779,9 +105900,11 @@ var NameSearch_NameSearchPage = function (_React$Component) {
                 { label: "Include extinct" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
                   checked: params.extinct !== false && params.extinct !== "false",
-                  onChange: function onChange(_ref2) {
-                    var checked = _ref2.target.checked;
-                    return _this2.updateSearch({ extinct: checked === false ? false : null });
+                  onChange: function onChange(_ref4) {
+                    var checked = _ref4.target.checked;
+                    return _this3.updateSearch({
+                      extinct: checked === false ? false : null
+                    });
                   }
                 })
               ),
@@ -105791,7 +105914,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch_RadioGroup, {
                   size: "small",
                   onChange: function onChange(evt) {
-                    _this2.updateSearch({ type: evt.target.value });
+                    _this3.updateSearch({ type: evt.target.value });
                   },
                   value: params.type || "WHOLE_WORDS",
                   optionType: "button",
@@ -105807,7 +105930,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
             defaultValue: lodash_default.a.get(params, "rank"),
             onChange: function onChange(value) {
-              return _this2.updateSearch({ rank: value });
+              return _this3.updateSearch({ rank: value });
             },
             vocab: facetRanks || [],
             label: "Ranks"
@@ -105815,7 +105938,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
             defaultValue: lodash_default.a.get(params, "status"),
             onChange: function onChange(value) {
-              return _this2.updateSearch({ status: value });
+              return _this3.updateSearch({ status: value });
             },
             vocab: facetTaxonomicStatus || [],
             label: "Status"
@@ -105826,7 +105949,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
               defaultValue: lodash_default.a.get(params, "nomstatus"),
               onChange: function onChange(value) {
-                return _this2.updateSearch({ nomstatus: value });
+                return _this3.updateSearch({ nomstatus: value });
               },
               vocab: facetNomStatus || [],
               label: "Nomenclatural status"
@@ -105834,7 +105957,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
               defaultValue: lodash_default.a.get(params, "nameType"),
               onChange: function onChange(value) {
-                return _this2.updateSearch({ nameType: value });
+                return _this3.updateSearch({ nameType: value });
               },
               vocab: facetNomType || [],
               label: "Name type"
@@ -105842,7 +105965,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
               defaultValue: lodash_default.a.get(params, "field"),
               onChange: function onChange(value) {
-                return _this2.updateSearch({ field: value });
+                return _this3.updateSearch({ field: value });
               },
               vocab: facetNomField || [],
               label: "Name field"
@@ -105899,7 +106022,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             pathToTaxon: pathToTaxon
           }));
         }
-      })
+      }),
+      citation === "bottom" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset })
     );
   };
 
@@ -105919,7 +106043,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
 /* harmony default export */ var src_Search = (function (_ref) {
   var catalogueKey = _ref.catalogueKey,
       pathToTaxon = _ref.pathToTaxon,
-      fixedHigherTaxonKey = _ref.fixedHigherTaxonKey,
+      defaultTaxonKey = _ref.defaultTaxonKey,
+      citation = _ref.citation,
       auth = _ref.auth;
 
   if (auth) {
@@ -105929,7 +106054,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     react_router_Router,
     { history: src_history },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon, fixedHigherTaxonKey: fixedHigherTaxonKey })
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon, defaultTaxonKey: defaultTaxonKey, citation: citation })
   );
 });
 // CONCATENATED MODULE: ./src/Dataset/MetricsPresentation.js
