@@ -7,6 +7,24 @@ This is a small React Component library consisting of
 3. Taxon page
 4. Dataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
 
+## Examples
+
+### Catalogue of Life
+All components are in use on the [main Catalogue of Life portal](https://www.catalogueoflife.org).
+
+![tree](https://user-images.githubusercontent.com/327505/111465911-ed038200-8722-11eb-925c-4d836efe6e1b.png)
+
+![search](https://user-images.githubusercontent.com/327505/111465903-ea089180-8722-11eb-985c-0cbaefba0880.png)
+
+![details](https://user-images.githubusercontent.com/327505/111465894-e6750a80-8722-11eb-8bd7-005f41f023f3.png)
+
+### Catalogue of the Pterophoroidea & Alucitoidea
+ - https://pterophoroidea.hobern.net
+ - https://alucitoidea.hobern.net
+
+![tree](https://user-images.githubusercontent.com/327505/111465866-dceba280-8722-11eb-9368-31d056593058.png)
+
+
 ## Usage
 
 These components can be included in any html page.
