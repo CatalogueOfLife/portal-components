@@ -24661,8 +24661,7 @@ function _slicedToArray(arr, i) {
 }
 
 /***/ }),
-/* 27 */,
-/* 28 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24715,6 +24714,7 @@ function supportRef(nodeOrComponent) {
 /* eslint-enable */
 
 /***/ }),
+/* 28 */,
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25357,7 +25357,7 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var findDOMNode = __webpack_require__(48);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(1);
@@ -28058,7 +28058,7 @@ var contains = __webpack_require__(77);
 var findDOMNode = __webpack_require__(48);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/addEventListener.js
 var addEventListener = __webpack_require__(43);
@@ -31233,7 +31233,7 @@ var toArray = __webpack_require__(35);
 var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
 var ResizeObserver_es = __webpack_require__(71);
@@ -61782,7 +61782,7 @@ var es = __webpack_require__(37);
 var TransBtn = __webpack_require__(66);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/Selector/Input.js
 
@@ -81866,7 +81866,7 @@ var ColTree_ColTree = function (_React$Component2) {
               _this2$props = _this2.props, showSourceTaxon = _this2$props.showSourceTaxon, catalogueKey = _this2$props.catalogueKey, pathToTaxon = _this2$props.pathToTaxon, pathToDataset = _this2$props.pathToDataset, hideExtinct = _this2$props.hideExtinct;
 
               _this2.setState({ rootLoading: true, treeData: [] });
-              return _context2.abrupt("return", axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree?catalogueKey=" + catalogueKey + "&type=CATALOGUE&limit=" + CHILD_PAGE_SIZE + "&offset=" + _this2.state.treeData.length + (hideExtinct ? "&extinct=false" : '')).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
+              return _context2.abrupt("return", axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree?catalogueKey=" + catalogueKey + "&type=CATALOGUE&limit=" + CHILD_PAGE_SIZE + "&offset=" + _this2.state.treeData.length + (hideExtinct ? "&extinct=false&extinct=" : '')).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
                 var mainTreeData = res.data.result || [];
                 var rootTotal = res.data.total;
                 var treeData = mainTreeData.map(function (tx) {
@@ -84101,7 +84101,7 @@ var Group_Group = function Group(props) {
 
 /* harmony default export */ var input_Group = (Group_Group);
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/input/Search.js
 
@@ -105498,12 +105498,14 @@ function NameSearch_inherits(subClass, superClass) { if (typeof superClass !== "
 
 var NameSearch_FormItem = es_form.Item;
 var NameSearch_RadioGroup = es_radio.Group;
-
+var FACET_VOCAB = ["rank", "issue", "status", "nomStatus", "nameType", "field", "authorship",
+//  "authorshipYear",
+"extinct", "environment"];
 var PAGE_SIZE = 50;
 var defaultParams = {
   limit: 50,
   offset: 0,
-  facet: ["rank", "issue", "status", "nomStatus", "nameType", "field"],
+  facet: FACET_VOCAB, //["rank", "issue", "status", "nomStatus", "nameType", "field"],
   sortBy: "taxonomic"
 };
 
@@ -105629,14 +105631,14 @@ var NameSearch_NameSearchPage = function (_React$Component) {
       var defaultTaxonKey = _this.props.defaultTaxonKey;
 
       var params = query_string_default.a.parse(lodash_default.a.get(_this.props, "location.search"));
-      if (defaultTaxonKey) {
+      if (defaultTaxonKey && !params.TAXON_ID) {
         params.TAXON_ID = defaultTaxonKey;
       }
       if (lodash_default.a.isEmpty(params)) {
         params = defaultParams;
         _this.pushParams(defaultParams);
       } else if (!params.facet) {
-        params.facet = ["rank", "issue", "status", "nomStatus", "nameType", "field"];
+        params.facet = FACET_VOCAB;
       }
 
       if (!params.limit) {
@@ -105811,6 +105813,36 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
       };
     }) : null;
+    var facetAuthorship = lodash_default.a.get(facets, "authorship") ? facets["authorship"].map(function (s) {
+      return {
+        value: s.value,
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
+      };
+    }) : [];
+    /*     const facetAuthorshipYear = _.get(facets, "authorshipYear")
+          ? facets["authorshipYear"].map((s) => ({
+              value: s.value,
+              label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+            }))
+          : []; */
+    var facetExtinct = lodash_default.a.get(facets, "extinct") ? facets["extinct"].map(function (s) {
+      return {
+        value: s.value,
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
+      };
+    }) : [];
+    var facetEnvironment = lodash_default.a.get(facets, "environment") ? facets["environment"].map(function (s) {
+      return {
+        value: s.value,
+        label: lodash_default.a.startCase(s.value) + " (" + s.count.toLocaleString("en-GB") + ")"
+      };
+    }) : [];
+    /*     const facetOrigin = _.get(facets, "origin")
+          ? facets["origin"].map((s) => ({
+              value: s.value,
+              label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+            }))
+          : [];  */
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
@@ -105851,7 +105883,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
             datasetKey: catalogueKey,
             minRank: "GENUS",
-            defaultTaxonKey: defaultTaxonKey || lodash_default.a.get(params, "TAXON_ID") || null,
+            defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || defaultTaxonKey || null,
             onSelectName: function onSelectName(value) {
               _this3.updateSearch({ TAXON_ID: value.key });
             },
@@ -105899,11 +105931,11 @@ var NameSearch_NameSearchPage = function (_React$Component) {
                 NameSearch_FormItem,
                 { label: "Include extinct" },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
-                  checked: params.extinct !== false && params.extinct !== "false",
+                  checked: !params.extinct,
                   onChange: function onChange(_ref4) {
                     var checked = _ref4.target.checked;
                     return _this3.updateSearch({
-                      extinct: checked === false ? false : null
+                      extinct: checked === false ? [false, ""] : null
                     });
                   }
                 })
@@ -105969,6 +106001,30 @@ var NameSearch_NameSearchPage = function (_React$Component) {
               },
               vocab: facetNomField || [],
               label: "Name field"
+            }),
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+              defaultValue: lodash_default.a.get(params, "authorship"),
+              onChange: function onChange(value) {
+                return _this3.updateSearch({ authorship: value });
+              },
+              vocab: facetAuthorship,
+              label: "Authorship"
+            }),
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+              defaultValue: lodash_default.a.get(params, "environment"),
+              onChange: function onChange(value) {
+                return _this3.updateSearch({ environment: value });
+              },
+              vocab: facetEnvironment,
+              label: "Environment"
+            }),
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter
+            // defaultValue={_.get(params, "extinct")}
+            , { onChange: function onChange(value) {
+                return _this3.updateSearch({ extinct: value });
+              },
+              vocab: facetExtinct,
+              label: "Extinct"
             })
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -106158,16 +106214,7 @@ function Metrics_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
-
-
 var Metrics_ = __webpack_require__(4);
-
-var Metrics_getLivingTaxa = function getLivingTaxa(metrics, rank) {
-  return (Metrics_.get(metrics, "taxaByRankCount." + rank) || 0) - (Metrics_.get(metrics, "extinctTaxaByRankCount." + rank) || 0);
-};
-var Metrics_getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
-  return Metrics_.get(metrics, "extinctTaxaByRankCount." + rank) || 0;
-};
 
 var Metrics_Metrics = function (_React$Component) {
   Metrics_inherits(Metrics, _React$Component);

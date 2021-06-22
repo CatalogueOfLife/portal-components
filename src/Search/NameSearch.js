@@ -28,12 +28,24 @@ import DatasetAutocomplete from "../components/DatasetAutocomplete";
 import Citation from "../components/DatasetCitation";
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
-
+const FACET_VOCAB = [
+  "rank",
+  "issue",
+  "status",
+  "nomStatus",
+  "nameType",
+  "field",
+  "authorship",
+//  "authorshipYear",
+  "extinct",
+  "environment",
+ // "origin", 
+];
 const PAGE_SIZE = 50;
 const defaultParams = {
   limit: 50,
   offset: 0,
-  facet: ["rank", "issue", "status", "nomStatus", "nameType", "field"],
+  facet: FACET_VOCAB, //["rank", "issue", "status", "nomStatus", "nameType", "field"],
   sortBy: "taxonomic",
 };
 
@@ -150,21 +162,14 @@ class NameSearchPage extends React.Component {
   parseParamsAndGetData = () => {
     const { defaultTaxonKey } = this.props;
     let params = qs.parse(_.get(this.props, "location.search"));
-    if (defaultTaxonKey) {
+    if (defaultTaxonKey && !params.TAXON_ID) {
       params.TAXON_ID = defaultTaxonKey;
     }
     if (_.isEmpty(params)) {
       params = defaultParams;
       this.pushParams(defaultParams);
     } else if (!params.facet) {
-      params.facet = [
-        "rank",
-        "issue",
-        "status",
-        "nomStatus",
-        "nameType",
-        "field",
-      ];
+      params.facet = FACET_VOCAB;
     }
 
     if (!params.limit) {
@@ -322,6 +327,36 @@ class NameSearchPage extends React.Component {
           label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
         }))
       : null;
+       const facetAuthorship = _.get(facets, "authorship")
+      ? facets["authorship"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];
+/*     const facetAuthorshipYear = _.get(facets, "authorshipYear")
+      ? facets["authorshipYear"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : []; */
+    const facetExtinct = _.get(facets, "extinct")
+      ? facets["extinct"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];
+    const facetEnvironment = _.get(facets, "environment")
+      ? facets["environment"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];
+/*     const facetOrigin = _.get(facets, "origin")
+      ? facets["origin"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];  */
 
     return (
       <div
@@ -359,7 +394,7 @@ class NameSearchPage extends React.Component {
               datasetKey={catalogueKey}
               minRank="GENUS"
               defaultTaxonKey={
-                defaultTaxonKey || _.get(params, "TAXON_ID") || null
+                _.get(params, "TAXON_ID") || defaultTaxonKey || null
               }
               onSelectName={(value) => {
                 this.updateSearch({ TAXON_ID: value.key });
@@ -405,11 +440,11 @@ class NameSearchPage extends React.Component {
                 <FormItem label="Include extinct">
                   <Checkbox
                     checked={
-                      params.extinct !== false && params.extinct !== "false"
+                      !params.extinct
                     }
                     onChange={({ target: { checked } }) =>
                       this.updateSearch({
-                        extinct: checked === false ? false : null,
+                        extinct: checked === false ? [false, ""] : null,
                       })
                     }
                   />
@@ -471,7 +506,41 @@ class NameSearchPage extends React.Component {
                   onChange={(value) => this.updateSearch({ field: value })}
                   vocab={facetNomField || []}
                   label="Name field"
+                />                  
+                <MultiValueFilter
+                  defaultValue={_.get(params, "authorship")}
+                  onChange={(value) => this.updateSearch({ authorship: value })}
+                  vocab={facetAuthorship}
+                  label="Authorship"
                 />
+{/*                 <MultiValueFilter
+                  defaultValue={_.get(params, "authorshipYear")}
+                  onChange={(value) =>
+                    this.updateSearch({ authorshipYear: value })
+                  }
+                  vocab={facetAuthorshipYear}
+                  label="Authorship Year"
+                /> */}
+                <MultiValueFilter
+                  defaultValue={_.get(params, "environment")}
+                  onChange={(value) =>
+                    this.updateSearch({ environment: value })
+                  }
+                  vocab={facetEnvironment}
+                  label="Environment"
+                />
+                <MultiValueFilter
+                  // defaultValue={_.get(params, "extinct")}
+                  onChange={(value) => this.updateSearch({ extinct: value })}
+                  vocab={facetExtinct}
+                  label="Extinct"
+                />
+{/*                 <MultiValueFilter
+                  defaultValue={_.get(params, "origin")}
+                  onChange={(value) => this.updateSearch({ origin: value })}
+                  vocab={facetOrigin}
+                  label="Origin"
+                />  */}
               </React.Fragment>
             )}
             <div style={{ textAlign: "right", marginBottom: "8px" }}>

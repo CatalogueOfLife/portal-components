@@ -1,16 +1,9 @@
 import React from "react";
 import config from "../config";
 import axios from "axios";
-import { Skeleton } from "antd";
-import PresentationItem from "../components/PresentationItem";
 import MetricsPresentation from "./MetricsPresentation"
 const _ = require("lodash");
 
-const getLivingTaxa = (metrics, rank) =>
-  (_.get(metrics, `taxaByRankCount.${rank}`) || 0) -
-  (_.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
-const getExtinctTaxa = (metrics, rank) =>
-  _.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
 
 class Metrics extends React.Component {
   constructor(props) {
