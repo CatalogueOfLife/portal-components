@@ -112,7 +112,7 @@ class ColTree extends React.Component {
     } = this.props;
     this.setState({ rootLoading: true, treeData: [] });
     return axios(
-      `${config.dataApi}dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}&type=CATALOGUE&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}${hideExtinct ? `&extinct=false`:''}`
+      `${config.dataApi}dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}&type=CATALOGUE&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}${hideExtinct ? `&extinct=false&extinct=`:''}`
     )
       .then(this.decorateWithSectorsAndDataset)
       .then((res) => {
