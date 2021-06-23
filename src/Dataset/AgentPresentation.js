@@ -52,15 +52,7 @@ const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
           {[agent.city, agent.state, country].filter((a) => !!a).join(", ")}
         </span>
       )}
-      {agent.email &&
-        (noLinks ? (
-          <div>{agent.email}</div>
-        ) : (
-          <a style={{ display: "block" }} href={`mailto:${agent.email}`}>
-            {agent.email}
-          </a>
-        ))}
-      {agent.notes && <div>{agent.notes}</div>}
+      
     </span>
   ) : null;
 };
