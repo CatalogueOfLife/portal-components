@@ -1,6 +1,6 @@
 import React from "react";
 import config from "../config";
-import btoa from "btoa"
+import btoa from "btoa";
 import axios from "axios";
 import { Alert, Rate, Row, Col } from "antd";
 import ErrorMsg from "../components/ErrorMsg";
@@ -10,23 +10,41 @@ import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
 import history from "../history";
 import TaxonomicCoverage from "./TaxonomicCoverage";
-// import ReferencePopover from "./ReferencePopover"
+import AgentPresentation from "./AgentPresentation";
+import { getCountries } from "../api/enumeration";
 
+// import ReferencePopover from "./ReferencePopover"
+const IDENTIFIER_TYPES = {
+  col: "https://data.catalogueoflife.org/dataset/",
+  gbif: "https://www.gbif.org/dataset/",
+  plazi: "http://publication.plazi.org/id/",
+  doi: "https://doi.org/",
+};
 class DatasetPage extends React.Component {
   constructor(props) {
     super(props);
-    if(this.props.auth){
-      axios.defaults.headers.common['Authorization'] = `Basic ${btoa(this.props.auth)}`;
-    } 
+    if (this.props.auth) {
+      axios.defaults.headers.common["Authorization"] = `Basic ${btoa(
+        this.props.auth
+      )}`;
+    }
     this.state = {
       datasetLoading: true,
       data: null,
       rank: null,
+      countryAlpha2: {},
     };
   }
 
   componentDidMount = () => {
     this.getData();
+    getCountries().then((res) => {
+      const countryAlpha2 = {};
+      res.forEach((c) => {
+        countryAlpha2[c.alpha2] = c;
+      });
+      this.setState({ countryAlpha2 });
+    });
   };
 
   getData = () => {
@@ -38,8 +56,11 @@ class DatasetPage extends React.Component {
 
     axios(`${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}`)
       .then((dataset) => {
-        if(pageTitleTemplate && _.get(dataset, "data.title")){
-          document.title = pageTitleTemplate.replace("__dataset__", dataset.data.title)
+        if (pageTitleTemplate && _.get(dataset, "data.title")) {
+          document.title = pageTitleTemplate.replace(
+            "__dataset__",
+            dataset.data.title
+          );
         }
         this.setState({ data: dataset.data, datasetError: null });
       })
@@ -54,11 +75,7 @@ class DatasetPage extends React.Component {
 
   render() {
     const { pathToTree, catalogueKey } = this.props;
-    const {
-      data,
-
-      datasetError,
-    } = this.state;
+    const { data, countryAlpha2, datasetError } = this.state;
 
     return (
       <React.Fragment>
@@ -118,20 +135,81 @@ class DatasetPage extends React.Component {
               <PresentationItem label="Full name">
                 {data.title}
               </PresentationItem>
-              <PresentationItem label="Version">
-                {(data.version || data.released) &&
-                  `${data.version ? data.version : ""}${
-                    data.released ? " Received by CoL: " + data.released : ""
-                  }`}
-              </PresentationItem>
-              {data.authors && _.isArray(data.authors) && (
-                <PresentationItem label="Authors">
-                  {data.authors.map((a) => a.name).join(", ")}
+              {(data.version || data.issued) && (
+                <PresentationItem
+                  label={`${data.version ? "Version" : ""}${
+                    data.version && data.issued ? " / " : ""
+                  }${data.issued ? "Issued" : ""}`}
+                >
+                  {(data.version || data.issued) &&
+                    `${data.version ? data.version : ""}${
+                      data.issued ? " / " + data.issued : ""
+                    }`}
                 </PresentationItem>
               )}
-              {data.editors && _.isArray(data.editors) && (
-                <PresentationItem label="Editors">
-                  {data.editors.map((a) => a.name).join(", ")}
+              <PresentationItem label="DOI">
+                {data.doi ? (
+                  <a href={`https://doi.org/${data.doi}`}>{data.doi}</a>
+                ) : (
+                  "-"
+                )}
+              </PresentationItem>
+              {data.contact && !_.isEmpty(data.contact) && (
+                <PresentationItem label="Contact">
+                  <AgentPresentation
+                    countryAlpha2={countryAlpha2}
+                    agent={data.contact}
+                  />
+                </PresentationItem>
+              )}
+              {data.publisher && !_.isEmpty(data.publisher) && (
+                <PresentationItem label="Publisher">
+                  <AgentPresentation
+                    countryAlpha2={countryAlpha2}
+                    agent={data.publisher}
+                  />
+                </PresentationItem>
+              )}
+              {data.creator && (
+                <PresentationItem label="Creator">
+                  <Row gutter={[8, 8]}>
+                    {data.creator.map((a) => (
+                      <Col>
+                        <AgentPresentation
+                          countryAlpha2={countryAlpha2}
+                          agent={a}
+                        />
+                      </Col>
+                    ))}
+                  </Row>
+                </PresentationItem>
+              )}
+              {data.editor && (
+                <PresentationItem label="Editor">
+                  <Row gutter={[8, 8]}>
+                    {data.editor.map((a) => (
+                      <Col>
+                        <AgentPresentation
+                          countryAlpha2={countryAlpha2}
+                          agent={a}
+                        />
+                      </Col>
+                    ))}
+                  </Row>
+                </PresentationItem>
+              )}
+              {data.contributor && (
+                <PresentationItem label="Contributor">
+                  <Row gutter={[8, 8]}>
+                    {data.contributor.map((a) => (
+                      <Col>
+                        <AgentPresentation
+                          countryAlpha2={countryAlpha2}
+                          agent={a}
+                        />
+                      </Col>
+                    ))}
+                  </Row>
                 </PresentationItem>
               )}
               <PresentationItem label="Taxonomic coverage">
@@ -141,63 +219,141 @@ class DatasetPage extends React.Component {
                   pathToTree={pathToTree}
                 />
               </PresentationItem>
-              <PresentationItem label="English name of the Group">
-                {data.group}
-              </PresentationItem>
-               <Metrics catalogueKey={catalogueKey} dataset={data} pathToSearch={this.props.pathToSearch} />
+              <Metrics
+                catalogueKey={catalogueKey}
+                dataset={data}
+                pathToSearch={this.props.pathToSearch}
+              />
               <PresentationItem label="Abstract">
                 {data.description}
               </PresentationItem>
-
-              <PresentationItem label="Organisation">
-                {_.isArray(data.organisations) && data.organisations.map(o => <div>{o.label}</div>)}
+              <PresentationItem label="Taxonomic scope">
+                {data.taxonomicScope || "-"}
               </PresentationItem>
-              <PresentationItem label="Website">
-                {data.website && (
-                  <a href={data.website} target="_blank">
-                    {data.website}
-                  </a>
-                )}
-              </PresentationItem>
-              {/*  
-          <PresentationItem label="Contact">
-            {data.contact}
-          </PresentationItem>
-
-
-           <PresentationItem label="Type">
-            {data.type}
-          </PresentationItem> */}
-
               <PresentationItem label="Geographic scope">
                 {data.geographicScope || "-"}
+              </PresentationItem>
+              <PresentationItem label="Temporal scope">
+                {data.temporalScope || "-"}
+              </PresentationItem>
+              {/*             <PresentationItem label="Origin">
+              {data.origin}
+            </PresentationItem> */}
+              {/*             <PresentationItem label="Type">{data.type}</PresentationItem>
+               */}{" "}
+              <PresentationItem label="License">
+                {data.license || "-"}
+              </PresentationItem>
+              <PresentationItem label="Checklist Confidence">
+                {<Rate value={data.confidence} disabled></Rate>}
               </PresentationItem>
               <PresentationItem label="Completeness">
                 {data.completeness}
               </PresentationItem>
-              <PresentationItem label="Checklist Confidence">
-                {<Rate defaultValue={data.confidence} disabled></Rate>}
-              </PresentationItem>
-
-              <PresentationItem label="Citation">
-                {data.citation || "-"}
-              </PresentationItem>
-
-              <PresentationItem label="License">
-                {data.license || "-"}
-              </PresentationItem>
-
-              {data.gbifKey && (
-                <PresentationItem label="GBIF">
-                  <a
-                    href={`https://www.gbif.org/dataset/${data.gbifKey}`}
-                    target="_blank"
-                  >
-                    Browse in GBIF
+              <PresentationItem label="Url (website)">
+                {data.url ? (
+                  <a href={data.url} target="_blank">
+                    {data.url}
                   </a>
-                </PresentationItem>
+                ) : (
+                  "-"
+                )}
+              </PresentationItem>
+              {/* <PresentationItem label="Logo Url">
+              {data.url && (
+                <a href={data.logoUrl} target="_blank">
+                  {data.logoUrl}
+                </a>
               )}
-
+            </PresentationItem> */}
+              <PresentationItem label="ISSN">
+                {data.issn ? (
+                  <a
+                    href={`https://portal.issn.org/resource/ISSN/${data.issn}`}
+                  >
+                    {data.issn}
+                  </a>
+                ) : (
+                  "-"
+                )}
+              </PresentationItem>
+              <PresentationItem label="GBIF key">
+                {data.gbifKey ? (
+                  <a href={`https://www.gbif.org/dataset/${data.gbifKey}`}>
+                    {data.gbifKey}
+                  </a>
+                ) : (
+                  "-"
+                )}
+              </PresentationItem>
+              {/*             <PresentationItem label="GBIF publisher key">
+              {data.gbifPublisherKey && (
+                <a
+                  href={`https://www.gbif.org/publisher/${data.gbifPublisherKey}`}
+                >
+                  {data.gbifPublisherKey}
+                </a>
+              )}
+            </PresentationItem> */}
+              <PresentationItem label="Identifiers">
+                {data.identifier ? (
+                  <ol
+                    style={{
+                      listStyle: "none",
+                      paddingInlineStart: "0px",
+                    }}
+                  >
+                    {Object.keys(data.identifier).map((i) => (
+                      <li
+                        style={{
+                          float: "left",
+                          marginRight: "8px",
+                        }}
+                      >
+                        {`${i.toUpperCase()}: `}
+                        {IDENTIFIER_TYPES[i] ? (
+                          <a
+                            href={`${IDENTIFIER_TYPES[i]}${data.identifier[i]}`}
+                            target="_blank"
+                          >
+                            {data.identifier[i]}
+                          </a>
+                        ) : (
+                          data.identifier[i]
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  "-"
+                )}
+              </PresentationItem>
+              <PresentationItem label="Citation">
+                {data.citation && (
+                  <span
+                    dangerouslySetInnerHTML={{ __html: data.citation }}
+                  ></span>
+                )}
+              </PresentationItem>
+              {/*             <PresentationItem label="Derived from (sourceKey)">
+              {data.sourceKey}
+            </PresentationItem> */}
+              <PresentationItem label="Source">
+                {data.source && _.isArray(data.source)
+                  ? data.source.map(
+                      (s) =>
+                        !!s &&
+                        (s.citation ? (
+                          <div
+                            style={{ display: "inline-block" }}
+                            dangerouslySetInnerHTML={{ __html: s.citation }}
+                          ></div>
+                        ) : (
+                          s.title
+                        ))
+                    )
+                  : "-"}
+              </PresentationItem>
               {/*           <PresentationItem label="Created">
           {`${data.created} by ${data.createdByUser}`}
           </PresentationItem>
