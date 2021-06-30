@@ -106365,6 +106365,77 @@ var TaxonomicCoverage_TaxonomicCoverage = function (_React$Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var Dataset_TaxonomicCoverage = (TaxonomicCoverage_TaxonomicCoverage);
+// CONCATENATED MODULE: ./src/Dataset/AgentPresentation.js
+
+
+
+var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
+  var agent = _ref.agent,
+      countryAlpha2 = _ref.countryAlpha2,
+      style = _ref.style,
+      noLinks = _ref.noLinks;
+
+  var country = lodash_default.a.get(agent, "country") ? lodash_default.a.get(countryAlpha2, "[" + lodash_default.a.get(agent, "country") + "].title", lodash_default.a.get(agent, "country")) : null;
+  return agent ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+    "span",
+    { style: style },
+    (agent.given || agent.family) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "span",
+      { style: { display: "block" } },
+      [agent.family, agent.given].filter(function (a) {
+        return !!a;
+      }).join(", ")
+    ),
+    agent.orcid && (noLinks ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "div",
+      null,
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+        src: "https://data.catalogueoflife.org/images/orcid_16x16.png",
+        style: { flex: "0 0 auto" },
+        alt: ""
+      }),
+      " ",
+      agent.orcid
+    ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "a",
+      {
+        style: { display: "block" },
+        href: "https://orcid.org/" + agent.orcid
+      },
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+        src: "https://data.catalogueoflife.org/images/orcid_16x16.png",
+        style: { flex: "0 0 auto" },
+        alt: ""
+      }),
+      " ",
+      agent.orcid
+    )),
+    agent.organisation && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "span",
+      { style: { display: "block" } },
+      agent.organisation
+    ),
+    agent.rorid && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "span",
+      { style: { display: "block" } },
+      agent.rorid
+    ),
+    agent.department && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "span",
+      { style: { display: "block" } },
+      agent.department
+    ),
+    (agent.city || agent.state || country) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "span",
+      { style: { display: "block" } },
+      [agent.city, agent.state, country].filter(function (a) {
+        return !!a;
+      }).join(", ")
+    )
+  ) : null;
+};
+
+/* harmony default export */ var Dataset_AgentPresentation = (AgentPresentation_AgentPresentation);
 // CONCATENATED MODULE: ./src/Dataset/index.js
 function Dataset_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -106384,7 +106455,16 @@ function Dataset_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
+
+
+
 // import ReferencePopover from "./ReferencePopover"
+var IDENTIFIER_TYPES = {
+  col: "https://data.catalogueoflife.org/dataset/",
+  gbif: "https://www.gbif.org/dataset/",
+  plazi: "http://publication.plazi.org/id/",
+  doi: "https://doi.org/"
+};
 
 var Dataset_DatasetPage = function (_React$Component) {
   Dataset_inherits(DatasetPage, _React$Component);
@@ -106396,6 +106476,13 @@ var Dataset_DatasetPage = function (_React$Component) {
 
     _this.componentDidMount = function () {
       _this.getData();
+      enumeration_getCountries().then(function (res) {
+        var countryAlpha2 = {};
+        res.forEach(function (c) {
+          countryAlpha2[c.alpha2] = c;
+        });
+        _this.setState({ countryAlpha2: countryAlpha2 });
+      });
     };
 
     _this.getData = function () {
@@ -106426,12 +106513,13 @@ var Dataset_DatasetPage = function (_React$Component) {
     };
 
     if (_this.props.auth) {
-      axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(_this.props.auth);
+      axios_default.a.defaults.headers.common["Authorization"] = "Basic " + btoa_default()(_this.props.auth);
     }
     _this.state = {
       datasetLoading: true,
       data: null,
-      rank: null
+      rank: null,
+      countryAlpha2: {}
     };
     return _this;
   }
@@ -106442,6 +106530,7 @@ var Dataset_DatasetPage = function (_React$Component) {
         catalogueKey = _props.catalogueKey;
     var _state = this.state,
         data = _state.data,
+        countryAlpha2 = _state.countryAlpha2,
         datasetError = _state.datasetError;
 
 
@@ -106509,24 +106598,91 @@ var Dataset_DatasetPage = function (_React$Component) {
             { label: "Full name" },
             data.title
           ),
+          (data.version || data.issued) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            {
+              label: "" + (data.version ? "Version" : "") + (data.version && data.issued ? " / " : "") + (data.issued ? "Issued" : "")
+            },
+            (data.version || data.issued) && "" + (data.version ? data.version : "") + (data.issued ? " / " + data.issued : "")
+          ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Version" },
-            (data.version || data.released) && "" + (data.version ? data.version : "") + (data.released ? " Received by CoL: " + data.released : "")
+            { label: "DOI" },
+            data.doi ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              "a",
+              { href: "https://doi.org/" + data.doi },
+              data.doi
+            ) : "-"
           ),
-          data.authors && lodash_default.a.isArray(data.authors) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          data.contact && !lodash_default.a.isEmpty(data.contact) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Authors" },
-            data.authors.map(function (a) {
-              return a.name;
-            }).join(", ")
+            { label: "Contact" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+              countryAlpha2: countryAlpha2,
+              agent: data.contact
+            })
           ),
-          data.editors && lodash_default.a.isArray(data.editors) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          data.publisher && !lodash_default.a.isEmpty(data.publisher) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Editors" },
-            data.editors.map(function (a) {
-              return a.name;
-            }).join(", ")
+            { label: "Publisher" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+              countryAlpha2: countryAlpha2,
+              agent: data.publisher
+            })
+          ),
+          data.creator && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Creator" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              es_row,
+              { gutter: [8, 8] },
+              data.creator.map(function (a) {
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                  es_col,
+                  null,
+                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+                    countryAlpha2: countryAlpha2,
+                    agent: a
+                  })
+                );
+              })
+            )
+          ),
+          data.editor && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Editor" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              es_row,
+              { gutter: [8, 8] },
+              data.editor.map(function (a) {
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                  es_col,
+                  null,
+                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+                    countryAlpha2: countryAlpha2,
+                    agent: a
+                  })
+                );
+              })
+            )
+          ),
+          data.contributor && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Contributor" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              es_row,
+              { gutter: [8, 8] },
+              data.contributor.map(function (a) {
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                  es_col,
+                  null,
+                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+                    countryAlpha2: countryAlpha2,
+                    agent: a
+                  })
+                );
+              })
+            )
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
@@ -106537,12 +106693,11 @@ var Dataset_DatasetPage = function (_React$Component) {
               pathToTree: pathToTree
             })
           ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "English name of the Group" },
-            data.group
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_Metrics, { catalogueKey: catalogueKey, dataset: data, pathToSearch: this.props.pathToSearch }),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_Metrics, {
+            catalogueKey: catalogueKey,
+            dataset: data,
+            pathToSearch: this.props.pathToSearch
+          }),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Abstract" },
@@ -106550,23 +106705,8 @@ var Dataset_DatasetPage = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Organisation" },
-            lodash_default.a.isArray(data.organisations) && data.organisations.map(function (o) {
-              return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "div",
-                null,
-                o.label
-              );
-            })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Website" },
-            data.website && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              { href: data.website, target: "_blank" },
-              data.website
-            )
+            { label: "Taxonomic scope" },
+            data.taxonomicScope || "-"
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
@@ -106575,35 +106715,103 @@ var Dataset_DatasetPage = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "Completeness" },
-            data.completeness
+            { label: "Temporal scope" },
+            data.temporalScope || "-"
           ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Checklist Confidence" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(rate, { defaultValue: data.confidence, disabled: true })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Citation" },
-            data.citation || "-"
-          ),
+          " ",
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "License" },
             data.license || "-"
           ),
-          data.gbifKey && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
-            { label: "GBIF" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            { label: "Checklist Confidence" },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(rate, { value: data.confidence, disabled: true })
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Completeness" },
+            data.completeness
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Url (website)" },
+            data.url ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              "a",
+              { href: data.url, target: "_blank" },
+              data.url
+            ) : "-"
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "ISSN" },
+            data.issn ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "a",
               {
-                href: "https://www.gbif.org/dataset/" + data.gbifKey,
-                target: "_blank"
+                href: "https://portal.issn.org/resource/ISSN/" + data.issn
               },
-              "Browse in GBIF"
-            )
+              data.issn
+            ) : "-"
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "GBIF key" },
+            data.gbifKey ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              "a",
+              { href: "https://www.gbif.org/dataset/" + data.gbifKey },
+              data.gbifKey
+            ) : "-"
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Identifiers" },
+            data.identifier ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              "ol",
+              {
+                style: {
+                  listStyle: "none",
+                  paddingInlineStart: "0px"
+                }
+              },
+              Object.keys(data.identifier).map(function (i) {
+                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                  "li",
+                  {
+                    style: {
+                      float: "left",
+                      marginRight: "8px"
+                    }
+                  },
+                  i.toUpperCase() + ": ",
+                  IDENTIFIER_TYPES[i] ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                    "a",
+                    {
+                      href: "" + IDENTIFIER_TYPES[i] + data.identifier[i],
+                      target: "_blank"
+                    },
+                    data.identifier[i]
+                  ) : data.identifier[i]
+                );
+              })
+            ) : "-"
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Citation" },
+            data.citation && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+              dangerouslySetInnerHTML: { __html: data.citation }
+            })
+          ),
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            components_PresentationItem,
+            { label: "Source" },
+            data.source && lodash_default.a.isArray(data.source) ? data.source.map(function (s) {
+              return !!s && (s.citation ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+                style: { display: "inline-block" },
+                dangerouslySetInnerHTML: { __html: s.citation }
+              }) : s.title);
+            }) : "-"
           )
         )
       )
