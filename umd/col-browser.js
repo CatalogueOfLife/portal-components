@@ -85455,7 +85455,7 @@ var DatasetCitation_Citation = function Citation(_ref) {
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
       { className: "col-dataset-citation-title" },
-      dataset.citation || dataset.title
+      dataset.citation ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: dataset.citation } }) : dataset.title
     ),
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
