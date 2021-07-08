@@ -174,7 +174,7 @@ class DatasetPage extends React.Component {
                 <PresentationItem label="Creator">
                   <Row gutter={[8, 8]}>
                     {data.creator.map((a) => (
-                      <Col>
+                      <Col span={8}>
                         <AgentPresentation
                           countryAlpha2={countryAlpha2}
                           agent={a}
@@ -188,7 +188,7 @@ class DatasetPage extends React.Component {
                 <PresentationItem label="Editor">
                   <Row gutter={[8, 8]}>
                     {data.editor.map((a) => (
-                      <Col>
+                      <Col  span={8}>
                         <AgentPresentation
                           countryAlpha2={countryAlpha2}
                           agent={a}
@@ -202,7 +202,7 @@ class DatasetPage extends React.Component {
                 <PresentationItem label="Contributor">
                   <Row gutter={[8, 8]}>
                     {data.contributor.map((a) => (
-                      <Col>
+                      <Col  span={8}>
                         <AgentPresentation
                           countryAlpha2={countryAlpha2}
                           agent={a}

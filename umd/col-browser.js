@@ -106639,7 +106639,7 @@ var Dataset_DatasetPage = function (_React$Component) {
               data.creator.map(function (a) {
                 return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                   es_col,
-                  null,
+                  { span: 8 },
                   external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
                     countryAlpha2: countryAlpha2,
                     agent: a
@@ -106657,7 +106657,7 @@ var Dataset_DatasetPage = function (_React$Component) {
               data.editor.map(function (a) {
                 return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                   es_col,
-                  null,
+                  { span: 8 },
                   external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
                     countryAlpha2: countryAlpha2,
                     agent: a
@@ -106675,7 +106675,7 @@ var Dataset_DatasetPage = function (_React$Component) {
               data.contributor.map(function (a) {
                 return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                   es_col,
-                  null,
+                  { span: 8 },
                   external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
                     countryAlpha2: countryAlpha2,
                     agent: a
