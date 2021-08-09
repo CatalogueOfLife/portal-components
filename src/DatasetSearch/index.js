@@ -35,9 +35,9 @@ const getColumns = (pathToDataset, catalogueKey, auth) => [
     render: (text, record) => <DatasetlogoWithFallback  auth={auth} catalogueKey={catalogueKey} datasetKey={record.key} style={{maxHeight: '32px'}} size="SMALL"/>
   },
   {
-    title: "English name of the group",
-    dataIndex: ["group"],
-    key: "group"
+    title: "Taxonomic scope",
+    dataIndex: ["taxonomicScope"],
+    key: "taxonomicScope"
   },
   {
     title: "Living Species",
@@ -163,7 +163,7 @@ class DatasetSearchPage extends React.Component {
             expandedRowRender={(dataset) => <div style={{marginLeft: '40px'}}>
               <MetricsPresentation metrics={dataset.metrics} dataset={dataset} pathToSearch={this.props.pathToSearch} rank={rank} />
             {dataset.citation &&  <div style={{marginTop: "12px"}}><PresentationItem md={24}  label={`Citation`}>
-              {dataset.citation}
+              <div dangerouslySetInnerHTML={{__html: dataset.citation}}></div>
           </PresentationItem></div>}
               
             </div>}

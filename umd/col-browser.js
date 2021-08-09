@@ -106555,7 +106555,7 @@ var Dataset_DatasetPage = function (_React$Component) {
           null,
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: 12 },
+            { flex: "auto" },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "h1",
               {
@@ -106572,7 +106572,7 @@ var Dataset_DatasetPage = function (_React$Component) {
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             es_col,
-            { span: 12, style: { textAlign: "right" } },
+            { style: { textAlign: "right" } },
             external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
               auth: this.props.auth,
               style: {
@@ -106872,9 +106872,9 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, 
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, { auth: auth, catalogueKey: catalogueKey, datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
     }
   }, {
-    title: "English name of the group",
-    dataIndex: ["group"],
-    key: "group"
+    title: "Taxonomic scope",
+    dataIndex: ["taxonomicScope"],
+    key: "taxonomicScope"
   }, {
     title: "Living Species",
     dataIndex: ["metrics", "taxaByRankCount", "species"],
@@ -107019,7 +107019,7 @@ var DatasetSearch_DatasetSearchPage = function (_React$Component) {
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 components_PresentationItem,
                 { md: 24, label: "Citation" },
-                dataset.citation
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { dangerouslySetInnerHTML: { __html: dataset.citation } })
               )
             )
           );

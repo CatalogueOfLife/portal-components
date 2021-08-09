@@ -94,7 +94,7 @@ class DatasetPage extends React.Component {
           )}
           {data && (
             <Row>
-              <Col span={12}>
+              <Col flex="auto">
                 {/*                 <h1
                   style={{ fontSize: "30px", fontWeight: '400', paddingLeft: "10px" , display: 'inline-block', textTransform: 'none'}}
                   
@@ -112,7 +112,7 @@ class DatasetPage extends React.Component {
                 </h1>
               </Col>
 
-              <Col span={12} style={{ textAlign: "right" }}>
+              <Col style={{ textAlign: "right" }}>
                 <DatasetlogoWithFallback
                   auth={this.props.auth}
                   style={{
