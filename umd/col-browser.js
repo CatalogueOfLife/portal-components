@@ -100707,7 +100707,7 @@ var Taxon_TaxonPage = function (_React$Component) {
               // ignore, there is no logo
             });
 
-            axios_default()(src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey")).then(function (dataset) {
+            axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey")).then(function (dataset) {
               _this.setState({ sourceDataset: dataset.data });
             });
           });
@@ -106861,7 +106861,7 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, 
     },
     width: "30%",
     sorter: function sorter(a, b) {
-      return a.alias.localeCompare(b.alias);
+      return a.alias && b.alias ? a.alias.localeCompare(b.alias) : 0;
     },
     defaultSortOrder: 'ascend'
   }, {

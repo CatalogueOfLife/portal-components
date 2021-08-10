@@ -25,7 +25,7 @@ const getColumns = (pathToDataset, catalogueKey, auth) => [
       );
     },
     width: "30%",
-    sorter: (a, b) => a.alias.localeCompare(b.alias),
+    sorter: (a, b) => (a.alias && b.alias) ? a.alias.localeCompare(b.alias) : 0,
     defaultSortOrder: 'ascend'
   },
   {

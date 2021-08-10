@@ -134,7 +134,7 @@ class TaxonPage extends React.Component {
               });
 
             axios(
-              `${config.dataApi}dataset/${_.get(
+              `${config.dataApi}dataset/${datasetKey}/source/${_.get(
                 sector,
                 "data.subjectDatasetKey"
               )}`
