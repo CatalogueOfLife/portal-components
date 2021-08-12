@@ -24589,13 +24589,6 @@ function _defineProperty(obj, key, value) {
 
 /***/ }),
 /* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(320);
-
-
-/***/ }),
-/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24616,7 +24609,7 @@ function _defineProperty(obj, key, value) {
 }
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24668,7 +24661,7 @@ function _slicedToArray(arr, i) {
 }
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24721,8 +24714,8 @@ function supportRef(nodeOrComponent) {
 /* eslint-enable */
 
 /***/ }),
-/* 29 */,
-/* 30 */
+/* 28 */,
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24756,7 +24749,7 @@ if (true) {
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(350)
@@ -24836,6 +24829,13 @@ module.exports.polyfill = function(object) {
 }
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(51)))
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(320);
+
 
 /***/ }),
 /* 32 */
@@ -25092,7 +25092,7 @@ exports.parseUrl = function (str, opts) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _objectSpread2; });
-/* harmony import */ var _defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(26);
+/* harmony import */ var _defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(25);
 
 
 function ownKeys(object, enumerableOnly) {
@@ -25357,14 +25357,14 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var findDOMNode = __webpack_require__(48);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(1);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(31);
+var raf = __webpack_require__(30);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/rc-motion/es/util/motion.js
@@ -26605,7 +26605,7 @@ function _objectWithoutProperties(source, excluded) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addEventListenerWrap; });
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(30);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(29);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
 
 function addEventListenerWrap(target, eventType, cb, option) {
@@ -26860,7 +26860,7 @@ module.exports = root;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return findDOMNode; });
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(30);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(29);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
 
 /**
@@ -26961,7 +26961,7 @@ module.exports = g;
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-var defineProperty = __webpack_require__(26);
+var defineProperty = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js + 1 modules
 var objectWithoutProperties = __webpack_require__(42);
@@ -28048,7 +28048,7 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(30);
+var react_dom = __webpack_require__(29);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/contains.js
@@ -28058,7 +28058,7 @@ var contains = __webpack_require__(77);
 var findDOMNode = __webpack_require__(48);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/addEventListener.js
 var addEventListener = __webpack_require__(43);
@@ -28135,7 +28135,7 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(31);
+var raf = __webpack_require__(30);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/rc-align/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
@@ -31233,7 +31233,7 @@ var toArray = __webpack_require__(35);
 var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
 var ResizeObserver_es = __webpack_require__(71);
@@ -32108,7 +32108,7 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(30);
+var react_dom = __webpack_require__(29);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
 var ResizeObserver_es = __webpack_require__(71);
@@ -41595,7 +41595,7 @@ cssAnimation.isCssAnimationSupported = isCssAnimationSupported;
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-var defineProperty = __webpack_require__(26);
+var defineProperty = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/objectSpread2.js
 var objectSpread2 = __webpack_require__(34);
@@ -58719,7 +58719,7 @@ module.exports = isLength;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Portal; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(29);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -61754,7 +61754,7 @@ var objectSpread2 = __webpack_require__(23);
 var toConsumableArray = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/node_modules/@babel/runtime/helpers/esm/slicedToArray.js + 1 modules
-var slicedToArray = __webpack_require__(27);
+var slicedToArray = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js + 1 modules
 var objectWithoutProperties = __webpack_require__(45);
@@ -61782,7 +61782,7 @@ var es = __webpack_require__(37);
 var TransBtn = __webpack_require__(66);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/Selector/Input.js
 
@@ -63638,7 +63638,7 @@ function mergeChildren(prev, next) {
   return ret;
 }
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(30);
+var react_dom = __webpack_require__(29);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/css-animation/es/index.js
@@ -75179,7 +75179,7 @@ __webpack_require__.d(src_namespaceObject_0, "BibTex", function() { return src_B
 var src = __webpack_require__(318);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/regenerator/index.js
-var regenerator = __webpack_require__(25);
+var regenerator = __webpack_require__(31);
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
@@ -77268,13 +77268,13 @@ var assertThisInitialized = __webpack_require__(56);
 var assertThisInitialized_default = /*#__PURE__*/__webpack_require__.n(assertThisInitialized);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(30);
+var react_dom = __webpack_require__(29);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/css-animation/es/Event.js
 var Event = __webpack_require__(46);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(31);
+var raf = __webpack_require__(30);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/raf.js
@@ -82630,7 +82630,7 @@ var esm_defineProperty = __webpack_require__(24);
 var objectWithoutProperties = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/node_modules/@babel/runtime/helpers/esm/slicedToArray.js + 1 modules
-var esm_slicedToArray = __webpack_require__(27);
+var esm_slicedToArray = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/KeyCode.js
 var KeyCode = __webpack_require__(10);
@@ -84102,7 +84102,7 @@ var Group_Group = function Group(props) {
 
 /* harmony default export */ var input_Group = (Group_Group);
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
-var es_ref = __webpack_require__(28);
+var es_ref = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/input/Search.js
 
@@ -106438,14 +106438,7 @@ var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
 
 /* harmony default export */ var Dataset_AgentPresentation = (AgentPresentation_AgentPresentation);
 // CONCATENATED MODULE: ./src/components/BibTex.js
-
-
 var BibTex_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var BibTex_this = undefined;
-
-function BibTex_asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 
 
 
@@ -106459,72 +106452,11 @@ var BibTex_BibTex = function BibTex(_ref) {
   var defaultStyle = {
     height: "40px"
   };
-  var saveFile = function () {
-    var _ref2 = BibTex_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee(blob) {
-      var a;
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              a = document.createElement("a");
+  var url = catalogueKey ? src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey + ".bib" : src_config.dataApi + "dataset/" + datasetKey + ".bib";
 
-              a.download = "citation.bib";
-              a.href = URL.createObjectURL(blob);
-              a.addEventListener("click", function () {
-                setTimeout(function () {
-                  return URL.revokeObjectURL(a.href);
-                }, 30 * 1000);
-              });
-              a.click();
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, BibTex_this);
-    }));
-
-    return function saveFile(_x) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var getBibTex = function () {
-    var _ref3 = BibTex_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
-      var url, res;
-      return regenerator_default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              url = catalogueKey ? src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey : src_config.dataApi + "dataset/" + datasetKey;
-              _context2.next = 3;
-              return axios_default.a.get(url, {
-                responseType: "blob",
-                headers: {
-                  Accept: "application/x-bibtex"
-                }
-              });
-
-            case 3:
-              res = _context2.sent;
-
-              saveFile(res.data);
-
-            case 5:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, BibTex_this);
-    }));
-
-    return function getBibTex() {
-      return _ref3.apply(this, arguments);
-    };
-  }();
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "a",
-    { onClick: getBibTex },
+    { href: url },
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { src: "https://data.catalogueoflife.org/images/bibtex_logo.png", style: BibTex_extends({}, defaultStyle, style) })
   );
 };
