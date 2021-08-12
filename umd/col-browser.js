@@ -99903,9 +99903,9 @@ var Classification_ClassificationTable = function ClassificationTable(_ref) {
         components_PresentationItem,
         {
           md: 6,
-          label: lodash_default.a.startCase(t.name.rank),
+          label: lodash_default.a.startCase(t.rank),
           classes: { formItem: { borderBottom: "none" } },
-          key: t.name.rank
+          key: t.rank
         },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
           href: "" + pathToTaxon + t.id,
@@ -99920,7 +99920,7 @@ var Classification_ClassificationTable = function ClassificationTable(_ref) {
       components_PresentationItem,
       {
         md: 6,
-        label: lodash_default.a.get(taxon, "name.rank") ? lodash_default.a.startCase(taxon.name.rank) : "",
+        label: lodash_default.a.get(taxon, "rank") ? lodash_default.a.startCase(taxon.rank) : "",
         classes: { formItem: { borderBottom: "none" } }
       },
       taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
@@ -100765,7 +100765,7 @@ var Taxon_TaxonPage = function (_React$Component) {
     _this.getClassification = function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
 
-      axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification").then(function (res) {
+      axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification2").then(function (res) {
         _this.setState({
           classificationLoading: false,
           classification: res.data,
