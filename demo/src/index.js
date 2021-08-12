@@ -5,7 +5,7 @@ import { render } from "react-dom";
 
 // const Taxon =  require('../../src/index.js').Taxon
 
-import { Tree, Taxon, Search, Dataset, DatasetSearch } from "../../src";
+import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex } from "../../src";
 
 import history from "../../src/history";
 
@@ -57,6 +57,12 @@ class Demo extends Component {
               pathToDataset="/data/source/"
               pathToSearch="/data/search"
             ></DatasetSearch>
+          )}
+
+          {path.pathname.indexOf("/data/bibtex") === 0 && (
+            <BibTex
+              datasetKey={"2328"}
+            ></BibTex>
           )}
         </React.Fragment>
       </div>
