@@ -1,32 +1,14 @@
 import React from "react";
-import axios from "axios";
 import config from "../config";
 
 const BibTex = ({ datasetKey, catalogueKey, style = {} }) => {
 const defaultStyle = {
     height: "40px"
 }
-  const saveFile = async (blob) => {
-    const a = document.createElement("a");
-    a.download = "citation.bib";
-    a.href = URL.createObjectURL(blob);
-    a.addEventListener("click", () => {
-      setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
-    });
-    a.click();
-  };
-  const getBibTex = async () => {
-    const url = catalogueKey ? `${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}` : `${config.dataApi}dataset/${datasetKey}`
-    const res = await axios.get(url, {
-      responseType: "blob",
-      headers: {
-        Accept: "application/x-bibtex",
-      },
-    });
-    saveFile(res.data);
-  };
+const url = catalogueKey ? `${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`
+
   return (
-    <a onClick={getBibTex}>
+    <a href={url} >
       <img src="https://data.catalogueoflife.org/images/bibtex_logo.png" style={{...defaultStyle, ...style}} />
     </a>
   );
