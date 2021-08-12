@@ -112,7 +112,7 @@ class DatasetPage extends React.Component {
                 </h1>
                {data && <React.Fragment>
                  <br />
-                 <BibTex style={{marginLeft: "8px", height: "32px"}} datasetKey={data.key}/></React.Fragment>}
+                 <BibTex style={{marginLeft: "8px", height: "32px"}} catalogueKey={catalogueKey !== data.key ? catalogueKey : null} datasetKey={data.key}/></React.Fragment>}
               </Col>
 
               <Col style={{ textAlign: "right" }}>
