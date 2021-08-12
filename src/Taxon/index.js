@@ -196,7 +196,7 @@ class TaxonPage extends React.Component {
   getClassification = (taxonKey) => {
     const { catalogueKey: datasetKey } = this.props;
     axios(
-      `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/classification`
+      `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/classification2`
     )
       .then((res) => {
         this.setState({
