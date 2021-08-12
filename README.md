@@ -6,6 +6,7 @@ This is a small React Component library consisting of
 2. Taxon search page, table view
 3. Taxon page
 4. Dataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
+5. BibTex citation - simple icon that downloads a BibTex citation for a dataset
 
 ## Examples
 
@@ -188,5 +189,35 @@ class Dataset extends React.Component {
 
 const domContainer = document.querySelector('#dataset');
 ReactDOM.render(e(Dataset), domContainer);
+</script>
+```
+
+### ColBrowser.BibTex
+
+[Dataset detail page](https://www.dev.catalogue.life/data/dataset/2073), takes two properties:
+
+1. `datasetKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)
+2. `style` - To set margins, height etc. Defaults to {height: "40px"}.
+
+
+```
+<div id="bibtex"></div> <!- Dom element for the BibTex to attach to -->
+............
+<script >
+'use strict';
+const e = React.createElement;
+class BibTex extends React.Component {
+
+    render() {
+
+      return e(
+        ColBrowser.BibTex,
+        { datasetKey: 9999 }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#bibtex');
+ReactDOM.render(e(BibTex), domContainer);
 </script>
 ```

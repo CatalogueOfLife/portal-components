@@ -12,7 +12,7 @@ import history from "../history";
 import TaxonomicCoverage from "./TaxonomicCoverage";
 import AgentPresentation from "./AgentPresentation";
 import { getCountries } from "../api/enumeration";
-
+import BibTex from "../components/BibTex"
 // import ReferencePopover from "./ReferencePopover"
 const IDENTIFIER_TYPES = {
   col: "https://data.catalogueoflife.org/dataset/",
@@ -110,6 +110,9 @@ class DatasetPage extends React.Component {
                 >
                   {data.title}
                 </h1>
+               {data && <React.Fragment>
+                 <br />
+                 <BibTex style={{marginLeft: "8px", height: "32px"}} datasetKey={data.key}/></React.Fragment>}
               </Col>
 
               <Col style={{ textAlign: "right" }}>
@@ -149,7 +152,11 @@ class DatasetPage extends React.Component {
               )}
               <PresentationItem label="DOI">
                 {data.doi ? (
-                  <a href={`https://doi.org/${data.doi}`}>{data.doi}</a>
+                  <a href={`https://doi.org/${data.doi}`}><img
+                  src="https://data.catalogueoflife.org/images/DOI_logo.png"
+                  style={{ flex: "0 0 auto", height: "16px" }}
+                  alt=""
+                ></img>{data.doi}</a>
                 ) : (
                   "-"
                 )}
