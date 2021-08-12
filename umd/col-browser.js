@@ -106452,6 +106452,7 @@ function BibTex_asyncToGenerator(fn) { return function () { var gen = fn.apply(t
 
 var BibTex_BibTex = function BibTex(_ref) {
   var datasetKey = _ref.datasetKey,
+      catalogueKey = _ref.catalogueKey,
       _ref$style = _ref.style,
       style = _ref$style === undefined ? {} : _ref$style;
 
@@ -106490,25 +106491,26 @@ var BibTex_BibTex = function BibTex(_ref) {
   }();
   var getBibTex = function () {
     var _ref3 = BibTex_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
-      var res;
+      var url, res;
       return regenerator_default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return axios_default.a.get(src_config.dataApi + "dataset/" + datasetKey, {
+              url = catalogueKey ? src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey : src_config.dataApi + "dataset/" + datasetKey;
+              _context2.next = 3;
+              return axios_default.a.get(url, {
                 responseType: "blob",
                 headers: {
                   Accept: "application/x-bibtex"
                 }
               });
 
-            case 2:
+            case 3:
               res = _context2.sent;
 
               saveFile(res.data);
 
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -106665,7 +106667,7 @@ var Dataset_DatasetPage = function (_React$Component) {
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
               null,
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("br", null),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BibTex, { style: { marginLeft: "8px", height: "32px" }, datasetKey: data.key })
+              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BibTex, { style: { marginLeft: "8px", height: "32px" }, catalogueKey: catalogueKey !== data.key ? catalogueKey : null, datasetKey: data.key })
             )
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(

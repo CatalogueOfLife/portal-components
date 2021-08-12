@@ -197,7 +197,8 @@ ReactDOM.render(e(Dataset), domContainer);
 [Dataset detail page](https://www.dev.catalogue.life/data/dataset/2073), takes two properties:
 
 1. `datasetKey` - the dataset key from the [Catalogue of Life clearinghouse](https://data.catalogue.life/)
-2. `style` - To set margins, height etc. Defaults to {height: "40px"}.
+2. `catalogueKey` - Optional, cite as source in a compiled dataset such the Catalogue of Life.
+3. `style` - To set margins, height etc. Defaults to {height: "40px"}.
 
 
 ```

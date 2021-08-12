@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import config from "../config";
 
-const BibTex = ({ datasetKey, style = {} }) => {
+const BibTex = ({ datasetKey, catalogueKey, style = {} }) => {
 const defaultStyle = {
     height: "40px"
 }
@@ -16,7 +16,8 @@ const defaultStyle = {
     a.click();
   };
   const getBibTex = async () => {
-    const res = await axios.get(`${config.dataApi}dataset/${datasetKey}`, {
+    const url = catalogueKey ? `${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}` : `${config.dataApi}dataset/${datasetKey}`
+    const res = await axios.get(url, {
       responseType: "blob",
       headers: {
         Accept: "application/x-bibtex",
