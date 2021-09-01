@@ -100529,7 +100529,6 @@ var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component
   DatasetlogoWithFallback.prototype.render = function render() {
     var _this2 = this;
 
-    // Note that authenticated URLs will be blocked by chrome, IE and others. Seems to work in FF though
     var _props = this.props,
         _props$fallBack = _props.fallBack,
         fallBack = _props$fallBack === undefined ? null : _props$fallBack,
@@ -100537,19 +100536,14 @@ var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component
         datasetKey = _props.datasetKey,
         style = _props.style,
         _props$size = _props.size,
-        size = _props$size === undefined ? 'MEDIUM' : _props$size,
-        auth = _props.auth;
-
-    var dataApiParts = src_config.dataApi.split("//");
-    var protocol = dataApiParts[0] + "//";
-    var location = dataApiParts[1] + "image/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size;
+        size = _props$size === undefined ? 'MEDIUM' : _props$size;
     var _state = this.state,
         error = _state.error,
         loading = _state.loading;
 
     return loading || !error ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
       style: style,
-      src: "" + protocol + (auth ? auth + "@" : "") + location,
+      src: src_config.dataApi + "image/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size,
       onLoad: function onLoad() {
         return _this2.setState({ error: false, loading: false });
       },
