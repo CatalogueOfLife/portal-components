@@ -13,7 +13,7 @@ class DatasetlogoWithFallback extends React.Component {
       const {fallBack = null,catalogueKey, datasetKey, style, size = 'MEDIUM', auth} = this.props;
       const dataApiParts = config.dataApi.split("//");
       const protocol = `${dataApiParts[0]}//`;
-      const location = `${dataApiParts[1]}dataset/${catalogueKey}/source/${datasetKey}/logo?size=${size}`;
+      const location = `${dataApiParts[1]}image/${catalogueKey}/source/${datasetKey}/logo?size=${size}`;
       const {error, loading} = this.state;
     return (loading || !error) ?  
         <img
