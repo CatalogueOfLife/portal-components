@@ -9,16 +9,12 @@ class DatasetlogoWithFallback extends React.Component {
 
   render() {
 
-      // Note that authenticated URLs will be blocked by chrome, IE and others. Seems to work in FF though
-      const {fallBack = null,catalogueKey, datasetKey, style, size = 'MEDIUM', auth} = this.props;
-      const dataApiParts = config.dataApi.split("//");
-      const protocol = `${dataApiParts[0]}//`;
-      const location = `${dataApiParts[1]}image/${catalogueKey}/source/${datasetKey}/logo?size=${size}`;
+      const {fallBack = null,catalogueKey, datasetKey, style, size = 'MEDIUM'} = this.props;
       const {error, loading} = this.state;
     return (loading || !error) ?  
         <img
           style={style}
-          src={`${protocol}${auth ? auth + "@" : ""}${location}`}
+          src={`${config.dataApi}image/${catalogueKey}/source/${datasetKey}/logo?size=${size}`}
           onLoad={() => this.setState({error: false, loading: false})}
           onError={() => this.setState({error: true, loading: false})}
         /> : fallBack;
