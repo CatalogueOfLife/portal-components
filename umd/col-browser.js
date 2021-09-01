@@ -100542,7 +100542,7 @@ var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component
 
     var dataApiParts = src_config.dataApi.split("//");
     var protocol = dataApiParts[0] + "//";
-    var location = dataApiParts[1] + "dataset/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size;
+    var location = dataApiParts[1] + "image/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size;
     var _state = this.state,
         error = _state.error,
         loading = _state.loading;
@@ -100700,9 +100700,9 @@ var Taxon_TaxonPage = function (_React$Component) {
         // sector keys are only present if its a catalogue
         if (lodash_default.a.get(res, "data.sectorKey")) {
           axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
-            axios_default()(src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo").then(function () {
+            axios_default()(src_config.dataApi + "image/" + datasetKey + "/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo").then(function () {
               _this.setState({
-                logoUrl: src_config.dataApi + "dataset/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo?size=MEDIUM"
+                logoUrl: src_config.dataApi + "image/" + datasetKey + "/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo?size=MEDIUM"
               });
             }).catch(function () {
               // ignore, there is no logo
@@ -100765,7 +100765,7 @@ var Taxon_TaxonPage = function (_React$Component) {
     _this.getClassification = function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
 
-      axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification2").then(function (res) {
+      axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification").then(function (res) {
         _this.setState({
           classificationLoading: false,
           classification: res.data,
