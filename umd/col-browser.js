@@ -101427,7 +101427,9 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
                   return acc + cur.species;
                 }, 0);
               } else {
-                root = res.data;
+                root = res.data.filter(function (t) {
+                  return t.rank === childRank;
+                });
               }
               setLoading(false);
               initChart(root);
@@ -101462,6 +101464,9 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       return t.name;
     }),
         data = root.map(function (k, idx) {
+      console.log(k.name + " Species " + k.species + " calculated " + k.children.reduce(function (acc, cur) {
+        return acc + cur.species;
+      }, 0));
       return {
         color: colors[idx],
         y: k.species,
