@@ -95,7 +95,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
     var colors = Highcharts.getOptions().colors,
       categories = root.map((t) => t.name),
       data = root.map((k, idx) => {
-        console.log(`${k.name} Species ${k.species} calculated ${k.children.reduce((acc, cur) => acc + cur.species, 0)}`)
+        //console.log(`${k.name} Species ${k.species} calculated ${k.children.reduce((acc, cur) => acc + cur.species, 0)}`)
         return {
           color: colors[idx],
           y: k.species,
