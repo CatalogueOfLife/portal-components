@@ -1,8 +1,10 @@
 import React from "react";
 import _ from "lodash";
-// import { NavLink } from "react-router-dom";
-import PresentationItem from "../components/PresentationItem";
 
+const rankStyle = {
+  color: "rgba(0, 0, 0, 0.45)",
+  fontSize: "11px",
+};
 const ClassificationTable = ({
   data,
   taxon,
@@ -13,12 +15,8 @@ const ClassificationTable = ({
   <div style={style}>
     {" "}
     {_.reverse([...data]).map((t) => (
-      <PresentationItem
-        md={6}
-        label={_.startCase(t.rank)}
-        classes={{ formItem: { borderBottom: "none" } }}
-        key={t.rank}
-      >
+      <div style={{ float: "left", marginRight: "3px" }} key={t.rank}>
+        <span style={rankStyle}>{t.rank}: </span>
         <a
           href={`${pathToTaxon}${t.id}`}
           onClick={() => {
@@ -26,13 +24,13 @@ const ClassificationTable = ({
           }}
           dangerouslySetInnerHTML={{ __html: t.labelHtml }}
         />
-      </PresentationItem>
+        {" >"}
+      </div>
     ))}
-    <PresentationItem
-      md={6}
-      label={_.get(taxon, "rank") ? _.startCase(taxon.rank) : ""}
-      classes={{ formItem: { borderBottom: "none" } }}
-    >
+    <div style={{ float: "left" }}>
+      {_.get(taxon, "name.rank") && (
+        <span style={rankStyle}>{taxon.name.rank}: </span>
+      )}
       {taxon && (
         <a
           onClick={() => {
@@ -41,7 +39,7 @@ const ClassificationTable = ({
           dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
         />
       )}
-    </PresentationItem>
+    </div>
   </div>
 );
 
