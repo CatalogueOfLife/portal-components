@@ -21,6 +21,8 @@ import IncludesTable from "./Includes";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import btoa from "btoa"
 import Page404 from "../components/Page404"
+import TaxonBreakdown from "./TaxonBreakdown";
+
 const md = 5;
 
 class TaxonPage extends React.Component {
@@ -272,6 +274,7 @@ class TaxonPage extends React.Component {
       infoError,
       status
     } = this.state;
+    const genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
     const synonyms =
       info && info.synonyms && info.synonyms.length > 0
@@ -446,6 +449,11 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
+          {taxon && rank &&
+            rank.indexOf(_.get(taxon, "name.rank")) < genusRankIndex &&
+            rank.indexOf(_.get(taxon, "name.rank")) > -1 && (
+              <TaxonBreakdown taxon={taxon} datasetKey={catalogueKey} rank={rank} pathToTaxon={pathToTaxon} />
+            )}
           {includes.length > 1 && rank && taxon && (
             <PresentationItem md={md} label="Statistics">
               <IncludesTable
