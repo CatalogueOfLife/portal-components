@@ -101464,9 +101464,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       return t.name;
     }),
         data = root.map(function (k, idx) {
-      console.log(k.name + " Species " + k.species + " calculated " + k.children.reduce(function (acc, cur) {
-        return acc + cur.species;
-      }, 0));
+      //console.log(`${k.name} Species ${k.species} calculated ${k.children.reduce((acc, cur) => acc + cur.species, 0)}`)
       return {
         color: colors[idx],
         y: k.species,
