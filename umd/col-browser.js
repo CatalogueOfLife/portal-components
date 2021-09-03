@@ -101310,10 +101310,8 @@ function TaxonBreakdown_asyncToGenerator(fn) { return function () { var gen = fn
 
 exporting_default()(highcharts_default.a);
 
-var MAX_GRAND_CHILDREN = 200;
-var getRanks = function getRanks(hasSubFamily) {
-  return hasSubFamily ? ["kingdom", "phylum", "class", "order", "family", "subfamily", "genus", "species"] : ["kingdom", "phylum", "class", "order", "family", "genus", "species"];
-};
+var MAX_GRAND_CHILDREN = 500;
+var canonicalRanks = ["kingdom", "phylum", "class", "order", "family", "genus", "species"];
 
 var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
   var taxon = _ref.taxon,
@@ -101366,7 +101364,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
   }();
   var getData = function () {
     var _ref3 = TaxonBreakdown_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
-      var counts, hasSubFamily, ranks, countBy, i, taxonRankIdx, rankIndex, canonicalRankIndex, childRank, grandChildRank, root, res;
+      var counts, ranks, countBy, i, taxonRankIdx, rankIndex, canonicalRankIndex, childRank, grandChildRank, root, res;
       return regenerator_default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -101378,8 +101376,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
 
             case 4:
               counts = _context2.sent;
-              hasSubFamily = !!counts.subfamily;
-              ranks = getRanks(hasSubFamily);
+              ranks = canonicalRanks;
               countBy = void 0;
 
               if (lodash_default.a.get(counts, "species.count", 0) > 0) {
@@ -101418,10 +101415,10 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
                 root = [{ name: lodash_default.a.get(taxon, "name.scientificName"), id: taxon.id }];
               }
 
-              _context2.next = 17;
+              _context2.next = 16;
               return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/export.json?rank=" + childRank + (!root ? "&rank=" + grandChildRank : "") + "&countBy=" + countBy + "&taxonID=" + taxon.id);
 
-            case 17:
+            case 16:
               res = _context2.sent;
 
               if (lodash_default.a.get(root, "[0]")) {
@@ -101434,22 +101431,22 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
               }
               setLoading(false);
               initChart(root);
-              _context2.next = 27;
+              _context2.next = 26;
               break;
 
-            case 23:
-              _context2.prev = 23;
+            case 22:
+              _context2.prev = 22;
               _context2.t0 = _context2["catch"](1);
 
               setError(_context2.t0);
               setLoading(false);
 
-            case 27:
+            case 26:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, TaxonBreakdown_this, [[1, 23]]);
+      }, _callee2, TaxonBreakdown_this, [[1, 22]]);
     }));
 
     return function getData() {
