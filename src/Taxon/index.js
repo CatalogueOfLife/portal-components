@@ -49,6 +49,7 @@ class TaxonPage extends React.Component {
       includes: [],
       rank: null,
       nomStatus: null,
+      catalogue: null
     };
   }
 
@@ -57,6 +58,7 @@ class TaxonPage extends React.Component {
     const { location } = history;
     const uri = `${location.pathname}${location.search}`
     const taxonKey = uri.split(pathToTaxon)[1];
+    this.getCatalogue();
     this.getTaxon(taxonKey);
     this.getInfo(taxonKey);
     this.getClassification(taxonKey);
@@ -165,6 +167,17 @@ class TaxonPage extends React.Component {
       });
   };
 
+  getCatalogue = () => {
+    const { catalogueKey } = this.props;
+    axios(`${config.dataApi}dataset/${catalogueKey}`)
+      .then((res) => {
+        this.setState({ catalogue: res.data});
+      })
+      .catch((err) => {
+        // ignore
+      });
+  }
+
   getInfo = (taxonKey) => {
     const { catalogueKey: datasetKey } = this.props;
     axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`)
@@ -272,7 +285,8 @@ class TaxonPage extends React.Component {
       synonymsError,
       classificationError,
       infoError,
-      status
+      status,
+      catalogue
     } = this.state;
     const genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
@@ -346,7 +360,11 @@ class TaxonPage extends React.Component {
               )}
             </Row>
           )}
-
+          {_.get(taxon, "id") && (
+            <PresentationItem md={md} label="COL Identifier">
+              {_.get(taxon, "id")}
+            </PresentationItem>
+          )}
           {_.get(taxon, "labelHtml") && (
             <PresentationItem md={md} label="Name">
               <span
@@ -449,10 +467,12 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {taxon && rank &&
+          {((taxon &&
             rank.indexOf(_.get(taxon, "name.rank")) < genusRankIndex &&
-            rank.indexOf(_.get(taxon, "name.rank")) > -1 && (
-              <TaxonBreakdown taxon={taxon} datasetKey={catalogueKey} rank={rank} pathToTaxon={pathToTaxon} />
+            rank.indexOf(_.get(taxon, "name.rank")) > -1) ||
+            (_.get(taxon, "name.rank") === "unranked" &&
+              _.get(taxon, "name.scientificName") === "Biota")) &&(
+              <TaxonBreakdown taxon={taxon} datasetKey={catalogueKey} rank={rank} pathToTaxon={pathToTaxon} dataset={catalogue}/>
             )}
           {includes.length > 1 && rank && taxon && (
             <PresentationItem md={md} label="Statistics">

@@ -5,15 +5,22 @@ import Highcharts from "highcharts";
 import HC_exporting from "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
-import history from "../history";
 import { Spin, Row, Col } from "antd";
 
 HC_exporting(Highcharts);
 
-const MAX_GRAND_CHILDREN = 500;
-const canonicalRanks = ["kingdom", "phylum", "class", "order", "family", "genus", "species"];
+const MAX_GRAND_CHILDREN = 1000;
+const canonicalRanks = [
+  "kingdom",
+  "phylum",
+  "class",
+  "order",
+  "family",
+  "genus",
+  "species",
+];
 
-const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
+const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) => {
   const [options, setOptions] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -59,10 +66,29 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
           rankIndex++;
         }
       }
-      const childRank = ranks[taxonRankIdx + 1];
-      const grandChildRank = ranks[taxonRankIdx + 2];
+      let childRank;
+      let childRankIndex = taxonRankIdx + 1;
+      while (!childRank && childRankIndex < ranks.length) {
+        const nextRank = _.get(ranks, `[${childRankIndex}]`);
+        if (nextRank && _.get(counts, `${nextRank}.count`, 0) > 0) {
+          childRank = nextRank;
+        } else {
+          childRankIndex++;
+        }
+      }
+      let grandChildRank;
+      let grandChildRankIndex = childRankIndex + 1;
+      while (!grandChildRank && grandChildRankIndex < ranks.length) {
+        const nextRank = _.get(ranks, `[${grandChildRankIndex}]`);
+        if (nextRank && _.get(counts, `${nextRank}.count`, 0) > 0) {
+          grandChildRank = nextRank;
+        } else {
+          grandChildRankIndex++;
+        }
+      }
       let root;
       if (
+        !grandChildRank ||
         grandChildRank === "species" ||
         _.get(counts, `${grandChildRank}.count`) > MAX_GRAND_CHILDREN
       ) {
@@ -74,36 +100,68 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
           !root ? "&rank=" + grandChildRank : ""
         }&countBy=${countBy}&taxonID=${taxon.id}`
       );
+      //Api returns both ranks in the root array
+      const childRankData = res.data; //.filter((t) => t.rank === childRank);
       if (_.get(root, "[0]")) {
-        root[0].children = res.data;
-        root[0].species = root[0].children.reduce(
-          (acc, cur) => acc + cur.species,
+        root[0].children = processChildren(childRankData, countBy);
+        root[0][countBy] = root[0].children.reduce(
+          (acc, cur) => acc + cur[countBy],
           0
         );
       } else {
-        root = res.data.filter(t => t.rank === childRank);
+        root = processChildren(childRankData, countBy);
       }
       setLoading(false);
-      initChart(root);
+      initChart(root, countBy);
     } catch (err) {
       setError(err);
       setLoading(false);
     }
   };
-  const initChart = (root) => {
-    const totalCount = root.reduce((acc, cur) => acc + cur.species, 0);
+
+  const processChildren = (children, countBy) => {
+    if (children.length < 100) {
+      return children;
+    } else {
+      children.sort(function compareFn(a, b) {
+        return b[countBy] - a[countBy];
+      });
+      return children.slice(0, 100);
+    }
+  };
+
+  const initChart = (root, countBy) => {
+    const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
+    const totalCount = root.reduce((acc, cur) => acc + cur[countBy], 0);
     var colors = Highcharts.getOptions().colors,
       categories = root.map((t) => t.name),
       data = root.map((k, idx) => {
-        //console.log(`${k.name} Species ${k.species} calculated ${k.children.reduce((acc, cur) => acc + cur.species, 0)}`)
+        const children = processChildren(k.children, countBy);
+        const sum = k.children.reduce((acc, cur) => acc + cur[countBy], 0);
+        let c =
+          sum < k[countBy]
+            ? [
+                ...children,
+                {
+                  name: `Other / Unknown ${_.get(children, "[0].rank", "")}`,
+                  [countBy]: k[countBy] - sum,
+                },
+              ]
+            : children;
+        // test
+        /*         const c = k.children.reduce((acc, cur) => acc + cur[countBy], 0);
+        if (k[countBy] !== c) {
+          console.log(k.name + " Count " + k[countBy] + " Processed " + c);
+        } */
+        //
         return {
           color: colors[idx],
-          y: k.species,
+          y: k[countBy],
           _id: k.id,
           drilldown: {
             name: k.name,
-            categories: k.children.map((c) => c.name),
-            data: k.children,
+            categories: c.map((c) => c.name),
+            data: c,
           },
         };
       }),
@@ -131,7 +189,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
         brightness = 0.2 - j / drillDataLen / 5;
         childData.push({
           name: data[i].drilldown.categories[j],
-          y: data[i].drilldown.data[j].species,
+          y: data[i].drilldown.data[j][countBy],
           _id: data[i].drilldown.data[j].id,
           color: Highcharts.color(data[i].color).brighten(brightness).get(),
         });
@@ -141,7 +199,14 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
       chart: {
         type: "pie",
       },
-      credits: false,
+      credits: {
+        text: `${taxon.name.scientificName} in ${dataset.title} (${
+          dataset.version
+        }). ${
+          (dataset.doi ? "DOI:" + dataset.doi : null) || dataset.url || ""
+        }`,
+        href: DOI || dataset.url || "",
+      },
       title: {
         text: "",
       },
@@ -154,7 +219,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
       tooltip: {},
       series: [
         {
-          name: "Species",
+          name: _.startCase(countBy),
           data: rootData,
           size: "60%",
           dataLabels: {
@@ -165,22 +230,22 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
           },
           point: {
             events: {
-              click: (e) => {
-                window.location.href = `${pathToTaxon}${e.point._id}`
+                click: (e) => {
+                  window.location.href = `${pathToTaxon}${e.point._id}`
+                },
               },
-            },
           },
         },
         {
-          name: "Species",
+          name: _.startCase(countBy),
           data: childData,
           size: "80%",
           innerSize: "60%",
           point: {
             events: {
-              click: (e) => {
-                window.location.href = `${pathToTaxon}${e.point._id}`
-              },
+                click: (e) => {
+                    window.location.href = `${pathToTaxon}${e.point._id}`
+                  },
             },
           },
           dataLabels: {
@@ -194,7 +259,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
                 : null;
             },
           },
-          id: "species",
+          id: countBy,
         },
       ],
       responsive: {
@@ -247,7 +312,6 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon }) => {
     <HighchartsReact highcharts={Highcharts} options={options} />
   );
 };
-
 
 
 export default TaxonBreakdown;
