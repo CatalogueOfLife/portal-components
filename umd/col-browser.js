@@ -108,63 +108,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg) && arg.length) {
-				var inner = classNames.apply(null, arg);
-				if (inner) {
-					classes.push(inner);
-				}
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return classNames;
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}());
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * @license
  * Lodash <https://lodash.com/>
@@ -17273,6 +17216,63 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(51), __webpack_require__(88)(module)))
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
@@ -24461,7 +24461,7 @@ var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(140))
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _classnames = _interopRequireDefault(__webpack_require__(1));
+var _classnames = _interopRequireDefault(__webpack_require__(2));
 
 var _IconBase = _interopRequireDefault(__webpack_require__(141));
 
@@ -25360,7 +25360,7 @@ var findDOMNode = __webpack_require__(48);
 var es_ref = __webpack_require__(29);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
@@ -26988,7 +26988,7 @@ var createSuper = __webpack_require__(110);
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/contextTypes.js
@@ -28067,7 +28067,7 @@ var addEventListener = __webpack_require__(43);
 var Portal = __webpack_require__(285);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./node_modules/rc-trigger/es/utils/alignUtil.js
@@ -31804,7 +31804,7 @@ var KeyCode = __webpack_require__(10);
 var createChainedFunction = __webpack_require__(302);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./node_modules/rc-menu/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
@@ -34608,7 +34608,7 @@ function _typeof(obj) {
 "use strict";
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 
 
@@ -39624,7 +39624,7 @@ module.exports = isEqual;
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/rc-resize-observer/es/index.js + 12 modules
@@ -42228,7 +42228,7 @@ var KeyCode = __webpack_require__(10);
 var warning = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/contextTypes.js
@@ -61639,7 +61639,7 @@ var es = __webpack_require__(59);
 var omit_js_es = __webpack_require__(11);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./node_modules/rc-textarea/es/calculateNodeHeight.js
@@ -62188,7 +62188,7 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var es = __webpack_require__(58);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./node_modules/rc-dropdown/es/placements.js
@@ -62430,7 +62430,7 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var KeyCode = __webpack_require__(10);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/hooks/useMergedState.js
@@ -75875,7 +75875,7 @@ var createSuper = __webpack_require__(21);
 var createSuper_default = /*#__PURE__*/__webpack_require__.n(createSuper);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/omit.js/es/index.js
@@ -78545,7 +78545,7 @@ button_Button.__ANT_BUTTON = true;
 
 /* harmony default export */ var es_button = (button_button);
 // EXTERNAL MODULE: ./node_modules/lodash/lodash.js
-var lodash = __webpack_require__(2);
+var lodash = __webpack_require__(1);
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
@@ -101307,10 +101307,9 @@ function TaxonBreakdown_asyncToGenerator(fn) { return function () { var gen = fn
 
 
 
-
 exporting_default()(highcharts_default.a);
 
-var MAX_GRAND_CHILDREN = 500;
+var MAX_GRAND_CHILDREN = 1000;
 var canonicalRanks = ["kingdom", "phylum", "class", "order", "family", "genus", "species"];
 
 var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
@@ -101318,7 +101317,8 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       datasetKey = _ref.datasetKey,
       _ref$rank = _ref.rank,
       rank = _ref$rank === undefined ? [] : _ref$rank,
-      pathToTaxon = _ref.pathToTaxon;
+      pathToTaxon = _ref.pathToTaxon,
+      dataset = _ref.dataset;
 
   var _useState = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])(null),
       options = _useState[0],
@@ -101364,7 +101364,8 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
   }();
   var getData = function () {
     var _ref3 = TaxonBreakdown_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
-      var counts, ranks, countBy, i, taxonRankIdx, rankIndex, canonicalRankIndex, childRank, grandChildRank, root, res;
+      var counts, ranks, countBy, i, taxonRankIdx, rankIndex, canonicalRankIndex, childRank, childRankIndex, nextRank, grandChildRank, grandChildRankIndex, _nextRank, root, res, childRankData;
+
       return regenerator_default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -101407,74 +101408,124 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
                   rankIndex++;
                 }
               }
-              childRank = ranks[taxonRankIdx + 1];
-              grandChildRank = ranks[taxonRankIdx + 2];
+              childRank = void 0;
+              childRankIndex = taxonRankIdx + 1;
+
+              while (!childRank && childRankIndex < ranks.length) {
+                nextRank = lodash_default.a.get(ranks, "[" + childRankIndex + "]");
+
+                if (nextRank && lodash_default.a.get(counts, nextRank + ".count", 0) > 0) {
+                  childRank = nextRank;
+                } else {
+                  childRankIndex++;
+                }
+              }
+              grandChildRank = void 0;
+              grandChildRankIndex = childRankIndex + 1;
+
+              while (!grandChildRank && grandChildRankIndex < ranks.length) {
+                _nextRank = lodash_default.a.get(ranks, "[" + grandChildRankIndex + "]");
+
+                if (_nextRank && lodash_default.a.get(counts, _nextRank + ".count", 0) > 0) {
+                  grandChildRank = _nextRank;
+                } else {
+                  grandChildRankIndex++;
+                }
+              }
               root = void 0;
 
-              if (grandChildRank === "species" || lodash_default.a.get(counts, grandChildRank + ".count") > MAX_GRAND_CHILDREN) {
+              if (!grandChildRank || grandChildRank === "species" || lodash_default.a.get(counts, grandChildRank + ".count") > MAX_GRAND_CHILDREN) {
                 root = [{ name: lodash_default.a.get(taxon, "name.scientificName"), id: taxon.id }];
               }
 
-              _context2.next = 16;
+              _context2.next = 20;
               return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/export.json?rank=" + childRank + (!root ? "&rank=" + grandChildRank : "") + "&countBy=" + countBy + "&taxonID=" + taxon.id);
 
-            case 16:
+            case 20:
               res = _context2.sent;
 
+              //Api returns both ranks in the root array
+              childRankData = res.data; //.filter((t) => t.rank === childRank);
+
               if (lodash_default.a.get(root, "[0]")) {
-                root[0].children = res.data;
-                root[0].species = root[0].children.reduce(function (acc, cur) {
-                  return acc + cur.species;
+                root[0].children = processChildren(childRankData, countBy);
+                root[0][countBy] = root[0].children.reduce(function (acc, cur) {
+                  return acc + cur[countBy];
                 }, 0);
               } else {
-                root = res.data.filter(function (t) {
-                  return t.rank === childRank;
-                });
+                root = processChildren(childRankData, countBy);
               }
               setLoading(false);
-              initChart(root);
-              _context2.next = 26;
+              initChart(root, countBy);
+              _context2.next = 31;
               break;
 
-            case 22:
-              _context2.prev = 22;
+            case 27:
+              _context2.prev = 27;
               _context2.t0 = _context2["catch"](1);
 
               setError(_context2.t0);
               setLoading(false);
 
-            case 26:
+            case 31:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, TaxonBreakdown_this, [[1, 22]]);
+      }, _callee2, TaxonBreakdown_this, [[1, 27]]);
     }));
 
     return function getData() {
       return _ref3.apply(this, arguments);
     };
   }();
-  var initChart = function initChart(root) {
+
+  var processChildren = function processChildren(children, countBy) {
+    if (children.length < 100) {
+      return children;
+    } else {
+      children.sort(function compareFn(a, b) {
+        return b[countBy] - a[countBy];
+      });
+      return children.slice(0, 100);
+    }
+  };
+
+  var initChart = function initChart(root, countBy) {
+    var DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
     var totalCount = root.reduce(function (acc, cur) {
-      return acc + cur.species;
+      return acc + cur[countBy];
     }, 0);
     var colors = highcharts_default.a.getOptions().colors,
         categories = root.map(function (t) {
       return t.name;
     }),
         data = root.map(function (k, idx) {
-      //console.log(`${k.name} Species ${k.species} calculated ${k.children.reduce((acc, cur) => acc + cur.species, 0)}`)
+      var _ref4;
+
+      var children = processChildren(k.children, countBy);
+      var sum = k.children.reduce(function (acc, cur) {
+        return acc + cur[countBy];
+      }, 0);
+      var c = sum < k[countBy] ? [].concat(children, [(_ref4 = {
+        name: "Other / Unknown " + lodash_default.a.get(children, "[0].rank", "")
+      }, _ref4[countBy] = k[countBy] - sum, _ref4)]) : children;
+      // test
+      /*         const c = k.children.reduce((acc, cur) => acc + cur[countBy], 0);
+      if (k[countBy] !== c) {
+        console.log(k.name + " Count " + k[countBy] + " Processed " + c);
+      } */
+      //
       return {
         color: colors[idx],
-        y: k.species,
+        y: k[countBy],
         _id: k.id,
         drilldown: {
           name: k.name,
-          categories: k.children.map(function (c) {
+          categories: c.map(function (c) {
             return c.name;
           }),
-          data: k.children
+          data: c
         }
       };
     }),
@@ -101502,7 +101553,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
         brightness = 0.2 - j / drillDataLen / 5;
         childData.push({
           name: data[i].drilldown.categories[j],
-          y: data[i].drilldown.data[j].species,
+          y: data[i].drilldown.data[j][countBy],
           _id: data[i].drilldown.data[j].id,
           color: highcharts_default.a.color(data[i].color).brighten(brightness).get()
         });
@@ -101512,7 +101563,10 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       chart: {
         type: "pie"
       },
-      credits: false,
+      credits: {
+        text: taxon.name.scientificName + " in " + dataset.title + " (" + dataset.version + "). " + ((dataset.doi ? "DOI:" + dataset.doi : null) || dataset.url || ""),
+        href: DOI || dataset.url || ""
+      },
       title: {
         text: ""
       },
@@ -101524,7 +101578,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       },
       tooltip: {},
       series: [{
-        name: "Species",
+        name: lodash_default.a.startCase(countBy),
         data: rootData,
         size: "60%",
         dataLabels: {
@@ -101541,7 +101595,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
           }
         }
       }, {
-        name: "Species",
+        name: lodash_default.a.startCase(countBy),
         data: childData,
         size: "80%",
         innerSize: "60%",
@@ -101558,7 +101612,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
             return this.y > 1 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
           }
         },
-        id: "species"
+        id: countBy
       }],
       responsive: {
         rules: [{
@@ -101655,6 +101709,7 @@ var Taxon_TaxonPage = function (_React$Component) {
 
       var uri = "" + location.pathname + location.search;
       var taxonKey = uri.split(pathToTaxon)[1];
+      _this.getCatalogue();
       _this.getTaxon(taxonKey);
       _this.getInfo(taxonKey);
       _this.getClassification(taxonKey);
@@ -101721,6 +101776,16 @@ var Taxon_TaxonPage = function (_React$Component) {
         } else {
           _this.setState({ taxonLoading: false, taxonError: err, taxon: null });
         }
+      });
+    };
+
+    _this.getCatalogue = function () {
+      var catalogueKey = _this.props.catalogueKey;
+
+      axios_default()(src_config.dataApi + "dataset/" + catalogueKey).then(function (res) {
+        _this.setState({ catalogue: res.data });
+      }).catch(function (err) {
+        // ignore
       });
     };
 
@@ -101826,7 +101891,8 @@ var Taxon_TaxonPage = function (_React$Component) {
       sourceDataset: null,
       includes: [],
       rank: null,
-      nomStatus: null
+      nomStatus: null,
+      catalogue: null
     };
     return _this;
   }
@@ -101850,7 +101916,8 @@ var Taxon_TaxonPage = function (_React$Component) {
         synonymsError = _state.synonymsError,
         classificationError = _state.classificationError,
         infoError = _state.infoError,
-        status = _state.status;
+        status = _state.status,
+        catalogue = _state.catalogue;
 
     var genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
@@ -101919,6 +101986,11 @@ var Taxon_TaxonPage = function (_React$Component) {
               datasetKey: sourceDataset.key
             })
           )
+        ),
+        lodash_default.a.get(taxon, "id") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          components_PresentationItem,
+          { md: Taxon_md, label: "COL Identifier" },
+          lodash_default.a.get(taxon, "id")
         ),
         lodash_default.a.get(taxon, "labelHtml") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
@@ -101998,7 +102070,7 @@ var Taxon_TaxonPage = function (_React$Component) {
             pathToTree: pathToTree
           })
         ),
-        taxon && rank && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) > -1 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_TaxonBreakdown, { taxon: taxon, datasetKey: catalogueKey, rank: rank, pathToTaxon: pathToTaxon }),
+        (taxon && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) > -1 || lodash_default.a.get(taxon, "name.rank") === "unranked" && lodash_default.a.get(taxon, "name.scientificName") === "Biota") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_TaxonBreakdown, { taxon: taxon, datasetKey: catalogueKey, rank: rank, pathToTaxon: pathToTaxon, dataset: catalogue }),
         includes.length > 1 && rank && taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "Statistics" },
@@ -107114,7 +107186,7 @@ var NameSearch_NameSearchPage = function (_React$Component) {
 
 
 
-var MetricsPresentation_ = __webpack_require__(2);
+var MetricsPresentation_ = __webpack_require__(1);
 
 var getLivingTaxa = function getLivingTaxa(metrics, rank) {
   return (MetricsPresentation_.get(metrics, "taxaByRankCount." + rank) || 0) - (MetricsPresentation_.get(metrics, "extinctTaxaByRankCount." + rank) || 0);
@@ -107211,7 +107283,7 @@ function Metrics_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 
-var Metrics_ = __webpack_require__(2);
+var Metrics_ = __webpack_require__(1);
 
 var Metrics_Metrics = function (_React$Component) {
   Metrics_inherits(Metrics, _React$Component);
@@ -107271,7 +107343,7 @@ function TaxonomicCoverage_inherits(subClass, superClass) { if (typeof superClas
 
 
 
-var TaxonomicCoverage_ = __webpack_require__(2);
+var TaxonomicCoverage_ = __webpack_require__(1);
 
 var TaxonomicCoverage_TaxonomicCoverage = function (_React$Component) {
   TaxonomicCoverage_inherits(TaxonomicCoverage, _React$Component);
