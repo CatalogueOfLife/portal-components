@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "antd": "^4.6.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.2",
     "btoa": "^1.2.1",
     "dataloader": "^1.4.0",
     "highcharts": "^9.1.2",
