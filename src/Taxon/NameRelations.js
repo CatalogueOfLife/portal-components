@@ -16,7 +16,7 @@ const NameRelations = ({ data, style }) => {
       {data
         .map(r => (
           <PresentationItem key={r.key} label={`${_.capitalize(r.type)} ${typeMap[r.type] ? typeMap[r.type]: ""}` } helpText={r.note}>
-            <span dangerouslySetInnerHTML={{__html: r.relatedName.labelHtml}}></span>
+           {_.get(r, 'relatedName.labelHtml') ? <span dangerouslySetInnerHTML={{__html: r.relatedName.labelHtml}}></span> : <span>{_.get(r, 'relatedName.scientificName')} {_.get(r, 'relatedName.authorship', '')}</span>}
           </PresentationItem>
         ))}
     </div>

@@ -100351,10 +100351,13 @@ var Distributions_DistributionsTable = function DistributionsTable(_ref) {
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         Taxon_BorderedListItem,
         { key: i },
-        s.area,
+        lodash_default.a.get(s, 'area.name') || lodash_default.a.get(s, 'area.globalId'),
         " ",
-        " ",
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { datasetKey: datasetKey, referenceId: s.referenceId, placement: "bottom" })
+        s.referenceId && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
+          datasetKey: datasetKey,
+          referenceId: s.referenceId,
+          placement: "bottom"
+        })
       );
     })
   );
@@ -100468,7 +100471,9 @@ var Help_Help = function Help(_ref) {
       { className: classes.tip },
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         tooltip,
-        { title: title },
+        { title: title, getPopupContainer: function getPopupContainer() {
+            return document.getElementsByClassName('catalogue-of-life')[0];
+          } },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_QuestionCircleOutlined, { className: classes.icon })
       )
     )
@@ -100628,7 +100633,13 @@ var NameRelations_NameRelations = function NameRelations(_ref) {
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         components_PresentationItem,
         { key: r.key, label: lodash_default.a.capitalize(r.type) + " " + (typeMap[r.type] ? typeMap[r.type] : ""), helpText: r.note },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: r.relatedName.labelHtml } })
+        lodash_default.a.get(r, 'relatedName.labelHtml') ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: r.relatedName.labelHtml } }) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+          "span",
+          null,
+          lodash_default.a.get(r, 'relatedName.scientificName'),
+          " ",
+          lodash_default.a.get(r, 'relatedName.authorship', '')
+        )
       );
     })
   );
