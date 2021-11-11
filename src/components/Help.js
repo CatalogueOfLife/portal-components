@@ -17,7 +17,9 @@ const Help = ({ title, classes }) => {
   return (
     <React.Fragment>
       {title && <span className={classes.tip}>
-        <Tooltip title={title}>
+        <Tooltip title={title} getPopupContainer={() =>
+            document.getElementsByClassName(`catalogue-of-life`)[0]
+          }>
           <QuestionCircleOutlined className={classes.icon} />
         </Tooltip>
       </span>}
