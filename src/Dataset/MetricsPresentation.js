@@ -20,7 +20,7 @@ const getExtinctTaxa = (metrics, rank) =>
           </PresentationItem>
         </React.Fragment>
         {metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)
-          .filter((r) => rank.indexOf(r) < rank.indexOf("species"))
+          // .filter((r) => rank.indexOf(r) < rank.indexOf("species"))
           .sort((a, b) => rank.indexOf(b) - rank.indexOf(a))
           .map((k) => (
             <PresentationItem label={`${_.startCase(k)}`} key={k}>

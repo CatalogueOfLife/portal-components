@@ -2,7 +2,7 @@ import React from "react";
 import config from "../config";
 import btoa from "btoa";
 import axios from "axios";
-import { Alert, Rate, Row, Col } from "antd";
+import { Alert, Rate, Row, Col, Button, Tooltip } from "antd";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import Metrics from "./Metrics";
@@ -12,7 +12,8 @@ import history from "../history";
 import TaxonomicCoverage from "./TaxonomicCoverage";
 import AgentPresentation from "./AgentPresentation";
 import { getCountries } from "../api/enumeration";
-import BibTex from "../components/BibTex"
+import BibTex from "../components/BibTex";
+import { LinkOutlined } from "@ant-design/icons";
 // import ReferencePopover from "./ReferencePopover"
 const IDENTIFIER_TYPES = {
   col: "https://data.catalogueoflife.org/dataset/",
@@ -110,9 +111,18 @@ class DatasetPage extends React.Component {
                 >
                   {data.title}
                 </h1>
-               {data && <React.Fragment>
-                 <br />
-                 <BibTex style={{marginLeft: "8px", height: "32px"}} catalogueKey={catalogueKey !== data.key ? catalogueKey : null} datasetKey={data.key}/></React.Fragment>}
+                {data && (
+                  <React.Fragment>
+                    <br />
+                    <BibTex
+                      style={{ marginLeft: "8px", height: "32px" }}
+                      catalogueKey={
+                        catalogueKey !== data.key ? catalogueKey : null
+                      }
+                      datasetKey={data.key}
+                    />
+                  </React.Fragment>
+                )}
               </Col>
 
               <Col style={{ textAlign: "right" }}>
@@ -134,6 +144,19 @@ class DatasetPage extends React.Component {
             <React.Fragment>
               <PresentationItem label="Short name">
                 {data.alias}
+                <Tooltip
+                  title="Visit in COL Checklistbank"
+                  getPopupContainer={() =>
+                    document.getElementsByClassName(`catalogue-of-life`)[0]
+                  }
+                >
+                  <Button
+                    type="link"
+                    href={`https://data.catalogueoflife.org/dataset/${data.key}`}
+                  >
+                    <LinkOutlined />{" "}
+                  </Button>
+                </Tooltip>
               </PresentationItem>
               <PresentationItem label="Full name">
                 {data.title}
@@ -152,11 +175,14 @@ class DatasetPage extends React.Component {
               )}
               <PresentationItem label="DOI">
                 {data.doi ? (
-                  <a href={`https://doi.org/${data.doi}`}><img
-                  src="https://data.catalogueoflife.org/images/DOI_logo.png"
-                  style={{ flex: "0 0 auto", height: "16px" }}
-                  alt=""
-                ></img>{data.doi}</a>
+                  <a href={`https://doi.org/${data.doi}`}>
+                    <img
+                      src="https://data.catalogueoflife.org/images/DOI_logo.png"
+                      style={{ flex: "0 0 auto", height: "16px" }}
+                      alt=""
+                    ></img>
+                    {data.doi}
+                  </a>
                 ) : (
                   "-"
                 )}
@@ -195,7 +221,7 @@ class DatasetPage extends React.Component {
                 <PresentationItem label="Editor">
                   <Row gutter={[8, 8]}>
                     {data.editor.map((a) => (
-                      <Col  span={8}>
+                      <Col span={8}>
                         <AgentPresentation
                           countryAlpha2={countryAlpha2}
                           agent={a}
@@ -209,7 +235,7 @@ class DatasetPage extends React.Component {
                 <PresentationItem label="Contributor">
                   <Row gutter={[8, 8]}>
                     {data.contributor.map((a) => (
-                      <Col  span={8}>
+                      <Col span={8}>
                         <AgentPresentation
                           countryAlpha2={countryAlpha2}
                           agent={a}
