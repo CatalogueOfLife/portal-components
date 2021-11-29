@@ -29,6 +29,11 @@ const getColumns = (pathToDataset, catalogueKey, auth) => [
     defaultSortOrder: 'ascend'
   },
   {
+    title: "Version",
+    dataIndex: ["version"],
+    key: "version"
+  },
+  {
     title: "",
     dataIndex: ["logo"],
     key: "logo",

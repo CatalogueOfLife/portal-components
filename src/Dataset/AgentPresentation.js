@@ -42,7 +42,29 @@ const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
       {agent.organisation && (
         <span style={{ display: "block" }}>{agent.organisation}</span>
       )}
-      {agent.rorid && <span style={{ display: "block" }}>{agent.rorid}</span>}
+           {agent.rorid &&
+        (noLinks ? (
+          <div>
+            <img
+              src="https://data.catalogueoflife.org/images/ror-logo-small.png"
+              style={{ flex: "0 0 auto", height: "20px" }}
+              alt=""
+            ></img>{" "}
+            {agent.rorid}
+          </div>
+        ) : (
+          <a
+            style={{ display: "block" }}
+            href={`https://ror.org/${agent.rorid}`}
+          >
+            <img
+              src="https://data.catalogueoflife.org/images/ror-logo-small.png"
+              style={{ flex: "0 0 auto", height: "20px" }}
+              alt=""
+            ></img>{" "}
+            {agent.rorid}
+          </a>
+        ))}
 
       {agent.department && (
         <span style={{ display: "block" }}>{agent.department}</span>

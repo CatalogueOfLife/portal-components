@@ -1,5 +1,5 @@
 /*!
- * col-browser v0.4.4
+ * col-browser v1.1.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -23756,7 +23756,7 @@ module.exports = _toConsumableArray;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return convertDataToEntities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getTreeNodeProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return convertNodePropsToEventData; });
-/* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(62);
 /* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(34);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(42);
 /* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35);
@@ -24080,7 +24080,7 @@ function convertNodePropsToEventData(props) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return parseCheckedKeys; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return conductExpandParent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getDataAndAria; });
-/* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(62);
 /* harmony import */ var _babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(100);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(42);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(0);
@@ -27833,7 +27833,8 @@ module.exports = __webpack_require__(510);
 
 
 /***/ }),
-/* 56 */
+/* 56 */,
+/* 57 */
 /***/ (function(module, exports) {
 
 function _assertThisInitialized(self) {
@@ -27847,7 +27848,7 @@ function _assertThisInitialized(self) {
 module.exports = _assertThisInitialized;
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27866,7 +27867,7 @@ module.exports = _assertThisInitialized;
   module.exports = _default;
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31043,7 +31044,7 @@ function generateTrigger(PortalComponent) {
 /* harmony default export */ var rc_trigger_es = __webpack_exports__["a"] = (generateTrigger(Portal["a" /* default */]));
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31409,7 +31410,7 @@ es_ReactResizeObserver.displayName = 'ResizeObserver';
 /* harmony default export */ var es = __webpack_exports__["a"] = (es_ReactResizeObserver);
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32114,7 +32115,7 @@ var react_dom = __webpack_require__(30);
 var ResizeObserver_es = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 31 modules
-var rc_trigger_es = __webpack_require__(58);
+var rc_trigger_es = __webpack_require__(59);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
 var rc_motion_es = __webpack_require__(37);
@@ -34290,7 +34291,7 @@ Divider_Divider.defaultProps = {
 /* harmony default export */ var rc_menu_es = __webpack_exports__["e"] = (es_Menu);
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34325,7 +34326,7 @@ function _toConsumableArray(arr) {
 }
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34567,7 +34568,6 @@ function conductCheck(keyList, checked, keyEntities, getCheckDisabled) {
 }
 
 /***/ }),
-/* 63 */,
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39628,7 +39628,7 @@ var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/rc-resize-observer/es/index.js + 12 modules
-var es = __webpack_require__(59);
+var es = __webpack_require__(60);
 
 // CONCATENATED MODULE: ./node_modules/rc-virtual-list/es/Filler.js
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -42204,7 +42204,7 @@ var defineProperty = __webpack_require__(26);
 var objectSpread2 = __webpack_require__(34);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js + 3 modules
-var toConsumableArray = __webpack_require__(61);
+var toConsumableArray = __webpack_require__(62);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(98);
@@ -42727,7 +42727,7 @@ var NodeList = external_root_React_commonjs2_react_commonjs_react_amd_react_["fo
 NodeList.displayName = 'NodeList';
 /* harmony default export */ var es_NodeList = (NodeList);
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/utils/conductUtil.js
-var conductUtil = __webpack_require__(62);
+var conductUtil = __webpack_require__(63);
 
 // CONCATENATED MODULE: ./node_modules/rc-tree/es/Tree.js
 
@@ -61633,7 +61633,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 // EXTERNAL MODULE: ./node_modules/rc-resize-observer/es/index.js + 12 modules
-var es = __webpack_require__(59);
+var es = __webpack_require__(60);
 
 // EXTERNAL MODULE: ./node_modules/omit.js/es/index.js
 var omit_js_es = __webpack_require__(11);
@@ -62185,7 +62185,7 @@ function _objectWithoutProperties(source, excluded) {
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 31 modules
-var es = __webpack_require__(58);
+var es = __webpack_require__(59);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(2);
@@ -63052,7 +63052,7 @@ var ForwardSelector = external_root_React_commonjs2_react_commonjs_react_amd_rea
 ForwardSelector.displayName = 'Selector';
 /* harmony default export */ var es_Selector = (ForwardSelector);
 // EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 31 modules
-var rc_trigger_es = __webpack_require__(58);
+var rc_trigger_es = __webpack_require__(59);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/SelectTrigger.js
 
@@ -66719,7 +66719,7 @@ module.exports = _isNativeReflectConstruct;
 
 var _typeof = __webpack_require__(12);
 
-var assertThisInitialized = __webpack_require__(56);
+var assertThisInitialized = __webpack_require__(57);
 
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
@@ -76674,7 +76674,7 @@ var InfoCircleFilled = __webpack_require__(286);
 var InfoCircleFilled_default = /*#__PURE__*/__webpack_require__.n(InfoCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CloseCircleFilled.js
-var CloseCircleFilled = __webpack_require__(57);
+var CloseCircleFilled = __webpack_require__(58);
 var CloseCircleFilled_default = /*#__PURE__*/__webpack_require__.n(CloseCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 18 modules
@@ -77928,7 +77928,7 @@ var button_group_ButtonGroup = function ButtonGroup(props) {
 
 /* harmony default export */ var button_group = (button_group_ButtonGroup);
 // EXTERNAL MODULE: ./node_modules/antd/node_modules/@babel/runtime/helpers/assertThisInitialized.js
-var assertThisInitialized = __webpack_require__(56);
+var assertThisInitialized = __webpack_require__(57);
 var assertThisInitialized_default = /*#__PURE__*/__webpack_require__.n(assertThisInitialized);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
@@ -78740,7 +78740,7 @@ tag_Tag.displayName = 'Tag';
 tag_Tag.CheckableTag = tag_CheckableTag;
 /* harmony default export */ var tag = (tag_Tag);
 // EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 31 modules
-var rc_trigger_es = __webpack_require__(58);
+var rc_trigger_es = __webpack_require__(59);
 
 // CONCATENATED MODULE: ./node_modules/rc-tooltip/es/placements.js
 var placements_autoAdjustOverflow = {
@@ -93100,7 +93100,7 @@ var shallowequal = __webpack_require__(68);
 var shallowequal_default = /*#__PURE__*/__webpack_require__.n(shallowequal);
 
 // EXTERNAL MODULE: ./node_modules/rc-resize-observer/es/index.js + 12 modules
-var rc_resize_observer_es = __webpack_require__(59);
+var rc_resize_observer_es = __webpack_require__(60);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/getScrollBarSize.js
 var getScrollBarSize = __webpack_require__(86);
@@ -96764,7 +96764,7 @@ var helpers_toArray = __webpack_require__(308);
 var toArray_default = /*#__PURE__*/__webpack_require__.n(helpers_toArray);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/utils/conductUtil.js
-var conductUtil = __webpack_require__(62);
+var conductUtil = __webpack_require__(63);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/hooks/useMergedState.js
 var useMergedState = __webpack_require__(67);
@@ -97008,7 +97008,7 @@ dropdown_Dropdown.defaultProps = {
 
 /* harmony default export */ var es_dropdown = (dropdown);
 // EXTERNAL MODULE: ./node_modules/rc-menu/es/index.js + 40 modules
-var rc_menu_es = __webpack_require__(60);
+var rc_menu_es = __webpack_require__(61);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/menu/MenuContext.js
 
@@ -107237,9 +107237,9 @@ var getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
         ) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
       )
     ),
-    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).filter(function (r) {
-      return rank.indexOf(r) < rank.indexOf("species");
-    }).sort(function (a, b) {
+    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)
+    // .filter((r) => rank.indexOf(r) < rank.indexOf("species"))
+    .sort(function (a, b) {
       return rank.indexOf(b) - rank.indexOf(a);
     }).map(function (k) {
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -107495,11 +107495,30 @@ var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
       { style: { display: "block" } },
       agent.organisation
     ),
-    agent.rorid && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "span",
-      { style: { display: "block" } },
+    agent.rorid && (noLinks ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "div",
+      null,
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+        src: "https://data.catalogueoflife.org/images/ror-logo-small.png",
+        style: { flex: "0 0 auto", height: "20px" },
+        alt: ""
+      }),
+      " ",
       agent.rorid
-    ),
+    ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "a",
+      {
+        style: { display: "block" },
+        href: "https://ror.org/" + agent.rorid
+      },
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+        src: "https://data.catalogueoflife.org/images/ror-logo-small.png",
+        style: { flex: "0 0 auto", height: "20px" },
+        alt: ""
+      }),
+      " ",
+      agent.rorid
+    )),
     agent.department && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "span",
       { style: { display: "block" } },
@@ -107541,12 +107560,34 @@ var BibTex_BibTex = function BibTex(_ref) {
 };
 
 /* harmony default export */ var components_BibTex = (BibTex_BibTex);
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/LinkOutlined.js
+// This icon file is generated automatically.
+var LinkOutlined_LinkOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
+/* harmony default export */ var asn_LinkOutlined = (LinkOutlined_LinkOutlined);
+
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/icons/LinkOutlined.js
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var icons_LinkOutlined_LinkOutlined = function LinkOutlined(props, ref) {
+  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](AntdIcon, Object.assign({}, props, {
+    ref: ref,
+    icon: asn_LinkOutlined
+  }));
+};
+
+icons_LinkOutlined_LinkOutlined.displayName = 'LinkOutlined';
+/* harmony default export */ var icons_LinkOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_LinkOutlined_LinkOutlined));
 // CONCATENATED MODULE: ./src/Dataset/index.js
 function Dataset_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function Dataset_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function Dataset_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -107678,7 +107719,11 @@ var Dataset_DatasetPage = function (_React$Component) {
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
               null,
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("br", null),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BibTex, { style: { marginLeft: "8px", height: "32px" }, catalogueKey: catalogueKey !== data.key ? catalogueKey : null, datasetKey: data.key })
+              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BibTex, {
+                style: { marginLeft: "8px", height: "32px" },
+                catalogueKey: catalogueKey !== data.key ? catalogueKey : null,
+                datasetKey: data.key
+              })
             )
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -107702,7 +107747,25 @@ var Dataset_DatasetPage = function (_React$Component) {
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
             { label: "Short name" },
-            data.alias
+            data.alias,
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+              tooltip,
+              {
+                title: "Visit in COL Checklistbank",
+                getPopupContainer: function getPopupContainer() {
+                  return document.getElementsByClassName("catalogue-of-life")[0];
+                }
+              },
+              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                es_button,
+                {
+                  type: "link",
+                  href: "https://data.catalogueoflife.org/dataset/" + data.key
+                },
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null),
+                " "
+              )
+            )
           ),
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
             components_PresentationItem,
@@ -107980,6 +108043,10 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, 
       return a.alias && b.alias ? a.alias.localeCompare(b.alias) : 0;
     },
     defaultSortOrder: 'ascend'
+  }, {
+    title: "Version",
+    dataIndex: ["version"],
+    key: "version"
   }, {
     title: "",
     dataIndex: ["logo"],
