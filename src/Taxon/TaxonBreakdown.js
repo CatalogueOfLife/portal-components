@@ -24,6 +24,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
   const [options, setOptions] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [invalid, setInvalid] = useState(false);
 
   useEffect(() => {
     getData();
@@ -49,7 +50,9 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
         while (i > 0 && !countBy) {
           if (_.get(counts, `${ranks[i]}.count`, 0) > 0) {
             countBy = ranks[i];
+            break;
           }
+          i--;
         }
       }
       // Check if the rank is in the canonical ranks
@@ -94,7 +97,10 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
       ) {
         root = [{ name: _.get(taxon, "name.scientificName"), id: taxon.id }];
       }
-
+      if (!childRank) {
+        setInvalid(true);
+        setLoading(false);
+      } else {
       const res = await axios(
         `${config.dataApi}dataset/${datasetKey}/export.json?rank=${childRank}${
           !root ? "&rank=" + grandChildRank : ""
@@ -113,6 +119,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
       }
       setLoading(false);
       initChart(root, countBy);
+    }
     } catch (err) {
       setError(err);
       setLoading(false);
