@@ -78554,7 +78554,7 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./src/config.js
 /* harmony default export */ var src_config = ({
-    dataApi: "https://api.catalogueoflife.org/"
+    dataApi: "https://api.dev.catalogueoflife.org/"
 });
 // CONCATENATED MODULE: ./node_modules/antd/es/tag/CheckableTag.js
 
@@ -101343,6 +101343,10 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       loading = _useState3[0],
       setLoading = _useState3[1];
 
+  var _useState4 = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])(false),
+      invalid = _useState4[0],
+      setInvalid = _useState4[1];
+
   Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
     getData();
   }, [taxon, datasetKey]);
@@ -101391,17 +101395,38 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
               ranks = canonicalRanks;
               countBy = void 0;
 
-              if (lodash_default.a.get(counts, "species.count", 0) > 0) {
-                countBy = "species";
-              } else {
-                i = ranks.length - 1;
-
-                while (i > 0 && !countBy) {
-                  if (lodash_default.a.get(counts, ranks[i] + ".count", 0) > 0) {
-                    countBy = ranks[i];
-                  }
-                }
+              if (!(lodash_default.a.get(counts, "species.count", 0) > 0)) {
+                _context2.next = 11;
+                break;
               }
+
+              countBy = "species";
+              _context2.next = 19;
+              break;
+
+            case 11:
+              i = ranks.length - 1;
+
+            case 12:
+              if (!(i > 0 && !countBy)) {
+                _context2.next = 19;
+                break;
+              }
+
+              if (!(lodash_default.a.get(counts, ranks[i] + ".count", 0) > 0)) {
+                _context2.next = 16;
+                break;
+              }
+
+              countBy = ranks[i];
+              return _context2.abrupt("break", 19);
+
+            case 16:
+              i--;
+              _context2.next = 12;
+              break;
+
+            case 19:
               // Check if the rank is in the canonical ranks
               taxonRankIdx = ranks.indexOf(lodash_default.a.get(taxon, "name.rank"));
               // If not, find it in the full rank enum, and place it within canonical ranks.
@@ -101449,10 +101474,21 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
                 root = [{ name: lodash_default.a.get(taxon, "name.scientificName"), id: taxon.id }];
               }
 
-              _context2.next = 20;
+              if (childRank) {
+                _context2.next = 34;
+                break;
+              }
+
+              setInvalid(true);
+              setLoading(false);
+              _context2.next = 41;
+              break;
+
+            case 34:
+              _context2.next = 36;
               return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/export.json?rank=" + childRank + (!root ? "&rank=" + grandChildRank : "") + "&countBy=" + countBy + "&taxonID=" + taxon.id);
 
-            case 20:
+            case 36:
               res = _context2.sent;
 
               //Api returns both ranks in the root array
@@ -101468,22 +101504,24 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
               }
               setLoading(false);
               initChart(root, countBy);
-              _context2.next = 31;
+
+            case 41:
+              _context2.next = 47;
               break;
 
-            case 27:
-              _context2.prev = 27;
+            case 43:
+              _context2.prev = 43;
               _context2.t0 = _context2["catch"](1);
 
               setError(_context2.t0);
               setLoading(false);
 
-            case 31:
+            case 47:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, TaxonBreakdown_this, [[1, 27]]);
+      }, _callee2, TaxonBreakdown_this, [[1, 43]]);
     }));
 
     return function getData() {
