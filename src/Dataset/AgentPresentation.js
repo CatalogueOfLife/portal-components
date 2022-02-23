@@ -20,7 +20,7 @@ const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
         (noLinks ? (
           <div>
             <img
-              src="https://data.catalogueoflife.org/images/orcid_16x16.png"
+              src="https://www.checklistbank.org/images/orcid_16x16.png"
               style={{ flex: "0 0 auto" }}
               alt=""
             ></img>{" "}
@@ -32,7 +32,7 @@ const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
             href={`https://orcid.org/${agent.orcid}`}
           >
             <img
-              src="https://data.catalogueoflife.org/images/orcid_16x16.png"
+              src="https://www.checklistbank.org/images/orcid_16x16.png"
               style={{ flex: "0 0 auto" }}
               alt=""
             ></img>{" "}
@@ -46,7 +46,7 @@ const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
         (noLinks ? (
           <div>
             <img
-              src="https://data.catalogueoflife.org/images/ror-logo-small.png"
+              src="https://www.checklistbank.org/images/ror-logo-small.png"
               style={{ flex: "0 0 auto", height: "20px" }}
               alt=""
             ></img>{" "}
@@ -58,7 +58,7 @@ const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
             href={`https://ror.org/${agent.rorid}`}
           >
             <img
-              src="https://data.catalogueoflife.org/images/ror-logo-small.png"
+              src="https://www.checklistbank.org/images/ror-logo-small.png"
               style={{ flex: "0 0 auto", height: "20px" }}
               alt=""
             ></img>{" "}
