@@ -9,7 +9,7 @@ const url = catalogueKey ? `${config.dataApi}dataset/${catalogueKey}/source/${da
 
   return (
     <a href={url} >
-      <img src="https://data.catalogueoflife.org/images/bibtex_logo.png" style={{...defaultStyle, ...style}} />
+      <img src="https://www.checklistbank.org/images/bibtex_logo.png" style={{...defaultStyle, ...style}} />
     </a>
   );
 };

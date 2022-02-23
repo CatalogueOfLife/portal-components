@@ -16,7 +16,7 @@ import BibTex from "../components/BibTex";
 import { LinkOutlined } from "@ant-design/icons";
 // import ReferencePopover from "./ReferencePopover"
 const IDENTIFIER_TYPES = {
-  col: "https://data.catalogueoflife.org/dataset/",
+  col: "https://www.checklistbank.org/dataset/",
   gbif: "https://www.gbif.org/dataset/",
   plazi: "http://publication.plazi.org/id/",
   doi: "https://doi.org/",
@@ -152,7 +152,7 @@ class DatasetPage extends React.Component {
                 >
                   <Button
                     type="link"
-                    href={`https://data.catalogueoflife.org/dataset/${data.key}`}
+                    href={`https://www.checklistbank.org/dataset/${data.key}`}
                   >
                     <LinkOutlined />{" "}
                   </Button>
@@ -177,7 +177,7 @@ class DatasetPage extends React.Component {
                 {data.doi ? (
                   <a href={`https://doi.org/${data.doi}`}>
                     <img
-                      src="https://data.catalogueoflife.org/images/DOI_logo.png"
+                      src="https://www.checklistbank.org/images/DOI_logo.png"
                       style={{ flex: "0 0 auto", height: "16px" }}
                       alt=""
                     ></img>
