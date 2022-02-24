@@ -78554,7 +78554,7 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./src/config.js
 /* harmony default export */ var src_config = ({
-    dataApi: "https://api.dev.catalogueoflife.org/"
+    dataApi: "https://api.checklistbank.org/"
 });
 // CONCATENATED MODULE: ./node_modules/antd/es/tag/CheckableTag.js
 
@@ -86128,8 +86128,8 @@ var DatasetCitation_Citation = function Citation(_ref) {
       " - accessed through ",
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         "a",
-        { href: "https://data.catalogueoflife.org/dataset/" + dataset.key },
-        "Catalogue of Life Checklistbank"
+        { href: "https://www.checklistbank.org/dataset/" + dataset.key },
+        "ChecklistBank"
       )
     )
   );
@@ -107508,7 +107508,7 @@ var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
       "div",
       null,
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://data.catalogueoflife.org/images/orcid_16x16.png",
+        src: "https://www.checklistbank.org/images/orcid_16x16.png",
         style: { flex: "0 0 auto" },
         alt: ""
       }),
@@ -107521,7 +107521,7 @@ var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
         href: "https://orcid.org/" + agent.orcid
       },
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://data.catalogueoflife.org/images/orcid_16x16.png",
+        src: "https://www.checklistbank.org/images/orcid_16x16.png",
         style: { flex: "0 0 auto" },
         alt: ""
       }),
@@ -107537,7 +107537,7 @@ var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
       "div",
       null,
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://data.catalogueoflife.org/images/ror-logo-small.png",
+        src: "https://www.checklistbank.org/images/ror-logo-small.png",
         style: { flex: "0 0 auto", height: "20px" },
         alt: ""
       }),
@@ -107550,7 +107550,7 @@ var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
         href: "https://ror.org/" + agent.rorid
       },
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://data.catalogueoflife.org/images/ror-logo-small.png",
+        src: "https://www.checklistbank.org/images/ror-logo-small.png",
         style: { flex: "0 0 auto", height: "20px" },
         alt: ""
       }),
@@ -107593,7 +107593,7 @@ var BibTex_BibTex = function BibTex(_ref) {
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "a",
     { href: url },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { src: "https://data.catalogueoflife.org/images/bibtex_logo.png", style: BibTex_extends({}, defaultStyle, style) })
+    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { src: "https://www.checklistbank.org/images/bibtex_logo.png", style: BibTex_extends({}, defaultStyle, style) })
   );
 };
 
@@ -107644,7 +107644,7 @@ function Dataset_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 // import ReferencePopover from "./ReferencePopover"
 var IDENTIFIER_TYPES = {
-  col: "https://data.catalogueoflife.org/dataset/",
+  col: "https://www.checklistbank.org/dataset/",
   gbif: "https://www.gbif.org/dataset/",
   plazi: "http://publication.plazi.org/id/",
   doi: "https://doi.org/"
@@ -107798,7 +107798,7 @@ var Dataset_DatasetPage = function (_React$Component) {
                 es_button,
                 {
                   type: "link",
-                  href: "https://data.catalogueoflife.org/dataset/" + data.key
+                  href: "https://www.checklistbank.org/dataset/" + data.key
                 },
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null),
                 " "
@@ -107824,7 +107824,7 @@ var Dataset_DatasetPage = function (_React$Component) {
               "a",
               { href: "https://doi.org/" + data.doi },
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-                src: "https://data.catalogueoflife.org/images/DOI_logo.png",
+                src: "https://www.checklistbank.org/images/DOI_logo.png",
                 style: { flex: "0 0 auto", height: "16px" },
                 alt: ""
               }),
