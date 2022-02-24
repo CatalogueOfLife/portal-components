@@ -22,7 +22,7 @@ class Demo extends Component {
           {path.pathname === "/data/tree" && (
             <Tree
               showTreeOptions={true}
-              catalogueKey={"2344"}
+              catalogueKey={"3LR"}
               pathToTaxon="/data/taxon/"
               pathToDataset="/data/source/"
               citation="bottom"
@@ -30,7 +30,7 @@ class Demo extends Component {
           )}
           {path.pathname.indexOf("/data/taxon/") === 0 && (
             <Taxon
-              catalogueKey={"2344"}
+              catalogueKey={"3LR"}
               pathToTree="/data/tree"
               pathToSearch="/data/search"
               pathToDataset="/data/source/"
@@ -39,11 +39,11 @@ class Demo extends Component {
             ></Taxon>
           )}
           {path.pathname.indexOf("/data/search") === 0 && (
-            <Search catalogueKey={"2344"}  pathToTaxon="/data/taxon/" citation="bottom"></Search>
+            <Search catalogueKey={"3LR"}  pathToTaxon="/data/taxon/" citation="bottom"></Search>
           )}
           {path.pathname.indexOf("/data/source") === 0 && (
             <Dataset 
-              catalogueKey={"2344"} 
+              catalogueKey={"3LR"} 
               pathToTree="/data/tree" 
               pathToSearch="/data/search"
               pageTitleTemplate="COL | __dataset__"
@@ -53,7 +53,7 @@ class Demo extends Component {
           )}
           {path.pathname.indexOf("/data/contributors") === 0 && (
             <DatasetSearch
-              catalogueKey={"2344"}
+              catalogueKey={"3LR"}
               pathToDataset="/data/source/"
               pathToSearch="/data/search"
             ></DatasetSearch>
@@ -61,7 +61,7 @@ class Demo extends Component {
 
           {path.pathname.indexOf("/data/bibtex") === 0 && (
             <BibTex
-              datasetKey={"2344"}
+              datasetKey={"3LR"}
             ></BibTex>
           )}
         </React.Fragment>
