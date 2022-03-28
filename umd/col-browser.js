@@ -86335,6 +86335,27 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
 
 /* harmony default export */ var src_ColTree = (ColTree_ColTreeWrapper);
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/LinkOutlined.js
+// This icon file is generated automatically.
+var LinkOutlined_LinkOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
+/* harmony default export */ var asn_LinkOutlined = (LinkOutlined_LinkOutlined);
+
+// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/icons/LinkOutlined.js
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+
+
+
+
+var icons_LinkOutlined_LinkOutlined = function LinkOutlined(props, ref) {
+  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](AntdIcon, Object.assign({}, props, {
+    ref: ref,
+    icon: asn_LinkOutlined
+  }));
+};
+
+icons_LinkOutlined_LinkOutlined.displayName = 'LinkOutlined';
+/* harmony default export */ var icons_LinkOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_LinkOutlined_LinkOutlined));
 // CONCATENATED MODULE: ./node_modules/rc-rate/node_modules/@babel/runtime/helpers/esm/defineProperty.js
 function helpers_esm_defineProperty_defineProperty(obj, key, value) {
   if (key in obj) {
@@ -92928,7 +92949,7 @@ var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "span",
           null,
-          lodash_default.a.get(s, 'name.homotypicNameId') && lodash_default.a.get(s, 'accepted.name.homotypicNameId') && lodash_default.a.get(s, 'accepted.name.homotypicNameId') === lodash_default.a.get(s, 'name.homotypicNameId') ? '≡ ' : '= ',
+          lodash_default.a.get(s, '__homotypic') === true ? '≡ ' : '= ',
           "  ",
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: lodash_default.a.get(s, 'labelHtml') } }),
           " ",
@@ -101711,6 +101732,8 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
 
 /* harmony default export */ var Taxon_TaxonBreakdown = (TaxonBreakdown_TaxonBreakdown);
 // CONCATENATED MODULE: ./src/Taxon/index.js
+var Taxon_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function Taxon_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function Taxon_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -101970,13 +101993,20 @@ var Taxon_TaxonPage = function (_React$Component) {
 
     var genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
-    var synonyms = info && info.synonyms && info.synonyms.length > 0 ? info.synonyms.filter(function (s) {
-      return s.status !== "misapplied";
-    }) : [];
-    var misapplied = info && info.synonyms && info.synonyms.length > 0 ? info.synonyms.filter(function (s) {
-      return s.status === "misapplied";
-    }) : [];
-
+    /*  const synonyms =
+       info && info.synonyms && info.synonyms.length > 0
+         ? info.synonyms.filter((s) => s.status !== "misapplied")
+         : [];
+     const misapplied =
+       info && info.synonyms && info.synonyms.length > 0
+         ? info.synonyms.filter((s) => s.status === "misapplied")
+         : []; */
+    var homotypic = lodash_default.a.get(info, 'synonyms.homotypic', []);
+    var heterotypic = lodash_default.a.get(info, 'synonyms.heterotypic', []);
+    var misapplied = lodash_default.a.get(info, 'synonyms.misapplied', []);
+    var synonyms = [].concat(homotypic.map(function (h) {
+      return Taxon_extends({}, h, { __homotypic: true });
+    }), heterotypic);
     return status === 404 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Page404, null) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
       null,
@@ -102039,7 +102069,13 @@ var Taxon_TaxonPage = function (_React$Component) {
         lodash_default.a.get(taxon, "id") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "COL Identifier" },
-          lodash_default.a.get(taxon, "id")
+          lodash_default.a.get(taxon, "id"),
+          " ",
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+            "a",
+            { href: "https://www.checklistbank.org/dataset/" + catalogueKey + "/taxon/" + lodash_default.a.get(taxon, "id") },
+            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null)
+          )
         ),
         lodash_default.a.get(taxon, "labelHtml") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
@@ -102063,7 +102099,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         lodash_default.a.get(taxon, "name.nomStatus") && nomStatus && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
           { md: Taxon_md, label: "Nomenclatural Status" },
-          nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoology")]
+          nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoological")]
         ),
         lodash_default.a.get(taxon, "name.relations") && taxon.name.relations.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           components_PresentationItem,
@@ -107598,27 +107634,6 @@ var BibTex_BibTex = function BibTex(_ref) {
 };
 
 /* harmony default export */ var components_BibTex = (BibTex_BibTex);
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/LinkOutlined.js
-// This icon file is generated automatically.
-var LinkOutlined_LinkOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
-/* harmony default export */ var asn_LinkOutlined = (LinkOutlined_LinkOutlined);
-
-// CONCATENATED MODULE: ./node_modules/@ant-design/icons/es/icons/LinkOutlined.js
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-
-
-
-
-var icons_LinkOutlined_LinkOutlined = function LinkOutlined(props, ref) {
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_["createElement"](AntdIcon, Object.assign({}, props, {
-    ref: ref,
-    icon: asn_LinkOutlined
-  }));
-};
-
-icons_LinkOutlined_LinkOutlined.displayName = 'LinkOutlined';
-/* harmony default export */ var icons_LinkOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_LinkOutlined_LinkOutlined));
 // CONCATENATED MODULE: ./src/Dataset/index.js
 function Dataset_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
