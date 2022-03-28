@@ -290,15 +290,18 @@ class TaxonPage extends React.Component {
     } = this.state;
     const genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
-    const synonyms =
+   /*  const synonyms =
       info && info.synonyms && info.synonyms.length > 0
         ? info.synonyms.filter((s) => s.status !== "misapplied")
         : [];
     const misapplied =
       info && info.synonyms && info.synonyms.length > 0
         ? info.synonyms.filter((s) => s.status === "misapplied")
-        : [];
-
+        : []; */
+        const homotypic = _.get(info, 'synonyms.homotypic',[])
+        const heterotypic = _.get(info, 'synonyms.heterotypic',[])
+        const misapplied = _.get(info, 'synonyms.misapplied',[])
+        const synonyms = [...homotypic.map(h => ({...h, __homotypic: true})), ...heterotypic]
     return status === 404 ? <Page404 /> :
       <React.Fragment>
         <div
@@ -362,7 +365,7 @@ class TaxonPage extends React.Component {
           )}
           {_.get(taxon, "id") && (
             <PresentationItem md={md} label="COL Identifier">
-              {_.get(taxon, "id")}
+              {_.get(taxon, "id")} <a href={`https://www.checklistbank.org/dataset/${catalogueKey}/taxon/${_.get(taxon, "id")}`}><LinkOutlined/></a>
             </PresentationItem>
           )}
           {_.get(taxon, "labelHtml") && (
@@ -389,7 +392,7 @@ class TaxonPage extends React.Component {
             <PresentationItem md={md} label="Nomenclatural Status">
               {
                 nomStatus[_.get(taxon, "name.nomStatus")][
-                  (_.get(taxon, "name.code"), "zoology")
+                  (_.get(taxon, "name.code"), "zoological")
                 ]
               }
             </PresentationItem>
