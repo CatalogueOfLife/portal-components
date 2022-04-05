@@ -432,6 +432,7 @@ class TaxonPage extends React.Component {
             <PresentationItem md={md} label="Synonyms and Combinations">
               <SynonymTable
                 data={synonyms}
+                nomStatus={nomStatus}
                 references={_.get(info, "references")}
                 style={{ marginTop: "-3px" }}
                 catalogueKey={catalogueKey}
