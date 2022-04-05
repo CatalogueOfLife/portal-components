@@ -92935,7 +92935,13 @@ var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
   var data = _ref.data,
       style = _ref.style,
       catalogueKey = _ref.catalogueKey,
-      references = _ref.references;
+      references = _ref.references,
+      nomStatus = _ref.nomStatus;
+
+
+  var getNomStatus = function getNomStatus(taxon) {
+    return !nomStatus ? lodash_default.a.get(taxon, "name.nomStatus") : nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoological")];
+  };
 
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "div",
@@ -92953,9 +92959,11 @@ var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
           "  ",
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: lodash_default.a.get(s, 'labelHtml') } }),
           " ",
-          lodash_default.a.get(s, 'name.nomStatus') && "(" + lodash_default.a.get(s, 'name.nomStatus') + ")",
+          lodash_default.a.get(s, 'name.nomStatus') && "(" + getNomStatus(s) + ")",
           " ",
-          lodash_default.a.get(s, 'status') === 'misapplied' && lodash_default.a.get(s, 'accordingTo') ? lodash_default.a.get(s, 'accordingTo') : ''
+          lodash_default.a.get(s, 'status') === 'misapplied' && lodash_default.a.get(s, 'accordingTo') ? lodash_default.a.get(s, 'accordingTo') : '',
+          " ",
+          lodash_default.a.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"
         ),
         " ",
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { references: references, datasetKey: catalogueKey, referenceId: lodash_default.a.get(s, "name.publishedInId") ? [lodash_default.a.get(s, "name.publishedInId")].concat(s.referenceIds || []) : s.referenceIds, style: { display: 'inline-block' }, placement: "bottom" })
@@ -102123,6 +102131,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           { md: Taxon_md, label: "Synonyms and Combinations" },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
             data: synonyms,
+            nomStatus: nomStatus,
             references: lodash_default.a.get(info, "references"),
             style: { marginTop: "-3px" },
             catalogueKey: catalogueKey
