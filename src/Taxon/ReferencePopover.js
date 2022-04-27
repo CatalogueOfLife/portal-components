@@ -4,6 +4,7 @@ import { Popover, Spin } from "antd";
 import axios from "axios";
 import config from "../config";
 import _ from "lodash";
+import ErrorMsg from "../components/ErrorMsg";
 
 class ReferencePopover extends React.Component {
   constructor(props) {
@@ -22,12 +23,12 @@ class ReferencePopover extends React.Component {
       const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
       const reference = [];
       this.setState({ loading: true });
-      Promise.all(
+      Promise.allSettled(
         refIds.map((id) => _.get(references, id) ? Promise.resolve(reference.push(references[id])) :
 
           axios(
             `${config.dataApi}dataset/${datasetKey}/reference/${id}`
-          ).then((res) => reference.push(res.data))
+          ).then((res) => reference.push(res.data)).catch(err => this.setState({error: err}))
 
      
         )
@@ -39,6 +40,8 @@ class ReferencePopover extends React.Component {
     const { error, reference, loading } = this.state;
     if (loading) {
       return <Spin />;
+    } else if (error) {
+      return <ErrorMsg error={error}/>;
     } else if (reference.length === 1) {
       return reference[0].citation;
     } else {

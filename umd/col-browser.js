@@ -92831,6 +92831,7 @@ function ReferencePopover_inherits(subClass, superClass) { if (typeof superClass
 
 
 
+
 var ReferencePopover_ReferencePopover = function (_React$Component) {
   ReferencePopover_inherits(ReferencePopover, _React$Component);
 
@@ -92849,9 +92850,11 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
         var refIds = !lodash_default.a.isArray(referenceId) ? [referenceId] : referenceId;
         var reference = [];
         _this.setState({ loading: true });
-        Promise.all(refIds.map(function (id) {
+        Promise.allSettled(refIds.map(function (id) {
           return lodash_default.a.get(references, id) ? Promise.resolve(reference.push(references[id])) : axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/reference/" + id).then(function (res) {
             return reference.push(res.data);
+          }).catch(function (err) {
+            return _this.setState({ error: err });
           });
         })).then(function () {
           return _this.setState({ reference: reference, loading: false });
@@ -92867,6 +92870,8 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
 
       if (loading) {
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null);
+      } else if (error) {
+        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: error });
       } else if (reference.length === 1) {
         return reference[0].citation;
       } else {
@@ -101819,7 +101824,7 @@ var Taxon_TaxonPage = function (_React$Component) {
         if (lodash_default.a.get(res, "data.name")) {
           promises.push(axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/name/" + lodash_default.a.get(res, "data.name.id") + "/relations").then(function (relations) {
             res.data.name.relations = relations.data;
-            return Promise.all(relations.data.map(function (r) {
+            return Promise.allSettled(relations.data.map(function (r) {
               return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/name/" + r.relatedNameId).then(function (n) {
                 r.relatedName = n.data;
               });
@@ -101843,7 +101848,7 @@ var Taxon_TaxonPage = function (_React$Component) {
           });
         }
 
-        return Promise.all(promises);
+        return Promise.allSettled(promises);
       }).then(function (res) {
         _this.setState({
           taxonLoading: false,
