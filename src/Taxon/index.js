@@ -99,7 +99,7 @@ class TaxonPage extends React.Component {
               )}/relations`
             ).then((relations) => {
               res.data.name.relations = relations.data;
-              return Promise.all(
+              return Promise.allSettled(
                 relations.data.map((r) => {
                   return axios(
                     `${config.dataApi}dataset/${datasetKey}/name/${r.relatedNameId}`
@@ -148,7 +148,7 @@ class TaxonPage extends React.Component {
           });
         }
 
-        return Promise.all(promises);
+        return Promise.allSettled(promises);
       })
       .then((res) => {
         this.setState({
