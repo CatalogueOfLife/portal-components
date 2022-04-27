@@ -101828,7 +101828,13 @@ var Taxon_TaxonPage = function (_React$Component) {
               return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/name/" + r.relatedNameId).then(function (n) {
                 r.relatedName = n.data;
               });
-            }));
+            })).then(function (results) {
+              return results.filter(function (r) {
+                return r.status = 'fulfilled';
+              }).map(function (r) {
+                return r.value;
+              });
+            });
           }));
         }
         // sector keys are only present if its a catalogue
@@ -101848,7 +101854,13 @@ var Taxon_TaxonPage = function (_React$Component) {
           });
         }
 
-        return Promise.allSettled(promises);
+        return Promise.allSettled(promises).then(function (results) {
+          return results.filter(function (r) {
+            return r.status = 'fulfilled';
+          }).map(function (r) {
+            return r.value;
+          });
+        });
       }).then(function (res) {
         _this.setState({
           taxonLoading: false,
