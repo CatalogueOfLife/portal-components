@@ -107,7 +107,9 @@ class TaxonPage extends React.Component {
                     r.relatedName = n.data;
                   });
                 })
-              );
+              ).then(results => {
+                return results.filter(r => r.status = 'fulfilled').map(r => r.value)
+              });
             })
           );
         }
@@ -148,7 +150,9 @@ class TaxonPage extends React.Component {
           });
         }
 
-        return Promise.allSettled(promises);
+        return Promise.allSettled(promises).then(results => {
+          return results.filter(r => r.status = 'fulfilled').map(r => r.value)
+        });
       })
       .then((res) => {
         this.setState({
