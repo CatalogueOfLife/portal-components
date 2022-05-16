@@ -27,8 +27,9 @@ class ColTreeNode extends React.Component {
     } = this.props;
 
     const sectorSourceDataset = _.get(sector, "dataset");
-
+    const hasDatasetSectors = datasetSectors && ( sector && sector.subjectDatasetKey ? Object.keys(_.omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true)
     const estimate = taxon.estimate && taxon.estimates ? taxon.estimates.find(e => e.estimate === taxon.estimate) : null;
+
     return (
       <ColTreeContext.Consumer>
                 {({ showInfo }) => (
@@ -57,26 +58,19 @@ class ColTreeNode extends React.Component {
                           </React.Fragment>
                         )}
                 
-                        {datasetSectors && (
-                          <React.Fragment> • <TaxonSources
-                              datasetSectors={datasetSectors}
-                              pathToDataset={pathToDataset}
-                              taxon={taxon}
-                              catalogueKey={catalogueKey}
-                            />
-                          </React.Fragment>
-                        )}
+                        
                         {sector && (
                           <span>
                             <span> • </span>
                             <a
+                              style={hasDatasetSectors ? {fontWeight: 'bold'} : null}
                               href={`${pathToDataset}${sector.subjectDatasetKey}`}
                               className="col-tree-data-source"
                               onClick={() => {
                                 window.location.href = `${pathToDataset}${sector.subjectDatasetKey}`;
                               }}
                             >
-                              {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{" "}
+                              {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{hasDatasetSectors && ", "}
                               {/* <DatasetlogoWithFallback
                                 style={{ maxHeight: "20px", width: "auto" }}
                                 catalogueKey={catalogueKey}
@@ -85,6 +79,15 @@ class ColTreeNode extends React.Component {
                               /> */}
                             </a>
                           </span>
+                        )}
+                        {hasDatasetSectors && (
+                          <React.Fragment> <TaxonSources
+                              datasetSectors={sector && sector.subjectDatasetKey ? _.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors}
+                              pathToDataset={pathToDataset}
+                              taxon={taxon}
+                              catalogueKey={catalogueKey}
+                            />
+                          </React.Fragment>
                         )}
                          </React.Fragment>}
                         
