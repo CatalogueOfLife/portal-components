@@ -80134,7 +80134,7 @@ var TaxonSources_TaxonSources = function (_React$Component) {
       });
 
       Promise.all(promises).then(function (data) {
-        _this.setState({ data: data, loading: false });
+        _this.setState({ data: lodash_default.a.sortBy(data, ['alias']), loading: false });
       });
     };
 
@@ -80409,10 +80409,11 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
 
 
       var sectorSourceDataset = lodash_default.a.get(sector, "dataset");
-
+      var hasDatasetSectors = datasetSectors && (sector && sector.subjectDatasetKey ? Object.keys(lodash_default.a.omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true);
       var estimate = taxon.estimate && taxon.estimates ? taxon.estimates.find(function (e) {
         return e.estimate === taxon.estimate;
       }) : null;
+
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         ColTreeContext.Consumer,
         null,
@@ -80451,17 +80452,6 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
                   "prov."
                 )
               ),
-              datasetSectors && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-                null,
-                " \u2022 ",
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonSources, {
-                  datasetSectors: datasetSectors,
-                  pathToDataset: pathToDataset,
-                  taxon: taxon,
-                  catalogueKey: catalogueKey
-                })
-              ),
               sector && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                 "span",
                 null,
@@ -80473,6 +80463,7 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
                 external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
                   "a",
                   {
+                    style: hasDatasetSectors ? { fontWeight: 'bold' } : null,
                     href: "" + pathToDataset + sector.subjectDatasetKey,
                     className: "col-tree-data-source",
                     onClick: function onClick() {
@@ -80480,8 +80471,19 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
                     }
                   },
                   lodash_default.a.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
-                  " "
+                  hasDatasetSectors && ", "
                 )
+              ),
+              hasDatasetSectors && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
+                null,
+                " ",
+                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonSources, {
+                  datasetSectors: sector && sector.subjectDatasetKey ? lodash_default.a.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors,
+                  pathToDataset: pathToDataset,
+                  taxon: taxon,
+                  catalogueKey: catalogueKey
+                })
               )
             )
           );

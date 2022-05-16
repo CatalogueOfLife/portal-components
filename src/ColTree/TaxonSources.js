@@ -2,7 +2,7 @@ import React from "react";
 import { Popover, Spin, Row, Col } from "antd";
 import { getDatasetsBatch } from "../api/dataset";
 import { CloseCircleOutlined } from "@ant-design/icons";
-
+import _ from 'lodash'
 import DataLoader from "dataloader";
 import config from "../config";
 
@@ -34,7 +34,7 @@ class TaxonSources extends React.Component {
     );
 
     Promise.all(promises).then((data) => {
-      this.setState({ data, loading: false });
+      this.setState({ data:_.sortBy(data, ['alias']), loading: false });
     });
   };
 
