@@ -100376,24 +100376,46 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
 
 
 
+
+
 var Distributions_DistributionsTable = function DistributionsTable(_ref) {
   var datasetKey = _ref.datasetKey,
       data = _ref.data,
       style = _ref.style;
+
+  var _useState = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])({}),
+      iso3Map = _useState[0],
+      setIso3Map = _useState[1];
+
+  Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
+    var isIso = false;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].gazetteer === 'iso') {
+        isIso = true;
+        break;
+      }
+    }
+    if (isIso) {
+      axios_default()(src_config.dataApi + "vocab/country").then(function (res) {
+        setIso3Map(lodash_default.a.keyBy(res.data, 'alpha3'));
+      });
+    }
+  }, []);
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "div",
     { style: style },
     data.map(function (s, i) {
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        Taxon_BorderedListItem,
+        "span",
         { key: i },
-        lodash_default.a.get(s, 'area.name') || lodash_default.a.get(s, 'area.globalId'),
+        (lodash_default.a.get(iso3Map, "[" + lodash_default.a.get(s, "area.name") + "].name") ? lodash_default.a.startCase(lodash_default.a.get(iso3Map, "[" + lodash_default.a.get(s, "area.name") + "].name")) : null) || lodash_default.a.get(s, "area.name") || lodash_default.a.get(s, "area.globalId"),
         " ",
         s.referenceId && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
           datasetKey: datasetKey,
           referenceId: s.referenceId,
           placement: "bottom"
-        })
+        }),
+        i < data.length - 1 && ", "
       );
     })
   );
@@ -106399,7 +106421,19 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
           vocab = _this$props.vocab;
 
       var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
-
+      var vocabKeys = new Set([].concat(vocab.map(function (i) {
+        return i.value;
+      })));
+      var val = void 0;
+      if (defaultValue && lodash_default.a.isArray(defaultValue)) {
+        val = defaultValue.filter(function (v) {
+          return vocabKeys.has(v);
+        });
+      } else if (defaultValue) {
+        val = [defaultValue].filter(function (v) {
+          return vocabKeys.has(v);
+        });
+      }
       return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         MultiValueFilter_FormItem,
         MultiValueFilter_extends({}, formItemLayout, {
@@ -106416,7 +106450,7 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
               // style={{ width: "100%" }}
               , mode: "multiple",
               placeholder: "Please select",
-              value: defaultValue,
+              value: val,
               onChange: _this.handleChange,
               getPopupContainer: function getPopupContainer() {
                 return document.getElementById(lodash_default.a.snakeCase(label) + "_" + randomID);
