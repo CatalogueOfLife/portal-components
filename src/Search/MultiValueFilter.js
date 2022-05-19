@@ -38,7 +38,13 @@ class MultiValueFilter extends React.Component {
   render = () => {
     const {defaultValue, label, vocab} = this.props;
     const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
-
+    const vocabKeys = new Set([...vocab.map(i => i.value)]);
+    let val; 
+    if(defaultValue && _.isArray(defaultValue)){
+      val = defaultValue.filter(v => vocabKeys.has(v))
+    } else if(defaultValue){
+      val = [defaultValue].filter(v => vocabKeys.has(v))
+    }
     return (
         <FormItem
        {...formItemLayout}
@@ -51,7 +57,7 @@ class MultiValueFilter extends React.Component {
        // style={{ width: "100%" }}
         mode="multiple"
         placeholder="Please select"
-        value={defaultValue}
+        value={val}
         onChange={this.handleChange}
         getPopupContainer={() =>
           document.getElementById(`${_.snakeCase(label)}_${randomID}`)
