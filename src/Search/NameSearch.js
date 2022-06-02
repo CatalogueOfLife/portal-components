@@ -59,9 +59,14 @@ const getColumns = (pathToTaxon) => [
         _.get(record, "usage.accepted.id") || _.get(record, "usage.id");
       return (
         <a
-          href={`${pathToTaxon}${id}`}
-          onClick={() => {
-            window.location.href = `${pathToTaxon}${id}`;
+          href={typeof pathToTaxon === "string" ? `${pathToTaxon}${id}`: "#"}
+          onClick={(e) => {
+            if(typeof pathToTaxon === "string"){
+              window.location.href = `${pathToTaxon}${id}`;
+            } else if(typeof pathToTaxon === "function"){
+              e.preventDefault()
+              pathToTaxon(id)
+            }
           }}
           dangerouslySetInnerHTML={{ __html: text }}
         />

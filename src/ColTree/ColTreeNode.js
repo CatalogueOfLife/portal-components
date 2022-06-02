@@ -38,7 +38,7 @@ class ColTreeNode extends React.Component {
                           <span className="tree-node-rank">{taxon.rank}: </span>
                           <a
                             dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
-                            href={`${pathToTaxon}${taxon.id}`}
+                            href={typeof pathToTaxon === "string" ? `${pathToTaxon}${taxon.id}`: "#"}
                             onClick={(e) => {
                               if(typeof pathToTaxon === "string"){
                                 window.location.href = `${pathToTaxon}${taxon.id}`;
