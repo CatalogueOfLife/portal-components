@@ -1,7 +1,13 @@
 import React from "react";
 
 const ranks = ["family", "superfamily", "order", "subclass", "class", "superclass", "subphylum", "phylum"];
-
+const navigateToTaxon = (pathToTaxon, id) => {
+    if(typeof pathToTaxon === "string"){
+        window.location.href = `${pathToTaxon}${id}`;
+      } else if(typeof pathToTaxon === "function"){
+        pathToTaxon(id)
+      }
+}
 export default ({classification, pathToTaxon, maxParents = classification.length, truncate}) => {
     const clazzification = classification.slice(Math.max(classification.length - maxParents));
     if(truncate){
@@ -17,19 +23,19 @@ export default ({classification, pathToTaxon, maxParents = classification.length
         }
         if(kingdom && familyOrClosestAlternative){
             return <React.Fragment >
-                <a onClick={() => {window.location.href = `${pathToTaxon}${kingdom.id}`}}>{kingdom.name}</a> 
+                <a onClick={() => navigateToTaxon(pathToTaxon, kingdom.id)}>{kingdom.name}</a> 
                 {familyOrClosestAlternative.rank === "phylum" ? " > " : " > ... > "}
-                <a onClick={() => {window.location.href = `${pathToTaxon}${familyOrClosestAlternative.id}`}}>{familyOrClosestAlternative.name}</a> 
+                <a onClick={() => navigateToTaxon(pathToTaxon, familyOrClosestAlternative.id)}>{familyOrClosestAlternative.name}</a> 
             </React.Fragment>
         } else if(kingdom) {     
-            return <a onClick={() => {window.location.href = `${pathToTaxon}${kingdom.id}`}}>{kingdom.name}</a> 
+            return <a onClick={() => navigateToTaxon(pathToTaxon, kingdom.id)}>{kingdom.name}</a> 
         } else {
             return null;
         }
     } else {
         return clazzification.map((t, key) => 
     <React.Fragment key={key}>
-        <a onClick={() => {window.location.href = `${pathToTaxon}${t.id}`}}>{t.name}</a>
+        <a onClick={() => navigateToTaxon(pathToTaxon, t.id)}>{t.name}</a>
         {!Object.is(clazzification.length - 1, key) && " > "}
     </React.Fragment>)}
     }
