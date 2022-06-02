@@ -9,6 +9,11 @@ import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex } from "../../src";
 
 import history from "../../src/history";
 
+// Test function that could be given to the tree as "pathToTaxon" instead of a string
+var callBack = function(taxonKey){
+  alert(`This seems to work, key is ${taxonKey}`)
+  window.location.href = `/data/taxon/${taxonKey}`;
+}
 
 class Demo extends Component {
   render() {
