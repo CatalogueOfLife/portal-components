@@ -80434,8 +80434,13 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
               external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
                 dangerouslySetInnerHTML: { __html: taxon.labelHtml },
                 href: "" + pathToTaxon + taxon.id,
-                onClick: function onClick() {
-                  window.location.href = "" + pathToTaxon + taxon.id;
+                onClick: function onClick(e) {
+                  if (typeof pathToTaxon === "string") {
+                    window.location.href = "" + pathToTaxon + taxon.id;
+                  } else if (typeof pathToTaxon === "function") {
+                    e.preventDefault();
+                    pathToTaxon(taxon.id);
+                  }
                 }
               })
             ),
@@ -86256,7 +86261,11 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
                   defaultTaxonKey: lodash_default.a.get(params, "taxonKey") || null,
                   onSelectName: function onSelectName(name) {
                     if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(lodash_default.a.get(name, "rank"))) {
-                      window.location.href = "" + pathToTaxon + lodash_default.a.get(name, "key");
+                      if (typeof pathToTaxon === "string") {
+                        window.location.href = "" + pathToTaxon + lodash_default.a.get(name, "key");
+                      } else if (typeof pathToTaxon === "function") {
+                        pathToTaxon(lodash_default.a.get(name, "key"));
+                      }
                     } else {
                       var newParams = src_ColTree_extends({}, params, {
                         taxonKey: lodash_default.a.get(name, "key")

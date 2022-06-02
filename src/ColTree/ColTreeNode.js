@@ -39,8 +39,14 @@ class ColTreeNode extends React.Component {
                           <a
                             dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
                             href={`${pathToTaxon}${taxon.id}`}
-                            onClick={() => {
-                              window.location.href = `${pathToTaxon}${taxon.id}`;
+                            onClick={(e) => {
+                              if(typeof pathToTaxon === "string"){
+                                window.location.href = `${pathToTaxon}${taxon.id}`;
+                              } else if(typeof pathToTaxon === "function"){
+                                e.preventDefault()
+                                pathToTaxon(taxon.id)
+                              }
+                              
                             }}
                           />
                         </span>

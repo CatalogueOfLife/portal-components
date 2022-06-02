@@ -79,10 +79,18 @@ class ColTreeWrapper extends React.Component {
                       linkToSpeciesPage &&
                       INFRASPECIFIC_RANKS.includes(_.get(name, "rank"))
                     ) {
-                      window.location.href = `${pathToTaxon}${_.get(
-                        name,
-                        "key"
-                      )}`;
+                      if(typeof pathToTaxon === "string"){
+                        window.location.href = `${pathToTaxon}${_.get(
+                          name,
+                          "key"
+                        )}`;
+                      } else if(typeof pathToTaxon === "function"){
+                        pathToTaxon(_.get(
+                          name,
+                          "key"
+                        ))
+                      }
+                      
                     } else {
                       const newParams = {
                         ...params,
