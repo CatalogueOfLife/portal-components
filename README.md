@@ -56,7 +56,7 @@ This will create a global `ColBrowser` library variable that has four indvidual 
 A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse), takes three properties:
 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
-2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
+2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards). Alternatively, you can provide a callback function taking the taxonID as parameter as seen in [this example](https://github.com/CatalogueOfLife/portal-components/issues/27#issuecomment-1144524981).
 3. `defaultTaxonKey` - (Optional) Initially expand the tree down to this taxon.
 4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
 5. `showTreeOptions` - (Optional) show toggles for extinct taxa and info (estimates, providers etc)
@@ -93,7 +93,7 @@ ReactDOM.render(e(Tree), domContainer);
 [Search component with table view](https://www.catalogueoflife.org/data/search), takes two properties:
 
 1. `catalogueKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
-2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).
+2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).  Alternatively, you can provide a callback function taking the taxonID as parameter as seen in [this example](https://github.com/CatalogueOfLife/portal-components/issues/27#issuecomment-1144524981).
 3. `defaultTaxonKey` - (Optional) if the search should default to a certain Family, Order etc
 4. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the search component
 
