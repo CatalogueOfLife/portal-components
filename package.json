@@ -27,6 +27,8 @@
     "highcharts": "^9.1.2",
     "highcharts-react-official": "^3.0.0",
     "history": "^4.7.2",
+    "linkify-html": "^3.0.5",
+    "linkifyjs": "^3.0.5",
     "lodash": ">=4.6.2",
     "query-string": "~5.1.1",
     "react-highlight-words": "^0.16.0",

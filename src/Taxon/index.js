@@ -49,7 +49,8 @@ class TaxonPage extends React.Component {
       includes: [],
       rank: null,
       nomStatus: null,
-      catalogue: null
+      catalogue: null,
+      referenceIndexMap: {}
     };
   }
 
@@ -186,7 +187,13 @@ class TaxonPage extends React.Component {
     const { catalogueKey: datasetKey } = this.props;
     axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`)
       .then((res) => {
-        this.setState({ infoLoading: false, info: res.data, infoError: null });
+        let referenceIndexMap = {}
+        if(_.get(res, 'data.references')){
+          Object.keys(res.data.references).forEach((k,i) => {
+            referenceIndexMap[k] = (i+1).toString();
+          })
+        }
+        this.setState({ infoLoading: false, info: res.data, infoError: null, referenceIndexMap });
       })
       .catch((err) => {
         if(_.get(err, "response.status") === 404){
@@ -290,7 +297,8 @@ class TaxonPage extends React.Component {
       classificationError,
       infoError,
       status,
-      catalogue
+      catalogue,
+      referenceIndexMap
     } = this.state;
     const genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
@@ -438,6 +446,7 @@ class TaxonPage extends React.Component {
                 data={synonyms}
                 nomStatus={nomStatus}
                 references={_.get(info, "references")}
+                referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
                 catalogueKey={catalogueKey}
               />
@@ -449,6 +458,7 @@ class TaxonPage extends React.Component {
               <SynonymTable
                 data={misapplied}
                 references={_.get(info, "references")}
+                referenceIndexMap={referenceIndexMap}
                 style={{ marginBottom: 16, marginTop: "-3px" }}
                 catalogueKey={catalogueKey}
               />
@@ -519,12 +529,6 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
 
-          {/*_.get(info, "references") && (
-            <PresentationItem md={md} label="References">
-             <CslReferences references={info.references}></CslReferences>
-
-            </PresentationItem>
-          ) */}
 
           {_.get(taxon, "remarks") && (
             <PresentationItem md={md} label="Additional Data">
@@ -532,12 +536,11 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
 
-          {_.get(info, "taxon.referenceIds[0]") && _.get(info, "references") && (
+          { _.get(info, "references") && (
             <PresentationItem md={md} label="References">
               <References
-                data={_.get(info, "taxon.referenceIds").map((k) =>
-                  _.get(info, `references[${k}]`)
-                )}
+                referenceIndexMap={referenceIndexMap}
+                data={_.get(info, "references")}
                 style={{ marginTop: "-3px" }}
               />
             </PresentationItem>
