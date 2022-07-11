@@ -19356,6 +19356,17 @@ div.catalogue-of-life .ant-typography-edit-content.ant-typography-rtl {
   height: 80px;
   width: 1px;
 }
+.catalogue-of-life .col-reference-link-container :target {
+  display: block;
+  margin-top: 0px !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+.catalogue-of-life .col-reference-link {
+  vertical-align: super;
+  font-size: 9px;
+  font-weight: 400;
+}
 .catalogue-of-life a.col-tree-data-source {
   color: orange;
   font-size: 11px;
