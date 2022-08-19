@@ -1,6 +1,6 @@
 {
   "name": "col-browser",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "Catalogue of Life browse and search React components",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,7 +20,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "antd": "^4.22.6",
+    "antd": "4.6.1",
     "axios": "^0.21.2",
     "btoa": "^1.2.1",
     "dataloader": "^1.4.0",
@@ -39,7 +39,7 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "less": "^3.7.0",
+    "less": "^2.7.2",
     "less-loader": "^5.0.0",
     "nwb": "0.23.x",
     "nwb-less": "^0.7.1",
