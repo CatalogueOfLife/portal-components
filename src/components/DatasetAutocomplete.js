@@ -18,7 +18,8 @@ class DatasetAutocomplete extends React.Component {
 
         this.state = {
             datasets: [],
-            value: ''
+            value: '',
+            randomID: (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)
         }
     }
 
@@ -70,9 +71,9 @@ class DatasetAutocomplete extends React.Component {
         this.setState({ value: "", names: [] }, this.props.onResetSearch);
     }
     render = () => {
-        const {value} = this.state;
+        const {value, randomID} = this.state;
         const {style} = this.props
-        const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
+       // const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
         
 
           const options = this.state.datasets ? this.state.datasets.map((o) => {
