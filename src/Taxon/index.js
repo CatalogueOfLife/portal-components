@@ -420,22 +420,12 @@ class TaxonPage extends React.Component {
             <BooleanValue value={_.get(taxon, "recent")} />
           </PresentationItem> */}
 
-          {_.get(taxon, "name.relations") && taxon.name.relations.length > 0 && (
-            <PresentationItem
-              md={md}
-              label="Relations"
-              helpText={
-                <a href="https://github.com/Sp2000/colplus/blob/master/docs/NAMES.md#name-relations">
-                  Name relations are explained here
-                </a>
-              }
-            >
-              <NameRelations
-                style={{ marginTop: "-3px" }}
-                data={taxon.name.relations}
-              />
-            </PresentationItem>
-          )}
+          {_.get(taxon, "name.relations") && taxon.name.relations.length > 0 && 
+          <NameRelations
+          md={md}
+          style={{ marginTop: "-3px" }}
+          data={taxon.name.relations}
+        />}
           {infoError && (
             <Alert message={<ErrorMsg error={infoError} />} type="error" />
           )}

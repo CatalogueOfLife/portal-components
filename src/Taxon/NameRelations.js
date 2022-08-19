@@ -10,12 +10,12 @@ const typeMap = {
     "superfluous": "name for"
 }
 
-const NameRelations = ({ data, style }) => {
+const NameRelations = ({ data, style, md }) => {
   return (
     <div style={style}>
       {data
         .map(r => (
-          <PresentationItem key={r.key} label={`${_.capitalize(r.type)} ${typeMap[r.type] ? typeMap[r.type]: ""}` } helpText={r.note}>
+          <PresentationItem md={md} key={r.key} label={`${_.capitalize(r.type)} ${typeMap[r.type] ? typeMap[r.type]: ""}` } helpText={r.note}>
            {_.get(r, 'relatedName.labelHtml') ? <span dangerouslySetInnerHTML={{__html: r.relatedName.labelHtml}}></span> : <span>{_.get(r, 'relatedName.scientificName')} {_.get(r, 'relatedName.authorship', '')}</span>}
           </PresentationItem>
         ))}
