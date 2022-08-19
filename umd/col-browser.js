@@ -85090,9 +85090,9 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           disabled = _this$props2.disabled;
       var _this$state = _this.state,
           value = _this$state.value,
-          options = _this$state.options;
-
-      var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
+          options = _this$state.options,
+          randomID = _this$state.randomID;
+      //const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
       // const options = this.getOptions(this.state.names, value)
 
@@ -85120,6 +85120,7 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
             autoFocus: autoFocus === false ? false : true,
             disabled: disabled,
             getPopupContainer: function getPopupContainer() {
+              console.log("Test " + randomID);
               return document.getElementById("taxon_autocomplete_" + randomID);
             }
 
@@ -85132,7 +85133,8 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     _this.getNames = Object(lodash["debounce"])(_this.getNames, 500);
     _this.state = {
       options: [],
-      value: ""
+      value: "",
+      randomID: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1)
     };
     return _this;
   }
@@ -109422,8 +109424,9 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
           defaultValue = _this$props.defaultValue,
           label = _this$props.label,
           vocab = _this$props.vocab;
+      var randomID = _this.state.randomID;
+      //const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
-      var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
       var vocabKeys = new Set([].concat(vocab.map(function (i) {
         return i.value;
       })));
@@ -109476,7 +109479,8 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
     };
 
     _this.state = {
-      selected: _this.props.selected
+      selected: _this.props.selected,
+      randomID: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1)
     };
     return _this;
   }
@@ -109620,10 +109624,12 @@ var DatasetAutocomplete_DatasetAutocomplete = function (_React$Component) {
         };
 
         _this.render = function () {
-            var value = _this.state.value;
+            var _this$state = _this.state,
+                value = _this$state.value,
+                randomID = _this$state.randomID;
             var style = _this.props.style;
+            // const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
-            var randomID = (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1);
 
             var options = _this.state.datasets ? _this.state.datasets.map(function (o) {
                 var text = (o.alias || o.title) + ' [' + o.key + ']';
@@ -109671,7 +109677,8 @@ var DatasetAutocomplete_DatasetAutocomplete = function (_React$Component) {
 
         _this.state = {
             datasets: [],
-            value: ''
+            value: '',
+            randomID: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1)
         };
         return _this;
     }

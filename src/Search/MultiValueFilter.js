@@ -23,7 +23,8 @@ class MultiValueFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: this.props.selected
+      selected: this.props.selected,
+      randomID: (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)
     };
   }
 
@@ -37,7 +38,8 @@ class MultiValueFilter extends React.Component {
 
   render = () => {
     const {defaultValue, label, vocab} = this.props;
-    const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
+    const {randomID} = this.state;
+    //const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
     const vocabKeys = new Set([...vocab.map(i => i.value)]);
     let val; 
     if(defaultValue && _.isArray(defaultValue)){
