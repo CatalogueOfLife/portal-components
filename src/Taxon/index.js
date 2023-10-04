@@ -376,7 +376,7 @@ class TaxonPage extends React.Component {
             </Row>
           )}
           {_.get(taxon, "id") && (
-            <PresentationItem md={md} label="COL Identifier">
+            <PresentationItem md={md} label={_.get(this.props, "identifierLabel", "Identifier")}>
               {_.get(taxon, "id")} <a href={`https://www.checklistbank.org/dataset/${catalogueKey}/taxon/${_.get(taxon, "id")}`}><LinkOutlined/></a>
             </PresentationItem>
           )}
