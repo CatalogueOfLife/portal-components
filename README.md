@@ -130,6 +130,7 @@ ReactDOM.render(e(Search), domContainer);
 4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
 5. `pathToTaxon=` - The local path to the taxon page of your website (the page where this component will placed).
 6. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__taxon__` that will be replaced with the taxon name.
+7. `identifierLabel` - Label for the identifier listed on top of the taxon view. Defaults to `Identifier`
 
 ```
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->

@@ -41,7 +41,7 @@ class Demo extends Component {
               pathToDataset="/data/source/"
               pathToTaxon="/data/taxon/"
               pageTitleTemplate="COL | __taxon__"
-              identifierLabel="IPNI identifier"
+              identifierLabel="COL identifier"
             ></Taxon>
           )}
           {path.pathname.indexOf("/data/search") === 0 && (
