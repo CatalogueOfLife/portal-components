@@ -10,7 +10,7 @@ const ReferencesTable = ({ data, referenceIndexMap, style }) => {
       {_.values(data)
         
         .map(s => (
-            <Row>
+            <Row key={s.id}>
               <Col style={{paddingRight: "5px"}}>
              {_.get(referenceIndexMap, s.id) && <span>
               {`[${_.get(referenceIndexMap, s.id)}]`}

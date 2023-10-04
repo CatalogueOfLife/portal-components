@@ -238,7 +238,9 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
           point: {
             events: {
                 click: (e) => {
-                  window.location.href = `${pathToTaxon}${e.point._id}`
+                  if(e.point._id){
+                    window.location.href = `${pathToTaxon}${e.point._id}`
+                  }
                 },
               },
           },
@@ -251,7 +253,9 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
           point: {
             events: {
                 click: (e) => {
+                  if(e.point._id){
                     window.location.href = `${pathToTaxon}${e.point._id}`
+                  }
                   },
             },
           },
