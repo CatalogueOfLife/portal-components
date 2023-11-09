@@ -6,7 +6,6 @@ class DatasetlogoWithFallback extends React.Component {
     super(props);
     this.state = { error: true, loading: true };
   }
-
   render() {
 
       const {fallBack = null,catalogueKey, datasetKey, style, size = 'MEDIUM'} = this.props;
@@ -14,7 +13,7 @@ class DatasetlogoWithFallback extends React.Component {
     return (loading || !error) ?  
         <img
           style={style}
-          src={`${config.dataApi}image/${catalogueKey}/source/${datasetKey}/logo?size=${size}`}
+          src={`${config.dataApi}dataset/${catalogueKey}/logo/source/${datasetKey}?size=${size}`}
           onLoad={() => this.setState({error: false, loading: false})}
           onError={() => this.setState({error: true, loading: false})}
         /> : fallBack;

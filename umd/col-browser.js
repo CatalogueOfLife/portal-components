@@ -104798,7 +104798,7 @@ var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component
 
     return loading || !error ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
       style: style,
-      src: src_config.dataApi + "image/" + catalogueKey + "/source/" + datasetKey + "/logo?size=" + size,
+      src: src_config.dataApi + "dataset/" + catalogueKey + "/logo/source/" + datasetKey + "?size=" + size,
       onLoad: function onLoad() {
         return _this2.setState({ error: false, loading: false });
       },
@@ -105384,9 +105384,9 @@ var Taxon_TaxonPage = function (_React$Component) {
         // sector keys are only present if its a catalogue
         if (lodash_default.a.get(res, "data.sectorKey")) {
           axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/sector/" + lodash_default.a.get(res, "data.sectorKey")).then(function (sector) {
-            axios_default()(src_config.dataApi + "image/" + datasetKey + "/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo").then(function () {
+            axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/logo/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey")).then(function () {
               _this.setState({
-                logoUrl: src_config.dataApi + "image/" + datasetKey + "/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "/logo?size=MEDIUM"
+                logoUrl: src_config.dataApi + "dataset/" + datasetKey + "/logo/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "?size=MEDIUM"
               });
             }).catch(function () {
               // ignore, there is no logo

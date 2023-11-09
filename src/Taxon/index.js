@@ -123,17 +123,17 @@ class TaxonPage extends React.Component {
             )}`
           ).then((sector) => {
             axios(
-              `${config.dataApi}image/${datasetKey}/source/${_.get(
+              `${config.dataApi}dataset/${datasetKey}/logo/source/${_.get(
                 sector,
                 "data.subjectDatasetKey"
-              )}/logo`
+              )}`
             )
               .then(() => {
                 this.setState({
-                  logoUrl: `${config.dataApi}image/${datasetKey}/source/${_.get(
+                  logoUrl: `${config.dataApi}dataset/${datasetKey}/logo/source/${_.get(
                     sector,
                     "data.subjectDatasetKey"
-                  )}/logo?size=MEDIUM`,
+                  )}?size=MEDIUM`,
                 });
               })
               .catch(() => {
