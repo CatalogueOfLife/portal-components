@@ -1,5 +1,5 @@
 /*!
- * col-browser v1.2.10
+ * col-browser v1.3.0
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 327);
+/******/ 	return __webpack_require__(__webpack_require__.s = 326);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -106,41 +106,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _objectSpread2; });
-/* harmony import */ var _defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    enumerableOnly && (symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    })), keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
-      Object(_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
-      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-    });
-  }
-
-  return target;
-}
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -581,7 +546,7 @@ function _objectSpread2(target) {
   var root = freeGlobal || freeSelf || Function('return this')();
 
   /** Detect free variable `exports`. */
-  var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+  var freeExports =  true && exports && !exports.nodeType && exports;
 
   /** Detect free variable `module`. */
   var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
@@ -17345,7 +17310,42 @@ function _objectSpread2(target) {
   else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57), __webpack_require__(97)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57), __webpack_require__(96)(module)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _objectSpread2; });
+/* harmony import */ var _defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+      Object(_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+
+  return target;
+}
 
 /***/ }),
 /* 3 */
@@ -17397,7 +17397,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		return classes.join(' ');
 	}
 
-	if (typeof module !== 'undefined' && module.exports) {
+	if ( true && module.exports) {
 		classNames.default = classNames;
 		module.exports = classNames;
 	} else if (true) {
@@ -19558,7 +19558,7 @@ module.exports = _defineProperty, module.exports.__esModule = true, module.expor
             try {
                 oldLocale = globalLocale._abbr;
                 aliasedRequire = require;
-                __webpack_require__(512)("./" + name);
+                __webpack_require__(508)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {
                 // mark as not found to avoid repeating expensive file require call causing high CPU
@@ -23143,7 +23143,7 @@ module.exports = _defineProperty, module.exports.__esModule = true, module.expor
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(97)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(96)(module)))
 
 /***/ }),
 /* 7 */
@@ -23170,7 +23170,7 @@ function _defineProperty(obj, key, value) {
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(332);
+module.exports = __webpack_require__(328);
 
 /***/ }),
 /* 9 */
@@ -23178,8 +23178,11 @@ module.exports = __webpack_require__(332);
 
 "use strict";
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _toConsumableArray; });
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-var arrayLikeToArray = __webpack_require__(92);
+var arrayLikeToArray = __webpack_require__(91);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
 
@@ -23187,7 +23190,7 @@ function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return Object(arrayLikeToArray["a" /* default */])(arr);
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js
-var iterableToArray = __webpack_require__(109);
+var iterableToArray = __webpack_require__(108);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
 var unsupportedIterableToArray = __webpack_require__(81);
@@ -23197,7 +23200,6 @@ function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _toConsumableArray; });
 
 
 
@@ -23212,8 +23214,11 @@ function _toConsumableArray(arr) {
 
 "use strict";
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _slicedToArray; });
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-var arrayWithHoles = __webpack_require__(104);
+var arrayWithHoles = __webpack_require__(103);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
 function _iterableToArrayLimit(arr, i) {
@@ -23249,10 +23254,9 @@ function _iterableToArrayLimit(arr, i) {
 var unsupportedIterableToArray = __webpack_require__(81);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-var nonIterableRest = __webpack_require__(105);
+var nonIterableRest = __webpack_require__(104);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _slicedToArray; });
 
 
 
@@ -23265,13 +23269,13 @@ function _slicedToArray(arr, i) {
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(136);
+var arrayWithHoles = __webpack_require__(135);
 
-var iterableToArrayLimit = __webpack_require__(356);
+var iterableToArrayLimit = __webpack_require__(352);
 
-var unsupportedIterableToArray = __webpack_require__(118);
+var unsupportedIterableToArray = __webpack_require__(117);
 
-var nonIterableRest = __webpack_require__(138);
+var nonIterableRest = __webpack_require__(137);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
@@ -23347,7 +23351,7 @@ function noteOnce(valid, message) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _objectWithoutProperties; });
-/* harmony import */ var _objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
+/* harmony import */ var _objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51);
 
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
@@ -23411,7 +23415,7 @@ function _classCallCheck(instance, Constructor) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _inherits; });
-/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(103);
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(102);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -23454,6 +23458,9 @@ function _typeof(obj) {
 
 "use strict";
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _createSuper; });
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js
 var getPrototypeOf = __webpack_require__(62);
 
@@ -23474,7 +23481,6 @@ function _isNativeReflectConstruct() {
 var possibleConstructorReturn = __webpack_require__(78);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createSuper.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _createSuper; });
 
 
 
@@ -24177,13 +24183,13 @@ function _assertThisInitialized(self) {
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(459);
+var arrayWithoutHoles = __webpack_require__(455);
 
-var iterableToArray = __webpack_require__(152);
+var iterableToArray = __webpack_require__(151);
 
-var unsupportedIterableToArray = __webpack_require__(118);
+var unsupportedIterableToArray = __webpack_require__(117);
 
-var nonIterableSpread = __webpack_require__(460);
+var nonIterableSpread = __webpack_require__(456);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
@@ -24205,9 +24211,9 @@ module.exports = _toConsumableArray, module.exports.__esModule = true, module.ex
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getTreeNodeProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return convertNodePropsToEventData; });
 /* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(14);
-/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(39);
+/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38);
 /* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(28);
 
@@ -24872,7 +24878,7 @@ module.exports = _createClass, module.exports.__esModule = true, module.exports[
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(352);
+var setPrototypeOf = __webpack_require__(348);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -24898,11 +24904,11 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getPrototypeOf = __webpack_require__(353);
+var getPrototypeOf = __webpack_require__(349);
 
-var isNativeReflectConstruct = __webpack_require__(354);
+var isNativeReflectConstruct = __webpack_require__(350);
 
-var possibleConstructorReturn = __webpack_require__(355);
+var possibleConstructorReturn = __webpack_require__(351);
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = isNativeReflectConstruct();
@@ -24945,19 +24951,19 @@ var _slicedToArray2 = _interopRequireDefault(__webpack_require__(11));
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(5));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(149));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(148));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
 var _classnames = _interopRequireDefault(__webpack_require__(3));
 
-var _Context = _interopRequireDefault(__webpack_require__(150));
+var _Context = _interopRequireDefault(__webpack_require__(149));
 
-var _IconBase = _interopRequireDefault(__webpack_require__(151));
+var _IconBase = _interopRequireDefault(__webpack_require__(150));
 
-var _twoTonePrimaryColor = __webpack_require__(440);
+var _twoTonePrimaryColor = __webpack_require__(436);
 
-var _utils = __webpack_require__(122);
+var _utils = __webpack_require__(121);
 
 var _excluded = ["className", "icon", "spin", "rotate", "tabIndex", "onClick", "twoToneColor"];
 // Initial setting
@@ -25095,15 +25101,8 @@ function supportRef(nodeOrComponent) {
 /* eslint-enable */
 
 /***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(330);
-
-
-/***/ }),
-/* 38 */,
-/* 39 */
+/* 37 */,
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25134,7 +25133,7 @@ function toArray(children) {
 }
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25163,15 +25162,15 @@ if (true) {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(357);
+  module.exports = __webpack_require__(353);
 } else {}
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(361)
+/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(357)
   , root = typeof window === 'undefined' ? global : window
   , vendors = ['moz', 'webkit']
   , suffix = 'AnimationFrame'
@@ -25250,14 +25249,14 @@ module.exports.polyfill = function(object) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strictUriEncode = __webpack_require__(441);
-var objectAssign = __webpack_require__(139);
-var decodeComponent = __webpack_require__(442);
+var strictUriEncode = __webpack_require__(437);
+var objectAssign = __webpack_require__(138);
+var decodeComponent = __webpack_require__(438);
 
 function encoderForArrayFormat(opts) {
 	switch (opts.arrayFormat) {
@@ -25481,12 +25480,12 @@ exports.parseUrl = function (str, opts) {
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return findDOMNode; });
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(40);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
 
 /**
@@ -25502,16 +25501,19 @@ function findDOMNode(node) {
 }
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ es_CSSMotionList; });
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(16);
@@ -25535,7 +25537,7 @@ var esm_typeof = __webpack_require__(19);
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/findDOMNode.js
-var findDOMNode = __webpack_require__(43);
+var findDOMNode = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
 var es_ref = __webpack_require__(36);
@@ -25545,7 +25547,7 @@ var classnames = __webpack_require__(3);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(41);
+var raf = __webpack_require__(40);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/rc-motion/es/util/motion.js
@@ -26230,20 +26232,19 @@ function genCSSMotionList(transitionSupport) {
 }
 /* harmony default export */ var es_CSSMotionList = (genCSSMotionList(supportTransition));
 // CONCATENATED MODULE: ./node_modules/rc-motion/es/index.js
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "a", function() { return es_CSSMotionList; });
 
 
 
 /* harmony default export */ var es = __webpack_exports__["b"] = (es_CSSMotion);
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__(128);
+var bind = __webpack_require__(127);
 
 // utils is a library of generic helper functions non-specific to axios
 
@@ -26593,7 +26594,7 @@ module.exports = {
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26620,7 +26621,7 @@ function warning(condition, message) {
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26682,7 +26683,7 @@ wrapperRaf.cancel = function (id) {
 };
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26777,7 +26778,7 @@ function removeLastEnabledValue(measureValues, values) {
 var isClient = typeof window !== 'undefined' && window.document && window.document.documentElement;
 /** Is client side and not jsdom */
 
-var isBrowserClient = "production" !== 'test' && isClient;
+var isBrowserClient =  true && isClient;
 var uuid = 0;
 /** Get unique id for accessibility usage */
 
@@ -26797,12 +26798,12 @@ function getUUID() {
 }
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _inheritsLoose; });
-/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(103);
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(102);
 
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
@@ -26811,7 +26812,7 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26821,7 +26822,7 @@ function _inheritsLoose(subClass, superClass) {
   });
   exports.default = void 0;
   
-  var _LoadingOutlined = _interopRequireDefault(__webpack_require__(461));
+  var _LoadingOutlined = _interopRequireDefault(__webpack_require__(457));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -26830,12 +26831,12 @@ function _inheritsLoose(subClass, superClass) {
   module.exports = _default;
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addEventListenerWrap; });
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(40);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
 
 function addEventListenerWrap(target, eventType, cb, option) {
@@ -26858,7 +26859,7 @@ function addEventListenerWrap(target, eventType, cb, option) {
 }
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26879,7 +26880,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 }
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27014,10 +27015,10 @@ var TransitionEvents = {
 /* harmony default export */ __webpack_exports__["a"] = (TransitionEvents);
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(142);
+var freeGlobal = __webpack_require__(141);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -27029,7 +27030,7 @@ module.exports = root;
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27965,7 +27966,7 @@ var index = (function () {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {(function () {
@@ -27986,7 +27987,326 @@ var index = (function () {
   module.exports = btoa;
 }());
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(488).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(484).Buffer))
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process, setImmediate) {function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * A `DataLoader` creates a public API for loading data from a particular
+ * data back-end with unique keys such as the `id` column of a SQL table or
+ * document name in a MongoDB database, given a batch loading function.
+ *
+ * Each `DataLoader` instance contains a unique memoized cache. Use caution when
+ * used in long-lived applications or those which serve many users with
+ * different access permissions and consider creating a new instance per
+ * web request.
+ */
+
+
+// Optionally turn off batching or caching or provide a cache key function or a
+// custom cache instance.
+var DataLoader = function () {
+  function DataLoader(batchLoadFn, options) {
+    _classCallCheck(this, DataLoader);
+
+    if (typeof batchLoadFn !== 'function') {
+      throw new TypeError('DataLoader must be constructed with a function which accepts ' + ('Array<key> and returns Promise<Array<value>>, but got: ' + batchLoadFn + '.'));
+    }
+    this._batchLoadFn = batchLoadFn;
+    this._options = options;
+    this._promiseCache = getValidCacheMap(options);
+    this._queue = [];
+  }
+
+  // Private
+
+
+  /**
+   * Loads a key, returning a `Promise` for the value represented by that key.
+   */
+  DataLoader.prototype.load = function load(key) {
+    var _this = this;
+
+    if (key === null || key === undefined) {
+      throw new TypeError('The loader.load() function must be called with a value,' + ('but got: ' + String(key) + '.'));
+    }
+
+    // Determine options
+    var options = this._options;
+    var shouldBatch = !options || options.batch !== false;
+    var shouldCache = !options || options.cache !== false;
+    var cacheKeyFn = options && options.cacheKeyFn;
+    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
+
+    // If caching and there is a cache-hit, return cached Promise.
+    if (shouldCache) {
+      var cachedPromise = this._promiseCache.get(cacheKey);
+      if (cachedPromise) {
+        return cachedPromise;
+      }
+    }
+
+    // Otherwise, produce a new Promise for this value.
+    var promise = new Promise(function (resolve, reject) {
+      // Enqueue this Promise to be dispatched.
+      _this._queue.push({ key: key, resolve: resolve, reject: reject });
+
+      // Determine if a dispatch of this queue should be scheduled.
+      // A single dispatch should be scheduled per queue at the time when the
+      // queue changes from "empty" to "full".
+      if (_this._queue.length === 1) {
+        if (shouldBatch) {
+          // If batching, schedule a task to dispatch the queue.
+          enqueuePostPromiseJob(function () {
+            return dispatchQueue(_this);
+          });
+        } else {
+          // Otherwise dispatch the (queue of one) immediately.
+          dispatchQueue(_this);
+        }
+      }
+    });
+
+    // If caching, cache this promise.
+    if (shouldCache) {
+      this._promiseCache.set(cacheKey, promise);
+    }
+
+    return promise;
+  };
+
+  /**
+   * Loads multiple keys, promising an array of values:
+   *
+   *     var [ a, b ] = await myLoader.loadMany([ 'a', 'b' ]);
+   *
+   * This is equivalent to the more verbose:
+   *
+   *     var [ a, b ] = await Promise.all([
+   *       myLoader.load('a'),
+   *       myLoader.load('b')
+   *     ]);
+   *
+   */
+
+
+  DataLoader.prototype.loadMany = function loadMany(keys) {
+    var _this2 = this;
+
+    if (!Array.isArray(keys)) {
+      throw new TypeError('The loader.loadMany() function must be called with Array<key> ' + ('but got: ' + keys + '.'));
+    }
+    return Promise.all(keys.map(function (key) {
+      return _this2.load(key);
+    }));
+  };
+
+  /**
+   * Clears the value at `key` from the cache, if it exists. Returns itself for
+   * method chaining.
+   */
+
+
+  DataLoader.prototype.clear = function clear(key) {
+    var cacheKeyFn = this._options && this._options.cacheKeyFn;
+    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
+    this._promiseCache.delete(cacheKey);
+    return this;
+  };
+
+  /**
+   * Clears the entire cache. To be used when some event results in unknown
+   * invalidations across this particular `DataLoader`. Returns itself for
+   * method chaining.
+   */
+
+
+  DataLoader.prototype.clearAll = function clearAll() {
+    this._promiseCache.clear();
+    return this;
+  };
+
+  /**
+   * Adds the provided key and value to the cache. If the key already
+   * exists, no change is made. Returns itself for method chaining.
+   */
+
+
+  DataLoader.prototype.prime = function prime(key, value) {
+    var cacheKeyFn = this._options && this._options.cacheKeyFn;
+    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
+
+    // Only add the key if it does not already exist.
+    if (this._promiseCache.get(cacheKey) === undefined) {
+      // Cache a rejected promise if the value is an Error, in order to match
+      // the behavior of load(key).
+      var promise = value instanceof Error ? Promise.reject(value) : Promise.resolve(value);
+
+      this._promiseCache.set(cacheKey, promise);
+    }
+
+    return this;
+  };
+
+  return DataLoader;
+}();
+
+// Private: Enqueue a Job to be executed after all "PromiseJobs" Jobs.
+//
+// ES6 JavaScript uses the concepts Job and JobQueue to schedule work to occur
+// after the current execution context has completed:
+// http://www.ecma-international.org/ecma-262/6.0/#sec-jobs-and-job-queues
+//
+// Node.js uses the `process.nextTick` mechanism to implement the concept of a
+// Job, maintaining a global FIFO JobQueue for all Jobs, which is flushed after
+// the current call stack ends.
+//
+// When calling `then` on a Promise, it enqueues a Job on a specific
+// "PromiseJobs" JobQueue which is flushed in Node as a single Job on the
+// global JobQueue.
+//
+// DataLoader batches all loads which occur in a single frame of execution, but
+// should include in the batch all loads which occur during the flushing of the
+// "PromiseJobs" JobQueue after that same execution frame.
+//
+// In order to avoid the DataLoader dispatch Job occuring before "PromiseJobs",
+// A Promise Job is created with the sole purpose of enqueuing a global Job,
+// ensuring that it always occurs after "PromiseJobs" ends.
+//
+// Node.js's job queue is unique. Browsers do not have an equivalent mechanism
+// for enqueuing a job to be performed after promise microtasks and before the
+// next macrotask. For browser environments, a macrotask is used (via
+// setImmediate or setTimeout) at a potential performance penalty.
+
+
+// If a custom cache is provided, it must be of this type (a subset of ES6 Map).
+
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+// A Function, which when given an Array of keys, returns a Promise of an Array
+// of values or Errors.
+
+
+var enqueuePostPromiseJob = typeof process === 'object' && typeof process.nextTick === 'function' ? function (fn) {
+  if (!resolvedPromise) {
+    resolvedPromise = Promise.resolve();
+  }
+  resolvedPromise.then(function () {
+    return process.nextTick(fn);
+  });
+} : setImmediate || setTimeout;
+
+// Private: cached resolved Promise instance
+var resolvedPromise;
+
+// Private: given the current state of a Loader instance, perform a batch load
+// from its current queue.
+function dispatchQueue(loader) {
+  // Take the current loader queue, replacing it with an empty queue.
+  var queue = loader._queue;
+  loader._queue = [];
+
+  // If a maxBatchSize was provided and the queue is longer, then segment the
+  // queue into multiple batches, otherwise treat the queue as a single batch.
+  var maxBatchSize = loader._options && loader._options.maxBatchSize;
+  if (maxBatchSize && maxBatchSize > 0 && maxBatchSize < queue.length) {
+    for (var i = 0; i < queue.length / maxBatchSize; i++) {
+      dispatchQueueBatch(loader, queue.slice(i * maxBatchSize, (i + 1) * maxBatchSize));
+    }
+  } else {
+    dispatchQueueBatch(loader, queue);
+  }
+}
+
+function dispatchQueueBatch(loader, queue) {
+  // Collect all keys to be loaded in this dispatch
+  var keys = queue.map(function (_ref) {
+    var key = _ref.key;
+    return key;
+  });
+
+  // Call the provided batchLoadFn for this loader with the loader queue's keys.
+  var batchLoadFn = loader._batchLoadFn;
+  var batchPromise = batchLoadFn(keys);
+
+  // Assert the expected response from batchLoadFn
+  if (!batchPromise || typeof batchPromise.then !== 'function') {
+    return failedDispatch(loader, queue, new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise: ' + String(batchPromise) + '.')));
+  }
+
+  // Await the resolution of the call to batchLoadFn.
+  batchPromise.then(function (values) {
+
+    // Assert the expected resolution from batchLoadFn.
+    if (!Array.isArray(values)) {
+      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise of an Array: ' + String(values) + '.'));
+    }
+    if (values.length !== keys.length) {
+      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + 'not return a Promise of an Array of the same length as the Array ' + 'of keys.' + ('\n\nKeys:\n' + String(keys)) + ('\n\nValues:\n' + String(values)));
+    }
+
+    // Step through the values, resolving or rejecting each Promise in the
+    // loaded queue.
+    queue.forEach(function (_ref2, index) {
+      var resolve = _ref2.resolve,
+          reject = _ref2.reject;
+
+      var value = values[index];
+      if (value instanceof Error) {
+        reject(value);
+      } else {
+        resolve(value);
+      }
+    });
+  }).catch(function (error) {
+    return failedDispatch(loader, queue, error);
+  });
+}
+
+// Private: do not cache individual loads if the entire batch dispatch fails,
+// but still reject each request so they do not hang.
+function failedDispatch(loader, queue, error) {
+  queue.forEach(function (_ref3) {
+    var key = _ref3.key,
+        reject = _ref3.reject;
+
+    loader.clear(key);
+    reject(error);
+  });
+}
+
+// Private: given the DataLoader's options, produce a CacheMap to be used.
+function getValidCacheMap(options) {
+  var cacheMap = options && options.cacheMap;
+  if (!cacheMap) {
+    return new Map();
+  }
+  var cacheFunctions = ['get', 'set', 'delete', 'clear'];
+  var missingFunctions = cacheFunctions.filter(function (fnName) {
+    return cacheMap && typeof cacheMap[fnName] !== 'function';
+  });
+  if (missingFunctions.length !== 0) {
+    throw new TypeError('Custom cacheMap missing methods: ' + missingFunctions.join(', '));
+  }
+  return cacheMap;
+}
+
+// Private
+
+
+module.exports = DataLoader;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(88), __webpack_require__(346).setImmediate))
 
 /***/ }),
 /* 57 */
@@ -28001,7 +28321,7 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
+	g = g || new Function("return this")();
 } catch (e) {
 	// This works if the window reference is available
 	if (typeof window === "object") g = window;
@@ -28020,6 +28340,8 @@ module.exports = g;
 
 "use strict";
 
+// UNUSED EXPORTS: InternalTreeNode
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(7);
 
@@ -28027,7 +28349,7 @@ var defineProperty = __webpack_require__(7);
 var objectWithoutProperties = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(16);
@@ -28095,7 +28417,6 @@ var Indent_Indent = function Indent(_ref) {
 var treeUtil = __webpack_require__(26);
 
 // CONCATENATED MODULE: ./node_modules/rc-tree/es/TreeNode.js
-/* unused harmony export InternalTreeNode */
 
 
 
@@ -28707,6 +29028,11 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
 "use strict";
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ Provider_Provider; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ connect; });
+__webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport */ create; });
+
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 
@@ -28893,9 +29219,6 @@ function create(initialState) {
 }
 
 // CONCATENATED MODULE: ./node_modules/mini-store/esm/index.js
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "a", function() { return Provider_Provider; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "b", function() { return connect; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "c", function() { return create; });
 
 
 
@@ -28928,11 +29251,11 @@ function _getPrototypeOf(o) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fillOptionsWithMissingValue; });
 /* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
 /* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
-/* harmony import */ var _babel_runtime_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(112);
+/* harmony import */ var _babel_runtime_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(111);
 /* harmony import */ var _babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(19);
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2);
 /* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
-/* harmony import */ var _commonUtil__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(48);
+/* harmony import */ var _commonUtil__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(47);
 
 
 
@@ -29219,7 +29542,7 @@ function fillOptionsWithMissingValue(options, value, optionLabelProp, labelInVal
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(515)();
+var runtime = __webpack_require__(511)();
 module.exports = runtime;
 
 // Copied from https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js#L736=
@@ -29260,7 +29583,7 @@ module.exports = _assertThisInitialized, module.exports.__esModule = true, modul
   });
   exports.default = void 0;
   
-  var _CloseCircleFilled = _interopRequireDefault(__webpack_require__(447));
+  var _CloseCircleFilled = _interopRequireDefault(__webpack_require__(443));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -29282,7 +29605,7 @@ module.exports = _assertThisInitialized, module.exports.__esModule = true, modul
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(475)();
+  module.exports = __webpack_require__(471)();
 }
 
 
@@ -29292,8 +29615,10 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 "use strict";
 
+// UNUSED EXPORTS: generateTrigger
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(16);
@@ -29315,23 +29640,23 @@ var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_re
 var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(40);
+var react_dom = __webpack_require__(39);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/contains.js
 var contains = __webpack_require__(86);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/findDOMNode.js
-var findDOMNode = __webpack_require__(43);
+var findDOMNode = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
 var es_ref = __webpack_require__(36);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/addEventListener.js
-var addEventListener = __webpack_require__(51);
+var addEventListener = __webpack_require__(50);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Portal.js
-var Portal = __webpack_require__(288);
+var Portal = __webpack_require__(287);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(3);
@@ -29370,14 +29695,14 @@ function getAlignPopupClassName(builtinPlacements, prefixCls, align, isAlignPoin
 var objectWithoutProperties = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(41);
+var raf = __webpack_require__(40);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // EXTERNAL MODULE: ./node_modules/rc-align/es/index.js + 5 modules
-var es = __webpack_require__(323);
+var es = __webpack_require__(322);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 5 modules
-var rc_motion_es = __webpack_require__(44);
+var rc_motion_es = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./node_modules/rc-trigger/es/PopupInner.js
 
@@ -29853,7 +30178,6 @@ var Popup_Popup = /*#__PURE__*/function (_Component) {
 var TriggerContext = external_root_React_commonjs2_react_commonjs_react_amd_react_["createContext"](null);
 /* harmony default export */ var context = (TriggerContext);
 // CONCATENATED MODULE: ./node_modules/rc-trigger/es/index.js
-/* unused harmony export generateTrigger */
 
 
 
@@ -30607,7 +30931,7 @@ function generateTrigger(PortalComponent) {
  * Wrap `React.useLayoutEffect` which will not throw warning message in test env
  */
 
-var useLayoutEffect = "production" !== 'test' && Object(_Dom_canUseDom__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])() ? react__WEBPACK_IMPORTED_MODULE_0__["useLayoutEffect"] : react__WEBPACK_IMPORTED_MODULE_0__["useEffect"];
+var useLayoutEffect =  true && Object(_Dom_canUseDom__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])() ? react__WEBPACK_IMPORTED_MODULE_0__["useLayoutEffect"] : react__WEBPACK_IMPORTED_MODULE_0__["useEffect"];
 /* harmony default export */ __webpack_exports__["a"] = (useLayoutEffect);
 var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
   var firstMountRef = react__WEBPACK_IMPORTED_MODULE_0__["useRef"](true);
@@ -30631,8 +30955,16 @@ var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
 
 "use strict";
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "d", function() { return /* reexport */ es_SubMenu; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ es_MenuItem; });
+__webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport */ es_MenuItemGroup; });
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ es_Divider; });
+
+// UNUSED EXPORTS: MenuItem, MenuItemGroup
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var classCallCheck = __webpack_require__(16);
@@ -30668,7 +31000,7 @@ var defineProperty = __webpack_require__(7);
 var KeyCode = __webpack_require__(21);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/createChainedFunction.js
-var createChainedFunction = __webpack_require__(308);
+var createChainedFunction = __webpack_require__(307);
 
 // EXTERNAL MODULE: ./node_modules/shallowequal/index.js
 var shallowequal = __webpack_require__(60);
@@ -30872,16 +31204,16 @@ var toConsumableArray = __webpack_require__(9);
 var objectWithoutProperties = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(40);
+var react_dom = __webpack_require__(39);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
-var ResizeObserver_es = __webpack_require__(55);
+var ResizeObserver_es = __webpack_require__(54);
 
 // EXTERNAL MODULE: ./node_modules/rc-trigger/es/index.js + 5 modules
 var rc_trigger_es = __webpack_require__(69);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 5 modules
-var rc_motion_es = __webpack_require__(44);
+var rc_motion_es = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./node_modules/rc-menu/es/placements.js
 var autoAdjustOverflow = {
@@ -33037,14 +33369,6 @@ Divider_Divider.defaultProps = {
 };
 /* harmony default export */ var es_Divider = (Divider_Divider);
 // CONCATENATED MODULE: ./node_modules/rc-menu/es/index.js
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "d", function() { return es_SubMenu; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "b", function() { return es_MenuItem; });
-/* unused concated harmony import MenuItem */
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return es_MenuItem; });
-/* unused concated harmony import MenuItemGroup */
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return es_MenuItemGroup; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "c", function() { return es_MenuItemGroup; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "a", function() { return es_Divider; });
 
 
 
@@ -33358,7 +33682,7 @@ var TransBtn = function TransBtn(_ref) {
   });
   exports.default = void 0;
   
-  var _RightOutlined = _interopRequireDefault(__webpack_require__(496));
+  var _RightOutlined = _interopRequireDefault(__webpack_require__(492));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -33371,6 +33695,9 @@ var TransBtn = function TransBtn(_ref) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ useMergedState; });
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js + 1 modules
 var slicedToArray = __webpack_require__(10);
@@ -33398,10 +33725,9 @@ function useEvent(callback) {
 var useLayoutEffect = __webpack_require__(70);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/hooks/useState.js
-var useState = __webpack_require__(300);
+var useState = __webpack_require__(299);
 
 // CONCATENATED MODULE: ./node_modules/rc-util/es/hooks/useMergedState.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useMergedState; });
 
 
 
@@ -33505,8 +33831,8 @@ function useMergedState(defaultStateValue, option) {
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(375),
-    getValue = __webpack_require__(380);
+var baseIsNative = __webpack_require__(371),
+    getValue = __webpack_require__(376);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -33532,7 +33858,7 @@ module.exports = getNative;
 
 
 if (true) {
-  module.exports = __webpack_require__(360);
+  module.exports = __webpack_require__(356);
 } else {}
 
 
@@ -33592,7 +33918,7 @@ function canUseDom() {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _unsupportedIterableToArray; });
-/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(92);
+/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(91);
 
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
@@ -33607,7 +33933,7 @@ function _unsupportedIterableToArray(o, minLen) {
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsEqual = __webpack_require__(362);
+var baseIsEqual = __webpack_require__(358);
 
 /**
  * Performs a deep comparison between two values to determine if they are
@@ -33655,7 +33981,7 @@ module.exports = isEqual;
   });
   exports.default = void 0;
   
-  var _CloseOutlined = _interopRequireDefault(__webpack_require__(434));
+  var _CloseOutlined = _interopRequireDefault(__webpack_require__(430));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -33684,7 +34010,7 @@ var TreeContext = react__WEBPACK_IMPORTED_MODULE_0__["createContext"](null);
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return pickAttrs; });
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
 var attributes = "accept acceptCharset accessKey action allowFullScreen allowTransparency\n    alt async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge\n    charSet checked classID className colSpan cols content contentEditable contextMenu\n    controls coords crossOrigin data dateTime default defer dir disabled download draggable\n    encType form formAction formEncType formMethod formNoValidate formTarget frameBorder\n    headers height hidden high href hrefLang htmlFor httpEquiv icon id inputMode integrity\n    is keyParams keyType kind label lang list loop low manifest marginHeight marginWidth max maxLength media\n    mediaGroup method min minLength multiple muted name noValidate nonce open\n    optimum pattern placeholder poster preload radioGroup readOnly rel required\n    reversed role rowSpan rows sandbox scope scoped scrolling seamless selected\n    shape size sizes span spellCheck src srcDoc srcLang srcSet start step style\n    summary tabIndex target title type useMap value width wmode wrap";
 var eventsName = "onCopy onCut onPaste onCompositionEnd onCompositionStart onCompositionUpdate onKeyDown\n    onKeyPress onKeyUp onFocus onBlur onChange onInput onSubmit onClick onContextMenu onDoubleClick\n    onDrag onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop onMouseDown\n    onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp onSelect onTouchCancel\n    onTouchEnd onTouchMove onTouchStart onScroll onWheel onAbort onCanPlay onCanPlayThrough\n    onDurationChange onEmptied onEncrypted onEnded onError onLoadedData onLoadedMetadata\n    onLoadStart onPause onPlay onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend onTimeUpdate onVolumeChange onWaiting onLoad onError";
@@ -33760,7 +34086,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 
  License: www.highcharts.com/license
 */
-(function(Z,M){"object"===typeof module&&module.exports?(M["default"]=M,module.exports=Z.document?M(Z):M): true?!(__WEBPACK_AMD_DEFINE_RESULT__ = (function(){return M(Z)}).call(exports, __webpack_require__, exports, module),
+(function(Z,M){ true&&module.exports?(M["default"]=M,module.exports=Z.document?M(Z):M): true?!(__WEBPACK_AMD_DEFINE_RESULT__ = (function(){return M(Z)}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):(undefined)})("undefined"!==typeof window?window:this,function(Z){function M(v,a,z,F){v.hasOwnProperty(a)||(v[a]=F.apply(null,z))}var a={};M(a,"Core/Globals.js",[],function(){var v="undefined"!==typeof Z?Z:"undefined"!==typeof window?window:
 {},a;(function(a){a.SVG_NS="http://www.w3.org/2000/svg";a.product="Highcharts";a.version="9.3.3";a.win=v;a.doc=a.win.document;a.svg=a.doc&&a.doc.createElementNS&&!!a.doc.createElementNS(a.SVG_NS,"svg").createSVGRect;a.userAgent=a.win.navigator&&a.win.navigator.userAgent||"";a.isChrome=-1!==a.userAgent.indexOf("Chrome");a.isFirefox=-1!==a.userAgent.indexOf("Firefox");a.isMS=/(edge|msie|trident)/i.test(a.userAgent)&&!a.win.opera;a.isSafari=!a.isChrome&&-1!==a.userAgent.indexOf("Safari");a.isTouchDevice=
 /(Mobile|Android|Windows Phone)/.test(a.userAgent);a.isWebKit=-1!==a.userAgent.indexOf("AppleWebKit");a.deg2rad=2*Math.PI/360;a.hasBidiBug=a.isFirefox&&4>parseInt(a.userAgent.split("Firefox/")[1],10);a.hasTouch=!!a.win.TouchEvent;a.marginNames=["plotTop","marginRight","marginBottom","plotLeft"];a.noop=function(){};a.supportsPassiveEvents=function(){var v=!1;if(!a.isMS){var u=Object.defineProperty({},"passive",{get:function(){v=!0}});a.win.addEventListener&&a.win.removeEventListener&&(a.win.addEventListener("testPassive",
@@ -34542,9 +34868,9 @@ process.umask = function() { return 0; };
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(120),
-    getRawTag = __webpack_require__(376),
-    objectToString = __webpack_require__(377);
+var Symbol = __webpack_require__(119),
+    getRawTag = __webpack_require__(372),
+    objectToString = __webpack_require__(373);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -34609,325 +34935,6 @@ module.exports = isObjectLike;
 
 /***/ }),
 /* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process, setImmediate) {function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * A `DataLoader` creates a public API for loading data from a particular
- * data back-end with unique keys such as the `id` column of a SQL table or
- * document name in a MongoDB database, given a batch loading function.
- *
- * Each `DataLoader` instance contains a unique memoized cache. Use caution when
- * used in long-lived applications or those which serve many users with
- * different access permissions and consider creating a new instance per
- * web request.
- */
-
-
-// Optionally turn off batching or caching or provide a cache key function or a
-// custom cache instance.
-var DataLoader = function () {
-  function DataLoader(batchLoadFn, options) {
-    _classCallCheck(this, DataLoader);
-
-    if (typeof batchLoadFn !== 'function') {
-      throw new TypeError('DataLoader must be constructed with a function which accepts ' + ('Array<key> and returns Promise<Array<value>>, but got: ' + batchLoadFn + '.'));
-    }
-    this._batchLoadFn = batchLoadFn;
-    this._options = options;
-    this._promiseCache = getValidCacheMap(options);
-    this._queue = [];
-  }
-
-  // Private
-
-
-  /**
-   * Loads a key, returning a `Promise` for the value represented by that key.
-   */
-  DataLoader.prototype.load = function load(key) {
-    var _this = this;
-
-    if (key === null || key === undefined) {
-      throw new TypeError('The loader.load() function must be called with a value,' + ('but got: ' + String(key) + '.'));
-    }
-
-    // Determine options
-    var options = this._options;
-    var shouldBatch = !options || options.batch !== false;
-    var shouldCache = !options || options.cache !== false;
-    var cacheKeyFn = options && options.cacheKeyFn;
-    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
-
-    // If caching and there is a cache-hit, return cached Promise.
-    if (shouldCache) {
-      var cachedPromise = this._promiseCache.get(cacheKey);
-      if (cachedPromise) {
-        return cachedPromise;
-      }
-    }
-
-    // Otherwise, produce a new Promise for this value.
-    var promise = new Promise(function (resolve, reject) {
-      // Enqueue this Promise to be dispatched.
-      _this._queue.push({ key: key, resolve: resolve, reject: reject });
-
-      // Determine if a dispatch of this queue should be scheduled.
-      // A single dispatch should be scheduled per queue at the time when the
-      // queue changes from "empty" to "full".
-      if (_this._queue.length === 1) {
-        if (shouldBatch) {
-          // If batching, schedule a task to dispatch the queue.
-          enqueuePostPromiseJob(function () {
-            return dispatchQueue(_this);
-          });
-        } else {
-          // Otherwise dispatch the (queue of one) immediately.
-          dispatchQueue(_this);
-        }
-      }
-    });
-
-    // If caching, cache this promise.
-    if (shouldCache) {
-      this._promiseCache.set(cacheKey, promise);
-    }
-
-    return promise;
-  };
-
-  /**
-   * Loads multiple keys, promising an array of values:
-   *
-   *     var [ a, b ] = await myLoader.loadMany([ 'a', 'b' ]);
-   *
-   * This is equivalent to the more verbose:
-   *
-   *     var [ a, b ] = await Promise.all([
-   *       myLoader.load('a'),
-   *       myLoader.load('b')
-   *     ]);
-   *
-   */
-
-
-  DataLoader.prototype.loadMany = function loadMany(keys) {
-    var _this2 = this;
-
-    if (!Array.isArray(keys)) {
-      throw new TypeError('The loader.loadMany() function must be called with Array<key> ' + ('but got: ' + keys + '.'));
-    }
-    return Promise.all(keys.map(function (key) {
-      return _this2.load(key);
-    }));
-  };
-
-  /**
-   * Clears the value at `key` from the cache, if it exists. Returns itself for
-   * method chaining.
-   */
-
-
-  DataLoader.prototype.clear = function clear(key) {
-    var cacheKeyFn = this._options && this._options.cacheKeyFn;
-    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
-    this._promiseCache.delete(cacheKey);
-    return this;
-  };
-
-  /**
-   * Clears the entire cache. To be used when some event results in unknown
-   * invalidations across this particular `DataLoader`. Returns itself for
-   * method chaining.
-   */
-
-
-  DataLoader.prototype.clearAll = function clearAll() {
-    this._promiseCache.clear();
-    return this;
-  };
-
-  /**
-   * Adds the provided key and value to the cache. If the key already
-   * exists, no change is made. Returns itself for method chaining.
-   */
-
-
-  DataLoader.prototype.prime = function prime(key, value) {
-    var cacheKeyFn = this._options && this._options.cacheKeyFn;
-    var cacheKey = cacheKeyFn ? cacheKeyFn(key) : key;
-
-    // Only add the key if it does not already exist.
-    if (this._promiseCache.get(cacheKey) === undefined) {
-      // Cache a rejected promise if the value is an Error, in order to match
-      // the behavior of load(key).
-      var promise = value instanceof Error ? Promise.reject(value) : Promise.resolve(value);
-
-      this._promiseCache.set(cacheKey, promise);
-    }
-
-    return this;
-  };
-
-  return DataLoader;
-}();
-
-// Private: Enqueue a Job to be executed after all "PromiseJobs" Jobs.
-//
-// ES6 JavaScript uses the concepts Job and JobQueue to schedule work to occur
-// after the current execution context has completed:
-// http://www.ecma-international.org/ecma-262/6.0/#sec-jobs-and-job-queues
-//
-// Node.js uses the `process.nextTick` mechanism to implement the concept of a
-// Job, maintaining a global FIFO JobQueue for all Jobs, which is flushed after
-// the current call stack ends.
-//
-// When calling `then` on a Promise, it enqueues a Job on a specific
-// "PromiseJobs" JobQueue which is flushed in Node as a single Job on the
-// global JobQueue.
-//
-// DataLoader batches all loads which occur in a single frame of execution, but
-// should include in the batch all loads which occur during the flushing of the
-// "PromiseJobs" JobQueue after that same execution frame.
-//
-// In order to avoid the DataLoader dispatch Job occuring before "PromiseJobs",
-// A Promise Job is created with the sole purpose of enqueuing a global Job,
-// ensuring that it always occurs after "PromiseJobs" ends.
-//
-// Node.js's job queue is unique. Browsers do not have an equivalent mechanism
-// for enqueuing a job to be performed after promise microtasks and before the
-// next macrotask. For browser environments, a macrotask is used (via
-// setImmediate or setTimeout) at a potential performance penalty.
-
-
-// If a custom cache is provided, it must be of this type (a subset of ES6 Map).
-
-/**
- *  Copyright (c) 2015, Facebook, Inc.
- *  All rights reserved.
- *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- */
-
-// A Function, which when given an Array of keys, returns a Promise of an Array
-// of values or Errors.
-
-
-var enqueuePostPromiseJob = typeof process === 'object' && typeof process.nextTick === 'function' ? function (fn) {
-  if (!resolvedPromise) {
-    resolvedPromise = Promise.resolve();
-  }
-  resolvedPromise.then(function () {
-    return process.nextTick(fn);
-  });
-} : setImmediate || setTimeout;
-
-// Private: cached resolved Promise instance
-var resolvedPromise;
-
-// Private: given the current state of a Loader instance, perform a batch load
-// from its current queue.
-function dispatchQueue(loader) {
-  // Take the current loader queue, replacing it with an empty queue.
-  var queue = loader._queue;
-  loader._queue = [];
-
-  // If a maxBatchSize was provided and the queue is longer, then segment the
-  // queue into multiple batches, otherwise treat the queue as a single batch.
-  var maxBatchSize = loader._options && loader._options.maxBatchSize;
-  if (maxBatchSize && maxBatchSize > 0 && maxBatchSize < queue.length) {
-    for (var i = 0; i < queue.length / maxBatchSize; i++) {
-      dispatchQueueBatch(loader, queue.slice(i * maxBatchSize, (i + 1) * maxBatchSize));
-    }
-  } else {
-    dispatchQueueBatch(loader, queue);
-  }
-}
-
-function dispatchQueueBatch(loader, queue) {
-  // Collect all keys to be loaded in this dispatch
-  var keys = queue.map(function (_ref) {
-    var key = _ref.key;
-    return key;
-  });
-
-  // Call the provided batchLoadFn for this loader with the loader queue's keys.
-  var batchLoadFn = loader._batchLoadFn;
-  var batchPromise = batchLoadFn(keys);
-
-  // Assert the expected response from batchLoadFn
-  if (!batchPromise || typeof batchPromise.then !== 'function') {
-    return failedDispatch(loader, queue, new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise: ' + String(batchPromise) + '.')));
-  }
-
-  // Await the resolution of the call to batchLoadFn.
-  batchPromise.then(function (values) {
-
-    // Assert the expected resolution from batchLoadFn.
-    if (!Array.isArray(values)) {
-      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + ('not return a Promise of an Array: ' + String(values) + '.'));
-    }
-    if (values.length !== keys.length) {
-      throw new TypeError('DataLoader must be constructed with a function which accepts ' + 'Array<key> and returns Promise<Array<value>>, but the function did ' + 'not return a Promise of an Array of the same length as the Array ' + 'of keys.' + ('\n\nKeys:\n' + String(keys)) + ('\n\nValues:\n' + String(values)));
-    }
-
-    // Step through the values, resolving or rejecting each Promise in the
-    // loaded queue.
-    queue.forEach(function (_ref2, index) {
-      var resolve = _ref2.resolve,
-          reject = _ref2.reject;
-
-      var value = values[index];
-      if (value instanceof Error) {
-        reject(value);
-      } else {
-        resolve(value);
-      }
-    });
-  }).catch(function (error) {
-    return failedDispatch(loader, queue, error);
-  });
-}
-
-// Private: do not cache individual loads if the entire batch dispatch fails,
-// but still reject each request so they do not hang.
-function failedDispatch(loader, queue, error) {
-  queue.forEach(function (_ref3) {
-    var key = _ref3.key,
-        reject = _ref3.reject;
-
-    loader.clear(key);
-    reject(error);
-  });
-}
-
-// Private: given the DataLoader's options, produce a CacheMap to be used.
-function getValidCacheMap(options) {
-  var cacheMap = options && options.cacheMap;
-  if (!cacheMap) {
-    return new Map();
-  }
-  var cacheFunctions = ['get', 'set', 'delete', 'clear'];
-  var missingFunctions = cacheFunctions.filter(function (fnName) {
-    return cacheMap && typeof cacheMap[fnName] !== 'function';
-  });
-  if (missingFunctions.length !== 0) {
-    throw new TypeError('Custom cacheMap missing methods: ' + missingFunctions.join(', '));
-  }
-  return cacheMap;
-}
-
-// Private
-
-
-module.exports = DataLoader;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(88), __webpack_require__(350).setImmediate))
-
-/***/ }),
-/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34943,7 +34950,7 @@ function _arrayLikeToArray(arr, len) {
 }
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34953,7 +34960,7 @@ function _arrayLikeToArray(arr, len) {
   });
   exports.default = void 0;
   
-  var _SearchOutlined = _interopRequireDefault(__webpack_require__(478));
+  var _SearchOutlined = _interopRequireDefault(__webpack_require__(474));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -34962,7 +34969,7 @@ function _arrayLikeToArray(arr, len) {
   module.exports = _default;
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35031,7 +35038,7 @@ function getTargetScrollBarSize(target) {
 }
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35041,7 +35048,7 @@ function getTargetScrollBarSize(target) {
   });
   exports.default = void 0;
   
-  var _LeftOutlined = _interopRequireDefault(__webpack_require__(498));
+  var _LeftOutlined = _interopRequireDefault(__webpack_require__(494));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -35050,7 +35057,7 @@ function getTargetScrollBarSize(target) {
   module.exports = _default;
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35092,7 +35099,7 @@ function _asyncToGenerator(fn) {
 }
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -35120,14 +35127,14 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var listCacheClear = __webpack_require__(365),
-    listCacheDelete = __webpack_require__(366),
-    listCacheGet = __webpack_require__(367),
-    listCacheHas = __webpack_require__(368),
-    listCacheSet = __webpack_require__(369);
+var listCacheClear = __webpack_require__(361),
+    listCacheDelete = __webpack_require__(362),
+    listCacheGet = __webpack_require__(363),
+    listCacheHas = __webpack_require__(364),
+    listCacheSet = __webpack_require__(365);
 
 /**
  * Creates an list cache object.
@@ -35158,10 +35165,10 @@ module.exports = ListCache;
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var eq = __webpack_require__(140);
+var eq = __webpack_require__(139);
 
 /**
  * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -35185,7 +35192,7 @@ module.exports = assocIndexOf;
 
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports) {
 
 /**
@@ -35222,7 +35229,7 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(76);
@@ -35234,10 +35241,10 @@ module.exports = nativeCreate;
 
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isKeyable = __webpack_require__(389);
+var isKeyable = __webpack_require__(385);
 
 /**
  * Gets the data for `map`.
@@ -35258,7 +35265,7 @@ module.exports = getMapData;
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35272,7 +35279,7 @@ function _setPrototypeOf(o, p) {
 }
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35282,7 +35289,7 @@ function _arrayWithHoles(arr) {
 }
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35292,12 +35299,12 @@ function _nonIterableRest() {
 }
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(100),
-    now = __webpack_require__(429),
-    toNumber = __webpack_require__(430);
+var isObject = __webpack_require__(99),
+    now = __webpack_require__(425),
+    toNumber = __webpack_require__(426);
 
 /** Error message constants. */
 var FUNC_ERROR_TEXT = 'Expected a function';
@@ -35489,6 +35496,25 @@ module.exports = debounce;
 
 
 /***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+  
+  var _CheckCircleFilled = _interopRequireDefault(__webpack_require__(439));
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  var _default = _CheckCircleFilled;
+  exports.default = _default;
+  module.exports = _default;
+
+/***/ }),
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35499,26 +35525,7 @@ module.exports = debounce;
   });
   exports.default = void 0;
   
-  var _CheckCircleFilled = _interopRequireDefault(__webpack_require__(443));
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  var _default = _CheckCircleFilled;
-  exports.default = _default;
-  module.exports = _default;
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = void 0;
-  
-  var _ExclamationCircleFilled = _interopRequireDefault(__webpack_require__(449));
+  var _ExclamationCircleFilled = _interopRequireDefault(__webpack_require__(445));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -35527,7 +35534,7 @@ module.exports = debounce;
   module.exports = _default;
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35537,7 +35544,7 @@ function _iterableToArray(iter) {
 }
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35547,7 +35554,7 @@ function _iterableToArray(iter) {
   });
   exports.default = void 0;
   
-  var _FileOutlined = _interopRequireDefault(__webpack_require__(463));
+  var _FileOutlined = _interopRequireDefault(__webpack_require__(459));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -35556,7 +35563,7 @@ function _iterableToArray(iter) {
   module.exports = _default;
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -37280,15 +37287,15 @@ module.exports =
 //# sourceMappingURL=main.js.map
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _toArray; });
-/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(104);
-/* harmony import */ var _iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(109);
+/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(103);
+/* harmony import */ var _iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(108);
 /* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
-/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(105);
+/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(104);
 
 
 
@@ -37298,7 +37305,7 @@ function _toArray(arr) {
 }
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37308,7 +37315,7 @@ function _toArray(arr) {
   });
   exports.default = void 0;
   
-  var _DownOutlined = _interopRequireDefault(__webpack_require__(480));
+  var _DownOutlined = _interopRequireDefault(__webpack_require__(476));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -37317,22 +37324,22 @@ function _toArray(arr) {
   module.exports = _default;
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(16);
 /* harmony import */ var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
 /* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(17);
 /* harmony import */ var _babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var rc_util_es_Dom_findDOMNode__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(43);
-/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(39);
+/* harmony import */ var rc_util_es_Dom_findDOMNode__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(42);
+/* harmony import */ var rc_util_es_Children_toArray__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(38);
 /* harmony import */ var rc_util_es_warning__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(13);
 /* harmony import */ var rc_util_es_ref__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
-/* harmony import */ var resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(55);
+/* harmony import */ var resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(54);
 
 
 
@@ -37503,7 +37510,7 @@ ReactResizeObserver.displayName = 'ResizeObserver';
 /* harmony default export */ __webpack_exports__["a"] = (ReactResizeObserver);
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37519,22 +37526,22 @@ var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 var esm_extends = __webpack_require__(12);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Children/toArray.js
-var toArray = __webpack_require__(39);
+var toArray = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
 var warning = __webpack_require__(13);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/ref.js
 var es_ref = __webpack_require__(36);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/findDOMNode.js
-var findDOMNode = __webpack_require__(43);
+var findDOMNode = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
-var ResizeObserver_es = __webpack_require__(55);
+var ResizeObserver_es = __webpack_require__(54);
 
 // CONCATENATED MODULE: ./node_modules/rc-virtual-list/node_modules/rc-resize-observer/es/utils/observerUtil.js
  // =============================== Const ===============================
@@ -37842,7 +37849,7 @@ var Filler = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd
 Filler.displayName = 'Filler';
 /* harmony default export */ var es_Filler = (Filler);
 // EXTERNAL MODULE: ./node_modules/rc-util/es/raf.js
-var raf = __webpack_require__(47);
+var raf = __webpack_require__(46);
 
 // CONCATENATED MODULE: ./node_modules/rc-virtual-list/es/ScrollBar.js
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -39034,16 +39041,16 @@ List.displayName = 'List';
 /* harmony default export */ var rc_virtual_list_es = __webpack_exports__["a"] = (es_List);
 
 /***/ }),
-/* 116 */,
-/* 117 */
+/* 115 */,
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(45);
-var normalizeHeaderName = __webpack_require__(337);
-var enhanceError = __webpack_require__(130);
+var utils = __webpack_require__(44);
+var normalizeHeaderName = __webpack_require__(333);
+var enhanceError = __webpack_require__(129);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -39059,10 +39066,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(131);
+    adapter = __webpack_require__(130);
   } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(131);
+    adapter = __webpack_require__(130);
   }
   return adapter;
 }
@@ -39177,10 +39184,10 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(88)))
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeToArray = __webpack_require__(137);
+var arrayLikeToArray = __webpack_require__(136);
 
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
@@ -39194,11 +39201,11 @@ function _unsupportedIterableToArray(o, minLen) {
 module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(76),
-    root = __webpack_require__(54);
+    root = __webpack_require__(53);
 
 /* Built-in method references that are verified to be native. */
 var Map = getNative(root, 'Map');
@@ -39207,10 +39214,10 @@ module.exports = Map;
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(54);
+var root = __webpack_require__(53);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -39219,7 +39226,7 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports) {
 
 /**
@@ -39251,7 +39258,7 @@ module.exports = isArray;
 
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39276,15 +39283,15 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var _typeof2 = _interopRequireDefault(__webpack_require__(22));
 
-var _colors = __webpack_require__(123);
+var _colors = __webpack_require__(122);
 
 var _react = _interopRequireWildcard(__webpack_require__(0));
 
-var _warning = _interopRequireDefault(__webpack_require__(437));
+var _warning = _interopRequireDefault(__webpack_require__(433));
 
-var _dynamicCSS = __webpack_require__(438);
+var _dynamicCSS = __webpack_require__(434);
 
-var _Context = _interopRequireDefault(__webpack_require__(150));
+var _Context = _interopRequireDefault(__webpack_require__(149));
 
 function warning(valid, message) {
   (0, _warning.default)(valid, "[@ant-design/icons] ".concat(message));
@@ -39372,11 +39379,31 @@ var useInsertStyles = function useInsertStyles() {
 exports.useInsertStyles = useInsertStyles;
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "blue", function() { return /* binding */ blue; });
+__webpack_require__.d(__webpack_exports__, "cyan", function() { return /* binding */ cyan; });
+__webpack_require__.d(__webpack_exports__, "geekblue", function() { return /* binding */ geekblue; });
+__webpack_require__.d(__webpack_exports__, "generate", function() { return /* binding */ generate; });
+__webpack_require__.d(__webpack_exports__, "gold", function() { return /* binding */ gold; });
+__webpack_require__.d(__webpack_exports__, "green", function() { return /* binding */ green; });
+__webpack_require__.d(__webpack_exports__, "grey", function() { return /* binding */ grey; });
+__webpack_require__.d(__webpack_exports__, "lime", function() { return /* binding */ lime; });
+__webpack_require__.d(__webpack_exports__, "magenta", function() { return /* binding */ magenta; });
+__webpack_require__.d(__webpack_exports__, "orange", function() { return /* binding */ orange; });
+__webpack_require__.d(__webpack_exports__, "presetDarkPalettes", function() { return /* binding */ presetDarkPalettes; });
+__webpack_require__.d(__webpack_exports__, "presetPalettes", function() { return /* binding */ presetPalettes; });
+__webpack_require__.d(__webpack_exports__, "presetPrimaryColors", function() { return /* binding */ presetPrimaryColors; });
+__webpack_require__.d(__webpack_exports__, "purple", function() { return /* binding */ purple; });
+__webpack_require__.d(__webpack_exports__, "red", function() { return /* binding */ red; });
+__webpack_require__.d(__webpack_exports__, "volcano", function() { return /* binding */ volcano; });
+__webpack_require__.d(__webpack_exports__, "yellow", function() { return /* binding */ yellow; });
 
 // CONCATENATED MODULE: ./node_modules/@ctrl/tinycolor/dist/module/util.js
 /**
@@ -40040,23 +40067,6 @@ function isValidCSSUnit(color) {
 }
 
 // CONCATENATED MODULE: ./node_modules/@ant-design/icons/node_modules/@ant-design/colors/dist/index.esm.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blue", function() { return blue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cyan", function() { return cyan; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "geekblue", function() { return geekblue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate", function() { return generate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "gold", function() { return gold; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "green", function() { return green; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "grey", function() { return grey; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lime", function() { return lime; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "magenta", function() { return magenta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "orange", function() { return orange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "presetDarkPalettes", function() { return presetDarkPalettes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "presetPalettes", function() { return presetPalettes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "presetPrimaryColors", function() { return presetPrimaryColors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purple", function() { return purple; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "red", function() { return red; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "volcano", function() { return volcano; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "yellow", function() { return yellow; });
 
 
 var hueStep = 2; // 色相阶梯
@@ -40295,10 +40305,10 @@ var grey = presetPalettes.grey;
 
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(477)
+var isarray = __webpack_require__(473)
 
 /**
  * Expose `pathToRegexp`.
@@ -40727,11 +40737,11 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var _ponyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(306);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var _ponyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(305);
 /* global window */
 
 
@@ -40750,15 +40760,15 @@ if (typeof self !== 'undefined') {
 var result = Object(_ponyfill_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57), __webpack_require__(493)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57), __webpack_require__(489)(module)))
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isCssAnimationSupported; });
-/* harmony import */ var _Event__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(53);
+/* harmony import */ var _Event__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -40934,16 +40944,19 @@ cssAnimation.isCssAnimationSupported = isCssAnimationSupported;
 /* harmony default export */ __webpack_exports__["a"] = (cssAnimation);
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ TreeNode["a" /* default */]; });
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js + 2 modules
 var toConsumableArray = __webpack_require__(9);
@@ -40989,10 +41002,10 @@ var slicedToArray = __webpack_require__(10);
 var objectWithoutProperties = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/rc-virtual-list/es/index.js + 19 modules
-var es = __webpack_require__(115);
+var es = __webpack_require__(114);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 5 modules
-var rc_motion_es = __webpack_require__(44);
+var rc_motion_es = __webpack_require__(43);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/TreeNode.js + 1 modules
 var TreeNode = __webpack_require__(58);
@@ -42472,14 +42485,13 @@ Tree_Tree.defaultProps = {
 Tree_Tree.TreeNode = TreeNode["a" /* default */];
 /* harmony default export */ var es_Tree = (Tree_Tree);
 // CONCATENATED MODULE: ./node_modules/rc-tree/es/index.js
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "a", function() { return TreeNode["a" /* default */]; });
 
 
 
 /* harmony default export */ var rc_tree_es = __webpack_exports__["b"] = (es_Tree);
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42497,13 +42509,13 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -42574,7 +42586,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42623,20 +42635,20 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var settle = __webpack_require__(338);
-var cookies = __webpack_require__(339);
-var buildURL = __webpack_require__(129);
-var buildFullPath = __webpack_require__(340);
-var parseHeaders = __webpack_require__(343);
-var isURLSameOrigin = __webpack_require__(344);
-var createError = __webpack_require__(132);
+var utils = __webpack_require__(44);
+var settle = __webpack_require__(334);
+var cookies = __webpack_require__(335);
+var buildURL = __webpack_require__(128);
+var buildFullPath = __webpack_require__(336);
+var parseHeaders = __webpack_require__(339);
+var isURLSameOrigin = __webpack_require__(340);
+var createError = __webpack_require__(131);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -42819,13 +42831,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(130);
+var enhanceError = __webpack_require__(129);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -42844,7 +42856,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42856,13 +42868,13 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 /**
  * Config-specific merge-function which creates a new config-object
@@ -42950,7 +42962,7 @@ module.exports = function mergeConfig(config1, config2) {
 
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42976,7 +42988,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -42986,7 +42998,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports) {
 
 function _arrayLikeToArray(arr, len) {
@@ -43002,7 +43014,7 @@ function _arrayLikeToArray(arr, len) {
 module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 138 */
+/* 137 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -43012,7 +43024,7 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43109,7 +43121,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 140 */
+/* 139 */
 /***/ (function(module, exports) {
 
 /**
@@ -43152,11 +43164,11 @@ module.exports = eq;
 
 
 /***/ }),
-/* 141 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(89),
-    isObject = __webpack_require__(100);
+    isObject = __webpack_require__(99);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -43195,7 +43207,7 @@ module.exports = isFunction;
 
 
 /***/ }),
-/* 142 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -43206,7 +43218,7 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 143 */
+/* 142 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -43238,14 +43250,14 @@ module.exports = toSource;
 
 
 /***/ }),
-/* 144 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mapCacheClear = __webpack_require__(381),
-    mapCacheDelete = __webpack_require__(388),
-    mapCacheGet = __webpack_require__(390),
-    mapCacheHas = __webpack_require__(391),
-    mapCacheSet = __webpack_require__(392);
+var mapCacheClear = __webpack_require__(377),
+    mapCacheDelete = __webpack_require__(384),
+    mapCacheGet = __webpack_require__(386),
+    mapCacheHas = __webpack_require__(387),
+    mapCacheSet = __webpack_require__(388);
 
 /**
  * Creates a map cache object to store key-value pairs.
@@ -43276,12 +43288,12 @@ module.exports = MapCache;
 
 
 /***/ }),
-/* 145 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var SetCache = __webpack_require__(393),
-    arraySome = __webpack_require__(396),
-    cacheHas = __webpack_require__(397);
+var SetCache = __webpack_require__(389),
+    arraySome = __webpack_require__(392),
+    cacheHas = __webpack_require__(393);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -43366,14 +43378,14 @@ module.exports = equalArrays;
 
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(54),
-    stubFalse = __webpack_require__(414);
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(53),
+    stubFalse = __webpack_require__(410);
 
 /** Detect free variable `exports`. */
-var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+var freeExports =  true && exports && !exports.nodeType && exports;
 
 /** Detect free variable `module`. */
 var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
@@ -43408,15 +43420,15 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(97)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(96)(module)))
 
 /***/ }),
-/* 147 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(416),
-    baseUnary = __webpack_require__(417),
-    nodeUtil = __webpack_require__(418);
+var baseIsTypedArray = __webpack_require__(412),
+    baseUnary = __webpack_require__(413),
+    nodeUtil = __webpack_require__(414);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -43444,7 +43456,7 @@ module.exports = isTypedArray;
 
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -43485,10 +43497,10 @@ module.exports = isLength;
 
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var objectWithoutPropertiesLoose = __webpack_require__(436);
+var objectWithoutPropertiesLoose = __webpack_require__(432);
 
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
@@ -43512,7 +43524,7 @@ function _objectWithoutProperties(source, excluded) {
 module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 150 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43530,7 +43542,7 @@ var _default = IconContext;
 exports.default = _default;
 
 /***/ }),
-/* 151 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43543,11 +43555,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(149));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(148));
 
 var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
-var _utils = __webpack_require__(122);
+var _utils = __webpack_require__(121);
 
 var _excluded = ["icon", "className", "onClick", "style", "primaryColor", "secondaryColor"];
 var twoToneColorPalette = {
@@ -43619,7 +43631,7 @@ var _default = IconBase;
 exports.default = _default;
 
 /***/ }),
-/* 152 */
+/* 151 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -43629,7 +43641,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 153 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43715,7 +43727,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43919,7 +43931,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 155 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44090,7 +44102,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 156 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44160,7 +44172,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 157 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44346,7 +44358,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 158 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44417,7 +44429,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 159 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44537,7 +44549,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44607,7 +44619,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44724,7 +44736,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44881,7 +44893,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44983,7 +44995,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45049,7 +45061,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45183,7 +45195,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45327,7 +45339,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45466,7 +45478,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45649,7 +45661,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45814,7 +45826,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45929,7 +45941,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46124,7 +46136,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46202,7 +46214,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46315,7 +46327,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46383,7 +46395,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46476,7 +46488,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46570,7 +46582,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46661,7 +46673,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46766,7 +46778,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46887,7 +46899,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46970,7 +46982,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47049,7 +47061,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47132,7 +47144,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47215,7 +47227,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47294,7 +47306,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47377,7 +47389,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47460,7 +47472,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47543,7 +47555,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47626,7 +47638,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47751,7 +47763,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47874,7 +47886,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47999,7 +48011,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 192 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48124,7 +48136,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48217,7 +48229,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48297,7 +48309,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48425,7 +48437,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48564,7 +48576,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48637,7 +48649,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48709,7 +48721,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48832,7 +48844,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48917,7 +48929,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49006,7 +49018,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49096,7 +49108,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49206,7 +49218,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49316,7 +49328,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49406,7 +49418,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49547,7 +49559,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49686,7 +49698,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 208 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49823,7 +49835,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 209 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49932,7 +49944,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 210 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50115,7 +50127,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 211 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50286,7 +50298,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 212 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50419,7 +50431,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 213 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50528,7 +50540,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50619,7 +50631,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50774,7 +50786,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50895,7 +50907,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 217 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50974,7 +50986,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 218 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51137,7 +51149,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 219 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51228,7 +51240,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 220 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51335,7 +51347,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 221 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51432,7 +51444,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 222 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51550,7 +51562,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 223 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51689,7 +51701,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 224 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51779,7 +51791,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 225 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51912,7 +51924,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 226 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52011,7 +52023,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 227 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52163,7 +52175,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 228 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52244,7 +52256,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 229 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52384,7 +52396,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 230 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52493,7 +52505,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 231 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52625,7 +52637,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 232 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52700,7 +52712,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 233 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52801,7 +52813,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 234 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52898,7 +52910,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 235 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53013,7 +53025,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 236 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53231,7 +53243,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 237 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53321,7 +53333,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 238 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53412,7 +53424,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 239 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53483,7 +53495,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 240 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53589,7 +53601,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 241 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53664,7 +53676,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 242 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53800,7 +53812,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 243 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53919,7 +53931,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 244 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54036,7 +54048,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 245 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54110,7 +54122,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 246 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54210,7 +54222,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 247 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54347,7 +54359,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 248 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54502,7 +54514,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 249 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54580,7 +54592,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 250 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54653,7 +54665,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 251 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54744,7 +54756,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 252 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54972,7 +54984,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 253 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55068,7 +55080,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 254 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55140,7 +55152,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 255 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55224,7 +55236,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 256 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55384,7 +55396,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 257 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55570,7 +55582,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 258 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55650,7 +55662,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 259 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55794,7 +55806,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 260 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55936,7 +55948,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 261 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56035,7 +56047,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 262 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56118,7 +56130,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 263 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56188,7 +56200,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 264 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56334,7 +56346,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 265 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56437,7 +56449,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 266 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56520,7 +56532,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 267 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56652,7 +56664,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 268 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56732,7 +56744,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 269 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56838,7 +56850,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 270 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56910,7 +56922,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 271 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57049,7 +57061,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 272 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57170,7 +57182,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 273 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57274,7 +57286,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 274 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57343,7 +57355,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57412,7 +57424,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 276 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57538,7 +57550,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 277 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57720,7 +57732,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 278 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57817,7 +57829,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 279 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57883,7 +57895,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 280 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57952,7 +57964,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 281 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58047,7 +58059,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 282 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58135,7 +58147,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58203,7 +58215,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58338,7 +58350,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 285 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58454,7 +58466,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 286 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58569,7 +58581,7 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 287 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58683,13 +58695,13 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 
 /***/ }),
-/* 288 */
+/* 287 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(40);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(39);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Dom_canUseDom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(80);
 
@@ -58739,6 +58751,25 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
 /* harmony default export */ __webpack_exports__["a"] = (Portal);
 
 /***/ }),
+/* 288 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+  
+  var _InfoCircleFilled = _interopRequireDefault(__webpack_require__(441));
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  var _default = _InfoCircleFilled;
+  exports.default = _default;
+  module.exports = _default;
+
+/***/ }),
 /* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58749,11 +58780,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _InfoCircleFilled = _interopRequireDefault(__webpack_require__(445));
+  var _CheckCircleOutlined = _interopRequireDefault(__webpack_require__(447));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _InfoCircleFilled;
+  var _default = _CheckCircleOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58768,11 +58799,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _CheckCircleOutlined = _interopRequireDefault(__webpack_require__(451));
+  var _InfoCircleOutlined = _interopRequireDefault(__webpack_require__(449));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _CheckCircleOutlined;
+  var _default = _InfoCircleOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58787,11 +58818,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _InfoCircleOutlined = _interopRequireDefault(__webpack_require__(453));
+  var _CloseCircleOutlined = _interopRequireDefault(__webpack_require__(451));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _InfoCircleOutlined;
+  var _default = _CloseCircleOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58806,11 +58837,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _CloseCircleOutlined = _interopRequireDefault(__webpack_require__(455));
+  var _ExclamationCircleOutlined = _interopRequireDefault(__webpack_require__(453));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _CloseCircleOutlined;
+  var _default = _ExclamationCircleOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58825,11 +58856,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _ExclamationCircleOutlined = _interopRequireDefault(__webpack_require__(457));
+  var _MinusSquareOutlined = _interopRequireDefault(__webpack_require__(461));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _ExclamationCircleOutlined;
+  var _default = _MinusSquareOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58844,11 +58875,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _MinusSquareOutlined = _interopRequireDefault(__webpack_require__(465));
+  var _PlusSquareOutlined = _interopRequireDefault(__webpack_require__(463));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _MinusSquareOutlined;
+  var _default = _PlusSquareOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58863,11 +58894,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _PlusSquareOutlined = _interopRequireDefault(__webpack_require__(467));
+  var _CaretDownFilled = _interopRequireDefault(__webpack_require__(465));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _PlusSquareOutlined;
+  var _default = _CaretDownFilled;
   exports.default = _default;
   module.exports = _default;
 
@@ -58882,11 +58913,11 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _CaretDownFilled = _interopRequireDefault(__webpack_require__(469));
+  var _FolderOpenOutlined = _interopRequireDefault(__webpack_require__(467));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _CaretDownFilled;
+  var _default = _FolderOpenOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -58901,26 +58932,7 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   });
   exports.default = void 0;
   
-  var _FolderOpenOutlined = _interopRequireDefault(__webpack_require__(471));
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  var _default = _FolderOpenOutlined;
-  exports.default = _default;
-  module.exports = _default;
-
-/***/ }),
-/* 298 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = void 0;
-  
-  var _FolderOutlined = _interopRequireDefault(__webpack_require__(473));
+  var _FolderOutlined = _interopRequireDefault(__webpack_require__(469));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -58929,13 +58941,13 @@ var Portal = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"
   module.exports = _default;
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(68);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -59116,7 +59128,7 @@ var index = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext || create
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59159,7 +59171,7 @@ function useSafeState(defaultValue) {
 }
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59167,7 +59179,7 @@ function useSafeState(defaultValue) {
 var INTERNAL_PROPS_MARK = 'RC_SELECT_INTERNAL_PROPS_MARK';
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59177,7 +59189,7 @@ var INTERNAL_PROPS_MARK = 'RC_SELECT_INTERNAL_PROPS_MARK';
   });
   exports.default = void 0;
   
-  var _CheckOutlined = _interopRequireDefault(__webpack_require__(482));
+  var _CheckOutlined = _interopRequireDefault(__webpack_require__(478));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -59186,12 +59198,12 @@ var INTERNAL_PROPS_MARK = 'RC_SELECT_INTERNAL_PROPS_MARK';
   module.exports = _default;
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return omit; });
-/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
 function omit(obj, fields) {
   var clone = Object(_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, obj);
@@ -59206,6 +59218,25 @@ function omit(obj, fields) {
 }
 
 /***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+  
+  var _EyeOutlined = _interopRequireDefault(__webpack_require__(480));
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  var _default = _EyeOutlined;
+  exports.default = _default;
+  module.exports = _default;
+
+/***/ }),
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59216,26 +59247,7 @@ function omit(obj, fields) {
   });
   exports.default = void 0;
   
-  var _EyeOutlined = _interopRequireDefault(__webpack_require__(484));
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  var _default = _EyeOutlined;
-  exports.default = _default;
-  module.exports = _default;
-
-/***/ }),
-/* 305 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = void 0;
-  
-  var _EyeInvisibleOutlined = _interopRequireDefault(__webpack_require__(486));
+  var _EyeInvisibleOutlined = _interopRequireDefault(__webpack_require__(482));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -59244,7 +59256,7 @@ function omit(obj, fields) {
   module.exports = _default;
 
 /***/ }),
-/* 306 */
+/* 305 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59269,7 +59281,7 @@ function symbolObservablePonyfill(root) {
 
 
 /***/ }),
-/* 307 */
+/* 306 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59392,7 +59404,7 @@ function getOffset(node) {
 }
 
 /***/ }),
-/* 308 */
+/* 307 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59422,6 +59434,25 @@ function createChainedFunction() {
 }
 
 /***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+  
+  var _BarsOutlined = _interopRequireDefault(__webpack_require__(490));
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  var _default = _BarsOutlined;
+  exports.default = _default;
+  module.exports = _default;
+
+/***/ }),
 /* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59432,11 +59463,11 @@ function createChainedFunction() {
   });
   exports.default = void 0;
   
-  var _BarsOutlined = _interopRequireDefault(__webpack_require__(494));
+  var _FilterFilled = _interopRequireDefault(__webpack_require__(496));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _BarsOutlined;
+  var _default = _FilterFilled;
   exports.default = _default;
   module.exports = _default;
 
@@ -59451,11 +59482,11 @@ function createChainedFunction() {
   });
   exports.default = void 0;
   
-  var _FilterFilled = _interopRequireDefault(__webpack_require__(500));
+  var _EllipsisOutlined = _interopRequireDefault(__webpack_require__(498));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _FilterFilled;
+  var _default = _EllipsisOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -59470,11 +59501,11 @@ function createChainedFunction() {
   });
   exports.default = void 0;
   
-  var _EllipsisOutlined = _interopRequireDefault(__webpack_require__(502));
+  var _CaretUpOutlined = _interopRequireDefault(__webpack_require__(500));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _EllipsisOutlined;
+  var _default = _CaretUpOutlined;
   exports.default = _default;
   module.exports = _default;
 
@@ -59489,16 +59520,34 @@ function createChainedFunction() {
   });
   exports.default = void 0;
   
-  var _CaretUpOutlined = _interopRequireDefault(__webpack_require__(504));
+  var _CaretDownOutlined = _interopRequireDefault(__webpack_require__(502));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _CaretUpOutlined;
+  var _default = _CaretDownOutlined;
   exports.default = _default;
   module.exports = _default;
 
 /***/ }),
 /* 313 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(135);
+
+var iterableToArray = __webpack_require__(151);
+
+var unsupportedIterableToArray = __webpack_require__(117);
+
+var nonIterableRest = __webpack_require__(137);
+
+function _toArray(arr) {
+  return arrayWithHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableRest();
+}
+
+module.exports = _toArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59508,31 +59557,13 @@ function createChainedFunction() {
   });
   exports.default = void 0;
   
-  var _CaretDownOutlined = _interopRequireDefault(__webpack_require__(506));
+  var _DoubleLeftOutlined = _interopRequireDefault(__webpack_require__(504));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _default = _CaretDownOutlined;
+  var _default = _DoubleLeftOutlined;
   exports.default = _default;
   module.exports = _default;
-
-/***/ }),
-/* 314 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__(136);
-
-var iterableToArray = __webpack_require__(152);
-
-var unsupportedIterableToArray = __webpack_require__(118);
-
-var nonIterableRest = __webpack_require__(138);
-
-function _toArray(arr) {
-  return arrayWithHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableRest();
-}
-
-module.exports = _toArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 315 */
@@ -59545,26 +59576,7 @@ module.exports = _toArray, module.exports.__esModule = true, module.exports["def
   });
   exports.default = void 0;
   
-  var _DoubleLeftOutlined = _interopRequireDefault(__webpack_require__(508));
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  var _default = _DoubleLeftOutlined;
-  exports.default = _default;
-  module.exports = _default;
-
-/***/ }),
-/* 316 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = void 0;
-  
-  var _DoubleRightOutlined = _interopRequireDefault(__webpack_require__(510));
+  var _DoubleRightOutlined = _interopRequireDefault(__webpack_require__(506));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -59573,7 +59585,7 @@ module.exports = _toArray, module.exports.__esModule = true, module.exports["def
   module.exports = _default;
 
 /***/ }),
-/* 317 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59586,7 +59598,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a): true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(87)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(g){a(g);a.Highcharts=g;return a}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+(function(a){ true&&module.exports?(a["default"]=a,module.exports=a): true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(87)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(g){a(g);a.Highcharts=g;return a}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined})(function(a){function g(a,e,r,t){a.hasOwnProperty(e)||(a[e]=t.apply(null,r))}a=a?a._modules:{};g(a,"Extensions/FullScreen.js",[a["Core/Chart/Chart.js"],a["Core/Globals.js"],a["Core/Renderer/HTML/AST.js"],a["Core/Utilities.js"]],
 function(a,e,r,t){var l=t.addEvent;t=function(){function a(d){this.chart=d;this.isOpen=!1;d=d.renderTo;this.browserProps||("function"===typeof d.requestFullscreen?this.browserProps={fullscreenChange:"fullscreenchange",requestFullscreen:"requestFullscreen",exitFullscreen:"exitFullscreen"}:d.mozRequestFullScreen?this.browserProps={fullscreenChange:"mozfullscreenchange",requestFullscreen:"mozRequestFullScreen",exitFullscreen:"mozCancelFullScreen"}:d.webkitRequestFullScreen?this.browserProps={fullscreenChange:"webkitfullscreenchange",
 requestFullscreen:"webkitRequestFullScreen",exitFullscreen:"webkitExitFullscreen"}:d.msRequestFullscreen&&(this.browserProps={fullscreenChange:"MSFullscreenChange",requestFullscreen:"msRequestFullscreen",exitFullscreen:"msExitFullscreen"}))}a.prototype.close=function(){var d=this.chart,a=d.options.chart;if(this.isOpen&&this.browserProps&&d.container.ownerDocument instanceof Document)d.container.ownerDocument[this.browserProps.exitFullscreen]();this.unbindFullscreenEvent&&(this.unbindFullscreenEvent=
@@ -59628,14 +59640,14 @@ g.ajax;a.getJSON=g.getJSON;a.post=g.post;e.compose(a.Chart,a.Renderer)})});
 //# sourceMappingURL=exporting.js.map
 
 /***/ }),
-/* 318 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(e,t){ true?module.exports=t(__webpack_require__(0)):undefined}("undefined"!=typeof self?self:this,function(e){return function(e){function t(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var r={};return t.m=e,t.c=r,t.d=function(e,r,n){t.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(r,"a",r),r},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,r){"use strict";function n(){return n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},n.apply(this,arguments)}function o(e){return a(e)||i(e)||u(e)||c()}function c(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function u(e,t){if(e){if("string"==typeof e)return f(e,t);var r=Object.prototype.toString.call(e).slice(8,-1);return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?Array.from(e):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?f(e,t):void 0}}function i(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}function a(e){if(Array.isArray(e))return f(e)}function f(e,t){(null==t||t>e.length)&&(t=e.length);for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r];return n}function s(e){"@babel/helpers - typeof";return(s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0});var p=r(1),l=r.n(p),y="undefined"!=typeof window?p.useLayoutEffect:p.useEffect,d=Object(p.forwardRef)(function(e,t){var r=Object(p.useRef)(),c=Object(p.useRef)();return y(function(){function t(){var t=e.highcharts||"object"===("undefined"==typeof window?"undefined":s(window))&&window.Highcharts,n=e.constructorType||"chart";t?t[n]?e.options?c.current=t[n](r.current,e.options,e.callback?e.callback:void 0):console.warn('The "options" property was not passed.'):console.warn('The "constructorType" property is incorrect or some required module is not imported.'):console.warn('The "highcharts" property was not passed.')}if(c.current){if(!1!==e.allowChartUpdate)if(!e.immutable&&c.current){var n;(n=c.current).update.apply(n,[e.options].concat(o(e.updateArgs||[!0,!0])))}else t()}else t()}),y(function(){return function(){c.current&&(c.current.destroy(),c.current=null)}},[]),Object(p.useImperativeHandle)(t,function(){return{get chart(){return c.current},container:r}},[]),l.a.createElement("div",n({},e.containerProps,{ref:r}))});t.default=Object(p.memo)(d)},function(t,r){t.exports=e}])});
 //# sourceMappingURL=highcharts-react.min.js.map
 
 /***/ }),
-/* 319 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59645,7 +59657,7 @@ g.ajax;a.getJSON=g.getJSON;a.post=g.post;e.compose(a.Chart,a.Renderer)})});
   });
   exports.default = void 0;
   
-  var _StarFilled = _interopRequireDefault(__webpack_require__(513));
+  var _StarFilled = _interopRequireDefault(__webpack_require__(509));
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -59654,7 +59666,7 @@ g.ajax;a.getJSON=g.getJSON;a.post=g.post;e.compose(a.Chart,a.Renderer)})});
   module.exports = _default;
 
 /***/ }),
-/* 320 */
+/* 319 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61103,16 +61115,19 @@ Schema.validators = validators;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(88)))
 
 /***/ }),
-/* 321 */
+/* 320 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ generateSelector; });
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js + 2 modules
 var toConsumableArray = __webpack_require__(9);
@@ -61140,7 +61155,7 @@ var useMergedState = __webpack_require__(75);
 var pickAttrs = __webpack_require__(85);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 5 modules
-var es = __webpack_require__(44);
+var es = __webpack_require__(43);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/TransBtn.js
 var TransBtn = __webpack_require__(73);
@@ -61248,7 +61263,7 @@ var RefInput = external_root_React_commonjs2_react_commonjs_react_amd_react_["fo
 RefInput.displayName = 'Input';
 /* harmony default export */ var Selector_Input = (RefInput);
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
-var commonUtil = __webpack_require__(48);
+var commonUtil = __webpack_require__(47);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/hooks/useLayoutEffect.js
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -61878,7 +61893,7 @@ var RefSelectTrigger = external_root_React_commonjs2_react_commonjs_react_amd_re
 RefSelectTrigger.displayName = 'SelectTrigger';
 /* harmony default export */ var es_SelectTrigger = (RefSelectTrigger);
 // EXTERNAL MODULE: ./node_modules/rc-select/es/interface/generator.js
-var generator = __webpack_require__(301);
+var generator = __webpack_require__(300);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/hooks/useDelayReset.js
 
@@ -62006,7 +62021,6 @@ function useCacheOptions(values, options) {
   return getValueOption;
 }
 // CONCATENATED MODULE: ./node_modules/rc-select/es/generate.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return generateSelector; });
 
 
 
@@ -62862,10 +62876,12 @@ function generateSelector(config) {
 }
 
 /***/ }),
-/* 322 */
+/* 321 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+// UNUSED EXPORTS: ResizableTextArea
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
 var esm_extends = __webpack_require__(12);
@@ -62886,13 +62902,13 @@ var createSuper = __webpack_require__(20);
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Children/toArray.js
-var toArray = __webpack_require__(39);
+var toArray = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/warning.js
 var warning = __webpack_require__(13);
@@ -62901,10 +62917,10 @@ var warning = __webpack_require__(13);
 var ref = __webpack_require__(36);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/findDOMNode.js
-var findDOMNode = __webpack_require__(43);
+var findDOMNode = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
-var ResizeObserver_es = __webpack_require__(55);
+var ResizeObserver_es = __webpack_require__(54);
 
 // CONCATENATED MODULE: ./node_modules/rc-textarea/node_modules/rc-resize-observer/es/utils/observerUtil.js
  // =============================== Const ===============================
@@ -63141,7 +63157,7 @@ function ResizeObserver(props) {
 ResizeObserver.Collection = Collection;
 /* harmony default export */ var es = (ResizeObserver);
 // EXTERNAL MODULE: ./node_modules/rc-util/es/omit.js
-var omit = __webpack_require__(303);
+var omit = __webpack_require__(302);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(3);
@@ -63452,8 +63468,6 @@ var ResizableTextArea_ResizableTextArea = /*#__PURE__*/function (_React$Componen
 
 /* harmony default export */ var es_ResizableTextArea = (ResizableTextArea_ResizableTextArea);
 // CONCATENATED MODULE: ./node_modules/rc-textarea/es/index.js
-/* unused concated harmony import ResizableTextArea */
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return es_ResizableTextArea; });
 
 
 
@@ -63560,7 +63574,7 @@ var es_TextArea = /*#__PURE__*/function (_React$Component) {
 /* harmony default export */ var rc_textarea_es = __webpack_exports__["a"] = (es_TextArea);
 
 /***/ }),
-/* 323 */
+/* 322 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64951,14 +64965,14 @@ function alignPoint(el, tgtPoint, align) {
 //# sourceMappingURL=index.js.map
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/addEventListener.js
-var addEventListener = __webpack_require__(51);
+var addEventListener = __webpack_require__(50);
 
 // EXTERNAL MODULE: ./node_modules/lodash/isEqual.js
 var isEqual = __webpack_require__(82);
 var isEqual_default = /*#__PURE__*/__webpack_require__.n(isEqual);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
-var ResizeObserver_es = __webpack_require__(55);
+var ResizeObserver_es = __webpack_require__(54);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/contains.js
 var contains = __webpack_require__(86);
@@ -65241,7 +65255,7 @@ RcAlign.displayName = 'Align';
 /* harmony default export */ var es = __webpack_exports__["a"] = (es_Align);
 
 /***/ }),
-/* 324 */
+/* 323 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65381,11 +65395,11 @@ function mergeChildren(prev, next) {
   return ret;
 }
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(40);
+var react_dom = __webpack_require__(39);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/css-animation/es/index.js
-var es = __webpack_require__(126);
+var es = __webpack_require__(125);
 
 // CONCATENATED MODULE: ./node_modules/rc-animate/es/util/animate.js
 var util = {
@@ -65865,7 +65879,7 @@ var Animate_initialiseProps = function _initialiseProps() {
 /* harmony default export */ var es_Animate = __webpack_exports__["a"] = (es_unsafeLifecyclesPolyfill(Animate_Animate));
 
 /***/ }),
-/* 325 */
+/* 324 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66101,806 +66115,31 @@ function Dropdown(props, ref) {
 /* harmony default export */ var rc_dropdown_es = __webpack_exports__["a"] = (es_Dropdown);
 
 /***/ }),
-/* 326 */,
-/* 327 */
+/* 325 */,
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(516);
+module.exports = __webpack_require__(512);
 
 
 /***/ }),
-/* 328 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 329 */,
-/* 330 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() { return this })() || Function("return this")();
-
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
-
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-module.exports = __webpack_require__(331);
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
-  }
-}
-
-
-/***/ }),
-/* 331 */
-/***/ (function(module, exports) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-!(function(global) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  var inModule = typeof module === "object";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    if (inModule) {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
-  }
-
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  runtime.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration. If the Promise is rejected, however, the
-          // result for this iteration will be rejected with the same
-          // reason. Note that rejections of yielded Promises are not
-          // thrown back into the generator function, as is the case
-          // when an awaited Promise is rejected. This difference in
-          // behavior between yield and await is important, because it
-          // allows the consumer to decide what to do with the yielded
-          // rejection (swallow it and continue, manually .throw it back
-          // into the generator, abandon iteration, whatever). With
-          // await, by contrast, there is no opportunity to examine the
-          // rejection reason outside the generator function, so the
-          // only option is to throw it from the await expression, and
-          // let the generator function handle the exception.
-          result.value = unwrapped;
-          resolve(result);
-        }, reject);
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() { return this })() || Function("return this")()
-);
-
-
-/***/ }),
-/* 332 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var bind = __webpack_require__(128);
-var Axios = __webpack_require__(333);
-var mergeConfig = __webpack_require__(134);
-var defaults = __webpack_require__(117);
+var utils = __webpack_require__(44);
+var bind = __webpack_require__(127);
+var Axios = __webpack_require__(329);
+var mergeConfig = __webpack_require__(133);
+var defaults = __webpack_require__(116);
 
 /**
  * Create an instance of Axios
@@ -66933,18 +66172,18 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(135);
-axios.CancelToken = __webpack_require__(347);
-axios.isCancel = __webpack_require__(133);
+axios.Cancel = __webpack_require__(134);
+axios.CancelToken = __webpack_require__(343);
+axios.isCancel = __webpack_require__(132);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(348);
+axios.spread = __webpack_require__(344);
 
 // Expose isAxiosError
-axios.isAxiosError = __webpack_require__(349);
+axios.isAxiosError = __webpack_require__(345);
 
 module.exports = axios;
 
@@ -66953,18 +66192,18 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 333 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var buildURL = __webpack_require__(129);
-var InterceptorManager = __webpack_require__(334);
-var dispatchRequest = __webpack_require__(335);
-var mergeConfig = __webpack_require__(134);
-var validator = __webpack_require__(345);
+var utils = __webpack_require__(44);
+var buildURL = __webpack_require__(128);
+var InterceptorManager = __webpack_require__(330);
+var dispatchRequest = __webpack_require__(331);
+var mergeConfig = __webpack_require__(133);
+var validator = __webpack_require__(341);
 
 var validators = validator.validators;
 /**
@@ -67108,13 +66347,13 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 334 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -67169,16 +66408,16 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 335 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var transformData = __webpack_require__(336);
-var isCancel = __webpack_require__(133);
-var defaults = __webpack_require__(117);
+var utils = __webpack_require__(44);
+var transformData = __webpack_require__(332);
+var isCancel = __webpack_require__(132);
+var defaults = __webpack_require__(116);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -67258,14 +66497,14 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 336 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var defaults = __webpack_require__(117);
+var utils = __webpack_require__(44);
+var defaults = __webpack_require__(116);
 
 /**
  * Transform the data for a request or a response
@@ -67287,13 +66526,13 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 337 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -67306,13 +66545,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 338 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(132);
+var createError = __webpack_require__(131);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -67338,13 +66577,13 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 339 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -67398,14 +66637,14 @@ module.exports = (
 
 
 /***/ }),
-/* 340 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var isAbsoluteURL = __webpack_require__(341);
-var combineURLs = __webpack_require__(342);
+var isAbsoluteURL = __webpack_require__(337);
+var combineURLs = __webpack_require__(338);
 
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
@@ -67425,7 +66664,7 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 
 
 /***/ }),
-/* 341 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67446,7 +66685,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 342 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67467,13 +66706,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 343 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -67527,13 +66766,13 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 344 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(44);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -67602,13 +66841,13 @@ module.exports = (
 
 
 /***/ }),
-/* 345 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var pkg = __webpack_require__(346);
+var pkg = __webpack_require__(342);
 
 var validators = {};
 
@@ -67714,19 +66953,19 @@ module.exports = {
 
 
 /***/ }),
-/* 346 */
+/* 342 */
 /***/ (function(module) {
 
-module.exports = {"_args":[["axios@0.21.4","/Users/vgs417/portal-components"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/Users/vgs417/portal-components","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"};
+module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.4\",\"/Users/vgs417/portal-components\"]],\"_from\":\"axios@0.21.4\",\"_id\":\"axios@0.21.4\",\"_inBundle\":false,\"_integrity\":\"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.4\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.4\",\"saveSpec\":null,\"fetchSpec\":\"0.21.4\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz\",\"_spec\":\"0.21.4\",\"_where\":\"/Users/vgs417/portal-components\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.14.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.3.0\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^23.0.0\",\"grunt-karma\":\"^4.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^4.0.2\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^6.3.2\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-firefox-launcher\":\"^2.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^4.3.6\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.8\",\"karma-webpack\":\"^4.0.2\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^8.2.1\",\"sinon\":\"^4.5.0\",\"terser-webpack-plugin\":\"^4.2.3\",\"typescript\":\"^4.0.5\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^4.44.2\",\"webpack-dev-server\":\"^3.11.0\"},\"homepage\":\"https://axios-http.com\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.4\"}");
 
 /***/ }),
-/* 347 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(135);
+var Cancel = __webpack_require__(134);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -67784,7 +67023,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 348 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67818,7 +67057,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 349 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67836,7 +67075,7 @@ module.exports = function isAxiosError(payload) {
 
 
 /***/ }),
-/* 350 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -67892,7 +67131,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(351);
+__webpack_require__(347);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -67906,7 +67145,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 351 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -68099,7 +67338,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57), __webpack_require__(88)))
 
 /***/ }),
-/* 352 */
+/* 348 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -68113,7 +67352,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 353 */
+/* 349 */
 /***/ (function(module, exports) {
 
 function _getPrototypeOf(o) {
@@ -68126,7 +67365,7 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 354 */
+/* 350 */
 /***/ (function(module, exports) {
 
 function _isNativeReflectConstruct() {
@@ -68145,7 +67384,7 @@ function _isNativeReflectConstruct() {
 module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 355 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(22)["default"];
@@ -68165,7 +67404,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 356 */
+/* 352 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -68201,7 +67440,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 357 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68217,7 +67456,7 @@ module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),n=__webpack_require__(139),r=__webpack_require__(358);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
+var aa=__webpack_require__(0),n=__webpack_require__(138),r=__webpack_require__(354);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
 function ba(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,k){da=!1;ea=null;ba.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,k){ja.apply(this,arguments);if(da){if(da){var l=ea;da=!1;ea=null}else throw Error(u(198));fa||(fa=!0,ha=l)}}var la=null,ma=null,na=null;
 function oa(a,b,c){var d=a.type||"unknown-event";a.currentTarget=na(c);ka(d,b,void 0,a);a.currentTarget=null}var pa=null,qa={};
 function ra(){if(pa)for(var a in qa){var b=qa[a],c=pa.indexOf(a);if(!(-1<c))throw Error(u(96,a));if(!sa[c]){if(!b.extractEvents)throw Error(u(97,a));sa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;if(ta.hasOwnProperty(h))throw Error(u(99,h));ta[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ua(k[e],g,h);e=!0}else f.registrationName?(ua(f.registrationName,g,h),e=!0):e=!1;if(!e)throw Error(u(98,d,a));}}}}
@@ -68500,19 +67739,19 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!gk(c))throw Er
 
 
 /***/ }),
-/* 358 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(359);
+  module.exports = __webpack_require__(355);
 } else {}
 
 
 /***/ }),
-/* 359 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68540,7 +67779,7 @@ exports.unstable_shouldYield=function(){var a=exports.unstable_now();V(a);var b=
 
 
 /***/ }),
-/* 360 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68562,7 +67801,7 @@ exports.isValidElementType=function(a){return"string"===typeof a||"function"===t
 
 
 /***/ }),
-/* 361 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.12.2
@@ -68605,10 +67844,10 @@ exports.isValidElementType=function(a){return"string"===typeof a||"function"===t
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(88)))
 
 /***/ }),
-/* 362 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsEqualDeep = __webpack_require__(363),
+var baseIsEqualDeep = __webpack_require__(359),
     isObjectLike = __webpack_require__(90);
 
 /**
@@ -68639,17 +67878,17 @@ module.exports = baseIsEqual;
 
 
 /***/ }),
-/* 363 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stack = __webpack_require__(364),
-    equalArrays = __webpack_require__(145),
-    equalByTag = __webpack_require__(398),
-    equalObjects = __webpack_require__(402),
-    getTag = __webpack_require__(424),
-    isArray = __webpack_require__(121),
-    isBuffer = __webpack_require__(146),
-    isTypedArray = __webpack_require__(147);
+var Stack = __webpack_require__(360),
+    equalArrays = __webpack_require__(144),
+    equalByTag = __webpack_require__(394),
+    equalObjects = __webpack_require__(398),
+    getTag = __webpack_require__(420),
+    isArray = __webpack_require__(120),
+    isBuffer = __webpack_require__(145),
+    isTypedArray = __webpack_require__(146);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1;
@@ -68728,15 +67967,15 @@ module.exports = baseIsEqualDeep;
 
 
 /***/ }),
-/* 364 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ListCache = __webpack_require__(98),
-    stackClear = __webpack_require__(370),
-    stackDelete = __webpack_require__(371),
-    stackGet = __webpack_require__(372),
-    stackHas = __webpack_require__(373),
-    stackSet = __webpack_require__(374);
+var ListCache = __webpack_require__(97),
+    stackClear = __webpack_require__(366),
+    stackDelete = __webpack_require__(367),
+    stackGet = __webpack_require__(368),
+    stackHas = __webpack_require__(369),
+    stackSet = __webpack_require__(370);
 
 /**
  * Creates a stack cache object to store key-value pairs.
@@ -68761,7 +68000,7 @@ module.exports = Stack;
 
 
 /***/ }),
-/* 365 */
+/* 361 */
 /***/ (function(module, exports) {
 
 /**
@@ -68780,10 +68019,10 @@ module.exports = listCacheClear;
 
 
 /***/ }),
-/* 366 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(99);
+var assocIndexOf = __webpack_require__(98);
 
 /** Used for built-in method references. */
 var arrayProto = Array.prototype;
@@ -68821,10 +68060,10 @@ module.exports = listCacheDelete;
 
 
 /***/ }),
-/* 367 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(99);
+var assocIndexOf = __webpack_require__(98);
 
 /**
  * Gets the list cache value for `key`.
@@ -68846,10 +68085,10 @@ module.exports = listCacheGet;
 
 
 /***/ }),
-/* 368 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(99);
+var assocIndexOf = __webpack_require__(98);
 
 /**
  * Checks if a list cache value for `key` exists.
@@ -68868,10 +68107,10 @@ module.exports = listCacheHas;
 
 
 /***/ }),
-/* 369 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assocIndexOf = __webpack_require__(99);
+var assocIndexOf = __webpack_require__(98);
 
 /**
  * Sets the list cache `key` to `value`.
@@ -68900,10 +68139,10 @@ module.exports = listCacheSet;
 
 
 /***/ }),
-/* 370 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ListCache = __webpack_require__(98);
+var ListCache = __webpack_require__(97);
 
 /**
  * Removes all key-value entries from the stack.
@@ -68921,7 +68160,7 @@ module.exports = stackClear;
 
 
 /***/ }),
-/* 371 */
+/* 367 */
 /***/ (function(module, exports) {
 
 /**
@@ -68945,7 +68184,7 @@ module.exports = stackDelete;
 
 
 /***/ }),
-/* 372 */
+/* 368 */
 /***/ (function(module, exports) {
 
 /**
@@ -68965,7 +68204,7 @@ module.exports = stackGet;
 
 
 /***/ }),
-/* 373 */
+/* 369 */
 /***/ (function(module, exports) {
 
 /**
@@ -68985,12 +68224,12 @@ module.exports = stackHas;
 
 
 /***/ }),
-/* 374 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ListCache = __webpack_require__(98),
-    Map = __webpack_require__(119),
-    MapCache = __webpack_require__(144);
+var ListCache = __webpack_require__(97),
+    Map = __webpack_require__(118),
+    MapCache = __webpack_require__(143);
 
 /** Used as the size to enable large array optimizations. */
 var LARGE_ARRAY_SIZE = 200;
@@ -69025,13 +68264,13 @@ module.exports = stackSet;
 
 
 /***/ }),
-/* 375 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(141),
-    isMasked = __webpack_require__(378),
-    isObject = __webpack_require__(100),
-    toSource = __webpack_require__(143);
+var isFunction = __webpack_require__(140),
+    isMasked = __webpack_require__(374),
+    isObject = __webpack_require__(99),
+    toSource = __webpack_require__(142);
 
 /**
  * Used to match `RegExp`
@@ -69078,10 +68317,10 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 376 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(120);
+var Symbol = __webpack_require__(119);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -69130,7 +68369,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 377 */
+/* 373 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -69158,10 +68397,10 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 378 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(379);
+var coreJsData = __webpack_require__(375);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -69184,10 +68423,10 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 379 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(54);
+var root = __webpack_require__(53);
 
 /** Used to detect overreaching core-js shims. */
 var coreJsData = root['__core-js_shared__'];
@@ -69196,7 +68435,7 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 380 */
+/* 376 */
 /***/ (function(module, exports) {
 
 /**
@@ -69215,12 +68454,12 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 381 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Hash = __webpack_require__(382),
-    ListCache = __webpack_require__(98),
-    Map = __webpack_require__(119);
+var Hash = __webpack_require__(378),
+    ListCache = __webpack_require__(97),
+    Map = __webpack_require__(118);
 
 /**
  * Removes all key-value entries from the map.
@@ -69242,14 +68481,14 @@ module.exports = mapCacheClear;
 
 
 /***/ }),
-/* 382 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hashClear = __webpack_require__(383),
-    hashDelete = __webpack_require__(384),
-    hashGet = __webpack_require__(385),
-    hashHas = __webpack_require__(386),
-    hashSet = __webpack_require__(387);
+var hashClear = __webpack_require__(379),
+    hashDelete = __webpack_require__(380),
+    hashGet = __webpack_require__(381),
+    hashHas = __webpack_require__(382),
+    hashSet = __webpack_require__(383);
 
 /**
  * Creates a hash object.
@@ -69280,10 +68519,10 @@ module.exports = Hash;
 
 
 /***/ }),
-/* 383 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(101);
+var nativeCreate = __webpack_require__(100);
 
 /**
  * Removes all key-value entries from the hash.
@@ -69301,7 +68540,7 @@ module.exports = hashClear;
 
 
 /***/ }),
-/* 384 */
+/* 380 */
 /***/ (function(module, exports) {
 
 /**
@@ -69324,10 +68563,10 @@ module.exports = hashDelete;
 
 
 /***/ }),
-/* 385 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(101);
+var nativeCreate = __webpack_require__(100);
 
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -69360,10 +68599,10 @@ module.exports = hashGet;
 
 
 /***/ }),
-/* 386 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(101);
+var nativeCreate = __webpack_require__(100);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -69389,10 +68628,10 @@ module.exports = hashHas;
 
 
 /***/ }),
-/* 387 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(101);
+var nativeCreate = __webpack_require__(100);
 
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -69418,10 +68657,10 @@ module.exports = hashSet;
 
 
 /***/ }),
-/* 388 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(102);
+var getMapData = __webpack_require__(101);
 
 /**
  * Removes `key` and its value from the map.
@@ -69442,7 +68681,7 @@ module.exports = mapCacheDelete;
 
 
 /***/ }),
-/* 389 */
+/* 385 */
 /***/ (function(module, exports) {
 
 /**
@@ -69463,10 +68702,10 @@ module.exports = isKeyable;
 
 
 /***/ }),
-/* 390 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(102);
+var getMapData = __webpack_require__(101);
 
 /**
  * Gets the map value for `key`.
@@ -69485,10 +68724,10 @@ module.exports = mapCacheGet;
 
 
 /***/ }),
-/* 391 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(102);
+var getMapData = __webpack_require__(101);
 
 /**
  * Checks if a map value for `key` exists.
@@ -69507,10 +68746,10 @@ module.exports = mapCacheHas;
 
 
 /***/ }),
-/* 392 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getMapData = __webpack_require__(102);
+var getMapData = __webpack_require__(101);
 
 /**
  * Sets the map `key` to `value`.
@@ -69535,12 +68774,12 @@ module.exports = mapCacheSet;
 
 
 /***/ }),
-/* 393 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MapCache = __webpack_require__(144),
-    setCacheAdd = __webpack_require__(394),
-    setCacheHas = __webpack_require__(395);
+var MapCache = __webpack_require__(143),
+    setCacheAdd = __webpack_require__(390),
+    setCacheHas = __webpack_require__(391);
 
 /**
  *
@@ -69568,7 +68807,7 @@ module.exports = SetCache;
 
 
 /***/ }),
-/* 394 */
+/* 390 */
 /***/ (function(module, exports) {
 
 /** Used to stand-in for `undefined` hash values. */
@@ -69593,7 +68832,7 @@ module.exports = setCacheAdd;
 
 
 /***/ }),
-/* 395 */
+/* 391 */
 /***/ (function(module, exports) {
 
 /**
@@ -69613,7 +68852,7 @@ module.exports = setCacheHas;
 
 
 /***/ }),
-/* 396 */
+/* 392 */
 /***/ (function(module, exports) {
 
 /**
@@ -69642,7 +68881,7 @@ module.exports = arraySome;
 
 
 /***/ }),
-/* 397 */
+/* 393 */
 /***/ (function(module, exports) {
 
 /**
@@ -69661,15 +68900,15 @@ module.exports = cacheHas;
 
 
 /***/ }),
-/* 398 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(120),
-    Uint8Array = __webpack_require__(399),
-    eq = __webpack_require__(140),
-    equalArrays = __webpack_require__(145),
-    mapToArray = __webpack_require__(400),
-    setToArray = __webpack_require__(401);
+var Symbol = __webpack_require__(119),
+    Uint8Array = __webpack_require__(395),
+    eq = __webpack_require__(139),
+    equalArrays = __webpack_require__(144),
+    mapToArray = __webpack_require__(396),
+    setToArray = __webpack_require__(397);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -69779,10 +69018,10 @@ module.exports = equalByTag;
 
 
 /***/ }),
-/* 399 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(54);
+var root = __webpack_require__(53);
 
 /** Built-in value references. */
 var Uint8Array = root.Uint8Array;
@@ -69791,7 +69030,7 @@ module.exports = Uint8Array;
 
 
 /***/ }),
-/* 400 */
+/* 396 */
 /***/ (function(module, exports) {
 
 /**
@@ -69815,7 +69054,7 @@ module.exports = mapToArray;
 
 
 /***/ }),
-/* 401 */
+/* 397 */
 /***/ (function(module, exports) {
 
 /**
@@ -69839,10 +69078,10 @@ module.exports = setToArray;
 
 
 /***/ }),
-/* 402 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getAllKeys = __webpack_require__(403);
+var getAllKeys = __webpack_require__(399);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1;
@@ -69935,12 +69174,12 @@ module.exports = equalObjects;
 
 
 /***/ }),
-/* 403 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetAllKeys = __webpack_require__(404),
-    getSymbols = __webpack_require__(406),
-    keys = __webpack_require__(409);
+var baseGetAllKeys = __webpack_require__(400),
+    getSymbols = __webpack_require__(402),
+    keys = __webpack_require__(405);
 
 /**
  * Creates an array of own enumerable property names and symbols of `object`.
@@ -69957,11 +69196,11 @@ module.exports = getAllKeys;
 
 
 /***/ }),
-/* 404 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayPush = __webpack_require__(405),
-    isArray = __webpack_require__(121);
+var arrayPush = __webpack_require__(401),
+    isArray = __webpack_require__(120);
 
 /**
  * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -69983,7 +69222,7 @@ module.exports = baseGetAllKeys;
 
 
 /***/ }),
-/* 405 */
+/* 401 */
 /***/ (function(module, exports) {
 
 /**
@@ -70009,11 +69248,11 @@ module.exports = arrayPush;
 
 
 /***/ }),
-/* 406 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayFilter = __webpack_require__(407),
-    stubArray = __webpack_require__(408);
+var arrayFilter = __webpack_require__(403),
+    stubArray = __webpack_require__(404);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -70045,7 +69284,7 @@ module.exports = getSymbols;
 
 
 /***/ }),
-/* 407 */
+/* 403 */
 /***/ (function(module, exports) {
 
 /**
@@ -70076,7 +69315,7 @@ module.exports = arrayFilter;
 
 
 /***/ }),
-/* 408 */
+/* 404 */
 /***/ (function(module, exports) {
 
 /**
@@ -70105,12 +69344,12 @@ module.exports = stubArray;
 
 
 /***/ }),
-/* 409 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(410),
-    baseKeys = __webpack_require__(419),
-    isArrayLike = __webpack_require__(423);
+var arrayLikeKeys = __webpack_require__(406),
+    baseKeys = __webpack_require__(415),
+    isArrayLike = __webpack_require__(419);
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -70148,15 +69387,15 @@ module.exports = keys;
 
 
 /***/ }),
-/* 410 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(411),
-    isArguments = __webpack_require__(412),
-    isArray = __webpack_require__(121),
-    isBuffer = __webpack_require__(146),
-    isIndex = __webpack_require__(415),
-    isTypedArray = __webpack_require__(147);
+var baseTimes = __webpack_require__(407),
+    isArguments = __webpack_require__(408),
+    isArray = __webpack_require__(120),
+    isBuffer = __webpack_require__(145),
+    isIndex = __webpack_require__(411),
+    isTypedArray = __webpack_require__(146);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -70203,7 +69442,7 @@ module.exports = arrayLikeKeys;
 
 
 /***/ }),
-/* 411 */
+/* 407 */
 /***/ (function(module, exports) {
 
 /**
@@ -70229,10 +69468,10 @@ module.exports = baseTimes;
 
 
 /***/ }),
-/* 412 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(413),
+var baseIsArguments = __webpack_require__(409),
     isObjectLike = __webpack_require__(90);
 
 /** Used for built-in method references. */
@@ -70271,7 +69510,7 @@ module.exports = isArguments;
 
 
 /***/ }),
-/* 413 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(89),
@@ -70295,7 +69534,7 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 414 */
+/* 410 */
 /***/ (function(module, exports) {
 
 /**
@@ -70319,7 +69558,7 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 415 */
+/* 411 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -70350,11 +69589,11 @@ module.exports = isIndex;
 
 
 /***/ }),
-/* 416 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(89),
-    isLength = __webpack_require__(148),
+    isLength = __webpack_require__(147),
     isObjectLike = __webpack_require__(90);
 
 /** `Object#toString` result references. */
@@ -70416,7 +69655,7 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 417 */
+/* 413 */
 /***/ (function(module, exports) {
 
 /**
@@ -70436,13 +69675,13 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 418 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(142);
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(141);
 
 /** Detect free variable `exports`. */
-var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+var freeExports =  true && exports && !exports.nodeType && exports;
 
 /** Detect free variable `module`. */
 var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
@@ -70470,14 +69709,14 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(97)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(96)(module)))
 
 /***/ }),
-/* 419 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isPrototype = __webpack_require__(420),
-    nativeKeys = __webpack_require__(421);
+var isPrototype = __webpack_require__(416),
+    nativeKeys = __webpack_require__(417);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -70509,7 +69748,7 @@ module.exports = baseKeys;
 
 
 /***/ }),
-/* 420 */
+/* 416 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -70533,10 +69772,10 @@ module.exports = isPrototype;
 
 
 /***/ }),
-/* 421 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(422);
+var overArg = __webpack_require__(418);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeKeys = overArg(Object.keys, Object);
@@ -70545,7 +69784,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 422 */
+/* 418 */
 /***/ (function(module, exports) {
 
 /**
@@ -70566,11 +69805,11 @@ module.exports = overArg;
 
 
 /***/ }),
-/* 423 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(141),
-    isLength = __webpack_require__(148);
+var isFunction = __webpack_require__(140),
+    isLength = __webpack_require__(147);
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -70605,16 +69844,16 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 424 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var DataView = __webpack_require__(425),
-    Map = __webpack_require__(119),
-    Promise = __webpack_require__(426),
-    Set = __webpack_require__(427),
-    WeakMap = __webpack_require__(428),
+var DataView = __webpack_require__(421),
+    Map = __webpack_require__(118),
+    Promise = __webpack_require__(422),
+    Set = __webpack_require__(423),
+    WeakMap = __webpack_require__(424),
     baseGetTag = __webpack_require__(89),
-    toSource = __webpack_require__(143);
+    toSource = __webpack_require__(142);
 
 /** `Object#toString` result references. */
 var mapTag = '[object Map]',
@@ -70669,11 +69908,11 @@ module.exports = getTag;
 
 
 /***/ }),
-/* 425 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(76),
-    root = __webpack_require__(54);
+    root = __webpack_require__(53);
 
 /* Built-in method references that are verified to be native. */
 var DataView = getNative(root, 'DataView');
@@ -70682,11 +69921,11 @@ module.exports = DataView;
 
 
 /***/ }),
-/* 426 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(76),
-    root = __webpack_require__(54);
+    root = __webpack_require__(53);
 
 /* Built-in method references that are verified to be native. */
 var Promise = getNative(root, 'Promise');
@@ -70695,11 +69934,11 @@ module.exports = Promise;
 
 
 /***/ }),
-/* 427 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(76),
-    root = __webpack_require__(54);
+    root = __webpack_require__(53);
 
 /* Built-in method references that are verified to be native. */
 var Set = getNative(root, 'Set');
@@ -70708,11 +69947,11 @@ module.exports = Set;
 
 
 /***/ }),
-/* 428 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(76),
-    root = __webpack_require__(54);
+    root = __webpack_require__(53);
 
 /* Built-in method references that are verified to be native. */
 var WeakMap = getNative(root, 'WeakMap');
@@ -70721,10 +69960,10 @@ module.exports = WeakMap;
 
 
 /***/ }),
-/* 429 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(54);
+var root = __webpack_require__(53);
 
 /**
  * Gets the timestamp of the number of milliseconds that have elapsed since
@@ -70750,12 +69989,12 @@ module.exports = now;
 
 
 /***/ }),
-/* 430 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTrim = __webpack_require__(431),
-    isObject = __webpack_require__(100),
-    isSymbol = __webpack_require__(433);
+var baseTrim = __webpack_require__(427),
+    isObject = __webpack_require__(99),
+    isSymbol = __webpack_require__(429);
 
 /** Used as references for various `Number` constants. */
 var NAN = 0 / 0;
@@ -70820,10 +70059,10 @@ module.exports = toNumber;
 
 
 /***/ }),
-/* 431 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var trimmedEndIndex = __webpack_require__(432);
+var trimmedEndIndex = __webpack_require__(428);
 
 /** Used to match leading whitespace. */
 var reTrimStart = /^\s+/;
@@ -70845,7 +70084,7 @@ module.exports = baseTrim;
 
 
 /***/ }),
-/* 432 */
+/* 428 */
 /***/ (function(module, exports) {
 
 /** Used to match a single whitespace character. */
@@ -70870,7 +70109,7 @@ module.exports = trimmedEndIndex;
 
 
 /***/ }),
-/* 433 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(89),
@@ -70905,7 +70144,7 @@ module.exports = isSymbol;
 
 
 /***/ }),
-/* 434 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70924,7 +70163,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CloseOutlined = _interopRequireDefault(__webpack_require__(435));
+var _CloseOutlined = _interopRequireDefault(__webpack_require__(431));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -70944,7 +70183,7 @@ var _default = /*#__PURE__*/React.forwardRef(CloseOutlined);
 exports.default = _default;
 
 /***/ }),
-/* 435 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70956,7 +70195,7 @@ exports.default = CloseOutlined;
 
 
 /***/ }),
-/* 436 */
+/* 432 */
 /***/ (function(module, exports) {
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -70977,7 +70216,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 437 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71032,7 +70271,7 @@ var _default = warningOnce;
 exports.default = _default;
 
 /***/ }),
-/* 438 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71047,7 +70286,7 @@ exports.injectCSS = injectCSS;
 exports.removeCSS = removeCSS;
 exports.updateCSS = updateCSS;
 
-var _canUseDom = _interopRequireDefault(__webpack_require__(439));
+var _canUseDom = _interopRequireDefault(__webpack_require__(435));
 
 var MARK_KEY = "rc-util-key";
 
@@ -71158,7 +70397,7 @@ function updateCSS(css, key) {
 }
 
 /***/ }),
-/* 439 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71174,7 +70413,7 @@ function canUseDom() {
 }
 
 /***/ }),
-/* 440 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71190,9 +70429,9 @@ exports.getTwoToneColor = getTwoToneColor;
 
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(11));
 
-var _IconBase = _interopRequireDefault(__webpack_require__(151));
+var _IconBase = _interopRequireDefault(__webpack_require__(150));
 
-var _utils = __webpack_require__(122);
+var _utils = __webpack_require__(121);
 
 function setTwoToneColor(twoToneColor) {
   var _normalizeTwoToneColo = (0, _utils.normalizeTwoToneColors)(twoToneColor),
@@ -71217,7 +70456,7 @@ function getTwoToneColor() {
 }
 
 /***/ }),
-/* 441 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71230,7 +70469,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 442 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71331,7 +70570,7 @@ module.exports = function (encodedURI) {
 
 
 /***/ }),
-/* 443 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71350,7 +70589,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CheckCircleFilled = _interopRequireDefault(__webpack_require__(444));
+var _CheckCircleFilled = _interopRequireDefault(__webpack_require__(440));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -71370,7 +70609,7 @@ var _default = /*#__PURE__*/React.forwardRef(CheckCircleFilled);
 exports.default = _default;
 
 /***/ }),
-/* 444 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71379,6 +70618,108 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", { value: true });
 var CheckCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z" } }] }, "name": "check-circle", "theme": "filled" };
 exports.default = CheckCircleFilled;
+
+
+/***/ }),
+/* 441 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _InfoCircleFilled = _interopRequireDefault(__webpack_require__(442));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var InfoCircleFilled = function InfoCircleFilled(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _InfoCircleFilled.default
+  }));
+};
+
+InfoCircleFilled.displayName = 'InfoCircleFilled';
+
+var _default = /*#__PURE__*/React.forwardRef(InfoCircleFilled);
+
+exports.default = _default;
+
+/***/ }),
+/* 442 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var InfoCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "info-circle", "theme": "filled" };
+exports.default = InfoCircleFilled;
+
+
+/***/ }),
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _CloseCircleFilled = _interopRequireDefault(__webpack_require__(444));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var CloseCircleFilled = function CloseCircleFilled(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _CloseCircleFilled.default
+  }));
+};
+
+CloseCircleFilled.displayName = 'CloseCircleFilled';
+
+var _default = /*#__PURE__*/React.forwardRef(CloseCircleFilled);
+
+exports.default = _default;
+
+/***/ }),
+/* 444 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var CloseCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z" } }] }, "name": "close-circle", "theme": "filled" };
+exports.default = CloseCircleFilled;
 
 
 /***/ }),
@@ -71401,22 +70742,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _InfoCircleFilled = _interopRequireDefault(__webpack_require__(446));
+var _ExclamationCircleFilled = _interopRequireDefault(__webpack_require__(446));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var InfoCircleFilled = function InfoCircleFilled(props, ref) {
+var ExclamationCircleFilled = function ExclamationCircleFilled(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _InfoCircleFilled.default
+    icon: _ExclamationCircleFilled.default
   }));
 };
 
-InfoCircleFilled.displayName = 'InfoCircleFilled';
+ExclamationCircleFilled.displayName = 'ExclamationCircleFilled';
 
-var _default = /*#__PURE__*/React.forwardRef(InfoCircleFilled);
+var _default = /*#__PURE__*/React.forwardRef(ExclamationCircleFilled);
 
 exports.default = _default;
 
@@ -71428,8 +70769,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var InfoCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "info-circle", "theme": "filled" };
-exports.default = InfoCircleFilled;
+var ExclamationCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "exclamation-circle", "theme": "filled" };
+exports.default = ExclamationCircleFilled;
 
 
 /***/ }),
@@ -71452,22 +70793,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CloseCircleFilled = _interopRequireDefault(__webpack_require__(448));
+var _CheckCircleOutlined = _interopRequireDefault(__webpack_require__(448));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var CloseCircleFilled = function CloseCircleFilled(props, ref) {
+var CheckCircleOutlined = function CheckCircleOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _CloseCircleFilled.default
+    icon: _CheckCircleOutlined.default
   }));
 };
 
-CloseCircleFilled.displayName = 'CloseCircleFilled';
+CheckCircleOutlined.displayName = 'CheckCircleOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(CloseCircleFilled);
+var _default = /*#__PURE__*/React.forwardRef(CheckCircleOutlined);
 
 exports.default = _default;
 
@@ -71479,8 +70820,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var CloseCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z" } }] }, "name": "close-circle", "theme": "filled" };
-exports.default = CloseCircleFilled;
+var CheckCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0051.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z" } }, { "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }] }, "name": "check-circle", "theme": "outlined" };
+exports.default = CheckCircleOutlined;
 
 
 /***/ }),
@@ -71503,22 +70844,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _ExclamationCircleFilled = _interopRequireDefault(__webpack_require__(450));
+var _InfoCircleOutlined = _interopRequireDefault(__webpack_require__(450));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var ExclamationCircleFilled = function ExclamationCircleFilled(props, ref) {
+var InfoCircleOutlined = function InfoCircleOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _ExclamationCircleFilled.default
+    icon: _InfoCircleOutlined.default
   }));
 };
 
-ExclamationCircleFilled.displayName = 'ExclamationCircleFilled';
+InfoCircleOutlined.displayName = 'InfoCircleOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(ExclamationCircleFilled);
+var _default = /*#__PURE__*/React.forwardRef(InfoCircleOutlined);
 
 exports.default = _default;
 
@@ -71530,8 +70871,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var ExclamationCircleFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "exclamation-circle", "theme": "filled" };
-exports.default = ExclamationCircleFilled;
+var InfoCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" } }] }, "name": "info-circle", "theme": "outlined" };
+exports.default = InfoCircleOutlined;
 
 
 /***/ }),
@@ -71554,22 +70895,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CheckCircleOutlined = _interopRequireDefault(__webpack_require__(452));
+var _CloseCircleOutlined = _interopRequireDefault(__webpack_require__(452));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var CheckCircleOutlined = function CheckCircleOutlined(props, ref) {
+var CloseCircleOutlined = function CloseCircleOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _CheckCircleOutlined.default
+    icon: _CloseCircleOutlined.default
   }));
 };
 
-CheckCircleOutlined.displayName = 'CheckCircleOutlined';
+CloseCircleOutlined.displayName = 'CloseCircleOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(CheckCircleOutlined);
+var _default = /*#__PURE__*/React.forwardRef(CloseCircleOutlined);
 
 exports.default = _default;
 
@@ -71581,8 +70922,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0051.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z" } }, { "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }] }, "name": "check-circle", "theme": "outlined" };
-exports.default = CheckCircleOutlined;
+var CloseCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M685.4 354.8c0-4.4-3.6-8-8-8l-66 .3L512 465.6l-99.3-118.4-66.1-.3c-4.4 0-8 3.5-8 8 0 1.9.7 3.7 1.9 5.2l130.1 155L340.5 670a8.32 8.32 0 00-1.9 5.2c0 4.4 3.6 8 8 8l66.1-.3L512 564.4l99.3 118.4 66 .3c4.4 0 8-3.5 8-8 0-1.9-.7-3.7-1.9-5.2L553.5 515l130.1-155c1.2-1.4 1.8-3.3 1.8-5.2z" } }, { "tag": "path", "attrs": { "d": "M512 65C264.6 65 64 265.6 64 513s200.6 448 448 448 448-200.6 448-448S759.4 65 512 65zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }] }, "name": "close-circle", "theme": "outlined" };
+exports.default = CloseCircleOutlined;
 
 
 /***/ }),
@@ -71605,22 +70946,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _InfoCircleOutlined = _interopRequireDefault(__webpack_require__(454));
+var _ExclamationCircleOutlined = _interopRequireDefault(__webpack_require__(454));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var InfoCircleOutlined = function InfoCircleOutlined(props, ref) {
+var ExclamationCircleOutlined = function ExclamationCircleOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _InfoCircleOutlined.default
+    icon: _ExclamationCircleOutlined.default
   }));
 };
 
-InfoCircleOutlined.displayName = 'InfoCircleOutlined';
+ExclamationCircleOutlined.displayName = 'ExclamationCircleOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(InfoCircleOutlined);
+var _default = /*#__PURE__*/React.forwardRef(ExclamationCircleOutlined);
 
 exports.default = _default;
 
@@ -71632,60 +70973,31 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var InfoCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z" } }] }, "name": "info-circle", "theme": "outlined" };
-exports.default = InfoCircleOutlined;
+var ExclamationCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z" } }] }, "name": "exclamation-circle", "theme": "outlined" };
+exports.default = ExclamationCircleOutlined;
 
 
 /***/ }),
 /* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var arrayLikeToArray = __webpack_require__(136);
 
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
 
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _CloseCircleOutlined = _interopRequireDefault(__webpack_require__(456));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var CloseCircleOutlined = function CloseCircleOutlined(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _CloseCircleOutlined.default
-  }));
-};
-
-CloseCircleOutlined.displayName = 'CloseCircleOutlined';
-
-var _default = /*#__PURE__*/React.forwardRef(CloseCircleOutlined);
-
-exports.default = _default;
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 456 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
 
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var CloseCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M685.4 354.8c0-4.4-3.6-8-8-8l-66 .3L512 465.6l-99.3-118.4-66.1-.3c-4.4 0-8 3.5-8 8 0 1.9.7 3.7 1.9 5.2l130.1 155L340.5 670a8.32 8.32 0 00-1.9 5.2c0 4.4 3.6 8 8 8l66.1-.3L512 564.4l99.3 118.4 66 .3c4.4 0 8-3.5 8-8 0-1.9-.7-3.7-1.9-5.2L553.5 515l130.1-155c1.2-1.4 1.8-3.3 1.8-5.2z" } }, { "tag": "path", "attrs": { "d": "M512 65C264.6 65 64 265.6 64 513s200.6 448 448 448 448-200.6 448-448S759.4 65 512 65zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }] }, "name": "close-circle", "theme": "outlined" };
-exports.default = CloseCircleOutlined;
-
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 457 */
@@ -71707,22 +71019,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _ExclamationCircleOutlined = _interopRequireDefault(__webpack_require__(458));
+var _LoadingOutlined = _interopRequireDefault(__webpack_require__(458));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var ExclamationCircleOutlined = function ExclamationCircleOutlined(props, ref) {
+var LoadingOutlined = function LoadingOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _ExclamationCircleOutlined.default
+    icon: _LoadingOutlined.default
   }));
 };
 
-ExclamationCircleOutlined.displayName = 'ExclamationCircleOutlined';
+LoadingOutlined.displayName = 'LoadingOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(ExclamationCircleOutlined);
+var _default = /*#__PURE__*/React.forwardRef(LoadingOutlined);
 
 exports.default = _default;
 
@@ -71734,31 +71046,60 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var ExclamationCircleOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z" } }] }, "name": "exclamation-circle", "theme": "outlined" };
-exports.default = ExclamationCircleOutlined;
+var LoadingOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z" } }] }, "name": "loading", "theme": "outlined" };
+exports.default = LoadingOutlined;
 
 
 /***/ }),
 /* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeToArray = __webpack_require__(137);
+"use strict";
 
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
 
-module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _FileOutlined = _interopRequireDefault(__webpack_require__(460));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var FileOutlined = function FileOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _FileOutlined.default
+  }));
+};
+
+FileOutlined.displayName = 'FileOutlined';
+
+var _default = /*#__PURE__*/React.forwardRef(FileOutlined);
+
+exports.default = _default;
 
 /***/ }),
 /* 460 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
+"use strict";
 
-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var FileOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z" } }] }, "name": "file", "theme": "outlined" };
+exports.default = FileOutlined;
+
 
 /***/ }),
 /* 461 */
@@ -71780,22 +71121,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _LoadingOutlined = _interopRequireDefault(__webpack_require__(462));
+var _MinusSquareOutlined = _interopRequireDefault(__webpack_require__(462));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var LoadingOutlined = function LoadingOutlined(props, ref) {
+var MinusSquareOutlined = function MinusSquareOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _LoadingOutlined.default
+    icon: _MinusSquareOutlined.default
   }));
 };
 
-LoadingOutlined.displayName = 'LoadingOutlined';
+MinusSquareOutlined.displayName = 'MinusSquareOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(LoadingOutlined);
+var _default = /*#__PURE__*/React.forwardRef(MinusSquareOutlined);
 
 exports.default = _default;
 
@@ -71807,8 +71148,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var LoadingOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z" } }] }, "name": "loading", "theme": "outlined" };
-exports.default = LoadingOutlined;
+var MinusSquareOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "minus-square", "theme": "outlined" };
+exports.default = MinusSquareOutlined;
 
 
 /***/ }),
@@ -71831,22 +71172,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _FileOutlined = _interopRequireDefault(__webpack_require__(464));
+var _PlusSquareOutlined = _interopRequireDefault(__webpack_require__(464));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var FileOutlined = function FileOutlined(props, ref) {
+var PlusSquareOutlined = function PlusSquareOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _FileOutlined.default
+    icon: _PlusSquareOutlined.default
   }));
 };
 
-FileOutlined.displayName = 'FileOutlined';
+PlusSquareOutlined.displayName = 'PlusSquareOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(FileOutlined);
+var _default = /*#__PURE__*/React.forwardRef(PlusSquareOutlined);
 
 exports.default = _default;
 
@@ -71858,8 +71199,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var FileOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z" } }] }, "name": "file", "theme": "outlined" };
-exports.default = FileOutlined;
+var PlusSquareOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "plus-square", "theme": "outlined" };
+exports.default = PlusSquareOutlined;
 
 
 /***/ }),
@@ -71882,22 +71223,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _MinusSquareOutlined = _interopRequireDefault(__webpack_require__(466));
+var _CaretDownFilled = _interopRequireDefault(__webpack_require__(466));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var MinusSquareOutlined = function MinusSquareOutlined(props, ref) {
+var CaretDownFilled = function CaretDownFilled(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _MinusSquareOutlined.default
+    icon: _CaretDownFilled.default
   }));
 };
 
-MinusSquareOutlined.displayName = 'MinusSquareOutlined';
+CaretDownFilled.displayName = 'CaretDownFilled';
 
-var _default = /*#__PURE__*/React.forwardRef(MinusSquareOutlined);
+var _default = /*#__PURE__*/React.forwardRef(CaretDownFilled);
 
 exports.default = _default;
 
@@ -71909,8 +71250,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var MinusSquareOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "minus-square", "theme": "outlined" };
-exports.default = MinusSquareOutlined;
+var CaretDownFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" } }] }, "name": "caret-down", "theme": "filled" };
+exports.default = CaretDownFilled;
 
 
 /***/ }),
@@ -71933,22 +71274,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _PlusSquareOutlined = _interopRequireDefault(__webpack_require__(468));
+var _FolderOpenOutlined = _interopRequireDefault(__webpack_require__(468));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var PlusSquareOutlined = function PlusSquareOutlined(props, ref) {
+var FolderOpenOutlined = function FolderOpenOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _PlusSquareOutlined.default
+    icon: _FolderOpenOutlined.default
   }));
 };
 
-PlusSquareOutlined.displayName = 'PlusSquareOutlined';
+FolderOpenOutlined.displayName = 'FolderOpenOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(PlusSquareOutlined);
+var _default = /*#__PURE__*/React.forwardRef(FolderOpenOutlined);
 
 exports.default = _default;
 
@@ -71960,8 +71301,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var PlusSquareOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "plus-square", "theme": "outlined" };
-exports.default = PlusSquareOutlined;
+var FolderOpenOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z" } }] }, "name": "folder-open", "theme": "outlined" };
+exports.default = FolderOpenOutlined;
 
 
 /***/ }),
@@ -71984,109 +71325,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CaretDownFilled = _interopRequireDefault(__webpack_require__(470));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var CaretDownFilled = function CaretDownFilled(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _CaretDownFilled.default
-  }));
-};
-
-CaretDownFilled.displayName = 'CaretDownFilled';
-
-var _default = /*#__PURE__*/React.forwardRef(CaretDownFilled);
-
-exports.default = _default;
-
-/***/ }),
-/* 470 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var CaretDownFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" } }] }, "name": "caret-down", "theme": "filled" };
-exports.default = CaretDownFilled;
-
-
-/***/ }),
-/* 471 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _FolderOpenOutlined = _interopRequireDefault(__webpack_require__(472));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var FolderOpenOutlined = function FolderOpenOutlined(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _FolderOpenOutlined.default
-  }));
-};
-
-FolderOpenOutlined.displayName = 'FolderOpenOutlined';
-
-var _default = /*#__PURE__*/React.forwardRef(FolderOpenOutlined);
-
-exports.default = _default;
-
-/***/ }),
-/* 472 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var FolderOpenOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z" } }] }, "name": "folder-open", "theme": "outlined" };
-exports.default = FolderOpenOutlined;
-
-
-/***/ }),
-/* 473 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _FolderOutlined = _interopRequireDefault(__webpack_require__(474));
+var _FolderOutlined = _interopRequireDefault(__webpack_require__(470));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -72106,7 +71345,7 @@ var _default = /*#__PURE__*/React.forwardRef(FolderOutlined);
 exports.default = _default;
 
 /***/ }),
-/* 474 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72118,7 +71357,7 @@ exports.default = FolderOutlined;
 
 
 /***/ }),
-/* 475 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72131,7 +71370,7 @@ exports.default = FolderOutlined;
 
 
 
-var ReactPropTypesSecret = __webpack_require__(476);
+var ReactPropTypesSecret = __webpack_require__(472);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -72190,7 +71429,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 476 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72209,12 +71448,114 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 477 */
+/* 473 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
+
+
+/***/ }),
+/* 474 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _SearchOutlined = _interopRequireDefault(__webpack_require__(475));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var SearchOutlined = function SearchOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _SearchOutlined.default
+  }));
+};
+
+SearchOutlined.displayName = 'SearchOutlined';
+
+var _default = /*#__PURE__*/React.forwardRef(SearchOutlined);
+
+exports.default = _default;
+
+/***/ }),
+/* 475 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var SearchOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" } }] }, "name": "search", "theme": "outlined" };
+exports.default = SearchOutlined;
+
+
+/***/ }),
+/* 476 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _DownOutlined = _interopRequireDefault(__webpack_require__(477));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var DownOutlined = function DownOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _DownOutlined.default
+  }));
+};
+
+DownOutlined.displayName = 'DownOutlined';
+
+var _default = /*#__PURE__*/React.forwardRef(DownOutlined);
+
+exports.default = _default;
+
+/***/ }),
+/* 477 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var DownOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" } }] }, "name": "down", "theme": "outlined" };
+exports.default = DownOutlined;
 
 
 /***/ }),
@@ -72237,22 +71578,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _SearchOutlined = _interopRequireDefault(__webpack_require__(479));
+var _CheckOutlined = _interopRequireDefault(__webpack_require__(479));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var SearchOutlined = function SearchOutlined(props, ref) {
+var CheckOutlined = function CheckOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _SearchOutlined.default
+    icon: _CheckOutlined.default
   }));
 };
 
-SearchOutlined.displayName = 'SearchOutlined';
+CheckOutlined.displayName = 'CheckOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(SearchOutlined);
+var _default = /*#__PURE__*/React.forwardRef(CheckOutlined);
 
 exports.default = _default;
 
@@ -72264,8 +71605,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var SearchOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" } }] }, "name": "search", "theme": "outlined" };
-exports.default = SearchOutlined;
+var CheckOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 00-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z" } }] }, "name": "check", "theme": "outlined" };
+exports.default = CheckOutlined;
 
 
 /***/ }),
@@ -72288,22 +71629,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _DownOutlined = _interopRequireDefault(__webpack_require__(481));
+var _EyeOutlined = _interopRequireDefault(__webpack_require__(481));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var DownOutlined = function DownOutlined(props, ref) {
+var EyeOutlined = function EyeOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _DownOutlined.default
+    icon: _EyeOutlined.default
   }));
 };
 
-DownOutlined.displayName = 'DownOutlined';
+EyeOutlined.displayName = 'EyeOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(DownOutlined);
+var _default = /*#__PURE__*/React.forwardRef(EyeOutlined);
 
 exports.default = _default;
 
@@ -72315,8 +71656,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var DownOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" } }] }, "name": "down", "theme": "outlined" };
-exports.default = DownOutlined;
+var EyeOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" } }] }, "name": "eye", "theme": "outlined" };
+exports.default = EyeOutlined;
 
 
 /***/ }),
@@ -72339,109 +71680,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CheckOutlined = _interopRequireDefault(__webpack_require__(483));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var CheckOutlined = function CheckOutlined(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _CheckOutlined.default
-  }));
-};
-
-CheckOutlined.displayName = 'CheckOutlined';
-
-var _default = /*#__PURE__*/React.forwardRef(CheckOutlined);
-
-exports.default = _default;
-
-/***/ }),
-/* 483 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var CheckOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 00-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z" } }] }, "name": "check", "theme": "outlined" };
-exports.default = CheckOutlined;
-
-
-/***/ }),
-/* 484 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _EyeOutlined = _interopRequireDefault(__webpack_require__(485));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var EyeOutlined = function EyeOutlined(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _EyeOutlined.default
-  }));
-};
-
-EyeOutlined.displayName = 'EyeOutlined';
-
-var _default = /*#__PURE__*/React.forwardRef(EyeOutlined);
-
-exports.default = _default;
-
-/***/ }),
-/* 485 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var EyeOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" } }] }, "name": "eye", "theme": "outlined" };
-exports.default = EyeOutlined;
-
-
-/***/ }),
-/* 486 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _EyeInvisibleOutlined = _interopRequireDefault(__webpack_require__(487));
+var _EyeInvisibleOutlined = _interopRequireDefault(__webpack_require__(483));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -72461,7 +71700,7 @@ var _default = /*#__PURE__*/React.forwardRef(EyeInvisibleOutlined);
 exports.default = _default;
 
 /***/ }),
-/* 487 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72473,7 +71712,7 @@ exports.default = EyeInvisibleOutlined;
 
 
 /***/ }),
-/* 488 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72487,9 +71726,9 @@ exports.default = EyeInvisibleOutlined;
 
 
 
-var base64 = __webpack_require__(489)
-var ieee754 = __webpack_require__(490)
-var isArray = __webpack_require__(491)
+var base64 = __webpack_require__(485)
+var ieee754 = __webpack_require__(486)
+var isArray = __webpack_require__(487)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -74270,7 +73509,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 489 */
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74427,7 +73666,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 490 */
+/* 486 */
 /***/ (function(module, exports) {
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -74518,7 +73757,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 491 */
+/* 487 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -74529,7 +73768,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 492 */
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74544,7 +73783,7 @@ function getDisplayName(Component) {
 }
 
 /***/ }),
-/* 493 */
+/* 489 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -74574,7 +73813,7 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 494 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74593,7 +73832,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _BarsOutlined = _interopRequireDefault(__webpack_require__(495));
+var _BarsOutlined = _interopRequireDefault(__webpack_require__(491));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -74613,7 +73852,7 @@ var _default = /*#__PURE__*/React.forwardRef(BarsOutlined);
 exports.default = _default;
 
 /***/ }),
-/* 495 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74622,6 +73861,108 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", { value: true });
 var BarsOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M912 192H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM104 228a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "bars", "theme": "outlined" };
 exports.default = BarsOutlined;
+
+
+/***/ }),
+/* 492 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _RightOutlined = _interopRequireDefault(__webpack_require__(493));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var RightOutlined = function RightOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _RightOutlined.default
+  }));
+};
+
+RightOutlined.displayName = 'RightOutlined';
+
+var _default = /*#__PURE__*/React.forwardRef(RightOutlined);
+
+exports.default = _default;
+
+/***/ }),
+/* 493 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var RightOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z" } }] }, "name": "right", "theme": "outlined" };
+exports.default = RightOutlined;
+
+
+/***/ }),
+/* 494 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(31);
+
+var _interopRequireDefault = __webpack_require__(27);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
+
+var React = _interopRequireWildcard(__webpack_require__(0));
+
+var _LeftOutlined = _interopRequireDefault(__webpack_require__(495));
+
+var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
+
+// GENERATE BY ./scripts/generate.ts
+// DON NOT EDIT IT MANUALLY
+var LeftOutlined = function LeftOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+    ref: ref,
+    icon: _LeftOutlined.default
+  }));
+};
+
+LeftOutlined.displayName = 'LeftOutlined';
+
+var _default = /*#__PURE__*/React.forwardRef(LeftOutlined);
+
+exports.default = _default;
+
+/***/ }),
+/* 495 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// This icon file is generated automatically.
+Object.defineProperty(exports, "__esModule", { value: true });
+var LeftOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" } }] }, "name": "left", "theme": "outlined" };
+exports.default = LeftOutlined;
 
 
 /***/ }),
@@ -74644,22 +73985,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _RightOutlined = _interopRequireDefault(__webpack_require__(497));
+var _FilterFilled = _interopRequireDefault(__webpack_require__(497));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var RightOutlined = function RightOutlined(props, ref) {
+var FilterFilled = function FilterFilled(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _RightOutlined.default
+    icon: _FilterFilled.default
   }));
 };
 
-RightOutlined.displayName = 'RightOutlined';
+FilterFilled.displayName = 'FilterFilled';
 
-var _default = /*#__PURE__*/React.forwardRef(RightOutlined);
+var _default = /*#__PURE__*/React.forwardRef(FilterFilled);
 
 exports.default = _default;
 
@@ -74671,8 +74012,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var RightOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z" } }] }, "name": "right", "theme": "outlined" };
-exports.default = RightOutlined;
+var FilterFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z" } }] }, "name": "filter", "theme": "filled" };
+exports.default = FilterFilled;
 
 
 /***/ }),
@@ -74695,22 +74036,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _LeftOutlined = _interopRequireDefault(__webpack_require__(499));
+var _EllipsisOutlined = _interopRequireDefault(__webpack_require__(499));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var LeftOutlined = function LeftOutlined(props, ref) {
+var EllipsisOutlined = function EllipsisOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _LeftOutlined.default
+    icon: _EllipsisOutlined.default
   }));
 };
 
-LeftOutlined.displayName = 'LeftOutlined';
+EllipsisOutlined.displayName = 'EllipsisOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(LeftOutlined);
+var _default = /*#__PURE__*/React.forwardRef(EllipsisOutlined);
 
 exports.default = _default;
 
@@ -74722,8 +74063,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var LeftOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" } }] }, "name": "left", "theme": "outlined" };
-exports.default = LeftOutlined;
+var EllipsisOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "ellipsis", "theme": "outlined" };
+exports.default = EllipsisOutlined;
 
 
 /***/ }),
@@ -74746,22 +74087,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _FilterFilled = _interopRequireDefault(__webpack_require__(501));
+var _CaretUpOutlined = _interopRequireDefault(__webpack_require__(501));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var FilterFilled = function FilterFilled(props, ref) {
+var CaretUpOutlined = function CaretUpOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _FilterFilled.default
+    icon: _CaretUpOutlined.default
   }));
 };
 
-FilterFilled.displayName = 'FilterFilled';
+CaretUpOutlined.displayName = 'CaretUpOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(FilterFilled);
+var _default = /*#__PURE__*/React.forwardRef(CaretUpOutlined);
 
 exports.default = _default;
 
@@ -74773,8 +74114,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var FilterFilled = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z" } }] }, "name": "filter", "theme": "filled" };
-exports.default = FilterFilled;
+var CaretUpOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z" } }] }, "name": "caret-up", "theme": "outlined" };
+exports.default = CaretUpOutlined;
 
 
 /***/ }),
@@ -74797,22 +74138,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _EllipsisOutlined = _interopRequireDefault(__webpack_require__(503));
+var _CaretDownOutlined = _interopRequireDefault(__webpack_require__(503));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var EllipsisOutlined = function EllipsisOutlined(props, ref) {
+var CaretDownOutlined = function CaretDownOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _EllipsisOutlined.default
+    icon: _CaretDownOutlined.default
   }));
 };
 
-EllipsisOutlined.displayName = 'EllipsisOutlined';
+CaretDownOutlined.displayName = 'CaretDownOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(EllipsisOutlined);
+var _default = /*#__PURE__*/React.forwardRef(CaretDownOutlined);
 
 exports.default = _default;
 
@@ -74824,8 +74165,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var EllipsisOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "ellipsis", "theme": "outlined" };
-exports.default = EllipsisOutlined;
+var CaretDownOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" } }] }, "name": "caret-down", "theme": "outlined" };
+exports.default = CaretDownOutlined;
 
 
 /***/ }),
@@ -74848,22 +74189,22 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CaretUpOutlined = _interopRequireDefault(__webpack_require__(505));
+var _DoubleLeftOutlined = _interopRequireDefault(__webpack_require__(505));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
 // GENERATE BY ./scripts/generate.ts
 // DON NOT EDIT IT MANUALLY
-var CaretUpOutlined = function CaretUpOutlined(props, ref) {
+var DoubleLeftOutlined = function DoubleLeftOutlined(props, ref) {
   return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
     ref: ref,
-    icon: _CaretUpOutlined.default
+    icon: _DoubleLeftOutlined.default
   }));
 };
 
-CaretUpOutlined.displayName = 'CaretUpOutlined';
+DoubleLeftOutlined.displayName = 'DoubleLeftOutlined';
 
-var _default = /*#__PURE__*/React.forwardRef(CaretUpOutlined);
+var _default = /*#__PURE__*/React.forwardRef(DoubleLeftOutlined);
 
 exports.default = _default;
 
@@ -74875,8 +74216,8 @@ exports.default = _default;
 
 // This icon file is generated automatically.
 Object.defineProperty(exports, "__esModule", { value: true });
-var CaretUpOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z" } }] }, "name": "caret-up", "theme": "outlined" };
-exports.default = CaretUpOutlined;
+var DoubleLeftOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M272.9 512l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L186.8 492.3a31.99 31.99 0 000 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H532c6.7 0 10.4-7.7 6.3-12.9L272.9 512zm304 0l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L490.8 492.3a31.99 31.99 0 000 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H836c6.7 0 10.4-7.7 6.3-12.9L576.9 512z" } }] }, "name": "double-left", "theme": "outlined" };
+exports.default = DoubleLeftOutlined;
 
 
 /***/ }),
@@ -74899,109 +74240,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _CaretDownOutlined = _interopRequireDefault(__webpack_require__(507));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var CaretDownOutlined = function CaretDownOutlined(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _CaretDownOutlined.default
-  }));
-};
-
-CaretDownOutlined.displayName = 'CaretDownOutlined';
-
-var _default = /*#__PURE__*/React.forwardRef(CaretDownOutlined);
-
-exports.default = _default;
-
-/***/ }),
-/* 507 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var CaretDownOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" } }] }, "name": "caret-down", "theme": "outlined" };
-exports.default = CaretDownOutlined;
-
-
-/***/ }),
-/* 508 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _DoubleLeftOutlined = _interopRequireDefault(__webpack_require__(509));
-
-var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
-
-// GENERATE BY ./scripts/generate.ts
-// DON NOT EDIT IT MANUALLY
-var DoubleLeftOutlined = function DoubleLeftOutlined(props, ref) {
-  return /*#__PURE__*/React.createElement(_AntdIcon.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
-    ref: ref,
-    icon: _DoubleLeftOutlined.default
-  }));
-};
-
-DoubleLeftOutlined.displayName = 'DoubleLeftOutlined';
-
-var _default = /*#__PURE__*/React.forwardRef(DoubleLeftOutlined);
-
-exports.default = _default;
-
-/***/ }),
-/* 509 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// This icon file is generated automatically.
-Object.defineProperty(exports, "__esModule", { value: true });
-var DoubleLeftOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M272.9 512l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L186.8 492.3a31.99 31.99 0 000 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H532c6.7 0 10.4-7.7 6.3-12.9L272.9 512zm304 0l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L490.8 492.3a31.99 31.99 0 000 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H836c6.7 0 10.4-7.7 6.3-12.9L576.9 512z" } }] }, "name": "double-left", "theme": "outlined" };
-exports.default = DoubleLeftOutlined;
-
-
-/***/ }),
-/* 510 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(31);
-
-var _interopRequireDefault = __webpack_require__(27);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
-
-var React = _interopRequireWildcard(__webpack_require__(0));
-
-var _DoubleRightOutlined = _interopRequireDefault(__webpack_require__(511));
+var _DoubleRightOutlined = _interopRequireDefault(__webpack_require__(507));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -75021,7 +74260,7 @@ var _default = /*#__PURE__*/React.forwardRef(DoubleRightOutlined);
 exports.default = _default;
 
 /***/ }),
-/* 511 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75033,280 +74272,280 @@ exports.default = DoubleRightOutlined;
 
 
 /***/ }),
-/* 512 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 153,
-	"./af.js": 153,
-	"./ar": 154,
-	"./ar-dz": 155,
-	"./ar-dz.js": 155,
-	"./ar-kw": 156,
-	"./ar-kw.js": 156,
-	"./ar-ly": 157,
-	"./ar-ly.js": 157,
-	"./ar-ma": 158,
-	"./ar-ma.js": 158,
-	"./ar-sa": 159,
-	"./ar-sa.js": 159,
-	"./ar-tn": 160,
-	"./ar-tn.js": 160,
-	"./ar.js": 154,
-	"./az": 161,
-	"./az.js": 161,
-	"./be": 162,
-	"./be.js": 162,
-	"./bg": 163,
-	"./bg.js": 163,
-	"./bm": 164,
-	"./bm.js": 164,
-	"./bn": 165,
-	"./bn-bd": 166,
-	"./bn-bd.js": 166,
-	"./bn.js": 165,
-	"./bo": 167,
-	"./bo.js": 167,
-	"./br": 168,
-	"./br.js": 168,
-	"./bs": 169,
-	"./bs.js": 169,
-	"./ca": 170,
-	"./ca.js": 170,
-	"./cs": 171,
-	"./cs.js": 171,
-	"./cv": 172,
-	"./cv.js": 172,
-	"./cy": 173,
-	"./cy.js": 173,
-	"./da": 174,
-	"./da.js": 174,
-	"./de": 175,
-	"./de-at": 176,
-	"./de-at.js": 176,
-	"./de-ch": 177,
-	"./de-ch.js": 177,
-	"./de.js": 175,
-	"./dv": 178,
-	"./dv.js": 178,
-	"./el": 179,
-	"./el.js": 179,
-	"./en-au": 180,
-	"./en-au.js": 180,
-	"./en-ca": 181,
-	"./en-ca.js": 181,
-	"./en-gb": 182,
-	"./en-gb.js": 182,
-	"./en-ie": 183,
-	"./en-ie.js": 183,
-	"./en-il": 184,
-	"./en-il.js": 184,
-	"./en-in": 185,
-	"./en-in.js": 185,
-	"./en-nz": 186,
-	"./en-nz.js": 186,
-	"./en-sg": 187,
-	"./en-sg.js": 187,
-	"./eo": 188,
-	"./eo.js": 188,
-	"./es": 189,
-	"./es-do": 190,
-	"./es-do.js": 190,
-	"./es-mx": 191,
-	"./es-mx.js": 191,
-	"./es-us": 192,
-	"./es-us.js": 192,
-	"./es.js": 189,
-	"./et": 193,
-	"./et.js": 193,
-	"./eu": 194,
-	"./eu.js": 194,
-	"./fa": 195,
-	"./fa.js": 195,
-	"./fi": 196,
-	"./fi.js": 196,
-	"./fil": 197,
-	"./fil.js": 197,
-	"./fo": 198,
-	"./fo.js": 198,
-	"./fr": 199,
-	"./fr-ca": 200,
-	"./fr-ca.js": 200,
-	"./fr-ch": 201,
-	"./fr-ch.js": 201,
-	"./fr.js": 199,
-	"./fy": 202,
-	"./fy.js": 202,
-	"./ga": 203,
-	"./ga.js": 203,
-	"./gd": 204,
-	"./gd.js": 204,
-	"./gl": 205,
-	"./gl.js": 205,
-	"./gom-deva": 206,
-	"./gom-deva.js": 206,
-	"./gom-latn": 207,
-	"./gom-latn.js": 207,
-	"./gu": 208,
-	"./gu.js": 208,
-	"./he": 209,
-	"./he.js": 209,
-	"./hi": 210,
-	"./hi.js": 210,
-	"./hr": 211,
-	"./hr.js": 211,
-	"./hu": 212,
-	"./hu.js": 212,
-	"./hy-am": 213,
-	"./hy-am.js": 213,
-	"./id": 214,
-	"./id.js": 214,
-	"./is": 215,
-	"./is.js": 215,
-	"./it": 216,
-	"./it-ch": 217,
-	"./it-ch.js": 217,
-	"./it.js": 216,
-	"./ja": 218,
-	"./ja.js": 218,
-	"./jv": 219,
-	"./jv.js": 219,
-	"./ka": 220,
-	"./ka.js": 220,
-	"./kk": 221,
-	"./kk.js": 221,
-	"./km": 222,
-	"./km.js": 222,
-	"./kn": 223,
-	"./kn.js": 223,
-	"./ko": 224,
-	"./ko.js": 224,
-	"./ku": 225,
-	"./ku.js": 225,
-	"./ky": 226,
-	"./ky.js": 226,
-	"./lb": 227,
-	"./lb.js": 227,
-	"./lo": 228,
-	"./lo.js": 228,
-	"./lt": 229,
-	"./lt.js": 229,
-	"./lv": 230,
-	"./lv.js": 230,
-	"./me": 231,
-	"./me.js": 231,
-	"./mi": 232,
-	"./mi.js": 232,
-	"./mk": 233,
-	"./mk.js": 233,
-	"./ml": 234,
-	"./ml.js": 234,
-	"./mn": 235,
-	"./mn.js": 235,
-	"./mr": 236,
-	"./mr.js": 236,
-	"./ms": 237,
-	"./ms-my": 238,
-	"./ms-my.js": 238,
-	"./ms.js": 237,
-	"./mt": 239,
-	"./mt.js": 239,
-	"./my": 240,
-	"./my.js": 240,
-	"./nb": 241,
-	"./nb.js": 241,
-	"./ne": 242,
-	"./ne.js": 242,
-	"./nl": 243,
-	"./nl-be": 244,
-	"./nl-be.js": 244,
-	"./nl.js": 243,
-	"./nn": 245,
-	"./nn.js": 245,
-	"./oc-lnc": 246,
-	"./oc-lnc.js": 246,
-	"./pa-in": 247,
-	"./pa-in.js": 247,
-	"./pl": 248,
-	"./pl.js": 248,
-	"./pt": 249,
-	"./pt-br": 250,
-	"./pt-br.js": 250,
-	"./pt.js": 249,
-	"./ro": 251,
-	"./ro.js": 251,
-	"./ru": 252,
-	"./ru.js": 252,
-	"./sd": 253,
-	"./sd.js": 253,
-	"./se": 254,
-	"./se.js": 254,
-	"./si": 255,
-	"./si.js": 255,
-	"./sk": 256,
-	"./sk.js": 256,
-	"./sl": 257,
-	"./sl.js": 257,
-	"./sq": 258,
-	"./sq.js": 258,
-	"./sr": 259,
-	"./sr-cyrl": 260,
-	"./sr-cyrl.js": 260,
-	"./sr.js": 259,
-	"./ss": 261,
-	"./ss.js": 261,
-	"./sv": 262,
-	"./sv.js": 262,
-	"./sw": 263,
-	"./sw.js": 263,
-	"./ta": 264,
-	"./ta.js": 264,
-	"./te": 265,
-	"./te.js": 265,
-	"./tet": 266,
-	"./tet.js": 266,
-	"./tg": 267,
-	"./tg.js": 267,
-	"./th": 268,
-	"./th.js": 268,
-	"./tk": 269,
-	"./tk.js": 269,
-	"./tl-ph": 270,
-	"./tl-ph.js": 270,
-	"./tlh": 271,
-	"./tlh.js": 271,
-	"./tr": 272,
-	"./tr.js": 272,
-	"./tzl": 273,
-	"./tzl.js": 273,
-	"./tzm": 274,
-	"./tzm-latn": 275,
-	"./tzm-latn.js": 275,
-	"./tzm.js": 274,
-	"./ug-cn": 276,
-	"./ug-cn.js": 276,
-	"./uk": 277,
-	"./uk.js": 277,
-	"./ur": 278,
-	"./ur.js": 278,
-	"./uz": 279,
-	"./uz-latn": 280,
-	"./uz-latn.js": 280,
-	"./uz.js": 279,
-	"./vi": 281,
-	"./vi.js": 281,
-	"./x-pseudo": 282,
-	"./x-pseudo.js": 282,
-	"./yo": 283,
-	"./yo.js": 283,
-	"./zh-cn": 284,
-	"./zh-cn.js": 284,
-	"./zh-hk": 285,
-	"./zh-hk.js": 285,
-	"./zh-mo": 286,
-	"./zh-mo.js": 286,
-	"./zh-tw": 287,
-	"./zh-tw.js": 287
+	"./af": 152,
+	"./af.js": 152,
+	"./ar": 153,
+	"./ar-dz": 154,
+	"./ar-dz.js": 154,
+	"./ar-kw": 155,
+	"./ar-kw.js": 155,
+	"./ar-ly": 156,
+	"./ar-ly.js": 156,
+	"./ar-ma": 157,
+	"./ar-ma.js": 157,
+	"./ar-sa": 158,
+	"./ar-sa.js": 158,
+	"./ar-tn": 159,
+	"./ar-tn.js": 159,
+	"./ar.js": 153,
+	"./az": 160,
+	"./az.js": 160,
+	"./be": 161,
+	"./be.js": 161,
+	"./bg": 162,
+	"./bg.js": 162,
+	"./bm": 163,
+	"./bm.js": 163,
+	"./bn": 164,
+	"./bn-bd": 165,
+	"./bn-bd.js": 165,
+	"./bn.js": 164,
+	"./bo": 166,
+	"./bo.js": 166,
+	"./br": 167,
+	"./br.js": 167,
+	"./bs": 168,
+	"./bs.js": 168,
+	"./ca": 169,
+	"./ca.js": 169,
+	"./cs": 170,
+	"./cs.js": 170,
+	"./cv": 171,
+	"./cv.js": 171,
+	"./cy": 172,
+	"./cy.js": 172,
+	"./da": 173,
+	"./da.js": 173,
+	"./de": 174,
+	"./de-at": 175,
+	"./de-at.js": 175,
+	"./de-ch": 176,
+	"./de-ch.js": 176,
+	"./de.js": 174,
+	"./dv": 177,
+	"./dv.js": 177,
+	"./el": 178,
+	"./el.js": 178,
+	"./en-au": 179,
+	"./en-au.js": 179,
+	"./en-ca": 180,
+	"./en-ca.js": 180,
+	"./en-gb": 181,
+	"./en-gb.js": 181,
+	"./en-ie": 182,
+	"./en-ie.js": 182,
+	"./en-il": 183,
+	"./en-il.js": 183,
+	"./en-in": 184,
+	"./en-in.js": 184,
+	"./en-nz": 185,
+	"./en-nz.js": 185,
+	"./en-sg": 186,
+	"./en-sg.js": 186,
+	"./eo": 187,
+	"./eo.js": 187,
+	"./es": 188,
+	"./es-do": 189,
+	"./es-do.js": 189,
+	"./es-mx": 190,
+	"./es-mx.js": 190,
+	"./es-us": 191,
+	"./es-us.js": 191,
+	"./es.js": 188,
+	"./et": 192,
+	"./et.js": 192,
+	"./eu": 193,
+	"./eu.js": 193,
+	"./fa": 194,
+	"./fa.js": 194,
+	"./fi": 195,
+	"./fi.js": 195,
+	"./fil": 196,
+	"./fil.js": 196,
+	"./fo": 197,
+	"./fo.js": 197,
+	"./fr": 198,
+	"./fr-ca": 199,
+	"./fr-ca.js": 199,
+	"./fr-ch": 200,
+	"./fr-ch.js": 200,
+	"./fr.js": 198,
+	"./fy": 201,
+	"./fy.js": 201,
+	"./ga": 202,
+	"./ga.js": 202,
+	"./gd": 203,
+	"./gd.js": 203,
+	"./gl": 204,
+	"./gl.js": 204,
+	"./gom-deva": 205,
+	"./gom-deva.js": 205,
+	"./gom-latn": 206,
+	"./gom-latn.js": 206,
+	"./gu": 207,
+	"./gu.js": 207,
+	"./he": 208,
+	"./he.js": 208,
+	"./hi": 209,
+	"./hi.js": 209,
+	"./hr": 210,
+	"./hr.js": 210,
+	"./hu": 211,
+	"./hu.js": 211,
+	"./hy-am": 212,
+	"./hy-am.js": 212,
+	"./id": 213,
+	"./id.js": 213,
+	"./is": 214,
+	"./is.js": 214,
+	"./it": 215,
+	"./it-ch": 216,
+	"./it-ch.js": 216,
+	"./it.js": 215,
+	"./ja": 217,
+	"./ja.js": 217,
+	"./jv": 218,
+	"./jv.js": 218,
+	"./ka": 219,
+	"./ka.js": 219,
+	"./kk": 220,
+	"./kk.js": 220,
+	"./km": 221,
+	"./km.js": 221,
+	"./kn": 222,
+	"./kn.js": 222,
+	"./ko": 223,
+	"./ko.js": 223,
+	"./ku": 224,
+	"./ku.js": 224,
+	"./ky": 225,
+	"./ky.js": 225,
+	"./lb": 226,
+	"./lb.js": 226,
+	"./lo": 227,
+	"./lo.js": 227,
+	"./lt": 228,
+	"./lt.js": 228,
+	"./lv": 229,
+	"./lv.js": 229,
+	"./me": 230,
+	"./me.js": 230,
+	"./mi": 231,
+	"./mi.js": 231,
+	"./mk": 232,
+	"./mk.js": 232,
+	"./ml": 233,
+	"./ml.js": 233,
+	"./mn": 234,
+	"./mn.js": 234,
+	"./mr": 235,
+	"./mr.js": 235,
+	"./ms": 236,
+	"./ms-my": 237,
+	"./ms-my.js": 237,
+	"./ms.js": 236,
+	"./mt": 238,
+	"./mt.js": 238,
+	"./my": 239,
+	"./my.js": 239,
+	"./nb": 240,
+	"./nb.js": 240,
+	"./ne": 241,
+	"./ne.js": 241,
+	"./nl": 242,
+	"./nl-be": 243,
+	"./nl-be.js": 243,
+	"./nl.js": 242,
+	"./nn": 244,
+	"./nn.js": 244,
+	"./oc-lnc": 245,
+	"./oc-lnc.js": 245,
+	"./pa-in": 246,
+	"./pa-in.js": 246,
+	"./pl": 247,
+	"./pl.js": 247,
+	"./pt": 248,
+	"./pt-br": 249,
+	"./pt-br.js": 249,
+	"./pt.js": 248,
+	"./ro": 250,
+	"./ro.js": 250,
+	"./ru": 251,
+	"./ru.js": 251,
+	"./sd": 252,
+	"./sd.js": 252,
+	"./se": 253,
+	"./se.js": 253,
+	"./si": 254,
+	"./si.js": 254,
+	"./sk": 255,
+	"./sk.js": 255,
+	"./sl": 256,
+	"./sl.js": 256,
+	"./sq": 257,
+	"./sq.js": 257,
+	"./sr": 258,
+	"./sr-cyrl": 259,
+	"./sr-cyrl.js": 259,
+	"./sr.js": 258,
+	"./ss": 260,
+	"./ss.js": 260,
+	"./sv": 261,
+	"./sv.js": 261,
+	"./sw": 262,
+	"./sw.js": 262,
+	"./ta": 263,
+	"./ta.js": 263,
+	"./te": 264,
+	"./te.js": 264,
+	"./tet": 265,
+	"./tet.js": 265,
+	"./tg": 266,
+	"./tg.js": 266,
+	"./th": 267,
+	"./th.js": 267,
+	"./tk": 268,
+	"./tk.js": 268,
+	"./tl-ph": 269,
+	"./tl-ph.js": 269,
+	"./tlh": 270,
+	"./tlh.js": 270,
+	"./tr": 271,
+	"./tr.js": 271,
+	"./tzl": 272,
+	"./tzl.js": 272,
+	"./tzm": 273,
+	"./tzm-latn": 274,
+	"./tzm-latn.js": 274,
+	"./tzm.js": 273,
+	"./ug-cn": 275,
+	"./ug-cn.js": 275,
+	"./uk": 276,
+	"./uk.js": 276,
+	"./ur": 277,
+	"./ur.js": 277,
+	"./uz": 278,
+	"./uz-latn": 279,
+	"./uz-latn.js": 279,
+	"./uz.js": 278,
+	"./vi": 280,
+	"./vi.js": 280,
+	"./x-pseudo": 281,
+	"./x-pseudo.js": 281,
+	"./yo": 282,
+	"./yo.js": 282,
+	"./zh-cn": 283,
+	"./zh-cn.js": 283,
+	"./zh-hk": 284,
+	"./zh-hk.js": 284,
+	"./zh-mo": 285,
+	"./zh-mo.js": 285,
+	"./zh-tw": 286,
+	"./zh-tw.js": 286
 };
 
 
@@ -75315,23 +74554,22 @@ function webpackContext(req) {
 	return __webpack_require__(id);
 }
 function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) { // check for number or string
+	if(!__webpack_require__.o(map, req)) {
 		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	}
-	return id;
+	return map[req];
 }
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 512;
+webpackContext.id = 508;
 
 /***/ }),
-/* 513 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75350,7 +74588,7 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(30));
 
 var React = _interopRequireWildcard(__webpack_require__(0));
 
-var _StarFilled = _interopRequireDefault(__webpack_require__(514));
+var _StarFilled = _interopRequireDefault(__webpack_require__(510));
 
 var _AntdIcon = _interopRequireDefault(__webpack_require__(35));
 
@@ -75370,7 +74608,7 @@ var _default = /*#__PURE__*/React.forwardRef(StarFilled);
 exports.default = _default;
 
 /***/ }),
-/* 514 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75382,7 +74620,7 @@ exports.default = StarFilled;
 
 
 /***/ }),
-/* 515 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(22)["default"];
@@ -75741,11 +74979,14 @@ function _regeneratorRuntime() {
 module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 516 */
+/* 512 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// NAMESPACE OBJECT: ./src/index.js
 var src_namespaceObject_0 = {};
 __webpack_require__.r(src_namespaceObject_0);
 __webpack_require__.d(src_namespaceObject_0, "Tree", function() { return src_Tree; });
@@ -75756,11 +74997,7 @@ __webpack_require__.d(src_namespaceObject_0, "DatasetSearch", function() { retur
 __webpack_require__.d(src_namespaceObject_0, "BibTex", function() { return src_BibTex; });
 
 // EXTERNAL MODULE: ./src/index.less
-var src = __webpack_require__(328);
-
-// EXTERNAL MODULE: ./node_modules/babel-runtime/regenerator/index.js
-var regenerator = __webpack_require__(37);
-var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+var src = __webpack_require__(327);
 
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
 var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
@@ -75798,7 +75035,7 @@ var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 var es = __webpack_require__(23);
 
 // EXTERNAL MODULE: ./node_modules/lodash/debounce.js
-var debounce = __webpack_require__(106);
+var debounce = __webpack_require__(105);
 var debounce_default = /*#__PURE__*/__webpack_require__.n(debounce);
 
 // CONCATENATED MODULE: ./node_modules/rc-pagination/es/locale/en_US.js
@@ -76562,31 +75799,31 @@ var CloseOutlined = __webpack_require__(83);
 var CloseOutlined_default = /*#__PURE__*/__webpack_require__.n(CloseOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CheckCircleOutlined.js
-var CheckCircleOutlined = __webpack_require__(290);
+var CheckCircleOutlined = __webpack_require__(289);
 var CheckCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(CheckCircleOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/ExclamationCircleOutlined.js
-var ExclamationCircleOutlined = __webpack_require__(293);
+var ExclamationCircleOutlined = __webpack_require__(292);
 var ExclamationCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(ExclamationCircleOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/InfoCircleOutlined.js
-var InfoCircleOutlined = __webpack_require__(291);
+var InfoCircleOutlined = __webpack_require__(290);
 var InfoCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(InfoCircleOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CloseCircleOutlined.js
-var icons_CloseCircleOutlined = __webpack_require__(292);
+var icons_CloseCircleOutlined = __webpack_require__(291);
 var CloseCircleOutlined_default = /*#__PURE__*/__webpack_require__.n(icons_CloseCircleOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CheckCircleFilled.js
-var CheckCircleFilled = __webpack_require__(107);
+var CheckCircleFilled = __webpack_require__(106);
 var CheckCircleFilled_default = /*#__PURE__*/__webpack_require__.n(CheckCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/ExclamationCircleFilled.js
-var ExclamationCircleFilled = __webpack_require__(108);
+var ExclamationCircleFilled = __webpack_require__(107);
 var ExclamationCircleFilled_default = /*#__PURE__*/__webpack_require__.n(ExclamationCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/InfoCircleFilled.js
-var InfoCircleFilled = __webpack_require__(289);
+var InfoCircleFilled = __webpack_require__(288);
 var InfoCircleFilled_default = /*#__PURE__*/__webpack_require__.n(InfoCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CloseCircleFilled.js
@@ -76594,7 +75831,7 @@ var CloseCircleFilled = __webpack_require__(67);
 var CloseCircleFilled_default = /*#__PURE__*/__webpack_require__.n(CloseCircleFilled);
 
 // EXTERNAL MODULE: ./node_modules/rc-motion/es/index.js + 5 modules
-var rc_motion_es = __webpack_require__(44);
+var rc_motion_es = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/getDataOrAriaProps.js
 function getDataOrAriaProps(props) {
@@ -77238,7 +76475,7 @@ Skeleton_Skeleton.Image = Image;
 
 /* harmony default export */ var skeleton = (skeleton_Skeleton);
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/index.js + 4 modules
-var rc_tree_es = __webpack_require__(127);
+var rc_tree_es = __webpack_require__(126);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/util.js
 var util = __webpack_require__(28);
@@ -77247,15 +76484,15 @@ var util = __webpack_require__(28);
 var treeUtil = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/FileOutlined.js
-var FileOutlined = __webpack_require__(110);
+var FileOutlined = __webpack_require__(109);
 var FileOutlined_default = /*#__PURE__*/__webpack_require__.n(FileOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/FolderOpenOutlined.js
-var FolderOpenOutlined = __webpack_require__(297);
+var FolderOpenOutlined = __webpack_require__(296);
 var FolderOpenOutlined_default = /*#__PURE__*/__webpack_require__.n(FolderOpenOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/FolderOutlined.js
-var FolderOutlined = __webpack_require__(298);
+var FolderOutlined = __webpack_require__(297);
 var FolderOutlined_default = /*#__PURE__*/__webpack_require__.n(FolderOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/tree/utils/dictUtil.js
@@ -77625,19 +76862,19 @@ var collapseMotion = {
 };
 /* harmony default export */ var motion = (collapseMotion);
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/LoadingOutlined.js
-var LoadingOutlined = __webpack_require__(50);
+var LoadingOutlined = __webpack_require__(49);
 var LoadingOutlined_default = /*#__PURE__*/__webpack_require__.n(LoadingOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/MinusSquareOutlined.js
-var MinusSquareOutlined = __webpack_require__(294);
+var MinusSquareOutlined = __webpack_require__(293);
 var MinusSquareOutlined_default = /*#__PURE__*/__webpack_require__.n(MinusSquareOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/PlusSquareOutlined.js
-var PlusSquareOutlined = __webpack_require__(295);
+var PlusSquareOutlined = __webpack_require__(294);
 var PlusSquareOutlined_default = /*#__PURE__*/__webpack_require__.n(PlusSquareOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CaretDownFilled.js
-var CaretDownFilled = __webpack_require__(296);
+var CaretDownFilled = __webpack_require__(295);
 var CaretDownFilled_default = /*#__PURE__*/__webpack_require__.n(CaretDownFilled);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/tree/utils/iconUtil.js
@@ -77848,13 +77085,13 @@ var assertThisInitialized = __webpack_require__(66);
 var assertThisInitialized_default = /*#__PURE__*/__webpack_require__.n(assertThisInitialized);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(40);
+var react_dom = __webpack_require__(39);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/css-animation/es/Event.js
-var Event = __webpack_require__(53);
+var Event = __webpack_require__(52);
 
 // EXTERNAL MODULE: ./node_modules/raf/index.js
-var raf = __webpack_require__(41);
+var raf = __webpack_require__(40);
 var raf_default = /*#__PURE__*/__webpack_require__.n(raf);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/_util/raf.js
@@ -78461,7 +77698,7 @@ button_Button.__ANT_BUTTON = true;
 
 /* harmony default export */ var es_button = (button_button);
 // EXTERNAL MODULE: ./node_modules/lodash/lodash.js
-var lodash = __webpack_require__(2);
+var lodash = __webpack_require__(1);
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
@@ -78470,7 +77707,7 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // CONCATENATED MODULE: ./src/config.js
 /* harmony default export */ var src_config = ({
-    dataApi: "https://api.checklistbank.org/"
+  dataApi: "https://api.checklistbank.org/"
 });
 // CONCATENATED MODULE: ./node_modules/antd/es/tag/CheckableTag.js
 
@@ -78659,7 +77896,7 @@ tag_Tag.CheckableTag = tag_CheckableTag;
 var esm_typeof = __webpack_require__(19);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-var objectSpread2 = __webpack_require__(1);
+var objectSpread2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
 var objectWithoutProperties = __webpack_require__(14);
@@ -79546,7 +78783,6 @@ Col.displayName = 'Col';
 // CONCATENATED MODULE: ./src/api/dataset.js
 
 
-
 var reflect = function reflect(p) {
   return p.then(function (v) {
     return v.data;
@@ -79554,20 +78790,17 @@ var reflect = function reflect(p) {
     return null;
   });
 };
-
 var dataset_getDatasetsBatch = function getDatasetsBatch(ids, catalogueKey) {
   return Promise.all(ids.map(function (i) {
     return reflect(axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + i));
   }));
 };
-
 var dataset_getCatalogues = function getCatalogues() {
   return axios_default()(src_config.dataApi + "dataset/catalogues").then(function (_ref) {
     var data = _ref.data;
     return dataset_getDatasetsBatch(data);
   });
 };
-
 var dataset_getDataset = function getDataset(datasetKey) {
   return axios_default()(src_config.dataApi + "dataset/" + datasetKey);
 };
@@ -79587,7 +78820,7 @@ var esm_defineProperty = __webpack_require__(7);
 var IconContext = /*#__PURE__*/Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["createContext"])({});
 /* harmony default export */ var Context = (IconContext);
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/node_modules/@ant-design/colors/dist/index.esm.js + 4 modules
-var index_esm = __webpack_require__(123);
+var index_esm = __webpack_require__(122);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/canUseDom.js
 var canUseDom = __webpack_require__(80);
@@ -79959,19 +79192,17 @@ var icons_CloseCircleOutlined_CloseCircleOutlined = function CloseCircleOutlined
 };
 
 icons_CloseCircleOutlined_CloseCircleOutlined.displayName = 'CloseCircleOutlined';
-/* harmony default export */ var es_icons_CloseCircleOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_CloseCircleOutlined_CloseCircleOutlined));
+/* harmony default export */ var es_icons_CloseCircleOutlined = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_CloseCircleOutlined_CloseCircleOutlined));
 // EXTERNAL MODULE: ./node_modules/dataloader/index.js
-var dataloader = __webpack_require__(91);
+var dataloader = __webpack_require__(56);
 var dataloader_default = /*#__PURE__*/__webpack_require__.n(dataloader);
 
 // CONCATENATED MODULE: ./src/ColTree/TaxonSources.js
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -79979,146 +79210,116 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var TaxonSources_TaxonSources = function (_React$Component) {
-  _inherits(TaxonSources, _React$Component);
-
+var TaxonSources_TaxonSources = /*#__PURE__*/function (_React$Component) {
   function TaxonSources(props) {
-    _classCallCheck(this, TaxonSources);
-
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    _defineProperty(_this, "componentDidMount", function () {
       var _this$props = _this.props,
-          datasetSectors = _this$props.datasetSectors,
-          catalogueKey = _this$props.catalogueKey;
-
+        datasetSectors = _this$props.datasetSectors,
+        catalogueKey = _this$props.catalogueKey;
       _this.datasetLoader = new dataloader_default.a(function (ids) {
         return dataset_getDatasetsBatch(ids, catalogueKey);
       });
       if (Object.keys(datasetSectors).length < 4) {
-        _this.setState({ showInNode: true }, _this.getData);
+        _this.setState({
+          showInNode: true
+        }, _this.getData);
       }
-    };
-
-    _this.getData = function () {
-      _this.setState({ loading: true });
+    });
+    _defineProperty(_this, "getData", function () {
+      _this.setState({
+        loading: true
+      });
       var datasetSectors = _this.props.datasetSectors;
-
       var promises = Object.keys(datasetSectors).map(function (s) {
         return _this.datasetLoader.load(s).then(function (dataset) {
           return dataset;
         });
       });
-
       Promise.all(promises).then(function (data) {
-        _this.setState({ data: lodash_default.a.sortBy(data, ['alias']), loading: false });
+        _this.setState({
+          data: lodash_default.a.sortBy(data, ['alias']),
+          loading: false
+        });
       });
-    };
-
-    _this.render = function () {
+    });
+    _defineProperty(_this, "render", function () {
       var _this$state = _this.state,
-          data = _this$state.data,
-          showInNode = _this$state.showInNode,
-          popOverVisible = _this$state.popOverVisible,
-          loading = _this$state.loading;
+        data = _this$state.data,
+        showInNode = _this$state.showInNode,
+        popOverVisible = _this$state.popOverVisible,
+        loading = _this$state.loading;
       var _this$props2 = _this.props,
-          taxon = _this$props2.taxon,
-          catalogueKey = _this$props2.catalogueKey,
-          pathToDataset = _this$props2.pathToDataset;
-
-
+        taxon = _this$props2.taxon,
+        catalogueKey = _this$props2.catalogueKey,
+        pathToDataset = _this$props2.pathToDataset;
       return showInNode ? data.filter(function (d) {
         return !!d;
       }).map(function (d, index) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          {
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+          className: "col-tree-data-source",
+          key: d.key,
+          href: "" + pathToDataset + d.key,
+          onClick: function onClick() {
+            window.location.href = "" + pathToDataset + d.key;
+          }
+        }, (index ? ", " : "") + (d.alias || d.key));
+      }) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        style: {
+          display: "inline"
+        },
+        id: "taxon_sources_" + taxon.id
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(popover, {
+        getPopupContainer: function getPopupContainer() {
+          return document.getElementById("taxon_sources_" + taxon.id);
+        },
+        content: loading ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          style: {
+            maxWidth: "400px"
+          }
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, "Source databases: "), " ", data.filter(function (d) {
+          return !!d;
+        }).map(function (d, index) {
+          return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
             className: "col-tree-data-source",
             key: d.key,
             href: "" + pathToDataset + d.key,
             onClick: function onClick() {
               window.location.href = "" + pathToDataset + d.key;
             }
-          },
-          (index ? ", " : "") + (d.alias || d.key)
-        );
-      }) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { style: { display: "inline" }, id: "taxon_sources_" + taxon.id },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          popover,
-          {
-            getPopupContainer: function getPopupContainer() {
-              return document.getElementById("taxon_sources_" + taxon.id);
-            },
-            content: loading ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "div",
-              { style: { maxWidth: "400px" } },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "span",
-                null,
-                "Source databases: "
-              ),
-              " ",
-              data.filter(function (d) {
-                return !!d;
-              }).map(function (d, index) {
-                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  "a",
-                  {
-                    className: "col-tree-data-source",
-                    key: d.key,
-                    href: "" + pathToDataset + d.key,
-                    onClick: function onClick() {
-                      window.location.href = "" + pathToDataset + d.key;
-                    }
-                  },
-                  (index ? ", " : "") + (d.alias || d.key)
-                );
-              })
-            ),
-            title: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_row,
-              null,
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_col,
-                { flex: "auto" },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: taxon.name } })
-              ),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_col,
-                null,
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  "span",
-                  null,
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, {
-                    onClick: function onClick() {
-                      _this.setState({ popOverVisible: false });
-                    }
-                  })
-                )
-              )
-            ),
-            visible: popOverVisible,
-            onVisibleChange: function onVisibleChange(visible) {
-              return _this.setState({ popOverVisible: visible }, function () {
-                if (visible && data.length === 0) {
-                  _this.getData();
-                }
-              });
-            },
-            trigger: "click",
-            placement: "rightTop"
-          },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "a",
-            { className: "col-tree-data-source", href: "" },
-            "Multiple sources"
-          )
-        )
-      );
-    };
-
+          }, (index ? ", " : "") + (d.alias || d.key));
+        })),
+        title: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+          flex: "auto"
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+          dangerouslySetInnerHTML: {
+            __html: taxon.name
+          }
+        })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, {
+          onClick: function onClick() {
+            _this.setState({
+              popOverVisible: false
+            });
+          }
+        })))),
+        visible: popOverVisible,
+        onVisibleChange: function onVisibleChange(visible) {
+          return _this.setState({
+            popOverVisible: visible
+          }, function () {
+            if (visible && data.length === 0) {
+              _this.getData();
+            }
+          });
+        },
+        trigger: "click",
+        placement: "rightTop"
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        className: "col-tree-data-source",
+        href: ""
+      }, "Multiple sources")));
+    });
     _this.state = {
       data: [],
       showInNode: false,
@@ -80126,137 +79327,109 @@ var TaxonSources_TaxonSources = function (_React$Component) {
     };
     return _this;
   }
-
+  _inheritsLoose(TaxonSources, _React$Component);
   return TaxonSources;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var ColTree_TaxonSources = (TaxonSources_TaxonSources);
 // CONCATENATED MODULE: ./src/ColTree/TaxonEstimate.js
-function TaxonEstimate_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function TaxonEstimate_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function TaxonEstimate_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function TaxonEstimate_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; TaxonEstimate_setPrototypeOf(subClass, superClass); }
+function TaxonEstimate_setPrototypeOf(o, p) { TaxonEstimate_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return TaxonEstimate_setPrototypeOf(o, p); }
+function TaxonEstimate_defineProperty(obj, key, value) { key = TaxonEstimate_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function TaxonEstimate_toPropertyKey(t) { var i = TaxonEstimate_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function TaxonEstimate_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
 
 
-var TaxonEstimate_TaxonEstimate = function (_React$Component) {
-  TaxonEstimate_inherits(TaxonEstimate, _React$Component);
-
+var TaxonEstimate_TaxonEstimate = /*#__PURE__*/function (_React$Component) {
   function TaxonEstimate(props) {
-    TaxonEstimate_classCallCheck(this, TaxonEstimate);
-
-    var _this = TaxonEstimate_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.getData = function () {
-      _this.setState({ loading: true });
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    TaxonEstimate_defineProperty(_this, "getData", function () {
+      _this.setState({
+        loading: true
+      });
       var estimate = _this.props.estimate;
-
-
       return axios_default()(src_config.dataApi + "dataset/" + estimate.datasetKey + "/reference/" + estimate.referenceId).then(function (_ref) {
         var data = _ref.data;
-        return _this.setState({ data: data, loading: false });
+        return _this.setState({
+          data: data,
+          loading: false
+        });
       });
-    };
-
-    _this.render = function () {
+    });
+    TaxonEstimate_defineProperty(_this, "render", function () {
       var _this$state = _this.state,
-          data = _this$state.data,
-          popOverVisible = _this$state.popOverVisible,
-          loading = _this$state.loading;
+        data = _this$state.data,
+        popOverVisible = _this$state.popOverVisible,
+        loading = _this$state.loading;
       var taxon = _this.props.taxon;
-
-
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { style: { display: "inline" }, id: "taxon_estimates_" + taxon.id },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          popover,
-          {
-            getPopupContainer: function getPopupContainer() {
-              return document.getElementById("taxon_estimates_" + taxon.id);
-            },
-            content: loading || !data ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "div",
-              { style: { maxWidth: "400px" } },
-              data.citation
-            ),
-            title: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_row,
-              null,
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_col,
-                { flex: "auto" },
-                taxon.estimate.toLocaleString("en-GB"),
-                " est. spp. of ",
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: taxon.name } })
-              ),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_col,
-                null,
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  "span",
-                  null,
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, {
-                    onClick: function onClick() {
-                      _this.setState({ popOverVisible: false });
-                    }
-                  })
-                )
-              )
-            ),
-            visible: popOverVisible,
-            onVisibleChange: function onVisibleChange(visible) {
-              return _this.setState({ popOverVisible: visible }, function () {
-                if (visible && !data) {
-                  _this.getData();
-                }
-              });
-            },
-            trigger: "click",
-            placement: "rightTop"
-          },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "a",
-            { style: { fontSize: "11px" }, href: "" },
-            taxon.estimate.toLocaleString("en-GB"),
-            " ",
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "span",
-              null,
-              " est. spp."
-            )
-          )
-        )
-      );
-    };
-
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        style: {
+          display: "inline"
+        },
+        id: "taxon_estimates_" + taxon.id
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(popover, {
+        getPopupContainer: function getPopupContainer() {
+          return document.getElementById("taxon_estimates_" + taxon.id);
+        },
+        content: loading || !data ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          style: {
+            maxWidth: "400px"
+          }
+        }, data.citation),
+        title: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+          flex: "auto"
+        }, taxon.estimate.toLocaleString("en-GB"), " est. spp. of ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+          dangerouslySetInnerHTML: {
+            __html: taxon.name
+          }
+        })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_CloseCircleOutlined, {
+          onClick: function onClick() {
+            _this.setState({
+              popOverVisible: false
+            });
+          }
+        })))),
+        visible: popOverVisible,
+        onVisibleChange: function onVisibleChange(visible) {
+          return _this.setState({
+            popOverVisible: visible
+          }, function () {
+            if (visible && !data) {
+              _this.getData();
+            }
+          });
+        },
+        trigger: "click",
+        placement: "rightTop"
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        style: {
+          fontSize: "11px"
+        },
+        href: ""
+      }, taxon.estimate.toLocaleString("en-GB"), " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, " est. spp."))));
+    });
     _this.state = {
       data: null,
       loading: false
     };
     return _this;
   }
-
+  TaxonEstimate_inheritsLoose(TaxonEstimate, _React$Component);
   return TaxonEstimate;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var ColTree_TaxonEstimate = (TaxonEstimate_TaxonEstimate);
 // CONCATENATED MODULE: ./src/ColTree/ColTreeContext.js
 
-
 var ColTreeContext = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createContext();
 // CONCATENATED MODULE: ./src/ColTree/ColTreeNode.js
-function ColTreeNode_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ColTreeNode_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function ColTreeNode_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function ColTreeNode_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; ColTreeNode_setPrototypeOf(subClass, superClass); }
+function ColTreeNode_setPrototypeOf(o, p) { ColTreeNode_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ColTreeNode_setPrototypeOf(o, p); }
+function ColTreeNode_defineProperty(obj, key, value) { key = ColTreeNode_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function ColTreeNode_toPropertyKey(t) { var i = ColTreeNode_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function ColTreeNode_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -80265,114 +79438,65 @@ function ColTreeNode_inherits(subClass, superClass) { if (typeof superClass !== 
 
 // import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 
-
-var ColTreeNode_ColTreeNode = function (_React$Component) {
-  ColTreeNode_inherits(ColTreeNode, _React$Component);
-
+var ColTreeNode_ColTreeNode = /*#__PURE__*/function (_React$Component) {
   function ColTreeNode(props) {
-    ColTreeNode_classCallCheck(this, ColTreeNode);
-
-    var _this = ColTreeNode_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.render = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    ColTreeNode_defineProperty(_this, "render", function () {
       var _this$props = _this.props,
-          taxon = _this$props.taxon,
-          _this$props$taxon = _this$props.taxon,
-          sector = _this$props$taxon.sector,
-          datasetSectors = _this$props$taxon.datasetSectors,
-          catalogueKey = _this$props.catalogueKey,
-          pathToTaxon = _this$props.pathToTaxon,
-          pathToDataset = _this$props.pathToDataset;
-
-
+        taxon = _this$props.taxon,
+        _this$props$taxon = _this$props.taxon,
+        sector = _this$props$taxon.sector,
+        datasetSectors = _this$props$taxon.datasetSectors,
+        catalogueKey = _this$props.catalogueKey,
+        pathToTaxon = _this$props.pathToTaxon,
+        pathToDataset = _this$props.pathToDataset;
       var sectorSourceDataset = lodash_default.a.get(sector, "dataset");
       var hasDatasetSectors = datasetSectors && (sector && sector.subjectDatasetKey ? Object.keys(lodash_default.a.omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true);
       var estimate = taxon.estimate && taxon.estimates ? taxon.estimates.find(function (e) {
         return e.estimate === taxon.estimate;
       }) : null;
-
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        ColTreeContext.Consumer,
-        null,
-        function (_ref) {
-          var showInfo = _ref.showInfo;
-          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { id: taxon.id },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "span",
-              null,
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "span",
-                { className: "tree-node-rank" },
-                taxon.rank,
-                ": "
-              ),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
-                dangerouslySetInnerHTML: { __html: taxon.labelHtml },
-                href: typeof pathToTaxon === "string" ? "" + pathToTaxon + taxon.id : "#",
-                onClick: function onClick(e) {
-                  if (typeof pathToTaxon === "string") {
-                    window.location.href = "" + pathToTaxon + taxon.id;
-                  } else if (typeof pathToTaxon === "function") {
-                    e.preventDefault();
-                    pathToTaxon(taxon.id);
-                  }
-                }
-              })
-            ),
-            showInfo && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-              null,
-              taxon.status === "provisionally accepted" && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-                null,
-                " \u2022 ",
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  tag,
-                  { color: "warning", style: { marginRight: 0 } },
-                  "prov."
-                )
-              ),
-              sector && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "span",
-                null,
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  "span",
-                  null,
-                  " \u2022 "
-                ),
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  "a",
-                  {
-                    style: hasDatasetSectors ? { fontWeight: 'bold' } : null,
-                    href: "" + pathToDataset + sector.subjectDatasetKey,
-                    className: "col-tree-data-source",
-                    onClick: function onClick() {
-                      window.location.href = "" + pathToDataset + sector.subjectDatasetKey;
-                    }
-                  },
-                  lodash_default.a.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
-                  hasDatasetSectors && ", "
-                )
-              ),
-              hasDatasetSectors && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-                null,
-                " ",
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonSources, {
-                  datasetSectors: sector && sector.subjectDatasetKey ? lodash_default.a.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors,
-                  pathToDataset: pathToDataset,
-                  taxon: taxon,
-                  catalogueKey: catalogueKey
-                })
-              )
-            )
-          );
-        }
-      );
-    };
-
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTreeContext.Consumer, null, function (_ref) {
+        var showInfo = _ref.showInfo;
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          id: taxon.id
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+          className: "tree-node-rank"
+        }, taxon.rank, ": "), (taxon === null || taxon === void 0 ? void 0 : taxon.merged) && "*", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+          dangerouslySetInnerHTML: {
+            __html: taxon.labelHtml
+          },
+          href: typeof pathToTaxon === "string" ? "" + pathToTaxon + taxon.id : "#",
+          onClick: function onClick(e) {
+            if (typeof pathToTaxon === "string") {
+              window.location.href = "" + pathToTaxon + taxon.id;
+            } else if (typeof pathToTaxon === "function") {
+              e.preventDefault();
+              pathToTaxon(taxon.id);
+            }
+          }
+        })), showInfo && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, taxon.status === "provisionally accepted" && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, " \u2022 ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tag, {
+          color: "warning",
+          style: {
+            marginRight: 0
+          }
+        }, "prov.")), sector && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, " \u2022 "), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+          style: hasDatasetSectors ? {
+            fontWeight: 'bold'
+          } : null,
+          href: "" + pathToDataset + sector.subjectDatasetKey,
+          className: "col-tree-data-source",
+          onClick: function onClick() {
+            window.location.href = "" + pathToDataset + sector.subjectDatasetKey;
+          }
+        }, lodash_default.a.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey, hasDatasetSectors && ", ")), hasDatasetSectors && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_TaxonSources, {
+          datasetSectors: sector && sector.subjectDatasetKey ? lodash_default.a.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors,
+          pathToDataset: pathToDataset,
+          taxon: taxon,
+          catalogueKey: catalogueKey
+        }))));
+      });
+    });
     _this.state = {
       style: {},
       provisional: _this.props.taxon.status === "provisionally accepted",
@@ -80380,93 +79504,32 @@ var ColTreeNode_ColTreeNode = function (_React$Component) {
     };
     return _this;
   }
-
+  ColTreeNode_inheritsLoose(ColTreeNode, _React$Component);
   return ColTreeNode;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var ColTree_ColTreeNode = (ColTreeNode_ColTreeNode);
 // CONCATENATED MODULE: ./src/components/ErrorMsg.js
-function ErrorMsg_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ErrorMsg_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function ErrorMsg_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function ErrorMsg_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; ErrorMsg_setPrototypeOf(subClass, superClass); }
+function ErrorMsg_setPrototypeOf(o, p) { ErrorMsg_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ErrorMsg_setPrototypeOf(o, p); }
 
 
-
-
-var ErrorMsg_ErrorMsg = function (_React$Component) {
-    ErrorMsg_inherits(ErrorMsg, _React$Component);
-
-    function ErrorMsg() {
-        ErrorMsg_classCallCheck(this, ErrorMsg);
-
-        return ErrorMsg_possibleConstructorReturn(this, _React$Component.apply(this, arguments));
-    }
-
-    ErrorMsg.prototype.render = function render() {
-        var error = this.props.error;
-
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            'div',
-            null,
-            error.message && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'h3',
-                null,
-                error.message
-            ),
-            lodash_default.a.get(error, 'response.data.message') && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'p',
-                null,
-                lodash_default.a.get(error, 'response.data.message')
-            ),
-            lodash_default.a.get(error, 'response.data.details') && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'p',
-                null,
-                lodash_default.a.get(error, 'response.data.details')
-            ),
-            lodash_default.a.get(error, 'config.method') && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'p',
-                null,
-                'HTTP method: ',
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'strong',
-                    null,
-                    lodash_default.a.get(error, 'config.method').toUpperCase()
-                )
-            ),
-            lodash_default.a.get(error, 'response.request.responseURL') && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'p',
-                null,
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'a',
-                    { href: lodash_default.a.get(error, 'response.request.responseURL'), target: '_blank' },
-                    lodash_default.a.get(error, 'response.request.responseURL')
-                )
-            ),
-            lodash_default.a.get(error, 'config.data') && typeof lodash_default.a.get(error, 'config.data') === 'string' && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'div',
-                null,
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'h4',
-                    null,
-                    'Body:'
-                ),
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    'p',
-                    null,
-                    lodash_default.a.get(error, 'config.data')
-                )
-            )
-        );
-    };
-
-    return ErrorMsg;
+var ErrorMsg_ErrorMsg = /*#__PURE__*/function (_React$Component) {
+  function ErrorMsg() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+  ErrorMsg_inheritsLoose(ErrorMsg, _React$Component);
+  var _proto = ErrorMsg.prototype;
+  _proto.render = function render() {
+    var error = this.props.error;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null, error.message && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h3", null, error.message), lodash_default.a.get(error, 'response.data.message') && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, lodash_default.a.get(error, 'response.data.message')), lodash_default.a.get(error, 'response.data.details') && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, lodash_default.a.get(error, 'response.data.details')), lodash_default.a.get(error, 'config.method') && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, "HTTP method: ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("strong", null, lodash_default.a.get(error, 'config.method').toUpperCase())), lodash_default.a.get(error, 'response.request.responseURL') && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: lodash_default.a.get(error, 'response.request.responseURL'),
+      target: "_blank"
+    }, lodash_default.a.get(error, 'response.request.responseURL'))), lodash_default.a.get(error, 'config.data') && typeof lodash_default.a.get(error, 'config.data') === 'string' && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h4", null, "Body:"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, lodash_default.a.get(error, 'config.data'))));
+  };
+  return ErrorMsg;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var components_ErrorMsg = (ErrorMsg_ErrorMsg);
 // CONCATENATED MODULE: ./src/api/sector.js
-
 
 
 var sector_reflect = function reflect(p) {
@@ -80476,7 +79539,6 @@ var sector_reflect = function reflect(p) {
     return null;
   });
 };
-
 var sector_getSectorsBatch = function getSectorsBatch(ids, catalogueKey) {
   return Promise.all(ids.map(function (i) {
     return sector_reflect(axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/sector/" + i));
@@ -81543,24 +80605,24 @@ function createMemoryHistory(props) {
 
 /* harmony default export */ var src_history = (createBrowserHistory());
 // EXTERNAL MODULE: ./node_modules/query-string/index.js
-var query_string = __webpack_require__(42);
+var query_string = __webpack_require__(41);
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
-var inheritsLoose = __webpack_require__(49);
+var inheritsLoose = __webpack_require__(48);
 
 // EXTERNAL MODULE: ./node_modules/mini-create-react-context/dist/esm/index.js
-var esm = __webpack_require__(299);
+var esm = __webpack_require__(298);
 
 // EXTERNAL MODULE: ./node_modules/path-to-regexp/index.js
-var path_to_regexp = __webpack_require__(124);
+var path_to_regexp = __webpack_require__(123);
 var path_to_regexp_default = /*#__PURE__*/__webpack_require__.n(path_to_regexp);
 
 // EXTERNAL MODULE: ./node_modules/react-is/index.js
 var react_is = __webpack_require__(77);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(52);
+var objectWithoutPropertiesLoose = __webpack_require__(51);
 
 // EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
 var hoist_non_react_statics_cjs = __webpack_require__(59);
@@ -82219,19 +81281,15 @@ if (false) { var secondaryBuildName, initialBuildName, buildNames, react_router_
 //# sourceMappingURL=react-router.js.map
 
 // CONCATENATED MODULE: ./src/ColTree/ColTree.js
-
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-function ColTree_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ColTree_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function ColTree_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function ColTree_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; ColTree_setPrototypeOf(subClass, superClass); }
+function ColTree_setPrototypeOf(o, p) { ColTree_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ColTree_setPrototypeOf(o, p); }
+function ColTree_defineProperty(obj, key, value) { key = ColTree_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function ColTree_toPropertyKey(t) { var i = ColTree_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function ColTree_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -82246,82 +81304,57 @@ function ColTree_inherits(subClass, superClass) { if (typeof superClass !== "fun
 
 
 var CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
-
-var ColTree_LoadMoreChildrenTreeNode = function (_React$Component) {
-  ColTree_inherits(LoadMoreChildrenTreeNode, _React$Component);
-
+var ColTree_LoadMoreChildrenTreeNode = /*#__PURE__*/function (_React$Component) {
   function LoadMoreChildrenTreeNode(props) {
-    ColTree_classCallCheck(this, LoadMoreChildrenTreeNode);
-
-    var _this = ColTree_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.onClick = function () {
-      _this.setState({ loading: true }, function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    ColTree_defineProperty(_this, "onClick", function () {
+      _this.setState({
+        loading: true
+      }, function () {
         return _this.props.onClick().then(function () {
-          return _this.setState({ loading: false });
+          return _this.setState({
+            loading: false
+          });
         });
       });
-    };
-
-    _this.render = function () {
+    });
+    ColTree_defineProperty(_this, "render", function () {
       var loading = _this.state.loading;
-
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-        null,
-        loading && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null),
-        !loading && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          { onClick: _this.onClick },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "strong",
-            null,
-            "Load more..."
-          )
-        )
-      );
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, loading && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null), !loading && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        onClick: _this.onClick
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("strong", null, "Load more...")));
+    });
+    _this.state = {
+      loading: false
     };
-
-    _this.state = { loading: false };
     return _this;
   }
-
+  ColTree_inheritsLoose(LoadMoreChildrenTreeNode, _React$Component);
   return LoadMoreChildrenTreeNode;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
-var ColTree_ColTree = function (_React$Component2) {
-  ColTree_inherits(ColTree, _React$Component2);
-
+var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
   function ColTree(props) {
-    var _this3 = this;
-
-    ColTree_classCallCheck(this, ColTree);
-
-    var _this2 = ColTree_possibleConstructorReturn(this, _React$Component2.call(this, props));
-
-    _this2.componentDidMount = function () {
+    var _this2;
+    _this2 = _React$Component2.call(this, props) || this;
+    ColTree_defineProperty(_this2, "componentDidMount", function () {
       var catalogueKey = _this2.props.catalogueKey;
-
       _this2.loadRoot();
       _this2.datasetLoader = new dataloader_default.a(function (ids) {
         return dataset_getDatasetsBatch(ids, catalogueKey);
       });
-
       _this2.sectorLoader = new dataloader_default.a(function (ids) {
         return sector_getSectorsBatch(ids, catalogueKey);
       });
       var treeRef = _this2.props.treeRef;
-
       treeRef(_this2);
-    };
-
-    _this2.componentDidUpdate = function (prevProps) {
+    });
+    ColTree_defineProperty(_this2, "componentDidUpdate", function (prevProps) {
       if (prevProps.defaultExpandKey !== _this2.props.defaultExpandKey || prevProps.hideExtinct !== _this2.props.hideExtinct) {
         _this2.reloadRoot();
       }
-    };
-
-    _this2.reloadRoot = function () {
+    });
+    ColTree_defineProperty(_this2, "reloadRoot", function () {
       return _this2.setState({
         rootLoading: true,
         treeData: [],
@@ -82330,146 +81363,48 @@ var ColTree_ColTree = function (_React$Component2) {
         error: null,
         nodeNotFoundErr: null
       }, _this2.loadRoot);
-    };
-
-    _this2.loadRoot = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+    });
+    ColTree_defineProperty(_this2, "loadRoot", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var defaultExpandKey, defaultTaxonKey;
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey");
-              defaultTaxonKey = _this2.props.defaultTaxonKey;
-
-              if (!defaultExpandKey) {
-                _context.next = 6;
-                break;
-              }
-
-              return _context.abrupt("return", _this2.expandToTaxon(defaultExpandKey));
-
-            case 6:
-              if (!defaultTaxonKey) {
-                _context.next = 10;
-                break;
-              }
-
-              return _context.abrupt("return", _this2.expandToTaxon(defaultTaxonKey));
-
-            case 10:
-              return _context.abrupt("return", _this2.loadRoot_());
-
-            case 11:
-            case "end":
-              return _context.stop();
-          }
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey");
+            defaultTaxonKey = _this2.props.defaultTaxonKey;
+            if (!defaultExpandKey) {
+              _context.next = 6;
+              break;
+            }
+            return _context.abrupt("return", _this2.expandToTaxon(defaultExpandKey));
+          case 6:
+            if (!defaultTaxonKey) {
+              _context.next = 10;
+              break;
+            }
+            return _context.abrupt("return", _this2.expandToTaxon(defaultTaxonKey));
+          case 10:
+            return _context.abrupt("return", _this2.loadRoot_());
+          case 11:
+          case "end":
+            return _context.stop();
         }
-      }, _callee, _this3);
-    }));
-    _this2.loadRoot_ = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
+      }, _callee);
+    })));
+    ColTree_defineProperty(_this2, "loadRoot_", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var _this2$props, showSourceTaxon, catalogueKey, pathToTaxon, pathToDataset, hideExtinct;
-
-      return regenerator_default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _this2$props = _this2.props, showSourceTaxon = _this2$props.showSourceTaxon, catalogueKey = _this2$props.catalogueKey, pathToTaxon = _this2$props.pathToTaxon, pathToDataset = _this2$props.pathToDataset, hideExtinct = _this2$props.hideExtinct;
-
-              _this2.setState({ rootLoading: true, treeData: [] });
-              return _context2.abrupt("return", axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree?catalogueKey=" + catalogueKey + "&type=CATALOGUE&limit=" + CHILD_PAGE_SIZE + "&offset=" + _this2.state.treeData.length + (hideExtinct ? "&extinct=false&extinct=" : '')).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
-                var mainTreeData = res.data.result || [];
-                var rootTotal = res.data.total;
-                var treeData = mainTreeData.map(function (tx) {
-                  var dataRef = {
-                    taxon: tx,
-                    key: tx.id,
-                    datasetKey: catalogueKey,
-                    childCount: tx.childCount,
-                    isLeaf: tx.childCount === 0,
-                    childOffset: 0
-                  };
-                  dataRef.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
-                    taxon: tx,
-                    pathToTaxon: pathToTaxon,
-                    pathToDataset: pathToDataset,
-                    catalogueKey: catalogueKey,
-                    showSourceTaxon: showSourceTaxon,
-                    reloadChildren: function reloadChildren() {
-                      return _this2.fetchChildPage(dataRef, true);
-                    }
-                  });
-                  dataRef.ref = dataRef;
-                  return dataRef;
-                });
-
-                _this2.setState({
-                  rootTotal: rootTotal,
-                  rootLoading: false,
-                  treeData: [].concat(_this2.state.treeData, treeData),
-                  expandedKeys: treeData.length < 10 ? treeData.map(function (n) {
-                    return n.taxon.id;
-                  }) : [],
-                  error: null
-                });
-                if (treeData.length === 1) {
-                  _this2.fetchChildPage(treeData[treeData.length - 1]);
-                }
-              }).catch(function (err) {
-                _this2.setState({
-                  treeData: [],
-                  rootLoading: false,
-                  expandedKeys: [],
-                  error: err
-                });
-              }));
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, _this3);
-    }));
-
-    _this2.expandToTaxon = function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee3(defaultExpandKey) {
-        var _this2$props2, showSourceTaxon, catalogueKey, pathToTaxon, pathToDataset, hideExtinct, _ref4, data, tx, root, root_, _loop, i, treeData, loadedKeys;
-
-        return regenerator_default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _this2$props2 = _this2.props, showSourceTaxon = _this2$props2.showSourceTaxon, catalogueKey = _this2$props2.catalogueKey, pathToTaxon = _this2$props2.pathToTaxon, pathToDataset = _this2$props2.pathToDataset, hideExtinct = _this2$props2.hideExtinct;
-
-
-                _this2.setState({ rootLoading: true, treeData: [] });
-                _context3.next = 4;
-                return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + defaultExpandKey + "?catalogueKey=" + catalogueKey + "&insertPlaceholder=true&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : '')).then(function (res) {
-                  return _this2.decorateWithSectorsAndDataset({
-                    data: { result: res.data }
-                  }).then(function () {
-                    return res;
-                  });
-                });
-
-              case 4:
-                _ref4 = _context3.sent;
-                data = _ref4.data;
-
-                if (!(data.length === 0)) {
-                  _context3.next = 8;
-                  break;
-                }
-
-                return _context3.abrupt("return", _this2.setState({
-                  error: {
-                    message: "No classification found for Taxon ID: " + defaultExpandKey
-                  }
-                }, _this2.loadRoot_));
-
-              case 8:
-                tx = data[data.length - 1];
-                root = {
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _this2$props = _this2.props, showSourceTaxon = _this2$props.showSourceTaxon, catalogueKey = _this2$props.catalogueKey, pathToTaxon = _this2$props.pathToTaxon, pathToDataset = _this2$props.pathToDataset, hideExtinct = _this2$props.hideExtinct;
+            _this2.setState({
+              rootLoading: true,
+              treeData: []
+            });
+            return _context2.abrupt("return", axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree?catalogueKey=" + catalogueKey + "&type=CATALOGUE&limit=" + CHILD_PAGE_SIZE + "&offset=" + _this2.state.treeData.length + (hideExtinct ? "&extinct=false&extinct=" : '')).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
+              var mainTreeData = res.data.result || [];
+              var rootTotal = res.data.total;
+              var treeData = mainTreeData.map(function (tx) {
+                var dataRef = {
                   taxon: tx,
                   key: tx.id,
                   datasetKey: catalogueKey,
@@ -82477,207 +81412,284 @@ var ColTree_ColTree = function (_React$Component2) {
                   isLeaf: tx.childCount === 0,
                   childOffset: 0
                 };
-
-                root.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
+                dataRef.title = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
                   taxon: tx,
                   pathToTaxon: pathToTaxon,
                   pathToDataset: pathToDataset,
                   catalogueKey: catalogueKey,
                   showSourceTaxon: showSourceTaxon,
                   reloadChildren: function reloadChildren() {
-                    return _this2.fetchChildPage(root, true);
+                    return _this2.fetchChildPage(dataRef, true);
                   }
                 });
-
-                root_ = root;
-
-                _loop = function _loop(i) {
-                  var tx = data[i];
-                  var node = {
-                    taxon: tx,
-                    key: tx.id,
-                    datasetKey: catalogueKey,
-                    childCount: tx.childCount,
-                    isLeaf: tx.childCount === 0,
-                    childOffset: 0
-                  };
-                  node.ref = node;
-                  node.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
-                    taxon: tx,
-                    pathToTaxon: pathToTaxon,
-                    pathToDataset: pathToDataset,
-                    catalogueKey: catalogueKey,
-                    showSourceTaxon: showSourceTaxon,
-                    reloadChildren: function reloadChildren() {
-                      return _this2.fetchChildPage(node, true);
-                    }
-                  });
-
-                  root.children = [node];
-                  root = node;
-                };
-
-                for (i = data.length - 2; i >= 0; i--) {
-                  _loop(i);
-                }
-
-                treeData = [root_];
-                loadedKeys = [].concat(data.map(function (t) {
-                  return t.id;
-                }).reverse());
-
-
-                _this2.setState({ treeData: treeData }, function () {
-                  return _this2.reloadLoadedKeys(loadedKeys, defaultExpandKey);
+                dataRef.ref = dataRef;
+                return dataRef;
+              });
+              _this2.setState({
+                rootTotal: rootTotal,
+                rootLoading: false,
+                treeData: [].concat(_this2.state.treeData, treeData),
+                expandedKeys: treeData.length < 10 ? treeData.map(function (n) {
+                  return n.taxon.id;
+                }) : [],
+                error: null
+              });
+              if (treeData.length === 1) {
+                _this2.fetchChildPage(treeData[treeData.length - 1]);
+              }
+            })["catch"](function (err) {
+              _this2.setState({
+                treeData: [],
+                rootLoading: false,
+                expandedKeys: [],
+                error: err
+              });
+            }));
+          case 3:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    })));
+    ColTree_defineProperty(_this2, "expandToTaxon", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(defaultExpandKey) {
+        var _this2$props2, showSourceTaxon, catalogueKey, pathToTaxon, pathToDataset, hideExtinct, _yield$axios$then, data, tx, root, root_, _loop, i, treeData, loadedKeys;
+        return _regeneratorRuntime().wrap(function _callee3$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              _this2$props2 = _this2.props, showSourceTaxon = _this2$props2.showSourceTaxon, catalogueKey = _this2$props2.catalogueKey, pathToTaxon = _this2$props2.pathToTaxon, pathToDataset = _this2$props2.pathToDataset, hideExtinct = _this2$props2.hideExtinct;
+              _this2.setState({
+                rootLoading: true,
+                treeData: []
+              });
+              _context4.next = 4;
+              return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + defaultExpandKey + "?catalogueKey=" + catalogueKey + "&insertPlaceholder=true&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : '')).then(function (res) {
+                return _this2.decorateWithSectorsAndDataset({
+                  data: {
+                    result: res.data
+                  }
+                }).then(function () {
+                  return res;
                 });
-
-              case 17:
-              case "end":
-                return _context3.stop();
-            }
+              });
+            case 4:
+              _yield$axios$then = _context4.sent;
+              data = _yield$axios$then.data;
+              if (!(data.length === 0)) {
+                _context4.next = 8;
+                break;
+              }
+              return _context4.abrupt("return", _this2.setState({
+                error: {
+                  message: "No classification found for Taxon ID: " + defaultExpandKey
+                }
+              }, _this2.loadRoot_));
+            case 8:
+              tx = data[data.length - 1];
+              root = {
+                taxon: tx,
+                key: tx.id,
+                datasetKey: catalogueKey,
+                childCount: tx.childCount,
+                isLeaf: tx.childCount === 0,
+                childOffset: 0
+              };
+              root.title = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
+                taxon: tx,
+                pathToTaxon: pathToTaxon,
+                pathToDataset: pathToDataset,
+                catalogueKey: catalogueKey,
+                showSourceTaxon: showSourceTaxon,
+                reloadChildren: function reloadChildren() {
+                  return _this2.fetchChildPage(root, true);
+                }
+              });
+              root_ = root;
+              _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
+                var tx, node;
+                return _regeneratorRuntime().wrap(function _loop$(_context3) {
+                  while (1) switch (_context3.prev = _context3.next) {
+                    case 0:
+                      tx = data[i];
+                      node = {
+                        taxon: tx,
+                        key: tx.id,
+                        datasetKey: catalogueKey,
+                        childCount: tx.childCount,
+                        isLeaf: tx.childCount === 0,
+                        childOffset: 0
+                      };
+                      node.ref = node;
+                      node.title = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
+                        taxon: tx,
+                        pathToTaxon: pathToTaxon,
+                        pathToDataset: pathToDataset,
+                        catalogueKey: catalogueKey,
+                        showSourceTaxon: showSourceTaxon,
+                        reloadChildren: function reloadChildren() {
+                          return _this2.fetchChildPage(node, true);
+                        }
+                      });
+                      root.children = [node];
+                      root = node;
+                    case 6:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }, _loop);
+              });
+              i = data.length - 2;
+            case 14:
+              if (!(i >= 0)) {
+                _context4.next = 19;
+                break;
+              }
+              return _context4.delegateYield(_loop(), "t0", 16);
+            case 16:
+              i--;
+              _context4.next = 14;
+              break;
+            case 19:
+              treeData = [root_];
+              loadedKeys = [].concat(data.map(function (t) {
+                return t.id;
+              }).reverse());
+              _this2.setState({
+                treeData: treeData
+              }, function () {
+                return _this2.reloadLoadedKeys(loadedKeys, defaultExpandKey);
+              });
+            case 22:
+            case "end":
+              return _context4.stop();
           }
-        }, _callee3, _this3);
+        }, _callee3);
       }));
-
       return function (_x) {
         return _ref3.apply(this, arguments);
       };
-    }();
-
-    _this2.fetchChildPage = function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4(dataRef, reloadAll, dontUpdateState) {
+    }());
+    ColTree_defineProperty(_this2, "fetchChildPage", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dataRef, reloadAll, dontUpdateState) {
         var _this2$props3, showSourceTaxon, catalogueKey, pathToTaxon, pathToDataset, hideExtinct, treeData, childcount, limit, offset, res, data, loadMoreFn;
-
-        return regenerator_default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _this2$props3 = _this2.props, showSourceTaxon = _this2$props3.showSourceTaxon, catalogueKey = _this2$props3.catalogueKey, pathToTaxon = _this2$props3.pathToTaxon, pathToDataset = _this2$props3.pathToDataset, hideExtinct = _this2$props3.hideExtinct;
-                treeData = _this2.state.treeData;
-                childcount = lodash_default.a.get(dataRef, "childCount");
-                limit = CHILD_PAGE_SIZE;
-                offset = lodash_default.a.get(dataRef, "childOffset");
-                _context4.next = 7;
-                return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + dataRef.taxon.id //taxonKey
-                + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : ''));
-
-              case 7:
-                res = _context4.sent;
-                _context4.next = 10;
-                return _this2.decorateWithSectorsAndDataset(res);
-
-              case 10:
-                data = res.data.result ? res.data.result.map(function (tx) {
-                  var childDataRef = {
-                    taxon: tx,
-                    key: tx.id,
-                    datasetKey: catalogueKey,
-                    childCount: tx.childCount,
-                    isLeaf: tx.childCount === 0,
-                    childOffset: 0,
-                    parent: dataRef,
-                    name: tx.name
-                  };
-
-                  childDataRef.title = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
-                    taxon: tx,
-                    pathToTaxon: pathToTaxon,
-                    pathToDataset: pathToDataset,
-                    catalogueKey: catalogueKey,
-                    showSourceTaxon: showSourceTaxon,
-                    reloadChildren: function reloadChildren() {
-                      return _this2.fetchChildPage(childDataRef, true);
-                    }
-                  });
-                  childDataRef.ref = childDataRef;
-
-                  return childDataRef;
-                }) : [];
-
-                // reloadAll is used to force reload all children from offset 0 - used when new children have been posted
-
-                dataRef.children = dataRef.children && offset !== 0 && !reloadAll ? [].concat(dataRef.children, data) : data;
-                // If extinct are filtered out, you cannot rely on childCount
-                if (res.data.last && dataRef.childCount > dataRef.children.length) {
-                  dataRef.childCount = dataRef.children.length;
-                }
-                if (offset + CHILD_PAGE_SIZE < childcount) {
-                  loadMoreFn = function loadMoreFn() {
-                    dataRef.childOffset += CHILD_PAGE_SIZE;
-                    if (dataRef.children[dataRef.children.length - 1].key === "__loadMoreBTN__") {
-                      dataRef.children = dataRef.children.slice(0, -1);
-                    }
-                    return _this2.fetchChildPage(dataRef, false);
-                    /*  this.setState(
-                       {
-                         treeData: [...treeData],
-                         defaultExpandAll: false,
-                       },
-                       () => {
-                         this.fetchChildPage(dataRef, false);
-                       }
-                     ); */
-                  };
-
-                  dataRef.children = [].concat(dataRef.children, [{
-                    title: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_LoadMoreChildrenTreeNode, {
-                      onClick: loadMoreFn,
-                      key: "__loadMoreBTN__"
-                    }),
-                    key: "__loadMoreBTN__",
-                    childCount: 0,
-                    isLeaf: true
-                  }]);
-                }
-                if (!dontUpdateState) {
-                  _this2.setState({
-                    treeData: [].concat(treeData),
-                    loadedKeys: [].concat(new Set([].concat(_this2.state.loadedKeys, [dataRef.key])))
-                  });
-                }
-
-              case 15:
-              case "end":
-                return _context4.stop();
-            }
+        return _regeneratorRuntime().wrap(function _callee4$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
+            case 0:
+              _this2$props3 = _this2.props, showSourceTaxon = _this2$props3.showSourceTaxon, catalogueKey = _this2$props3.catalogueKey, pathToTaxon = _this2$props3.pathToTaxon, pathToDataset = _this2$props3.pathToDataset, hideExtinct = _this2$props3.hideExtinct;
+              treeData = _this2.state.treeData;
+              childcount = lodash_default.a.get(dataRef, "childCount");
+              limit = CHILD_PAGE_SIZE;
+              offset = lodash_default.a.get(dataRef, "childOffset");
+              _context5.next = 7;
+              return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + dataRef.taxon.id //taxonKey
+              + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : ''));
+            case 7:
+              res = _context5.sent;
+              _context5.next = 10;
+              return _this2.decorateWithSectorsAndDataset(res);
+            case 10:
+              data = res.data.result ? res.data.result.map(function (tx) {
+                var childDataRef = {
+                  taxon: tx,
+                  key: tx.id,
+                  datasetKey: catalogueKey,
+                  childCount: tx.childCount,
+                  isLeaf: tx.childCount === 0,
+                  childOffset: 0,
+                  parent: dataRef,
+                  name: tx.name
+                };
+                childDataRef.title = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_ColTreeNode, {
+                  taxon: tx,
+                  pathToTaxon: pathToTaxon,
+                  pathToDataset: pathToDataset,
+                  catalogueKey: catalogueKey,
+                  showSourceTaxon: showSourceTaxon,
+                  reloadChildren: function reloadChildren() {
+                    return _this2.fetchChildPage(childDataRef, true);
+                  }
+                });
+                childDataRef.ref = childDataRef;
+                return childDataRef;
+              }) : []; // reloadAll is used to force reload all children from offset 0 - used when new children have been posted
+              dataRef.children = dataRef.children && offset !== 0 && !reloadAll ? [].concat(dataRef.children, data) : data;
+              // If extinct are filtered out, you cannot rely on childCount
+              if (res.data.last && dataRef.childCount > dataRef.children.length) {
+                dataRef.childCount = dataRef.children.length;
+              }
+              if (offset + CHILD_PAGE_SIZE < childcount) {
+                loadMoreFn = function loadMoreFn() {
+                  dataRef.childOffset += CHILD_PAGE_SIZE;
+                  if (dataRef.children[dataRef.children.length - 1].key === "__loadMoreBTN__") {
+                    dataRef.children = dataRef.children.slice(0, -1);
+                  }
+                  return _this2.fetchChildPage(dataRef, false);
+                  /*  this.setState(
+                     {
+                       treeData: [...treeData],
+                       defaultExpandAll: false,
+                     },
+                     () => {
+                       this.fetchChildPage(dataRef, false);
+                     }
+                   ); */
+                };
+                dataRef.children = [].concat(dataRef.children, [{
+                  title: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_LoadMoreChildrenTreeNode, {
+                    onClick: loadMoreFn,
+                    key: "__loadMoreBTN__"
+                  }),
+                  key: "__loadMoreBTN__",
+                  childCount: 0,
+                  isLeaf: true
+                }]);
+              }
+              if (!dontUpdateState) {
+                _this2.setState({
+                  treeData: [].concat(treeData),
+                  loadedKeys: [].concat(new Set([].concat(_this2.state.loadedKeys, [dataRef.key])))
+                });
+              }
+            case 15:
+            case "end":
+              return _context5.stop();
           }
-        }, _callee4, _this3);
+        }, _callee4);
       }));
-
       return function (_x2, _x3, _x4) {
-        return _ref5.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       };
-    }();
-
-    _this2.decorateWithSectorsAndDataset = function (res) {
+    }());
+    ColTree_defineProperty(_this2, "decorateWithSectorsAndDataset", function (res) {
       if (!res.data.result) return res;
       return Promise.all(res.data.result.filter(function (tx) {
         return !!tx.sectorDatasetKey;
       }).map(function (tx) {
         return _this2.datasetLoader.load(tx.sectorDatasetKey).then(function (dataset) {
-          return tx.sector = { id: tx.sectorKey, subjectDatasetKey: tx.sectorDatasetKey, dataset: dataset };
+          return tx.sector = {
+            id: tx.sectorKey,
+            subjectDatasetKey: tx.sectorDatasetKey,
+            dataset: dataset
+          };
         });
       })).then(function () {
         return res;
       });
-    };
-
-    _this2.onLoadData = function (treeNode) {
-      var reloadAll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
+    });
+    ColTree_defineProperty(_this2, "onLoadData", function (treeNode, reloadAll) {
+      if (reloadAll === void 0) {
+        reloadAll = false;
+      }
       if (reloadAll) {
         treeNode.childOffset = 0;
       }
       return _this2.fetchChildPage(treeNode.ref, reloadAll);
-    };
-
-    _this2.findNode = function (id, nodeArray) {
+    });
+    ColTree_defineProperty(_this2, "findNode", function (id, nodeArray) {
       var node = null;
-
       node = nodeArray.find(function (n) {
         return lodash_default.a.get(n, "taxon.id") === id;
       });
-
       if (node) {
         return node;
       } else {
@@ -82691,217 +81703,180 @@ var ColTree_ColTree = function (_React$Component2) {
           return _this2.findNode(id, flattenedChildren);
         }
       }
-    };
-
-    _this2.pageThroughChildrenUntilTaxonFound = function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee5(parentNode, taxonId) {
+    });
+    ColTree_defineProperty(_this2, "pageThroughChildrenUntilTaxonFound", /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(parentNode, taxonId) {
         var node;
-        return regenerator_default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                node = void 0;
-
-              case 1:
-                if (!(!node && parentNode.children.length < parentNode.childCount)) {
-                  _context5.next = 9;
-                  break;
-                }
-
-                parentNode.childOffset += CHILD_PAGE_SIZE;
-                if (parentNode.children[parentNode.children.length - 1].key === "__loadMoreBTN__") {
-                  parentNode.children = parentNode.children.slice(0, -1);
-                }
-                _context5.next = 6;
-                return _this2.fetchChildPage(parentNode, false, true);
-
-              case 6:
-                node = _this2.findNode(taxonId, parentNode.children);
-                _context5.next = 1;
+        return _regeneratorRuntime().wrap(function _callee5$(_context6) {
+          while (1) switch (_context6.prev = _context6.next) {
+            case 0:
+              if (!(!node && parentNode.children.length < parentNode.childCount)) {
+                _context6.next = 8;
                 break;
-
-              case 9:
-                if (!node) {
-                  node = parentNode.children.find(function (c) {
-                    return lodash_default.a.get(c, 'taxon.id') ? c.taxon.id.indexOf("incertae-sedis") > -1 : false;
-                  });
-                }
-                return _context5.abrupt("return", node);
-
-              case 11:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, _this3);
-      }));
-
-      return function (_x6, _x7) {
-        return _ref6.apply(this, arguments);
-      };
-    }();
-
-    _this2.reloadLoadedKeys = function () {
-      var _ref7 = _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee6(keys, expandKey) {
-        var expandAll = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-        var storedKeys, treeData, targetTaxon, loadedKeys, index, _node, parentNode, targetNode, newState;
-
-        return regenerator_default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _this2.setState({ rootLoading: true });
-                storedKeys = _this2.state.loadedKeys;
-                // const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
-
-                treeData = _this2.state.treeData;
-                targetTaxon = expandKey ? _this2.findNode(expandKey, treeData) : null;
-                loadedKeys = keys ? [].concat(keys) : [].concat(storedKeys);
-                index = 0;
-
-              case 6:
-                if (!(index < loadedKeys.length)) {
-                  _context6.next = 28;
-                  break;
-                }
-
-                _node = _this2.findNode(loadedKeys[index], treeData);
-
-                if (!(!_node && targetTaxon && loadedKeys[index - 1])) {
-                  _context6.next = 15;
-                  break;
-                }
-
-                // If the node is not found look for insertae sedis nodes in the children of the parent and insert the 'Not assigned' between the parent and the node
-                parentNode = _this2.findNode(loadedKeys[index - 1], treeData);
-
-                if (!(parentNode && lodash_default.a.isArray(lodash_default.a.get(parentNode, "children")) && parentNode.children.length > 0)) {
-                  _context6.next = 15;
-                  break;
-                }
-
-                _context6.next = 13;
-                return _this2.pageThroughChildrenUntilTaxonFound(parentNode, loadedKeys[index]);
-
-              case 13:
-                _node = _context6.sent;
-
-                if (_node) {
-                  loadedKeys.splice(index, 0, _node.taxon.id);
-                } else {
-                  // It has gone missing from the tree
-                  _this2.setState({
-                    nodeNotFoundErr: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                      "span",
-                      null,
-                      "Cannot find taxon ",
-                      expandKey,
-                      " in tree \uD83D\uDE25"
-                    ),
-                    rootLoading: false
-                  }, function () {
-                    if (_this2.props.treeType === "CATALOGUE" && typeof _this2.props.addMissingTargetKey === "function") {
-                      _this2.props.addMissingTargetKey(expandKey);
-                    }
-                  });
-                }
-
-              case 15:
-                if (!_node) {
-                  _context6.next = 25;
-                  break;
-                }
-
-                _context6.next = 18;
-                return _this2.fetchChildPage(_node, true, true);
-
-              case 18:
-                targetNode = _node.children.find(function (c) {
-                  return lodash_default.a.get(c, "taxon.id") === lodash_default.a.get(targetTaxon, "taxon.id");
+              }
+              parentNode.childOffset += CHILD_PAGE_SIZE;
+              if (parentNode.children[parentNode.children.length - 1].key === "__loadMoreBTN__") {
+                parentNode.children = parentNode.children.slice(0, -1);
+              }
+              _context6.next = 5;
+              return _this2.fetchChildPage(parentNode, false, true);
+            case 5:
+              node = _this2.findNode(taxonId, parentNode.children);
+              _context6.next = 0;
+              break;
+            case 8:
+              if (!node) {
+                node = parentNode.children.find(function (c) {
+                  return lodash_default.a.get(c, 'taxon.id') ? c.taxon.id.indexOf("incertae-sedis") > -1 : false;
                 });
-
-                if (!(targetTaxon && index === loadedKeys.length - 2 && lodash_default.a.get(_node, "taxon.id") !== lodash_default.a.get(targetTaxon, "taxon.id") && lodash_default.a.isArray(_node.children) && !targetNode)) {
-                  _context6.next = 25;
-                  break;
-                }
-
-                if (!(_node.children.length < _node.childCount)) {
-                  _context6.next = 25;
-                  break;
-                }
-
-                _context6.next = 23;
-                return _this2.pageThroughChildrenUntilTaxonFound(_node, lodash_default.a.get(targetTaxon, "taxon.id"));
-
-              case 23:
-                targetNode = _context6.sent;
-
-                // node.children = [targetTaxon, ...node.children];
-                if (targetNode) {
-                  _this2.setState({ treeData: [].concat(_this2.state.treeData) }, function () {
-                    setTimeout(function () {
-                      var elmnt = document.getElementById(expandKey);
-                      elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      /* if (_.get(this, "treeRef.current")) {
-                        this.treeRef.current.scrollTo({ key: expandKey });
-                      } */
-                    }, 100);
-                  });
-                } else {
-                  // It has gone missing from the tree
-                  _this2.setState({
-                    nodeNotFoundErr: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                      "span",
-                      null,
-                      "Cannot find taxon ",
-                      expandKey,
-                      " in tree \uD83D\uDE25"
-                    ),
-                    rootLoading: false
-                  }, function () {
-                    if (_this2.props.treeType === "CATALOGUE" && typeof _this2.props.addMissingTargetKey === "function") {
-                      _this2.props.addMissingTargetKey(expandKey);
-                    }
-                  });
-                }
-
-              case 25:
-                index++;
-                _context6.next = 6;
+              }
+              return _context6.abrupt("return", node);
+            case 10:
+            case "end":
+              return _context6.stop();
+          }
+        }, _callee5);
+      }));
+      return function (_x5, _x6) {
+        return _ref5.apply(this, arguments);
+      };
+    }());
+    ColTree_defineProperty(_this2, "reloadLoadedKeys", /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(keys, expandKey, expandAll) {
+        var storedKeys, treeData, targetTaxon, loadedKeys, index, node, parentNode, targetNode, newState;
+        return _regeneratorRuntime().wrap(function _callee6$(_context7) {
+          while (1) switch (_context7.prev = _context7.next) {
+            case 0:
+              if (expandAll === void 0) {
+                expandAll = true;
+              }
+              _this2.setState({
+                rootLoading: true
+              });
+              storedKeys = _this2.state.loadedKeys; // const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+              treeData = _this2.state.treeData;
+              targetTaxon = expandKey ? _this2.findNode(expandKey, treeData) : null;
+              loadedKeys = keys ? [].concat(keys) : [].concat(storedKeys);
+              index = 0;
+            case 7:
+              if (!(index < loadedKeys.length)) {
+                _context7.next = 29;
                 break;
-
-              case 28:
-                newState = { loadedKeys: loadedKeys, rootLoading: false };
-
-                if (expandAll) {
-                  newState.expandedKeys = loadedKeys;
-                }
-                _this2.setState(newState, function () {
-                  if (expandKey) {
-                    setTimeout(function () {
-                      var elmnt = document.getElementById(expandKey);
-                      elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      /*           if (_.get(this, "treeRef.current")) {
-                                  this.treeRef.current.scrollTo({ key: expandKey });
-                                } */
-                    }, 100);
+              }
+              node = _this2.findNode(loadedKeys[index], treeData);
+              if (!(!node && targetTaxon && loadedKeys[index - 1])) {
+                _context7.next = 16;
+                break;
+              }
+              // If the node is not found look for insertae sedis nodes in the children of the parent and insert the 'Not assigned' between the parent and the node
+              parentNode = _this2.findNode(loadedKeys[index - 1], treeData);
+              if (!(parentNode && lodash_default.a.isArray(lodash_default.a.get(parentNode, "children")) && parentNode.children.length > 0)) {
+                _context7.next = 16;
+                break;
+              }
+              _context7.next = 14;
+              return _this2.pageThroughChildrenUntilTaxonFound(parentNode, loadedKeys[index]);
+            case 14:
+              node = _context7.sent;
+              if (node) {
+                loadedKeys.splice(index, 0, node.taxon.id);
+              } else {
+                // It has gone missing from the tree
+                _this2.setState({
+                  nodeNotFoundErr: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, "Cannot find taxon ", expandKey, " in tree \uD83D\uDE25"),
+                  rootLoading: false
+                }, function () {
+                  if (_this2.props.treeType === "CATALOGUE" && typeof _this2.props.addMissingTargetKey === "function") {
+                    _this2.props.addMissingTargetKey(expandKey);
                   }
                 });
-
-              case 31:
-              case "end":
-                return _context6.stop();
-            }
+              }
+            case 16:
+              if (!node) {
+                _context7.next = 26;
+                break;
+              }
+              _context7.next = 19;
+              return _this2.fetchChildPage(node, true, true);
+            case 19:
+              targetNode = node.children.find(function (c) {
+                return lodash_default.a.get(c, "taxon.id") === lodash_default.a.get(targetTaxon, "taxon.id");
+              });
+              if (!(targetTaxon && index === loadedKeys.length - 2 && lodash_default.a.get(node, "taxon.id") !== lodash_default.a.get(targetTaxon, "taxon.id") && lodash_default.a.isArray(node.children) && !targetNode)) {
+                _context7.next = 26;
+                break;
+              }
+              if (!(node.children.length < node.childCount)) {
+                _context7.next = 26;
+                break;
+              }
+              _context7.next = 24;
+              return _this2.pageThroughChildrenUntilTaxonFound(node, lodash_default.a.get(targetTaxon, "taxon.id"));
+            case 24:
+              targetNode = _context7.sent;
+              // node.children = [targetTaxon, ...node.children];
+              if (targetNode) {
+                _this2.setState({
+                  treeData: [].concat(_this2.state.treeData)
+                }, function () {
+                  setTimeout(function () {
+                    var elmnt = document.getElementById(expandKey);
+                    elmnt.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center'
+                    });
+                    /* if (_.get(this, "treeRef.current")) {
+                      this.treeRef.current.scrollTo({ key: expandKey });
+                    } */
+                  }, 100);
+                });
+              } else {
+                // It has gone missing from the tree
+                _this2.setState({
+                  nodeNotFoundErr: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, "Cannot find taxon ", expandKey, " in tree \uD83D\uDE25"),
+                  rootLoading: false
+                }, function () {
+                  if (_this2.props.treeType === "CATALOGUE" && typeof _this2.props.addMissingTargetKey === "function") {
+                    _this2.props.addMissingTargetKey(expandKey);
+                  }
+                });
+              }
+            case 26:
+              index++;
+              _context7.next = 7;
+              break;
+            case 29:
+              newState = {
+                loadedKeys: loadedKeys,
+                rootLoading: false
+              };
+              if (expandAll) {
+                newState.expandedKeys = loadedKeys;
+              }
+              _this2.setState(newState, function () {
+                if (expandKey) {
+                  setTimeout(function () {
+                    var elmnt = document.getElementById(expandKey);
+                    elmnt.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center'
+                    });
+                    /*           if (_.get(this, "treeRef.current")) {
+                                this.treeRef.current.scrollTo({ key: expandKey });
+                              } */
+                  }, 100);
+                }
+              });
+            case 32:
+            case "end":
+              return _context7.stop();
           }
-        }, _callee6, _this3);
+        }, _callee6);
       }));
-
-      return function (_x8, _x9) {
-        return _ref7.apply(this, arguments);
+      return function (_x7, _x8, _x9) {
+        return _ref6.apply(this, arguments);
       };
-    }();
-
+    }());
     _this2.state = {
       rootLoading: true,
       treeData: [],
@@ -82914,115 +81889,122 @@ var ColTree_ColTree = function (_React$Component2) {
     _this2.treeRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createRef();
     return _this2;
   }
-
-  ColTree.prototype.render = function render() {
-    var _this4 = this;
-
-    var _state = this.state,
-        error = _state.error,
-        rootTotal = _state.rootTotal,
-        rootLoading = _state.rootLoading,
-        treeData = _state.treeData,
-        defaultExpandAll = _state.defaultExpandAll,
-        nodeNotFoundErr = _state.nodeNotFoundErr,
-        loadedKeys = _state.loadedKeys,
-        expandedKeys = _state.expandedKeys;
-    var _props = this.props,
-        location = _props.location,
-        treeType = _props.treeType,
-        dataset = _props.dataset,
-        height = _props.height;
-
+  ColTree_inheritsLoose(ColTree, _React$Component2);
+  var _proto = ColTree.prototype;
+  _proto.render = function render() {
+    var _this3 = this;
+    var _this$state = this.state,
+      error = _this$state.error,
+      rootTotal = _this$state.rootTotal,
+      rootLoading = _this$state.rootLoading,
+      treeData = _this$state.treeData,
+      defaultExpandAll = _this$state.defaultExpandAll,
+      nodeNotFoundErr = _this$state.nodeNotFoundErr,
+      loadedKeys = _this$state.loadedKeys,
+      expandedKeys = _this$state.expandedKeys;
+    var _this$props = this.props,
+      location = _this$props.location,
+      treeType = _this$props.treeType,
+      dataset = _this$props.dataset,
+      height = _this$props.height;
     console.log(height);
     var defaultExpandKey = lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey");
-
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      null,
-      error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-        null,
-        lodash_default.a.get(error, "response.data.code") !== 404 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-          closable: true,
-          onClose: function onClose() {
-            return _this4.setState({ error: null });
-          },
-          style: { marginTop: "8px" },
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: error }),
-          type: "error"
-        }) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-          closable: true,
-          onClose: function onClose() {
-            return _this4.setState({ error: null });
-          },
-          style: { marginTop: "8px" },
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Custom404, {
-            error: error,
-            treeType: treeType,
-            dataset: dataset,
-            loadRoot: this.loadRoot
-          }),
-          type: "warning"
-        })
-      ),
-      nodeNotFoundErr && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-        closable: true,
-        onClose: function onClose() {
-          return _this4.setState({ nodeNotFoundErr: null });
-        },
-        style: { marginTop: "8px" },
-        message: nodeNotFoundErr,
-        type: "warning"
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null, error && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, lodash_default.a.get(error, "response.data.code") !== 404 ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      closable: true,
+      onClose: function onClose() {
+        return _this3.setState({
+          error: null
+        });
+      },
+      style: {
+        marginTop: "8px"
+      },
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: error
       }),
-      rootLoading && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { paragraph: { rows: 10 }, active: true }),
-      !rootLoading && treeData.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tree, {
-        ref: this.treeRef,
-        defaultExpandAll: defaultExpandAll
-        // height={height || 600}
-        // defaultExpandedKeys={defaultExpandedKeys}
-        , loadData: this.onLoadData,
-        onLoad: function onLoad(loadedKeys) {
-          return _this4.setState({ loadedKeys: loadedKeys });
-        },
-        loadedKeys: loadedKeys,
-        expandedKeys: expandedKeys,
-        treeData: treeData,
-        filterTreeNode: function filterTreeNode(node) {
-          return node.key === defaultExpandKey;
-        },
-        onExpand: function onExpand(expandedKeys, obj) {
-          _this4.setState({ expandedKeys: expandedKeys });
-          if (obj.expanded) {
-            var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
-            var newParams = _extends({}, params, { taxonKey: obj.node.key });
-
-            src_history.push({
-              pathname: location.path,
-              search: "?" + query_string_default.a.stringify(newParams)
-            });
-          } else {
-            src_history.push({
-              pathname: location.path,
-              search: "?" + query_string_default.a.stringify(lodash_default.a.omit(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey"))
-            });
-          }
+      type: "error"
+    }) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      closable: true,
+      onClose: function onClose() {
+        return _this3.setState({
+          error: null
+        });
+      },
+      style: {
+        marginTop: "8px"
+      },
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Custom404, {
+        error: error,
+        treeType: treeType,
+        dataset: dataset,
+        loadRoot: this.loadRoot
+      }),
+      type: "warning"
+    })), nodeNotFoundErr && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      closable: true,
+      onClose: function onClose() {
+        return _this3.setState({
+          nodeNotFoundErr: null
+        });
+      },
+      style: {
+        marginTop: "8px"
+      },
+      message: nodeNotFoundErr,
+      type: "warning"
+    }), rootLoading && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, {
+      paragraph: {
+        rows: 10
+      },
+      active: true
+    }), !rootLoading && treeData.length > 0 && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tree, {
+      ref: this.treeRef,
+      defaultExpandAll: defaultExpandAll
+      // height={height || 600}
+      // defaultExpandedKeys={defaultExpandedKeys}
+      ,
+      loadData: this.onLoadData,
+      onLoad: function onLoad(loadedKeys) {
+        return _this3.setState({
+          loadedKeys: loadedKeys
+        });
+      },
+      loadedKeys: loadedKeys,
+      expandedKeys: expandedKeys,
+      treeData: treeData,
+      filterTreeNode: function filterTreeNode(node) {
+        return node.key === defaultExpandKey;
+      },
+      onExpand: function onExpand(expandedKeys, obj) {
+        _this3.setState({
+          expandedKeys: expandedKeys
+        });
+        if (obj.expanded) {
+          var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
+          var newParams = _extends({}, params, {
+            taxonKey: obj.node.key
+          });
+          src_history.push({
+            pathname: location.path,
+            search: "?" + query_string_default.a.stringify(newParams)
+          });
+        } else {
+          src_history.push({
+            pathname: location.path,
+            search: "?" + query_string_default.a.stringify(lodash_default.a.omit(query_string_default.a.parse(lodash_default.a.get(location, "search")), "taxonKey"))
+          });
         }
-      }),
-      !error && treeData.length < rootTotal && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_button,
-        { loading: rootLoading, onClick: this.loadRoot },
-        "Load more",
-        " "
-      )
-    );
+      }
+    }), !error && treeData.length < rootTotal && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_button, {
+      loading: rootLoading,
+      onClick: this.loadRoot
+    }, "Load more", " "));
   };
-
   return ColTree;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var src_ColTree_ColTree = (withRouter(ColTree_ColTree));
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Children/toArray.js
-var toArray = __webpack_require__(39);
+var toArray = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 var esm_classCallCheck = __webpack_require__(16);
@@ -83046,7 +82028,7 @@ var pickAttrs = __webpack_require__(85);
 var useMemo = __webpack_require__(79);
 
 // EXTERNAL MODULE: ./node_modules/rc-virtual-list/es/index.js + 19 modules
-var rc_virtual_list_es = __webpack_require__(115);
+var rc_virtual_list_es = __webpack_require__(114);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/TransBtn.js
 var TransBtn = __webpack_require__(73);
@@ -83423,10 +82405,10 @@ function convertChildrenToData(nodes) {
 var valueUtil = __webpack_require__(63);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/generate.js + 11 modules
-var es_generate = __webpack_require__(321);
+var es_generate = __webpack_require__(320);
 
 // EXTERNAL MODULE: ./node_modules/rc-select/es/utils/commonUtil.js
-var commonUtil = __webpack_require__(48);
+var commonUtil = __webpack_require__(47);
 
 // CONCATENATED MODULE: ./node_modules/rc-select/es/utils/warningPropsUtil.js
 
@@ -83649,15 +82631,15 @@ Select_Select.OptGroup = es_OptGroup;
 
 /* harmony default export */ var rc_select_es = (es_Select);
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/DownOutlined.js
-var icons_DownOutlined = __webpack_require__(113);
+var icons_DownOutlined = __webpack_require__(112);
 var DownOutlined_default = /*#__PURE__*/__webpack_require__.n(icons_DownOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CheckOutlined.js
-var CheckOutlined = __webpack_require__(302);
+var CheckOutlined = __webpack_require__(301);
 var CheckOutlined_default = /*#__PURE__*/__webpack_require__.n(CheckOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/SearchOutlined.js
-var SearchOutlined = __webpack_require__(93);
+var SearchOutlined = __webpack_require__(92);
 var SearchOutlined_default = /*#__PURE__*/__webpack_require__.n(SearchOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/select/utils/iconUtil.js
@@ -84718,7 +83700,7 @@ Search.defaultProps = {
 Search.displayName = 'Search';
 /* harmony default export */ var input_Search = (Search);
 // EXTERNAL MODULE: ./node_modules/rc-textarea/es/index.js + 7 modules
-var rc_textarea_es = __webpack_require__(322);
+var rc_textarea_es = __webpack_require__(321);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/input/TextArea.js
 
@@ -84848,11 +83830,11 @@ var TextArea_TextArea = /*#__PURE__*/function (_React$Component) {
 
 /* harmony default export */ var input_TextArea = (TextArea_TextArea);
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/EyeOutlined.js
-var EyeOutlined = __webpack_require__(304);
+var EyeOutlined = __webpack_require__(303);
 var EyeOutlined_default = /*#__PURE__*/__webpack_require__.n(EyeOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/EyeInvisibleOutlined.js
-var EyeInvisibleOutlined = __webpack_require__(305);
+var EyeInvisibleOutlined = __webpack_require__(304);
 var EyeInvisibleOutlined_default = /*#__PURE__*/__webpack_require__.n(EyeInvisibleOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/input/Password.js
@@ -84977,17 +83959,15 @@ input_Input.TextArea = input_TextArea;
 input_Input.Password = input_Password;
 /* harmony default export */ var es_input = (input_Input);
 // EXTERNAL MODULE: ./node_modules/react-highlight-words/dist/main.js
-var main = __webpack_require__(111);
+var main = __webpack_require__(110);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./src/ColTree/NameAutocomplete.js
-function NameAutocomplete_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function NameAutocomplete_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function NameAutocomplete_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function NameAutocomplete_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; NameAutocomplete_setPrototypeOf(subClass, superClass); }
+function NameAutocomplete_setPrototypeOf(o, p) { NameAutocomplete_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return NameAutocomplete_setPrototypeOf(o, p); }
+function NameAutocomplete_defineProperty(obj, key, value) { key = NameAutocomplete_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function NameAutocomplete_toPropertyKey(t) { var i = NameAutocomplete_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function NameAutocomplete_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -84995,47 +83975,37 @@ function NameAutocomplete_inherits(subClass, superClass) { if (typeof superClass
 
 
 
-var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
-  NameAutocomplete_inherits(NameSearchAutocomplete, _React$Component);
-
+var NameAutocomplete_NameSearchAutocomplete = /*#__PURE__*/function (_React$Component) {
   function NameSearchAutocomplete(props) {
-    NameAutocomplete_classCallCheck(this, NameSearchAutocomplete);
-
-    var _this = NameAutocomplete_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    NameAutocomplete_defineProperty(_this, "componentDidMount", function () {
       var defaultTaxonKey = _this.props.defaultTaxonKey;
-
       if (defaultTaxonKey) {
         _this.setDefaultValue(defaultTaxonKey);
       }
-    };
-
-    _this.componentDidUpdate = function (prevProps) {
+    });
+    NameAutocomplete_defineProperty(_this, "componentDidUpdate", function (prevProps) {
       var defaultTaxonKey = _this.props.defaultTaxonKey;
-
       if (defaultTaxonKey && defaultTaxonKey !== prevProps.defaultTaxonKey) {
         _this.setDefaultValue(defaultTaxonKey);
       }
-    };
-
-    _this.setDefaultValue = function (usageId) {
+    });
+    NameAutocomplete_defineProperty(_this, "setDefaultValue", function (usageId) {
       var datasetKey = _this.props.datasetKey;
-
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/nameusage/search?USAGE_ID=" + usageId).then(function (res) {
-        _this.setState({ value: lodash_default.a.get(res, "data.result[0].usage.label") || "" });
+        _this.setState({
+          value: lodash_default.a.get(res, "data.result[0].usage.label") || ""
+        });
       });
-    };
-
-    _this.getNames = function (q) {
+    });
+    NameAutocomplete_defineProperty(_this, "getNames", function (q) {
       var _this$props = _this.props,
-          datasetKey = _this$props.datasetKey,
-          minRank = _this$props.minRank,
-          hideExtinct = _this$props.hideExtinct;
+        datasetKey = _this$props.datasetKey,
+        minRank = _this$props.minRank,
+        hideExtinct = _this$props.hideExtinct;
       var value = _this.state.value;
-
       var url = datasetKey ? src_config.dataApi + "dataset/" + datasetKey + "/nameusage/suggest" : src_config.dataApi + "name/search";
-
       axios_default()(url + "?fuzzy=false&limit=25&q=" + q + (minRank ? "&minRank=" + minRank : "") + (hideExtinct ? "&extinct=false&extinct=" : '')).then(function (res) {
         /*         const names = res.data.result ? res.data.result.map((name) => ({
             key: name.usage.name.id,
@@ -85048,32 +84018,44 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           // names: res.data.suggestions || [],
           options: _this.getOptions(res.data.suggestions || [], value)
         });
-      }).catch(function (err) {
-        _this.setState({ options: [], err: err });
+      })["catch"](function (err) {
+        _this.setState({
+          options: [],
+          err: err
+        });
       });
-    };
-
-    _this.onSelectName = function (val, obj) {
+    });
+    NameAutocomplete_defineProperty(_this, "onSelectName", function (val, obj) {
       var selectedTaxon = lodash_default.a.get(obj, "data.acceptedUsageId") ? {
         key: lodash_default.a.get(obj, "data.acceptedUsageId"),
         rank: lodash_default.a.get(obj, "data.rank"),
         title: lodash_default.a.get(obj, "data.parentOrAcceptedName")
-      } : { key: lodash_default.a.get(obj, "data.usageId"), rank: lodash_default.a.get(obj, "data.rank"), title: lodash_default.a.get(obj, "data.name") };
-      _this.setState({ value: val });
+      } : {
+        key: lodash_default.a.get(obj, "data.usageId"),
+        rank: lodash_default.a.get(obj, "data.rank"),
+        title: lodash_default.a.get(obj, "data.name")
+      };
+      _this.setState({
+        value: val
+      });
       _this.props.onSelectName(selectedTaxon);
-    };
-
-    _this.onReset = function () {
-      _this.setState({ value: "", options: [] }, _this.props.onResetSearch);
-    };
-
-    _this.getOptions = function (names, searchTerm) {
+    });
+    NameAutocomplete_defineProperty(_this, "onReset", function () {
+      _this.setState({
+        value: "",
+        options: []
+      }, _this.props.onResetSearch);
+    });
+    NameAutocomplete_defineProperty(_this, "getOptions", function (names, searchTerm) {
       return names.map(function (o) {
         return {
           key: o.usageId,
           value: o.suggestion,
-          label: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(main_default.a, {
-            highlightStyle: { fontWeight: "bold", padding: 0 },
+          label: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(main_default.a, {
+            highlightStyle: {
+              fontWeight: "bold",
+              padding: 0
+            },
             searchWords: searchTerm ? searchTerm.split(" ") : [],
             autoEscape: true,
             textToHighlight: o.suggestion
@@ -85081,55 +84063,52 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
           data: o
         };
       });
-    };
-
-    _this.render = function () {
+    });
+    NameAutocomplete_defineProperty(_this, "render", function () {
       var _this$props2 = _this.props,
-          placeHolder = _this$props2.placeHolder,
-          autoFocus = _this$props2.autoFocus,
-          disabled = _this$props2.disabled;
+        placeHolder = _this$props2.placeHolder,
+        autoFocus = _this$props2.autoFocus,
+        disabled = _this$props2.disabled;
       var _this$state = _this.state,
-          value = _this$state.value,
-          options = _this$state.options,
-          randomID = _this$state.randomID;
+        value = _this$state.value,
+        options = _this$state.options,
+        randomID = _this$state.randomID;
       //const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
       // const options = this.getOptions(this.state.names, value)
 
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { id: "taxon_autocomplete_" + randomID },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          auto_complete,
-          {
-            style: _this.props.style ? _this.props.style : { width: "100%" },
-            options: options,
-            onSelect: _this.onSelectName,
-            onSearch: function onSearch(q) {
-              return !!q ? _this.getNames(q) : _this.onReset();
-            },
-            placeholder: placeHolder || "Find taxon",
-            onChange: function onChange(value) {
-              if (value) {
-                _this.setState({ value: value });
-              } else {
-                setTimeout(_this.onReset, 50);
-              }
-            },
-            value: value,
-            autoFocus: autoFocus === false ? false : true,
-            disabled: disabled,
-            getPopupContainer: function getPopupContainer() {
-              console.log("Test " + randomID);
-              return document.getElementById("taxon_autocomplete_" + randomID);
-            }
-
-          },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
-        )
-      );
-    };
-
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        id: "taxon_autocomplete_" + randomID
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(auto_complete, {
+        style: _this.props.style ? _this.props.style : {
+          width: "100%"
+        },
+        options: options,
+        onSelect: _this.onSelectName,
+        onSearch: function onSearch(q) {
+          return !!q ? _this.getNames(q) : _this.onReset();
+        },
+        placeholder: placeHolder || "Find taxon",
+        onChange: function onChange(value) {
+          if (value) {
+            _this.setState({
+              value: value
+            });
+          } else {
+            setTimeout(_this.onReset, 50);
+          }
+        },
+        value: value,
+        autoFocus: autoFocus === false ? false : true,
+        disabled: disabled,
+        getPopupContainer: function getPopupContainer() {
+          console.log("Test " + randomID);
+          return document.getElementById("taxon_autocomplete_" + randomID);
+        }
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, {
+        allowClear: true
+      })));
+    });
     _this.getNames = Object(lodash["debounce"])(_this.getNames, 500);
     _this.state = {
       options: [],
@@ -85138,17 +84117,16 @@ var NameAutocomplete_NameSearchAutocomplete = function (_React$Component) {
     };
     return _this;
   }
-
-  NameSearchAutocomplete.prototype.componentWillUnmount = function componentWillUnmount() {
+  NameAutocomplete_inheritsLoose(NameSearchAutocomplete, _React$Component);
+  var _proto = NameSearchAutocomplete.prototype;
+  _proto.componentWillUnmount = function componentWillUnmount() {
     this.getNames.cancel();
   };
-
   return NameSearchAutocomplete;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var NameAutocomplete = (NameAutocomplete_NameSearchAutocomplete);
 // EXTERNAL MODULE: ./node_modules/btoa/index.js
-var btoa = __webpack_require__(56);
+var btoa = __webpack_require__(55);
 var btoa_default = /*#__PURE__*/__webpack_require__.n(btoa);
 
 // CONCATENATED MODULE: ./node_modules/rc-checkbox/es/index.js
@@ -85692,47 +84670,33 @@ checkbox_Checkbox.Group = checkbox_Group;
 /* harmony default export */ var es_checkbox = (checkbox_Checkbox);
 // CONCATENATED MODULE: ./src/components/DatasetCitation.js
 
-
 var DatasetCitation_Citation = function Citation(_ref) {
   var dataset = _ref.dataset;
-
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { className: "col-dataset-citation" },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      { className: "col-dataset-citation-title" },
-      dataset.citation ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: dataset.citation } }) : dataset.title
-    ),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      { className: "col-dataset-citation-source" },
-      " - accessed through ",
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "a",
-        { href: "https://www.checklistbank.org/dataset/" + dataset.key },
-        "ChecklistBank"
-      )
-    )
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    className: "col-dataset-citation"
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    className: "col-dataset-citation-title"
+  }, dataset.citation ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    dangerouslySetInnerHTML: {
+      __html: dataset.citation
+    }
+  }) : dataset.title), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    className: "col-dataset-citation-source"
+  }, " - accessed through ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    href: "https://www.checklistbank.org/dataset/" + dataset.key
+  }, "ChecklistBank")));
 };
-
 /* harmony default export */ var DatasetCitation = (DatasetCitation_Citation);
 // CONCATENATED MODULE: ./src/ColTree/index.js
-
-
-var ColTree_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function ColTree_asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-function src_ColTree_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function src_ColTree_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function src_ColTree_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function ColTree_extends() { ColTree_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return ColTree_extends.apply(this, arguments); }
+function ColTree_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ ColTree_regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function ColTree_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function ColTree_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { ColTree_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { ColTree_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function src_ColTree_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; src_ColTree_setPrototypeOf(subClass, superClass); }
+function src_ColTree_setPrototypeOf(o, p) { src_ColTree_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return src_ColTree_setPrototypeOf(o, p); }
+function src_ColTree_defineProperty(obj, key, value) { key = src_ColTree_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function src_ColTree_toPropertyKey(t) { var i = src_ColTree_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function src_ColTree_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -85747,166 +84711,131 @@ function src_ColTree_inherits(subClass, superClass) { if (typeof superClass !== 
 
 
 var INFRASPECIFIC_RANKS = ["infraspecific name", "species", "variety", "form"];
-
-var ColTree_ColTreeWrapper = function (_React$Component) {
-  src_ColTree_inherits(ColTreeWrapper, _React$Component);
-
+var ColTree_ColTreeWrapper = /*#__PURE__*/function (_React$Component) {
   function ColTreeWrapper(props) {
-    var _this2 = this;
-
-    src_ColTree_classCallCheck(this, ColTreeWrapper);
-
-    var _this = src_ColTree_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = ColTree_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-      var _this$props, catalogueKey, citation, _ref2, dataset;
-
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _this$props = _this.props, catalogueKey = _this$props.catalogueKey, citation = _this$props.citation;
-
-              if (!citation) {
-                _context.next = 12;
-                break;
-              }
-
-              _context.prev = 2;
-              _context.next = 5;
-              return dataset_getDataset(catalogueKey);
-
-            case 5:
-              _ref2 = _context.sent;
-              dataset = _ref2.data;
-
-              _this.setState({ dataset: dataset });
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    src_ColTree_defineProperty(_this, "componentDidMount", /*#__PURE__*/ColTree_asyncToGenerator( /*#__PURE__*/ColTree_regeneratorRuntime().mark(function _callee() {
+      var _this$props, catalogueKey, citation, _yield$getDataset, dataset;
+      return ColTree_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _this$props = _this.props, catalogueKey = _this$props.catalogueKey, citation = _this$props.citation;
+            if (!citation) {
               _context.next = 12;
               break;
-
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](2);
-
-            case 12:
-            case "end":
-              return _context.stop();
-          }
+            }
+            _context.prev = 2;
+            _context.next = 5;
+            return dataset_getDataset(catalogueKey);
+          case 5:
+            _yield$getDataset = _context.sent;
+            dataset = _yield$getDataset.data;
+            _this.setState({
+              dataset: dataset
+            });
+            _context.next = 12;
+            break;
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](2);
+          case 12:
+          case "end":
+            return _context.stop();
         }
-      }, _callee, _this2, [[2, 10]]);
-    }));
-
-    _this.render = function () {
+      }, _callee, null, [[2, 10]]);
+    })));
+    src_ColTree_defineProperty(_this, "render", function () {
       var _this$props2 = _this.props,
-          catalogueKey = _this$props2.catalogueKey,
-          pathToTaxon = _this$props2.pathToTaxon,
-          pathToDataset = _this$props2.pathToDataset,
-          defaultTaxonKey = _this$props2.defaultTaxonKey,
-          showTreeOptions = _this$props2.showTreeOptions,
-          linkToSpeciesPage = _this$props2.linkToSpeciesPage,
-          citation = _this$props2.citation;
+        catalogueKey = _this$props2.catalogueKey,
+        pathToTaxon = _this$props2.pathToTaxon,
+        pathToDataset = _this$props2.pathToDataset,
+        defaultTaxonKey = _this$props2.defaultTaxonKey,
+        showTreeOptions = _this$props2.showTreeOptions,
+        linkToSpeciesPage = _this$props2.linkToSpeciesPage,
+        citation = _this$props2.citation;
       var _this$state = _this.state,
-          hideExtinct = _this$state.hideExtinct,
-          dataset = _this$state.dataset;
-
+        hideExtinct = _this$state.hideExtinct,
+        dataset = _this$state.dataset;
       var params = query_string_default.a.parse(lodash_default.a.get(location, "search"));
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        react_router_Router,
-        { history: src_history },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "div",
-          { className: "catalogue-of-life" },
-          citation === "top" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset }),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            ColTreeContext.Provider,
-            { value: _this.state },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_row,
-              null,
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_col,
-                { flex: "auto" },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
-                  hideExtinct: hideExtinct,
-                  datasetKey: catalogueKey,
-                  style: {
-                    width: "100%",
-                    paddingTop: "5px",
-                    paddingBottom: "5px"
-                  },
-                  defaultTaxonKey: lodash_default.a.get(params, "taxonKey") || null,
-                  onSelectName: function onSelectName(name) {
-                    if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(lodash_default.a.get(name, "rank"))) {
-                      if (typeof pathToTaxon === "string") {
-                        window.location.href = "" + pathToTaxon + lodash_default.a.get(name, "key");
-                      } else if (typeof pathToTaxon === "function") {
-                        pathToTaxon(lodash_default.a.get(name, "key"));
-                      }
-                    } else {
-                      var newParams = ColTree_extends({}, params, {
-                        taxonKey: lodash_default.a.get(name, "key")
-                      });
-
-                      src_history.push({
-                        pathname: location.path,
-                        search: "?" + query_string_default.a.stringify(newParams)
-                      });
-                      _this.treeRef.reloadRoot();
-                    }
-                  },
-                  onResetSearch: function onResetSearch() {
-                    var newParams = ColTree_extends({}, params, { taxonKey: null });
-                    src_history.push({
-                      pathname: location.path,
-                      search: "?" + query_string_default.a.stringify(lodash_default.a.omit(newParams, ["taxonKey"]))
-                    });
-                  }
-                })
-              ),
-              showTreeOptions && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_col,
-                { style: { paddingLeft: "8px" } },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_checkbox,
-                  {
-                    onChange: function onChange(_ref3) {
-                      var checked = _ref3.target.checked;
-
-                      _this.setState({ showInfo: checked });
-                    }
-                  },
-                  "Info"
-                ),
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_checkbox,
-                  {
-                    defaultChecked: true,
-                    onChange: function onChange(_ref4) {
-                      var checked = _ref4.target.checked;
-
-                      _this.setState({ hideExtinct: !checked });
-                    }
-                  },
-                  "Include extinct"
-                )
-              )
-            ),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(src_ColTree_ColTree, {
-              hideExtinct: hideExtinct,
-              catalogueKey: catalogueKey,
-              pathToTaxon: pathToTaxon,
-              pathToDataset: pathToDataset,
-              defaultTaxonKey: defaultTaxonKey,
-              treeRef: function treeRef(ref) {
-                return _this.treeRef = ref;
-              }
-            })
-          ),
-          citation === "bottom" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset })
-        )
-      );
-    };
-
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(react_router_Router, {
+        history: src_history
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        className: "catalogue-of-life"
+      }, citation === "top" && dataset && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, {
+        dataset: dataset
+      }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTreeContext.Provider, {
+        value: _this.state
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+        flex: "auto"
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
+        hideExtinct: hideExtinct,
+        datasetKey: catalogueKey,
+        style: {
+          width: "100%",
+          paddingTop: "5px",
+          paddingBottom: "5px"
+        },
+        defaultTaxonKey: lodash_default.a.get(params, "taxonKey") || null,
+        onSelectName: function onSelectName(name) {
+          if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(lodash_default.a.get(name, "rank"))) {
+            if (typeof pathToTaxon === "string") {
+              window.location.href = "" + pathToTaxon + lodash_default.a.get(name, "key");
+            } else if (typeof pathToTaxon === "function") {
+              pathToTaxon(lodash_default.a.get(name, "key"));
+            }
+          } else {
+            var newParams = ColTree_extends({}, params, {
+              taxonKey: lodash_default.a.get(name, "key")
+            });
+            src_history.push({
+              pathname: location.path,
+              search: "?" + query_string_default.a.stringify(newParams)
+            });
+            _this.treeRef.reloadRoot();
+          }
+        },
+        onResetSearch: function onResetSearch() {
+          var newParams = ColTree_extends({}, params, {
+            taxonKey: null
+          });
+          src_history.push({
+            pathname: location.path,
+            search: "?" + query_string_default.a.stringify(lodash_default.a.omit(newParams, ["taxonKey"]))
+          });
+        }
+      })), showTreeOptions && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+        style: {
+          paddingLeft: "8px"
+        }
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
+        onChange: function onChange(_ref2) {
+          var checked = _ref2.target.checked;
+          _this.setState({
+            showInfo: checked
+          });
+        }
+      }, "Info"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
+        defaultChecked: true,
+        onChange: function onChange(_ref3) {
+          var checked = _ref3.target.checked;
+          _this.setState({
+            hideExtinct: !checked
+          });
+        }
+      }, "Include extinct"))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(src_ColTree_ColTree, {
+        hideExtinct: hideExtinct,
+        catalogueKey: catalogueKey,
+        pathToTaxon: pathToTaxon,
+        pathToDataset: pathToDataset,
+        defaultTaxonKey: defaultTaxonKey,
+        treeRef: function treeRef(ref) {
+          return _this.treeRef = ref;
+        }
+      })), citation === "bottom" && dataset && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, {
+        dataset: dataset
+      })));
+    });
     if (_this.props.auth) {
       axios_default.a.defaults.headers.common["Authorization"] = "Basic " + btoa_default()(_this.props.auth);
     }
@@ -85917,10 +84846,9 @@ var ColTree_ColTreeWrapper = function (_React$Component) {
     };
     return _this;
   }
-
+  src_ColTree_inheritsLoose(ColTreeWrapper, _React$Component);
   return ColTreeWrapper;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var src_ColTree = (ColTree_ColTreeWrapper);
 // CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/LinkOutlined.js
 // This icon file is generated automatically.
@@ -85943,7 +84871,7 @@ var icons_LinkOutlined_LinkOutlined = function LinkOutlined(props, ref) {
 };
 
 icons_LinkOutlined_LinkOutlined.displayName = 'LinkOutlined';
-/* harmony default export */ var icons_LinkOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_LinkOutlined_LinkOutlined));
+/* harmony default export */ var icons_LinkOutlined = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_LinkOutlined_LinkOutlined));
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
 var possibleConstructorReturn = __webpack_require__(78);
 
@@ -85951,7 +84879,7 @@ var possibleConstructorReturn = __webpack_require__(78);
 var getPrototypeOf = __webpack_require__(62);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/findDOMNode.js
-var findDOMNode = __webpack_require__(43);
+var findDOMNode = __webpack_require__(42);
 
 // CONCATENATED MODULE: ./node_modules/rc-rate/es/util.js
 /* eslint-disable import/prefer-default-export */
@@ -86472,7 +85400,7 @@ Rate_Rate.defaultProps = {
 
 /* harmony default export */ var rc_rate_es = (es_Rate);
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/StarFilled.js
-var StarFilled = __webpack_require__(319);
+var StarFilled = __webpack_require__(318);
 var StarFilled_default = /*#__PURE__*/__webpack_require__.n(StarFilled);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/rate/index.js
@@ -86528,7 +85456,7 @@ rate_Rate.defaultProps = {
 };
 /* harmony default export */ var rate = (rate_Rate);
 // EXTERNAL MODULE: ./node_modules/react-display-name/lib/getDisplayName.js
-var getDisplayName = __webpack_require__(492);
+var getDisplayName = __webpack_require__(488);
 
 // CONCATENATED MODULE: ./node_modules/theming/dist/theming.esm.js
 
@@ -86537,7 +85465,7 @@ var getDisplayName = __webpack_require__(492);
 
 
 
-function _defineProperty(obj, key, value) {
+function theming_esm_defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -86570,7 +85498,7 @@ function theming_esm_extends() {
   return theming_esm_extends.apply(this, arguments);
 }
 
-function _inheritsLoose(subClass, superClass) {
+function theming_esm_inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
@@ -86592,7 +85520,7 @@ function createThemeProvider(context) {
   var ThemeProvider =
   /*#__PURE__*/
   function (_React$Component) {
-    _inheritsLoose(ThemeProvider, _React$Component);
+    theming_esm_inheritsLoose(ThemeProvider, _React$Component);
 
     function ThemeProvider() {
       var _this;
@@ -86603,13 +85531,13 @@ function createThemeProvider(context) {
 
       _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
 
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "cachedTheme", void 0);
+      theming_esm_defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "cachedTheme", void 0);
 
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "lastOuterTheme", void 0);
+      theming_esm_defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "lastOuterTheme", void 0);
 
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "lastTheme", void 0);
+      theming_esm_defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "lastTheme", void 0);
 
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProvider", function (outerTheme) {
+      theming_esm_defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProvider", function (outerTheme) {
         var children = _this.props.children;
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(context.Provider, {
           value: _this.getTheme(outerTheme)
@@ -86714,7 +85642,7 @@ var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) 
 /* harmony default export */ var dist_module = (isBrowser);
 
 // EXTERNAL MODULE: ./node_modules/tiny-warning/dist/tiny-warning.esm.js
-var tiny_warning_esm = __webpack_require__(46);
+var tiny_warning_esm = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
 var esm_assertThisInitialized = __webpack_require__(24);
@@ -89071,7 +87999,7 @@ var jss_plugin_rule_value_function_esm_functionPlugin = function functionPlugin(
 /* harmony default export */ var jss_plugin_rule_value_function_esm = (jss_plugin_rule_value_function_esm_functionPlugin);
 
 // EXTERNAL MODULE: ./node_modules/symbol-observable/es/index.js
-var symbol_observable_es = __webpack_require__(125);
+var symbol_observable_es = __webpack_require__(124);
 
 // CONCATENATED MODULE: ./node_modules/jss-plugin-rule-value-observable/dist/jss-plugin-rule-value-observable.esm.js
 
@@ -90866,7 +89794,7 @@ function supportedProperty(prop, options) {
   // For server-side rendering.
   if (!el) return prop; // Remove cache for benchmark tests or return property from the cache.
 
-  if ("production" !== 'benchmark' && css_vendor_esm_cache[prop] != null) {
+  if ( true && css_vendor_esm_cache[prop] != null) {
     return css_vendor_esm_cache[prop];
   } // Check if 'transition' or 'transform' natively supported in browser.
 
@@ -90945,7 +89873,7 @@ function supportedValue(property, value) {
 
   var cacheKey = property + prefixedValue; // Remove cache for benchmark tests or return value from cache.
 
-  if ("production" !== 'benchmark' && css_vendor_esm_cache$1[cacheKey] != null) {
+  if ( true && css_vendor_esm_cache$1[cacheKey] != null) {
     return css_vendor_esm_cache$1[cacheKey];
   } // IE can even throw an error in some cases, for e.g. style.content = 'bar'.
 
@@ -91973,16 +90901,12 @@ var jsx = react_jss_esm_create();
 
 
 // CONCATENATED MODULE: ./src/components/Width.js
-var Width_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _class, Width_temp;
-
-function Width_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function Width_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function Width_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function Width_extends() { Width_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Width_extends.apply(this, arguments); }
+function Width_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; Width_setPrototypeOf(subClass, superClass); }
+function Width_setPrototypeOf(o, p) { Width_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Width_setPrototypeOf(o, p); }
+function Width_defineProperty(obj, key, value) { key = Width_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function Width_toPropertyKey(t) { var i = Width_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function Width_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 /**
  * This source code partially taken from here https://github.com/leanjscom/react-width
  * And idea is the same as here https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs
@@ -91992,33 +90916,25 @@ function Width_inherits(subClass, superClass) { if (typeof superClass !== "funct
  */
 
 
-
 var EXTRA_LARGE = 4;
 var LARGE = 3;
 var MEDIUM = 2;
 var SMALL = 1;
-
-var Width = (Width_temp = _class = function (_React$Component) {
-  Width_inherits(Width, _React$Component);
-
+var Width = /*#__PURE__*/function (_React$Component) {
   // static SMALL_WIDTH = 576;
 
   function Width(props) {
-    Width_classCallCheck(this, Width);
-
-    var _this = Width_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.handleResize = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    Width_defineProperty(_this, "handleResize", function () {
       clearTimeout(_this.deferTime);
       _this.deferTime = setTimeout(function () {
         _this.updateWidth();
       }, _this.resizeInterval);
-    };
-
-    _this.updateWidth = function () {
+    });
+    Width_defineProperty(_this, "updateWidth", function () {
       var innerWidth = _this.getViewportWidth();
-      var width = void 0;
-
+      var width;
       if (innerWidth >= Width.EXTRA_LARGE_WIDTH) {
         width = Width.EXTRA_LARGE;
       } else if (innerWidth >= Width.LARGE_WIDTH) {
@@ -92028,70 +90944,67 @@ var Width = (Width_temp = _class = function (_React$Component) {
       } else {
         width = Width.SMALL;
       }
-
       if (width !== _this.state.width) {
         _this.setState({
           width: width
         });
       }
-    };
-
+    });
     _this.deferTime = null;
     _this.resizeInterval = 166;
-    _this.state = { width: null };
+    _this.state = {
+      width: null
+    };
     return _this;
   }
-
-  // Like a Bootstrap Grid Layout
-
-
-  Width.prototype.componentDidMount = function componentDidMount() {
+  Width_inheritsLoose(Width, _React$Component);
+  var _proto = Width.prototype;
+  _proto.componentDidMount = function componentDidMount() {
     if (window) {
       window.addEventListener('resize', this.handleResize);
     }
     this.updateWidth();
   };
-
-  Width.prototype.componentWillUnmount = function componentWillUnmount() {
+  _proto.componentWillUnmount = function componentWillUnmount() {
     if (window) {
       window.removeEventListener('resize', this.handleResize);
     }
     clearTimeout(this.deferTime);
   };
-
-  Width.prototype.getViewportWidth = function getViewportWidth() {
+  _proto.getViewportWidth = function getViewportWidth() {
     return window.innerWidth && document.documentElement.clientWidth ? Math.min(window.innerWidth, document.documentElement.clientWidth) : window.innerWidth || document.documentElement.clientWidth || document.querySelector('body').clientWidth;
   };
-
-  Width.prototype.render = function render() {
+  _proto.render = function render() {
     return this.props.children(this.state.width);
   };
-
   return Width;
-}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component), _class.EXTRA_LARGE = EXTRA_LARGE, _class.LARGE = LARGE, _class.MEDIUM = MEDIUM, _class.SMALL = SMALL, _class.EXTRA_LARGE_WIDTH = 1200, _class.LARGE_WIDTH = 992, _class.MEDIUM_WIDTH = 768, Width_temp);
-
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
+Width_defineProperty(Width, "EXTRA_LARGE", EXTRA_LARGE);
+Width_defineProperty(Width, "LARGE", LARGE);
+Width_defineProperty(Width, "MEDIUM", MEDIUM);
+Width_defineProperty(Width, "SMALL", SMALL);
+// Like a Bootstrap Grid Layout
+Width_defineProperty(Width, "EXTRA_LARGE_WIDTH", 1200);
+Width_defineProperty(Width, "LARGE_WIDTH", 992);
+Width_defineProperty(Width, "MEDIUM_WIDTH", 768);
 var Width_withWidth = function withWidth() {
   return function (WrappedComponent) {
-    var WithWidth = function (_Width) {
-      Width_inherits(WithWidth, _Width);
-
+    var WithWidth = /*#__PURE__*/function (_Width2) {
       function WithWidth() {
-        Width_classCallCheck(this, WithWidth);
-
-        return Width_possibleConstructorReturn(this, _Width.apply(this, arguments));
+        return _Width2.apply(this, arguments) || this;
       }
-
-      WithWidth.prototype.render = function render() {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(WrappedComponent, Width_extends({}, this.props, { width: this.state.width }));
+      Width_inheritsLoose(WithWidth, _Width2);
+      var _proto2 = WithWidth.prototype;
+      _proto2.render = function render() {
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(WrappedComponent, Width_extends({}, this.props, {
+          width: this.state.width
+        }));
       };
-
       return WithWidth;
     }(Width);
-
     return WithWidth;
   };
 };
-
 /* harmony default export */ var components_Width = (Width_withWidth);
 // CONCATENATED MODULE: ./src/Taxon/BorderedListItem.js
 
@@ -92099,7 +91012,6 @@ var Width_withWidth = function withWidth() {
 
 
 // Wrappers
-
 
 var BorderedListItem_styles = {
   formItem: {
@@ -92144,43 +91056,32 @@ var BorderedListItem_styles = {
  */
 var BorderedListItem_BorderedListItem = function BorderedListItem(_ref) {
   var classes = _ref.classes,
-      children = _ref.children,
-      size = _ref.size;
-
+    children = _ref.children,
+    size = _ref.size;
   var getValue = function getValue() {
-    var value = void 0;
-
+    var value;
     if (Array.isArray(children) && children.length > 0) {
       value = children.map(function (item, i) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          'span',
-          { className: classes.content, key: i },
-          item
-        );
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+          className: classes.content,
+          key: i
+        }, item);
       });
     } else if (!Array.isArray(children) && typeof children !== 'undefined') {
-      value = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        'span',
-        { className: classes.content },
-        children
-      );
+      value = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+        className: classes.content
+      }, children);
     }
-
     return value;
   };
-
   var marginSize = size === 'medium' ? classes.mediumMargin : classes.smallMargin;
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    es_row,
-    { className: classes.formItem },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      es_col,
-      { span: 24, className: marginSize },
-      getValue()
-    )
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+    className: classes.formItem
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    span: 24,
+    className: marginSize
+  }, getValue()));
 };
-
 /* harmony default export */ var Taxon_BorderedListItem = (components_Width()(react_jss_esm(BorderedListItem_styles)(BorderedListItem_BorderedListItem)));
 // CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/BookOutlined.js
 // This icon file is generated automatically.
@@ -92203,15 +91104,13 @@ var icons_BookOutlined_BookOutlined = function BookOutlined(props, ref) {
 };
 
 icons_BookOutlined_BookOutlined.displayName = 'BookOutlined';
-/* harmony default export */ var icons_BookOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_BookOutlined_BookOutlined));
+/* harmony default export */ var icons_BookOutlined = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_BookOutlined_BookOutlined));
 // CONCATENATED MODULE: ./src/Taxon/ReferencePopover.js
-function ReferencePopover_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ReferencePopover_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function ReferencePopover_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function ReferencePopover_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; ReferencePopover_setPrototypeOf(subClass, superClass); }
+function ReferencePopover_setPrototypeOf(o, p) { ReferencePopover_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ReferencePopover_setPrototypeOf(o, p); }
+function ReferencePopover_defineProperty(obj, key, value) { key = ReferencePopover_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function ReferencePopover_toPropertyKey(t) { var i = ReferencePopover_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function ReferencePopover_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -92219,104 +91118,95 @@ function ReferencePopover_inherits(subClass, superClass) { if (typeof superClass
 
 
 
-var ReferencePopover_ReferencePopover = function (_React$Component) {
-  ReferencePopover_inherits(ReferencePopover, _React$Component);
-
+var ReferencePopover_ReferencePopover = /*#__PURE__*/function (_React$Component) {
   function ReferencePopover(props) {
-    ReferencePopover_classCallCheck(this, ReferencePopover);
-
-    var _this = ReferencePopover_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.getData = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    ReferencePopover_defineProperty(_this, "getData", function () {
       var _this$props = _this.props,
-          referenceId = _this$props.referenceId,
-          datasetKey = _this$props.datasetKey,
-          references = _this$props.references;
-
+        referenceId = _this$props.referenceId,
+        datasetKey = _this$props.datasetKey,
+        references = _this$props.references;
       if (referenceId) {
         var refIds = !lodash_default.a.isArray(referenceId) ? [referenceId] : referenceId;
         var reference = [];
-        _this.setState({ loading: true });
+        _this.setState({
+          loading: true
+        });
         Promise.allSettled(refIds.map(function (id) {
           return lodash_default.a.get(references, id) ? Promise.resolve(reference.push(references[id])) : axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/reference/" + id).then(function (res) {
             return reference.push(res.data);
-          }).catch(function (err) {
-            return _this.setState({ error: err });
+          })["catch"](function (err) {
+            return _this.setState({
+              error: err
+            });
           });
         })).then(function () {
-          return _this.setState({ reference: reference, loading: false });
+          return _this.setState({
+            reference: reference,
+            loading: false
+          });
         });
       }
-    };
-
-    _this.getContent = function () {
+    });
+    ReferencePopover_defineProperty(_this, "getContent", function () {
       var _this$state = _this.state,
-          error = _this$state.error,
-          reference = _this$state.reference,
-          loading = _this$state.loading;
-
+        error = _this$state.error,
+        reference = _this$state.reference,
+        loading = _this$state.loading;
       if (loading) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null);
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, null);
       } else if (error) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: error });
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+          error: error
+        });
       } else if (reference.length === 1) {
         return reference[0].citation;
       } else {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "ul",
-          null,
-          reference.map(function (r) {
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "li",
-              { key: r.id },
-              r.citation
-            );
-          })
-        );
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("ul", null, reference.map(function (r) {
+          return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("li", {
+            key: r.id
+          }, r.citation);
+        }));
       }
-    };
-
-    _this.render = function () {
+    });
+    ReferencePopover_defineProperty(_this, "render", function () {
       var _this$props2 = _this.props,
-          referenceId = _this$props2.referenceId,
-          referenceIndexMap = _this$props2.referenceIndexMap,
-          trigger = _this$props2.trigger;
-
+        referenceId = _this$props2.referenceId,
+        referenceIndexMap = _this$props2.referenceIndexMap,
+        trigger = _this$props2.trigger;
       var refIds = !lodash_default.a.isArray(referenceId) ? [referenceId] : referenceId;
       var icon = referenceIndexMap && lodash_default.a.get(referenceIndexMap, refIds[0]) ? refIds.map(function (r) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          { className: "col-reference-link", href: "#col-refererence-" + r },
-          "[" + referenceIndexMap[r] + "]"
-        );
-      }) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_BookOutlined, { style: { cursor: "pointer" } });
-
-      return referenceId ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { id: "reference_" + referenceId, key: "reference_" + referenceId, style: _this.props.style },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          popover,
-          {
-            getPopupContainer: function getPopupContainer() {
-              return document.getElementById("reference_" + referenceId);
-            },
-            placement: _this.props.placement || "left",
-            title: "Reference",
-            onVisibleChange: function onVisibleChange(visible) {
-              return visible && _this.getData();
-            },
-            content: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "div",
-              { style: { maxWidth: "500px" } },
-              _this.getContent()
-            ),
-            trigger: trigger || "hover"
-          },
-          icon
-        )
-      ) : "";
-    };
-
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+          className: "col-reference-link",
+          href: "#col-refererence-" + r
+        }, "[" + referenceIndexMap[r] + "]");
+      }) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_BookOutlined, {
+        style: {
+          cursor: "pointer"
+        }
+      });
+      return referenceId ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        id: "reference_" + referenceId,
+        key: "reference_" + referenceId,
+        style: _this.props.style
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(popover, {
+        getPopupContainer: function getPopupContainer() {
+          return document.getElementById("reference_" + referenceId);
+        },
+        placement: _this.props.placement || "left",
+        title: "Reference",
+        onVisibleChange: function onVisibleChange(visible) {
+          return visible && _this.getData();
+        },
+        content: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          style: {
+            maxWidth: "500px"
+          }
+        }, _this.getContent()),
+        trigger: trigger || "hover"
+      }, icon)) : "";
+    });
     _this.state = {
       reference: [],
       loading: false,
@@ -92324,68 +91214,91 @@ var ReferencePopover_ReferencePopover = function (_React$Component) {
     };
     return _this;
   }
-
+  ReferencePopover_inheritsLoose(ReferencePopover, _React$Component);
   return ReferencePopover;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Taxon_ReferencePopover = (ReferencePopover_ReferencePopover);
 // CONCATENATED MODULE: ./src/Taxon/Synonyms.js
 
 
 
 
+
+// import TypeMaterialPopover from "./TypeMaterialPopover";
+
 var Synonyms_SynonymsTable = function SynonymsTable(_ref) {
-  var data = _ref.data,
-      style = _ref.style,
-      catalogueKey = _ref.catalogueKey,
-      references = _ref.references,
-      nomStatus = _ref.nomStatus,
-      referenceIndexMap = _ref.referenceIndexMap;
-
-
+  var datasetKey = _ref.catalogueKey,
+    data = _ref.data,
+    style = _ref.style,
+    nomStatus = _ref.nomStatus,
+    references = _ref.references,
+    typeMaterial = _ref.typeMaterial,
+    referenceIndexMap = _ref.referenceIndexMap,
+    primarySource = _ref.primarySource;
+  Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {}, [data, primarySource]);
   var getNomStatus = function getNomStatus(taxon) {
     return !nomStatus ? lodash_default.a.get(taxon, "name.nomStatus") : nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoological")];
   };
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style },
-    data.map(function (s) {
-      return s[0] ? s[0] : s;
-    }).map(function (s) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        Taxon_BorderedListItem,
-        { key: lodash_default.a.get(s, 'name.id') },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "span",
-          null,
-          lodash_default.a.get(s, '__homotypic') === true ? '≡ ' : '= ',
-          "  ",
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: lodash_default.a.get(s, 'labelHtml') } }),
-          " ",
-          lodash_default.a.get(s, 'name.nomStatus') && "(" + getNomStatus(s) + ")",
-          " ",
-          lodash_default.a.get(s, 'status') === 'misapplied' && lodash_default.a.get(s, 'accordingTo') ? lodash_default.a.get(s, 'accordingTo') : '',
-          " ",
-          lodash_default.a.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"
-        ),
-        " ",
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, { references: references, referenceIndexMap: referenceIndexMap, datasetKey: catalogueKey, referenceId: lodash_default.a.get(s, "name.publishedInId") ? [lodash_default.a.get(s, "name.publishedInId")].concat(s.referenceIds || []) : s.referenceIds, style: { display: 'inline-block' }, placement: "top" })
-      );
-    })
-  );
+  var sorter = function sorter(a, b) {
+    if (lodash_default.a.get(a, "name.combinationAuthorship.year") && lodash_default.a.get(b, "name.combinationAuthorship.year")) {
+      return lodash_default.a.get(b, "name.combinationAuthorship.year") - lodash_default.a.get(a, "name.combinationAuthorship.year");
+    } else {
+      if (lodash_default.a.get(a, "name.scientificName") < lodash_default.a.get(b, "name.scientificName")) {
+        return -1;
+      } else {
+        return 1;
+      }
+    }
+  };
+  var renderSynonym = function renderSynonym(syn, homotypic, indent) {
+    var s = lodash_default.a.isArray(syn) ? syn[0] : syn;
+    var isGroup = lodash_default.a.isArray(syn);
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_BorderedListItem, {
+      key: lodash_default.a.get(s, "name.id")
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      style: indent ? {
+        marginLeft: "10px"
+      } : null
+    }, homotypic === true ? "≡ " : "= ", " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      dangerouslySetInnerHTML: {
+        __html: lodash_default.a.get(s, "labelHtml", lodash_default.a.get(s, "name.scientificName") + " " + lodash_default.a.get(s, "name.authorship", ""))
+      }
+    })), " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, " ", lodash_default.a.get(s, "name.nomStatus") ? "(" + getNomStatus(s) + ")" : "", " ", lodash_default.a.get(s, "status") === "misapplied" && lodash_default.a.get(s, "accordingTo") ? lodash_default.a.get(s, "accordingTo") : "", lodash_default.a.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
+      datasetKey: datasetKey,
+      references: references,
+      referenceIndexMap: referenceIndexMap,
+      referenceId: lodash_default.a.get(s, "name.publishedInId") ? [lodash_default.a.get(s, "name.publishedInId")].concat(s.referenceIds || []) : s.referenceIds,
+      placement: "top",
+      style: {
+        display: 'inline-block'
+      }
+    }), (s === null || s === void 0 ? void 0 : s.sourceDatasetKey) && lodash_default.a.get(primarySource, "key") !== (s === null || s === void 0 ? void 0 : s.sourceDatasetKey) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      className: "col-reference-link",
+      href: "#col-sourcedataset-" + (s === null || s === void 0 ? void 0 : s.sourceDatasetKey)
+    }, "[source: " + (s === null || s === void 0 ? void 0 : s.sourceDatasetKey) + "]"))), isGroup && syn.length > 1 && syn.slice(1).map(function (sg) {
+      return renderSynonym(sg, true, true);
+    }));
+  };
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style
+  }, data.homotypic && data.homotypic.sort(sorter).map(function (s) {
+    return renderSynonym(s, true);
+  }), data.heterotypicGroups && data.heterotypicGroups.sort(function (a, b) {
+    return sorter(a[0], b[0]);
+  }).map(function (s) {
+    return renderSynonym(s, false);
+  }));
 };
-
 /* harmony default export */ var Synonyms = (Synonyms_SynonymsTable);
 // EXTERNAL MODULE: ./node_modules/shallowequal/index.js
 var shallowequal = __webpack_require__(60);
 var shallowequal_default = /*#__PURE__*/__webpack_require__.n(shallowequal);
 
 // EXTERNAL MODULE: ./node_modules/rc-resize-observer/es/index.js
-var rc_resize_observer_es = __webpack_require__(114);
+var rc_resize_observer_es = __webpack_require__(113);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/getScrollBarSize.js
-var getScrollBarSize = __webpack_require__(94);
+var getScrollBarSize = __webpack_require__(93);
 
 // CONCATENATED MODULE: ./node_modules/rc-table/es/sugar/ColumnGroup.js
 /* istanbul ignore next */
@@ -93860,10 +92773,10 @@ function findAllChildrenKeys(data, getRowKey, childrenColumnName) {
   return keys;
 }
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/addEventListener.js
-var addEventListener = __webpack_require__(51);
+var addEventListener = __webpack_require__(50);
 
 // EXTERNAL MODULE: ./node_modules/rc-util/es/Dom/css.js
-var Dom_css = __webpack_require__(307);
+var Dom_css = __webpack_require__(306);
 
 // CONCATENATED MODULE: ./node_modules/rc-table/es/stickyScrollBar.js
 
@@ -95609,7 +94522,7 @@ Pagination_Pagination.defaultProps = {
 // CONCATENATED MODULE: ./node_modules/rc-pagination/es/index.js
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/LeftOutlined.js
-var LeftOutlined = __webpack_require__(95);
+var LeftOutlined = __webpack_require__(94);
 var LeftOutlined_default = /*#__PURE__*/__webpack_require__.n(LeftOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/RightOutlined.js
@@ -95617,11 +94530,11 @@ var RightOutlined = __webpack_require__(74);
 var RightOutlined_default = /*#__PURE__*/__webpack_require__.n(RightOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/DoubleLeftOutlined.js
-var DoubleLeftOutlined = __webpack_require__(315);
+var DoubleLeftOutlined = __webpack_require__(314);
 var DoubleLeftOutlined_default = /*#__PURE__*/__webpack_require__.n(DoubleLeftOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/DoubleRightOutlined.js
-var DoubleRightOutlined = __webpack_require__(316);
+var DoubleRightOutlined = __webpack_require__(315);
 var DoubleRightOutlined_default = /*#__PURE__*/__webpack_require__.n(DoubleRightOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/pagination/MiniSelect.js
@@ -95937,7 +94850,7 @@ function useLazyKVMap(data, childrenColumnName, getRowKey) {
   return [getRecordByKey];
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/toArray.js
-var helpers_toArray = __webpack_require__(314);
+var helpers_toArray = __webpack_require__(313);
 var toArray_default = /*#__PURE__*/__webpack_require__.n(helpers_toArray);
 
 // EXTERNAL MODULE: ./node_modules/rc-tree/es/utils/conductUtil.js
@@ -95947,10 +94860,10 @@ var conductUtil = __webpack_require__(72);
 var useMergedState = __webpack_require__(75);
 
 // EXTERNAL MODULE: ./node_modules/rc-dropdown/es/index.js + 2 modules
-var rc_dropdown_es = __webpack_require__(325);
+var rc_dropdown_es = __webpack_require__(324);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/EllipsisOutlined.js
-var EllipsisOutlined = __webpack_require__(311);
+var EllipsisOutlined = __webpack_require__(310);
 var EllipsisOutlined_default = /*#__PURE__*/__webpack_require__.n(EllipsisOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/dropdown/dropdown-button.js
@@ -96264,7 +95177,7 @@ SubMenu_SubMenu.contextType = menu_MenuContext; // fix issue:https://github.com/
 SubMenu_SubMenu.isSubMenu = 1;
 /* harmony default export */ var menu_SubMenu = (SubMenu_SubMenu);
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/BarsOutlined.js
-var BarsOutlined = __webpack_require__(309);
+var BarsOutlined = __webpack_require__(308);
 var BarsOutlined_default = /*#__PURE__*/__webpack_require__.n(BarsOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/layout/layout.js
@@ -97218,7 +96131,7 @@ var RadioGroup = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react
 RadioGroup.defaultProps = {
   buttonStyle: 'outline'
 };
-/* harmony default export */ var radio_group = (external_root_React_commonjs2_react_commonjs_react_amd_react_["memo"](RadioGroup));
+/* harmony default export */ var radio_group = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["memo"](RadioGroup));
 // CONCATENATED MODULE: ./node_modules/antd/es/radio/radioButton.js
 
 
@@ -97264,7 +96177,7 @@ var radioButton_RadioButton = function RadioButton(props, ref) {
   }));
 };
 
-/* harmony default export */ var radioButton = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](radioButton_RadioButton));
+/* harmony default export */ var radioButton = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](radioButton_RadioButton));
 // CONCATENATED MODULE: ./node_modules/antd/es/radio/index.js
 
 
@@ -97790,11 +96703,11 @@ function useSelection(rowSelection, config) {
   return [transformColumns, derivedSelectedKeySet];
 }
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CaretDownOutlined.js
-var CaretDownOutlined = __webpack_require__(313);
+var CaretDownOutlined = __webpack_require__(312);
 var CaretDownOutlined_default = /*#__PURE__*/__webpack_require__.n(CaretDownOutlined);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/CaretUpOutlined.js
-var CaretUpOutlined = __webpack_require__(312);
+var CaretUpOutlined = __webpack_require__(311);
 var CaretUpOutlined_default = /*#__PURE__*/__webpack_require__.n(CaretUpOutlined);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/table/util.js
@@ -98166,7 +97079,7 @@ var isEqual = __webpack_require__(82);
 var isEqual_default = /*#__PURE__*/__webpack_require__.n(isEqual);
 
 // EXTERNAL MODULE: ./node_modules/@ant-design/icons/FilterFilled.js
-var FilterFilled = __webpack_require__(310);
+var FilterFilled = __webpack_require__(309);
 var FilterFilled_default = /*#__PURE__*/__webpack_require__.n(FilterFilled);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/table/hooks/useFilter/FilterWrapper.js
@@ -99251,7 +98164,6 @@ Table_Table.Summary = FooterComponents;
 // import axiosInstance from './util/axiosInstance';
 
 
-
 var enumeration_getFrequency = function getFrequency() {
   return axios_default()(src_config.dataApi + "vocab/frequency").then(function (res) {
     return res.data.map(function (e) {
@@ -99259,7 +98171,6 @@ var enumeration_getFrequency = function getFrequency() {
     });
   });
 };
-
 var enumeration_getDatasetType = function getDatasetType() {
   return axios_default()(src_config.dataApi + "vocab/datasettype").then(function (res) {
     return res.data.map(function (e) {
@@ -99267,7 +98178,6 @@ var enumeration_getDatasetType = function getDatasetType() {
     });
   });
 };
-
 var enumeration_getDataFormatType = function getDataFormatType() {
   return axios_default()(src_config.dataApi + "vocab/dataformat").then(function (res) {
     return res.data.map(function (e) {
@@ -99275,7 +98185,6 @@ var enumeration_getDataFormatType = function getDataFormatType() {
     });
   });
 };
-
 var enumeration_getDatasetOrigin = function getDatasetOrigin() {
   return axios_default()(src_config.dataApi + "vocab/datasetorigin").then(function (res) {
     return res.data.map(function (e) {
@@ -99283,7 +98192,6 @@ var enumeration_getDatasetOrigin = function getDatasetOrigin() {
     });
   });
 };
-
 var enumeration_getRank = function getRank() {
   return axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
     return res.data.map(function (e) {
@@ -99291,7 +98199,6 @@ var enumeration_getRank = function getRank() {
     });
   });
 };
-
 var enumeration_getTaxonomicStatus = function getTaxonomicStatus() {
   return axios_default()(src_config.dataApi + "vocab/taxonomicstatus").then(function (res) {
     return res.data.map(function (e) {
@@ -99299,13 +98206,11 @@ var enumeration_getTaxonomicStatus = function getTaxonomicStatus() {
     });
   });
 };
-
 var enumeration_getIssue = function getIssue() {
   return axios_default()(src_config.dataApi + "vocab/issue").then(function (res) {
     return res.data;
   });
 };
-
 var enumeration_getNameType = function getNameType() {
   return axios_default()(src_config.dataApi + "vocab/nametype").then(function (res) {
     return res.data.map(function (e) {
@@ -99313,7 +98218,6 @@ var enumeration_getNameType = function getNameType() {
     });
   });
 };
-
 var enumeration_getNameField = function getNameField() {
   return axios_default()(src_config.dataApi + "vocab/namefield").then(function (res) {
     return res.data.map(function (e) {
@@ -99321,7 +98225,6 @@ var enumeration_getNameField = function getNameField() {
     });
   });
 };
-
 var enumeration_getNomStatus = function getNomStatus() {
   return axios_default()(src_config.dataApi + "vocab/nomstatus").then(function (res) {
     return res.data.map(function (e) {
@@ -99329,7 +98232,6 @@ var enumeration_getNomStatus = function getNomStatus() {
     });
   });
 };
-
 var enumeration_getLicense = function getLicense() {
   return axios_default()(src_config.dataApi + "vocab/license").then(function (res) {
     return res.data.map(function (e) {
@@ -99337,25 +98239,21 @@ var enumeration_getLicense = function getLicense() {
     });
   });
 };
-
 var enumeration_getNomCode = function getNomCode() {
   return axios_default()(src_config.dataApi + "vocab/nomcode").then(function (res) {
     return res.data;
   });
 };
-
 var enumeration_getImportState = function getImportState() {
   return axios_default()(src_config.dataApi + "vocab/importstate").then(function (res) {
     return res.data;
   });
 };
-
 var enumeration_getLifezones = function getLifezones() {
   return axios_default()(src_config.dataApi + "vocab/lifezone").then(function (res) {
     return res.data;
   });
 };
-
 var enumeration_getSectorImportState = function getSectorImportState() {
   return axios_default()(src_config.dataApi + "vocab/sectorimport$state").then(function (res) {
     return res.data.map(function (e) {
@@ -99363,21 +98261,18 @@ var enumeration_getSectorImportState = function getSectorImportState() {
     });
   });
 };
-
 var enumeration_getCountries = function getCountries() {
   return axios_default()(src_config.dataApi + "vocab/country").then(function (res) {
     return res.data;
   });
 };
 // CONCATENATED MODULE: ./src/Taxon/VernacularNames.js
-var VernacularNames_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function VernacularNames_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function VernacularNames_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function VernacularNames_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function VernacularNames_extends() { VernacularNames_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return VernacularNames_extends.apply(this, arguments); }
+function VernacularNames_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; VernacularNames_setPrototypeOf(subClass, superClass); }
+function VernacularNames_setPrototypeOf(o, p) { VernacularNames_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return VernacularNames_setPrototypeOf(o, p); }
+function VernacularNames_defineProperty(obj, key, value) { key = VernacularNames_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function VernacularNames_toPropertyKey(t) { var i = VernacularNames_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function VernacularNames_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -99385,20 +98280,12 @@ function VernacularNames_inherits(subClass, superClass) { if (typeof superClass 
 
 
 
-
-
-var VernacularNames_VernacularNamesTable = function (_React$Component) {
-  VernacularNames_inherits(VernacularNamesTable, _React$Component);
-
+var VernacularNames_VernacularNamesTable = /*#__PURE__*/function (_React$Component) {
   function VernacularNamesTable(props) {
-    VernacularNames_classCallCheck(this, VernacularNamesTable);
-
-    var _this = VernacularNames_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    VernacularNames_defineProperty(_this, "componentDidMount", function () {
       var data = _this.props.data;
-
-
       enumeration_getCountries().then(function (res) {
         var countryAlpha3 = {};
         var countryAlpha2 = {};
@@ -99409,17 +98296,20 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         var newData = data.map(function (d) {
           return _this.decorateWithCountryByCode(d, countryAlpha2, countryAlpha3);
         });
-        _this.setState({ data: newData });
+        _this.setState({
+          data: newData
+        });
         return Promise.all(newData.map(_this.decorateWithLanguageByCode));
       }).then(function () {
         _this.state.data.sort(function (a, b) {
           return a.languageName > b.languageName ? 1 : -1;
         });
-        _this.setState({ data: [].concat(_this.state.data) });
+        _this.setState({
+          data: [].concat(_this.state.data)
+        });
       });
-    };
-
-    _this.decorateWithCountryByCode = function (name, countryAlpha2, countryAlpha3) {
+    });
+    VernacularNames_defineProperty(_this, "decorateWithCountryByCode", function (name, countryAlpha2, countryAlpha3) {
       if (countryAlpha2 && name.country && name.country.length === 2) {
         return VernacularNames_extends({}, name, {
           countryTitle: lodash_default.a.get(countryAlpha2, "[" + name.country + "].title") || ""
@@ -99431,18 +98321,15 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
       } else {
         return name;
       }
-    };
-
-    _this.decorateWithLanguageByCode = function (name) {
+    });
+    VernacularNames_defineProperty(_this, "decorateWithLanguageByCode", function (name) {
       return !name.language ? Promise.resolve() : axios_default()(src_config.dataApi + "vocab/language/" + name.language).then(function (res) {
         name.languageName = res.data;
-      }).catch(function (error) {
+      })["catch"](function (error) {
         return console.log(error);
       });
-    };
-
+    });
     var references = _this.props.references;
-
     _this.state = {
       data: _this.props.data ? [].concat(_this.props.data) : [],
       countryAlpha3: {},
@@ -99459,7 +98346,6 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         title: "Language",
         dataIndex: "language",
         key: "language",
-
         render: function render(text, record) {
           return record.languageName ? record.languageName : text;
         }
@@ -99467,7 +98353,6 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         title: "Country of use",
         dataIndex: "country",
         key: "country",
-
         render: function render(text, record) {
           return record.countryTitle ? record.countryTitle : text;
         }
@@ -99475,9 +98360,8 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
         title: "",
         dataIndex: "referenceId",
         key: "referenceId",
-
         render: function render(text, record) {
-          return text ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
+          return text ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
             referenceId: text,
             references: references,
             datasetKey: _this.props.datasetKey,
@@ -99488,15 +98372,14 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
     };
     return _this;
   }
-
-  VernacularNamesTable.prototype.render = function render() {
+  VernacularNames_inheritsLoose(VernacularNamesTable, _React$Component);
+  var _proto = VernacularNamesTable.prototype;
+  _proto.render = function render() {
     var style = this.props.style;
-    var _state = this.state,
-        data = _state.data,
-        columns = _state.columns;
-
-
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
+    var _this$state = this.state,
+      data = _this$state.data,
+      columns = _this$state.columns;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
       style: style,
       className: "colplus-taxon-page-list",
       columns: columns,
@@ -99506,10 +98389,8 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
       size: "middle"
     });
   };
-
   return VernacularNamesTable;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var VernacularNames = (VernacularNames_VernacularNamesTable);
 // CONCATENATED MODULE: ./src/Taxon/Distributions.js
 
@@ -99518,16 +98399,13 @@ var VernacularNames_VernacularNamesTable = function (_React$Component) {
 
 
 
-
 var Distributions_DistributionsTable = function DistributionsTable(_ref) {
   var datasetKey = _ref.datasetKey,
-      data = _ref.data,
-      style = _ref.style;
-
+    data = _ref.data,
+    style = _ref.style;
   var _useState = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])({}),
-      iso3Map = _useState[0],
-      setIso3Map = _useState[1];
-
+    iso3Map = _useState[0],
+    setIso3Map = _useState[1];
   Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
     var isIso = false;
     for (var i = 0; i < data.length; i++) {
@@ -99542,29 +98420,20 @@ var Distributions_DistributionsTable = function DistributionsTable(_ref) {
       });
     }
   }, []);
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style },
-    data.map(function (s, i) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "span",
-        { key: i },
-        (lodash_default.a.get(iso3Map, "[" + lodash_default.a.get(s, "area.name") + "].name") ? lodash_default.a.startCase(lodash_default.a.get(iso3Map, "[" + lodash_default.a.get(s, "area.name") + "].name")) : null) || lodash_default.a.get(s, "area.name") || lodash_default.a.get(s, "area.globalId"),
-        " ",
-        s.referenceId && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
-          datasetKey: datasetKey,
-          referenceId: s.referenceId,
-          placement: "bottom"
-        }),
-        i < data.length - 1 && ", "
-      );
-    })
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style
+  }, data.map(function (s, i) {
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      key: i
+    }, (lodash_default.a.get(iso3Map, "[" + lodash_default.a.get(s, "area.name") + "].name") ? lodash_default.a.startCase(lodash_default.a.get(iso3Map, "[" + lodash_default.a.get(s, "area.name") + "].name")) : null) || lodash_default.a.get(s, "area.name") || lodash_default.a.get(s, "area.globalId"), " ", s.referenceId && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_ReferencePopover, {
+      datasetKey: datasetKey,
+      referenceId: s.referenceId,
+      placement: "bottom"
+    }), i < data.length - 1 && ", ");
+  }));
 };
-
 /* harmony default export */ var Distributions = (Distributions_DistributionsTable);
 // CONCATENATED MODULE: ./src/Taxon/Classification.js
-
 
 
 var rankStyle = {
@@ -99573,53 +98442,45 @@ var rankStyle = {
 };
 var Classification_ClassificationTable = function ClassificationTable(_ref) {
   var data = _ref.data,
-      taxon = _ref.taxon,
-      style = _ref.style,
-      pathToTaxon = _ref.pathToTaxon,
-      pathToTree = _ref.pathToTree;
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style },
-    " ",
-    lodash_default.a.reverse([].concat(data)).map(function (t) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        { style: { float: "left", marginRight: "3px" }, key: t.rank },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "span",
-          { style: rankStyle },
-          t.rank,
-          ": "
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
-          href: "" + pathToTaxon + t.id,
-          onClick: function onClick() {
-            window.location.href = "" + pathToTaxon + t.id;
-          },
-          dangerouslySetInnerHTML: { __html: t.labelHtml }
-        }),
-        " >"
-      );
-    }),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      { style: { float: "left" } },
-      lodash_default.a.get(taxon, "name.rank") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "span",
-        { style: rankStyle },
-        taxon.name.rank,
-        ": "
-      ),
-      taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
-        onClick: function onClick() {
-          window.location.href = pathToTree + "?taxonKey=" + taxon.id;
-        },
-        dangerouslySetInnerHTML: { __html: taxon.labelHtml }
-      })
-    )
-  );
+    taxon = _ref.taxon,
+    style = _ref.style,
+    pathToTaxon = _ref.pathToTaxon,
+    pathToTree = _ref.pathToTree;
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style
+  }, " ", lodash_default.a.reverse([].concat(data)).map(function (t) {
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      style: {
+        "float": "left",
+        marginRight: "3px"
+      },
+      key: t.rank
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      style: rankStyle
+    }, t.rank, ": "), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "" + pathToTaxon + t.id,
+      onClick: function onClick() {
+        window.location.href = "" + pathToTaxon + t.id;
+      },
+      dangerouslySetInnerHTML: {
+        __html: t.labelHtml
+      }
+    }), " >");
+  }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: {
+      "float": "left"
+    }
+  }, lodash_default.a.get(taxon, "name.rank") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    style: rankStyle
+  }, taxon.name.rank, ": "), taxon && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    onClick: function onClick() {
+      window.location.href = pathToTree + "?taxonKey=" + taxon.id;
+    },
+    dangerouslySetInnerHTML: {
+      __html: taxon.labelHtml
+    }
+  })));
 };
-
 /* harmony default export */ var Classification = (Classification_ClassificationTable);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(68);
@@ -99646,9 +98507,8 @@ var icons_QuestionCircleOutlined_QuestionCircleOutlined = function QuestionCircl
 };
 
 icons_QuestionCircleOutlined_QuestionCircleOutlined.displayName = 'QuestionCircleOutlined';
-/* harmony default export */ var icons_QuestionCircleOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_QuestionCircleOutlined_QuestionCircleOutlined));
+/* harmony default export */ var icons_QuestionCircleOutlined = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_QuestionCircleOutlined_QuestionCircleOutlined));
 // CONCATENATED MODULE: ./src/components/Help.js
-
 
 
 
@@ -99662,28 +98522,20 @@ var Help_styles = {
     marginTop: '4px'
   }
 };
-
 var Help_Help = function Help(_ref) {
   var title = _ref.title,
-      classes = _ref.classes;
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-    null,
-    title && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      'span',
-      { className: classes.tip },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        tooltip,
-        { title: title, getPopupContainer: function getPopupContainer() {
-            return document.getElementsByClassName('catalogue-of-life')[0];
-          } },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_QuestionCircleOutlined, { className: classes.icon })
-      )
-    )
-  );
+    classes = _ref.classes;
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, title && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    className: classes.tip
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tooltip, {
+    title: title,
+    getPopupContainer: function getPopupContainer() {
+      return document.getElementsByClassName("catalogue-of-life")[0];
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_QuestionCircleOutlined, {
+    className: classes.icon
+  }))));
 };
-
 /* harmony default export */ var components_Help = (react_jss_esm(Help_styles)(Help_Help));
 // CONCATENATED MODULE: ./src/components/PresentationItem.js
 
@@ -99692,9 +98544,7 @@ var Help_Help = function Help(_ref) {
 
 
 
-
 // Wrappers
-
 
 var PresentationItem_styles = {
   formItem: {
@@ -99750,106 +98600,125 @@ var PresentationItem_styles = {
  */
 var PresentationItem_PresentationItem = function PresentationItem(_ref) {
   var label = _ref.label,
-      helpText = _ref.helpText,
-      classes = _ref.classes,
-      children = _ref.children,
-      width = _ref.width,
-      md = _ref.md,
-      size = _ref.size;
-
+    helpText = _ref.helpText,
+    classes = _ref.classes,
+    children = _ref.children,
+    width = _ref.width,
+    md = _ref.md,
+    size = _ref.size;
   var getValue = function getValue() {
-    var value = void 0;
-
+    var value;
     if (Array.isArray(children) && children.length > 0) {
       value = children.map(function (item, i) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          'span',
-          { className: classes.content, key: i },
-          item
-        );
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+          className: classes.content,
+          key: i
+        }, item);
       });
     } else if (!Array.isArray(children) && typeof children !== 'undefined') {
-      value = external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        'span',
-        { className: classes.content },
-        children
-      );
+      value = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+        className: classes.content
+      }, children);
     }
-
     return value;
   };
-
   var medium = md || 8;
   var mediumCol2 = medium < 24 ? 24 - medium : 24;
   var marginSize = size === 'medium' ? classes.mediumMargin : classes.smallMargin;
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    es_row,
-    { className: classes.formItem },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      es_col,
-      { sm: 24, md: medium, style: width < MEDIUM ? { marginBottom: 0 } : {}, className: marginSize },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        'div',
-        null,
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          'dt',
-          { className: classes.label },
-          label,
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_Help, { title: helpText })
-        )
-      )
-    ),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      es_col,
-      { sm: 24, md: mediumCol2, style: width < MEDIUM ? { marginTop: 0 } : {}, className: marginSize },
-      getValue()
-    )
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+    className: classes.formItem
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    sm: 24,
+    md: medium,
+    style: width < MEDIUM ? {
+      marginBottom: 0
+    } : {},
+    className: marginSize
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("dt", {
+    className: classes.label
+  }, label, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_Help, {
+    title: helpText
+  })))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    sm: 24,
+    md: mediumCol2,
+    style: width < MEDIUM ? {
+      marginTop: 0
+    } : {},
+    className: marginSize
+  }, getValue()));
 };
-
 PresentationItem_PresentationItem.propTypes = {
   label: prop_types_default.a.string.isRequired,
   helpText: prop_types_default.a.object
 };
-
 /* harmony default export */ var components_PresentationItem = (components_Width()(react_jss_esm(PresentationItem_styles)(PresentationItem_PresentationItem)));
 // CONCATENATED MODULE: ./src/Taxon/NameRelations.js
 
 
 
-
-var typeMap = {
-  "spelling correction": "of",
-  "based on": "",
-  "replacement name": "for",
-  "later homonym": "of",
-  "superfluous": "name for"
+var NameRelations_getLabel = function getLabel(r, reverse) {
+  if (!reverse) {
+    // return `${_.capitalize(r.type)} ${typeMap[r.type] ? typeMap[r.type] : ""}`;
+    switch (r.type) {
+      case "spelling correction":
+        return "Spelling correction of";
+      case "based on":
+        return "Based on";
+      case "replacement name":
+        return "Replacement name of";
+      case "later homonym":
+        return "Later homonym of";
+      case "superfluous":
+        return "Superfluous name for";
+      case "basionym":
+        return "Basionym";
+      case "type":
+        return "Type";
+      default:
+        return lodash_default.a.capitalize(r.type);
+    }
+  } else {
+    switch (r.type) {
+      case "spelling correction":
+        return "Has spelling correction";
+      case "based on":
+        return "Other name based on this";
+      case "replacement name":
+        return "Replaced by";
+      case "later homonym":
+        return "Has later homonym";
+      case "superfluous":
+        return "Has superfluous name";
+      case "basionym":
+        return "Basionym of";
+      case "type":
+        return "Type of";
+      default:
+        return lodash_default.a.capitalize(r.type);
+    }
+  }
 };
-
 var NameRelations_NameRelations = function NameRelations(_ref) {
   var data = _ref.data,
-      style = _ref.style,
-      md = _ref.md;
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style },
-    data.map(function (r) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        components_PresentationItem,
-        { md: md, key: r.key, label: lodash_default.a.capitalize(r.type) + " " + (typeMap[r.type] ? typeMap[r.type] : ""), helpText: r.note },
-        lodash_default.a.get(r, 'relatedName.labelHtml') ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { dangerouslySetInnerHTML: { __html: r.relatedName.labelHtml } }) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "span",
-          null,
-          lodash_default.a.get(r, 'relatedName.scientificName'),
-          " ",
-          lodash_default.a.get(r, 'relatedName.authorship', '')
-        )
-      );
-    })
-  );
+    md = _ref.md,
+    reverse = _ref.reverse;
+  return data.map(function (r) {
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: md,
+      key: r.key,
+      label: NameRelations_getLabel(r, reverse),
+      helpText: r.note
+    }, !reverse && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      dangerouslySetInnerHTML: {
+        __html: r.relatedName.labelHtml
+      }
+    }), reverse && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      dangerouslySetInnerHTML: {
+        __html: r.name.labelHtml
+      }
+    }));
+  });
 };
-
 /* harmony default export */ var Taxon_NameRelations = (NameRelations_NameRelations);
 // CONCATENATED MODULE: ./node_modules/linkifyjs/dist/linkify.module.js
 /**
@@ -104187,68 +103056,47 @@ function attrsToStrings(attrs) {
 
 
 
-
 var References_ReferencesTable = function ReferencesTable(_ref) {
   var data = _ref.data,
-      referenceIndexMap = _ref.referenceIndexMap,
-      style = _ref.style;
-
+    referenceIndexMap = _ref.referenceIndexMap,
+    style = _ref.style,
+    primarySourceDatasetKey = _ref.primarySourceDatasetKey,
+    pathToDataset = _ref.pathToDataset;
   Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {}, [referenceIndexMap]);
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style, className: "col-reference-link-container" },
-    lodash_default.a.values(data).map(function (s) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_row,
-        { key: s.id },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { style: { paddingRight: "5px" } },
-          lodash_default.a.get(referenceIndexMap, s.id) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "span",
-            null,
-            "[" + lodash_default.a.get(referenceIndexMap, s.id) + "]"
-          )
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { span: 20 },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", { id: "col-refererence-" + s.id,
-            dangerouslySetInnerHTML: { __html: linkifyHtml(s.citation) }
-          })
-        )
-      );
-    })
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style,
+    className: "col-reference-link-container"
+  }, lodash_default.a.values(data).map(function (s) {
+    var _s$sourceDataset, _s$sourceDataset2, _s$sourceDataset3;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+      key: s.id
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      style: {
+        paddingRight: "5px"
+      }
+    }, lodash_default.a.get(referenceIndexMap, s.id) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, "[" + lodash_default.a.get(referenceIndexMap, s.id) + "]")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 20
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      id: "col-refererence-" + s.id,
+      dangerouslySetInnerHTML: {
+        __html: linkifyHtml(s.citation)
+      }
+    }))), (s === null || s === void 0 ? void 0 : (_s$sourceDataset = s.sourceDataset) === null || _s$sourceDataset === void 0 ? void 0 : _s$sourceDataset.key) !== primarySourceDatasetKey && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      style: {
+        paddingLeft: "22px"
+      }
+    }, "Source: ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "" + pathToDataset + (s === null || s === void 0 ? void 0 : (_s$sourceDataset2 = s.sourceDataset) === null || _s$sourceDataset2 === void 0 ? void 0 : _s$sourceDataset2.key)
+    }, s === null || s === void 0 ? void 0 : (_s$sourceDataset3 = s.sourceDataset) === null || _s$sourceDataset3 === void 0 ? void 0 : _s$sourceDataset3.title))));
+  }));
 };
-
 /* harmony default export */ var References = (References_ReferencesTable);
-
-/* import React from "react";
-import _ from "lodash";
-import BorderedListItem from "./BorderedListItem"
-
-const ReferencesTable = ({ data, style }) => {
-  return (
-    <div style={style}>
-      {_.values(data)
-        
-        .map(s => (
-          <BorderedListItem key={s.id}>
-            {s.citation}
-          </BorderedListItem>
-        ))}
-    </div>
-  );
-};
-
-export default ReferencesTable; */
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
 var moment = __webpack_require__(6);
 var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
 // EXTERNAL MODULE: ./node_modules/rc-animate/es/Animate.js + 4 modules
-var Animate = __webpack_require__(324);
+var Animate = __webpack_require__(323);
 
 // CONCATENATED MODULE: ./node_modules/antd/es/badge/ScrollNumber.js
 
@@ -104704,115 +103552,100 @@ badge_Badge.Ribbon = badge_Ribbon;
  */
 var BooleanValue_BooleanValue = function BooleanValue(_ref) {
   var value = _ref.value;
-  return value === false || value === true ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(badge, {
+  return value === false || value === true ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(badge, {
     status: value ? 'success' : 'error',
     text: value ? "Yes" : "No"
   }) : null;
 };
-
 /* harmony default export */ var components_BooleanValue = (BooleanValue_BooleanValue);
 // CONCATENATED MODULE: ./src/Taxon/Includes.js
 
 
 
-
 var Includes_IncludesTable = function IncludesTable(_ref) {
   var data = _ref.data,
-      style = _ref.style,
-      rank = _ref.rank,
-      pathToSearch = _ref.pathToSearch,
-      taxon = _ref.taxon;
-
+    style = _ref.style,
+    rank = _ref.rank,
+    pathToSearch = _ref.pathToSearch,
+    taxon = _ref.taxon;
   var rankToPlural = rank.reduce(function (acc, cur) {
     return acc[cur.value] = cur.plural, acc;
   }, {});
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style },
-    " ",
-    data.filter(function (t) {
-      return t.value !== taxon.name.rank;
-    }).sort(function (a, b) {
-      return rank.indexOf(a.value) - rank.indexOf(b.value);
-    }).map(function (t) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        components_PresentationItem,
-        {
-          md: 6,
-          label: lodash_default.a.startCase(rankToPlural[t.value] || t.value),
-          classes: { formItem: { borderBottom: "none" } },
-          key: t.value
-        },
-        pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          {
-            href: pathToSearch + "?TAXON_ID=" + taxon.id + "&rank=" + t.value + "&status=accepted&status=provisionally%20accepted",
-            onClick: function onClick() {
-              window.location.href = pathToSearch + "?TAXON_ID=" + taxon.id + "&rank=" + t.value + "&status=accepted&status=provisionally%20accepted";
-            }
-          },
-          t.count
-        ) : t.count
-      );
-    })
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style
+  }, " ", data.filter(function (t) {
+    return t.value !== taxon.name.rank;
+  }).sort(function (a, b) {
+    return rank.indexOf(a.value) - rank.indexOf(b.value);
+  }).map(function (t) {
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: 6,
+      label: lodash_default.a.startCase(rankToPlural[t.value] || t.value),
+      classes: {
+        formItem: {
+          borderBottom: "none"
+        }
+      },
+      key: t.value
+    }, pathToSearch ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: pathToSearch + "?TAXON_ID=" + taxon.id + "&rank=" + t.value + "&status=accepted&status=provisionally%20accepted",
+      onClick: function onClick() {
+        window.location.href = pathToSearch + "?TAXON_ID=" + taxon.id + "&rank=" + t.value + "&status=accepted&status=provisionally%20accepted";
+      }
+    }, t.count) : t.count);
+  }));
 };
-
 /* harmony default export */ var Includes = (Includes_IncludesTable);
 // CONCATENATED MODULE: ./src/components/DatasetlogoWithFallback.js
-function DatasetlogoWithFallback_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function DatasetlogoWithFallback_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function DatasetlogoWithFallback_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function DatasetlogoWithFallback_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; DatasetlogoWithFallback_setPrototypeOf(subClass, superClass); }
+function DatasetlogoWithFallback_setPrototypeOf(o, p) { DatasetlogoWithFallback_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return DatasetlogoWithFallback_setPrototypeOf(o, p); }
 
 
-
-
-var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component) {
-  DatasetlogoWithFallback_inherits(DatasetlogoWithFallback, _React$Component);
-
+var DatasetlogoWithFallback_DatasetlogoWithFallback = /*#__PURE__*/function (_React$Component) {
   function DatasetlogoWithFallback(props) {
-    DatasetlogoWithFallback_classCallCheck(this, DatasetlogoWithFallback);
-
-    var _this = DatasetlogoWithFallback_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.state = { error: true, loading: true };
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    _this.state = {
+      error: true,
+      loading: true
+    };
     return _this;
   }
-
-  DatasetlogoWithFallback.prototype.render = function render() {
+  DatasetlogoWithFallback_inheritsLoose(DatasetlogoWithFallback, _React$Component);
+  var _proto = DatasetlogoWithFallback.prototype;
+  _proto.render = function render() {
     var _this2 = this;
-
-    var _props = this.props,
-        _props$fallBack = _props.fallBack,
-        fallBack = _props$fallBack === undefined ? null : _props$fallBack,
-        catalogueKey = _props.catalogueKey,
-        datasetKey = _props.datasetKey,
-        style = _props.style,
-        _props$size = _props.size,
-        size = _props$size === undefined ? 'MEDIUM' : _props$size;
-    var _state = this.state,
-        error = _state.error,
-        loading = _state.loading;
-
-    return loading || !error ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+    var _this$props = this.props,
+      _this$props$fallBack = _this$props.fallBack,
+      fallBack = _this$props$fallBack === void 0 ? null : _this$props$fallBack,
+      catalogueKey = _this$props.catalogueKey,
+      datasetKey = _this$props.datasetKey,
+      style = _this$props.style,
+      _this$props$size = _this$props.size,
+      size = _this$props$size === void 0 ? 'MEDIUM' : _this$props$size;
+    var _this$state = this.state,
+      error = _this$state.error,
+      loading = _this$state.loading;
+    return loading || !error ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
       style: style,
       src: src_config.dataApi + "dataset/" + catalogueKey + "/logo/source/" + datasetKey + "?size=" + size,
       onLoad: function onLoad() {
-        return _this2.setState({ error: false, loading: false });
+        return _this2.setState({
+          error: false,
+          loading: false
+        });
       },
       onError: function onError() {
-        return _this2.setState({ error: true, loading: false });
+        return _this2.setState({
+          error: true,
+          loading: false
+        });
       }
     }) : fallBack;
-
     ;
   };
-
   return DatasetlogoWithFallback;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var components_DatasetlogoWithFallback = (DatasetlogoWithFallback_DatasetlogoWithFallback);
 // CONCATENATED MODULE: ./src/components/svg404.js
 /* harmony default export */ var svg404 = ("%3Csvg width='423px' height='341px' viewBox='0 0 423 341' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle%3EGroup 4%3C/title%3E%3Cg id='Ant-Design-Pro-3.0' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='404' transform='translate(-484.000000, -221.000000)'%3E%3Cg id='Group-4' transform='translate(464.000000, 222.000000)'%3E%3Cg id='Group-5' transform='translate(75.417348, 0.163879)' stroke='%23A3B1BF' stroke-width='1.62' opacity='0.6' stroke-linejoin='round' stroke-dasharray='12.15'%3E%3Cpath d='M169.575185,288.890375 C103.647066,288.890375 50.2010204,235.455806 50.2010204,169.540425 C50.2010204,103.625045 103.647066,50.1904762 169.575185,50.1904762 C235.50394,50.1904762 288.94935,103.625045 288.94935,169.540425 C288.94935,235.455806 235.50394,288.890375 169.575185,288.890375 Z' id='Stroke-1'%3E%3C/path%3E%3Cpath d='M169.405699,338.555288 C76.0274364,338.555288 0.329411882,262.872619 0.329411882,169.513299 C0.329411882,76.1539786 76.0274364,0.471309613 169.405699,0.471309613 C262.783961,0.471309613 338.481985,76.1539786 338.481985,169.513299 C338.481985,262.872619 262.783961,338.555288 169.405699,338.555288 Z' id='Stroke-3'%3E%3C/path%3E%3C/g%3E%3Cpolygon id='Fill-6' fill='%23F5F5F5' transform='translate(106.914750, 199.432805) rotate(22.000000) translate(-106.914750, -199.432805) ' points='97.7112298 198.803016 116.11827 190.231152 107.544667 208.634458'%3E%3C/polygon%3E%3Cpolygon id='Stroke-7' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(106.914750, 199.432805) rotate(22.000000) translate(-106.914750, -199.432805) ' points='97.7112298 198.803016 116.11827 190.231152 107.544667 208.634458'%3E%3C/polygon%3E%3Cpolygon id='Fill-8' transform='translate(58.996118, 219.767028) rotate(22.000000) translate(-58.996118, -219.767028) ' points='38.8543444 215.183828 54.4119879 199.629341 79.1378915 224.350228 63.580248 239.904716'%3E%3C/polygon%3E%3Cpolygon id='Stroke-9' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(58.996118, 219.767028) rotate(22.000000) translate(-58.996118, -219.767028) ' points='38.8543444 215.183828 54.4119879 199.629341 79.1378915 224.350228 63.580248 239.904716'%3E%3C/polygon%3E%3Cpolygon id='Fill-10' fill='%23F5F5F5' transform='translate(71.226096, 214.577614) rotate(22.000000) translate(-71.226096, -214.577614) ' points='51.4642422 198.657893 55.3028278 194.820086 90.9879502 230.497335 87.1487294 234.335141'%3E%3C/polygon%3E%3Cpolygon id='Stroke-11' stroke='%23A3B1BF' stroke-width='1.62' fill='%23F0F2F5' stroke-linejoin='round' transform='translate(71.226096, 214.577614) rotate(22.000000) translate(-71.226096, -214.577614) ' points='51.4642422 198.657893 55.3028278 194.820086 90.9879502 230.497335 87.1487294 234.335141'%3E%3C/polygon%3E%3Cpolygon id='Fill-12' transform='translate(84.698338, 273.903349) rotate(22.000000) translate(-84.698338, -273.903349) ' points='56.0769883 259.690379 70.4821667 245.288122 113.319688 288.116319 98.9145099 302.518575'%3E%3C/polygon%3E%3Cpolygon id='Stroke-13' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(84.698338, 273.903349) rotate(22.000000) translate(-84.698338, -273.903349) ' points='56.0769883 259.690379 70.4821667 245.288122 113.319688 288.116319 98.9145099 302.518575'%3E%3C/polygon%3E%3Cpolygon id='Fill-14' transform='translate(75.456149, 212.782520) rotate(22.000000) translate(-75.456149, -212.782520) ' points='63.8911557 203.879723 66.5512281 201.22019 87.0211429 221.685318 84.3604352 224.34485'%3E%3C/polygon%3E%3Cpolygon id='Stroke-15' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(75.456149, 212.782520) rotate(22.000000) translate(-75.456149, -212.782520) ' points='63.8911557 203.879723 66.5512281 201.22019 87.0211429 221.685318 84.3604352 224.34485'%3E%3C/polygon%3E%3Cpolygon id='Fill-16' fill='%23F5F5F5' transform='translate(78.176142, 202.618192) rotate(22.000000) translate(-78.176142, -202.618192) ' points='74.4026766 205.006817 80.5652518 198.845492 81.9496076 200.229567 75.7870324 206.390892'%3E%3C/polygon%3E%3Cpolygon id='Stroke-17' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(78.176142, 202.618192) rotate(22.000000) translate(-78.176142, -202.618192) ' points='74.4026766 205.006817 80.5652518 198.845492 81.9496076 200.229567 75.7870324 206.390892'%3E%3C/polygon%3E%3Cpolygon id='Fill-18' fill='%23F5F5F5' transform='translate(84.676979, 217.928886) rotate(22.000000) translate(-84.676979, -217.928886) ' points='80.9035138 220.317511 87.066089 214.156186 88.4504448 215.540261 82.2878696 221.701586'%3E%3C/polygon%3E%3Cpolygon id='Stroke-19' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(84.676979, 217.928886) rotate(22.000000) translate(-84.676979, -217.928886) ' points='80.9035138 220.317511 87.066089 214.156186 88.4504448 215.540261 82.2878696 221.701586'%3E%3C/polygon%3E%3Cpolygon id='Fill-20' transform='translate(70.238421, 242.404581) rotate(22.000000) translate(-70.238421, -242.404581) ' points='67.8493111 238.631881 74.0118863 244.793206 72.6275305 246.177281 66.4649553 240.015956'%3E%3C/polygon%3E%3Cpolygon id='Stroke-21' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(70.238421, 242.404581) rotate(22.000000) translate(-70.238421, -242.404581) ' points='67.8493111 238.631881 74.0118863 244.793206 72.6275305 246.177281 66.4649553 240.015956'%3E%3C/polygon%3E%3Cpolygon id='Fill-22' transform='translate(48.081755, 224.398789) rotate(22.000000) translate(-48.081755, -224.398789) ' points='35.1127107 220.725179 36.3242602 211.432376 61.0507992 236.153899 51.756111 237.365203'%3E%3C/polygon%3E%3Cpolygon id='Stroke-23' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(48.081755, 224.398789) rotate(22.000000) translate(-48.081755, -224.398789) ' points='35.1127107 220.725179 36.3242602 211.432376 61.0507992 236.153899 51.756111 237.365203'%3E%3C/polygon%3E%3Cpolygon id='Fill-24' transform='translate(38.612968, 228.416820) rotate(22.000000) translate(-38.612968, -228.416820) ' points='32.9179858 217.470622 26.2496982 216.056058 50.9762371 240.777581 49.5613861 234.110647'%3E%3C/polygon%3E%3Cpolygon id='Stroke-25' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(38.612968, 228.416820) rotate(22.000000) translate(-38.612968, -228.416820) ' points='32.9179858 217.470622 26.2496982 216.056058 50.9762371 240.777581 49.5613861 234.110647'%3E%3C/polygon%3E%3Cpolygon id='Fill-26' transform='translate(31.086342, 221.523909) rotate(22.000000) translate(-31.086342, -221.523909) ' points='32.6469986 217.297684 26.8592604 218.37941 34.2314793 225.750133 35.3134242 219.963569'%3E%3C/polygon%3E%3Cpolygon id='Stroke-27' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(31.086342, 221.523909) rotate(22.000000) translate(-31.086342, -221.523909) ' points='32.6469986 217.297684 26.8592604 218.37941 34.2314793 225.750133 35.3134242 219.963569'%3E%3C/polygon%3E%3Cpolygon id='Fill-28' transform='translate(38.344372, 238.617819) rotate(22.000000) translate(-38.344372, -238.617819) ' points='39.9050284 234.391595 34.1172902 235.47332 41.4895091 242.844044 42.571454 237.05748'%3E%3C/polygon%3E%3Cpolygon id='Stroke-29' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(38.344372, 238.617819) rotate(22.000000) translate(-38.344372, -238.617819) ' points='39.9050284 234.391595 34.1172902 235.47332 41.4895091 242.844044 42.571454 237.05748'%3E%3C/polygon%3E%3Cpolygon id='Fill-30' fill='%23F0F2F5' transform='translate(75.352798, 203.766862) rotate(22.000000) translate(-75.352798, -203.766862) ' points='71.4417859 201.708217 73.2937351 199.856644 79.2638092 205.824871 77.4118601 207.67708'%3E%3C/polygon%3E%3Cpolygon id='Stroke-31' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(75.352798, 203.766862) rotate(22.000000) translate(-75.352798, -203.766862) ' points='71.4417859 201.708217 73.2937351 199.856644 79.2638092 205.824871 77.4118601 207.67708'%3E%3C/polygon%3E%3Cpolygon id='Fill-32' fill='%23F0F2F5' transform='translate(81.871541, 219.119730) rotate(22.000000) translate(-81.871541, -219.119730) ' points='77.9605297 217.061085 79.8124789 215.209512 85.7825531 221.177739 83.9306039 223.029948'%3E%3C/polygon%3E%3Cpolygon id='Stroke-33' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(81.871541, 219.119730) rotate(22.000000) translate(-81.871541, -219.119730) ' points='77.9605297 217.061085 79.8124789 215.209512 85.7825531 221.177739 83.9306039 223.029948'%3E%3C/polygon%3E%3Cpolygon id='Fill-34' transform='translate(68.034935, 237.215417) rotate(22.000000) translate(-68.034935, -237.215417) ' points='65.1594898 237.106164 67.9256601 234.340555 70.9103796 237.324669 68.1442092 240.090278'%3E%3C/polygon%3E%3Cpolygon id='Stroke-35' stroke='%23A3B1BF' stroke-width='1.62' fill='%23F5F5F5' stroke-linejoin='round' transform='translate(68.034935, 237.215417) rotate(22.000000) translate(-68.034935, -237.215417) ' points='65.1594898 237.106164 67.9256601 234.340555 70.9103796 237.324669 68.1442092 240.090278'%3E%3C/polygon%3E%3Cpath d='M90.2556147,213.065319 C79.2271463,202.039088 74.6433339,188.153875 78.4889079,179.512775 C79.1248602,178.084237 80.8319571,175.429786 84.5339495,179.131027 C88.2353065,182.832268 120.560237,215.150007 123.931865,218.52095 C127.303492,221.891894 125.245065,224.192545 123.817508,224.827733 C115.174655,228.675068 101.284718,224.092186 90.2556147,213.065319 Z' id='Fill-36' fill='%23F5F5F5' transform='translate(101.453924, 201.708917) rotate(22.000000) translate(-101.453924, -201.708917) '%3E%3C/path%3E%3Cpath d='M90.2556147,213.065319 C79.2271463,202.039088 74.6433339,188.153875 78.4889079,179.512775 C79.1248602,178.084237 80.8319571,175.429786 84.5339495,179.131027 C88.2353065,182.832268 120.560237,215.150007 123.931865,218.52095 C127.303492,221.891894 125.245065,224.192545 123.817508,224.827733 C115.174655,228.675068 101.284718,224.092186 90.2556147,213.065319 Z' id='Stroke-38' stroke='%23A3B1BF' stroke-width='1.62' fill='%23F0F2F5' stroke-linejoin='round' transform='translate(101.453924, 201.708917) rotate(22.000000) translate(-101.453924, -201.708917) '%3E%3C/path%3E%3Cpolygon id='Fill-40' fill='%23F0F2F5' transform='translate(86.633853, 208.038961) rotate(22.000000) translate(-86.633853, -208.038961) ' points='77.9716233 201.230061 79.8235724 199.378488 95.2960835 214.84786 93.4441343 216.699433'%3E%3C/polygon%3E%3Cpolygon id='Stroke-42' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(86.633853, 208.038961) rotate(22.000000) translate(-86.633853, -208.038961) ' points='77.9716233 201.230061 79.8235724 199.378488 95.2960835 214.84786 93.4441343 216.699433'%3E%3C/polygon%3E%3Cpath d='M121.635514,196.068815 C120.517356,197.186746 118.704797,197.186746 117.586639,196.068815 C116.469116,194.950884 116.469116,193.138692 117.586639,192.020761 C118.704797,190.903465 120.517356,190.903465 121.635514,192.020761 C122.753672,193.138692 122.753672,194.950884 121.635514,196.068815' id='Fill-44' fill='%23A3B1BF' transform='translate(119.611315, 194.045026) rotate(22.000000) translate(-119.611315, -194.045026) '%3E%3C/path%3E%3Cpolygon id='Fill-46' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(81.250567, 248.056422) rotate(22.000000) translate(-81.250567, -248.056422) ' points='81.2505672 249.672341 79.6343206 248.056422 81.2505672 246.440503 82.8668137 248.056422'%3E%3C/polygon%3E%3Cpolygon id='Stroke-48' transform='translate(81.250567, 248.056422) rotate(22.000000) translate(-81.250567, -248.056422) ' points='81.2505672 249.672341 79.6343206 248.056422 81.2505672 246.440503 82.8668137 248.056422'%3E%3C/polygon%3E%3Cpolygon id='Fill-50' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(82.702196, 251.475282) rotate(22.000000) translate(-82.702196, -251.475282) ' points='82.7021965 253.091201 81.0859499 251.475282 82.7021965 249.859363 84.318443 251.475282'%3E%3C/polygon%3E%3Cpolygon id='Stroke-52' transform='translate(82.702196, 251.475282) rotate(22.000000) translate(-82.702196, -251.475282) ' points='82.7021965 253.091201 81.0859499 251.475282 82.7021965 249.859363 84.318443 251.475282'%3E%3C/polygon%3E%3Cpolygon id='Fill-54' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(84.153791, 254.894059) rotate(22.000000) translate(-84.153791, -254.894059) ' points='84.1537906 256.509978 82.5375441 254.894059 84.1537906 253.278141 85.7700372 254.894059'%3E%3C/polygon%3E%3Cpolygon id='Stroke-56' transform='translate(84.153791, 254.894059) rotate(22.000000) translate(-84.153791, -254.894059) ' points='84.1537906 256.509978 82.5375441 254.894059 84.1537906 253.278141 85.7700372 254.894059'%3E%3C/polygon%3E%3Cpolygon id='Fill-58' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(85.605385, 258.312837) rotate(22.000000) translate(-85.605385, -258.312837) ' points='85.6053848 259.928756 83.9891383 258.312837 85.6053848 256.696918 87.2216313 258.312837'%3E%3C/polygon%3E%3Cpolygon id='Stroke-60' transform='translate(85.605385, 258.312837) rotate(22.000000) translate(-85.605385, -258.312837) ' points='85.6053848 259.928756 83.9891383 258.312837 85.6053848 256.696918 87.2216313 258.312837'%3E%3C/polygon%3E%3Cpolygon id='Fill-62' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(78.094482, 249.395723) rotate(22.000000) translate(-78.094482, -249.395723) ' points='78.0944819 251.011642 76.4782353 249.395723 78.0944819 247.779804 79.7107284 249.395723'%3E%3C/polygon%3E%3Cpolygon id='Stroke-64' transform='translate(78.094482, 249.395723) rotate(22.000000) translate(-78.094482, -249.395723) ' points='78.0944819 251.011642 76.4782353 249.395723 78.0944819 247.779804 79.7107284 249.395723'%3E%3C/polygon%3E%3Cpolygon id='Fill-66' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(79.546052, 252.814559) rotate(22.000000) translate(-79.546052, -252.814559) ' points='79.5460522 254.430478 77.9298057 252.814559 79.5460522 251.198641 81.1622988 252.814559'%3E%3C/polygon%3E%3Cpolygon id='Stroke-68' transform='translate(79.546052, 252.814559) rotate(22.000000) translate(-79.546052, -252.814559) ' points='79.5460522 254.430478 77.9298057 252.814559 79.5460522 251.198641 81.1622988 252.814559'%3E%3C/polygon%3E%3Cpolygon id='Fill-70' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(80.997705, 256.233360) rotate(22.000000) translate(-80.997705, -256.233360) ' points='80.9977053 257.849279 79.3814588 256.23336 80.9977053 254.617442 82.6139518 256.23336'%3E%3C/polygon%3E%3Cpolygon id='Stroke-72' transform='translate(80.997705, 256.233360) rotate(22.000000) translate(-80.997705, -256.233360) ' points='79.3814588 256.23336 80.9977053 254.617442 82.6139518 256.23336 80.9977053 257.849279'%3E%3C/polygon%3E%3Cpolygon id='Fill-74' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(82.449276, 259.652197) rotate(22.000000) translate(-82.449276, -259.652197) ' points='82.4492757 261.268115 80.8330292 259.652197 82.4492757 258.036278 84.0655222 259.652197'%3E%3C/polygon%3E%3Cpolygon id='Stroke-76' transform='translate(82.449276, 259.652197) rotate(22.000000) translate(-82.449276, -259.652197) ' points='82.4492757 261.268115 80.8330292 259.652197 82.4492757 258.036278 84.0655222 259.652197'%3E%3C/polygon%3E%3Cpolygon id='Fill-78' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(74.938373, 250.735083) rotate(22.000000) translate(-74.938373, -250.735083) ' points='74.9383727 252.351002 73.3221262 250.735083 74.9383727 249.119164 76.5546193 250.735083'%3E%3C/polygon%3E%3Cpolygon id='Stroke-80' transform='translate(74.938373, 250.735083) rotate(22.000000) translate(-74.938373, -250.735083) ' points='74.9383727 252.351002 73.3221262 250.735083 74.9383727 249.119164 76.5546193 250.735083'%3E%3C/polygon%3E%3Cpolygon id='Fill-82' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(76.389967, 254.153860) rotate(22.000000) translate(-76.389967, -254.153860) ' points='76.3899669 255.769779 74.7737204 254.15386 76.3899669 252.537942 78.0062134 254.15386'%3E%3C/polygon%3E%3Cpolygon id='Stroke-84' transform='translate(76.389967, 254.153860) rotate(22.000000) translate(-76.389967, -254.153860) ' points='76.3899669 255.769779 74.7737204 254.15386 76.3899669 252.537942 78.0062134 254.15386'%3E%3C/polygon%3E%3Cpolygon id='Fill-86' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(77.841620, 257.572661) rotate(22.000000) translate(-77.841620, -257.572661) ' points='77.84162 259.18858 76.2253735 257.572661 77.84162 255.956743 79.4578665 257.572661'%3E%3C/polygon%3E%3Cpolygon id='Stroke-88' transform='translate(77.841620, 257.572661) rotate(22.000000) translate(-77.841620, -257.572661) ' points='77.84162 259.18858 76.2253735 257.572661 77.84162 255.956743 79.4578665 257.572661'%3E%3C/polygon%3E%3Cpolygon id='Fill-90' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(79.293190, 260.991498) rotate(22.000000) translate(-79.293190, -260.991498) ' points='79.2931904 262.607416 77.6769438 260.991498 79.2931904 259.375579 80.9094369 260.991498'%3E%3C/polygon%3E%3Cpolygon id='Stroke-92' transform='translate(79.293190, 260.991498) rotate(22.000000) translate(-79.293190, -260.991498) ' points='79.2931904 262.607416 77.6769438 260.991498 79.2931904 259.375579 80.9094369 260.991498'%3E%3C/polygon%3E%3Cpolygon id='Fill-94' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(71.782287, 252.074384) rotate(22.000000) translate(-71.782287, -252.074384) ' points='71.7822874 253.690302 70.1660409 252.074384 71.7822874 250.458465 73.3985339 252.074384'%3E%3C/polygon%3E%3Cpolygon id='Stroke-96' transform='translate(71.782287, 252.074384) rotate(22.000000) translate(-71.782287, -252.074384) ' points='71.7822874 253.690302 70.1660409 252.074384 71.7822874 250.458465 73.3985339 252.074384'%3E%3C/polygon%3E%3Cpolygon id='Fill-98' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(73.233882, 255.493161) rotate(22.000000) translate(-73.233882, -255.493161) ' points='73.2338816 257.10908 71.6176351 255.493161 73.2338816 253.877242 74.8501281 255.493161'%3E%3C/polygon%3E%3Cpolygon id='Stroke-100' transform='translate(73.233882, 255.493161) rotate(22.000000) translate(-73.233882, -255.493161) ' points='73.2338816 257.10908 71.6176351 255.493161 73.2338816 253.877242 74.8501281 255.493161'%3E%3C/polygon%3E%3Cpolygon id='Fill-102' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(74.685535, 258.911962) rotate(22.000000) translate(-74.685535, -258.911962) ' points='74.6855347 260.527881 73.0692881 258.911962 74.6855347 257.296044 76.3017812 258.911962'%3E%3C/polygon%3E%3Cpolygon id='Stroke-104' transform='translate(74.685535, 258.911962) rotate(22.000000) translate(-74.685535, -258.911962) ' points='74.6855347 260.527881 73.0692881 258.911962 74.6855347 257.296044 76.3017812 258.911962'%3E%3C/polygon%3E%3Cpolygon id='Fill-106' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(76.137105, 262.330799) rotate(22.000000) translate(-76.137105, -262.330799) ' points='76.137105 263.946717 74.5208585 262.330799 76.137105 260.71488 77.7533516 262.330799'%3E%3C/polygon%3E%3Cpolygon id='Stroke-108' transform='translate(76.137105, 262.330799) rotate(22.000000) translate(-76.137105, -262.330799) ' points='76.137105 263.946717 74.5208585 262.330799 76.137105 260.71488 77.7533516 262.330799'%3E%3C/polygon%3E%3Cpolygon id='Fill-110' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(68.626202, 253.413685) rotate(22.000000) translate(-68.626202, -253.413685) ' points='68.6262021 255.029603 67.0099556 253.413685 68.6262021 251.797766 70.2424486 253.413685'%3E%3C/polygon%3E%3Cpolygon id='Stroke-112' transform='translate(68.626202, 253.413685) rotate(22.000000) translate(-68.626202, -253.413685) ' points='68.6262021 255.029603 67.0099556 253.413685 68.6262021 251.797766 70.2424486 253.413685'%3E%3C/polygon%3E%3Cpolygon id='Fill-114' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(70.077796, 256.832462) rotate(22.000000) translate(-70.077796, -256.832462) ' points='70.0777963 258.448381 68.4615497 256.832462 70.0777963 255.216543 71.6940428 256.832462'%3E%3C/polygon%3E%3Cpolygon id='Stroke-116' transform='translate(70.077796, 256.832462) rotate(22.000000) translate(-70.077796, -256.832462) ' points='70.0777963 258.448381 68.4615497 256.832462 70.0777963 255.216543 71.6940428 256.832462'%3E%3C/polygon%3E%3Cpolygon id='Fill-118' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(71.529426, 260.251322) rotate(22.000000) translate(-71.529426, -260.251322) ' points='71.5294256 261.867241 69.913179 260.251322 71.5294256 258.635403 73.1456721 260.251322'%3E%3C/polygon%3E%3Cpolygon id='Stroke-120' transform='translate(71.529426, 260.251322) rotate(22.000000) translate(-71.529426, -260.251322) ' points='71.5294256 261.867241 69.913179 260.251322 71.5294256 258.635403 73.1456721 260.251322'%3E%3C/polygon%3E%3Cpolygon id='Fill-122' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(72.981020, 263.670099) rotate(22.000000) translate(-72.981020, -263.670099) ' points='72.9810197 265.286018 71.3647732 263.670099 72.9810197 262.054181 74.5972663 263.670099'%3E%3C/polygon%3E%3Cpolygon id='Stroke-124' transform='translate(72.981020, 263.670099) rotate(22.000000) translate(-72.981020, -263.670099) ' points='72.9810197 265.286018 71.3647732 263.670099 72.9810197 262.054181 74.5972663 263.670099'%3E%3C/polygon%3E%3Cpolygon id='Fill-126' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(88.852907, 265.961362) rotate(22.000000) translate(-88.852907, -265.961362) ' points='88.8529067 267.577281 87.2366602 265.961362 88.8529067 264.345443 90.4691533 265.961362'%3E%3C/polygon%3E%3Cpolygon id='Stroke-128' transform='translate(88.852907, 265.961362) rotate(22.000000) translate(-88.852907, -265.961362) ' points='88.8529067 267.577281 87.2366602 265.961362 88.8529067 264.345443 90.4691533 265.961362'%3E%3C/polygon%3E%3Cpolygon id='Fill-130' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(90.304501, 269.380139) rotate(22.000000) translate(-90.304501, -269.380139) ' points='90.3045009 270.996058 88.6882544 269.380139 90.3045009 267.764221 91.9207474 269.380139'%3E%3C/polygon%3E%3Cpolygon id='Stroke-132' transform='translate(90.304501, 269.380139) rotate(22.000000) translate(-90.304501, -269.380139) ' points='90.3045009 270.996058 88.6882544 269.380139 90.3045009 267.764221 91.9207474 269.380139'%3E%3C/polygon%3E%3Cpolygon id='Fill-134' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(91.756130, 272.798999) rotate(22.000000) translate(-91.756130, -272.798999) ' points='91.7561302 274.414918 90.1398837 272.798999 91.7561302 271.183081 93.3723767 272.798999'%3E%3C/polygon%3E%3Cpolygon id='Stroke-136' transform='translate(91.756130, 272.798999) rotate(22.000000) translate(-91.756130, -272.798999) ' points='91.7561302 274.414918 90.1398837 272.798999 91.7561302 271.183081 93.3723767 272.798999'%3E%3C/polygon%3E%3Cpolygon id='Fill-138' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(93.207724, 276.217777) rotate(22.000000) translate(-93.207724, -276.217777) ' points='93.2077244 277.833695 91.5914778 276.217777 93.2077244 274.601858 94.8239709 276.217777'%3E%3C/polygon%3E%3Cpolygon id='Stroke-140' transform='translate(93.207724, 276.217777) rotate(22.000000) translate(-93.207724, -276.217777) ' points='93.2077244 277.833695 91.5914778 276.217777 93.2077244 274.601858 94.8239709 276.217777'%3E%3C/polygon%3E%3Cpolygon id='Fill-142' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(85.696821, 267.300663) rotate(22.000000) translate(-85.696821, -267.300663) ' points='85.6968214 268.916582 84.0805749 267.300663 85.6968214 265.684744 87.313068 267.300663'%3E%3C/polygon%3E%3Cpolygon id='Stroke-144' transform='translate(85.696821, 267.300663) rotate(22.000000) translate(-85.696821, -267.300663) ' points='85.6968214 268.916582 84.0805749 267.300663 85.6968214 265.684744 87.313068 267.300663'%3E%3C/polygon%3E%3Cpolygon id='Fill-146' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(87.148416, 270.719440) rotate(22.000000) translate(-87.148416, -270.719440) ' points='87.1484156 272.335359 85.5321691 270.71944 87.1484156 269.103521 88.7646621 270.71944'%3E%3C/polygon%3E%3Cpolygon id='Stroke-148' transform='translate(87.148416, 270.719440) rotate(22.000000) translate(-87.148416, -270.719440) ' points='87.1484156 272.335359 85.5321691 270.71944 87.1484156 269.103521 88.7646621 270.71944'%3E%3C/polygon%3E%3Cpolygon id='Fill-150' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(88.599986, 274.138276) rotate(22.000000) translate(-88.599986, -274.138276) ' points='88.599986 275.754195 86.9837394 274.138276 88.599986 272.522358 90.2162325 274.138276'%3E%3C/polygon%3E%3Cpolygon id='Stroke-152' transform='translate(88.599986, 274.138276) rotate(22.000000) translate(-88.599986, -274.138276) ' points='88.599986 275.754195 86.9837394 274.138276 88.599986 272.522358 90.2162325 274.138276'%3E%3C/polygon%3E%3Cpolygon id='Fill-154' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(90.051639, 277.557078) rotate(22.000000) translate(-90.051639, -277.557078) ' points='90.0516391 279.172996 88.4353925 277.557078 90.0516391 275.941159 91.6678856 277.557078'%3E%3C/polygon%3E%3Cpolygon id='Stroke-156' transform='translate(90.051639, 277.557078) rotate(22.000000) translate(-90.051639, -277.557078) ' points='90.0516391 279.172996 88.4353925 277.557078 90.0516391 275.941159 91.6678856 277.557078'%3E%3C/polygon%3E%3Cpolygon id='Fill-158' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(82.540736, 268.639964) rotate(22.000000) translate(-82.540736, -268.639964) ' points='82.5407361 270.255882 80.9244896 268.639964 82.5407361 267.024045 84.1569826 268.639964'%3E%3C/polygon%3E%3Cpolygon id='Stroke-160' transform='translate(82.540736, 268.639964) rotate(22.000000) translate(-82.540736, -268.639964) ' points='82.5407361 270.255882 80.9244896 268.639964 82.5407361 267.024045 84.1569826 268.639964'%3E%3C/polygon%3E%3Cpolygon id='Fill-162' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(83.992306, 272.058800) rotate(22.000000) translate(-83.992306, -272.058800) ' points='83.9923065 273.674719 82.3760599 272.0588 83.9923065 270.442881 85.608553 272.0588'%3E%3C/polygon%3E%3Cpolygon id='Stroke-164' transform='translate(83.992306, 272.058800) rotate(22.000000) translate(-83.992306, -272.058800) ' points='83.9923065 273.674719 82.3760599 272.0588 83.9923065 270.442881 85.608553 272.0588'%3E%3C/polygon%3E%3Cpolygon id='Fill-166' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(85.443901, 275.477577) rotate(22.000000) translate(-85.443901, -275.477577) ' points='85.4439007 277.093496 83.8276541 275.477577 85.4439007 273.861659 87.0601472 275.477577'%3E%3C/polygon%3E%3Cpolygon id='Stroke-168' transform='translate(85.443901, 275.477577) rotate(22.000000) translate(-85.443901, -275.477577) ' points='85.4439007 277.093496 83.8276541 275.477577 85.4439007 273.861659 87.0601472 275.477577'%3E%3C/polygon%3E%3Cpolygon id='Fill-170' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(86.895554, 278.896378) rotate(22.000000) translate(-86.895554, -278.896378) ' points='86.8955537 280.512297 85.2793072 278.896378 86.8955537 277.28046 88.5118003 278.896378'%3E%3C/polygon%3E%3Cpolygon id='Stroke-172' transform='translate(86.895554, 278.896378) rotate(22.000000) translate(-86.895554, -278.896378) ' points='86.8955537 280.512297 85.2793072 278.896378 86.8955537 277.28046 88.5118003 278.896378'%3E%3C/polygon%3E%3Cpolygon id='Fill-174' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(79.384651, 269.979265) rotate(22.000000) translate(-79.384651, -269.979265) ' points='79.3846508 271.595183 77.7684043 269.979265 79.3846508 268.363346 81.0008973 269.979265'%3E%3C/polygon%3E%3Cpolygon id='Stroke-176' transform='translate(79.384651, 269.979265) rotate(22.000000) translate(-79.384651, -269.979265) ' points='79.3846508 271.595183 77.7684043 269.979265 79.3846508 268.363346 81.0008973 269.979265'%3E%3C/polygon%3E%3Cpolygon id='Fill-178' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(80.836221, 273.398101) rotate(22.000000) translate(-80.836221, -273.398101) ' points='80.8362212 275.01402 79.2199746 273.398101 80.8362212 271.782182 82.4524677 273.398101'%3E%3C/polygon%3E%3Cpolygon id='Stroke-180' transform='translate(80.836221, 273.398101) rotate(22.000000) translate(-80.836221, -273.398101) ' points='80.8362212 275.01402 79.2199746 273.398101 80.8362212 271.782182 82.4524677 273.398101'%3E%3C/polygon%3E%3Cpolygon id='Fill-182' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(82.287815, 276.816878) rotate(22.000000) translate(-82.287815, -276.816878) ' points='82.2878153 278.432797 80.6715688 276.816878 82.2878153 275.20096 83.9040619 276.816878'%3E%3C/polygon%3E%3Cpolygon id='Stroke-184' transform='translate(82.287815, 276.816878) rotate(22.000000) translate(-82.287815, -276.816878) ' points='82.2878153 278.432797 80.6715688 276.816878 82.2878153 275.20096 83.9040619 276.816878'%3E%3C/polygon%3E%3Cpolygon id='Fill-186' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(83.739445, 280.235738) rotate(22.000000) translate(-83.739445, -280.235738) ' points='83.7394446 281.851657 82.1231981 280.235738 83.7394446 278.61982 85.3556912 280.235738'%3E%3C/polygon%3E%3Cpolygon id='Stroke-188' transform='translate(83.739445, 280.235738) rotate(22.000000) translate(-83.739445, -280.235738) ' points='83.7394446 281.851657 82.1231981 280.235738 83.7394446 278.61982 85.3556912 280.235738'%3E%3C/polygon%3E%3Cpolygon id='Fill-190' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(76.228483, 271.318601) rotate(22.000000) translate(-76.228483, -271.318601) ' points='76.2284828 272.934519 74.6122362 271.318601 76.2284828 269.702682 77.8447293 271.318601'%3E%3C/polygon%3E%3Cpolygon id='Stroke-192' transform='translate(76.228483, 271.318601) rotate(22.000000) translate(-76.228483, -271.318601) ' points='76.2284828 272.934519 74.6122362 271.318601 76.2284828 269.702682 77.8447293 271.318601'%3E%3C/polygon%3E%3Cpolygon id='Fill-194' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(77.680136, 274.737402) rotate(22.000000) translate(-77.680136, -274.737402) ' points='77.6801358 276.353321 76.0638893 274.737402 77.6801358 273.121483 79.2963824 274.737402'%3E%3C/polygon%3E%3Cpolygon id='Stroke-196' transform='translate(77.680136, 274.737402) rotate(22.000000) translate(-77.680136, -274.737402) ' points='77.6801358 276.353321 76.0638893 274.737402 77.6801358 273.121483 79.2963824 274.737402'%3E%3C/polygon%3E%3Cpolygon id='Fill-198' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(79.131730, 278.156179) rotate(22.000000) translate(-79.131730, -278.156179) ' points='79.13173 279.772098 77.5154835 278.156179 79.13173 276.540261 80.7479765 278.156179'%3E%3C/polygon%3E%3Cpolygon id='Stroke-200' transform='translate(79.131730, 278.156179) rotate(22.000000) translate(-79.131730, -278.156179) ' points='79.13173 279.772098 77.5154835 278.156179 79.13173 276.540261 80.7479765 278.156179'%3E%3C/polygon%3E%3Cpolygon id='Fill-202' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(80.583359, 281.575039) rotate(22.000000) translate(-80.583359, -281.575039) ' points='80.5833593 283.190958 78.9671128 281.575039 80.5833593 279.959121 82.1996058 281.575039'%3E%3C/polygon%3E%3Cpolygon id='Stroke-204' transform='translate(80.583359, 281.575039) rotate(22.000000) translate(-80.583359, -281.575039) ' points='80.5833593 283.190958 78.9671128 281.575039 80.5833593 279.959121 82.1996058 281.575039'%3E%3C/polygon%3E%3Cpolygon id='Fill-206' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(96.455246, 283.866302) rotate(22.000000) translate(-96.455246, -283.866302) ' points='96.4552463 285.48222 94.8389998 283.866302 96.4552463 282.250383 98.0714929 283.866302'%3E%3C/polygon%3E%3Cpolygon id='Stroke-208' transform='translate(96.455246, 283.866302) rotate(22.000000) translate(-96.455246, -283.866302) ' points='96.4552463 285.48222 94.8389998 283.866302 96.4552463 282.250383 98.0714929 283.866302'%3E%3C/polygon%3E%3Cpolygon id='Fill-210' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(97.906840, 287.285079) rotate(22.000000) translate(-97.906840, -287.285079) ' points='97.9068405 288.900998 96.290594 287.285079 97.9068405 285.66916 99.523087 287.285079'%3E%3C/polygon%3E%3Cpolygon id='Stroke-212' transform='translate(97.906840, 287.285079) rotate(22.000000) translate(-97.906840, -287.285079) ' points='97.9068405 288.900998 96.290594 287.285079 97.9068405 285.66916 99.523087 287.285079'%3E%3C/polygon%3E%3Cpolygon id='Fill-214' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(99.358435, 290.703856) rotate(22.000000) translate(-99.358435, -290.703856) ' points='99.3584347 292.319775 97.7421881 290.703856 99.3584347 289.087938 100.974681 290.703856'%3E%3C/polygon%3E%3Cpolygon id='Stroke-216' transform='translate(99.358435, 290.703856) rotate(22.000000) translate(-99.358435, -290.703856) ' points='99.3584347 292.319775 97.7421881 290.703856 99.3584347 289.087938 100.974681 290.703856'%3E%3C/polygon%3E%3Cpolygon id='Fill-218' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(100.810064, 294.122716) rotate(22.000000) translate(-100.810064, -294.122716) ' points='100.810064 295.738635 99.1938174 294.122716 100.810064 292.506798 102.42631 294.122716'%3E%3C/polygon%3E%3Cpolygon id='Stroke-220' transform='translate(100.810064, 294.122716) rotate(22.000000) translate(-100.810064, -294.122716) ' points='100.810064 295.738635 99.1938174 294.122716 100.810064 292.506798 102.42631 294.122716'%3E%3C/polygon%3E%3Cpolygon id='Fill-222' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(93.299102, 285.205579) rotate(22.000000) translate(-93.299102, -285.205579) ' points='93.2991021 286.821497 91.6828556 285.205579 93.2991021 283.58966 94.9153486 285.205579'%3E%3C/polygon%3E%3Cpolygon id='Stroke-224' transform='translate(93.299102, 285.205579) rotate(22.000000) translate(-93.299102, -285.205579) ' points='93.2991021 286.821497 91.6828556 285.205579 93.2991021 283.58966 94.9153486 285.205579'%3E%3C/polygon%3E%3Cpolygon id='Fill-226' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(94.750755, 288.624380) rotate(22.000000) translate(-94.750755, -288.624380) ' points='94.7507552 290.240299 93.1345086 288.62438 94.7507552 287.008461 96.3670017 288.62438'%3E%3C/polygon%3E%3Cpolygon id='Stroke-228' transform='translate(94.750755, 288.624380) rotate(22.000000) translate(-94.750755, -288.624380) ' points='94.7507552 290.240299 93.1345086 288.62438 94.7507552 287.008461 96.3670017 288.62438'%3E%3C/polygon%3E%3Cpolygon id='Fill-230' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(96.202326, 292.043216) rotate(22.000000) translate(-96.202326, -292.043216) ' points='96.2023255 293.659135 94.586079 292.043216 96.2023255 290.427297 97.8185721 292.043216'%3E%3C/polygon%3E%3Cpolygon id='Stroke-232' transform='translate(96.202326, 292.043216) rotate(22.000000) translate(-96.202326, -292.043216) ' points='96.2023255 293.659135 94.586079 292.043216 96.2023255 290.427297 97.8185721 292.043216'%3E%3C/polygon%3E%3Cpolygon id='Fill-234' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(97.653979, 295.462017) rotate(22.000000) translate(-97.653979, -295.462017) ' points='97.6539786 297.077936 96.0377321 295.462017 97.6539786 293.846099 99.2702252 295.462017'%3E%3C/polygon%3E%3Cpolygon id='Stroke-236' transform='translate(97.653979, 295.462017) rotate(22.000000) translate(-97.653979, -295.462017) ' points='97.6539786 297.077936 96.0377321 295.462017 97.6539786 293.846099 99.2702252 295.462017'%3E%3C/polygon%3E%3Cpolygon id='Fill-238' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(90.143017, 286.544880) rotate(22.000000) translate(-90.143017, -286.544880) ' points='90.1430168 288.160798 88.5267702 286.54488 90.1430168 284.928961 91.7592633 286.54488'%3E%3C/polygon%3E%3Cpolygon id='Stroke-240' transform='translate(90.143017, 286.544880) rotate(22.000000) translate(-90.143017, -286.544880) ' points='90.1430168 288.160798 88.5267702 286.54488 90.1430168 284.928961 91.7592633 286.54488'%3E%3C/polygon%3E%3Cpolygon id='Fill-242' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(91.594670, 289.963681) rotate(22.000000) translate(-91.594670, -289.963681) ' points='91.5946698 291.5796 89.9784233 289.963681 91.5946698 288.347762 93.2109164 289.963681'%3E%3C/polygon%3E%3Cpolygon id='Stroke-244' transform='translate(91.594670, 289.963681) rotate(22.000000) translate(-91.594670, -289.963681) ' points='91.5946698 291.5796 89.9784233 289.963681 91.5946698 288.347762 93.2109164 289.963681'%3E%3C/polygon%3E%3Cpolygon id='Fill-246' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(93.046240, 293.382517) rotate(22.000000) translate(-93.046240, -293.382517) ' points='93.0462402 294.998436 91.4299937 293.382517 93.0462402 291.766598 94.6624868 293.382517'%3E%3C/polygon%3E%3Cpolygon id='Stroke-248' transform='translate(93.046240, 293.382517) rotate(22.000000) translate(-93.046240, -293.382517) ' points='93.0462402 294.998436 91.4299937 293.382517 93.0462402 291.766598 94.6624868 293.382517'%3E%3C/polygon%3E%3Cpolygon id='Fill-250' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(94.497893, 296.801318) rotate(22.000000) translate(-94.497893, -296.801318) ' points='94.4978933 298.417237 92.8816468 296.801318 94.4978933 295.1854 96.1141398 296.801318'%3E%3C/polygon%3E%3Cpolygon id='Stroke-252' transform='translate(94.497893, 296.801318) rotate(22.000000) translate(-94.497893, -296.801318) ' points='94.4978933 298.417237 92.8816468 296.801318 94.4978933 295.1854 96.1141398 296.801318'%3E%3C/polygon%3E%3Cpolygon id='Fill-254' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(86.986931, 287.884181) rotate(22.000000) translate(-86.986931, -287.884181) ' points='86.9869315 289.500099 85.3706849 287.884181 86.9869315 286.268262 88.603178 287.884181'%3E%3C/polygon%3E%3Cpolygon id='Stroke-256' transform='translate(86.986931, 287.884181) rotate(22.000000) translate(-86.986931, -287.884181) ' points='86.9869315 289.500099 85.3706849 287.884181 86.9869315 286.268262 88.603178 287.884181'%3E%3C/polygon%3E%3Cpolygon id='Fill-258' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(88.438585, 291.302982) rotate(22.000000) translate(-88.438585, -291.302982) ' points='88.4385845 292.9189 86.822338 291.302982 88.4385845 289.687063 90.0548311 291.302982'%3E%3C/polygon%3E%3Cpolygon id='Stroke-260' transform='translate(88.438585, 291.302982) rotate(22.000000) translate(-88.438585, -291.302982) ' points='88.4385845 292.9189 86.822338 291.302982 88.4385845 289.687063 90.0548311 291.302982'%3E%3C/polygon%3E%3Cpolygon id='Fill-262' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(89.890155, 294.721818) rotate(22.000000) translate(-89.890155, -294.721818) ' points='89.8901549 296.337737 88.2739084 294.721818 89.8901549 293.105899 91.5064014 294.721818'%3E%3C/polygon%3E%3Cpolygon id='Stroke-264' transform='translate(89.890155, 294.721818) rotate(22.000000) translate(-89.890155, -294.721818) ' points='89.8901549 296.337737 88.2739084 294.721818 89.8901549 293.105899 91.5064014 294.721818'%3E%3C/polygon%3E%3Cpolygon id='Fill-266' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(91.341749, 298.140595) rotate(22.000000) translate(-91.341749, -298.140595) ' points='91.3417491 299.756514 89.7255025 298.140595 91.3417491 296.524677 92.9579956 298.140595'%3E%3C/polygon%3E%3Cpolygon id='Stroke-268' transform='translate(91.341749, 298.140595) rotate(22.000000) translate(-91.341749, -298.140595) ' points='91.3417491 299.756514 89.7255025 298.140595 91.3417491 296.524677 92.9579956 298.140595'%3E%3C/polygon%3E%3Cpolygon id='Fill-270' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(83.830846, 289.223482) rotate(22.000000) translate(-83.830846, -289.223482) ' points='83.8308461 290.8394 82.2145996 289.223482 83.8308461 287.607563 85.4470927 289.223482'%3E%3C/polygon%3E%3Cpolygon id='Stroke-272' transform='translate(83.830846, 289.223482) rotate(22.000000) translate(-83.830846, -289.223482) ' points='82.2145996 289.223482 83.8308461 287.607563 85.4470927 289.223482 83.8308461 290.8394'%3E%3C/polygon%3E%3Cpolygon id='Fill-274' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(85.282417, 292.642318) rotate(22.000000) translate(-85.282417, -292.642318) ' points='85.2824165 294.258236 83.66617 292.642318 85.2824165 291.026399 86.898663 292.642318'%3E%3C/polygon%3E%3Cpolygon id='Stroke-276' transform='translate(85.282417, 292.642318) rotate(22.000000) translate(-85.282417, -292.642318) ' points='85.2824165 294.258236 83.66617 292.642318 85.2824165 291.026399 86.898663 292.642318'%3E%3C/polygon%3E%3Cpolygon id='Fill-278' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(86.734070, 296.061119) rotate(22.000000) translate(-86.734070, -296.061119) ' points='86.7340696 297.677038 85.1178231 296.061119 86.7340696 294.4452 88.3503161 296.061119'%3E%3C/polygon%3E%3Cpolygon id='Stroke-280' transform='translate(86.734070, 296.061119) rotate(22.000000) translate(-86.734070, -296.061119) ' points='86.7340696 297.677038 85.1178231 296.061119 86.7340696 294.4452 88.3503161 296.061119'%3E%3C/polygon%3E%3Cpolygon id='Fill-282' fill-opacity='0.6' fill='%23A3B1BF' transform='translate(88.185664, 299.479896) rotate(22.000000) translate(-88.185664, -299.479896) ' points='88.1856638 301.095815 86.5694172 299.479896 88.1856638 297.863978 89.8019103 299.479896'%3E%3C/polygon%3E%3Cpolygon id='Stroke-284' transform='translate(88.185664, 299.479896) rotate(22.000000) translate(-88.185664, -299.479896) ' points='88.1856638 301.095815 86.5694172 299.479896 88.1856638 297.863978 89.8019103 299.479896'%3E%3C/polygon%3E%3Cpolygon id='Fill-286' transform='translate(37.779995, 163.402514) rotate(22.000000) translate(-37.779995, -163.402514) ' points='51.9961666 192.018058 66.401345 177.615802 23.5644587 134.78697 9.15864501 149.189862'%3E%3C/polygon%3E%3Cpolygon id='Fill-290' transform='translate(50.400318, 195.682118) rotate(22.000000) translate(-50.400318, -195.682118) ' points='54.1737837 198.070743 48.0112085 191.909418 46.6268527 193.293493 52.7894279 199.454818'%3E%3C/polygon%3E%3Cpolygon id='Stroke-292' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(50.400318, 195.682118) rotate(22.000000) translate(-50.400318, -195.682118) ' points='54.1737837 198.070743 48.0112085 191.909418 46.6268527 193.293493 52.7894279 199.454818'%3E%3C/polygon%3E%3Cpolygon id='Fill-294' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(52.603532, 200.871447) rotate(22.000000) translate(-52.603532, -200.871447) ' points='52.712807 203.746308 55.4789773 200.980699 52.4942579 197.996585 49.7280876 200.762195'%3E%3C/polygon%3E%3Cpolygon id='Stroke-296' stroke='%23A3B1BF' stroke-width='1.62' fill='%23FFFFFF' stroke-linejoin='round' transform='translate(52.603532, 200.871447) rotate(22.000000) translate(-52.603532, -200.871447) ' points='52.712807 203.746308 55.4789773 200.980699 52.4942579 197.996585 49.7280876 200.762195'%3E%3C/polygon%3E%3Cpolygon id='Fill-298' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(53.983257, 183.836778) rotate(22.000000) translate(-53.983257, -183.836778) ' points='52.3670108 183.836778 53.9832574 185.452697 55.5995039 183.836778 53.9832574 182.22086'%3E%3C/polygon%3E%3Cpolygon id='Stroke-300' transform='translate(53.983257, 183.836778) rotate(22.000000) translate(-53.983257, -183.836778) ' points='52.3670108 183.836778 53.9832574 185.452697 55.5995039 183.836778 53.9832574 182.22086'%3E%3C/polygon%3E%3Cpolygon id='Fill-302' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(52.531663, 180.418001) rotate(22.000000) translate(-52.531663, -180.418001) ' points='50.9154167 180.418001 52.5316632 182.03392 54.1479097 180.418001 52.5316632 178.802082'%3E%3C/polygon%3E%3Cpolygon id='Stroke-304' transform='translate(52.531663, 180.418001) rotate(22.000000) translate(-52.531663, -180.418001) ' points='50.9154167 180.418001 52.5316632 182.03392 54.1479097 180.418001 52.5316632 178.802082'%3E%3C/polygon%3E%3Cpolygon id='Fill-306' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(51.080034, 176.999141) rotate(22.000000) translate(-51.080034, -176.999141) ' points='49.4637874 176.999141 51.0800339 178.61506 52.6962805 176.999141 51.0800339 175.383222'%3E%3C/polygon%3E%3Cpolygon id='Stroke-308' transform='translate(51.080034, 176.999141) rotate(22.000000) translate(-51.080034, -176.999141) ' points='49.4637874 176.999141 51.0800339 178.61506 52.6962805 176.999141 51.0800339 175.383222'%3E%3C/polygon%3E%3Cpolygon id='Fill-310' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(49.628440, 173.580364) rotate(22.000000) translate(-49.628440, -173.580364) ' points='48.0121932 173.580364 49.6284397 175.196282 51.2446863 173.580364 49.6284397 171.964445'%3E%3C/polygon%3E%3Cpolygon id='Stroke-312' transform='translate(49.628440, 173.580364) rotate(22.000000) translate(-49.628440, -173.580364) ' points='48.0121932 173.580364 49.6284397 175.196282 51.2446863 173.580364 49.6284397 171.964445'%3E%3C/polygon%3E%3Cpolygon id='Fill-314' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(50.827172, 185.176079) rotate(22.000000) translate(-50.827172, -185.176079) ' points='49.2109255 185.176079 50.8271721 186.791998 52.4434186 185.176079 50.8271721 183.560161'%3E%3C/polygon%3E%3Cpolygon id='Stroke-316' transform='translate(50.827172, 185.176079) rotate(22.000000) translate(-50.827172, -185.176079) ' points='49.2109255 185.176079 50.8271721 186.791998 52.4434186 185.176079 50.8271721 183.560161'%3E%3C/polygon%3E%3Cpolygon id='Fill-318' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(49.375578, 181.757302) rotate(22.000000) translate(-49.375578, -181.757302) ' points='47.7593313 181.757302 49.3755779 183.373221 50.9918244 181.757302 49.3755779 180.141383'%3E%3C/polygon%3E%3Cpolygon id='Stroke-320' transform='translate(49.375578, 181.757302) rotate(22.000000) translate(-49.375578, -181.757302) ' points='47.7593313 181.757302 49.3755779 183.373221 50.9918244 181.757302 49.3755779 180.141383'%3E%3C/polygon%3E%3Cpolygon id='Fill-322' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(47.923949, 178.338442) rotate(22.000000) translate(-47.923949, -178.338442) ' points='46.3077021 178.338442 47.9239486 179.954361 49.5401951 178.338442 47.9239486 176.722523'%3E%3C/polygon%3E%3Cpolygon id='Stroke-324' transform='translate(47.923949, 178.338442) rotate(22.000000) translate(-47.923949, -178.338442) ' points='46.3077021 178.338442 47.9239486 179.954361 49.5401951 178.338442 47.9239486 176.722523'%3E%3C/polygon%3E%3Cpolygon id='Fill-326' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(46.472354, 174.919665) rotate(22.000000) translate(-46.472354, -174.919665) ' points='44.8561079 174.919665 46.4723544 176.535583 48.088601 174.919665 46.4723544 173.303746'%3E%3C/polygon%3E%3Cpolygon id='Stroke-328' transform='translate(46.472354, 174.919665) rotate(22.000000) translate(-46.472354, -174.919665) ' points='44.8561079 174.919665 46.4723544 176.535583 48.088601 174.919665 46.4723544 173.303746'%3E%3C/polygon%3E%3Cpolygon id='Fill-330' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(47.671087, 186.515380) rotate(22.000000) translate(-47.671087, -186.515380) ' points='46.0548402 186.51538 47.6710867 188.131299 49.2873333 186.51538 47.6710867 184.899461'%3E%3C/polygon%3E%3Cpolygon id='Stroke-332' transform='translate(47.671087, 186.515380) rotate(22.000000) translate(-47.671087, -186.515380) ' points='46.0548402 186.51538 47.6710867 188.131299 49.2873333 186.51538 47.6710867 184.899461'%3E%3C/polygon%3E%3Cpolygon id='Fill-334' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(46.219493, 183.096603) rotate(22.000000) translate(-46.219493, -183.096603) ' points='44.603246 183.096603 46.2194926 184.712521 47.8357391 183.096603 46.2194926 181.480684'%3E%3C/polygon%3E%3Cpolygon id='Stroke-336' transform='translate(46.219493, 183.096603) rotate(22.000000) translate(-46.219493, -183.096603) ' points='44.603246 183.096603 46.2194926 184.712521 47.8357391 183.096603 46.2194926 181.480684'%3E%3C/polygon%3E%3Cpolygon id='Fill-338' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(44.767839, 179.677802) rotate(22.000000) translate(-44.767839, -179.677802) ' points='43.1515929 179.677802 44.7678395 181.29372 46.384086 179.677802 44.7678395 178.061883'%3E%3C/polygon%3E%3Cpolygon id='Stroke-340' transform='translate(44.767839, 179.677802) rotate(22.000000) translate(-44.767839, -179.677802) ' points='43.1515929 179.677802 44.7678395 181.29372 46.384086 179.677802 44.7678395 178.061883'%3E%3C/polygon%3E%3Cpolygon id='Fill-342' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(43.316269, 176.258965) rotate(22.000000) translate(-43.316269, -176.258965) ' points='41.7000226 176.258965 43.3162691 177.874884 44.9325156 176.258965 43.3162691 174.643047'%3E%3C/polygon%3E%3Cpolygon id='Stroke-344' transform='translate(43.316269, 176.258965) rotate(22.000000) translate(-43.316269, -176.258965) ' points='41.7000226 176.258965 43.3162691 177.874884 44.9325156 176.258965 43.3162691 174.643047'%3E%3C/polygon%3E%3Cpolygon id='Fill-346' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(44.514978, 187.854740) rotate(22.000000) translate(-44.514978, -187.854740) ' points='42.8987311 187.85474 44.5149776 189.470659 46.1312242 187.85474 44.5149776 186.238821'%3E%3C/polygon%3E%3Cpolygon id='Stroke-348' transform='translate(44.514978, 187.854740) rotate(22.000000) translate(-44.514978, -187.854740) ' points='42.8987311 187.85474 44.5149776 189.470659 46.1312242 187.85474 44.5149776 186.238821'%3E%3C/polygon%3E%3Cpolygon id='Fill-350' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(43.063348, 184.435880) rotate(22.000000) translate(-43.063348, -184.435880) ' points='41.4471018 184.43588 43.0633483 186.051799 44.6795949 184.43588 43.0633483 182.819961'%3E%3C/polygon%3E%3Cpolygon id='Stroke-352' transform='translate(43.063348, 184.435880) rotate(22.000000) translate(-43.063348, -184.435880) ' points='41.4471018 184.43588 43.0633483 186.051799 44.6795949 184.43588 43.0633483 182.819961'%3E%3C/polygon%3E%3Cpolygon id='Fill-354' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(41.611754, 181.017103) rotate(22.000000) translate(-41.611754, -181.017103) ' points='39.9955076 181.017103 41.6117542 182.633021 43.2280007 181.017103 41.6117542 179.401184'%3E%3C/polygon%3E%3Cpolygon id='Stroke-356' transform='translate(41.611754, 181.017103) rotate(22.000000) translate(-41.611754, -181.017103) ' points='39.9955076 181.017103 41.6117542 182.633021 43.2280007 181.017103 41.6117542 179.401184'%3E%3C/polygon%3E%3Cpolygon id='Fill-358' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(40.160184, 177.598266) rotate(22.000000) translate(-40.160184, -177.598266) ' points='38.5439373 177.598266 40.1601838 179.214185 41.7764303 177.598266 40.1601838 175.982348'%3E%3C/polygon%3E%3Cpolygon id='Stroke-360' transform='translate(40.160184, 177.598266) rotate(22.000000) translate(-40.160184, -177.598266) ' points='38.5439373 177.598266 40.1601838 179.214185 41.7764303 177.598266 40.1601838 175.982348'%3E%3C/polygon%3E%3Cpolygon id='Fill-362' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(41.358892, 189.194041) rotate(22.000000) translate(-41.358892, -189.194041) ' points='39.7426458 189.194041 41.3588923 190.80996 42.9751388 189.194041 41.3588923 187.578122'%3E%3C/polygon%3E%3Cpolygon id='Stroke-364' transform='translate(41.358892, 189.194041) rotate(22.000000) translate(-41.358892, -189.194041) ' points='39.7426458 189.194041 41.3588923 190.80996 42.9751388 189.194041 41.3588923 187.578122'%3E%3C/polygon%3E%3Cpolygon id='Fill-366' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(39.907263, 185.775181) rotate(22.000000) translate(-39.907263, -185.775181) ' points='38.2910165 185.775181 39.907263 187.3911 41.5235095 185.775181 39.907263 184.159262'%3E%3C/polygon%3E%3Cpolygon id='Stroke-368' transform='translate(39.907263, 185.775181) rotate(22.000000) translate(-39.907263, -185.775181) ' points='38.2910165 185.775181 39.907263 187.3911 41.5235095 185.775181 39.907263 184.159262'%3E%3C/polygon%3E%3Cpolygon id='Fill-370' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(38.455669, 182.356404) rotate(22.000000) translate(-38.455669, -182.356404) ' points='36.8394223 182.356404 38.4556688 183.972322 40.0719154 182.356404 38.4556688 180.740485'%3E%3C/polygon%3E%3Cpolygon id='Stroke-372' transform='translate(38.455669, 182.356404) rotate(22.000000) translate(-38.455669, -182.356404) ' points='36.8394223 182.356404 38.4556688 183.972322 40.0719154 182.356404 38.4556688 180.740485'%3E%3C/polygon%3E%3Cpolygon id='Fill-374' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(37.004016, 178.937602) rotate(22.000000) translate(-37.004016, -178.937602) ' points='35.3877692 178.937602 37.0040158 180.553521 38.6202623 178.937602 37.0040158 177.321684'%3E%3C/polygon%3E%3Cpolygon id='Stroke-376' transform='translate(37.004016, 178.937602) rotate(22.000000) translate(-37.004016, -178.937602) ' points='35.3877692 178.937602 37.0040158 180.553521 38.6202623 178.937602 37.0040158 177.321684'%3E%3C/polygon%3E%3Cpolygon id='Fill-378' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(46.380894, 165.931897) rotate(22.000000) translate(-46.380894, -165.931897) ' points='44.7646475 165.931897 46.380894 167.547816 47.9971405 165.931897 46.380894 164.315979'%3E%3C/polygon%3E%3Cpolygon id='Stroke-380' transform='translate(46.380894, 165.931897) rotate(22.000000) translate(-46.380894, -165.931897) ' points='44.7646475 165.931897 46.380894 167.547816 47.9971405 165.931897 46.380894 164.315979'%3E%3C/polygon%3E%3Cpolygon id='Fill-382' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(44.929324, 162.513061) rotate(22.000000) translate(-44.929324, -162.513061) ' points='43.3130771 162.513061 44.9293236 164.12898 46.5455702 162.513061 44.9293236 160.897143'%3E%3C/polygon%3E%3Cpolygon id='Stroke-384' transform='translate(44.929324, 162.513061) rotate(22.000000) translate(-44.929324, -162.513061) ' points='43.3130771 162.513061 44.9293236 164.12898 46.5455702 162.513061 44.9293236 160.897143'%3E%3C/polygon%3E%3Cpolygon id='Fill-386' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(43.477729, 159.094284) rotate(22.000000) translate(-43.477729, -159.094284) ' points='41.8614829 159.094284 43.4777295 160.710203 45.093976 159.094284 43.4777295 157.478365'%3E%3C/polygon%3E%3Cpolygon id='Stroke-388' transform='translate(43.477729, 159.094284) rotate(22.000000) translate(-43.477729, -159.094284) ' points='41.8614829 159.094284 43.4777295 160.710203 45.093976 159.094284 43.4777295 157.478365'%3E%3C/polygon%3E%3Cpolygon id='Fill-390' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(42.026100, 155.675424) rotate(22.000000) translate(-42.026100, -155.675424) ' points='40.4098536 155.675424 42.0261002 157.291342 43.6423467 155.675424 42.0261002 154.059505'%3E%3C/polygon%3E%3Cpolygon id='Stroke-392' transform='translate(42.026100, 155.675424) rotate(22.000000) translate(-42.026100, -155.675424) ' points='40.4098536 155.675424 42.0261002 157.291342 43.6423467 155.675424 42.0261002 154.059505'%3E%3C/polygon%3E%3Cpolygon id='Fill-394' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(43.224809, 167.271198) rotate(22.000000) translate(-43.224809, -167.271198) ' points='41.6085622 167.271198 43.2248087 168.887117 44.8410552 167.271198 43.2248087 165.65528'%3E%3C/polygon%3E%3Cpolygon id='Stroke-396' transform='translate(43.224809, 167.271198) rotate(22.000000) translate(-43.224809, -167.271198) ' points='41.6085622 167.271198 43.2248087 168.887117 44.8410552 167.271198 43.2248087 165.65528'%3E%3C/polygon%3E%3Cpolygon id='Fill-398' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(41.773238, 163.852362) rotate(22.000000) translate(-41.773238, -163.852362) ' points='40.1569918 163.852362 41.7732383 165.468281 43.3894848 163.852362 41.7732383 162.236443'%3E%3C/polygon%3E%3Cpolygon id='Stroke-400' transform='translate(41.773238, 163.852362) rotate(22.000000) translate(-41.773238, -163.852362) ' points='40.1569918 163.852362 41.7732383 165.468281 43.3894848 163.852362 41.7732383 162.236443'%3E%3C/polygon%3E%3Cpolygon id='Fill-402' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(40.321585, 160.433561) rotate(22.000000) translate(-40.321585, -160.433561) ' points='38.7053387 160.433561 40.3215852 162.04948 41.9378318 160.433561 40.3215852 158.817642'%3E%3C/polygon%3E%3Cpolygon id='Stroke-404' transform='translate(40.321585, 160.433561) rotate(22.000000) translate(-40.321585, -160.433561) ' points='38.7053387 160.433561 40.3215852 162.04948 41.9378318 160.433561 40.3215852 158.817642'%3E%3C/polygon%3E%3Cpolygon id='Fill-406' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(38.869991, 157.014784) rotate(22.000000) translate(-38.869991, -157.014784) ' points='37.2537445 157.014784 38.8699911 158.630702 40.4862376 157.014784 38.8699911 155.398865'%3E%3C/polygon%3E%3Cpolygon id='Stroke-408' transform='translate(38.869991, 157.014784) rotate(22.000000) translate(-38.869991, -157.014784) ' points='37.2537445 157.014784 38.8699911 158.630702 40.4862376 157.014784 38.8699911 155.398865'%3E%3C/polygon%3E%3Cpolygon id='Fill-410' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(40.068723, 168.610499) rotate(22.000000) translate(-40.068723, -168.610499) ' points='38.4524768 168.610499 40.0687234 170.226418 41.6849699 168.610499 40.0687234 166.994581'%3E%3C/polygon%3E%3Cpolygon id='Stroke-412' transform='translate(40.068723, 168.610499) rotate(22.000000) translate(-40.068723, -168.610499) ' points='38.4524768 168.610499 40.0687234 170.226418 41.6849699 168.610499 40.0687234 166.994581'%3E%3C/polygon%3E%3Cpolygon id='Fill-414' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(38.617129, 165.191722) rotate(22.000000) translate(-38.617129, -165.191722) ' points='37.0008827 165.191722 38.6171292 166.807641 40.2333757 165.191722 38.6171292 163.575803'%3E%3C/polygon%3E%3Cpolygon id='Stroke-416' transform='translate(38.617129, 165.191722) rotate(22.000000) translate(-38.617129, -165.191722) ' points='37.0008827 165.191722 38.6171292 166.807641 40.2333757 165.191722 38.6171292 163.575803'%3E%3C/polygon%3E%3Cpolygon id='Fill-418' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(37.165500, 161.772862) rotate(22.000000) translate(-37.165500, -161.772862) ' points='35.5492534 161.772862 37.1654999 163.388781 38.7817464 161.772862 37.1654999 160.156943'%3E%3C/polygon%3E%3Cpolygon id='Stroke-420' transform='translate(37.165500, 161.772862) rotate(22.000000) translate(-37.165500, -161.772862) ' points='35.5492534 161.772862 37.1654999 163.388781 38.7817464 161.772862 37.1654999 160.156943'%3E%3C/polygon%3E%3Cpolygon id='Fill-422' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(35.713906, 158.354085) rotate(22.000000) translate(-35.713906, -158.354085) ' points='34.0976592 158.354085 35.7139057 159.970003 37.3301523 158.354085 35.7139057 156.738166'%3E%3C/polygon%3E%3Cpolygon id='Stroke-424' transform='translate(35.713906, 158.354085) rotate(22.000000) translate(-35.713906, -158.354085) ' points='34.0976592 158.354085 35.7139057 159.970003 37.3301523 158.354085 35.7139057 156.738166'%3E%3C/polygon%3E%3Cpolygon id='Fill-426' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(36.912638, 169.949800) rotate(22.000000) translate(-36.912638, -169.949800) ' points='35.2963915 169.9498 36.912638 171.565719 38.5288846 169.9498 36.912638 168.333882'%3E%3C/polygon%3E%3Cpolygon id='Stroke-428' transform='translate(36.912638, 169.949800) rotate(22.000000) translate(-36.912638, -169.949800) ' points='35.2963915 169.9498 36.912638 171.565719 38.5288846 169.9498 36.912638 168.333882'%3E%3C/polygon%3E%3Cpolygon id='Fill-430' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(35.461068, 166.530964) rotate(22.000000) translate(-35.461068, -166.530964) ' points='33.8448211 166.530964 35.4610677 168.146883 37.0773142 166.530964 35.4610677 164.915045'%3E%3C/polygon%3E%3Cpolygon id='Stroke-432' transform='translate(35.461068, 166.530964) rotate(22.000000) translate(-35.461068, -166.530964) ' points='33.8448211 166.530964 35.4610677 168.146883 37.0773142 166.530964 35.4610677 164.915045'%3E%3C/polygon%3E%3Cpolygon id='Fill-434' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(34.009415, 163.112163) rotate(22.000000) translate(-34.009415, -163.112163) ' points='32.3931681 163.112163 34.0094146 164.728081 35.6256611 163.112163 34.0094146 161.496244'%3E%3C/polygon%3E%3Cpolygon id='Stroke-436' transform='translate(34.009415, 163.112163) rotate(22.000000) translate(-34.009415, -163.112163) ' points='32.3931681 163.112163 34.0094146 164.728081 35.6256611 163.112163 34.0094146 161.496244'%3E%3C/polygon%3E%3Cpolygon id='Fill-438' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(32.557820, 159.693385) rotate(22.000000) translate(-32.557820, -159.693385) ' points='30.9415739 159.693385 32.5578204 161.309304 34.174067 159.693385 32.5578204 158.077467'%3E%3C/polygon%3E%3Cpolygon id='Stroke-440' transform='translate(32.557820, 159.693385) rotate(22.000000) translate(-32.557820, -159.693385) ' points='30.9415739 159.693385 32.5578204 161.309304 34.174067 159.693385 32.5578204 158.077467'%3E%3C/polygon%3E%3Cpolygon id='Fill-442' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(33.756553, 171.289101) rotate(22.000000) translate(-33.756553, -171.289101) ' points='32.1403062 171.289101 33.7565527 172.90502 35.3727993 171.289101 33.7565527 169.673182'%3E%3C/polygon%3E%3Cpolygon id='Stroke-444' transform='translate(33.756553, 171.289101) rotate(22.000000) translate(-33.756553, -171.289101) ' points='32.1403062 171.289101 33.7565527 172.90502 35.3727993 171.289101 33.7565527 169.673182'%3E%3C/polygon%3E%3Cpolygon id='Fill-446' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(32.304959, 167.870324) rotate(22.000000) translate(-32.304959, -167.870324) ' points='30.688712 167.870324 32.3049586 169.486242 33.9212051 167.870324 32.3049586 166.254405'%3E%3C/polygon%3E%3Cpolygon id='Stroke-448' transform='translate(32.304959, 167.870324) rotate(22.000000) translate(-32.304959, -167.870324) ' points='30.688712 167.870324 32.3049586 169.486242 33.9212051 167.870324 32.3049586 166.254405'%3E%3C/polygon%3E%3Cpolygon id='Fill-450' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(30.853329, 164.451464) rotate(22.000000) translate(-30.853329, -164.451464) ' points='29.2370827 164.451464 30.8533293 166.067382 32.4695758 164.451464 30.8533293 162.835545'%3E%3C/polygon%3E%3Cpolygon id='Stroke-452' transform='translate(30.853329, 164.451464) rotate(22.000000) translate(-30.853329, -164.451464) ' points='29.2370827 164.451464 30.8533293 166.067382 32.4695758 164.451464 30.8533293 162.835545'%3E%3C/polygon%3E%3Cpolygon id='Fill-454' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(29.401735, 161.032686) rotate(22.000000) translate(-29.401735, -161.032686) ' points='27.7854886 161.032686 29.4017351 162.648605 31.0179816 161.032686 29.4017351 159.416768'%3E%3C/polygon%3E%3Cpolygon id='Stroke-456' transform='translate(29.401735, 161.032686) rotate(22.000000) translate(-29.401735, -161.032686) ' points='27.7854886 161.032686 29.4017351 162.648605 31.0179816 161.032686 29.4017351 159.416768'%3E%3C/polygon%3E%3Cpolygon id='Fill-458' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(38.778613, 148.026981) rotate(22.000000) translate(-38.778613, -148.026981) ' points='37.1623668 148.026981 38.7786133 149.6429 40.3948599 148.026981 38.7786133 146.411063'%3E%3C/polygon%3E%3Cpolygon id='Stroke-460' transform='translate(38.778613, 148.026981) rotate(22.000000) translate(-38.778613, -148.026981) ' points='37.1623668 148.026981 38.7786133 149.6429 40.3948599 148.026981 38.7786133 146.411063'%3E%3C/polygon%3E%3Cpolygon id='Fill-462' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(37.326984, 144.608121) rotate(22.000000) translate(-37.326984, -144.608121) ' points='35.7107375 144.608121 37.3269841 146.22404 38.9432306 144.608121 37.3269841 142.992203'%3E%3C/polygon%3E%3Cpolygon id='Stroke-464' transform='translate(37.326984, 144.608121) rotate(22.000000) translate(-37.326984, -144.608121) ' points='35.7107375 144.608121 37.3269841 146.22404 38.9432306 144.608121 37.3269841 142.992203'%3E%3C/polygon%3E%3Cpolygon id='Fill-466' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(35.875390, 141.189344) rotate(22.000000) translate(-35.875390, -141.189344) ' points='34.2591433 141.189344 35.8753899 142.805263 37.4916364 141.189344 35.8753899 139.573425'%3E%3C/polygon%3E%3Cpolygon id='Stroke-468' transform='translate(35.875390, 141.189344) rotate(22.000000) translate(-35.875390, -141.189344) ' points='34.2591433 141.189344 35.8753899 142.805263 37.4916364 141.189344 35.8753899 139.573425'%3E%3C/polygon%3E%3Cpolygon id='Fill-470' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(34.423796, 137.770567) rotate(22.000000) translate(-34.423796, -137.770567) ' points='32.8075492 137.770567 34.4237957 139.386485 36.0400422 137.770567 34.4237957 136.154648'%3E%3C/polygon%3E%3Cpolygon id='Stroke-472' fill='%23B2BECA' transform='translate(34.423796, 137.770567) rotate(22.000000) translate(-34.423796, -137.770567) ' points='34.4237957 139.386485 36.0400422 137.770567 34.4237957 136.154648 32.8075492 137.770567'%3E%3C/polygon%3E%3Cpolygon id='Fill-474' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(35.622528, 149.366282) rotate(22.000000) translate(-35.622528, -149.366282) ' points='34.0062815 149.366282 35.622528 150.982201 37.2387746 149.366282 35.622528 147.750364'%3E%3C/polygon%3E%3Cpolygon id='Stroke-476' transform='translate(35.622528, 149.366282) rotate(22.000000) translate(-35.622528, -149.366282) ' points='34.0062815 149.366282 35.622528 150.982201 37.2387746 149.366282 35.622528 147.750364'%3E%3C/polygon%3E%3Cpolygon id='Fill-478' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(34.170875, 145.947481) rotate(22.000000) translate(-34.170875, -145.947481) ' points='32.5546284 145.947481 34.1708749 147.5634 35.7871215 145.947481 34.1708749 144.331563'%3E%3C/polygon%3E%3Cpolygon id='Stroke-480' transform='translate(34.170875, 145.947481) rotate(22.000000) translate(-34.170875, -145.947481) ' points='32.5546284 145.947481 34.1708749 147.5634 35.7871215 145.947481 34.1708749 144.331563'%3E%3C/polygon%3E%3Cpolygon id='Fill-482' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(32.719305, 142.528645) rotate(22.000000) translate(-32.719305, -142.528645) ' points='31.103058 142.528645 32.7193046 144.144564 34.3355511 142.528645 32.7193046 140.912726'%3E%3C/polygon%3E%3Cpolygon id='Stroke-484' transform='translate(32.719305, 142.528645) rotate(22.000000) translate(-32.719305, -142.528645) ' points='31.103058 142.528645 32.7193046 144.144564 34.3355511 142.528645 32.7193046 140.912726'%3E%3C/polygon%3E%3Cpolygon id='Fill-486' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(31.267651, 139.109844) rotate(22.000000) translate(-31.267651, -139.109844) ' points='29.651405 139.109844 31.2676515 140.725763 32.883898 139.109844 31.2676515 137.493925'%3E%3C/polygon%3E%3Cpolygon id='Stroke-488' transform='translate(31.267651, 139.109844) rotate(22.000000) translate(-31.267651, -139.109844) ' points='29.651405 139.109844 31.2676515 140.725763 32.883898 139.109844 31.2676515 137.493925'%3E%3C/polygon%3E%3Cpolygon id='Fill-490' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(32.466384, 150.705559) rotate(22.000000) translate(-32.466384, -150.705559) ' points='30.8501373 150.705559 32.4663838 152.321478 34.0826303 150.705559 32.4663838 149.089641'%3E%3C/polygon%3E%3Cpolygon id='Stroke-492' transform='translate(32.466384, 150.705559) rotate(22.000000) translate(-32.466384, -150.705559) ' points='30.8501373 150.705559 32.4663838 152.321478 34.0826303 150.705559 32.4663838 149.089641'%3E%3C/polygon%3E%3Cpolygon id='Fill-494' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(31.014790, 147.286782) rotate(22.000000) translate(-31.014790, -147.286782) ' points='29.3985431 147.286782 31.0147896 148.902701 32.6310362 147.286782 31.0147896 145.670863'%3E%3C/polygon%3E%3Cpolygon id='Stroke-496' transform='translate(31.014790, 147.286782) rotate(22.000000) translate(-31.014790, -147.286782) ' points='29.3985431 147.286782 31.0147896 148.902701 32.6310362 147.286782 31.0147896 145.670863'%3E%3C/polygon%3E%3Cpolygon id='Fill-498' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(29.563219, 143.867946) rotate(22.000000) translate(-29.563219, -143.867946) ' points='27.9469727 143.867946 29.5632192 145.483865 31.1794658 143.867946 29.5632192 142.252027'%3E%3C/polygon%3E%3Cpolygon id='Stroke-500' transform='translate(29.563219, 143.867946) rotate(22.000000) translate(-29.563219, -143.867946) ' points='27.9469727 143.867946 29.5632192 145.483865 31.1794658 143.867946 29.5632192 142.252027'%3E%3C/polygon%3E%3Cpolygon id='Fill-502' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(28.111566, 140.449145) rotate(22.000000) translate(-28.111566, -140.449145) ' points='26.4953196 140.449145 28.1115662 142.065063 29.7278127 140.449145 28.1115662 138.833226'%3E%3C/polygon%3E%3Cpolygon id='Stroke-504' transform='translate(28.111566, 140.449145) rotate(22.000000) translate(-28.111566, -140.449145) ' points='26.4953196 140.449145 28.1115662 142.065063 29.7278127 140.449145 28.1115662 138.833226'%3E%3C/polygon%3E%3Cpolygon id='Fill-506' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(29.310298, 152.044860) rotate(22.000000) translate(-29.310298, -152.044860) ' points='27.6940519 152.04486 29.3102985 153.660779 30.926545 152.04486 29.3102985 150.428942'%3E%3C/polygon%3E%3Cpolygon id='Stroke-508' transform='translate(29.310298, 152.044860) rotate(22.000000) translate(-29.310298, -152.044860) ' points='27.6940519 152.04486 29.3102985 153.660779 30.926545 152.04486 29.3102985 150.428942'%3E%3C/polygon%3E%3Cpolygon id='Fill-510' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(27.858704, 148.626083) rotate(22.000000) translate(-27.858704, -148.626083) ' points='26.2424578 148.626083 27.8587043 150.242002 29.4749508 148.626083 27.8587043 147.010164'%3E%3C/polygon%3E%3Cpolygon id='Stroke-512' transform='translate(27.858704, 148.626083) rotate(22.000000) translate(-27.858704, -148.626083) ' points='26.2424578 148.626083 27.8587043 150.242002 29.4749508 148.626083 27.8587043 147.010164'%3E%3C/polygon%3E%3Cpolygon id='Fill-514' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(26.407134, 145.207247) rotate(22.000000) translate(-26.407134, -145.207247) ' points='24.7908874 145.207247 26.4071339 146.823166 28.0233805 145.207247 26.4071339 143.591328'%3E%3C/polygon%3E%3Cpolygon id='Stroke-516' transform='translate(26.407134, 145.207247) rotate(22.000000) translate(-26.407134, -145.207247) ' points='24.7908874 145.207247 26.4071339 146.823166 28.0233805 145.207247 26.4071339 143.591328'%3E%3C/polygon%3E%3Cpolygon id='Fill-518' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(24.955481, 141.788446) rotate(22.000000) translate(-24.955481, -141.788446) ' points='23.3392343 141.788446 24.9554808 143.404364 26.5717274 141.788446 24.9554808 140.172527'%3E%3C/polygon%3E%3Cpolygon id='Stroke-520' transform='translate(24.955481, 141.788446) rotate(22.000000) translate(-24.955481, -141.788446) ' points='23.3392343 141.788446 24.9554808 143.404364 26.5717274 141.788446 24.9554808 140.172527'%3E%3C/polygon%3E%3Cpolygon id='Fill-522' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(26.154213, 153.384161) rotate(22.000000) translate(-26.154213, -153.384161) ' points='24.5379666 153.384161 26.1542132 155.00008 27.7704597 153.384161 26.1542132 151.768243'%3E%3C/polygon%3E%3Cpolygon id='Stroke-524' transform='translate(26.154213, 153.384161) rotate(22.000000) translate(-26.154213, -153.384161) ' points='24.5379666 153.384161 26.1542132 155.00008 27.7704597 153.384161 26.1542132 151.768243'%3E%3C/polygon%3E%3Cpolygon id='Fill-526' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(24.702619, 149.965384) rotate(22.000000) translate(-24.702619, -149.965384) ' points='23.0863724 149.965384 24.702619 151.581303 26.3188655 149.965384 24.702619 148.349465'%3E%3C/polygon%3E%3Cpolygon id='Stroke-528' transform='translate(24.702619, 149.965384) rotate(22.000000) translate(-24.702619, -149.965384) ' points='23.0863724 149.965384 24.702619 151.581303 26.3188655 149.965384 24.702619 148.349465'%3E%3C/polygon%3E%3Cpolygon id='Fill-530' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(23.250966, 146.546583) rotate(22.000000) translate(-23.250966, -146.546583) ' points='21.6347194 146.546583 23.2509659 148.162502 24.8672124 146.546583 23.2509659 144.930664'%3E%3C/polygon%3E%3Cpolygon id='Stroke-532' transform='translate(23.250966, 146.546583) rotate(22.000000) translate(-23.250966, -146.546583) ' points='21.6347194 146.546583 23.2509659 148.162502 24.8672124 146.546583 23.2509659 144.930664'%3E%3C/polygon%3E%3Cpolygon id='Fill-534' fill-opacity='0.8' fill='%23A3B1BF' transform='translate(21.799396, 143.127747) rotate(22.000000) translate(-21.799396, -143.127747) ' points='20.183149 143.127747 21.7993955 144.743665 23.4156421 143.127747 21.7993955 141.511828'%3E%3C/polygon%3E%3Cpolygon id='Stroke-536' transform='translate(21.799396, 143.127747) rotate(22.000000) translate(-21.799396, -143.127747) ' points='20.183149 143.127747 21.7993955 144.743665 23.4156421 143.127747 21.7993955 141.511828'%3E%3C/polygon%3E%3Cpath d='M129.314819,189.942425 C126.372666,187.000233 124.490222,184.112668 125.110927,183.492089 C125.731631,182.87151 128.619783,184.753573 131.562571,187.695129 C134.504724,190.637321 136.387169,193.524886 135.766464,194.145465 C135.145759,194.766044 132.257608,192.883981 129.314819,189.942425 Z' id='Fill-538' fill='%23F5F5F5' transform='translate(130.438695, 188.818777) rotate(22.000000) translate(-130.438695, -188.818777) '%3E%3C/path%3E%3Cpath d='M129.314819,189.942425 C126.372666,187.000233 124.490222,184.112668 125.110927,183.492089 C125.731631,182.87151 128.619783,184.753573 131.562571,187.695129 C134.504724,190.637321 136.387169,193.524886 135.766464,194.145465 C135.145759,194.766044 132.257608,192.883981 129.314819,189.942425 Z' id='Stroke-540' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(130.438695, 188.818777) rotate(22.000000) translate(-130.438695, -188.818777) '%3E%3C/path%3E%3Cpath d='M136.083433,187.715086 C130.20421,181.837055 126.443133,176.067006 127.683272,174.827118 C128.92341,173.587231 134.69463,177.347545 140.573854,183.225576 C146.453713,189.104243 150.21479,194.874292 148.974651,196.114179 C147.734513,197.354066 141.963293,193.593752 136.083433,187.715086 Z' id='Fill-542' fill='%23F5F5F5' transform='translate(138.328961, 185.470648) rotate(22.000000) translate(-138.328961, -185.470648) '%3E%3C/path%3E%3Cpath d='M136.083433,187.715086 C130.20421,181.837055 126.443133,176.067006 127.683272,174.827118 C128.92341,173.587231 134.69463,177.347545 140.573854,183.225576 C146.453713,189.104243 150.21479,194.874292 148.974651,196.114179 C147.734513,197.354066 141.963293,193.593752 136.083433,187.715086 Z' id='Stroke-544' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(138.328961, 185.470648) rotate(22.000000) translate(-138.328961, -185.470648) '%3E%3C/path%3E%3Cpath d='M146.697288,183.650834 C138.818086,175.773231 133.777481,168.04045 135.43947,166.378798 C137.101459,164.717146 144.835809,169.756729 152.715011,177.634332 C160.594213,185.511936 165.634818,193.244716 163.972829,194.906369 C162.310839,196.568021 154.57649,191.528438 146.697288,183.650834 Z' id='Fill-546' fill-opacity='0.35' fill='%23F5F5F5' transform='translate(149.706149, 180.642583) rotate(22.000000) translate(-149.706149, -180.642583) '%3E%3C/path%3E%3Cpath d='M146.697288,183.650834 C138.818086,175.773231 133.777481,168.04045 135.43947,166.378798 C137.101459,164.717146 144.835809,169.756729 152.715011,177.634332 C160.594213,185.511936 165.634818,193.244716 163.972829,194.906369 C162.310839,196.568021 154.57649,191.528438 146.697288,183.650834 Z' id='Stroke-548' stroke='%23A3B1BF' stroke-width='1.62' stroke-linejoin='round' transform='translate(149.706149, 180.642583) rotate(22.000000) translate(-149.706149, -180.642583) '%3E%3C/path%3E%3Cpath d='M65.2279553,90.2345285 C62.4548336,90.0320836 60.4105231,89.3345405 60.4105231,88.5051511 C60.4105231,87.676673 62.4503446,86.9797514 65.2188187,86.7764428 C65.4149139,84.0068366 66.0879499,81.9659221 66.8880741,81.9659221 C67.6881984,81.9659221 68.3612344,84.0068366 68.5573295,86.7764428 C71.3258036,86.9797514 73.3656251,87.676673 73.3656251,88.5051511 C73.3656251,89.3345405 71.3213146,90.0320836 68.548193,90.2345285 C68.3410329,92.9408238 67.6762073,94.9210242 66.8880741,94.9210242 C66.0999409,94.9210242 65.4351154,92.9408238 65.2279553,90.2345285 Z' id='Oval-80-Copy-3' fill-opacity='0.4' fill='%23A3B1BF' opacity='0.85' transform='translate(66.888074, 88.443473) rotate(-340.000000) translate(-66.888074, -88.443473) '%3E%3C/path%3E%3Cpath d='M118.775569,329.140492 L118.424988,329.526146 C117.522244,330.5192 115.985396,330.592411 114.992341,329.689667 C114.596934,329.330218 114.331035,328.850456 114.235803,328.324641 L114.143075,327.812647 L113.669257,327.599091 C112.445737,327.047635 111.900921,325.608734 112.452377,324.385214 C112.672015,323.8979 113.046204,323.496601 113.516991,323.243469 L113.97521,322.997095 L114.032158,322.478985 C114.178786,321.144967 115.379087,320.182398 116.713105,320.329026 C117.24418,320.387399 117.741214,320.61917 118.127299,320.988476 L118.503957,321.348765 L119.01334,321.242962 C120.327346,320.970031 121.613813,321.813989 121.886744,323.127995 C121.995449,323.651349 121.928561,324.195943 121.696437,324.677436 L121.470742,325.145594 L121.728812,325.597409 C122.394441,326.762759 121.989337,328.247061 120.823987,328.91269 C120.359975,329.177726 119.82154,329.282421 119.292023,329.21057 L118.775569,329.140492 Z' id='Star-1-Copy-16' fill-opacity='0.4' fill='%23A3B1BF'%3E%3C/path%3E%3Cpath d='M432.83752,120.004816 L432.837087,120.005044 L432.837087,120.005044 C432.092472,120.396429 431.171561,120.110079 430.780176,119.365464 C430.624337,119.068978 430.570573,118.729391 430.627206,118.399266 L430.627206,118.399266 L430.627206,118.399266 L430.627206,118.399266 C430.024845,117.812233 430.01242,116.848039 430.599453,116.245678 C430.833262,116.005765 431.139652,115.849637 431.471171,115.801474 L431.471471,115.801431 L431.471471,115.801431 L431.471471,115.801431 C431.843891,115.046982 432.757399,114.737288 433.511848,115.109709 C433.812195,115.25797 434.055308,115.501083 434.20357,115.801431 L434.20357,115.801431 L434.203869,115.801474 L434.203869,115.801474 C435.036229,115.922398 435.612963,116.695187 435.492039,117.527547 C435.443876,117.859067 435.287748,118.165457 435.047835,118.399266 L435.047835,118.399266 L435.047835,118.399266 L435.047835,118.399266 C435.190066,119.228364 434.63325,120.015783 433.804152,120.158014 C433.474027,120.214647 433.134439,120.160883 432.837954,120.005044 L432.83752,120.004816 Z' id='Star-1-Copy-18' fill-opacity='0.4' fill='%23A3B1BF' transform='translate(432.837619, 117.566125) rotate(-3.000000) translate(-432.837619, -117.566125) '%3E%3C/path%3E%3Cpath d='M99.7727703,38.762372 L99.0266308,39.1545584 L99.0266308,39.1545584 C97.8386845,39.7789675 96.36948,39.3221304 95.7450708,38.134184 C95.4964477,37.6611755 95.4106732,37.1194035 95.5010241,36.5927278 L95.6433921,35.7628333 L95.0407812,35.1755563 L95.0407812,35.1755563 C94.0796578,34.2388893 94.059832,32.7004261 94.996499,31.7393027 C95.369563,31.3564979 95.8584376,31.1073808 96.3874089,31.0305329 L97.2206742,30.9094778 L97.5937913,30.1536188 L97.5937913,30.1536188 C98.1878378,28.950202 99.6449697,28.4562097 100.848387,29.0502562 C101.327469,29.2867472 101.715258,29.6745363 101.951749,30.1536188 L102.324866,30.9094778 L103.158132,31.0305329 L103.158132,31.0305329 C104.486241,31.223478 105.406474,32.4565366 105.213529,33.7846464 C105.136681,34.3136177 104.887564,34.8024923 104.504759,35.1755563 L103.902148,35.7628333 L104.044516,36.5927278 L104.044516,36.5927278 C104.27143,37.9154575 103.383095,39.1716915 102.060366,39.398605 C101.53369,39.4889559 100.991918,39.4031814 100.51891,39.1545584 L99.7727703,38.762372 Z' id='Star-1-Copy-19' fill-opacity='0.4' fill='%23A3B1BF' transform='translate(99.772928, 34.116388) rotate(19.000000) translate(-99.772928, -34.116388) '%3E%3C/path%3E%3Cpath d='M396.631073,305.744172 L396.098125,305.608596 C394.797498,305.277731 394.01135,303.955146 394.342215,302.654518 C394.473956,302.136643 394.772729,301.676633 395.192288,301.345694 L395.623376,301.00566 L395.587617,300.458372 C395.500116,299.119176 396.514815,297.962609 397.854012,297.875108 C398.387399,297.840257 398.917395,297.982247 399.361919,298.279089 L399.818473,298.583965 L400.329362,298.380373 C401.576068,297.883555 402.989473,298.491459 403.486291,299.738164 C403.684076,300.23448 403.712777,300.782145 403.567956,301.296416 L403.418882,301.825788 L403.76981,302.247972 C404.627682,303.280038 404.486471,304.812135 403.454406,305.670007 C403.043346,306.011688 402.531095,306.208301 401.996987,306.229395 L401.44896,306.251039 L401.15585,306.715309 C400.439401,307.850123 398.938655,308.189275 397.80384,307.472826 C397.351988,307.187555 397.006767,306.761296 396.821614,306.260029 L396.631073,305.744172 Z' id='Star-1-Copy-20' fill-opacity='0.4' fill='%23A3B1BF'%3E%3C/path%3E%3Cpath d='M439.755536,146.347757 L439.755103,146.347984 L439.755103,146.347984 C439.010488,146.739369 438.089577,146.45302 437.698192,145.708405 C437.542353,145.411919 437.488589,145.072331 437.545222,144.742206 L437.545222,144.742206 L437.545222,144.742206 L437.545222,144.742206 C436.942861,144.155173 436.930436,143.190979 437.517469,142.588619 C437.751277,142.348705 438.057668,142.192577 438.389187,142.144415 L438.389487,142.144371 L438.389487,142.144371 L438.389487,142.144371 C438.761907,141.389923 439.675415,141.080228 440.429864,141.452649 C440.730211,141.600911 440.973324,141.844024 441.121586,142.144371 L441.121586,142.144371 L441.121885,142.144415 L441.121885,142.144415 C441.954245,142.265338 442.530978,143.038128 442.410055,143.870488 C442.361892,144.202007 442.205764,144.508398 441.965851,144.742206 L441.965851,144.742206 L441.965851,144.742206 L441.965851,144.742206 C442.108082,145.571305 441.551266,146.358723 440.722168,146.500955 C440.392043,146.557588 440.052455,146.503823 439.755969,146.347984 L439.755536,146.347757 Z' id='Star-1-Copy-21' fill-opacity='0.4' fill='%23A3B1BF' transform='translate(439.755635, 143.909066) rotate(-12.000000) translate(-439.755635, -143.909066) '%3E%3C/path%3E%3Cpath d='M244.621971,220.61341 C277.15945,220.61341 303.536288,194.242112 303.536288,161.711467 C303.536288,129.180822 277.15945,102.809524 244.621971,102.809524 C212.084491,102.809524 185.707653,129.180822 185.707653,161.711467 C185.707653,194.242112 212.084491,220.61341 244.621971,220.61341 Z' id='Oval-8-Copy-2' fill-opacity='0.66' fill='%23A3B1BF'%3E%3C/path%3E%3Cpath d='M245.345696,141.060063 C241.146656,141.060063 237.880736,142.342349 235.547936,144.906921 C233.215136,147.354921 232.107056,150.618921 232.107056,154.698921 L236.714336,154.698921 C236.714336,151.842921 237.355856,149.628063 238.638896,147.996063 C240.038576,146.072635 242.196416,145.140063 245.112416,145.140063 C247.561856,145.140063 249.486416,145.781206 250.827776,147.180063 C252.110816,148.462349 252.810656,150.269206 252.810656,152.600635 C252.810656,154.232635 252.227456,155.748063 251.061056,157.205206 C250.711136,157.671492 250.011296,158.370921 249.078176,159.303492 C245.928896,162.101206 244.004336,164.316063 243.187856,166.064635 C242.488016,167.521778 242.138096,169.212063 242.138096,171.135492 L242.138096,172.476063 L246.803696,172.476063 L246.803696,171.135492 C246.803696,169.561778 247.153616,168.162921 247.911776,166.880635 C248.494976,165.831492 249.369776,164.782349 250.652816,163.674921 C253.218896,161.401778 254.793536,159.886349 255.376736,159.186921 C256.834736,157.263492 257.592896,154.990349 257.592896,152.367492 C257.592896,148.870349 256.484816,146.130921 254.326976,144.149206 C252.052496,142.050921 249.078176,141.060063 245.345696,141.060063 Z M244.470896,176.556063 C243.479456,176.556063 242.662976,176.847492 241.963136,177.546921 C241.263296,178.188063 240.971696,179.004063 240.971696,179.994921 C240.971696,180.985778 241.263296,181.801778 241.963136,182.501206 C242.662976,183.142349 243.479456,183.492063 244.470896,183.492063 C245.462336,183.492063 246.278816,183.142349 246.978656,182.501206 C247.678496,181.860063 248.028416,181.044063 248.028416,179.994921 C248.028416,179.004063 247.678496,178.188063 247.036976,177.546921 C246.337136,176.847492 245.462336,176.556063 244.470896,176.556063 Z' id='\uFF1F' fill='%23FFFFFF'%3E%3C/path%3E%3Cpath d='M223.261662,133.139924 C229.077338,129.782947 239.631808,125.828273 236.274126,120.013819 C232.916444,114.199364 220.565868,115.043746 214.750193,118.400722 C208.934517,121.757699 202.729834,131.623951 206.087516,137.438405 C209.445198,143.252859 217.445986,136.4969 223.261662,133.139924' id='Oval-8-Copy-2' fill='%23FAFAFA'%3E%3C/path%3E%3Cpath d='M249.679003,119.820589 C252.365149,119.820589 254.5427,117.643495 254.5427,114.957913 C254.5427,112.272332 252.365149,110.095238 249.679003,110.095238 C246.992857,110.095238 244.815306,112.272332 244.815306,114.957913 C244.815306,117.643495 246.992857,119.820589 249.679003,119.820589 Z' id='Oval-10-Copy' fill='%23FAFAFA'%3E%3C/path%3E%3Cpath d='M421.5,321.5 L423,323' id='Line-2' stroke='%23979797' stroke-linecap='square'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -104820,70 +103653,49 @@ var DatasetlogoWithFallback_DatasetlogoWithFallback = function (_React$Component
 
 
 /* harmony default export */ var Page404 = (function () {
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-    null,
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      'div',
-      {
-        style: {
-          minHeight: 'calc(100vh - 100px)',
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        },
-        className: 'catalogue-of-life'
-      },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        'div',
-        { style: {
-            backgroundImage: 'url("data:image/svg+xml,' + svg404 + '")',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            padding: "170px 176px 200px 224px"
-          } },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          'div',
-          { style: { textAlign: "center", fontWeight: 800 } },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            'h1',
-            null,
-            '404'
-          )
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          'div',
-          { style: { textAlign: "center", fontWeight: 800 } },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            'p',
-            null,
-            'Sorry, this page does not exist.'
-          )
-        )
-      )
-    )
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: {
+      minHeight: 'calc(100vh - 100px)',
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    className: "catalogue-of-life"
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: {
+      backgroundImage: "url(\"data:image/svg+xml," + svg404 + "\")",
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      padding: "170px 176px 200px 224px"
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: {
+      textAlign: "center",
+      fontWeight: 800
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h1", null, "404")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: {
+      textAlign: "center",
+      fontWeight: 800
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, "Sorry, this page does not exist.")))));
 });
 // EXTERNAL MODULE: ./node_modules/highcharts/highcharts.js
 var highcharts = __webpack_require__(87);
 var highcharts_default = /*#__PURE__*/__webpack_require__.n(highcharts);
 
 // EXTERNAL MODULE: ./node_modules/highcharts/modules/exporting.js
-var exporting = __webpack_require__(317);
+var exporting = __webpack_require__(316);
 var exporting_default = /*#__PURE__*/__webpack_require__.n(exporting);
 
 // EXTERNAL MODULE: ./node_modules/highcharts-react-official/dist/highcharts-react.min.js
-var highcharts_react_min = __webpack_require__(318);
+var highcharts_react_min = __webpack_require__(317);
 var highcharts_react_min_default = /*#__PURE__*/__webpack_require__.n(highcharts_react_min);
 
 // CONCATENATED MODULE: ./src/Taxon/TaxonBreakdown.js
-
-
-var TaxonBreakdown_this = undefined;
-
-function TaxonBreakdown_asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-
+function TaxonBreakdown_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ TaxonBreakdown_regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function TaxonBreakdown_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function TaxonBreakdown_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { TaxonBreakdown_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { TaxonBreakdown_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -104893,216 +103705,169 @@ function TaxonBreakdown_asyncToGenerator(fn) { return function () { var gen = fn
 
 
 exporting_default()(highcharts_default.a);
-
 var MAX_GRAND_CHILDREN = 1000;
 var canonicalRanks = ["kingdom", "phylum", "class", "order", "family", "genus", "species"];
-
 var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
   var taxon = _ref.taxon,
-      datasetKey = _ref.datasetKey,
-      _ref$rank = _ref.rank,
-      rank = _ref$rank === undefined ? [] : _ref$rank,
-      pathToTaxon = _ref.pathToTaxon,
-      dataset = _ref.dataset;
-
+    datasetKey = _ref.datasetKey,
+    _ref$rank = _ref.rank,
+    rank = _ref$rank === void 0 ? [] : _ref$rank,
+    pathToTaxon = _ref.pathToTaxon,
+    dataset = _ref.dataset;
   var _useState = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])(null),
-      options = _useState[0],
-      setOptions = _useState[1];
-
+    options = _useState[0],
+    setOptions = _useState[1];
   var _useState2 = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])(null),
-      error = _useState2[0],
-      setError = _useState2[1];
-
+    error = _useState2[0],
+    setError = _useState2[1];
   var _useState3 = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])(false),
-      loading = _useState3[0],
-      setLoading = _useState3[1];
-
+    loading = _useState3[0],
+    setLoading = _useState3[1];
   var _useState4 = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])(false),
-      invalid = _useState4[0],
-      setInvalid = _useState4[1];
-
+    invalid = _useState4[0],
+    setInvalid = _useState4[1];
   Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
     getData();
   }, [taxon, datasetKey]);
-
-  var getOverView = function () {
-    var _ref2 = TaxonBreakdown_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+  var getOverView = /*#__PURE__*/function () {
+    var _ref2 = TaxonBreakdown_asyncToGenerator( /*#__PURE__*/TaxonBreakdown_regeneratorRuntime().mark(function _callee() {
       var res;
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/nameusage/search?TAXON_ID=" + taxon.id + "&facet=rank&status=accepted&status=provisionally%20accepted&limit=0");
-
-            case 2:
-              res = _context.sent;
-              return _context.abrupt("return", lodash_default.a.keyBy(lodash_default.a.get(res, "data.facets.rank", []), "value"));
-
-            case 4:
-            case "end":
-              return _context.stop();
-          }
+      return TaxonBreakdown_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/nameusage/search?TAXON_ID=" + taxon.id + "&facet=rank&status=accepted&status=provisionally%20accepted&limit=0");
+          case 2:
+            res = _context.sent;
+            return _context.abrupt("return", lodash_default.a.keyBy(lodash_default.a.get(res, "data.facets.rank", []), "value"));
+          case 4:
+          case "end":
+            return _context.stop();
         }
-      }, _callee, TaxonBreakdown_this);
+      }, _callee);
     }));
-
     return function getOverView() {
       return _ref2.apply(this, arguments);
     };
   }();
-  var getData = function () {
-    var _ref3 = TaxonBreakdown_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
+  var getData = /*#__PURE__*/function () {
+    var _ref3 = TaxonBreakdown_asyncToGenerator( /*#__PURE__*/TaxonBreakdown_regeneratorRuntime().mark(function _callee2() {
       var counts, ranks, countBy, i, taxonRankIdx, rankIndex, canonicalRankIndex, childRank, childRankIndex, nextRank, grandChildRank, grandChildRankIndex, _nextRank, root, res, childRankData;
-
-      return regenerator_default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              setLoading(true);
-              _context2.prev = 1;
-              _context2.next = 4;
-              return getOverView();
-
-            case 4:
-              counts = _context2.sent;
-              ranks = canonicalRanks;
-              countBy = void 0;
-
-              if (!(lodash_default.a.get(counts, "species.count", 0) > 0)) {
-                _context2.next = 11;
-                break;
-              }
-
-              countBy = "species";
-              _context2.next = 19;
+      return TaxonBreakdown_regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            setLoading(true);
+            _context2.prev = 1;
+            _context2.next = 4;
+            return getOverView();
+          case 4:
+            counts = _context2.sent;
+            ranks = canonicalRanks;
+            if (!(lodash_default.a.get(counts, "species.count", 0) > 0)) {
+              _context2.next = 10;
               break;
-
-            case 11:
-              i = ranks.length - 1;
-
-            case 12:
-              if (!(i > 0 && !countBy)) {
-                _context2.next = 19;
-                break;
-              }
-
-              if (!(lodash_default.a.get(counts, ranks[i] + ".count", 0) > 0)) {
-                _context2.next = 16;
-                break;
-              }
-
-              countBy = ranks[i];
-              return _context2.abrupt("break", 19);
-
-            case 16:
-              i--;
-              _context2.next = 12;
+            }
+            countBy = "species";
+            _context2.next = 18;
+            break;
+          case 10:
+            i = ranks.length - 1;
+          case 11:
+            if (!(i > 0 && !countBy)) {
+              _context2.next = 18;
               break;
-
-            case 19:
-              // Check if the rank is in the canonical ranks
-              taxonRankIdx = ranks.indexOf(lodash_default.a.get(taxon, "name.rank"));
-              // If not, find it in the full rank enum, and place it within canonical ranks.
-              // This will produce nice charts for e.g. sub- and superfamilies
-
-              if (taxonRankIdx === -1) {
-                rankIndex = rank.indexOf(lodash_default.a.get(taxon, "name.rank")) + 1;
-
-                while (taxonRankIdx === -1 && rankIndex < rank.length - 1) {
-                  canonicalRankIndex = ranks.indexOf(rank[rankIndex]);
-
-                  if (canonicalRankIndex > -1) {
-                    taxonRankIdx = canonicalRankIndex - 1;
-                  }
-                  rankIndex++;
-                }
-              }
-              childRank = void 0;
-              childRankIndex = taxonRankIdx + 1;
-
-              while (!childRank && childRankIndex < ranks.length) {
-                nextRank = lodash_default.a.get(ranks, "[" + childRankIndex + "]");
-
-                if (nextRank && lodash_default.a.get(counts, nextRank + ".count", 0) > 0) {
-                  childRank = nextRank;
-                } else {
-                  childRankIndex++;
-                }
-              }
-              grandChildRank = void 0;
-              grandChildRankIndex = childRankIndex + 1;
-
-              while (!grandChildRank && grandChildRankIndex < ranks.length) {
-                _nextRank = lodash_default.a.get(ranks, "[" + grandChildRankIndex + "]");
-
-                if (_nextRank && lodash_default.a.get(counts, _nextRank + ".count", 0) > 0) {
-                  grandChildRank = _nextRank;
-                } else {
-                  grandChildRankIndex++;
-                }
-              }
-              root = void 0;
-
-              if (!grandChildRank || grandChildRank === "species" || lodash_default.a.get(counts, grandChildRank + ".count") > MAX_GRAND_CHILDREN) {
-                root = [{ name: lodash_default.a.get(taxon, "name.scientificName"), id: taxon.id }];
-              }
-
-              if (childRank) {
-                _context2.next = 34;
-                break;
-              }
-
-              setInvalid(true);
-              setLoading(false);
-              _context2.next = 41;
+            }
+            if (!(lodash_default.a.get(counts, ranks[i] + ".count", 0) > 0)) {
+              _context2.next = 15;
               break;
-
-            case 34:
-              _context2.next = 36;
-              return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/export.json?rank=" + childRank + (!root ? "&rank=" + grandChildRank : "") + "&countBy=" + countBy + "&taxonID=" + taxon.id);
-
-            case 36:
-              res = _context2.sent;
-
-              //Api returns both ranks in the root array
-              childRankData = res.data; //.filter((t) => t.rank === childRank);
-
-              if (lodash_default.a.get(root, "[0]")) {
-                root[0].children = processChildren(childRankData, countBy);
-                root[0][countBy] = root[0].children.reduce(function (acc, cur) {
-                  return acc + cur[countBy];
-                }, 0);
+            }
+            countBy = ranks[i];
+            return _context2.abrupt("break", 18);
+          case 15:
+            i--;
+            _context2.next = 11;
+            break;
+          case 18:
+            // Check if the rank is in the canonical ranks
+            taxonRankIdx = ranks.indexOf(lodash_default.a.get(taxon, "name.rank")); // If not, find it in the full rank enum, and place it within canonical ranks.
+            // This will produce nice charts for e.g. sub- and superfamilies
+            if (taxonRankIdx === -1) {
+              rankIndex = rank.indexOf(lodash_default.a.get(taxon, "name.rank")) + 1;
+              while (taxonRankIdx === -1 && rankIndex < rank.length - 1) {
+                canonicalRankIndex = ranks.indexOf(rank[rankIndex]);
+                if (canonicalRankIndex > -1) {
+                  taxonRankIdx = canonicalRankIndex - 1;
+                }
+                rankIndex++;
+              }
+            }
+            childRankIndex = taxonRankIdx + 1;
+            while (!childRank && childRankIndex < ranks.length) {
+              nextRank = lodash_default.a.get(ranks, "[" + childRankIndex + "]");
+              if (nextRank && lodash_default.a.get(counts, nextRank + ".count", 0) > 0) {
+                childRank = nextRank;
               } else {
-                root = processChildren(childRankData, countBy);
+                childRankIndex++;
               }
-              setLoading(false);
-              initChart(root, countBy);
-
-            case 41:
-              _context2.next = 47;
+            }
+            grandChildRankIndex = childRankIndex + 1;
+            while (!grandChildRank && grandChildRankIndex < ranks.length) {
+              _nextRank = lodash_default.a.get(ranks, "[" + grandChildRankIndex + "]");
+              if (_nextRank && lodash_default.a.get(counts, _nextRank + ".count", 0) > 0) {
+                grandChildRank = _nextRank;
+              } else {
+                grandChildRankIndex++;
+              }
+            }
+            if (!grandChildRank || grandChildRank === "species" || lodash_default.a.get(counts, grandChildRank + ".count") > MAX_GRAND_CHILDREN) {
+              root = [{
+                name: lodash_default.a.get(taxon, "name.scientificName"),
+                id: taxon.id
+              }];
+            }
+            if (childRank) {
+              _context2.next = 30;
               break;
-
-            case 43:
-              _context2.prev = 43;
-              _context2.t0 = _context2["catch"](1);
-
-              setError(_context2.t0);
-              setLoading(false);
-
-            case 47:
-            case "end":
-              return _context2.stop();
-          }
+            }
+            setInvalid(true);
+            setLoading(false);
+            _context2.next = 37;
+            break;
+          case 30:
+            _context2.next = 32;
+            return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/export.json?rank=" + childRank + (!root ? "&rank=" + grandChildRank : "") + "&countBy=" + countBy + "&taxonID=" + taxon.id);
+          case 32:
+            res = _context2.sent;
+            //Api returns both ranks in the root array
+            childRankData = res.data; //.filter((t) => t.rank === childRank);
+            if (lodash_default.a.get(root, "[0]")) {
+              root[0].children = processChildren(childRankData, countBy);
+              root[0][countBy] = root[0].children.reduce(function (acc, cur) {
+                return acc + cur[countBy];
+              }, 0);
+            } else {
+              root = processChildren(childRankData, countBy);
+            }
+            setLoading(false);
+            initChart(root, countBy);
+          case 37:
+            _context2.next = 43;
+            break;
+          case 39:
+            _context2.prev = 39;
+            _context2.t0 = _context2["catch"](1);
+            setError(_context2.t0);
+            setLoading(false);
+          case 43:
+          case "end":
+            return _context2.stop();
         }
-      }, _callee2, TaxonBreakdown_this, [[1, 43]]);
+      }, _callee2, null, [[1, 39]]);
     }));
-
     return function getData() {
       return _ref3.apply(this, arguments);
     };
   }();
-
   var processChildren = function processChildren(children, countBy) {
     children.sort(function compareFn(a, b) {
       return b[countBy] - a[countBy];
@@ -105113,52 +103878,50 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
       return children.slice(0, 100);
     }
   };
-
   var initChart = function initChart(root, countBy) {
     var DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
     var totalCount = root.reduce(function (acc, cur) {
       return acc + cur[countBy];
     }, 0);
     var colors = highcharts_default.a.getOptions().colors,
-        categories = root.map(function (t) {
-      return t.name;
-    }),
-        data = root.map(function (k, idx) {
-      var _ref4;
-
-      var children = processChildren(k.children, countBy);
-      var sum = k.children.reduce(function (acc, cur) {
-        return acc + cur[countBy];
-      }, 0);
-      var c = sum < k[countBy] ? [].concat(children, [(_ref4 = {
-        name: "Other / Unknown " + lodash_default.a.get(children, "[0].rank", "")
-      }, _ref4[countBy] = k[countBy] - sum, _ref4)]) : children;
-      // test
-      /*         const c = k.children.reduce((acc, cur) => acc + cur[countBy], 0);
-      if (k[countBy] !== c) {
-        console.log(k.name + " Count " + k[countBy] + " Processed " + c);
-      } */
-      //
-      return {
-        color: colors[idx],
-        y: k[countBy],
-        _id: k.id,
-        drilldown: {
-          name: k.name,
-          categories: c.map(function (c) {
-            return c.name;
-          }),
-          data: c
-        }
-      };
-    }),
-        rootData = [],
-        childData = [],
-        i,
-        j,
-        dataLen = data.length,
-        drillDataLen,
-        brightness;
+      categories = root.map(function (t) {
+        return t.name;
+      }),
+      data = root.map(function (k, idx) {
+        var _ref4;
+        var children = processChildren(k.children, countBy);
+        var sum = k.children.reduce(function (acc, cur) {
+          return acc + cur[countBy];
+        }, 0);
+        var c = sum < k[countBy] ? [].concat(children, [(_ref4 = {
+          name: "Other / Unknown " + lodash_default.a.get(children, "[0].rank", "")
+        }, _ref4[countBy] = k[countBy] - sum, _ref4)]) : children;
+        // test
+        /*         const c = k.children.reduce((acc, cur) => acc + cur[countBy], 0);
+        if (k[countBy] !== c) {
+          console.log(k.name + " Count " + k[countBy] + " Processed " + c);
+        } */
+        //
+        return {
+          color: colors[idx],
+          y: k[countBy],
+          _id: k.id,
+          drilldown: {
+            name: k.name,
+            categories: c.map(function (c) {
+              return c.name;
+            }),
+            data: c
+          }
+        };
+      }),
+      rootData = [],
+      childData = [],
+      i,
+      j,
+      dataLen = data.length,
+      drillDataLen,
+      brightness;
 
     // Build the data arrays
     for (i = 0; i < dataLen; i += 1) {
@@ -105270,32 +104033,140 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
         fallbackToExportServer: false
       }
     };
-
     setOptions(options);
   };
-
-  return loading || !options ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    es_row,
-    { style: { padding: "48px" } },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, { flex: "auto" }),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      es_col,
-      null,
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, { size: "large" })
-    ),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, { flex: "auto" })
-  ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(highcharts_react_min_default.a, { highcharts: highcharts_default.a, options: options });
+  return loading || !options ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+    style: {
+      padding: "48px"
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    flex: "auto"
+  }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_spin, {
+    size: "large"
+  })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    flex: "auto"
+  })) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(highcharts_react_min_default.a, {
+    highcharts: highcharts_default.a,
+    options: options
+  });
 };
-
 /* harmony default export */ var Taxon_TaxonBreakdown = (TaxonBreakdown_TaxonBreakdown);
+// CONCATENATED MODULE: ./src/Taxon/SecondarySources.js
+function SecondarySources_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ SecondarySources_regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function SecondarySources_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function SecondarySources_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { SecondarySources_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { SecondarySources_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+// import { NavLink } from "react-router-dom";
+
+
+var SecondarySources_SecondarySources = function SecondarySources(_ref) {
+  var _info$source4, _info$source5;
+  var info = _ref.info,
+    catalogueKey = _ref.catalogueKey,
+    pathToTaxon = _ref.pathToTaxon;
+  var _useState = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useState"])({}),
+    datasets = _useState[0],
+    setDatasets = _useState[1];
+  Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
+    var _info$source;
+    if (info === null || info === void 0 ? void 0 : (_info$source = info.source) === null || _info$source === void 0 ? void 0 : _info$source.secondarySources) {
+      getDatasets();
+    }
+  }, [info]);
+  Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {}, [datasets]);
+  var datasetLoader = new dataloader_default.a(function (ids) {
+    return dataset_getDatasetsBatch(ids, catalogueKey);
+  });
+  var getDatasets = /*#__PURE__*/function () {
+    var _ref2 = SecondarySources_asyncToGenerator( /*#__PURE__*/SecondarySources_regeneratorRuntime().mark(function _callee() {
+      var data, _info$source2;
+      return SecondarySources_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            data = {};
+            _context.prev = 1;
+            _context.next = 4;
+            return Promise.all(Object.keys((info === null || info === void 0 ? void 0 : (_info$source2 = info.source) === null || _info$source2 === void 0 ? void 0 : _info$source2.secondarySources) || {}).map(function (key) {
+              var _info$source3;
+              return datasetLoader.load(info === null || info === void 0 ? void 0 : (_info$source3 = info.source) === null || _info$source3 === void 0 ? void 0 : _info$source3.secondarySources[key].datasetKey).then(function (dataset) {
+                data[dataset.key] = dataset;
+              });
+            }));
+          case 4:
+            _context.next = 9;
+            break;
+          case 6:
+            _context.prev = 6;
+            _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
+          case 9:
+            setDatasets(data);
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[1, 6]]);
+    }));
+    return function getDatasets() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  return (info === null || info === void 0 ? void 0 : (_info$source4 = info.source) === null || _info$source4 === void 0 ? void 0 : _info$source4.secondarySources) ? Object.keys((info === null || info === void 0 ? void 0 : (_info$source5 = info.source) === null || _info$source5 === void 0 ? void 0 : _info$source5.secondarySources) || {}).map(function (key) {
+    var _info$source6, _info$source6$seconda, _info$source6$seconda2, _datasets$info$source, _info$source7, _info$source7$seconda, _info$source7$seconda2;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, lodash_default.a.startCase(key), ": ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: pathToTaxon + "/" + (info === null || info === void 0 ? void 0 : (_info$source6 = info.source) === null || _info$source6 === void 0 ? void 0 : (_info$source6$seconda = _info$source6.secondarySources) === null || _info$source6$seconda === void 0 ? void 0 : (_info$source6$seconda2 = _info$source6$seconda[key]) === null || _info$source6$seconda2 === void 0 ? void 0 : _info$source6$seconda2.id)
+    }, ((_datasets$info$source = datasets[info === null || info === void 0 ? void 0 : (_info$source7 = info.source) === null || _info$source7 === void 0 ? void 0 : (_info$source7$seconda = _info$source7.secondarySources) === null || _info$source7$seconda === void 0 ? void 0 : (_info$source7$seconda2 = _info$source7$seconda[key]) === null || _info$source7$seconda2 === void 0 ? void 0 : _info$source7$seconda2.datasetKey]) === null || _datasets$info$source === void 0 ? void 0 : _datasets$info$source.title) + " "));
+  }) : null;
+};
+/* harmony default export */ var Taxon_SecondarySources = (SecondarySources_SecondarySources);
+// CONCATENATED MODULE: ./src/Taxon/SourceDatasets.js
+
+
+
+var SourceDatasets_SourceDatasets = function SourceDatasets(_ref) {
+  var pathToDataset = _ref.pathToDataset,
+    sourceDatasetKeyMap = _ref.sourceDatasetKeyMap,
+    primarySourceDatasetKey = _ref.primarySourceDatasetKey,
+    style = _ref.style;
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style,
+    className: "col-reference-link-container"
+  }, Object.keys(sourceDatasetKeyMap).filter(function (s) {
+    return Number(s) !== Number(primarySourceDatasetKey);
+  }).map(function (s) {
+    var _sourceDatasetKeyMap$;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+      key: s
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      style: {
+        paddingRight: "5px"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "" + pathToDataset + s
+    }, "[" + s + "]")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 20,
+      flex: "auto"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      id: "col-sourcedataset-" + s
+    }, (_sourceDatasetKeyMap$ = sourceDatasetKeyMap[s]) === null || _sourceDatasetKeyMap$ === void 0 ? void 0 : _sourceDatasetKeyMap$.title)));
+  }));
+};
+/* harmony default export */ var Taxon_SourceDatasets = (SourceDatasets_SourceDatasets);
 // CONCATENATED MODULE: ./src/Taxon/index.js
-var Taxon_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function Taxon_extends() { Taxon_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Taxon_extends.apply(this, arguments); }
+function Taxon_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ Taxon_regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function Taxon_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function Taxon_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { Taxon_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { Taxon_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function Taxon_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; Taxon_setPrototypeOf(subClass, superClass); }
+function Taxon_setPrototypeOf(o, p) { Taxon_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Taxon_setPrototypeOf(o, p); }
+function Taxon_defineProperty(obj, key, value) { key = Taxon_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function Taxon_toPropertyKey(t) { var i = Taxon_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function Taxon_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
-function Taxon_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function Taxon_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function Taxon_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -105303,6 +104174,7 @@ function Taxon_inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 
+// import SynonymTable from "./Synonyms";
 
 
 
@@ -105322,20 +104194,15 @@ function Taxon_inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 
 
+
 var Taxon_md = 5;
-
-var Taxon_TaxonPage = function (_React$Component) {
-  Taxon_inherits(TaxonPage, _React$Component);
-
+var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
   function TaxonPage(props) {
-    Taxon_classCallCheck(this, TaxonPage);
-
-    var _this = Taxon_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    Taxon_defineProperty(_this, "componentDidMount", function () {
       var pathToTaxon = _this.props.pathToTaxon;
       var location = src_history.location;
-
       var uri = "" + location.pathname + location.search;
       var taxonKey = uri.split(pathToTaxon)[1];
       _this.getCatalogue();
@@ -105345,14 +104212,14 @@ var Taxon_TaxonPage = function (_React$Component) {
       _this.getRank(taxonKey);
       _this.getIncludes(taxonKey);
       _this.getNomStatus(taxonKey);
-    };
-
-    _this.getTaxon = function (taxonKey) {
+    });
+    Taxon_defineProperty(_this, "getTaxon", function (taxonKey) {
       var _this$props = _this.props,
-          datasetKey = _this$props.catalogueKey,
-          pageTitleTemplate = _this$props.pageTitleTemplate;
-
-      _this.setState({ loading: true });
+        datasetKey = _this$props.catalogueKey,
+        pageTitleTemplate = _this$props.pageTitleTemplate;
+      _this.setState({
+        loading: true
+      });
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey).then(function (res) {
         var promises = [res];
         if (pageTitleTemplate && lodash_default.a.get(res, "data.label")) {
@@ -105364,7 +104231,6 @@ var Taxon_TaxonPage = function (_React$Component) {
             return res;
           }));
         }
-
         if (lodash_default.a.get(res, "data.name")) {
           promises.push(axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/name/" + lodash_default.a.get(res, "data.name.id") + "/relations").then(function (relations) {
             res.data.name.relations = relations.data;
@@ -105388,16 +104254,16 @@ var Taxon_TaxonPage = function (_React$Component) {
               _this.setState({
                 logoUrl: src_config.dataApi + "dataset/" + datasetKey + "/logo/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey") + "?size=MEDIUM"
               });
-            }).catch(function () {
+            })["catch"](function () {
               // ignore, there is no logo
             });
-
             axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/source/" + lodash_default.a.get(sector, "data.subjectDatasetKey")).then(function (dataset) {
-              _this.setState({ sourceDataset: dataset.data });
+              _this.setState({
+                sourceDataset: dataset.data
+              });
             });
           });
         }
-
         return Promise.allSettled(promises).then(function (results) {
           return results.filter(function (r) {
             return r.status = 'fulfilled';
@@ -105411,54 +104277,211 @@ var Taxon_TaxonPage = function (_React$Component) {
           taxon: res[0].data,
           taxonError: null
         });
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (lodash_default.a.get(err, "response.status") === 404) {
           _this.fetchSynonymAndRedirect(taxonKey);
         } else {
-          _this.setState({ taxonLoading: false, taxonError: err, taxon: null });
-        }
-      });
-    };
-
-    _this.getCatalogue = function () {
-      var catalogueKey = _this.props.catalogueKey;
-
-      axios_default()(src_config.dataApi + "dataset/" + catalogueKey).then(function (res) {
-        _this.setState({ catalogue: res.data });
-      }).catch(function (err) {
-        // ignore
-      });
-    };
-
-    _this.getInfo = function (taxonKey) {
-      var datasetKey = _this.props.catalogueKey;
-
-      axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/info").then(function (res) {
-        var referenceIndexMap = {};
-        if (lodash_default.a.get(res, 'data.references')) {
-          Object.keys(res.data.references).forEach(function (k, i) {
-            referenceIndexMap[k] = (i + 1).toString();
+          _this.setState({
+            taxonLoading: false,
+            taxonError: err,
+            taxon: null
           });
         }
-        _this.setState({ infoLoading: false, info: res.data, infoError: null, referenceIndexMap: referenceIndexMap });
-      }).catch(function (err) {
-        if (lodash_default.a.get(err, "response.status") === 404) {
-          _this.fetchSynonymAndRedirect(taxonKey);
-        } else {
-          _this.setState({ infoLoading: false, infoError: err, info: null });
-        }
       });
-    };
-
-    _this.getRank = function () {
+    });
+    Taxon_defineProperty(_this, "getCatalogue", function () {
+      var catalogueKey = _this.props.catalogueKey;
+      axios_default()(src_config.dataApi + "dataset/" + catalogueKey).then(function (res) {
+        _this.setState({
+          catalogue: res.data
+        });
+      })["catch"](function (err) {
+        // ignore
+      });
+    });
+    Taxon_defineProperty(_this, "datasetLoader", new dataloader_default.a(function (ids) {
+      return dataset_getDatasetsBatch(ids, _this.props.catalogueKey);
+    }));
+    Taxon_defineProperty(_this, "sectorLoader", new dataloader_default.a(function (ids) {
+      return sector_getSectorsBatch(ids, _this.props.catalogueKey);
+    }));
+    Taxon_defineProperty(_this, "decorateWithSectorsAndDataset", /*#__PURE__*/function () {
+      var _ref = Taxon_asyncToGenerator( /*#__PURE__*/Taxon_regeneratorRuntime().mark(function _callee(synonyms) {
+        var datasetKey, sourceDatasetsMap, _iterator, _step, type, _iterator2, _step2, arr;
+        return Taxon_regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              datasetKey = _this.props.catalogueKey;
+              /* const sectorLoader = new DataLoader((ids) =>
+                getSectorsBatch(ids, datasetKey)
+              ); */
+              sourceDatasetsMap = {};
+              _iterator = _createForOfIteratorHelperLoose(["misapplied", "heterotypic", "homotypic"].filter(function (t) {
+                return !!synonyms[t];
+              }));
+            case 3:
+              if ((_step = _iterator()).done) {
+                _context.next = 9;
+                break;
+              }
+              type = _step.value;
+              _context.next = 7;
+              return Promise.allSettled(synonyms[type].filter(function (tx) {
+                return !!tx.sectorKey;
+              }).map(function (tx) {
+                return _this.sectorLoader.load(tx.sectorKey, datasetKey).then(function (r) {
+                  tx.sector = r;
+                  return _this.datasetLoader.load(r.subjectDatasetKey).then(function (dataset) {
+                    // tx.sector.dataset = dataset
+                    tx.sourceDatasetKey = dataset.key;
+                    sourceDatasetsMap[dataset.key] = dataset;
+                  });
+                });
+              }));
+            case 7:
+              _context.next = 3;
+              break;
+            case 9:
+              if (!(synonyms === null || synonyms === void 0 ? void 0 : synonyms.heterotypicGroups)) {
+                _context.next = 17;
+                break;
+              }
+              _iterator2 = _createForOfIteratorHelperLoose(synonyms === null || synonyms === void 0 ? void 0 : synonyms.heterotypicGroups);
+            case 11:
+              if ((_step2 = _iterator2()).done) {
+                _context.next = 17;
+                break;
+              }
+              arr = _step2.value;
+              _context.next = 15;
+              return Promise.allSettled(arr.filter(function (tx) {
+                return !!tx.sectorKey;
+              }).map(function (tx) {
+                return _this.sectorLoader.load(tx.sectorKey, datasetKey).then(function (r) {
+                  tx.sector = r;
+                  return _this.datasetLoader.load(r.subjectDatasetKey).then(function (dataset) {
+                    // tx.sector.dataset = dataset
+                    tx.sourceDatasetKey = dataset.key;
+                    sourceDatasetsMap[dataset.key] = dataset;
+                  });
+                });
+              }));
+            case 15:
+              _context.next = 11;
+              break;
+            case 17:
+              return _context.abrupt("return", Object.keys(sourceDatasetsMap).length > 0 ? sourceDatasetsMap : null);
+            case 18:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+    Taxon_defineProperty(_this, "getInfo", /*#__PURE__*/function () {
+      var _ref2 = Taxon_asyncToGenerator( /*#__PURE__*/Taxon_regeneratorRuntime().mark(function _callee2(taxonKey) {
+        var datasetKey, _res$data, _res$data2, res, referenceIndexMap, sourceDatasetKeyMap, _res$data3;
+        return Taxon_regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              datasetKey = _this.props.catalogueKey;
+              /*   let sourceDatasetKeyMap = _.get(res, "data.synonyms")
+                ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms"))
+                : null; */
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/info");
+            case 4:
+              res = _context2.sent;
+              referenceIndexMap = {};
+              if (!lodash_default.a.get(res, 'data.references')) {
+                _context2.next = 10;
+                break;
+              }
+              Object.keys(res.data.references).forEach(function (k, i) {
+                referenceIndexMap[k] = (i + 1).toString();
+              });
+              _context2.next = 10;
+              return Promise.allSettled(Object.keys(res.data.references).map(function (key) {
+                return res.data.references[key];
+              }).filter(function (ref) {
+                return !!ref.sectorKey;
+              }).map(function (ref) {
+                return _this.sectorLoader.load(ref.sectorKey).then(function (r) {
+                  ref.sector = r;
+                  return _this.datasetLoader.load(r.subjectDatasetKey).then(function (dataset) {
+                    // tx.sector.dataset = dataset
+                    ref.sourceDataset = dataset;
+                    // sourceDatasetsMap[dataset.key] = dataset;
+                  });
+                });
+              }));
+            case 10:
+              if (!lodash_default.a.get(res, "data.synonyms")) {
+                _context2.next = 16;
+                break;
+              }
+              _context2.next = 13;
+              return _this.decorateWithSectorsAndDataset(lodash_default.a.get(res, "data.synonyms"));
+            case 13:
+              _context2.t0 = _context2.sent;
+              _context2.next = 17;
+              break;
+            case 16:
+              _context2.t0 = null;
+            case 17:
+              sourceDatasetKeyMap = _context2.t0;
+              if ((res === null || res === void 0 ? void 0 : (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.nameRelations) && (res === null || res === void 0 ? void 0 : (_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.names)) {
+                res === null || res === void 0 ? void 0 : (_res$data3 = res.data) === null || _res$data3 === void 0 ? void 0 : _res$data3.nameRelations.forEach(function (rel) {
+                  var _res$data4, _res$data4$names, _res$data5, _res$data5$names;
+                  rel.relatedName = res === null || res === void 0 ? void 0 : (_res$data4 = res.data) === null || _res$data4 === void 0 ? void 0 : (_res$data4$names = _res$data4.names) === null || _res$data4$names === void 0 ? void 0 : _res$data4$names[rel === null || rel === void 0 ? void 0 : rel.relatedNameId];
+                  rel.name = res === null || res === void 0 ? void 0 : (_res$data5 = res.data) === null || _res$data5 === void 0 ? void 0 : (_res$data5$names = _res$data5.names) === null || _res$data5$names === void 0 ? void 0 : _res$data5$names[rel === null || rel === void 0 ? void 0 : rel.nameId];
+                });
+              }
+              _this.setState({
+                infoLoading: false,
+                info: res.data,
+                infoError: null,
+                referenceIndexMap: referenceIndexMap,
+                sourceDatasetKeyMap: sourceDatasetKeyMap
+              });
+              _context2.next = 25;
+              break;
+            case 22:
+              _context2.prev = 22;
+              _context2.t1 = _context2["catch"](1);
+              if (lodash_default.a.get(_context2.t1, "response.status") === 404) {
+                _this.fetchSynonymAndRedirect(taxonKey);
+              } else {
+                _this.setState({
+                  infoLoading: false,
+                  infoError: _context2.t1,
+                  info: null
+                });
+              }
+            case 25:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[1, 22]]);
+      }));
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+    Taxon_defineProperty(_this, "getRank", function () {
       axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
-        return _this.setState({ rank: res.data.map(function (r) {
+        return _this.setState({
+          rank: res.data.map(function (r) {
             return r.name;
-          }) });
+          })
+        });
       });
-    };
-
-    _this.getNomStatus = function () {
+    });
+    Taxon_defineProperty(_this, "getNomStatus", function () {
       axios_default()(src_config.dataApi + "vocab/nomstatus").then(function (res) {
         return _this.setState({
           nomStatus: res.data.reduce(function (a, c) {
@@ -105466,58 +104489,51 @@ var Taxon_TaxonPage = function (_React$Component) {
           }, {})
         });
       });
-    };
-
-    _this.getClassification = function (taxonKey) {
+    });
+    Taxon_defineProperty(_this, "getClassification", function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
-
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/classification").then(function (res) {
         _this.setState({
           classificationLoading: false,
           classification: res.data,
           classificationError: null
         });
-      }).catch(function (err) {
+      })["catch"](function (err) {
         _this.setState({
           classificationLoading: false,
           classificationError: err,
           classification: null
         });
       });
-    };
-
-    _this.getIncludes = function (taxonKey) {
+    });
+    Taxon_defineProperty(_this, "getIncludes", function (taxonKey) {
       var datasetKey = _this.props.catalogueKey;
-
-
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/nameusage/search?TAXON_ID=" + taxonKey + "&facet=rank&status=accepted&status=provisionally%20accepted&limit=0").then(function (res) {
         _this.setState({
           includesLoading: false,
           includes: lodash_default.a.get(res, "data.facets.rank") || []
         });
-      }).catch(function (err) {
+      })["catch"](function (err) {
         _this.setState({
           includesLoading: false,
           includes: []
         });
       });
-    };
-
-    _this.fetchSynonymAndRedirect = function (taxonKey) {
+    });
+    Taxon_defineProperty(_this, "fetchSynonymAndRedirect", function (taxonKey) {
       var _this$props2 = _this.props,
-          datasetKey = _this$props2.catalogueKey,
-          pathToTaxon = _this$props2.pathToTaxon;
-
-
+        datasetKey = _this$props2.catalogueKey,
+        pathToTaxon = _this$props2.pathToTaxon;
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/synonym/" + taxonKey).then(function (res) {
         window.location.href = "" + pathToTaxon + lodash_default.a.get(res, 'data.accepted.id');
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (lodash_default.a.get(err, "response.status") === 404) {
-          _this.setState({ status: 404 });
+          _this.setState({
+            status: 404
+          });
         }
       });
-    };
-
+    });
     if (_this.props.auth) {
       axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(_this.props.auth);
     }
@@ -105540,34 +104556,36 @@ var Taxon_TaxonPage = function (_React$Component) {
       rank: null,
       nomStatus: null,
       catalogue: null,
-      referenceIndexMap: {}
+      referenceIndexMap: {},
+      sourceDatasetKeyMap: null
     };
     return _this;
   }
-
-  TaxonPage.prototype.render = function render() {
-    var _props = this.props,
-        catalogueKey = _props.catalogueKey,
-        pathToTaxon = _props.pathToTaxon,
-        pathToSearch = _props.pathToSearch,
-        pathToDataset = _props.pathToDataset,
-        pathToTree = _props.pathToTree;
-    var _state = this.state,
-        taxon = _state.taxon,
-        info = _state.info,
-        classification = _state.classification,
-        sourceDataset = _state.sourceDataset,
-        includes = _state.includes,
-        rank = _state.rank,
-        nomStatus = _state.nomStatus,
-        taxonError = _state.taxonError,
-        synonymsError = _state.synonymsError,
-        classificationError = _state.classificationError,
-        infoError = _state.infoError,
-        status = _state.status,
-        catalogue = _state.catalogue,
-        referenceIndexMap = _state.referenceIndexMap;
-
+  Taxon_inheritsLoose(TaxonPage, _React$Component);
+  var _proto = TaxonPage.prototype;
+  _proto.render = function render() {
+    var _info$source, _info$source2, _info$source3, _info$source4, _info$source5, _this$state2, _info$source6, _info$source7;
+    var _this$props3 = this.props,
+      catalogueKey = _this$props3.catalogueKey,
+      pathToTaxon = _this$props3.pathToTaxon,
+      pathToSearch = _this$props3.pathToSearch,
+      pathToDataset = _this$props3.pathToDataset,
+      pathToTree = _this$props3.pathToTree;
+    var _this$state = this.state,
+      taxon = _this$state.taxon,
+      info = _this$state.info,
+      classification = _this$state.classification,
+      sourceDataset = _this$state.sourceDataset,
+      includes = _this$state.includes,
+      rank = _this$state.rank,
+      nomStatus = _this$state.nomStatus,
+      taxonError = _this$state.taxonError,
+      synonymsError = _this$state.synonymsError,
+      classificationError = _this$state.classificationError,
+      infoError = _this$state.infoError,
+      status = _this$state.status,
+      catalogue = _this$state.catalogue,
+      referenceIndexMap = _this$state.referenceIndexMap;
     var genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
     /*  const synonyms =
@@ -105582,267 +104600,253 @@ var Taxon_TaxonPage = function (_React$Component) {
     var heterotypic = lodash_default.a.get(info, 'synonyms.heterotypic', []);
     var misapplied = lodash_default.a.get(info, 'synonyms.misapplied', []);
     var synonyms = [].concat(homotypic.map(function (h) {
-      return Taxon_extends({}, h, { __homotypic: true });
+      return Taxon_extends({}, h, {
+        __homotypic: true
+      });
     }), heterotypic);
-    return status === 404 ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Page404, null) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-      null,
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        {
-          className: "catalogue-of-life",
-          style: {
-            padding: 24,
-            minHeight: 280,
-            margin: "16px 0",
-            fontSize: "12px"
-          }
-        },
-        taxonError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, { message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: taxonError }), type: "error" }),
-        taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_row,
-          null,
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: sourceDataset ? 18 : 23 },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h1", {
-              style: {
-                fontSize: "30px",
-                fontWeight: "400",
-                paddingLeft: "10px",
-                display: "inline-block",
-                textTransform: "none"
-              },
-              dangerouslySetInnerHTML: {
-                __html: taxon.labelHtml
-              }
-            })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: 1 },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" }),
-            taxon.provisional && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              tag,
-              { color: "red" },
-              "Provisional"
-            )
-          ),
-          sourceDataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: 5, style: { textAlign: "right" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
-              auth: this.props.auth,
-              style: {
-                maxWidth: "100%",
-                height: "auto",
-                marginRight: "8px"
-              },
-              catalogueKey: catalogueKey,
-              datasetKey: sourceDataset.key
-            })
-          )
-        ),
-        lodash_default.a.get(taxon, "id") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: lodash_default.a.get(this.props, "identifierLabel", "Identifier") },
-          lodash_default.a.get(taxon, "id"),
-          " ",
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "a",
-            { href: "https://www.checklistbank.org/dataset/" + catalogueKey + "/taxon/" + lodash_default.a.get(taxon, "id") },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null)
-          )
-        ),
-        lodash_default.a.get(taxon, "labelHtml") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Name" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
-            dangerouslySetInnerHTML: {
-              __html: taxon.labelHtml
-            }
-          })
-        ),
-        lodash_default.a.get(taxon, "name.publishedIn.citation") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Published in" },
-          lodash_default.a.get(taxon, "name.publishedIn.citation")
-        ),
-        lodash_default.a.get(taxon, "status") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Checklist status" },
-          lodash_default.a.get(taxon, "status") + " " + lodash_default.a.get(taxon, "name.rank")
-        ),
-        lodash_default.a.get(taxon, "name.nomStatus") && nomStatus && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Nomenclatural Status" },
-          nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoological")]
-        ),
-        lodash_default.a.get(taxon, "name.relations") && taxon.name.relations.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_NameRelations, {
-          md: Taxon_md,
-          style: { marginTop: "-3px" },
-          data: taxon.name.relations
-        }),
-        infoError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, { message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: infoError }), type: "error" }),
-        synonyms && synonyms.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Synonyms and Combinations" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
-            data: synonyms,
-            nomStatus: nomStatus,
-            references: lodash_default.a.get(info, "references"),
-            referenceIndexMap: referenceIndexMap,
-            style: { marginTop: "-3px" },
-            catalogueKey: catalogueKey
-          })
-        ),
-        misapplied && misapplied.length > 0 && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Misapplied names" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
-            data: misapplied,
-            references: lodash_default.a.get(info, "references"),
-            referenceIndexMap: referenceIndexMap,
-            style: { marginBottom: 16, marginTop: "-3px" },
-            catalogueKey: catalogueKey
-          })
-        ),
-        synonymsError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, { message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: synonymsError }), type: "error" }),
-        classificationError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: classificationError }),
-          type: "error"
-        }),
-        classification && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Classification" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Classification, {
-            style: { marginTop: "-3px", marginLeft: "-3px" },
-            data: classification,
-            taxon: taxon,
-            catalogueKey: catalogueKey,
-            pathToTaxon: pathToTaxon,
-            pathToTree: pathToTree
-          })
-        ),
-        (taxon && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) > -1 || lodash_default.a.get(taxon, "name.rank") === "unranked" && lodash_default.a.get(taxon, "name.scientificName") === "Biota") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_TaxonBreakdown, { taxon: taxon, datasetKey: catalogueKey, rank: rank, pathToTaxon: pathToTaxon, dataset: catalogue }),
-        includes.length > 1 && rank && taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Statistics" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Includes, {
-            style: { marginTop: "-3px", marginLeft: "-3px" },
-            data: includes,
-            rank: rank,
-            taxon: taxon,
-            pathToSearch: pathToSearch
-          })
-        ),
-        lodash_default.a.get(info, "vernacularNames") && taxon && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Vernacular names" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(VernacularNames, {
-            style: { marginTop: "-3px", marginLeft: "-3px" },
-            data: info.vernacularNames,
-            references: lodash_default.a.get(info, "references"),
-            datasetKey: taxon.datasetKey,
-            catalogueKey: catalogueKey
-          })
-        ),
-        lodash_default.a.get(info, "distributions") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Distributions" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Distributions, {
-            style: { marginTop: "-3px" },
-            data: info.distributions,
-            datasetKey: catalogueKey
-          })
-        ),
-        lodash_default.a.get(taxon, "environments") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Environment(s)" },
-          lodash_default.a.get(taxon, "environments").join(", ")
-        ),
-        lodash_default.a.get(taxon, "remarks") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Additional Data" },
-          taxon.remarks
-        ),
-        lodash_default.a.get(info, "references") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "References" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(References, {
-            referenceIndexMap: referenceIndexMap,
-            data: lodash_default.a.get(info, "references"),
-            style: { marginTop: "-3px" }
-          })
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_row,
-          null,
-          lodash_default.a.get(taxon, "accordingTo") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { span: 12 },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              components_PresentationItem,
-              { md: Taxon_md * 2, label: "According to" },
-              "" + lodash_default.a.get(taxon, "accordingTo"),
-              lodash_default.a.get(taxon, "accordingToDate") && ", " + moment_default()(lodash_default.a.get(taxon, "accordingToDate")).format("LL")
-            )
-          )
-        ),
-        lodash_default.a.get(taxon, "scrutinizer") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { span: 12 },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { md: Taxon_md * 2, label: "Taxonomic scrutiny" },
-            "" + lodash_default.a.get(taxon, "scrutinizer") + (lodash_default.a.get(taxon, "scrutinizerDate") ? ", " + lodash_default.a.get(taxon, "scrutinizerDate") : "")
-          )
-        ),
-        lodash_default.a.get(sourceDataset, "title") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Source dataset" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { display: "inline-block" } },
-            " ",
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              {
-                href: "" + pathToDataset + lodash_default.a.get(sourceDataset, "key"),
-                onClick: function onClick() {
-                  window.location = "" + pathToDataset + lodash_default.a.get(sourceDataset, "key");
-                }
-              },
-              lodash_default.a.get(sourceDataset, "alias") + ": " + lodash_default.a.get(sourceDataset, "title")
-            ),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "span",
-              { style: { marginLeft: "10px" } },
-              lodash_default.a.get(sourceDataset, "completeness") && lodash_default.a.get(sourceDataset, "completeness") + "%"
-            ),
-            lodash_default.a.get(sourceDataset, "confidence") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(rate, {
-              style: { marginLeft: "10px" },
-              value: lodash_default.a.get(sourceDataset, "confidence"),
-              disabled: true
-            })
-          )
-        ),
-        lodash_default.a.get(taxon, "link") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          components_PresentationItem,
-          { md: Taxon_md, label: "Link to original resource" },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "a",
-            { href: lodash_default.a.get(taxon, "link") },
-            lodash_default.a.get(taxon, "link")
-          )
-        )
-      )
-    );
+    return status === 404 ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Page404, null) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      className: "catalogue-of-life",
+      style: {
+        padding: 24,
+        minHeight: 280,
+        margin: "16px 0",
+        fontSize: "12px"
+      }
+    }, taxonError && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: taxonError
+      }),
+      type: "error"
+    }), taxon && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: sourceDataset ? 18 : 23
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h1", {
+      style: {
+        fontSize: "30px",
+        fontWeight: "400",
+        paddingLeft: "10px",
+        display: "inline-block",
+        textTransform: "none"
+      },
+      dangerouslySetInnerHTML: {
+        __html: taxon.labelHtml
+      }
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 1
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: ""
+    }), taxon.provisional && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tag, {
+      color: "red"
+    }, "Provisional")), sourceDataset && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 5,
+      style: {
+        textAlign: "right"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
+      auth: this.props.auth,
+      style: {
+        maxWidth: "100%",
+        height: "auto",
+        marginRight: "8px"
+      },
+      catalogueKey: catalogueKey,
+      datasetKey: sourceDataset.key
+    }))), lodash_default.a.get(taxon, "id") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: lodash_default.a.get(this.props, "identifierLabel", "Identifier")
+    }, lodash_default.a.get(taxon, "id"), " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "https://www.checklistbank.org/dataset/" + catalogueKey + "/taxon/" + lodash_default.a.get(taxon, "id")
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null))), lodash_default.a.get(taxon, "labelHtml") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Name"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      dangerouslySetInnerHTML: {
+        __html: taxon.labelHtml
+      }
+    })), lodash_default.a.get(taxon, "name.publishedIn.citation") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Published in"
+    }, lodash_default.a.get(taxon, "name.publishedIn.citation")), lodash_default.a.get(taxon, "status") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Checklist status"
+    }, lodash_default.a.get(taxon, "status") + " " + lodash_default.a.get(taxon, "name.rank")), lodash_default.a.get(taxon, "name.nomStatus") && nomStatus && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Nomenclatural Status"
+    }, nomStatus[lodash_default.a.get(taxon, "name.nomStatus")][(lodash_default.a.get(taxon, "name.code"), "zoological")]), infoError && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: infoError
+      }),
+      type: "error"
+    }), lodash_default.a.get(info, "synonyms") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Synonyms and combinations"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Synonyms, {
+      primarySource: sourceDataset,
+      data: lodash_default.a.get(info, "synonyms"),
+      references: lodash_default.a.get(info, "references"),
+      referenceIndexMap: referenceIndexMap,
+      style: {
+        marginTop: "-3px"
+      }
+      /*                     datasetKey={datasetKey}
+       */,
+      datasetKey: catalogueKey
+    })), lodash_default.a.get(info, "nameRelations") && info.nameRelations.filter(function (rel) {
+      return (rel === null || rel === void 0 ? void 0 : rel.usageId) === (taxon === null || taxon === void 0 ? void 0 : taxon.id);
+    }).length > 0 && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_NameRelations, {
+      md: Taxon_md,
+      style: {
+        marginTop: "-3px"
+      },
+      data: info.nameRelations.filter(function (rel) {
+        return (rel === null || rel === void 0 ? void 0 : rel.usageId) === (taxon === null || taxon === void 0 ? void 0 : taxon.id);
+      })
+    }), lodash_default.a.get(info, "nameRelations") && info.nameRelations.filter(function (rel) {
+      return (rel === null || rel === void 0 ? void 0 : rel.usageId) !== (taxon === null || taxon === void 0 ? void 0 : taxon.id);
+    }).length > 0 && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_NameRelations, {
+      md: Taxon_md,
+      reverse: true,
+      style: {
+        marginTop: "-3px"
+      },
+      data: info.nameRelations.filter(function (rel) {
+        return (rel === null || rel === void 0 ? void 0 : rel.usageId) !== (taxon === null || taxon === void 0 ? void 0 : taxon.id);
+      })
+    }), synonymsError && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: synonymsError
+      }),
+      type: "error"
+    }), classificationError && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: classificationError
+      }),
+      type: "error"
+    }), classification && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Classification"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Classification, {
+      style: {
+        marginTop: "-3px",
+        marginLeft: "-3px"
+      },
+      data: classification,
+      taxon: taxon,
+      catalogueKey: catalogueKey,
+      pathToTaxon: pathToTaxon,
+      pathToTree: pathToTree
+    })), (taxon && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(lodash_default.a.get(taxon, "name.rank")) > -1 || lodash_default.a.get(taxon, "name.rank") === "unranked" && lodash_default.a.get(taxon, "name.scientificName") === "Biota") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_TaxonBreakdown, {
+      taxon: taxon,
+      datasetKey: catalogueKey,
+      rank: rank,
+      pathToTaxon: pathToTaxon,
+      dataset: catalogue
+    }), includes.length > 1 && rank && taxon && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Statistics"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Includes, {
+      style: {
+        marginTop: "-3px",
+        marginLeft: "-3px"
+      },
+      data: includes,
+      rank: rank,
+      taxon: taxon,
+      pathToSearch: pathToSearch
+    })), lodash_default.a.get(info, "vernacularNames") && taxon && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Vernacular names"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(VernacularNames, {
+      style: {
+        marginTop: "-3px",
+        marginLeft: "-3px"
+      },
+      data: info.vernacularNames,
+      references: lodash_default.a.get(info, "references"),
+      datasetKey: taxon.datasetKey,
+      catalogueKey: catalogueKey
+    })), lodash_default.a.get(info, "distributions") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Distributions"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Distributions, {
+      style: {
+        marginTop: "-3px"
+      },
+      data: info.distributions,
+      datasetKey: catalogueKey
+    })), lodash_default.a.get(taxon, "environments") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Environment(s)"
+    }, lodash_default.a.get(taxon, "environments").join(", ")), lodash_default.a.get(taxon, "remarks") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Additional Data"
+    }, taxon.remarks), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, lodash_default.a.get(taxon, "accordingTo") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 12
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md * 2,
+      label: "According to"
+    }, "" + lodash_default.a.get(taxon, "accordingTo"), lodash_default.a.get(taxon, "accordingToDate") && ", " + moment_default()(lodash_default.a.get(taxon, "accordingToDate")).format("LL")))), lodash_default.a.get(taxon, "scrutinizer") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 12
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md * 2,
+      label: "Taxonomic scrutiny"
+    }, "" + lodash_default.a.get(taxon, "scrutinizer") + (lodash_default.a.get(taxon, "scrutinizerDate") ? ", " + lodash_default.a.get(taxon, "scrutinizerDate") : ""))), lodash_default.a.get(sourceDataset, "title") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Source"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      style: {
+        display: "inline-block"
+      }
+    }, (info === null || info === void 0 ? void 0 : info.source) && (info === null || info === void 0 ? void 0 : (_info$source = info.source) === null || _info$source === void 0 ? void 0 : _info$source.sourceId) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "https://www.checklistbank.org/dataset/" + (info === null || info === void 0 ? void 0 : (_info$source2 = info.source) === null || _info$source2 === void 0 ? void 0 : _info$source2.sourceDatasetKey) + "/taxon/" + (info === null || info === void 0 ? void 0 : (_info$source3 = info.source) === null || _info$source3 === void 0 ? void 0 : _info$source3.sourceId)
+    }, info === null || info === void 0 ? void 0 : (_info$source4 = info.source) === null || _info$source4 === void 0 ? void 0 : _info$source4.sourceId), " ", "in", " "), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "" + pathToDataset + lodash_default.a.get(sourceDataset, "key"),
+      onClick: function onClick() {
+        window.location = "" + pathToDataset + lodash_default.a.get(sourceDataset, "key");
+      }
+    }, lodash_default.a.get(sourceDataset, "alias") + ": " + lodash_default.a.get(sourceDataset, "title")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      style: {
+        marginLeft: "10px"
+      }
+    }, lodash_default.a.get(sourceDataset, "completeness") && lodash_default.a.get(sourceDataset, "completeness") + "%"), lodash_default.a.get(sourceDataset, "confidence") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(rate, {
+      style: {
+        marginLeft: "10px"
+      },
+      value: lodash_default.a.get(sourceDataset, "confidence"),
+      disabled: true
+    }))), lodash_default.a.get(taxon, "link") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Link to original resource"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: lodash_default.a.get(taxon, "link")
+    }, lodash_default.a.get(taxon, "link"))), (info === null || info === void 0 ? void 0 : (_info$source5 = info.source) === null || _info$source5 === void 0 ? void 0 : _info$source5.secondarySources) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Secondary Sources"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_SecondarySources, {
+      info: info,
+      catalogueKey: "283331"
+    })), ((_this$state2 = this.state) === null || _this$state2 === void 0 ? void 0 : _this$state2.sourceDatasetKeyMap) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "Synonym Sources"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Taxon_SourceDatasets, {
+      pathToDataset: pathToDataset,
+      datasetKey: this.props.datasetKey,
+      primarySourceDatasetKey: info === null || info === void 0 ? void 0 : (_info$source6 = info.source) === null || _info$source6 === void 0 ? void 0 : _info$source6.sourceDatasetKey,
+      sourceDatasetKeyMap: this.state.sourceDatasetKeyMap
+    })), lodash_default.a.get(info, "references") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      md: Taxon_md,
+      label: "References"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(References, {
+      pathToDataset: pathToDataset,
+      referenceIndexMap: referenceIndexMap,
+      primarySourceDatasetKey: info === null || info === void 0 ? void 0 : (_info$source7 = info.source) === null || _info$source7 === void 0 ? void 0 : _info$source7.sourceDatasetKey,
+      data: lodash_default.a.get(info, "references"),
+      style: {
+        marginTop: "-3px"
+      }
+    }))));
   };
-
   return TaxonPage;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Taxon = (Taxon_TaxonPage);
 // CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/UpOutlined.js
 // This icon file is generated automatically.
@@ -105865,7 +104869,7 @@ var icons_UpOutlined_UpOutlined = function UpOutlined(props, ref) {
 };
 
 icons_UpOutlined_UpOutlined.displayName = 'UpOutlined';
-/* harmony default export */ var icons_UpOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_UpOutlined_UpOutlined));
+/* harmony default export */ var icons_UpOutlined = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_UpOutlined_UpOutlined));
 // CONCATENATED MODULE: ./node_modules/@ant-design/icons-svg/es/asn/DownOutlined.js
 // This icon file is generated automatically.
 var DownOutlined_DownOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" } }] }, "name": "down", "theme": "outlined" };
@@ -105887,7 +104891,7 @@ var icons_DownOutlined_DownOutlined = function DownOutlined(props, ref) {
 };
 
 icons_DownOutlined_DownOutlined.displayName = 'DownOutlined';
-/* harmony default export */ var es_icons_DownOutlined = (external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_DownOutlined_DownOutlined));
+/* harmony default export */ var es_icons_DownOutlined = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_["forwardRef"](icons_DownOutlined_DownOutlined));
 // CONCATENATED MODULE: ./node_modules/rc-field-form/es/FieldContext.js
 
 
@@ -105935,14 +104939,14 @@ function typeUtil_toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
-var runtime_regenerator = __webpack_require__(64);
-var runtime_regenerator_default = /*#__PURE__*/__webpack_require__.n(runtime_regenerator);
+var regenerator = __webpack_require__(64);
+var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js
-var asyncToGenerator = __webpack_require__(96);
+var asyncToGenerator = __webpack_require__(95);
 
 // EXTERNAL MODULE: ./node_modules/async-validator/dist-web/index.js
-var dist_web = __webpack_require__(320);
+var dist_web = __webpack_require__(319);
 
 // CONCATENATED MODULE: ./node_modules/rc-util/es/utils/get.js
 function get_get(entity, path) {
@@ -105959,7 +104963,7 @@ function get_get(entity, path) {
   return current;
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/toArray.js
-var esm_toArray = __webpack_require__(112);
+var esm_toArray = __webpack_require__(111);
 
 // CONCATENATED MODULE: ./node_modules/rc-util/es/utils/set.js
 
@@ -106285,9 +105289,9 @@ function validateRule(_x, _x2, _x3, _x4, _x5) {
 
 
 function _validateRule() {
-  _validateRule = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/runtime_regenerator_default.a.mark(function _callee2(name, value, rule, options, messageVariables) {
+  _validateRule = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/regenerator_default.a.mark(function _callee2(name, value, rule, options, messageVariables) {
     var cloneRule, subRuleField, validator, messages, result, subResults;
-    return runtime_regenerator_default.a.wrap(function _callee2$(_context2) {
+    return regenerator_default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -106414,9 +105418,9 @@ function validateRules(namePath, value, rules, options, validateFirst, messageVa
   if (validateFirst === true) {
     // >>>>> Validate by serialization
     summaryPromise = new Promise( /*#__PURE__*/function () {
-      var _ref = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/runtime_regenerator_default.a.mark(function _callee(resolve, reject) {
+      var _ref = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/regenerator_default.a.mark(function _callee(resolve, reject) {
         var i, errors;
-        return runtime_regenerator_default.a.wrap(function _callee$(_context) {
+        return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -106489,8 +105493,8 @@ function finishOnAllFailed(_x8) {
 }
 
 function _finishOnAllFailed() {
-  _finishOnAllFailed = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/runtime_regenerator_default.a.mark(function _callee3(rulePromises) {
-    return runtime_regenerator_default.a.wrap(function _callee3$(_context3) {
+  _finishOnAllFailed = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/regenerator_default.a.mark(function _callee3(rulePromises) {
+    return regenerator_default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -106517,9 +105521,9 @@ function finishOnFirstFailed(_x9) {
 }
 
 function _finishOnFirstFailed() {
-  _finishOnFirstFailed = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/runtime_regenerator_default.a.mark(function _callee4(rulePromises) {
+  _finishOnFirstFailed = Object(asyncToGenerator["a" /* default */])( /*#__PURE__*/regenerator_default.a.mark(function _callee4(rulePromises) {
     var count;
-    return runtime_regenerator_default.a.wrap(function _callee4$(_context4) {
+    return regenerator_default.a.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -109233,127 +108237,102 @@ es_form_Form.create = function () {
 /* harmony default export */ var es_form = (es_form_Form);
 // CONCATENATED MODULE: ./src/Search/Classification.js
 
-
 var Classification_ranks = ["family", "superfamily", "order", "subclass", "class", "superclass", "subphylum", "phylum"];
 var navigateToTaxon = function navigateToTaxon(pathToTaxon, id) {
-    if (typeof pathToTaxon === "string") {
-        window.location.href = "" + pathToTaxon + id;
-    } else if (typeof pathToTaxon === "function") {
-        pathToTaxon(id);
-    }
+  if (typeof pathToTaxon === "string") {
+    window.location.href = "" + pathToTaxon + id;
+  } else if (typeof pathToTaxon === "function") {
+    pathToTaxon(id);
+  }
 };
 /* harmony default export */ var Search_Classification = (function (_ref) {
-    var classification = _ref.classification,
-        pathToTaxon = _ref.pathToTaxon,
-        _ref$maxParents = _ref.maxParents,
-        maxParents = _ref$maxParents === undefined ? classification.length : _ref$maxParents,
-        truncate = _ref.truncate;
-
-    var clazzification = classification.slice(Math.max(classification.length - maxParents));
-    if (truncate) {
-        var classificationRankMap = classification.reduce(function (acc, curr) {
-            return acc[curr.rank] = curr, acc;
-        }, {});
-
-        var kingdom = classificationRankMap["kingdom"];
-        var familyOrClosestAlternative = void 0;
-        for (var i = 0; i < Classification_ranks.length; i++) {
-            if (classificationRankMap[Classification_ranks[i]]) {
-                familyOrClosestAlternative = classificationRankMap[Classification_ranks[i]];
-                break;
-            }
-        }
-        if (kingdom && familyOrClosestAlternative) {
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-                null,
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    "a",
-                    { onClick: function onClick() {
-                            return navigateToTaxon(pathToTaxon, kingdom.id);
-                        } },
-                    kingdom.name
-                ),
-                familyOrClosestAlternative.rank === "phylum" ? " > " : " > ... > ",
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    "a",
-                    { onClick: function onClick() {
-                            return navigateToTaxon(pathToTaxon, familyOrClosestAlternative.id);
-                        } },
-                    familyOrClosestAlternative.name
-                )
-            );
-        } else if (kingdom) {
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "a",
-                { onClick: function onClick() {
-                        return navigateToTaxon(pathToTaxon, kingdom.id);
-                    } },
-                kingdom.name
-            );
-        } else {
-            return null;
-        }
-    } else {
-        return clazzification.map(function (t, key) {
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-                { key: key },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    "a",
-                    { onClick: function onClick() {
-                            return navigateToTaxon(pathToTaxon, t.id);
-                        } },
-                    t.name
-                ),
-                !Object.is(clazzification.length - 1, key) && " > "
-            );
-        });
+  var classification = _ref.classification,
+    pathToTaxon = _ref.pathToTaxon,
+    _ref$maxParents = _ref.maxParents,
+    maxParents = _ref$maxParents === void 0 ? classification.length : _ref$maxParents,
+    truncate = _ref.truncate;
+  var clazzification = classification.slice(Math.max(classification.length - maxParents));
+  if (truncate) {
+    var classificationRankMap = classification.reduce(function (acc, curr) {
+      return acc[curr.rank] = curr, acc;
+    }, {});
+    var kingdom = classificationRankMap["kingdom"];
+    var familyOrClosestAlternative;
+    for (var i = 0; i < Classification_ranks.length; i++) {
+      if (classificationRankMap[Classification_ranks[i]]) {
+        familyOrClosestAlternative = classificationRankMap[Classification_ranks[i]];
+        break;
+      }
     }
+    if (kingdom && familyOrClosestAlternative) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        onClick: function onClick() {
+          return navigateToTaxon(pathToTaxon, kingdom.id);
+        }
+      }, kingdom.name), familyOrClosestAlternative.rank === "phylum" ? " > " : " > ... > ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        onClick: function onClick() {
+          return navigateToTaxon(pathToTaxon, familyOrClosestAlternative.id);
+        }
+      }, familyOrClosestAlternative.name));
+    } else if (kingdom) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        onClick: function onClick() {
+          return navigateToTaxon(pathToTaxon, kingdom.id);
+        }
+      }, kingdom.name);
+    } else {
+      return null;
+    }
+  } else {
+    return clazzification.map(function (t, key) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, {
+        key: key
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        onClick: function onClick() {
+          return navigateToTaxon(pathToTaxon, t.id);
+        }
+      }, t.name), !Object.is(clazzification.length - 1, key) && " > ");
+    });
+  }
 });
 // CONCATENATED MODULE: ./src/Search/SearchBox.js
-function SearchBox_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function SearchBox_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function SearchBox_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function SearchBox_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; SearchBox_setPrototypeOf(subClass, superClass); }
+function SearchBox_setPrototypeOf(o, p) { SearchBox_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return SearchBox_setPrototypeOf(o, p); }
+function SearchBox_defineProperty(obj, key, value) { key = SearchBox_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function SearchBox_toPropertyKey(t) { var i = SearchBox_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function SearchBox_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
 // test
 var SearchBox_Search = es_input.Search;
-
-var SearchBox_SearchBox = function (_React$Component) {
-  SearchBox_inherits(SearchBox, _React$Component);
-
+var SearchBox_SearchBox = /*#__PURE__*/function (_React$Component) {
   function SearchBox(props) {
-    SearchBox_classCallCheck(this, SearchBox);
-
-    var _this = SearchBox_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    SearchBox_defineProperty(_this, "componentDidMount", function () {
       if (_this.props.defaultValue) {
-        _this.setState({ search: _this.props.defaultValue });
+        _this.setState({
+          search: _this.props.defaultValue
+        });
       }
-    };
-
-    _this.componentDidUpdate = function (prevProps) {
-
+    });
+    SearchBox_defineProperty(_this, "componentDidUpdate", function (prevProps) {
       if (prevProps.defaultValue !== _this.props.defaultValue) {
-        _this.setState({ search: _this.props.defaultValue });
+        _this.setState({
+          search: _this.props.defaultValue
+        });
       }
-    };
-
-    _this.resetSearch = function () {
-      _this.setState({ search: "" }, function () {
+    });
+    SearchBox_defineProperty(_this, "resetSearch", function () {
+      _this.setState({
+        search: ""
+      }, function () {
         _this.props.onSearch(_this.state.search);
       });
-    };
-
-    _this.render = function () {
-
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SearchBox_Search, {
+    });
+    SearchBox_defineProperty(_this, "render", function () {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SearchBox_Search, {
         style: _this.props.style || null,
         placeholder: "input search text",
         value: _this.state.search,
@@ -109361,80 +108340,76 @@ var SearchBox_SearchBox = function (_React$Component) {
           return _this.props.onSearch(_this.state.search);
         },
         onChange: function onChange(event) {
-          return _this.setState({ search: event.target.value });
+          return _this.setState({
+            search: event.target.value
+          });
         },
         addonAfter: _this.props.addonAfter,
         allowClear: true,
         autoFocus: true
       });
-    };
-
+    });
     _this.state = {
       search: ""
     };
     return _this;
   }
-
+  SearchBox_inheritsLoose(SearchBox, _React$Component);
   return SearchBox;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Search_SearchBox = (SearchBox_SearchBox);
 // CONCATENATED MODULE: ./src/Search/MultiValueFilter.js
-var MultiValueFilter_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function MultiValueFilter_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function MultiValueFilter_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function MultiValueFilter_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
+function MultiValueFilter_extends() { MultiValueFilter_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return MultiValueFilter_extends.apply(this, arguments); }
+function MultiValueFilter_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; MultiValueFilter_setPrototypeOf(subClass, superClass); }
+function MultiValueFilter_setPrototypeOf(o, p) { MultiValueFilter_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return MultiValueFilter_setPrototypeOf(o, p); }
+function MultiValueFilter_defineProperty(obj, key, value) { key = MultiValueFilter_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function MultiValueFilter_toPropertyKey(t) { var i = MultiValueFilter_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function MultiValueFilter_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
 var MultiValueFilter_FormItem = es_form.Item;
-
 var MultiValueFilter_Option = es_select.Option;
-
 var formItemLayout = {
   labelCol: {
-    xs: { span: 8 },
-    sm: { span: 8 }
+    xs: {
+      span: 8
+    },
+    sm: {
+      span: 8
+    }
   },
   wrapperCol: {
-    xs: { span: 16 },
-    sm: { span: 16 }
+    xs: {
+      span: 16
+    },
+    sm: {
+      span: 16
+    }
   }
 };
-
-var MultiValueFilter_MultiValueFilter = function (_React$Component) {
-  MultiValueFilter_inherits(MultiValueFilter, _React$Component);
-
+var MultiValueFilter_MultiValueFilter = /*#__PURE__*/function (_React$Component) {
   function MultiValueFilter(props) {
-    MultiValueFilter_classCallCheck(this, MultiValueFilter);
-
-    var _this = MultiValueFilter_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.handleChange = function (selected) {
-
-      _this.setState({ selected: selected }, function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    MultiValueFilter_defineProperty(_this, "handleChange", function (selected) {
+      _this.setState({
+        selected: selected
+      }, function () {
         _this.props.onChange(selected);
       });
-    };
-
-    _this.render = function () {
+    });
+    MultiValueFilter_defineProperty(_this, "render", function () {
       var _this$props = _this.props,
-          defaultValue = _this$props.defaultValue,
-          label = _this$props.label,
-          vocab = _this$props.vocab;
+        defaultValue = _this$props.defaultValue,
+        label = _this$props.label,
+        vocab = _this$props.vocab;
       var randomID = _this.state.randomID;
       //const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
-
       var vocabKeys = new Set([].concat(vocab.map(function (i) {
         return i.value;
       })));
-      var val = void 0;
+      var val;
       if (defaultValue && lodash_default.a.isArray(defaultValue)) {
         val = defaultValue.filter(function (v) {
           return vocabKeys.has(v);
@@ -109444,127 +108419,94 @@ var MultiValueFilter_MultiValueFilter = function (_React$Component) {
           return vocabKeys.has(v);
         });
       }
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        MultiValueFilter_FormItem,
-        MultiValueFilter_extends({}, formItemLayout, {
-          label: label,
-          style: { marginBottom: '8px', width: "100%" }
-        }),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "div",
-          { id: lodash_default.a.snakeCase(label) + "_" + randomID },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_select,
-            {
-              showSearch: true
-              // style={{ width: "100%" }}
-              , mode: "multiple",
-              placeholder: "Please select",
-              value: val,
-              onChange: _this.handleChange,
-              getPopupContainer: function getPopupContainer() {
-                return document.getElementById(lodash_default.a.snakeCase(label) + "_" + randomID);
-              }
-            },
-            vocab.map(function (i) {
-              return typeof i === 'string' ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                MultiValueFilter_Option,
-                { key: i, value: i },
-                lodash_default.a.startCase(i)
-              ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                MultiValueFilter_Option,
-                { key: i.value, value: i.value },
-                i.label
-              );
-            })
-          )
-        )
-      );
-    };
-
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MultiValueFilter_FormItem, MultiValueFilter_extends({}, formItemLayout, {
+        label: label,
+        style: {
+          marginBottom: '8px',
+          width: "100%"
+        }
+      }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        id: lodash_default.a.snakeCase(label) + "_" + randomID
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_select, {
+        showSearch: true
+        // style={{ width: "100%" }}
+        ,
+        mode: "multiple",
+        placeholder: "Please select",
+        value: val,
+        onChange: _this.handleChange,
+        getPopupContainer: function getPopupContainer() {
+          return document.getElementById(lodash_default.a.snakeCase(label) + "_" + randomID);
+        }
+      }, vocab.map(function (i) {
+        return typeof i === 'string' ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MultiValueFilter_Option, {
+          key: i,
+          value: i
+        }, lodash_default.a.startCase(i)) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MultiValueFilter_Option, {
+          key: i.value,
+          value: i.value
+        }, i.label);
+      }))));
+    });
     _this.state = {
       selected: _this.props.selected,
       randomID: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1)
     };
     return _this;
   }
-
+  MultiValueFilter_inheritsLoose(MultiValueFilter, _React$Component);
   return MultiValueFilter;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Search_MultiValueFilter = (MultiValueFilter_MultiValueFilter);
 // CONCATENATED MODULE: ./src/Search/RowDetail.js
 
 
 
 
-
 var RowDetail_RowDetail = function RowDetail(_ref) {
   var issues = _ref.issues,
-      usage = _ref.usage,
-      classification = _ref.classification,
-      issueMap = _ref.issueMap,
-      pathToTaxon = _ref.pathToTaxon;
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-    null,
-    lodash_default.a.get(usage, "id") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      es_row,
-      { style: { marginBottom: "10px" } },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_col,
-        {
-          span: 3,
-          style: {
-            textAlign: "right",
-            paddingRight: "16px",
-            fontWeight: "bold"
-          }
-        },
-        "ID:"
-      ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_col,
-        { span: 18 },
-        lodash_default.a.get(usage, "id")
-      )
-    ),
-    classification && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      es_row,
-      { style: { marginBottom: "10px" } },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_col,
-        {
-          span: 3,
-          style: {
-            textAlign: "right",
-            paddingRight: "16px",
-            fontWeight: "bold"
-          }
-        },
-        "Classification:"
-      ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_col,
-        { span: 18 },
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_Classification, {
-          classification: lodash_default.a.initial(classification),
-          pathToTaxon: pathToTaxon
-        })
-      )
-    )
-  );
+    usage = _ref.usage,
+    classification = _ref.classification,
+    issueMap = _ref.issueMap,
+    pathToTaxon = _ref.pathToTaxon;
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, lodash_default.a.get(usage, "id") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    span: 3,
+    style: {
+      textAlign: "right",
+      paddingRight: "16px",
+      fontWeight: "bold"
+    }
+  }, "ID:"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    span: 18
+  }, lodash_default.a.get(usage, "id"))), classification && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+    style: {
+      marginBottom: "10px"
+    }
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    span: 3,
+    style: {
+      textAlign: "right",
+      paddingRight: "16px",
+      fontWeight: "bold"
+    }
+  }, "Classification:"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+    span: 18
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_Classification, {
+    classification: lodash_default.a.initial(classification),
+    pathToTaxon: pathToTaxon
+  }))));
 };
-
 /* harmony default export */ var Search_RowDetail = (RowDetail_RowDetail);
 // CONCATENATED MODULE: ./src/components/DatasetAutocomplete.js
-function DatasetAutocomplete_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function DatasetAutocomplete_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function DatasetAutocomplete_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function DatasetAutocomplete_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; DatasetAutocomplete_setPrototypeOf(subClass, superClass); }
+function DatasetAutocomplete_setPrototypeOf(o, p) { DatasetAutocomplete_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return DatasetAutocomplete_setPrototypeOf(o, p); }
+function DatasetAutocomplete_defineProperty(obj, key, value) { key = DatasetAutocomplete_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function DatasetAutocomplete_toPropertyKey(t) { var i = DatasetAutocomplete_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function DatasetAutocomplete_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -109574,140 +108516,138 @@ function DatasetAutocomplete_inherits(subClass, superClass) { if (typeof superCl
 
 
 var DatasetAutocomplete_Option = auto_complete.Option;
+var DatasetAutocomplete_DatasetAutocomplete = /*#__PURE__*/function (_React$Component) {
+  function DatasetAutocomplete(props) {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    DatasetAutocomplete_defineProperty(_this, "componentDidMount", function () {
+      var defaultDatasetKey = _this.props.defaultDatasetKey;
+      if (defaultDatasetKey) {
+        _this.setDefaultValue(defaultDatasetKey);
+      }
+    });
+    DatasetAutocomplete_defineProperty(_this, "componentDidUpdate", function (prevProps) {
+      var defaultDatasetKey = _this.props.defaultDatasetKey;
+      if (defaultDatasetKey && defaultDatasetKey !== prevProps.defaultDatasetKey) {
+        _this.setDefaultValue(defaultDatasetKey);
+      } else if (prevProps.defaultDatasetKey && !defaultDatasetKey) {
+        _this.setState({
+          value: ''
+        });
+      }
+    });
+    DatasetAutocomplete_defineProperty(_this, "setDefaultValue", function (defaultDatasetKey) {
+      axios_default()(src_config.dataApi + "dataset/" + defaultDatasetKey).then(function (res) {
+        _this.setState({
+          value: lodash_default.a.get(res, 'data.title') || ''
+        });
+        _this.props.onSelectDataset(res.data);
+      });
+    });
+    DatasetAutocomplete_defineProperty(_this, "getDatasets", function (q) {
+      var contributesTo = _this.props.contributesTo;
+      axios_default()(src_config.dataApi + "dataset?q=" + q + "&limit=30" + (contributesTo ? '&contributesTo=' + contributesTo : '')).then(function (res) {
+        _this.setState({
+          datasets: res.data.result
+        });
+      })["catch"](function (err) {
+        _this.setState({
+          datasets: [],
+          err: err
+        });
+      });
+    });
+    DatasetAutocomplete_defineProperty(_this, "onSelectDataset", function (val, obj) {
+      _this.setState({
+        value: val
+      });
+      _this.props.onSelectDataset({
+        key: obj.key,
+        title: val
+      });
+    });
+    DatasetAutocomplete_defineProperty(_this, "onReset", function () {
+      _this.setState({
+        value: "",
+        names: []
+      }, _this.props.onResetSearch);
+    });
+    DatasetAutocomplete_defineProperty(_this, "render", function () {
+      var _this$state = _this.state,
+        value = _this$state.value,
+        randomID = _this$state.randomID;
+      var style = _this.props.style;
+      // const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
 
-var DatasetAutocomplete_DatasetAutocomplete = function (_React$Component) {
-    DatasetAutocomplete_inherits(DatasetAutocomplete, _React$Component);
-
-    function DatasetAutocomplete(props) {
-        DatasetAutocomplete_classCallCheck(this, DatasetAutocomplete);
-
-        var _this = DatasetAutocomplete_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-        _this.componentDidMount = function () {
-            var defaultDatasetKey = _this.props.defaultDatasetKey;
-
-            if (defaultDatasetKey) {
-                _this.setDefaultValue(defaultDatasetKey);
-            }
+      var options = _this.state.datasets ? _this.state.datasets.map(function (o) {
+        var text = (o.alias || o.title) + " [" + o.key + "]";
+        return {
+          key: o.key,
+          value: text,
+          label: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(main_default.a, {
+            highlightStyle: {
+              fontWeight: "bold",
+              padding: 0
+            },
+            searchWords: value.split(" "),
+            autoEscape: true,
+            textToHighlight: text
+          }),
+          data: o
         };
-
-        _this.componentDidUpdate = function (prevProps) {
-            var defaultDatasetKey = _this.props.defaultDatasetKey;
-
-            if (defaultDatasetKey && defaultDatasetKey !== prevProps.defaultDatasetKey) {
-                _this.setDefaultValue(defaultDatasetKey);
-            } else if (prevProps.defaultDatasetKey && !defaultDatasetKey) {
-                _this.setState({ value: '' });
-            }
-        };
-
-        _this.setDefaultValue = function (defaultDatasetKey) {
-            axios_default()(src_config.dataApi + 'dataset/' + defaultDatasetKey).then(function (res) {
-                _this.setState({ value: lodash_default.a.get(res, 'data.title') || '' });
-                _this.props.onSelectDataset(res.data);
-            });
-        };
-
-        _this.getDatasets = function (q) {
-            var contributesTo = _this.props.contributesTo;
-
-            axios_default()(src_config.dataApi + 'dataset?q=' + q + '&limit=30' + (contributesTo ? '&contributesTo=' + contributesTo : '')).then(function (res) {
-                _this.setState({ datasets: res.data.result });
-            }).catch(function (err) {
-                _this.setState({ datasets: [], err: err });
-            });
-        };
-
-        _this.onSelectDataset = function (val, obj) {
-            _this.setState({ value: val });
-            _this.props.onSelectDataset({ key: obj.key, title: val });
-        };
-
-        _this.onReset = function () {
-            _this.setState({ value: "", names: [] }, _this.props.onResetSearch);
-        };
-
-        _this.render = function () {
-            var _this$state = _this.state,
-                value = _this$state.value,
-                randomID = _this$state.randomID;
-            var style = _this.props.style;
-            // const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
-
-
-            var options = _this.state.datasets ? _this.state.datasets.map(function (o) {
-                var text = (o.alias || o.title) + ' [' + o.key + ']';
-                return {
-                    key: o.key,
-                    value: text,
-                    label: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(main_default.a, {
-                        highlightStyle: { fontWeight: "bold", padding: 0 },
-                        searchWords: value.split(" "),
-                        autoEscape: true,
-                        textToHighlight: text
-                    }),
-                    data: o
-                };
-            }) : [];
-
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                'div',
-                { id: 'dataset_autocomplete_' + randomID },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    auto_complete,
-                    {
-                        onSelect: _this.onSelectDataset,
-                        onSearch: function onSearch(q) {
-                            return !!q ? _this.getDatasets(q) : _this.onReset();
-                        },
-                        options: options,
-                        placeholder: _this.props.placeHolder || "Find dataset",
-                        style: style ? style : { width: '100%' },
-                        onChange: function onChange(value) {
-                            return _this.setState({ value: value });
-                        },
-                        value: value,
-                        optionLabelProp: 'value',
-                        getPopupContainer: function getPopupContainer() {
-                            return document.getElementById('dataset_autocomplete_' + randomID);
-                        }
-                    },
-                    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, { allowClear: true })
-                )
-            );
-        };
-
-        _this.getDatasets = Object(lodash["debounce"])(_this.getDatasets, 500);
-
-        _this.state = {
-            datasets: [],
-            value: '',
-            randomID: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1)
-        };
-        return _this;
-    }
-
-    DatasetAutocomplete.prototype.componentWillUnmount = function componentWillUnmount() {
-        this.getDatasets.cancel();
+      }) : [];
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        id: "dataset_autocomplete_" + randomID
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(auto_complete, {
+        onSelect: _this.onSelectDataset,
+        onSearch: function onSearch(q) {
+          return !!q ? _this.getDatasets(q) : _this.onReset();
+        },
+        options: options,
+        placeholder: _this.props.placeHolder || "Find dataset",
+        style: style ? style : {
+          width: '100%'
+        },
+        onChange: function onChange(value) {
+          return _this.setState({
+            value: value
+          });
+        },
+        value: value,
+        optionLabelProp: "value",
+        getPopupContainer: function getPopupContainer() {
+          return document.getElementById("dataset_autocomplete_" + randomID);
+        }
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_input.Search, {
+        allowClear: true
+      })));
+    });
+    _this.getDatasets = Object(lodash["debounce"])(_this.getDatasets, 500);
+    _this.state = {
+      datasets: [],
+      value: '',
+      randomID: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 100) + 1)
     };
-
-    return DatasetAutocomplete;
+    return _this;
+  }
+  DatasetAutocomplete_inheritsLoose(DatasetAutocomplete, _React$Component);
+  var _proto = DatasetAutocomplete.prototype;
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.getDatasets.cancel();
+  };
+  return DatasetAutocomplete;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var components_DatasetAutocomplete = (DatasetAutocomplete_DatasetAutocomplete);
 // CONCATENATED MODULE: ./src/Search/NameSearch.js
-
-
-var NameSearch_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function NameSearch_asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-function NameSearch_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function NameSearch_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function NameSearch_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function NameSearch_extends() { NameSearch_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return NameSearch_extends.apply(this, arguments); }
+function NameSearch_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ NameSearch_regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function NameSearch_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function NameSearch_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { NameSearch_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { NameSearch_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function NameSearch_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; NameSearch_setPrototypeOf(subClass, superClass); }
+function NameSearch_setPrototypeOf(o, p) { NameSearch_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return NameSearch_setPrototypeOf(o, p); }
+function NameSearch_defineProperty(obj, key, value) { key = NameSearch_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function NameSearch_toPropertyKey(t) { var i = NameSearch_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function NameSearch_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -109730,15 +108670,17 @@ var NameSearch_FormItem = es_form.Item;
 var NameSearch_RadioGroup = es_radio.Group;
 var FACET_VOCAB = ["rank", "issue", "status", "nomStatus", "nameType", "field", "authorship",
 //  "authorshipYear",
-"extinct", "environment"];
+"extinct", "environment"
+// "origin", 
+];
 var PAGE_SIZE = 50;
 var defaultParams = {
   limit: 50,
   offset: 0,
-  facet: FACET_VOCAB, //["rank", "issue", "status", "nomStatus", "nameType", "field"],
+  facet: FACET_VOCAB,
+  //["rank", "issue", "status", "nomStatus", "nameType", "field"],
   sortBy: "taxonomic"
 };
-
 var NameSearch_getColumns = function getColumns(pathToTaxon) {
   return [{
     title: "Scientific Name",
@@ -109746,7 +108688,7 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     key: "scientificName",
     render: function render(text, record) {
       var id = lodash_default.a.get(record, "usage.accepted.id") || lodash_default.a.get(record, "usage.id");
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
         href: typeof pathToTaxon === "string" ? "" + pathToTaxon + id : "#",
         onClick: function onClick(e) {
           if (typeof pathToTaxon === "string") {
@@ -109756,7 +108698,9 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
             pathToTaxon(id);
           }
         },
-        dangerouslySetInnerHTML: { __html: text }
+        dangerouslySetInnerHTML: {
+          __html: text
+        }
       });
     },
     width: 200,
@@ -109767,18 +108711,13 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     key: "status",
     width: 200,
     render: function render(text, record) {
-      return !["synonym", "ambiguous synonym", "misapplied"].includes(text) ? text : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-        { key: lodash_default.a.get(record, "usage.id") },
-        text,
-        " ",
-        text === "misapplied" ? "to " : "of ",
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
-          dangerouslySetInnerHTML: {
-            __html: lodash_default.a.get(record, "usage.accepted.labelHtml")
-          }
-        })
-      );
+      return !["synonym", "ambiguous synonym", "misapplied"].includes(text) ? text : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, {
+        key: lodash_default.a.get(record, "usage.id")
+      }, text, " ", text === "misapplied" ? "to " : "of ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+        dangerouslySetInnerHTML: {
+          __html: lodash_default.a.get(record, "usage.accepted.labelHtml")
+        }
+      }));
     }
   }, {
     title: "Rank",
@@ -109792,7 +108731,7 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     key: "parents",
     width: 180,
     render: function render(text, record) {
-      return !lodash_default.a.get(record, "classification") ? "" : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_Classification, {
+      return !lodash_default.a.get(record, "classification") ? "" : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_Classification, {
         key: lodash_default.a.get(record, "usage.id"),
         classification: lodash_default.a.initial(record.classification),
         truncate: true,
@@ -109802,69 +108741,55 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     }
   }];
 };
-
-var NameSearch_NameSearchPage = function (_React$Component) {
-  NameSearch_inherits(NameSearchPage, _React$Component);
-
+var NameSearch_NameSearchPage = /*#__PURE__*/function (_React$Component) {
   function NameSearchPage(props) {
-    var _this2 = this;
-
-    NameSearch_classCallCheck(this, NameSearchPage);
-
-    var _this = NameSearch_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = NameSearch_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-      var _this$props, catalogueKey, citation, _ref2, dataset;
-
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _this.parseParamsAndGetData();
-              _this$props = _this.props, catalogueKey = _this$props.catalogueKey, citation = _this$props.citation;
-              _context.prev = 2;
-              _context.next = 5;
-              return dataset_getDataset(catalogueKey);
-
-            case 5:
-              _ref2 = _context.sent;
-              dataset = _ref2.data;
-
-              _this.setState({ dataset: dataset });
-              _context.next = 12;
-              break;
-
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](2);
-
-            case 12:
-            case "end":
-              return _context.stop();
-          }
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    NameSearch_defineProperty(_this, "componentDidMount", /*#__PURE__*/NameSearch_asyncToGenerator( /*#__PURE__*/NameSearch_regeneratorRuntime().mark(function _callee() {
+      var _this$props, catalogueKey, citation, _yield$getDataset, dataset;
+      return NameSearch_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _this.parseParamsAndGetData();
+            _this$props = _this.props, catalogueKey = _this$props.catalogueKey, citation = _this$props.citation;
+            _context.prev = 2;
+            _context.next = 5;
+            return dataset_getDataset(catalogueKey);
+          case 5:
+            _yield$getDataset = _context.sent;
+            dataset = _yield$getDataset.data;
+            _this.setState({
+              dataset: dataset
+            });
+            _context.next = 12;
+            break;
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](2);
+          case 12:
+          case "end":
+            return _context.stop();
         }
-      }, _callee, _this2, [[2, 10]]);
-    }));
-
-    _this.componentDidUpdate = function (prevProps) {
+      }, _callee, null, [[2, 10]]);
+    })));
+    NameSearch_defineProperty(_this, "componentDidUpdate", function (prevProps) {
       var params = query_string_default.a.parse(lodash_default.a.get(_this.props, "location.search"));
       var prevParams = query_string_default.a.parse(lodash_default.a.get(prevProps, "location.search"));
       if (!lodash_default.a.isEqual(params, prevParams)) {
         _this.parseParamsAndGetData();
       }
-    };
-
-    _this.getRank = function () {
+    });
+    NameSearch_defineProperty(_this, "getRank", function () {
       axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
-        return _this.setState({ rank: res.data.map(function (r) {
+        return _this.setState({
+          rank: res.data.map(function (r) {
             return r.name;
-          }) });
+          })
+        });
       });
-    };
-
-    _this.parseParamsAndGetData = function () {
+    });
+    NameSearch_defineProperty(_this, "parseParamsAndGetData", function () {
       var defaultTaxonKey = _this.props.defaultTaxonKey;
-
       var params = query_string_default.a.parse(lodash_default.a.get(_this.props, "location.search"));
       if (defaultTaxonKey && !params.TAXON_ID) {
         params.TAXON_ID = defaultTaxonKey;
@@ -109875,7 +108800,6 @@ var NameSearch_NameSearchPage = function (_React$Component) {
       } else if (!params.facet) {
         params.facet = FACET_VOCAB;
       }
-
       if (!params.limit) {
         params.limit = PAGE_SIZE;
       }
@@ -109891,9 +108815,8 @@ var NameSearch_NameSearchPage = function (_React$Component) {
           pageSizeOptions: [50, 100, 500, 1000]
         }
       }, _this.getData);
-    };
-
-    _this.pushParams = function (params) {
+    });
+    NameSearch_defineProperty(_this, "pushParams", function (params) {
       if (!params.q) {
         delete params.q;
       }
@@ -109901,33 +108824,35 @@ var NameSearch_NameSearchPage = function (_React$Component) {
         pathname: lodash_default.a.get(_this.props, "location.path"),
         search: "?" + query_string_default.a.stringify(params)
       });
-    };
-
-    _this.getData = function () {
+    });
+    NameSearch_defineProperty(_this, "getData", function () {
       var params = _this.state.params;
-
-      _this.setState({ loading: true });
+      _this.setState({
+        loading: true
+      });
       var catalogueKey = _this.props.catalogueKey;
-
-
       var url = src_config.dataApi + "dataset/" + catalogueKey + "/nameusage/search";
-      var params_ = lodash_default.a.get(params, "status") ? params : NameSearch_extends({}, params, { status: "_NOT_NULL" });
+      var params_ = lodash_default.a.get(params, "status") ? params : NameSearch_extends({}, params, {
+        status: "_NOT_NULL"
+      });
       axios_default()(url + "?" + query_string_default.a.stringify(params_)).then(function (res) {
         var pagination = NameSearch_extends({}, _this.state.pagination);
         pagination.total = res.data.total;
-
         _this.setState({
           loading: false,
           data: res.data,
           err: null,
           pagination: pagination
         });
-      }).catch(function (err) {
-        _this.setState({ loading: false, error: err, data: [] });
+      })["catch"](function (err) {
+        _this.setState({
+          loading: false,
+          error: err,
+          data: []
+        });
       });
-    };
-
-    _this.handleTableChange = function (pagination, filters, sorter) {
+    });
+    NameSearch_defineProperty(_this, "handleTableChange", function (pagination, filters, sorter) {
       var query = lodash_default.a.merge(_this.state.params, NameSearch_extends({
         limit: pagination.pageSize,
         offset: (pagination.current - 1) * pagination.pageSize
@@ -109946,36 +108871,41 @@ var NameSearch_NameSearchPage = function (_React$Component) {
       } else {
         query.reverse = false;
       }
-      _this.setState({ params: query }, function () {
+      _this.setState({
+        params: query
+      }, function () {
         return _this.pushParams(query);
       });
-    };
-
-    _this.updateSearch = function (params) {
-      var newParams = NameSearch_extends({}, _this.state.params, { offset: 0, limit: 50 });
+    });
+    NameSearch_defineProperty(_this, "updateSearch", function (params) {
+      var newParams = NameSearch_extends({}, _this.state.params, {
+        offset: 0,
+        limit: 50
+      });
       lodash_default.a.forEach(params, function (v, k) {
         newParams[k] = v;
       });
       var notNullParams = Object.keys(newParams).reduce(function (acc, cur) {
         return newParams[cur] !== null && (acc[cur] = newParams[cur]), acc;
       }, {});
-      _this.setState({ params: notNullParams }, function () {
+      _this.setState({
+        params: notNullParams
+      }, function () {
         return _this.pushParams(notNullParams);
       });
-    };
-
-    _this.resetSearch = function () {
+    });
+    NameSearch_defineProperty(_this, "resetSearch", function () {
       _this.setState({
         params: defaultParams
       }, function () {
         return _this.pushParams(defaultParams);
       });
-    };
-
-    _this.toggleAdvancedFilters = function () {
-      _this.setState({ advancedFilters: !_this.state.advancedFilters });
-    };
-
+    });
+    NameSearch_defineProperty(_this, "toggleAdvancedFilters", function () {
+      _this.setState({
+        advancedFilters: !_this.state.advancedFilters
+      });
+    });
     _this.state = {
       data: [],
       advancedFilters: false,
@@ -109992,26 +108922,25 @@ var NameSearch_NameSearchPage = function (_React$Component) {
     };
     return _this;
   }
-
-  NameSearchPage.prototype.render = function render() {
-    var _this3 = this;
-
-    var _state = this.state,
-        _state$data = _state.data,
-        result = _state$data.result,
-        facets = _state$data.facets,
-        loading = _state.loading,
-        error = _state.error,
-        params = _state.params,
-        pagination = _state.pagination,
-        advancedFilters = _state.advancedFilters,
-        dataset = _state.dataset;
-    var _props = this.props,
-        pathToTaxon = _props.pathToTaxon,
-        catalogueKey = _props.catalogueKey,
-        defaultTaxonKey = _props.defaultTaxonKey,
-        citation = _props.citation;
-
+  NameSearch_inheritsLoose(NameSearchPage, _React$Component);
+  var _proto = NameSearchPage.prototype;
+  _proto.render = function render() {
+    var _this2 = this;
+    var _this$state = this.state,
+      _this$state$data = _this$state.data,
+      result = _this$state$data.result,
+      facets = _this$state$data.facets,
+      loading = _this$state.loading,
+      error = _this$state.error,
+      params = _this$state.params,
+      pagination = _this$state.pagination,
+      advancedFilters = _this$state.advancedFilters,
+      dataset = _this$state.dataset;
+    var _this$props2 = this.props,
+      pathToTaxon = _this$props2.pathToTaxon,
+      catalogueKey = _this$props2.catalogueKey,
+      defaultTaxonKey = _this$props2.defaultTaxonKey,
+      citation = _this$props2.citation;
     var facetRanks = lodash_default.a.get(facets, "rank") ? facets.rank.map(function (r) {
       return {
         value: r.value,
@@ -110079,248 +109008,256 @@ var NameSearch_NameSearchPage = function (_React$Component) {
             }))
           : [];  */
 
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      {
-        className: "catalogue-of-life",
-        style: {
-          padding: 24,
-          minHeight: 280,
-          margin: "16px 0"
-        }
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      className: "catalogue-of-life",
+      style: {
+        padding: 24,
+        minHeight: 280,
+        margin: "16px 0"
+      }
+    }, citation === "top" && dataset && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, {
+      dataset: dataset
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, error && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      style: {
+        marginBottom: "10px"
       },
-      citation === "top" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset }),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_row,
-        null,
-        error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-          style: { marginBottom: "10px" },
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: error }),
-          type: "error"
-        })
-      ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_row,
-        null,
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { xs: 24, sm: 24, md: 12, style: { marginBottom: "8px" } },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
-            defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
-            onSearch: function onSearch(value) {
-              return _this3.updateSearch({ q: value });
-            },
-            onResetSearch: function onResetSearch(value) {
-              return _this3.updateSearch({ q: null });
-            },
-            style: { marginBottom: "8px", width: "100%" }
-          }),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
-            datasetKey: catalogueKey,
-            minRank: "GENUS",
-            defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || defaultTaxonKey || null,
-            onSelectName: function onSelectName(value) {
-              _this3.updateSearch({ TAXON_ID: value.key });
-            },
-            onResetSearch: function onResetSearch(value) {
-              _this3.updateSearch({ TAXON_ID: null });
-            },
-            placeHolder: "Search by higher taxon",
-            sortBy: "TAXONOMIC",
-            autoFocus: false
-          }),
-          dataset && (dataset.origin === "managed" || dataset.origin === "released") && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { marginTop: "8px", marginBottom: "8px" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetAutocomplete, {
-              contributesTo: Number(catalogueKey),
-              onSelectDataset: function onSelectDataset(value) {
-                _this3.updateSearch({ SECTOR_DATASET_KEY: value.key });
-              },
-              defaultDatasetKey: lodash_default.a.get(params, "SECTOR_DATASET_KEY") || null,
-              onResetSearch: function onResetSearch(value) {
-                _this3.updateSearch({ SECTOR_DATASET_KEY: null });
-              },
-              placeHolder: "Filter by source dataset",
-              autoFocus: false
-            })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { marginTop: "10px" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_form,
-              { layout: "inline" },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                NameSearch_FormItem,
-                { label: "Fuzzy" },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
-                  checked: params.fuzzy === true || params.fuzzy === "true",
-                  onChange: function onChange(_ref3) {
-                    var checked = _ref3.target.checked;
-                    return _this3.updateSearch({ fuzzy: checked ? checked : null });
-                  }
-                })
-              ),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                NameSearch_FormItem,
-                { label: "Include extinct" },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
-                  checked: !params.extinct,
-                  onChange: function onChange(_ref4) {
-                    var checked = _ref4.target.checked;
-                    return _this3.updateSearch({
-                      extinct: checked === false ? [false, ""] : null
-                    });
-                  }
-                })
-              ),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                NameSearch_FormItem,
-                { label: "Matching" },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch_RadioGroup, {
-                  size: "small",
-                  onChange: function onChange(evt) {
-                    _this3.updateSearch({ type: evt.target.value });
-                  },
-                  value: params.type || "WHOLE_WORDS",
-                  optionType: "button",
-                  options: [{ value: "EXACT", label: "Exact" }, { value: "WHOLE_WORDS", label: "Words" }, { value: "PREFIX", label: "Prefix" }]
-                })
-              )
-            )
-          )
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { xs: 24, sm: 24, md: 12 },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-            defaultValue: lodash_default.a.get(params, "rank"),
-            onChange: function onChange(value) {
-              return _this3.updateSearch({ rank: value });
-            },
-            vocab: facetRanks || [],
-            label: "Ranks"
-          }),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-            defaultValue: lodash_default.a.get(params, "status"),
-            onChange: function onChange(value) {
-              return _this3.updateSearch({ status: value });
-            },
-            vocab: facetTaxonomicStatus || [],
-            label: "Status"
-          }),
-          advancedFilters && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-            null,
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-              defaultValue: lodash_default.a.get(params, "nomstatus"),
-              onChange: function onChange(value) {
-                return _this3.updateSearch({ nomstatus: value });
-              },
-              vocab: facetNomStatus || [],
-              label: "Nomenclatural status"
-            }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-              defaultValue: lodash_default.a.get(params, "nameType"),
-              onChange: function onChange(value) {
-                return _this3.updateSearch({ nameType: value });
-              },
-              vocab: facetNomType || [],
-              label: "Name type"
-            }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-              defaultValue: lodash_default.a.get(params, "field"),
-              onChange: function onChange(value) {
-                return _this3.updateSearch({ field: value });
-              },
-              vocab: facetNomField || [],
-              label: "Name field"
-            }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-              defaultValue: lodash_default.a.get(params, "authorship"),
-              onChange: function onChange(value) {
-                return _this3.updateSearch({ authorship: value });
-              },
-              vocab: facetAuthorship,
-              label: "Authorship"
-            }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
-              defaultValue: lodash_default.a.get(params, "environment"),
-              onChange: function onChange(value) {
-                return _this3.updateSearch({ environment: value });
-              },
-              vocab: facetEnvironment,
-              label: "Environment"
-            }),
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter
-            // defaultValue={_.get(params, "extinct")}
-            , { onChange: function onChange(value) {
-                return _this3.updateSearch({ extinct: value });
-              },
-              vocab: facetExtinct,
-              label: "Extinct"
-            })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { textAlign: "right", marginBottom: "8px" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              {
-                style: { marginLeft: 8, fontSize: 12 },
-                onClick: this.toggleAdvancedFilters
-              },
-              "Advanced",
-              " ",
-              this.state.advancedFilters ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_UpOutlined, null) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_DownOutlined, null)
-            )
-          )
-        )
-      ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_row,
-        null,
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { span: 12, style: { textAlign: "left", marginBottom: "8px" } },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_button,
-            { type: "danger", onClick: this.resetSearch },
-            "Reset all"
-          )
-        ),
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { span: 12, style: { textAlign: "right", marginBottom: "8px" } },
-          pagination && !isNaN(pagination.total) && "results: " + pagination.total.toLocaleString("en-GB")
-        )
-      ),
-      !error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
-        size: "small",
-        columns: this.state.columns,
-        dataSource: result,
-        loading: loading,
-        pagination: this.state.pagination,
-        onChange: this.handleTableChange,
-        rowKey: function rowKey(record) {
-          return record.usage.id;
-        },
-        showSorterTooltip: false,
-        expandedRowRender: function expandedRowRender(record) {
-          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_RowDetail, NameSearch_extends({}, record, {
-            catalogueKey: catalogueKey,
-            pathToTaxon: pathToTaxon
-          }));
-        }
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: error
       }),
-      citation === "bottom" && dataset && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, { dataset: dataset })
-    );
+      type: "error"
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      xs: 24,
+      sm: 24,
+      md: 12,
+      style: {
+        marginBottom: "8px"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_SearchBox, {
+      defaultValue: lodash_default.a.get(query_string_default.a.parse(lodash_default.a.get(this.props, "location.search")), "q"),
+      onSearch: function onSearch(value) {
+        return _this2.updateSearch({
+          q: value
+        });
+      },
+      onResetSearch: function onResetSearch(value) {
+        return _this2.updateSearch({
+          q: null
+        });
+      },
+      style: {
+        marginBottom: "8px",
+        width: "100%"
+      }
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameAutocomplete, {
+      datasetKey: catalogueKey,
+      minRank: "GENUS",
+      defaultTaxonKey: lodash_default.a.get(params, "TAXON_ID") || defaultTaxonKey || null,
+      onSelectName: function onSelectName(value) {
+        _this2.updateSearch({
+          TAXON_ID: value.key
+        });
+      },
+      onResetSearch: function onResetSearch(value) {
+        _this2.updateSearch({
+          TAXON_ID: null
+        });
+      },
+      placeHolder: "Search by higher taxon",
+      sortBy: "TAXONOMIC",
+      autoFocus: false
+    }), dataset && (dataset.origin === "managed" || dataset.origin === "released") && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      style: {
+        marginTop: "8px",
+        marginBottom: "8px"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetAutocomplete, {
+      contributesTo: Number(catalogueKey),
+      onSelectDataset: function onSelectDataset(value) {
+        _this2.updateSearch({
+          SECTOR_DATASET_KEY: value.key
+        });
+      },
+      defaultDatasetKey: lodash_default.a.get(params, "SECTOR_DATASET_KEY") || null,
+      onResetSearch: function onResetSearch(value) {
+        _this2.updateSearch({
+          SECTOR_DATASET_KEY: null
+        });
+      },
+      placeHolder: "Filter by source dataset",
+      autoFocus: false
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      style: {
+        marginTop: "10px"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_form, {
+      layout: "inline"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch_FormItem, {
+      label: "Fuzzy"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
+      checked: params.fuzzy === true || params.fuzzy === "true",
+      onChange: function onChange(_ref2) {
+        var checked = _ref2.target.checked;
+        return _this2.updateSearch({
+          fuzzy: checked ? checked : null
+        });
+      }
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch_FormItem, {
+      label: "Include extinct"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_checkbox, {
+      checked: !params.extinct,
+      onChange: function onChange(_ref3) {
+        var checked = _ref3.target.checked;
+        return _this2.updateSearch({
+          extinct: checked === false ? [false, ""] : null
+        });
+      }
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch_FormItem, {
+      label: "Matching"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch_RadioGroup, {
+      size: "small",
+      onChange: function onChange(evt) {
+        _this2.updateSearch({
+          type: evt.target.value
+        });
+      },
+      value: params.type || "WHOLE_WORDS",
+      optionType: "button",
+      options: [{
+        value: "EXACT",
+        label: "Exact"
+      }, {
+        value: "WHOLE_WORDS",
+        label: "Words"
+      }, {
+        value: "PREFIX",
+        label: "Prefix"
+      }]
+    }))))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      xs: 24,
+      sm: 24,
+      md: 12
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "rank"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          rank: value
+        });
+      },
+      vocab: facetRanks || [],
+      label: "Ranks"
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "status"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          status: value
+        });
+      },
+      vocab: facetTaxonomicStatus || [],
+      label: "Status"
+    }), advancedFilters && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "nomstatus"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          nomstatus: value
+        });
+      },
+      vocab: facetNomStatus || [],
+      label: "Nomenclatural status"
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "nameType"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          nameType: value
+        });
+      },
+      vocab: facetNomType || [],
+      label: "Name type"
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "field"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          field: value
+        });
+      },
+      vocab: facetNomField || [],
+      label: "Name field"
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "authorship"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          authorship: value
+        });
+      },
+      vocab: facetAuthorship,
+      label: "Authorship"
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter, {
+      defaultValue: lodash_default.a.get(params, "environment"),
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          environment: value
+        });
+      },
+      vocab: facetEnvironment,
+      label: "Environment"
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_MultiValueFilter
+    // defaultValue={_.get(params, "extinct")}
+    , {
+      onChange: function onChange(value) {
+        return _this2.updateSearch({
+          extinct: value
+        });
+      },
+      vocab: facetExtinct,
+      label: "Extinct"
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      style: {
+        textAlign: "right",
+        marginBottom: "8px"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      style: {
+        marginLeft: 8,
+        fontSize: 12
+      },
+      onClick: this.toggleAdvancedFilters
+    }, "Advanced", " ", this.state.advancedFilters ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_UpOutlined, null) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_icons_DownOutlined, null))))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 12,
+      style: {
+        textAlign: "left",
+        marginBottom: "8px"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_button, {
+      type: "danger",
+      onClick: this.resetSearch
+    }, "Reset all")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 12,
+      style: {
+        textAlign: "right",
+        marginBottom: "8px"
+      }
+    }, pagination && !isNaN(pagination.total) && "results: " + pagination.total.toLocaleString("en-GB"))), !error && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
+      size: "small",
+      columns: this.state.columns,
+      dataSource: result,
+      loading: loading,
+      pagination: this.state.pagination,
+      onChange: this.handleTableChange,
+      rowKey: function rowKey(record) {
+        return record.usage.id;
+      },
+      showSorterTooltip: false,
+      expandedRowRender: function expandedRowRender(record) {
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Search_RowDetail, NameSearch_extends({}, record, {
+          catalogueKey: catalogueKey,
+          pathToTaxon: pathToTaxon
+        }));
+      }
+    }), citation === "bottom" && dataset && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(DatasetCitation, {
+      dataset: dataset
+    }));
   };
-
   return NameSearchPage;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var NameSearch = (withRouter(NameSearch_NameSearchPage));
 // CONCATENATED MODULE: ./src/Search/index.js
 
@@ -110329,158 +109266,128 @@ var NameSearch_NameSearchPage = function (_React$Component) {
 
 
 
-
-
 /* harmony default export */ var src_Search = (function (_ref) {
   var catalogueKey = _ref.catalogueKey,
-      pathToTaxon = _ref.pathToTaxon,
-      defaultTaxonKey = _ref.defaultTaxonKey,
-      citation = _ref.citation,
-      auth = _ref.auth;
-
+    pathToTaxon = _ref.pathToTaxon,
+    defaultTaxonKey = _ref.defaultTaxonKey,
+    citation = _ref.citation,
+    auth = _ref.auth;
   if (auth) {
-
     axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(auth);
   }
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    react_router_Router,
-    { history: src_history },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, { catalogueKey: catalogueKey, pathToTaxon: pathToTaxon, defaultTaxonKey: defaultTaxonKey, citation: citation })
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(react_router_Router, {
+    history: src_history
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(NameSearch, {
+    catalogueKey: catalogueKey,
+    pathToTaxon: pathToTaxon,
+    defaultTaxonKey: defaultTaxonKey,
+    citation: citation
+  }));
 });
 // CONCATENATED MODULE: ./src/Dataset/MetricsPresentation.js
 
 
 
-var MetricsPresentation_ = __webpack_require__(2);
-
+var MetricsPresentation_ = __webpack_require__(1);
 var getLivingTaxa = function getLivingTaxa(metrics, rank) {
   return (MetricsPresentation_.get(metrics, "taxaByRankCount." + rank) || 0) - (MetricsPresentation_.get(metrics, "extinctTaxaByRankCount." + rank) || 0);
 };
 var getExtinctTaxa = function getExtinctTaxa(metrics, rank) {
   return MetricsPresentation_.get(metrics, "extinctTaxaByRankCount." + rank) || 0;
 };
-
+var getSearchParam = function getSearchParam(dataset) {
+  return dataset.key ? "SECTOR_DATASET_KEY=" + dataset.key : "SECTOR_PUBLISHER_KEY=" + dataset.id;
+};
 /* harmony default export */ var MetricsPresentation = (function (_ref) {
   var metrics = _ref.metrics,
-      rank = _ref.rank,
-      style = _ref.style,
-      dataset = _ref.dataset,
-      pathToSearch = _ref.pathToSearch;
-  return metrics && rank ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "div",
-    { style: style },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-      null,
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        components_PresentationItem,
-        { label: "Living species" },
-        dataset && pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          { href: pathToSearch + "?SECTOR_DATASET_KEY=" + dataset.key + "&rank=species&extinct=false&extinct=_NULL" },
-          getLivingTaxa(metrics, "species").toLocaleString("en-GB")
-        ) : getLivingTaxa(metrics, "species").toLocaleString("en-GB")
-      ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        components_PresentationItem,
-        { label: "Extinct species" },
-        dataset && pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          { href: pathToSearch + "?SECTOR_DATASET_KEY=" + dataset.key + "&rank=species&extinct=true" },
-          getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
-        ) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
-      )
-    ),
-    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)
-    // .filter((r) => rank.indexOf(r) < rank.indexOf("species"))
-    .sort(function (a, b) {
-      return rank.indexOf(b) - rank.indexOf(a);
-    }).map(function (k) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        components_PresentationItem,
-        { label: "" + MetricsPresentation_.startCase(k), key: k },
-        dataset && pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "a",
-          { href: pathToSearch + "?SECTOR_DATASET_KEY=" + dataset.key + "&rank=" + k },
-          metrics.taxaByRankCount[k].toLocaleString("en-GB")
-        ) : metrics.taxaByRankCount[k].toLocaleString("en-GB")
-      );
-    }),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      components_PresentationItem,
-      { label: "Synonyms", key: "Synonyms" },
-      dataset && pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "a",
-        { href: pathToSearch + "?SECTOR_DATASET_KEY=" + dataset.key + "&status=misapplied&status=synonym&status=ambiguous%20synonym" },
-        (metrics.synonymCount || 0).toLocaleString("en-GB")
-      ) : (metrics.synonymCount || 0).toLocaleString("en-GB")
-    ),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      components_PresentationItem,
-      { label: "Common names", key: "vernaculars" },
-      (metrics.vernacularCount || 0).toLocaleString("en-GB")
-    ),
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      components_PresentationItem,
-      { label: "Total number of names", key: "names" },
-      dataset && pathToSearch ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "a",
-        { href: pathToSearch + "?SECTOR_DATASET_KEY=" + dataset.key },
-        (metrics.nameCount || 0).toLocaleString("en-GB")
-      ) : (metrics.nameCount || 0).toLocaleString("en-GB")
-    )
-  ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    components_PresentationItem,
-    { label: "" },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { active: true, paragraph: { rows: 4 } })
-  );
+    rank = _ref.rank,
+    style = _ref.style,
+    dataset = _ref.dataset,
+    pathToSearch = _ref.pathToSearch;
+  return metrics && rank ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+    style: style
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+    label: "Living species"
+  }, dataset && pathToSearch ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    href: pathToSearch + "?" + getSearchParam(dataset) + "&rank=species&extinct=false&extinct=_NULL"
+  }, getLivingTaxa(metrics, "species").toLocaleString("en-GB")) : getLivingTaxa(metrics, "species").toLocaleString("en-GB")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+    label: "Extinct species"
+  }, dataset && pathToSearch ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    href: pathToSearch + "?" + getSearchParam(dataset) + "&rank=species&extinct=true"
+  }, getExtinctTaxa(metrics, "species").toLocaleString("en-GB")) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB"))), metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)
+  // .filter((r) => rank.indexOf(r) < rank.indexOf("species"))
+  .sort(function (a, b) {
+    return rank.indexOf(b) - rank.indexOf(a);
+  }).map(function (k) {
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "" + MetricsPresentation_.startCase(k),
+      key: k
+    }, dataset && pathToSearch ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: pathToSearch + "?" + getSearchParam(dataset) + "&rank=" + k
+    }, metrics.taxaByRankCount[k].toLocaleString("en-GB")) : metrics.taxaByRankCount[k].toLocaleString("en-GB"));
+  }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+    label: "Synonyms",
+    key: "Synonyms"
+  }, dataset && pathToSearch ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    href: pathToSearch + "?" + getSearchParam(dataset) + "&status=misapplied&status=synonym&status=ambiguous%20synonym"
+  }, (metrics.synonymCount || 0).toLocaleString("en-GB")) : (metrics.synonymCount || 0).toLocaleString("en-GB")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+    label: "Common names",
+    key: "vernaculars"
+  }, (metrics.vernacularCount || 0).toLocaleString("en-GB")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+    label: "Total number of names",
+    key: "names"
+  }, dataset && pathToSearch ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    href: pathToSearch + "?" + getSearchParam(dataset)
+  }, (metrics.nameCount || 0).toLocaleString("en-GB")) : (metrics.nameCount || 0).toLocaleString("en-GB"))) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+    label: ""
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, {
+    active: true,
+    paragraph: {
+      rows: 4
+    }
+  }));
 });
 // CONCATENATED MODULE: ./src/Dataset/Metrics.js
-var Metrics_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function Metrics_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function Metrics_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function Metrics_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function Metrics_extends() { Metrics_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Metrics_extends.apply(this, arguments); }
+function Metrics_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; Metrics_setPrototypeOf(subClass, superClass); }
+function Metrics_setPrototypeOf(o, p) { Metrics_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Metrics_setPrototypeOf(o, p); }
+function Metrics_defineProperty(obj, key, value) { key = Metrics_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function Metrics_toPropertyKey(t) { var i = Metrics_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function Metrics_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
 
-var Metrics_ = __webpack_require__(2);
-
-var Metrics_Metrics = function (_React$Component) {
-  Metrics_inherits(Metrics, _React$Component);
-
+var Metrics_ = __webpack_require__(1);
+var Metrics_Metrics = /*#__PURE__*/function (_React$Component) {
   function Metrics(props) {
-    Metrics_classCallCheck(this, Metrics);
-
-    var _this = Metrics_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.getData = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    Metrics_defineProperty(_this, "getData", function () {
       var _this$props = _this.props,
-          dataset = _this$props.dataset,
-          catalogueKey = _this$props.catalogueKey;
-
+        dataset = _this$props.dataset,
+        catalogueKey = _this$props.catalogueKey;
       axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + dataset.key + "/metrics").then(function (res) {
-        _this.setState({ metrics: res.data });
+        _this.setState({
+          metrics: res.data
+        });
       });
-    };
-
-    _this.getRank = function () {
+    });
+    Metrics_defineProperty(_this, "getRank", function () {
       axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
-        return _this.setState({ rank: res.data.map(function (r) {
+        return _this.setState({
+          rank: res.data.map(function (r) {
             return r.name;
-          }) });
+          })
+        });
       });
-    };
-
-    _this.render = function () {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, Metrics_extends({}, _this.state, { dataset: _this.props.dataset, pathToSearch: _this.props.pathToSearch }));
-    };
-
+    });
+    Metrics_defineProperty(_this, "render", function () {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, Metrics_extends({}, _this.state, {
+        dataset: _this.props.dataset,
+        pathToSearch: _this.props.pathToSearch
+      }));
+    });
     _this.state = {
       metrics: null,
       rank: null,
@@ -110488,46 +109395,41 @@ var Metrics_Metrics = function (_React$Component) {
     };
     return _this;
   }
-
-  Metrics.prototype.componentDidMount = function componentDidMount() {
+  Metrics_inheritsLoose(Metrics, _React$Component);
+  var _proto = Metrics.prototype;
+  _proto.componentDidMount = function componentDidMount() {
     this.getData();
     this.getRank();
   };
-
   return Metrics;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Dataset_Metrics = (Metrics_Metrics);
 // CONCATENATED MODULE: ./src/Dataset/TaxonomicCoverage.js
-function TaxonomicCoverage_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function TaxonomicCoverage_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function TaxonomicCoverage_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function TaxonomicCoverage_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; TaxonomicCoverage_setPrototypeOf(subClass, superClass); }
+function TaxonomicCoverage_setPrototypeOf(o, p) { TaxonomicCoverage_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return TaxonomicCoverage_setPrototypeOf(o, p); }
+function TaxonomicCoverage_defineProperty(obj, key, value) { key = TaxonomicCoverage_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function TaxonomicCoverage_toPropertyKey(t) { var i = TaxonomicCoverage_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function TaxonomicCoverage_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
-var TaxonomicCoverage_ = __webpack_require__(2);
 
-var TaxonomicCoverage_TaxonomicCoverage = function (_React$Component) {
-  TaxonomicCoverage_inherits(TaxonomicCoverage, _React$Component);
-
+var TaxonomicCoverage_ = __webpack_require__(1);
+var TaxonomicCoverage_TaxonomicCoverage = /*#__PURE__*/function (_React$Component) {
   function TaxonomicCoverage(props) {
-    TaxonomicCoverage_classCallCheck(this, TaxonomicCoverage);
-
-    var _this = TaxonomicCoverage_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.getData = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    TaxonomicCoverage_defineProperty(_this, "getData", function () {
       var _this$props = _this.props,
-          dataset = _this$props.dataset,
-          catalogueKey = _this$props.catalogueKey;
-
+        dataset = _this$props.dataset,
+        catalogueKey = _this$props.catalogueKey;
       var taxonMap = {};
       axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/sector?limit=1000&subjectDatasetKey=" + dataset.key).then(function (res) {
-        return Promise.allSettled(res.data.result.map(function (t) {
-          return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/nameusage/search?TAXON_ID=" + t.target.id + "&rank=" + t.subject.rank + "&q=" + t.subject.name).then(function (usages) {
+        return Promise.allSettled(res.data.result.filter(function (t) {
+          return !!(t === null || t === void 0 ? void 0 : t.target);
+        }).map(function (t) {
+          var _t$target, _t$subject, _t$subject2;
+          return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/nameusage/search?TAXON_ID=" + (t === null || t === void 0 ? void 0 : (_t$target = t.target) === null || _t$target === void 0 ? void 0 : _t$target.id) + "&rank=" + (t === null || t === void 0 ? void 0 : (_t$subject = t.subject) === null || _t$subject === void 0 ? void 0 : _t$subject.rank) + "&q=" + (t === null || t === void 0 ? void 0 : (_t$subject2 = t.subject) === null || _t$subject2 === void 0 ? void 0 : _t$subject2.name)).then(function (usages) {
             var taxon = TaxonomicCoverage_.get(usages, "data.result[0]");
             if (taxon) {
               var path = taxon.classification.slice(1, taxon.classification.length - 1).map(function (t) {
@@ -110539,189 +109441,157 @@ var TaxonomicCoverage_TaxonomicCoverage = function (_React$Component) {
                 taxonMap[path] = [taxon.classification[taxon.classification.length - 1]];
               }
             }
-          }).catch(function (err) {
+          })["catch"](function (err) {
             console.log(t);
             console.log(err);
           });
         })).then(function () {
-          return _this.setState({ taxonMap: taxonMap, loading: false });
+          return _this.setState({
+            taxonMap: taxonMap,
+            loading: false
+          });
         });
       });
-    };
-
-    _this.render = function () {
+    });
+    TaxonomicCoverage_defineProperty(_this, "render", function () {
       var taxonMap = _this.state.taxonMap;
       var _this$props2 = _this.props,
-          style = _this$props2.style,
-          pathToTree = _this$props2.pathToTree;
-
-      return taxonMap ? Object.keys(taxonMap).sort(function (a, b) {
+        style = _this$props2.style,
+        pathToTree = _this$props2.pathToTree;
+      return taxonMap ? Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort(function (a, b) {
         return a.length - b.length;
       }).map(function (k) {
-        return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          "div",
-          { style: style, key: k },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "span",
-            null,
-            k,
-            k !== "" ? ":" : ""
-          ),
-          " ",
-          taxonMap[k].map(function (tx, idx) {
-            return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-              { key: idx },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                "a",
-                { href: pathToTree + "?taxonKey=" + tx.id, onClick: function onClick() {
-                    window.location.href = pathToTree + "?taxonKey=" + tx.id;
-                  } },
-                tx.name
-              ),
-              idx !== taxonMap[k].length - 1 ? ", " : ""
-            );
-          })
-        );
-      }) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, { active: true, paragraph: { rows: 4 } });
-    };
-
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          style: style,
+          key: k
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, k, k !== "" ? ":" : ""), " ", taxonMap[k].map(function (tx, idx) {
+          return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, {
+            key: idx
+          }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+            href: pathToTree + "?taxonKey=" + tx.id,
+            onClick: function onClick() {
+              window.location.href = pathToTree + "?taxonKey=" + tx.id;
+            }
+          }, tx.name), idx !== taxonMap[k].length - 1 ? ", " : "");
+        }));
+      }) : "N/A" : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(skeleton, {
+        active: true,
+        paragraph: {
+          rows: 4
+        }
+      });
+    });
     _this.state = {
-      loading: true
+      loading: true,
+      taxonMap: null
     };
     return _this;
   }
-
-  TaxonomicCoverage.prototype.componentDidMount = function componentDidMount() {
+  TaxonomicCoverage_inheritsLoose(TaxonomicCoverage, _React$Component);
+  var _proto = TaxonomicCoverage.prototype;
+  _proto.componentDidMount = function componentDidMount() {
     this.getData();
   };
-
   return TaxonomicCoverage;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Dataset_TaxonomicCoverage = (TaxonomicCoverage_TaxonomicCoverage);
 // CONCATENATED MODULE: ./src/Dataset/AgentPresentation.js
 
 
-
 var AgentPresentation_AgentPresentation = function AgentPresentation(_ref) {
   var agent = _ref.agent,
-      countryAlpha2 = _ref.countryAlpha2,
-      style = _ref.style,
-      noLinks = _ref.noLinks;
-
+    countryAlpha2 = _ref.countryAlpha2,
+    style = _ref.style,
+    noLinks = _ref.noLinks;
   var country = lodash_default.a.get(agent, "country") ? lodash_default.a.get(countryAlpha2, "[" + lodash_default.a.get(agent, "country") + "].title", lodash_default.a.get(agent, "country")) : null;
-  return agent ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "span",
-    { style: style },
-    (agent.given || agent.family) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "span",
-      { style: { display: "block" } },
-      [agent.family, agent.given].filter(function (a) {
-        return !!a;
-      }).join(", ")
-    ),
-    agent.orcid && (noLinks ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      null,
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://www.checklistbank.org/images/orcid_16x16.png",
-        style: { flex: "0 0 auto" },
-        alt: ""
-      }),
-      " ",
-      agent.orcid
-    ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "a",
-      {
-        style: { display: "block" },
-        href: "https://orcid.org/" + agent.orcid
-      },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://www.checklistbank.org/images/orcid_16x16.png",
-        style: { flex: "0 0 auto" },
-        alt: ""
-      }),
-      " ",
-      agent.orcid
-    )),
-    agent.organisation && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "span",
-      { style: { display: "block" } },
-      agent.organisation
-    ),
-    agent.rorid && (noLinks ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      null,
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://www.checklistbank.org/images/ror-logo-small.png",
-        style: { flex: "0 0 auto", height: "20px" },
-        alt: ""
-      }),
-      " ",
-      agent.rorid
-    ) : external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "a",
-      {
-        style: { display: "block" },
-        href: "https://ror.org/" + agent.rorid
-      },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-        src: "https://www.checklistbank.org/images/ror-logo-small.png",
-        style: { flex: "0 0 auto", height: "20px" },
-        alt: ""
-      }),
-      " ",
-      agent.rorid
-    )),
-    agent.department && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "span",
-      { style: { display: "block" } },
-      agent.department
-    ),
-    (agent.city || agent.state || country) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "span",
-      { style: { display: "block" } },
-      [agent.city, agent.state, country].filter(function (a) {
-        return !!a;
-      }).join(", ")
-    )
-  ) : null;
+  return agent ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    style: style
+  }, (agent.given || agent.family) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    style: {
+      display: "block"
+    }
+  }, [agent.family, agent.given].filter(function (a) {
+    return !!a;
+  }).join(", ")), agent.orcid && (noLinks ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+    src: "https://www.checklistbank.org/images/orcid_16x16.png",
+    style: {
+      flex: "0 0 auto"
+    },
+    alt: ""
+  }), " ", agent.orcid) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    style: {
+      display: "block"
+    },
+    href: "https://orcid.org/" + agent.orcid
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+    src: "https://www.checklistbank.org/images/orcid_16x16.png",
+    style: {
+      flex: "0 0 auto"
+    },
+    alt: ""
+  }), " ", agent.orcid)), agent.organisation && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    style: {
+      display: "block"
+    }
+  }, agent.organisation), agent.rorid && (noLinks ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+    src: "https://www.checklistbank.org/images/ror-logo-small.png",
+    style: {
+      flex: "0 0 auto",
+      height: "20px"
+    },
+    alt: ""
+  }), " ", agent.rorid) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    style: {
+      display: "block"
+    },
+    href: "https://ror.org/" + agent.rorid
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+    src: "https://www.checklistbank.org/images/ror-logo-small.png",
+    style: {
+      flex: "0 0 auto",
+      height: "20px"
+    },
+    alt: ""
+  }), " ", agent.rorid)), agent.department && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    style: {
+      display: "block"
+    }
+  }, agent.department), (agent.city || agent.state || country) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+    style: {
+      display: "block"
+    }
+  }, [agent.city, agent.state, country].filter(function (a) {
+    return !!a;
+  }).join(", "))) : null;
 };
-
 /* harmony default export */ var Dataset_AgentPresentation = (AgentPresentation_AgentPresentation);
 // CONCATENATED MODULE: ./src/components/BibTex.js
-var BibTex_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
+function BibTex_extends() { BibTex_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return BibTex_extends.apply(this, arguments); }
 
 
 var BibTex_BibTex = function BibTex(_ref) {
   var datasetKey = _ref.datasetKey,
-      catalogueKey = _ref.catalogueKey,
-      _ref$style = _ref.style,
-      style = _ref$style === undefined ? {} : _ref$style;
-
+    catalogueKey = _ref.catalogueKey,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style;
   var defaultStyle = {
     height: "40px"
   };
   var url = catalogueKey ? src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey + ".bib" : src_config.dataApi + "dataset/" + datasetKey + ".bib";
-
-  return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-    "a",
-    { href: url },
-    external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", { src: "https://www.checklistbank.org/images/bibtex_logo.png", style: BibTex_extends({}, defaultStyle, style) })
-  );
+  return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    href: url
+  }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+    src: "https://www.checklistbank.org/images/bibtex_logo.png",
+    style: BibTex_extends({}, defaultStyle, style)
+  }));
 };
-
 /* harmony default export */ var components_BibTex = (BibTex_BibTex);
 // CONCATENATED MODULE: ./src/Dataset/index.js
-function Dataset_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function Dataset_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function Dataset_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+function Dataset_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; Dataset_setPrototypeOf(subClass, superClass); }
+function Dataset_setPrototypeOf(o, p) { Dataset_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Dataset_setPrototypeOf(o, p); }
+function Dataset_defineProperty(obj, key, value) { key = Dataset_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function Dataset_toPropertyKey(t) { var i = Dataset_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function Dataset_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -110745,53 +109615,53 @@ var IDENTIFIER_TYPES = {
   plazi: "http://publication.plazi.org/id/",
   doi: "https://doi.org/"
 };
-
-var Dataset_DatasetPage = function (_React$Component) {
-  Dataset_inherits(DatasetPage, _React$Component);
-
+var Dataset_DatasetPage = /*#__PURE__*/function (_React$Component) {
   function DatasetPage(props) {
-    Dataset_classCallCheck(this, DatasetPage);
-
-    var _this = Dataset_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    Dataset_defineProperty(_this, "componentDidMount", function () {
       _this.getData();
       enumeration_getCountries().then(function (res) {
         var countryAlpha2 = {};
         res.forEach(function (c) {
           countryAlpha2[c.alpha2] = c;
         });
-        _this.setState({ countryAlpha2: countryAlpha2 });
+        _this.setState({
+          countryAlpha2: countryAlpha2
+        });
       });
-    };
-
-    _this.getData = function () {
+    });
+    Dataset_defineProperty(_this, "getData", function () {
       var _this$props = _this.props,
-          catalogueKey = _this$props.catalogueKey,
-          pageTitleTemplate = _this$props.pageTitleTemplate;
+        catalogueKey = _this$props.catalogueKey,
+        pageTitleTemplate = _this$props.pageTitleTemplate;
       var path = src_history.location;
-
       var pathParts = path.pathname.split("/");
       var datasetKey = pathParts[pathParts.length - 1];
-
       axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + datasetKey).then(function (dataset) {
         if (pageTitleTemplate && lodash_default.a.get(dataset, "data.title")) {
           document.title = pageTitleTemplate.replace("__dataset__", dataset.data.title);
         }
-        _this.setState({ data: dataset.data, datasetError: null });
-      }).catch(function (err) {
-        return _this.setState({ datasetError: err, data: null });
+        _this.setState({
+          data: dataset.data,
+          datasetError: null
+        });
+      })["catch"](function (err) {
+        return _this.setState({
+          datasetError: err,
+          data: null
+        });
       });
-    };
-
-    _this.getRank = function () {
+    });
+    Dataset_defineProperty(_this, "getRank", function () {
       axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
-        return _this.setState({ rank: res.data.map(function (r) {
+        return _this.setState({
+          rank: res.data.map(function (r) {
             return r.name;
-          }) });
+          })
+        });
       });
-    };
-
+    });
     if (_this.props.auth) {
       axios_default.a.defaults.headers.common["Authorization"] = "Basic " + btoa_default()(_this.props.auth);
     }
@@ -110803,348 +109673,214 @@ var Dataset_DatasetPage = function (_React$Component) {
     };
     return _this;
   }
-
-  DatasetPage.prototype.render = function render() {
-    var _props = this.props,
-        pathToTree = _props.pathToTree,
-        catalogueKey = _props.catalogueKey;
-    var _state = this.state,
-        data = _state.data,
-        countryAlpha2 = _state.countryAlpha2,
-        datasetError = _state.datasetError;
-
-
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-      null,
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        "div",
-        {
-          className: "catalogue-of-life",
-          style: {
-            background: "#fff",
-            padding: 24,
-            minHeight: 280,
-            margin: "16px 0",
-            fontSize: "12px"
-          }
+  Dataset_inheritsLoose(DatasetPage, _React$Component);
+  var _proto = DatasetPage.prototype;
+  _proto.render = function render() {
+    var _this$props2 = this.props,
+      pathToTree = _this$props2.pathToTree,
+      catalogueKey = _this$props2.catalogueKey;
+    var _this$state = this.state,
+      data = _this$state.data,
+      countryAlpha2 = _this$state.countryAlpha2,
+      datasetError = _this$state.datasetError;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      className: "catalogue-of-life",
+      style: {
+        background: "#fff",
+        padding: 24,
+        minHeight: 280,
+        margin: "16px 0",
+        fontSize: "12px"
+      }
+    }, datasetError && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: datasetError
+      }),
+      type: "error"
+    }), data && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      flex: "auto"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("h1", {
+      style: {
+        fontSize: "30px",
+        fontWeight: "400",
+        paddingLeft: "10px",
+        display: "inline-block",
+        textTransform: "none"
+      }
+    }, data.title), data && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("br", null), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BibTex, {
+      style: {
+        marginLeft: "8px",
+        height: "32px"
+      },
+      catalogueKey: catalogueKey !== data.key ? catalogueKey : null,
+      datasetKey: data.key
+    }))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      style: {
+        textAlign: "right"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
+      auth: this.props.auth,
+      style: {
+        maxWidth: "100%",
+        height: "auto",
+        marginRight: "8px"
+      },
+      catalogueKey: catalogueKey,
+      datasetKey: data.key
+    }))), data && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Short name"
+    }, data.alias, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(tooltip, {
+      title: "Visit in COL Checklistbank",
+      getPopupContainer: function getPopupContainer() {
+        return document.getElementsByClassName("catalogue-of-life")[0];
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_button, {
+      type: "link",
+      href: "https://www.checklistbank.org/dataset/" + data.key
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null), " "))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Full name"
+    }, data.title), (data.version || data.issued) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "" + (data.version ? "Version" : "") + (data.version && data.issued ? " / " : "") + (data.issued ? "Issued" : "")
+    }, (data.version || data.issued) && "" + (data.version ? data.version : "") + (data.issued ? " / " + data.issued : "")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "DOI"
+    }, data.doi ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "https://doi.org/" + data.doi
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
+      src: "https://www.checklistbank.org/images/DOI_logo.png",
+      style: {
+        flex: "0 0 auto",
+        height: "16px"
+      },
+      alt: ""
+    }), data.doi) : "-"), data.contact && !lodash_default.a.isEmpty(data.contact) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Contact"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+      countryAlpha2: countryAlpha2,
+      agent: data.contact
+    })), data.publisher && !lodash_default.a.isEmpty(data.publisher) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Publisher"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+      countryAlpha2: countryAlpha2,
+      agent: data.publisher
+    })), data.creator && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Creator"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+      gutter: [8, 8]
+    }, data.creator.map(function (a) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+        span: 8
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+        countryAlpha2: countryAlpha2,
+        agent: a
+      }));
+    }))), data.editor && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Editor"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+      gutter: [8, 8]
+    }, data.editor.map(function (a) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+        span: 8
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+        countryAlpha2: countryAlpha2,
+        agent: a
+      }));
+    }))), data.contributor && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Contributor"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+      gutter: [8, 8]
+    }, data.contributor.map(function (a) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+        span: 8
+      }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
+        countryAlpha2: countryAlpha2,
+        agent: a
+      }));
+    }))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Taxonomic coverage"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_TaxonomicCoverage, {
+      dataset: data,
+      catalogueKey: catalogueKey,
+      pathToTree: pathToTree
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_Metrics, {
+      catalogueKey: catalogueKey,
+      dataset: data,
+      pathToSearch: this.props.pathToSearch
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Abstract"
+    }, data.description), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Taxonomic scope"
+    }, data.taxonomicScope || "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Geographic scope"
+    }, data.geographicScope || "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Temporal scope"
+    }, data.temporalScope || "-"), " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "License"
+    }, data.license || "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Checklist Confidence"
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(rate, {
+      value: data.confidence,
+      disabled: true
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Completeness"
+    }, data.completeness), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Url (website)"
+    }, data.url ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: data.url,
+      target: "_blank"
+    }, data.url) : "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "ISSN"
+    }, data.issn ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "https://portal.issn.org/resource/ISSN/" + data.issn
+    }, data.issn) : "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "GBIF key"
+    }, data.gbifKey ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      href: "https://www.gbif.org/dataset/" + data.gbifKey
+    }, data.gbifKey) : "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Identifiers"
+    }, data.identifier ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("ol", {
+      style: {
+        listStyle: "none",
+        paddingInlineStart: "0px"
+      }
+    }, Object.keys(data.identifier).map(function (i) {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("li", {
+        style: {
+          "float": "left",
+          marginRight: "8px"
+        }
+      }, i.toUpperCase() + ": ", IDENTIFIER_TYPES[i] ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        href: "" + IDENTIFIER_TYPES[i] + data.identifier[i],
+        target: "_blank"
+      }, data.identifier[i]) : data.identifier[i]);
+    })) : "-"), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Citation"
+    }, data.citation && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
+      dangerouslySetInnerHTML: {
+        __html: data.citation
+      }
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+      label: "Source"
+    }, data.source && lodash_default.a.isArray(data.source) ? data.source.map(function (s) {
+      return !!s && (s.citation ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+        style: {
+          display: "inline-block"
         },
-        datasetError && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, { message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: datasetError }), type: "error" }),
-        data && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_row,
-          null,
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { flex: "auto" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "h1",
-              {
-                style: {
-                  fontSize: "30px",
-                  fontWeight: "400",
-                  paddingLeft: "10px",
-                  display: "inline-block",
-                  textTransform: "none"
-                }
-              },
-              data.title
-            ),
-            data && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-              null,
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("br", null),
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_BibTex, {
-                style: { marginLeft: "8px", height: "32px" },
-                catalogueKey: catalogueKey !== data.key ? catalogueKey : null,
-                datasetKey: data.key
-              })
-            )
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            es_col,
-            { style: { textAlign: "right" } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
-              auth: this.props.auth,
-              style: {
-                maxWidth: "100%",
-                height: "auto",
-                marginRight: "8px"
-              },
-              catalogueKey: catalogueKey,
-              datasetKey: data.key
-            })
-          )
-        ),
-        data && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment,
-          null,
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Short name" },
-            data.alias,
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              tooltip,
-              {
-                title: "Visit in COL Checklistbank",
-                getPopupContainer: function getPopupContainer() {
-                  return document.getElementsByClassName("catalogue-of-life")[0];
-                }
-              },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                es_button,
-                {
-                  type: "link",
-                  href: "https://www.checklistbank.org/dataset/" + data.key
-                },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(icons_LinkOutlined, null),
-                " "
-              )
-            )
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Full name" },
-            data.title
-          ),
-          (data.version || data.issued) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            {
-              label: "" + (data.version ? "Version" : "") + (data.version && data.issued ? " / " : "") + (data.issued ? "Issued" : "")
-            },
-            (data.version || data.issued) && "" + (data.version ? data.version : "") + (data.issued ? " / " + data.issued : "")
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "DOI" },
-            data.doi ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              { href: "https://doi.org/" + data.doi },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("img", {
-                src: "https://www.checklistbank.org/images/DOI_logo.png",
-                style: { flex: "0 0 auto", height: "16px" },
-                alt: ""
-              }),
-              data.doi
-            ) : "-"
-          ),
-          data.contact && !lodash_default.a.isEmpty(data.contact) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Contact" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
-              countryAlpha2: countryAlpha2,
-              agent: data.contact
-            })
-          ),
-          data.publisher && !lodash_default.a.isEmpty(data.publisher) && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Publisher" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
-              countryAlpha2: countryAlpha2,
-              agent: data.publisher
-            })
-          ),
-          data.creator && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Creator" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_row,
-              { gutter: [8, 8] },
-              data.creator.map(function (a) {
-                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_col,
-                  { span: 8 },
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
-                    countryAlpha2: countryAlpha2,
-                    agent: a
-                  })
-                );
-              })
-            )
-          ),
-          data.editor && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Editor" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_row,
-              { gutter: [8, 8] },
-              data.editor.map(function (a) {
-                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_col,
-                  { span: 8 },
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
-                    countryAlpha2: countryAlpha2,
-                    agent: a
-                  })
-                );
-              })
-            )
-          ),
-          data.contributor && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Contributor" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              es_row,
-              { gutter: [8, 8] },
-              data.contributor.map(function (a) {
-                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  es_col,
-                  { span: 8 },
-                  external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_AgentPresentation, {
-                    countryAlpha2: countryAlpha2,
-                    agent: a
-                  })
-                );
-              })
-            )
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Taxonomic coverage" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_TaxonomicCoverage, {
-              dataset: data,
-              catalogueKey: catalogueKey,
-              pathToTree: pathToTree
-            })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(Dataset_Metrics, {
-            catalogueKey: catalogueKey,
-            dataset: data,
-            pathToSearch: this.props.pathToSearch
-          }),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Abstract" },
-            data.description
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Taxonomic scope" },
-            data.taxonomicScope || "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Geographic scope" },
-            data.geographicScope || "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Temporal scope" },
-            data.temporalScope || "-"
-          ),
-          " ",
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "License" },
-            data.license || "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Checklist Confidence" },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(rate, { value: data.confidence, disabled: true })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Completeness" },
-            data.completeness
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Url (website)" },
-            data.url ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              { href: data.url, target: "_blank" },
-              data.url
-            ) : "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "ISSN" },
-            data.issn ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              {
-                href: "https://portal.issn.org/resource/ISSN/" + data.issn
-              },
-              data.issn
-            ) : "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "GBIF key" },
-            data.gbifKey ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "a",
-              { href: "https://www.gbif.org/dataset/" + data.gbifKey },
-              data.gbifKey
-            ) : "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Identifiers" },
-            data.identifier ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "ol",
-              {
-                style: {
-                  listStyle: "none",
-                  paddingInlineStart: "0px"
-                }
-              },
-              Object.keys(data.identifier).map(function (i) {
-                return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                  "li",
-                  {
-                    style: {
-                      float: "left",
-                      marginRight: "8px"
-                    }
-                  },
-                  i.toUpperCase() + ": ",
-                  IDENTIFIER_TYPES[i] ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                    "a",
-                    {
-                      href: "" + IDENTIFIER_TYPES[i] + data.identifier[i],
-                      target: "_blank"
-                    },
-                    data.identifier[i]
-                  ) : data.identifier[i]
-                );
-              })
-            ) : "-"
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Citation" },
-            data.citation && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
-              dangerouslySetInnerHTML: { __html: data.citation }
-            })
-          ),
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            components_PresentationItem,
-            { label: "Source" },
-            data.source && lodash_default.a.isArray(data.source) ? data.source.map(function (s) {
-              return !!s && (s.citation ? external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
-                style: { display: "inline-block" },
-                dangerouslySetInnerHTML: { __html: s.citation }
-              }) : s.title);
-            }) : "-"
-          )
-        )
-      )
-    );
+        dangerouslySetInnerHTML: {
+          __html: s.citation
+        }
+      }) : s.title);
+    }) : "-"))));
   };
-
   return DatasetPage;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var Dataset = (Dataset_DatasetPage);
 // CONCATENATED MODULE: ./src/DatasetSearch/index.js
-var DatasetSearch_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function DatasetSearch_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function DatasetSearch_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function DatasetSearch_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
+function DatasetSearch_extends() { DatasetSearch_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return DatasetSearch_extends.apply(this, arguments); }
+function DatasetSearch_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; DatasetSearch_setPrototypeOf(subClass, superClass); }
+function DatasetSearch_setPrototypeOf(o, p) { DatasetSearch_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return DatasetSearch_setPrototypeOf(o, p); }
+function DatasetSearch_defineProperty(obj, key, value) { key = DatasetSearch_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function DatasetSearch_toPropertyKey(t) { var i = DatasetSearch_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function DatasetSearch_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -111161,22 +109897,40 @@ var DatasetSearch_getLivingSpecies = function getLivingSpecies(record) {
 var DatasetSearch_getExtinctSpecies = function getExtinctSpecies(record) {
   return lodash_default.a.get(record, 'metrics.extinctTaxaByRankCount.species') || 0;
 };
-
-var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, auth) {
+var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, auth, hasPublishers) {
   return [{
     title: "Title",
     dataIndex: ["alias"],
     key: "title",
     render: function render(text, record) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", { href: "" + pathToDataset + record.key, onClick: function onClick() {
+      return record.id ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, "Publisher: ", " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        href: "https://www.checklistbank.org/catalogue/" + catalogueKey + "/publisher/" + record.id,
+        onClick: function onClick() {
+          window.location.href = "https://www.checklistbank.org/catalogue/" + catalogueKey + "/publisher/" + record.id;
+        },
+        dangerouslySetInnerHTML: {
+          __html: text
+        }
+      }), " ") : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        href: "" + pathToDataset + record.key,
+        onClick: function onClick() {
           window.location.href = "" + pathToDataset + record.key;
-        }, dangerouslySetInnerHTML: { __html: text } });
+        }
+      }, record.alias || record.title);
     },
     width: "30%",
+    ellipsis: true,
     sorter: function sorter(a, b) {
       return a.alias && b.alias ? a.alias.localeCompare(b.alias) : 0;
-    },
-    defaultSortOrder: 'ascend'
+    }
+    // defaultSortOrder: 'ascend'
+  }, {
+    title: "Datasets",
+    dataIndex: ["metrics", "datasetCount"],
+    key: "datasets",
+    render: function render(text, record) {
+      return lodash_default.a.get(record, 'metrics.datasetCount', 1).toLocaleString("en-GB");
+    }
   }, {
     title: "Version",
     dataIndex: ["version"],
@@ -111186,12 +109940,21 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, 
     dataIndex: ["logo"],
     key: "logo",
     render: function render(text, record) {
-      return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, { auth: auth, catalogueKey: catalogueKey, datasetKey: record.key, style: { maxHeight: '32px' }, size: "SMALL" });
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_DatasetlogoWithFallback, {
+        auth: auth,
+        catalogueKey: catalogueKey,
+        datasetKey: record.key,
+        style: {
+          maxHeight: '32px'
+        },
+        size: "SMALL"
+      });
     }
   }, {
     title: "Taxonomic scope",
     dataIndex: ["taxonomicScope"],
-    key: "taxonomicScope"
+    key: "taxonomicScope",
+    ellipsis: true
   }, {
     title: "Living Species",
     dataIndex: ["metrics", "taxaByRankCount", "species"],
@@ -111202,7 +109965,6 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, 
     sorter: function sorter(a, b) {
       return DatasetSearch_getLivingSpecies(a) - DatasetSearch_getLivingSpecies(b);
     }
-
   }, {
     title: "Extinct Species",
     dataIndex: ["metrics", "extinctTaxaByRankCount", "species"],
@@ -111213,144 +109975,206 @@ var DatasetSearch_getColumns = function getColumns(pathToDataset, catalogueKey, 
     sorter: function sorter(a, b) {
       return DatasetSearch_getExtinctSpecies(a) - DatasetSearch_getExtinctSpecies(b);
     }
-
-  }];
+  }].filter(function (clm) {
+    return !hasPublishers ? clm.key !== "datasets" : true;
+  });
 };
-
-var DatasetSearch_DatasetSearchPage = function (_React$Component) {
-  DatasetSearch_inherits(DatasetSearchPage, _React$Component);
-
+var DatasetSearch_DatasetSearchPage = /*#__PURE__*/function (_React$Component) {
   function DatasetSearchPage(props) {
-    DatasetSearch_classCallCheck(this, DatasetSearchPage);
-
-    var _this = DatasetSearch_possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.componentDidMount = function () {
+    var _this;
+    _this = _React$Component.call(this, props) || this;
+    DatasetSearch_defineProperty(_this, "componentDidMount", function () {
       _this.getData();
       _this.getRank();
-    };
-
-    _this.getData = function () {
-      _this.setState({ loading: true });
-      var catalogueKey = _this.props.catalogueKey;
-
-
-      axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source").then(function (res) {
-        return Promise.all(res.data.map(function (r) {
-          return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/source/" + r.key + "/metrics").then(function (res) {
-            return DatasetSearch_extends({}, r, { metrics: res.data });
+    });
+    /* 
+      getDataOLD = () => {
+        this.setState({ loading: true });
+        const { catalogueKey } = this.props;
+       
+        axios(`${config.dataApi}dataset/${catalogueKey}/source`)
+        .then((res) => {
+              return Promise.all(
+                res.data.map((r) => 
+                    axios(
+                        `${config.dataApi}dataset/${catalogueKey}/source/${r.key}/metrics`
+                      ).then((res) => ({...r, metrics: res.data}))
+                  
+                )
+              );
+            
+          })
+          .then(data => {
+    
+            this.setState({
+              loading: false,
+              data: data,
+              err: null
+            });
+          })
+          .catch(err => {
+            this.setState({ loading: false, error: err, data: [] });
           });
-        }));
+      }; */
+    DatasetSearch_defineProperty(_this, "getData", function () {
+      _this.setState({
+        loading: true
+      });
+      var datasetKey = _this.props.catalogueKey;
+      Promise.all([axios_default()( /* `${config.dataApi}dataset?limit=1000&contributesTo=${datasetKey}&sortBy=alias` */src_config.dataApi + "dataset/" + datasetKey + "/source"), axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/sector/publisher")]).then(function (_ref) {
+        var res = _ref[0],
+          publisherRes = _ref[1];
+        var columns = {};
+        var datasetData = res.data || [];
+        var publisherData = lodash_default.a.get(publisherRes, 'data.result', []);
+        if (publisherData.length > 0) {
+          _this.setState({
+            hasPublishers: true
+          });
+        }
+        return Promise.all([].concat(publisherData.map(function (r) {
+          return _this.getPublisherMetrics(datasetKey, r.id).then(function (metrics) {
+            // columns = _.merge(columns, metrics);
+            return DatasetSearch_extends({}, r, {
+              metrics: metrics
+            });
+          });
+        }), datasetData.map(function (r) {
+          return _this.getMetrics(datasetKey, r.key).then(function (metrics) {
+            columns = lodash_default.a.merge(columns, metrics);
+            return DatasetSearch_extends({}, r, {
+              metrics: metrics
+            });
+          });
+        })));
       }).then(function (data) {
-
         _this.setState({
           loading: false,
-          data: data,
+          data: data.sort(function (a, b) {
+            if (!!a.id && !b.id) {
+              return a;
+            } else if (!!b.id && !a.id) {
+              return b;
+            } else if (a.alias && b.alias) {
+              return a.alias.localeCompare(b.alias);
+            } else {
+              return 0;
+            }
+          }),
           err: null
         });
-      }).catch(function (err) {
-        _this.setState({ loading: false, error: err, data: [] });
+      })["catch"](function (err) {
+        _this.setState({
+          loading: false,
+          error: err,
+          data: []
+        });
       });
-    };
-
-    _this.getRank = function () {
+    });
+    DatasetSearch_defineProperty(_this, "getMetrics", function (datasetKey, sourceDatasetKey) {
+      return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/source/" + sourceDatasetKey + "/metrics").then(function (res) {
+        return res.data;
+      });
+    });
+    DatasetSearch_defineProperty(_this, "getPublisherMetrics", function (datasetKey, publisherId) {
+      return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/sector/publisher/" + publisherId + "/metrics").then(function (res) {
+        return res.data;
+      });
+    });
+    DatasetSearch_defineProperty(_this, "getRank", function () {
       axios_default()(src_config.dataApi + "vocab/rank").then(function (res) {
-        return _this.setState({ rank: res.data.map(function (r) {
+        return _this.setState({
+          rank: res.data.map(function (r) {
             return r.name;
-          }) });
+          })
+        });
       });
-    };
-
+    });
     if (_this.props.auth) {
       axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(_this.props.auth);
     }
     _this.state = {
       data: [],
       rank: null,
+      hasPublishers: false,
       loading: false
     };
     return _this;
   }
-
-  DatasetSearchPage.prototype.render = function render() {
+  DatasetSearch_inheritsLoose(DatasetSearchPage, _React$Component);
+  var _proto = DatasetSearchPage.prototype;
+  _proto.render = function render() {
     var _this2 = this;
-
-    var _state = this.state,
-        data = _state.data,
-        loading = _state.loading,
-        rank = _state.rank,
-        error = _state.error;
-    var _props = this.props,
-        pathToDataset = _props.pathToDataset,
-        catalogueKey = _props.catalogueKey;
-
-
-    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-      "div",
-      {
-        className: "catalogue-of-life",
-
-        style: {
-          background: "#fff",
-          padding: 24,
-          minHeight: 280,
-          margin: "16px 0"
-        }
+    var _this$state = this.state,
+      data = _this$state.data,
+      loading = _this$state.loading,
+      rank = _this$state.rank,
+      hasPublishers = _this$state.hasPublishers,
+      error = _this$state.error;
+    var _this$props = this.props,
+      pathToDataset = _this$props.pathToDataset,
+      catalogueKey = _this$props.catalogueKey;
+    return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+      className: "catalogue-of-life",
+      style: {
+        background: "#fff",
+        padding: 24,
+        minHeight: 280,
+        margin: "16px 0"
+      }
+    }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, error && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
+      style: {
+        marginBottom: "10px"
       },
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_row,
-        null,
-        error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_alert, {
-          style: { marginBottom: "10px" },
-          message: external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, { error: error }),
-          type: "error"
-        })
-      ),
-      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-        es_row,
-        null,
-        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-          es_col,
-          { span: 24, style: { textAlign: "right", marginBottom: "8px" } },
-          "Source datasets: " + data.length.toLocaleString('en-GB')
-        )
-      ),
-      !error && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
-        size: "small",
-        columns: DatasetSearch_getColumns(pathToDataset, catalogueKey, this.props.auth),
-        dataSource: data,
-        loading: loading,
-        rowKey: function rowKey(record) {
-          return record.key;
-        },
-        showSorterTooltip: false,
-        pagination: false,
-        expandedRowRender: function expandedRowRender(dataset) {
-          return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-            "div",
-            { style: { marginLeft: '40px' } },
-            external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, { metrics: dataset.metrics, dataset: dataset, pathToSearch: _this2.props.pathToSearch, rank: rank }),
-            dataset.citation && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-              "div",
-              { style: { marginTop: "12px" } },
-              external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
-                components_PresentationItem,
-                { md: 24, label: "Citation" },
-                external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { dangerouslySetInnerHTML: { __html: dataset.citation } })
-              )
-            )
-          );
-        }
-      })
-    );
+      message: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_ErrorMsg, {
+        error: error
+      }),
+      type: "error"
+    })), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_col, {
+      span: 24,
+      style: {
+        textAlign: "right",
+        marginBottom: "8px"
+      }
+    }, "Source datasets: " + data.length.toLocaleString('en-GB'))), !error && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(table, {
+      size: "small",
+      columns: DatasetSearch_getColumns(pathToDataset, catalogueKey, this.props.auth, hasPublishers),
+      dataSource: data,
+      loading: loading,
+      rowKey: function rowKey(record) {
+        return record.key || record.id;
+      },
+      showSorterTooltip: false,
+      pagination: false,
+      expandedRowRender: function expandedRowRender(dataset) {
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          style: {
+            marginLeft: '40px'
+          }
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(MetricsPresentation, {
+          metrics: dataset.metrics,
+          dataset: dataset,
+          pathToSearch: _this2.props.pathToSearch,
+          rank: rank
+        }), dataset.citation && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          style: {
+            marginTop: "12px"
+          }
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components_PresentationItem, {
+          md: 24,
+          label: "Citation"
+        }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
+          dangerouslySetInnerHTML: {
+            __html: dataset.citation
+          }
+        }))));
+      }
+    }));
   };
-
   return DatasetSearchPage;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Component);
-
 /* harmony default export */ var DatasetSearch = (DatasetSearch_DatasetSearchPage);
 // CONCATENATED MODULE: ./src/index.js
-
 
 
 
