@@ -10,6 +10,7 @@ class TaxonomicCoverage extends React.Component {
 
     this.state = {
       loading: true,
+      taxonMap: null
     };
   }
 
@@ -24,9 +25,9 @@ class TaxonomicCoverage extends React.Component {
       `${config.dataApi}dataset/${catalogueKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
     ).then((res) => {
       return Promise.allSettled(
-        res.data.result.map((t) =>
+        res.data.result.filter(t => !!t?.target).map((t) =>
           axios(
-            `${config.dataApi}dataset/${catalogueKey}/nameusage/search?TAXON_ID=${t.target.id}&rank=${t.subject.rank}&q=${t.subject.name}`
+            `${config.dataApi}dataset/${catalogueKey}/nameusage/search?TAXON_ID=${t?.target?.id}&rank=${t?.subject?.rank}&q=${t?.subject?.name}`
           ).then((usages) => {
             const taxon = _.get(usages, "data.result[0]");
             if (taxon) {
@@ -57,7 +58,7 @@ class TaxonomicCoverage extends React.Component {
     const { taxonMap } = this.state;
     const { style, pathToTree } = this.props;
     return taxonMap
-      ? Object.keys(taxonMap).sort((a,b) => a.length - b.length).map((k) => (
+      ? (Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort((a,b) => a.length - b.length).map((k) => (
           <div style={style} key={k}>
             <span>{k}{k !== "" ? ":" : ""}</span>{" "}
             {taxonMap[k].map((tx, idx) => (
@@ -67,7 +68,7 @@ class TaxonomicCoverage extends React.Component {
               </React.Fragment>
             ))}
           </div>
-        ))
+        )) : "N/A")
       : 
         <Skeleton active paragraph={{ rows: 4 }} />
       ;

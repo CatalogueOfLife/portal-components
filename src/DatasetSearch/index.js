@@ -12,21 +12,28 @@ import PresentationItem from "../components/PresentationItem";
 const getLivingSpecies = (record) => ( (_.get(record, 'metrics.taxaByRankCount.species') || 0) - (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0))
 const getExtinctSpecies = (record) => (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0)
 
-
-const getColumns = (pathToDataset, catalogueKey, auth) => [
+const getColumns = (pathToDataset, catalogueKey, auth, hasPublishers) => [
   {
     title: "Title",
     dataIndex: ["alias"],
     key: "title",
+    
     render: (text, record) => {
       return (
-
-          <a href={`${pathToDataset}${record.key}`} onClick={() => {window.location.href =  `${pathToDataset}${record.key}`}}  dangerouslySetInnerHTML={{ __html: text }} />
+record.id ? <span>{"Publisher: "} <a href={`https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`} onClick={() => {window.location.href =  `https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`}}  dangerouslySetInnerHTML={{ __html: text }} /> </span> :
+          <a href={`${pathToDataset}${record.key}`} onClick={() => {window.location.href =  `${pathToDataset}${record.key}`}}  >{record.alias || record.title}</a>
       );
     },
     width: "30%",
+    ellipsis: true,
     sorter: (a, b) => (a.alias && b.alias) ? a.alias.localeCompare(b.alias) : 0,
-    defaultSortOrder: 'ascend'
+   // defaultSortOrder: 'ascend'
+  },
+  {
+    title: "Datasets",
+    dataIndex: ["metrics", "datasetCount"],
+    key: "datasets",
+    render: (text, record) => _.get(record, 'metrics.datasetCount', 1).toLocaleString("en-GB")
   },
   {
     title: "Version",
@@ -42,7 +49,9 @@ const getColumns = (pathToDataset, catalogueKey, auth) => [
   {
     title: "Taxonomic scope",
     dataIndex: ["taxonomicScope"],
-    key: "taxonomicScope"
+    key: "taxonomicScope",
+    ellipsis: true,
+
   },
   {
     title: "Living Species",
@@ -61,7 +70,7 @@ const getColumns = (pathToDataset, catalogueKey, auth) => [
 
   }
  
-];
+].filter(clm => !hasPublishers ? clm.key !== "datasets" : true );
 
 class DatasetSearchPage extends React.Component {
   constructor(props) {
@@ -72,6 +81,7 @@ class DatasetSearchPage extends React.Component {
     this.state = {
       data: [],
       rank: null,
+      hasPublishers: false,
       loading: false
     };
   }
@@ -81,8 +91,8 @@ class DatasetSearchPage extends React.Component {
     this.getRank();
   }
   
-
-  getData = () => {
+/* 
+  getDataOLD = () => {
     this.setState({ loading: true });
     const { catalogueKey } = this.props;
    
@@ -109,6 +119,81 @@ class DatasetSearchPage extends React.Component {
       .catch(err => {
         this.setState({ loading: false, error: err, data: [] });
       });
+  }; */
+
+getData = () => {
+  this.setState({ loading: true });
+    const { catalogueKey: datasetKey } = this.props;
+  Promise.all([
+    axios(
+      /* `${config.dataApi}dataset?limit=1000&contributesTo=${datasetKey}&sortBy=alias` */
+      `${config.dataApi}dataset/${datasetKey}/source`
+    ),
+    axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher`),
+  ])
+    .then(([res, publisherRes]) => {
+      let columns = {};
+      const datasetData = res.data || [];
+      const publisherData = _.get(publisherRes, 'data.result', []);
+      if(publisherData.length > 0){
+        this.setState({hasPublishers: true})
+      }
+      return Promise.all([
+        ...publisherData.map((r) => {
+          return this.getPublisherMetrics(datasetKey, r.id).then(
+            (metrics) => {
+              // columns = _.merge(columns, metrics);
+              return {
+                ...r,
+                metrics: metrics,
+              };
+            }
+          );
+        }),
+        ...datasetData.map((r) => {
+          return this.getMetrics(datasetKey, r.key).then((metrics) => {
+            columns = _.merge(columns, metrics);
+            return {
+              ...r,
+              metrics: metrics,
+            };
+          });
+        }),
+      ])
+    })
+    .then(data => {
+
+      this.setState({
+        loading: false,
+        data: data.sort((a, b) => {
+          if(!!a.id && !b.id){
+            return a
+          } else if(!!b.id && !a.id){
+            return b
+          } else if(a.alias && b.alias) {
+            return a.alias.localeCompare(b.alias)
+          } else {
+            return 0
+          }
+
+        }),
+        err: null
+      });
+    })
+    .catch(err => {
+      this.setState({ loading: false, error: err, data: [] });
+    });
+}
+
+  getMetrics = (datasetKey, sourceDatasetKey) => {
+    return axios(
+      `${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}/metrics`
+    ).then((res) => res.data);
+  };
+  getPublisherMetrics = (datasetKey, publisherId) => {
+    return axios(
+      `${config.dataApi}dataset/${datasetKey}/sector/publisher/${publisherId}/metrics`
+    ).then((res) => res.data);
   };
 
 
@@ -123,11 +208,12 @@ class DatasetSearchPage extends React.Component {
       data,
       loading,
       rank,
+      hasPublishers,
       error
     } = this.state;
     const {pathToDataset, catalogueKey} = this.props;
     
-
+   
 
     return (
       <div
@@ -159,10 +245,10 @@ class DatasetSearchPage extends React.Component {
         {!error && (
           <Table
             size="small"
-            columns={getColumns(pathToDataset, catalogueKey, this.props.auth)}
+            columns={ getColumns(pathToDataset, catalogueKey, this.props.auth, hasPublishers)}
             dataSource={data}
             loading={loading}
-            rowKey={record => record.key}
+            rowKey={record => record.key || record.id}
             showSorterTooltip={false}
             pagination={false}
             expandedRowRender={(dataset) => <div style={{marginLeft: '40px'}}>
