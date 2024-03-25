@@ -27,47 +27,51 @@ class Demo extends Component {
           {path.pathname === "/data/tree" && (
             <Tree
               showTreeOptions={true}
-              catalogueKey={"3LR"}
+              catalogueKey={"291298"}
               pathToTaxon="/data/taxon/"
               pathToDataset="/data/source/"
               citation="bottom"
+              auth="thomasgbif:splendens"
             />
           )}
           {path.pathname.indexOf("/data/taxon/") === 0 && (
             <Taxon
-              catalogueKey={"3LR"}
+              catalogueKey={"291298"}
               pathToTree="/data/tree"
               pathToSearch="/data/search"
               pathToDataset="/data/source/"
               pathToTaxon="/data/taxon/"
               pageTitleTemplate="COL | __taxon__"
               identifierLabel="COL identifier"
+              auth="thomasgbif:splendens"
             ></Taxon>
           )}
           {path.pathname.indexOf("/data/search") === 0 && (
-            <Search catalogueKey={"3LR"}  pathToTaxon="/data/taxon/" citation="bottom"></Search>
+            <Search auth="thomasgbif:splendens" catalogueKey={"291298"}  pathToTaxon="/data/taxon/" citation="bottom"></Search>
           )}
           {path.pathname.indexOf("/data/source") === 0 && (
             <Dataset 
-              catalogueKey={"3LR"} 
+              catalogueKey={"291298"} 
               pathToTree="/data/tree" 
               pathToSearch="/data/search"
               pageTitleTemplate="COL | __dataset__"
+              auth="thomasgbif:splendens"
               >
 
               </Dataset>
           )}
           {path.pathname.indexOf("/data/contributors") === 0 && (
             <DatasetSearch
-              catalogueKey={"3LR"}
+              catalogueKey={"291298"}
               pathToDataset="/data/source/"
               pathToSearch="/data/search"
+              auth="thomasgbif:splendens"
             ></DatasetSearch>
           )}
 
           {path.pathname.indexOf("/data/bibtex") === 0 && (
             <BibTex
-              datasetKey={"3LR"}
+              datasetKey={"291298"}
             ></BibTex>
           )}
         </React.Fragment>
