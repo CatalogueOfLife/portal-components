@@ -689,6 +689,7 @@ class TaxonPage extends React.Component {
           {_.get(sourceDataset, "title") && (
             <PresentationItem md={md} label="Source">
               <div style={{ display: "inline-block" }}>
+              {info?.usage?.merged && <span>* </span>}{" "}
               {info?.source && info?.source?.sourceId && (
                       <>
                         <a

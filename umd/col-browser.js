@@ -104564,7 +104564,7 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
   Taxon_inheritsLoose(TaxonPage, _React$Component);
   var _proto = TaxonPage.prototype;
   _proto.render = function render() {
-    var _info$source, _info$source2, _info$source3, _info$source4, _info$source5, _this$state2, _info$source6, _info$source7;
+    var _info$usage, _info$source, _info$source2, _info$source3, _info$source4, _info$source5, _this$state2, _info$source6, _info$source7;
     var _this$props3 = this.props,
       catalogueKey = _this$props3.catalogueKey,
       pathToTaxon = _this$props3.pathToTaxon,
@@ -104796,7 +104796,7 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
       style: {
         display: "inline-block"
       }
-    }, (info === null || info === void 0 ? void 0 : info.source) && (info === null || info === void 0 ? void 0 : (_info$source = info.source) === null || _info$source === void 0 ? void 0 : _info$source.sourceId) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    }, (info === null || info === void 0 ? void 0 : (_info$usage = info.usage) === null || _info$usage === void 0 ? void 0 : _info$usage.merged) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, "* "), " ", (info === null || info === void 0 ? void 0 : info.source) && (info === null || info === void 0 ? void 0 : (_info$source = info.source) === null || _info$source === void 0 ? void 0 : _info$source.sourceId) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
       href: "https://www.checklistbank.org/dataset/" + (info === null || info === void 0 ? void 0 : (_info$source2 = info.source) === null || _info$source2 === void 0 ? void 0 : _info$source2.sourceDatasetKey) + "/taxon/" + (info === null || info === void 0 ? void 0 : (_info$source3 = info.source) === null || _info$source3 === void 0 ? void 0 : _info$source3.sourceId)
     }, info === null || info === void 0 ? void 0 : (_info$source4 = info.source) === null || _info$source4 === void 0 ? void 0 : _info$source4.sourceId), " ", "in", " "), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
       href: "" + pathToDataset + lodash_default.a.get(sourceDataset, "key"),
