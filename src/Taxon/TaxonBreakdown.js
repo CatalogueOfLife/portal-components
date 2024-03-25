@@ -30,6 +30,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
     getData();
   }, [taxon, datasetKey]);
 
+
   const getOverView = async () => {
     const res = await axios(
       `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxon.id}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
@@ -311,7 +312,7 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
     setOptions(options);
   };
 
-  return loading || !options ? (
+  return invalid ? null : loading || !options ? (
     <Row style={{ padding: "48px" }}>
       <Col flex="auto"></Col>
       <Col>

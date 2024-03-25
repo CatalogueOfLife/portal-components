@@ -104035,7 +104035,7 @@ var TaxonBreakdown_TaxonBreakdown = function TaxonBreakdown(_ref) {
     };
     setOptions(options);
   };
-  return loading || !options ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
+  return invalid ? null : loading || !options ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(es_row, {
     style: {
       padding: "48px"
     }
