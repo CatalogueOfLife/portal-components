@@ -58,7 +58,9 @@ const getColumns = (pathToTaxon) => [
       const id =
         _.get(record, "usage.accepted.id") || _.get(record, "usage.id");
       return (
-        <a
+       <><span >
+       {record?.usage?.merged && "* "}
+     </span><a
           href={typeof pathToTaxon === "string" ? `${pathToTaxon}${id}`: "#"}
           onClick={(e) => {
             if(typeof pathToTaxon === "string"){
@@ -69,7 +71,7 @@ const getColumns = (pathToTaxon) => [
             }
           }}
           dangerouslySetInnerHTML={{ __html: text }}
-        />
+        /></> 
       );
     },
     width: 200,

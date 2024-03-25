@@ -79462,7 +79462,7 @@ var ColTreeNode_ColTreeNode = /*#__PURE__*/function (_React$Component) {
           id: taxon.id
         }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", {
           className: "tree-node-rank"
-        }, taxon.rank, ": "), (taxon === null || taxon === void 0 ? void 0 : taxon.merged) && "*", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+        }, taxon.rank, ": "), (taxon === null || taxon === void 0 ? void 0 : taxon.merged) && "* ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
           dangerouslySetInnerHTML: {
             __html: taxon.labelHtml
           },
@@ -108687,8 +108687,9 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
     dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
     render: function render(text, record) {
+      var _record$usage;
       var id = lodash_default.a.get(record, "usage.accepted.id") || lodash_default.a.get(record, "usage.id");
-      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.Fragment, null, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("span", null, (record === null || record === void 0 ? void 0 : (_record$usage = record.usage) === null || _record$usage === void 0 ? void 0 : _record$usage.merged) && "* "), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
         href: typeof pathToTaxon === "string" ? "" + pathToTaxon + id : "#",
         onClick: function onClick(e) {
           if (typeof pathToTaxon === "string") {
@@ -108701,7 +108702,7 @@ var NameSearch_getColumns = function getColumns(pathToTaxon) {
         dangerouslySetInnerHTML: {
           __html: text
         }
-      });
+      }));
     },
     width: 200,
     sorter: true

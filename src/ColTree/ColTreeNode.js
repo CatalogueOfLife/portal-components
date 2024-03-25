@@ -36,7 +36,7 @@ class ColTreeNode extends React.Component {
                         <div id={taxon.id}>
                         <span>
                           <span className="tree-node-rank">{taxon.rank}: </span>
-                          {taxon?.merged && "*"}
+                          {taxon?.merged && "* "}
                           <a
                             dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
                             href={typeof pathToTaxon === "string" ? `${pathToTaxon}${taxon.id}`: "#"}
