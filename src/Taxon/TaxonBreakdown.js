@@ -20,7 +20,13 @@ const canonicalRanks = [
   "species",
 ];
 
-const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) => {
+const TaxonBreakdown = ({
+  taxon,
+  datasetKey,
+  rank = [],
+  pathToTaxon,
+  dataset,
+}) => {
   const [options, setOptions] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -29,7 +35,6 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
   useEffect(() => {
     getData();
   }, [taxon, datasetKey]);
-
 
   const getOverView = async () => {
     const res = await axios(
@@ -102,25 +107,27 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
         setInvalid(true);
         setLoading(false);
       } else {
-      const res = await axios(
-        `${config.dataApi}dataset/${datasetKey}/export.json?rank=${childRank}${
-          !root ? "&rank=" + grandChildRank : ""
-        }&countBy=${countBy}&taxonID=${taxon.id}`
-      );
-      //Api returns both ranks in the root array
-      const childRankData = res.data; //.filter((t) => t.rank === childRank);
-      if (_.get(root, "[0]")) {
-        root[0].children = processChildren(childRankData, countBy);
-        root[0][countBy] = root[0].children.reduce(
-          (acc, cur) => acc + cur[countBy],
-          0
+        const res = await axios(
+          `${
+            config.dataApi
+          }dataset/${datasetKey}/export.json?rank=${childRank}${
+            !root ? "&rank=" + grandChildRank : ""
+          }&countBy=${countBy}&taxonID=${taxon.id}`
         );
-      } else {
-        root = processChildren(childRankData, countBy);
+        //Api returns both ranks in the root array
+        const childRankData = res.data; //.filter((t) => t.rank === childRank);
+        if (_.get(root, "[0]")) {
+          root[0].children = processChildren(childRankData, countBy);
+          root[0][countBy] = root[0].children.reduce(
+            (acc, cur) => acc + cur[countBy],
+            0
+          );
+        } else {
+          root = processChildren(childRankData, countBy);
+        }
+        setLoading(false);
+        initChart(root, countBy);
       }
-      setLoading(false);
-      initChart(root, countBy);
-    }
     } catch (err) {
       setError(err);
       setLoading(false);
@@ -238,12 +245,12 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
           },
           point: {
             events: {
-                click: (e) => {
-                  if(e.point._id){
-                    window.location.href = `${pathToTaxon}${e.point._id}`
-                  }
-                },
+              click: (e) => {
+                if (e.point._id) {
+                  window.location.href = `${pathToTaxon}${e.point._id}`;
+                }
               },
+            },
           },
         },
         {
@@ -253,11 +260,11 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
           innerSize: "60%",
           point: {
             events: {
-                click: (e) => {
-                  if(e.point._id){
-                    window.location.href = `${pathToTaxon}${e.point._id}`
-                  }
-                  },
+              click: (e) => {
+                if (e.point._id) {
+                  window.location.href = `${pathToTaxon}${e.point._id}`;
+                }
+              },
             },
           },
           dataLabels: {
@@ -324,6 +331,5 @@ const TaxonBreakdown = ({ taxon, datasetKey, rank = [], pathToTaxon, dataset }) 
     <HighchartsReact highcharts={Highcharts} options={options} />
   );
 };
-
 
 export default TaxonBreakdown;

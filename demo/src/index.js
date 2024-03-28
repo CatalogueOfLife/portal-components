@@ -10,17 +10,16 @@ import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex } from "../../src";
 import history from "../../src/history";
 
 // Test function that could be given to the tree as "pathToTaxon" instead of a string
-var callBack = function(taxonKey){
-  alert(`This seems to work, key is ${taxonKey}`)
+var callBack = function (taxonKey) {
+  alert(`This seems to work, key is ${taxonKey}`);
   window.location.href = `/data/taxon/${taxonKey}`;
-}
+};
 
 class Demo extends Component {
   render() {
     const { location: path } = history;
     return (
-      <div style={{ background: "#f2f3ed", height: '100%'
-    }}>
+      <div style={{ background: "#f2f3ed", height: "100%" }}>
         <h1>col-tree-browser Demo</h1>
 
         <React.Fragment>
@@ -31,7 +30,6 @@ class Demo extends Component {
               pathToTaxon="/data/taxon/"
               pathToDataset="/data/source/"
               citation="bottom"
-              auth="thomasgbif:splendens"
             />
           )}
           {path.pathname.indexOf("/data/taxon/") === 0 && (
@@ -43,36 +41,33 @@ class Demo extends Component {
               pathToTaxon="/data/taxon/"
               pageTitleTemplate="COL | __taxon__"
               identifierLabel="COL identifier"
-              auth="thomasgbif:splendens"
             ></Taxon>
           )}
           {path.pathname.indexOf("/data/search") === 0 && (
-            <Search auth="thomasgbif:splendens" catalogueKey={"291298"}  pathToTaxon="/data/taxon/" citation="bottom"></Search>
+            <Search
+              catalogueKey={"291298"}
+              pathToTaxon="/data/taxon/"
+              citation="bottom"
+            ></Search>
           )}
           {path.pathname.indexOf("/data/source") === 0 && (
-            <Dataset 
-              catalogueKey={"291298"} 
-              pathToTree="/data/tree" 
+            <Dataset
+              catalogueKey={"291298"}
+              pathToTree="/data/tree"
               pathToSearch="/data/search"
               pageTitleTemplate="COL | __dataset__"
-              auth="thomasgbif:splendens"
-              >
-
-              </Dataset>
+            ></Dataset>
           )}
           {path.pathname.indexOf("/data/contributors") === 0 && (
             <DatasetSearch
               catalogueKey={"291298"}
               pathToDataset="/data/source/"
               pathToSearch="/data/search"
-              auth="thomasgbif:splendens"
             ></DatasetSearch>
           )}
 
           {path.pathname.indexOf("/data/bibtex") === 0 && (
-            <BibTex
-              datasetKey={"291298"}
-            ></BibTex>
+            <BibTex datasetKey={"291298"}></BibTex>
           )}
         </React.Fragment>
       </div>
