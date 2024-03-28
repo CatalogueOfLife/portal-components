@@ -81400,7 +81400,7 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
               rootLoading: true,
               treeData: []
             });
-            return _context2.abrupt("return", axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree?catalogueKey=" + catalogueKey + "&type=CATALOGUE&limit=" + CHILD_PAGE_SIZE + "&offset=" + _this2.state.treeData.length + (hideExtinct ? "&extinct=false&extinct=" : '')).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
+            return _context2.abrupt("return", axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree?catalogueKey=" + catalogueKey + "&type=CATALOGUE&limit=" + CHILD_PAGE_SIZE + "&offset=" + _this2.state.treeData.length + (hideExtinct ? "&extinct=false&extinct=" : "")).then(_this2.decorateWithSectorsAndDataset).then(function (res) {
               var mainTreeData = res.data.result || [];
               var rootTotal = res.data.total;
               var treeData = mainTreeData.map(function (tx) {
@@ -81463,7 +81463,7 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
                 treeData: []
               });
               _context4.next = 4;
-              return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + defaultExpandKey + "?catalogueKey=" + catalogueKey + "&insertPlaceholder=true&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : '')).then(function (res) {
+              return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + defaultExpandKey + "?catalogueKey=" + catalogueKey + "&insertPlaceholder=true&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : "")).then(function (res) {
                 return _this2.decorateWithSectorsAndDataset({
                   data: {
                     result: res.data
@@ -81582,7 +81582,7 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
               offset = lodash_default.a.get(dataRef, "childOffset");
               _context5.next = 7;
               return axios_default()(src_config.dataApi + "dataset/" + catalogueKey + "/tree/" + dataRef.taxon.id //taxonKey
-              + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : ''));
+              + "/children?limit=" + limit + "&offset=" + offset + "&insertPlaceholder=true&catalogueKey=" + catalogueKey + "&type=CATALOGUE" + (hideExtinct ? "&extinct=false" : ""));
             case 7:
               res = _context5.sent;
               _context5.next = 10;
@@ -81624,15 +81624,6 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
                     dataRef.children = dataRef.children.slice(0, -1);
                   }
                   return _this2.fetchChildPage(dataRef, false);
-                  /*  this.setState(
-                     {
-                       treeData: [...treeData],
-                       defaultExpandAll: false,
-                     },
-                     () => {
-                       this.fetchChildPage(dataRef, false);
-                     }
-                   ); */
                 };
                 dataRef.children = [].concat(dataRef.children, [{
                   title: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(ColTree_LoadMoreChildrenTreeNode, {
@@ -81727,7 +81718,7 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
             case 8:
               if (!node) {
                 node = parentNode.children.find(function (c) {
-                  return lodash_default.a.get(c, 'taxon.id') ? c.taxon.id.indexOf("incertae-sedis") > -1 : false;
+                  return lodash_default.a.get(c, "taxon.id") ? c.taxon.id.indexOf("incertae-sedis") > -1 : false;
                 });
               }
               return _context6.abrupt("return", node);
@@ -81822,8 +81813,8 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
                   setTimeout(function () {
                     var elmnt = document.getElementById(expandKey);
                     elmnt.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center'
+                      behavior: "smooth",
+                      block: "center"
                     });
                     /* if (_.get(this, "treeRef.current")) {
                       this.treeRef.current.scrollTo({ key: expandKey });
@@ -81858,12 +81849,12 @@ var ColTree_ColTree = /*#__PURE__*/function (_React$Component2) {
                   setTimeout(function () {
                     var elmnt = document.getElementById(expandKey);
                     elmnt.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center'
+                      behavior: "smooth",
+                      block: "center"
                     });
                     /*           if (_.get(this, "treeRef.current")) {
-                                this.treeRef.current.scrollTo({ key: expandKey });
-                              } */
+                      this.treeRef.current.scrollTo({ key: expandKey });
+                    } */
                   }, 100);
                 }
               });
@@ -103085,7 +103076,7 @@ var References_ReferencesTable = function ReferencesTable(_ref) {
       style: {
         paddingLeft: "22px"
       }
-    }, "Source: ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+    }, "Source:", " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
       href: "" + pathToDataset + (s === null || s === void 0 ? void 0 : (_s$sourceDataset2 = s.sourceDataset) === null || _s$sourceDataset2 === void 0 ? void 0 : _s$sourceDataset2.key)
     }, s === null || s === void 0 ? void 0 : (_s$sourceDataset3 = s.sourceDataset) === null || _s$sourceDataset3 === void 0 ? void 0 : _s$sourceDataset3.title))));
   }));
@@ -104240,7 +104231,7 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
               });
             })).then(function (results) {
               return results.filter(function (r) {
-                return r.status = 'fulfilled';
+                return r.status = "fulfilled";
               }).map(function (r) {
                 return r.value;
               });
@@ -104266,7 +104257,7 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
         }
         return Promise.allSettled(promises).then(function (results) {
           return results.filter(function (r) {
-            return r.status = 'fulfilled';
+            return r.status = "fulfilled";
           }).map(function (r) {
             return r.value;
           });
@@ -104389,15 +104380,15 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
             case 0:
               datasetKey = _this.props.catalogueKey;
               /*   let sourceDatasetKeyMap = _.get(res, "data.synonyms")
-                ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms"))
-                : null; */
+              ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms"))
+              : null; */
               _context2.prev = 1;
               _context2.next = 4;
               return axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/taxon/" + taxonKey + "/info");
             case 4:
               res = _context2.sent;
               referenceIndexMap = {};
-              if (!lodash_default.a.get(res, 'data.references')) {
+              if (!lodash_default.a.get(res, "data.references")) {
                 _context2.next = 10;
                 break;
               }
@@ -104525,7 +104516,7 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
         datasetKey = _this$props2.catalogueKey,
         pathToTaxon = _this$props2.pathToTaxon;
       axios_default()(src_config.dataApi + "dataset/" + datasetKey + "/synonym/" + taxonKey).then(function (res) {
-        window.location.href = "" + pathToTaxon + lodash_default.a.get(res, 'data.accepted.id');
+        window.location.href = "" + pathToTaxon + lodash_default.a.get(res, "data.accepted.id");
       })["catch"](function (err) {
         if (lodash_default.a.get(err, "response.status") === 404) {
           _this.setState({
@@ -104535,7 +104526,7 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
       });
     });
     if (_this.props.auth) {
-      axios_default.a.defaults.headers.common['Authorization'] = "Basic " + btoa_default()(_this.props.auth);
+      axios_default.a.defaults.headers.common["Authorization"] = "Basic " + btoa_default()(_this.props.auth);
     }
     _this.state = {
       taxon: null,
@@ -104589,16 +104580,16 @@ var Taxon_TaxonPage = /*#__PURE__*/function (_React$Component) {
     var genusRankIndex = rank ? rank.indexOf("genus") : -1;
 
     /*  const synonyms =
-       info && info.synonyms && info.synonyms.length > 0
-         ? info.synonyms.filter((s) => s.status !== "misapplied")
-         : [];
-     const misapplied =
-       info && info.synonyms && info.synonyms.length > 0
-         ? info.synonyms.filter((s) => s.status === "misapplied")
-         : []; */
-    var homotypic = lodash_default.a.get(info, 'synonyms.homotypic', []);
-    var heterotypic = lodash_default.a.get(info, 'synonyms.heterotypic', []);
-    var misapplied = lodash_default.a.get(info, 'synonyms.misapplied', []);
+      info && info.synonyms && info.synonyms.length > 0
+        ? info.synonyms.filter((s) => s.status !== "misapplied")
+        : [];
+    const misapplied =
+      info && info.synonyms && info.synonyms.length > 0
+        ? info.synonyms.filter((s) => s.status === "misapplied")
+        : []; */
+    var homotypic = lodash_default.a.get(info, "synonyms.homotypic", []);
+    var heterotypic = lodash_default.a.get(info, "synonyms.heterotypic", []);
+    var misapplied = lodash_default.a.get(info, "synonyms.misapplied", []);
     var synonyms = [].concat(homotypic.map(function (h) {
       return Taxon_extends({}, h, {
         __homotypic: true
@@ -108671,7 +108662,7 @@ var NameSearch_RadioGroup = es_radio.Group;
 var FACET_VOCAB = ["rank", "issue", "status", "nomStatus", "nameType", "field", "authorship",
 //  "authorshipYear",
 "extinct", "environment"
-// "origin", 
+// "origin",
 ];
 var PAGE_SIZE = 50;
 var defaultParams = {
@@ -108985,11 +108976,11 @@ var NameSearch_NameSearchPage = /*#__PURE__*/function (_React$Component) {
       };
     }) : [];
     /*     const facetAuthorshipYear = _.get(facets, "authorshipYear")
-          ? facets["authorshipYear"].map((s) => ({
-              value: s.value,
-              label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
-            }))
-          : []; */
+      ? facets["authorshipYear"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : []; */
     var facetExtinct = lodash_default.a.get(facets, "extinct") ? facets["extinct"].map(function (s) {
       return {
         value: s.value,
@@ -109003,11 +108994,11 @@ var NameSearch_NameSearchPage = /*#__PURE__*/function (_React$Component) {
       };
     }) : [];
     /*     const facetOrigin = _.get(facets, "origin")
-          ? facets["origin"].map((s) => ({
-              value: s.value,
-              label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
-            }))
-          : [];  */
+      ? facets["origin"].map((s) => ({
+          value: s.value,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];  */
 
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
       className: "catalogue-of-life",
