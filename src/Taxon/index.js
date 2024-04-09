@@ -28,6 +28,8 @@ import Page404 from "../components/Page404";
 import TaxonBreakdown from "./TaxonBreakdown";
 import SecondarySources from "./SecondarySources";
 import SourceDatasets from "./SourceDatasets";
+import MergedDataBadge from "../components/MergedDataBadge";
+
 const md = 5;
 
 class TaxonPage extends React.Component {
@@ -728,7 +730,7 @@ class TaxonPage extends React.Component {
           {_.get(sourceDataset, "title") && (
             <PresentationItem md={md} label="Source">
               <div style={{ display: "inline-block" }}>
-                {info?.usage?.merged && <span>* </span>}{" "}
+              {info?.usage?.merged && <MergedDataBadge />}{" "}
                 {info?.source && info?.source?.sourceId && (
                   <>
                     <a

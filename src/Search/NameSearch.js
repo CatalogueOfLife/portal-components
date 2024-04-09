@@ -26,6 +26,7 @@ import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
 import DatasetAutocomplete from "../components/DatasetAutocomplete";
 import Citation from "../components/DatasetCitation";
+import MergedDataBadge from "../components/MergedDataBadge";
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const FACET_VOCAB = [
@@ -51,6 +52,14 @@ const defaultParams = {
 
 const getColumns = (pathToTaxon) => [
   {
+    title: "",
+    dataIndex: ["usage", "merged"],
+    key: "merged",
+    width: 12,
+    render: (text, record) =>
+      record?.usage?.merged ? <MergedDataBadge /> : "",
+  },
+  {
     title: "Scientific Name",
     dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
@@ -59,7 +68,6 @@ const getColumns = (pathToTaxon) => [
         _.get(record, "usage.accepted.id") || _.get(record, "usage.id");
       return (
         <>
-          <span>{record?.usage?.merged && "* "}</span>
           <a
             href={typeof pathToTaxon === "string" ? `${pathToTaxon}${id}` : "#"}
             onClick={(e) => {

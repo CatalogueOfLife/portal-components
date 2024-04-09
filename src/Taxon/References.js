@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import _ from "lodash";
 import linkify from "linkify-html";
 import { Row, Col } from "antd";
+import MergedDataBadge from "../components/MergedDataBadge";
 
 const ReferencesTable = ({
   data,
@@ -32,7 +33,8 @@ const ReferencesTable = ({
 
           {s?.sourceDataset?.key !== primarySourceDatasetKey && (
             <Row>
-              <Col style={{ paddingLeft: "22px" }}>
+              <Col style={{ paddingLeft: "32px" }}>
+              <MergedDataBadge />
                 Source:{" "}
                 <a href={`${pathToDataset}${s?.sourceDataset?.key}`}>
                   {s?.sourceDataset?.title}

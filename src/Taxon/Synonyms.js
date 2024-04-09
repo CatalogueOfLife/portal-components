@@ -3,6 +3,8 @@ import _ from "lodash";
 import BorderedListItem from "./BorderedListItem";
 import ReferencePopover from "./ReferencePopover";
 import { Button } from "antd";
+import MergedDataBadge from "../components/MergedDataBadge";
+
 // import TypeMaterialPopover from "./TypeMaterialPopover";
 
 
@@ -64,7 +66,10 @@ const SynonymsTable = ({
             </span>
           {" "}
           <>
-            {" "}
+          {s?.sourceDatasetKey &&
+              _.get(primarySource, "key") !== s?.sourceDatasetKey && (
+                <MergedDataBadge />
+              )}{" "}
             {_.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
             {_.get(s, "status") === "misapplied" && _.get(s, "accordingTo")
               ? _.get(s, "accordingTo")

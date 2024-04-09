@@ -4,6 +4,7 @@ import _ from "lodash";
 // import config from "../config";
 import TaxonSources from "./TaxonSources";
 import TaxonEstimate from "./TaxonEstimate";
+import MergedDataBadge from "../components/MergedDataBadge";
 // import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import {ColTreeContext} from "./ColTreeContext"
 
@@ -36,7 +37,6 @@ class ColTreeNode extends React.Component {
                         <div id={taxon.id}>
                         <span>
                           <span className="tree-node-rank">{taxon.rank}: </span>
-                          {taxon?.merged && "* "}
                           <a
                             dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
                             href={typeof pathToTaxon === "string" ? `${pathToTaxon}${taxon.id}`: "#"}
@@ -50,6 +50,9 @@ class ColTreeNode extends React.Component {
                               
                             }}
                           />
+                          {taxon?.merged && (
+                          <MergedDataBadge style={{ marginLeft: "4px" }} />
+                        )}
                         </span>
                        {showInfo && <React.Fragment>
                         {/* estimate && (
