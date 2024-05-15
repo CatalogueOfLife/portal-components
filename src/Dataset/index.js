@@ -14,6 +14,8 @@ import AgentPresentation from "./AgentPresentation";
 import { getCountries } from "../api/enumeration";
 import BibTex from "../components/BibTex";
 import { LinkOutlined } from "@ant-design/icons";
+import marked from "marked";
+import DOMPurify from "dompurify";
 // import ReferencePopover from "./ReferencePopover"
 const IDENTIFIER_TYPES = {
   col: "https://www.checklistbank.org/dataset/",
@@ -258,7 +260,14 @@ class DatasetPage extends React.Component {
                 pathToSearch={this.props.pathToSearch}
               />
               <PresentationItem label="Abstract">
-                {data.description}
+              
+                {data.description ? (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(marked(data.description)),
+                  }}
+                ></span>
+              ) : ""}
               </PresentationItem>
               <PresentationItem label="Taxonomic scope">
                 {data.taxonomicScope || "-"}
