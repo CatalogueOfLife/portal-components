@@ -246,7 +246,16 @@ getData = () => {
           <Table
             size="small"
             columns={ getColumns(pathToDataset, catalogueKey, this.props.auth, hasPublishers)}
-            dataSource={data}
+            dataSource={data.filter((d) => {
+              if (!d?.metrics?.publisherKey) {
+                return true;
+              } else {
+                return !(
+                  d?.metrics?.datasetCount === 0 ||
+                  d?.metrics?.usagesCount === 0
+                );
+              }
+            })}
             loading={loading}
             rowKey={record => record.key || record.id}
             showSorterTooltip={false}
