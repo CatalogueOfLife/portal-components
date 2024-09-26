@@ -149,7 +149,7 @@ getData = () => {
               };
             }
           );
-        }),
+        }).filter(p => p?.metrics?.sectorCount > 0),
         ...datasetData.map((r) => {
           return this.getMetrics(datasetKey, r.key).then((metrics) => {
             columns = _.merge(columns, metrics);
