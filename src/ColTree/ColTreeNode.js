@@ -18,17 +18,25 @@ class ColTreeNode extends React.Component {
     };
   }
 
+  rankIsAboveSpecies = (rank) => {
+    return this.props.rank.indexOf(rank) < this.props.rank.indexOf("species");
+  };
+
   render = () => {
     const {
       taxon,
-      taxon: { sector, datasetSectors },
+      taxon: { sector, sourceDatasetKeys },
       catalogueKey,
       pathToTaxon,
       pathToDataset,
     } = this.props;
 
     const sectorSourceDataset = _.get(sector, "dataset");
-    const hasDatasetSectors = datasetSectors && ( sector && sector.subjectDatasetKey ? Object.keys(_.omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true)
+/*     const hasDatasetSectors = datasetSectors && ( sector && sector.subjectDatasetKey ? Object.keys(_.omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true)
+ */    
+const hasDatasetSectors =
+(sourceDatasetKeys || []).filter((d) => sector?.subjectDatasetKey !== d)
+  .length > 0;
     const estimate = taxon.estimate && taxon.estimates ? taxon.estimates.find(e => e.estimate === taxon.estimate) : null;
 
     return (
@@ -67,6 +75,25 @@ class ColTreeNode extends React.Component {
                           </Tag>
                           </React.Fragment>
                         )}
+
+                      {!_.isUndefined(taxon.count) &&
+                        this.rankIsAboveSpecies(taxon?.rank) && (
+                          <span>
+                            {" "}
+                            • {Number(taxon.count).toLocaleString()}{" "}
+                            {!_.isUndefined(taxon.speciesEstimate) && (
+                              <span>
+                                {" "}
+                                of{" "}
+                                {Number(
+                                  taxon.speciesEstimate
+                                ).toLocaleString()}{" "}
+                                est.{" "}
+                              </span>
+                            )}
+                            living species
+                          </span>
+                        )}  
                 
                         
                         {sector && (
@@ -92,7 +119,9 @@ class ColTreeNode extends React.Component {
                         )}
                         {hasDatasetSectors && (
                           <React.Fragment> <TaxonSources
-                              datasetSectors={sector && sector.subjectDatasetKey ? _.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors}
+/*                               datasetSectors={sector && sector.subjectDatasetKey ? _.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors}
+ */                                                       sourceDatasetKeys={sourceDatasetKeys}
+
                               pathToDataset={pathToDataset}
                               taxon={taxon}
                               catalogueKey={catalogueKey}

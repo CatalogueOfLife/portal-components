@@ -52,6 +52,7 @@ class ColTree extends React.Component {
       rootTotal: 0,
       error: null,
       nodeNotFoundErr: null,
+      rank: []
     };
     this.treeRef = React.createRef();
   }
@@ -66,6 +67,7 @@ class ColTree extends React.Component {
     this.sectorLoader = new DataLoader((ids) =>
       getSectorsBatch(ids, catalogueKey)
     );
+    this.getRank()
     const { treeRef } = this.props;
     treeRef(this);
   };
@@ -77,6 +79,12 @@ class ColTree extends React.Component {
     ) {
       this.reloadRoot();
     }
+  };
+
+  getRank = () => {
+    axios(`${config.dataApi}vocab/rank`).then((res) =>
+      this.setState({ rank: res.data.map((r) => r.name) })
+    );
   };
 
   reloadRoot = () =>
@@ -144,6 +152,7 @@ class ColTree extends React.Component {
               catalogueKey={catalogueKey}
               showSourceTaxon={showSourceTaxon}
               reloadChildren={() => this.fetchChildPage(dataRef, true)}
+              rank={this.state.rank}
             />
           );
           dataRef.ref = dataRef;
@@ -220,6 +229,7 @@ class ColTree extends React.Component {
         pathToDataset={pathToDataset}
         catalogueKey={catalogueKey}
         showSourceTaxon={showSourceTaxon}
+        rank={this.state.rank}
         reloadChildren={() => this.fetchChildPage(root, true)}
       />
     );
@@ -243,6 +253,7 @@ class ColTree extends React.Component {
           pathToDataset={pathToDataset}
           catalogueKey={catalogueKey}
           showSourceTaxon={showSourceTaxon}
+          rank={this.state.rank}
           reloadChildren={() => this.fetchChildPage(node, true)}
         />
       );
@@ -301,6 +312,7 @@ class ColTree extends React.Component {
               pathToDataset={pathToDataset}
               catalogueKey={catalogueKey}
               showSourceTaxon={showSourceTaxon}
+              rank={this.state.rank}
               reloadChildren={() => this.fetchChildPage(childDataRef, true)}
             />
           );

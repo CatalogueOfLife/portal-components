@@ -16,7 +16,7 @@ class TaxonSources extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+/*   componentDidMount = () => {
     const { datasetSectors, catalogueKey } = this.props;
     this.datasetLoader = new DataLoader((ids) =>
       getDatasetsBatch(ids, catalogueKey)
@@ -35,6 +35,28 @@ class TaxonSources extends React.Component {
 
     Promise.all(promises).then((data) => {
       this.setState({ data:_.sortBy(data, ['alias']), loading: false });
+    });
+  }; */
+
+  componentDidMount = () => {
+    const { sourceDatasetKeys, catalogueKey } = this.props;
+    this.datasetLoader = new DataLoader((ids) =>
+      getDatasetsBatch(ids, catalogueKey)
+    );
+    if (sourceDatasetKeys?.length < 4) {
+      this.setState({ showInNode: true }, this.getData);
+    }
+  };
+
+  getData = () => {
+    this.setState({ loading: true });
+    const { sourceDatasetKeys } = this.props;
+    const promises = sourceDatasetKeys.map((s) =>
+      this.datasetLoader.load(s).then((dataset) => dataset)
+    );
+
+    Promise.all(promises).then((data) => {
+      this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
     });
   };
 
