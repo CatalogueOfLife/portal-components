@@ -224,3 +224,11 @@ const domContainer = document.querySelector('#bibtex');
 ReactDOM.render(e(BibTex), domContainer);
 </script>
 ```
+
+###
+After doing a versioned release, remember to purge the cache here https://www.jsdelivr.com/tools/purge
+for these two urls:
+```
+https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/col-browser.min.js
+https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/main.css
+```
