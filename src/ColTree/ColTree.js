@@ -122,12 +122,13 @@ class ColTree extends React.Component {
       pathToTaxon,
       pathToDataset,
       hideExtinct,
+      type
     } = this.props;
     this.setState({ rootLoading: true, treeData: [] });
     return axios(
       `${
         config.dataApi
-      }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}&type=PROJECT&limit=${CHILD_PAGE_SIZE}&offset=${
+      }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
         this.state.treeData.length
       }${hideExtinct ? `&extinct=false&extinct=` : ""}`
     )
@@ -188,13 +189,14 @@ class ColTree extends React.Component {
       pathToTaxon,
       pathToDataset,
       hideExtinct,
+      type
     } = this.props;
 
     this.setState({ rootLoading: true, treeData: [] });
     const { data } = await axios(
       `${
         config.dataApi
-      }dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true&type=PROJECT${
+      }dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true${type ? "&type="+type :""}${
         hideExtinct ? `&extinct=false` : ""
       }`
     ).then((res) =>
@@ -278,6 +280,7 @@ class ColTree extends React.Component {
       pathToTaxon,
       pathToDataset,
       hideExtinct,
+      type
     } = this.props;
     const { treeData } = this.state;
     const childcount = _.get(dataRef, "childCount");
@@ -286,7 +289,7 @@ class ColTree extends React.Component {
     const res = await axios(
       `${config.dataApi}dataset/${catalogueKey}/tree/${
         dataRef.taxon.id //taxonKey
-      }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${catalogueKey}&type=PROJECT${
+      }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${catalogueKey}${type ? "&type="+type :""}${
         hideExtinct ? `&extinct=false` : ""
       }`
     );
@@ -463,7 +466,7 @@ class ColTree extends React.Component {
                   <span>Cannot find taxon {expandKey} in tree &#128549;</span>
                 ),
                 rootLoading: false,
-              },
+              }/* ,
               () => {
                 if (
                   this.props.treeType === "CATALOGUE" &&
@@ -471,7 +474,7 @@ class ColTree extends React.Component {
                 ) {
                   this.props.addMissingTargetKey(expandKey);
                 }
-              }
+              } */
             );
           }
         }

@@ -1,3 +1,3 @@
 export default {
-    dataApi: "https://api.checklistbank.org/"
+    dataApi: "https://api.dev.checklistbank.org/"
 }

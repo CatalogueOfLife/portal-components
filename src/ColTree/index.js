@@ -55,6 +55,7 @@ class ColTreeWrapper extends React.Component {
       showTreeOptions,
       linkToSpeciesPage,
       citation,
+      type
     } = this.props;
     const { hideExtinct, dataset } = this.state;
     const params = qs.parse(_.get(location, "search"));
@@ -143,6 +144,7 @@ class ColTreeWrapper extends React.Component {
               pathToDataset={pathToDataset}
               defaultTaxonKey={defaultTaxonKey}
               treeRef={(ref) => (this.treeRef = ref)}
+              type={type}
             />
           </ColTreeContext.Provider>
           {citation === "bottom" && dataset && <Citation dataset={dataset} />}
