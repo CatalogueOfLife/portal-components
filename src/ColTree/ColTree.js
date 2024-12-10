@@ -127,7 +127,7 @@ class ColTree extends React.Component {
     return axios(
       `${
         config.dataApi
-      }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}&type=CATALOGUE&limit=${CHILD_PAGE_SIZE}&offset=${
+      }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}&type=PROJECT&limit=${CHILD_PAGE_SIZE}&offset=${
         this.state.treeData.length
       }${hideExtinct ? `&extinct=false&extinct=` : ""}`
     )
@@ -194,7 +194,7 @@ class ColTree extends React.Component {
     const { data } = await axios(
       `${
         config.dataApi
-      }dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true&type=CATALOGUE${
+      }dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true&type=PROJECT${
         hideExtinct ? `&extinct=false` : ""
       }`
     ).then((res) =>
@@ -286,7 +286,7 @@ class ColTree extends React.Component {
     const res = await axios(
       `${config.dataApi}dataset/${catalogueKey}/tree/${
         dataRef.taxon.id //taxonKey
-      }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${catalogueKey}&type=CATALOGUE${
+      }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${catalogueKey}&type=PROJECT${
         hideExtinct ? `&extinct=false` : ""
       }`
     );
