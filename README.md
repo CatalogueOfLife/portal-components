@@ -63,7 +63,7 @@ A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse), takes
 5. `showTreeOptions` - (Optional) show toggles for extinct taxa and info (estimates, providers etc)
 6. `linkToSpeciesPage`- (Optional) when the searchbox finds a species or infraspecific taxon, jump directly to the taxon page rather than opening the tree 
 7. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the tree component
-8. `type` - (Optional) e.g. `type="project"` this will show info info about contributing sources on the tree nodes
+8. `type` - (Optional) e.g. `type="project"` this will show info about contributing sources on the tree nodes
 
 ```
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
