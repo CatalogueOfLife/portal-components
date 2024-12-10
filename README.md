@@ -36,16 +36,17 @@ Include dependencies, React and React Dom:
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" ></script>
 ```
 
-Include the Library - current version can be found [here](https://github.com/CatalogueOfLife/portal-components/releases/latest)
+Include the Library - current version can be found [here](https://github.com/CatalogueOfLife/portal-components/releases/latest).
+We recommend to always use the @latest version:
 
 ```
-<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@<VERSION>/umd/col-browser.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/col-browser.min.js" ></script>
 ```
 
 And the styles:
 
 ```
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@<VERSION>/umd/main.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/main.css">
 ```
 
 
