@@ -46,10 +46,8 @@ class TaxonPage extends React.Component {
       taxonLoading: true,
       datasetLoading: true,
       infoLoading: true,
-      classificationLoading: true,
       infoError: null,
       taxonError: null,
-      classificationError: null,
       verbatimLoading: true,
       verbatimError: null,
       verbatim: null,
@@ -72,7 +70,6 @@ class TaxonPage extends React.Component {
     this.getCatalogue();
     this.getTaxon(taxonKey);
     this.getInfo(taxonKey);
-    this.getClassification(taxonKey);
     this.getRank(taxonKey);
     this.getIncludes(taxonKey);
     this.getNomStatus(taxonKey);
@@ -260,13 +257,10 @@ class TaxonPage extends React.Component {
   getInfo = async (taxonKey) => {
     const { catalogueKey: datasetKey } = this.props;
 
-    /*   let sourceDatasetKeyMap = _.get(res, "data.synonyms")
-    ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms"))
-    : null; */
 
     try {
       const res = await axios(
-        `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
+        `${config.dataApi}dataset/${datasetKey}/nameusage/${taxonKey}/info`
       );
       let referenceIndexMap = {};
       if (_.get(res, "data.references")) {
@@ -304,6 +298,7 @@ class TaxonPage extends React.Component {
       this.setState({
         infoLoading: false,
         info: res.data,
+        classification: res?.data?.classification,
         infoError: null,
         referenceIndexMap,
         sourceDatasetKeyMap,
@@ -329,27 +324,6 @@ class TaxonPage extends React.Component {
         nomStatus: res.data.reduce((a, c) => ((a[c.name] = c), a), {}),
       })
     );
-  };
-
-  getClassification = (taxonKey) => {
-    const { catalogueKey: datasetKey } = this.props;
-    axios(
-      `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/classification`
-    )
-      .then((res) => {
-        this.setState({
-          classificationLoading: false,
-          classification: res.data,
-          classificationError: null,
-        });
-      })
-      .catch((err) => {
-        this.setState({
-          classificationLoading: false,
-          classificationError: err,
-          classification: null,
-        });
-      });
   };
 
   getIncludes = (taxonKey) => {

@@ -62,14 +62,13 @@ const hasDatasetSectors =
                           <MergedDataBadge style={{ marginLeft: "4px" }} />
                         )}
                         </span>
-                       {showInfo && <React.Fragment>
                         {/* estimate && (
                           <span>
                             {" "}
                             • <TaxonEstimate estimate={estimate} taxon={taxon} />
                           </span>
                         ) */}
-                        {taxon.status === "provisionally accepted" && (
+                        {showInfo && taxon.status === "provisionally accepted" && (
                           <React.Fragment> • <Tag color="warning" style={{marginRight: 0}}>
                             prov.
                           </Tag>
@@ -81,7 +80,7 @@ const hasDatasetSectors =
                           <span>
                             {" "}
                             • {Number(taxon.count).toLocaleString()}{" "}
-                            {!_.isUndefined(taxon.speciesEstimate) && (
+                            {showInfo && !_.isUndefined(taxon.speciesEstimate) && (
                               <span>
                                 {" "}
                                 of{" "}
@@ -96,7 +95,7 @@ const hasDatasetSectors =
                         )}  
                 
                         
-                        {sector && (
+                        {showInfo && sector && (
                           <span>
                             <span> • </span>
                             <a
@@ -117,7 +116,7 @@ const hasDatasetSectors =
                             </a>
                           </span>
                         )}
-                        {hasDatasetSectors && (
+                        {showInfo && hasDatasetSectors && (
                           <React.Fragment> <TaxonSources
 /*                               datasetSectors={sector && sector.subjectDatasetKey ? _.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors}
  */                                                       sourceDatasetKeys={sourceDatasetKeys}
@@ -128,7 +127,6 @@ const hasDatasetSectors =
                             />
                           </React.Fragment>
                         )}
-                         </React.Fragment>}
                         
                       </div>
                 )}
