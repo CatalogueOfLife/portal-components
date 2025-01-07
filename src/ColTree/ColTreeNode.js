@@ -90,7 +90,7 @@ const hasDatasetSectors =
                                 est.{" "}
                               </span>
                             )}
-                            living species
+                            spp.
                           </span>
                         )}  
                 
