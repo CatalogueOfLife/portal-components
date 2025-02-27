@@ -15,7 +15,7 @@ import Classification from "./Classification";
 import NameRelations from "./NameRelations";
 import References from "./References";
 import ErrorMsg from "../components/ErrorMsg";
-import _, { includes } from "lodash";
+import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
 import moment from "moment";
 import history from "../history";
@@ -29,7 +29,7 @@ import TaxonBreakdown from "./TaxonBreakdown";
 import SecondarySources from "./SecondarySources";
 import SourceDatasets from "./SourceDatasets";
 import MergedDataBadge from "../components/MergedDataBadge";
-
+import { Feedback } from "./Feedback";
 const md = 5;
 
 class TaxonPage extends React.Component {
@@ -774,6 +774,9 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
+          {window?.location?.hostname?.endsWith("catalogueoflife.org") && <PresentationItem md={md} label="">
+              <Feedback taxonKey={this?.state?.taxon?.id} datasetKey={this.props.catalogueKey} />
+            </PresentationItem>}
         </div>
       </React.Fragment>
     );

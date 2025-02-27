@@ -48,12 +48,12 @@ const getLabel = (r, reverse) => {
 
 
 const NameRelations = ({ data,  md, reverse }) =>
-  data.map((r) => {
+  data.map((r, idx) => {
    
     return (
       <PresentationItem
         md={md}
-        key={r.key}
+        key={idx}
         label={getLabel(r, reverse)}
         helpText={r.note}
       >
