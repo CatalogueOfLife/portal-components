@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Form, Input, message, Modal , Alert, Row, Col} from "antd";
+import { Button, Form, Input, message, Modal , Spin,  Alert, Row, Col} from "antd";
 import config from "../config";
 import { MessageFilled } from "@ant-design/icons";
+import { set } from "lodash";
+
+const axiosNoAuth = axios.create({
+  transformRequest: (data, headers) => {
+      delete headers.common.Authorization;
+      headers["Content-Type"] = "application/json";
+      return JSON.stringify(data);
+  }
+})
 
 message.config({
     getContainer: () => document.getElementsByClassName("catalogue-of-life")[0],
 });
 
+const getMsg = (error) => {
+    
+        return error?.response?.data?.message || error?.message || "An error occurred"
+    
+}
 const ErrorMessage = ({ error }) => {
 
-if(error.response.status === 503){
-    return "The feedback system is currently not available, please try again later."
-} else if(error.response.status === 400){
-    return "Invalid data submitted"
-} else {
-    return error?.message || "An error occurred"
-}
+return <div style={{margin: "6px"}}><span>{getMsg(error)}</span></div>
+
 }
 
 
@@ -24,19 +33,21 @@ export const Feedback = ({ datasetKey, taxonKey }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-const [error, setError] = useState(null);
-  const onFinishFailed = ({ errorFields }) => {
+  const [error, setError] = useState(null);
+  const [issueUrl, setIssueUrl] = useState(null);
+const onFinishFailed = ({ errorFields }) => {
     form.scrollToField(errorFields[0].name);
   };
   const submitData = (values) => {
-    
-    axios
+    axiosNoAuth
       .post(
         `${config.dataApi}dataset/${datasetKey}/nameusage/${taxonKey}/feedback`,
         values
       )
       .then((res) => {
-        message.success("Feedback submitted successfully");
+        console.log(res);
+        setLoading(false);
+        setIssueUrl(res.data);
       })
       .catch((err) => {
         setLoading(false);
@@ -45,10 +56,10 @@ const [error, setError] = useState(null);
   };
   const layout = {
     labelCol: {
-      span: 4,
+      span: 6,
     },
     wrapperCol: {
-      span: 20,
+      span: 18,
     },
   };
   return (
@@ -57,23 +68,21 @@ const [error, setError] = useState(null);
         getContainer={".catalogue-of-life"}
         title="Feedback"
         visible={visible}
+        destroyOnClose={true}
         onOk={() => {
-          setLoading(true);
-          form
+          if(issueUrl){
+              setVisible(false);
+              setIssueUrl(null);
+              return;
+          } else {
+            setLoading(true);
+            form
             .validateFields()
             .then((values) => {
               form.resetFields();
               return submitData(values);
             })
-            .then(() => {
-              setVisible(false);
-              setLoading(false);
-            })
-            .catch((info) => {
-                setLoading(false);
-              console.log("Validate Failed:", info);
-            })
-            
+          }        
         }}
         onCancel={() => setVisible(false)}
         confirmLoading={loading}
@@ -85,8 +94,13 @@ const [error, setError] = useState(null);
           onClose={() => setError(null)}
           closable
         />}
-        <p>
-        We will create a <a href="https://github.com/CatalogueofLife/data/issues" target="_blank">github issue</a> which you can monitor or use to further discuss with us.</p>
+
+        {issueUrl && <p>Thank you, your feedback was saved. You can follow for progress and further discussion <a target="_blank" href={issueUrl}>here.</a></p>}
+        
+       {!issueUrl && <> <p>
+        We will create a <a href="https://github.com/CatalogueofLife/data/issues" target="_blank">github issue</a> which you can monitor or use to further discuss with us.
+        </p>
+        <Spin spinning={loading}>
         <Form
           {...layout}
           
@@ -99,17 +113,17 @@ const [error, setError] = useState(null);
           </Form.Item>
           <Form.Item
             name="email"
-            label="Email"
+            label="Email (optional)"
             rules={[
               {
                 type: "email",
-              },
-              {required: true}
+              }
             ]}
           >
             <Input type="email" />
           </Form.Item>
         </Form>
+        </Spin></>}
       </Modal>
       <Row><Col flex="auto"></Col><Col></Col><Button style={{marginTop: "12px"} }size="small" onClick={() => setVisible(true)}>Feedback <MessageFilled /></Button></Row>
       
