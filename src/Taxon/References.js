@@ -3,6 +3,7 @@ import _ from "lodash";
 import linkify from "linkify-html";
 import { Row, Col } from "antd";
 import MergedDataBadge from "../components/MergedDataBadge";
+import DOMPurify from "dompurify";
 
 const ReferencesTable = ({
   data,
@@ -26,7 +27,7 @@ const ReferencesTable = ({
             <Col span={20}>
               <span
                 id={`col-refererence-${s.id}`}
-                dangerouslySetInnerHTML={{ __html: linkify(s.citation) }}
+                dangerouslySetInnerHTML={{ __html: linkify(DOMPurify.sanitize(s.citation)) }}
               ></span>
             </Col>
           </Row>
