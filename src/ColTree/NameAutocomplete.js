@@ -58,16 +58,9 @@ class NameSearchAutocomplete extends React.Component {
       }${hideExtinct ? `&extinct=false&extinct=`:''}`
     )
       .then((res) => {
-        /*         const names = res.data.result ? res.data.result.map((name) => ({
-            key: name.usage.name.id,
-            title: name.usage.name.scientificName,
-          })) : res.data.suggestions.map((name) => ({
-            key: name.usageId ,
-            title: name.suggestion 
-          })); */
         this.setState({
-         // names: res.data.suggestions || [],
-          options: this.getOptions(res.data.suggestions || [], value)
+         // names: res.data || [],
+          options: this.getOptions(res.data || [], value)
         });
       })
       .catch((err) => {
