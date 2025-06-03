@@ -4,6 +4,7 @@ import _ from "lodash";
 import axios from "axios";
 import config from "../config";
 import ReferencePopover from "./ReferencePopover";
+import MergedDataBadge from "../components/MergedDataBadge";
 
 import { getCountries } from "../api/enumeration";
 
@@ -16,6 +17,14 @@ class VernacularNamesTable extends React.Component {
       countryAlpha3: {},
       countryAlpha2: {},
       columns: [
+        {
+          title: "",
+          dataIndex: "merged",
+          key: "merged",
+          width: 12,
+          render: (text, record) =>
+            record?.merged ? <MergedDataBadge /> : "",
+        },
         {
           title: "Original name",
           dataIndex: "name",
