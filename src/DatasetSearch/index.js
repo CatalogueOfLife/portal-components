@@ -9,10 +9,11 @@ import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback"
 import MetricsPresentation from "../Dataset/MetricsPresentation"
 import PresentationItem from "../components/PresentationItem";
 
-const getLivingSpecies = (record) => ( (_.get(record, 'metrics.taxaByRankCount.species') || 0) - (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0))
+const getLivingSpecies = (record) => ( (_.get(record, 'metrics.taxaByRankCount.species') || 0) )
 const getExtinctSpecies = (record) => (_.get(record, 'metrics.extinctTaxaByRankCount.species') || 0)
+const getSearchParam = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.key}`: `SECTOR_PUBLISHER_KEY=${dataset.id}`
 
-const getColumns = (pathToDataset, catalogueKey, auth, hasPublishers) => [
+const getColumns = (pathToDataset, catalogueKey, auth, hasPublishers, pathToSearch) => [
   {
     title: "Title",
     dataIndex: ["alias"],
@@ -20,12 +21,14 @@ const getColumns = (pathToDataset, catalogueKey, auth, hasPublishers) => [
     
     render: (text, record) => {
       return (
-record.id ? <span>{"Publisher: "} <a href={`https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`} onClick={() => {window.location.href =  `https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`}}  dangerouslySetInnerHTML={{ __html: text }} /> </span> :
-          <a href={`${pathToDataset}${record.key}`} onClick={() => {window.location.href =  `${pathToDataset}${record.key}`}}  >{record.alias || record.title}</a>
+        <>
+{record.id ? <span>{"Publisher: "} <a href={`https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`} onClick={() => {window.location.href =  `https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`}}  dangerouslySetInnerHTML={{ __html: text }} /> </span> :
+          <a href={`${pathToDataset}${record.key}`} onClick={() => {window.location.href =  `${pathToDataset}${record.key}`}}  >{record.alias || record.title}</a>}
+          {!!record?.taxonomicScope && <div style={{width: "100%",wordBreak: "break-all"}}>{record.taxonomicScope}</div>}
+          </>
       );
     },
     width: "30%",
-    ellipsis: true,
     sorter: (a, b) => (a.alias && b.alias) ? a.alias.localeCompare(b.alias) : 0,
    // defaultSortOrder: 'ascend'
   },
@@ -35,38 +38,38 @@ record.id ? <span>{"Publisher: "} <a href={`https://www.checklistbank.org/catalo
     key: "datasets",
     render: (text, record) => _.get(record, 'metrics.datasetCount', 1).toLocaleString("en-GB")
   },
-  {
+ /*  {
     title: "Version",
     dataIndex: ["version"],
     key: "version"
-  },
+  }, */
   {
     title: "",
     dataIndex: ["logo"],
     key: "logo",
     render: (text, record) => <DatasetlogoWithFallback  auth={auth} catalogueKey={catalogueKey} datasetKey={record.key} style={{maxHeight: '32px'}} size="SMALL"/>
   },
-  {
+  /* {
     title: "Taxonomic scope",
     dataIndex: ["taxonomicScope"],
     key: "taxonomicScope",
     ellipsis: true,
 
-  },
+  }, */
   {
-    title: "Living Species",
+    title: "Species",
     dataIndex: ["metrics", "taxaByRankCount", "species"],
-    key: "livingSpecies",
-    render: (text, record) => getLivingSpecies(record).toLocaleString("en-GB"),
+    key: "species",
+    render: (text, record) =>  <a href={`${pathToSearch}?${getSearchParam(record)}&rank=species&status=accepted&status=provisionally%20accepted`} >{getLivingSpecies(record).toLocaleString("en-GB")}</a> ,
     sorter: (a, b) => getLivingSpecies(a) - getLivingSpecies(b)
 
   },
   {
-    title: "Extinct Species",
-    dataIndex: ["metrics", "extinctTaxaByRankCount", "species"],
+    title: "Genera",
+    dataIndex: ["metrics", "taxaByRankCount", "genus"],
     key: "extinctSpecies",
-    render: (text, record) => getExtinctSpecies(record).toLocaleString("en-GB"),
-    sorter: (a, b) => getExtinctSpecies(a) - getExtinctSpecies(b)
+    render: (text, record) =><a href={`${pathToSearch}?${getSearchParam(record)}&rank=genus&status=accepted&status=provisionally%20accepted`} >{ _.get(record, 'metrics.taxaByRankCount.genus', 0).toLocaleString("en-GB")}</a>,
+    sorter: (a, b) => _.get(a, 'metrics.taxaByRankCount.genus', 0) - _.get(b, 'metrics.taxaByRankCount.genus', 0)
 
   }
  
@@ -149,7 +152,7 @@ getData = () => {
               };
             }
           );
-        }).filter(p => p?.metrics?.sectorCount > 0),
+        }),
         ...datasetData.map((r) => {
           return this.getMetrics(datasetKey, r.key).then((metrics) => {
             columns = _.merge(columns, metrics);
@@ -165,7 +168,7 @@ getData = () => {
 
       this.setState({
         loading: false,
-        data: data.sort((a, b) => {
+        data: data.filter(p => !p?.id || (!!p?.id && p?.metrics?.sectorCount > 0)).sort((a, b) => {
           if(!!a.id && !b.id){
             return a
           } else if(!!b.id && !a.id){
@@ -211,7 +214,7 @@ getData = () => {
       hasPublishers,
       error
     } = this.state;
-    const {pathToDataset, catalogueKey} = this.props;
+    const {pathToDataset,pathToSearch, catalogueKey} = this.props;
     
    
 
@@ -245,7 +248,8 @@ getData = () => {
         {!error && (
           <Table
             size="small"
-            columns={ getColumns(pathToDataset, catalogueKey, this.props.auth, hasPublishers)}
+            scroll={{ x: "1200" }}
+            columns={ getColumns(pathToDataset, catalogueKey, this.props.auth, hasPublishers, pathToSearch)}
             dataSource={data.filter((d) => {
               if (!d?.metrics?.publisherKey) {
                 return true;
@@ -262,6 +266,9 @@ getData = () => {
             pagination={false}
             expandedRowRender={(dataset) => <div style={{marginLeft: '40px'}}>
               <MetricsPresentation metrics={dataset.metrics} dataset={dataset} pathToSearch={this.props.pathToSearch} rank={rank} />
+              {dataset?.version && <div style={{marginTop: "12px"}}><PresentationItem md={8} label={`Dataset version`} >
+                {dataset.version}
+              </PresentationItem></div>}
             {dataset.citation &&  <div style={{marginTop: "12px"}}><PresentationItem md={24}  label={`Citation`}>
               <div dangerouslySetInnerHTML={{__html: dataset.citation}}></div>
           </PresentationItem></div>}

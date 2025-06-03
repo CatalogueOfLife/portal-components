@@ -750,7 +750,7 @@ class TaxonPage extends React.Component {
           )}
           {info?.source?.secondarySources && (
             <PresentationItem md={md} label="Secondary Sources">
-              <SecondarySources info={info} catalogueKey={"283331"} />
+              <SecondarySources info={info} catalogueKey={catalogueKey} />
             </PresentationItem>
           )}
           {this.state?.sourceDatasetKeyMap && (
