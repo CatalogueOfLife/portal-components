@@ -25,6 +25,7 @@ const ReferencesTable = ({
               )}
             </Col>
             <Col span={20}>
+            {s?.sourceDataset?.key !== primarySourceDatasetKey && <MergedDataBadge sourceDatasetKey={s?.sourceDataset?.key} pathToDataset={pathToDataset} />}
               <span
                 id={`col-refererence-${s.id}`}
                 dangerouslySetInnerHTML={{ __html: linkify(DOMPurify.sanitize(s.citation)) }}
@@ -32,7 +33,7 @@ const ReferencesTable = ({
             </Col>
           </Row>
 
-          {s?.sourceDataset?.key !== primarySourceDatasetKey && (
+         {/*  {s?.sourceDataset?.key !== primarySourceDatasetKey && (
             <Row>
               <Col style={{ paddingLeft: "32px" }}>
               <MergedDataBadge />
@@ -42,7 +43,7 @@ const ReferencesTable = ({
                 </a>
               </Col>
             </Row>
-          )}
+          )} */}
         </>
       ))}
     </div>

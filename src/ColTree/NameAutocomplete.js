@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import config from "../config";
-import { AutoComplete, Input } from "antd";
+import { AutoComplete, Input , Select} from "antd";
 import _ from "lodash";
 import { debounce } from "lodash";
 import Highlighter from "react-highlight-words";
@@ -46,7 +46,7 @@ class NameSearchAutocomplete extends React.Component {
     });
   };
   getNames = (q) => {
-    const { datasetKey, minRank, hideExtinct } = this.props;
+    const { datasetKey, minRank, extinct /* hideExtinct */ } = this.props;
     const {value} = this.state;
     const url = datasetKey
       ? `${config.dataApi}dataset/${datasetKey}/nameusage/suggest`
@@ -55,7 +55,7 @@ class NameSearchAutocomplete extends React.Component {
     axios(
       `${url}?fuzzy=false&limit=25&q=${q}${
         minRank ? `&minRank=${minRank}` : ""
-      }${hideExtinct ? `&extinct=false&extinct=`:''}`
+      }${extinct ? `&extinct=${extinct}`:''}`
     )
       .then((res) => {
         this.setState({
@@ -86,7 +86,7 @@ class NameSearchAutocomplete extends React.Component {
     return names.map((o) => {
       return {
         key: o.usageId,
-        value: o.suggestion,
+        value:  o.usageId, //o.suggestion,
         label: (
           <Highlighter
             highlightStyle={{ fontWeight: "bold", padding: 0 }}
@@ -107,7 +107,33 @@ class NameSearchAutocomplete extends React.Component {
    // const options = this.getOptions(this.state.names, value)
 
     return (
-     <div id={`taxon_autocomplete_${randomID}`}><AutoComplete
+     <div id={`taxon_autocomplete_${randomID}`}>
+       <Select 
+                   defaultActiveFirstOption={false}
+showArrow={false}
+       showSearch
+       allowClear
+             notFoundContent={null}
+
+        style={this.props.style ? this.props.style : { width: "100%" }}
+        options={options}
+        filterOption={false}
+        onSelect={this.onSelectName}
+        onSearch={(q) => (!!q ? this.getNames(q) : this.onReset())}
+        placeholder={placeHolder || "Find taxon"}
+        autoFocus={autoFocus === false ? false : true}
+        disabled={disabled}
+        getPopupContainer={() => {
+          console.log(`Test ${randomID}`)
+          return document.getElementById(`taxon_autocomplete_${randomID}`)
+        }
+          
+        }
+        
+      >
+       
+      </Select>
+      {/* <AutoComplete
         style={this.props.style ? this.props.style : { width: "100%" }}
         options={options}
         onSelect={this.onSelectName}
@@ -132,7 +158,9 @@ class NameSearchAutocomplete extends React.Component {
         
       >
         <Input.Search allowClear />
-      </AutoComplete></div> 
+      </AutoComplete> */}
+      
+      </div> 
     );
   };
 }

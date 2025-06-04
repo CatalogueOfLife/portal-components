@@ -16,9 +16,13 @@ const SynonymsTable = ({
   references,
   typeMaterial,
   referenceIndexMap,
-  primarySource
+  primarySource,
+  pathToDataset
+  
 }) => {
-  useEffect(() => {}, [data, primarySource]);
+  useEffect(() => {
+ 
+  }, [data, primarySource]);
 
   const getNomStatus = (taxon) => !nomStatus ? _.get(taxon, "name.nomStatus") : nomStatus[_.get(taxon, "name.nomStatus")][
     (_.get(taxon, "name.code"), "zoological")
@@ -68,7 +72,7 @@ const SynonymsTable = ({
           <>
           {s?.sourceDatasetKey &&
               _.get(primarySource, "key") !== s?.sourceDatasetKey && (
-                <MergedDataBadge />
+                <MergedDataBadge sourceDatasetKey={s?.sourceDatasetKey } pathToDataset={pathToDataset} />
               )}{" "}
             {_.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
             {_.get(s, "status") === "misapplied" && _.get(s, "accordingTo")
@@ -95,7 +99,7 @@ const SynonymsTable = ({
             nameId={_.get(s, "name.id")}
             placement="top"
           /> */}
-          {s?.sourceDatasetKey &&
+         {/*  {s?.sourceDatasetKey &&
             _.get(primarySource, "key") !== s?.sourceDatasetKey && (
               <>
                 {" "}
@@ -104,7 +108,7 @@ const SynonymsTable = ({
                   href={`#col-sourcedataset-${s?.sourceDatasetKey}`}
                 >{`[source: ${s?.sourceDatasetKey}]`}</a>
               </>
-            )}
+            )} */}
         </BorderedListItem>
         {isGroup &&
           syn.length > 1 &&

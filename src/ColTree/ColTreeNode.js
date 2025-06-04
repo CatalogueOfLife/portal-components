@@ -48,6 +48,8 @@ const hasDatasetSectors =
                           <a
                             dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
                             href={typeof pathToTaxon === "string" ? `${pathToTaxon}${taxon.id}`: "#"}
+                            disabled={taxon?.id?.indexOf("--incertae-sedis--") > -1 ? true : false}
+                            
                             onClick={(e) => {
                               if(typeof pathToTaxon === "string"){
                                 window.location.href = `${pathToTaxon}${taxon.id}`;

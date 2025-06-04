@@ -434,6 +434,7 @@ class TaxonPage extends React.Component {
                 >
                   Taxon Details
                 </h1> */}
+                {info?.usage?.merged && <MergedDataBadge style={{marginBottom: "10px"}} sourceDatasetKey={info?.source?.sourceDatasetKey} sourceId={info?.source?.sourceId} pathToDataset={pathToDataset}/>}
                 <h1
                   style={{
                     fontSize: "30px",
@@ -540,6 +541,7 @@ class TaxonPage extends React.Component {
                 references={_.get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
+                pathToDataset={pathToDataset}
                 /*                     datasetKey={datasetKey}
                  */ datasetKey={catalogueKey}
               />
@@ -704,7 +706,7 @@ class TaxonPage extends React.Component {
           {_.get(sourceDataset, "title") && (
             <PresentationItem md={md} label="Source">
               <div style={{ display: "inline-block" }}>
-              {info?.usage?.merged && <MergedDataBadge />}{" "}
+              {info?.usage?.merged && <MergedDataBadge sourceDatasetKey={info?.source?.sourceDatasetKey} sourceId={info?.source?.sourceId} pathToDataset={pathToDataset}/>}{" "}
                 {info?.source && info?.source?.sourceId && (
                   <>
                     <a
@@ -753,7 +755,7 @@ class TaxonPage extends React.Component {
               <SecondarySources info={info} catalogueKey={catalogueKey} />
             </PresentationItem>
           )}
-          {this.state?.sourceDatasetKeyMap && (
+          {/* {this.state?.sourceDatasetKeyMap && (
             <PresentationItem md={md} label="Synonym Sources">
               <SourceDatasets
                 pathToDataset={pathToDataset}
@@ -762,7 +764,7 @@ class TaxonPage extends React.Component {
                 sourceDatasetKeyMap={this.state.sourceDatasetKeyMap}
               />
             </PresentationItem>
-          )}
+          )} */}
           {_.get(info, "references") && (
             <PresentationItem md={md} label="References">
               <References
