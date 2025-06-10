@@ -7,12 +7,11 @@ import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
 import axios from "axios";
 import btoa from "btoa";
-import { Row, Col, Switch, Checkbox, Form , Radio} from "antd";
+import { Row, Col, Switch, Checkbox, Form } from "antd";
 import { ColTreeContext } from "./ColTreeContext";
 import { getDataset } from "../api/dataset";
 import Citation from "../components/DatasetCitation";
 
-const RadioGroup = Radio.Group;
 const INFRASPECIFIC_RANKS = [
   "infraspecific name",
   "species",
@@ -29,8 +28,7 @@ class ColTreeWrapper extends React.Component {
       )}`;
     }
     this.state = {
-      /* hideExtinct: false, */
-      extinct: null,
+      hideExtinct: false,
       showInfo: false,
       dataset: null,
     };
@@ -59,7 +57,7 @@ class ColTreeWrapper extends React.Component {
       citation,
       type
     } = this.props;
-    const { /* hideExtinct, */ extinct, dataset } = this.state;
+    const { hideExtinct, dataset } = this.state;
     const params = qs.parse(_.get(location, "search"));
     return (
       <Router history={history}>
@@ -69,8 +67,7 @@ class ColTreeWrapper extends React.Component {
             <Row>
               <Col flex="auto">
                 <NameAutocomplete
-                  /* hideExtinct={hideExtinct} */
-                  extinct={extinct}
+                  hideExtinct={hideExtinct}
                   datasetKey={catalogueKey}
                   style={{
                     width: "100%",
@@ -126,36 +123,22 @@ class ColTreeWrapper extends React.Component {
                       this.setState({ showInfo: checked });
                     }}
                   >
-                    Source
+                    Info
                   </Checkbox>
 
-                 {/*  <Checkbox
-                    defaultChecked={true}
+                  <Checkbox
+                    defaultChecked={false}
                     onChange={({ target: { checked } }) => {
-                      this.setState({ hideExtinct: !checked });
+                      this.setState({ hideExtinct: checked });
                     }}
                   >
-                    Include extinct
-                  </Checkbox> */}
-                   <RadioGroup
-                    size="small"
-                    onChange={(evt) => {
-                      this.setState({ extinct: evt.target.value });
-                    }}
-                    value={this.state.extinct}
-                    optionType="button"
-                    options={[
-                      { value: null, label: "All" },
-                      { value: "true", label: "Extinct" },
-                      { value: "false", label: "Extant" },
-                    ]}
-                  ></RadioGroup>
+                    Extant only
+                  </Checkbox>
                 </Col>
               )}
             </Row>
             <ColTree
-              /* hideExtinct={hideExtinct} */
-              extinct={extinct}
+              hideExtinct={hideExtinct}
               catalogueKey={catalogueKey}
               pathToTaxon={pathToTaxon}
               pathToDataset={pathToDataset}

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Table, Alert, Row, Col, Tooltip } from "antd";
+import { Table, Alert, Row, Col, Tooltip, Checkbox } from "antd";
 import config from "../config";
 import btoa from "btoa";
 import _ from "lodash";
@@ -8,9 +8,9 @@ import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import MetricsPresentation from "../Dataset/MetricsPresentation";
 import PresentationItem from "../components/PresentationItem";
-
-const getLivingSpecies = (record) =>
-  _.get(record, "metrics.taxaByRankCount.species") || 0;
+import MergedDataBadge from "../components/MergedDataBadge";
+const getLivingSpecies = (record, rank) =>
+  _.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
 const getExtinctSpecies = (record) =>
   _.get(record, "metrics.extinctTaxaByRankCount.species") || 0;
 const getSearchParam = (dataset) =>
@@ -39,22 +39,31 @@ const getColumns = (
               <span>
                 {"Publisher: "}{" "}
                 <a
-                  href={`https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`}
-                  onClick={() => {
-                    window.location.href = `https://www.checklistbank.org/catalogue/${catalogueKey}/publisher/${record.id}`;
-                  }}
+                  href={`https://www.checklistbank.org/dataset/${catalogueKey}/publisher/${record.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  /* onClick={() => {
+                    window.location.href = `https://www.checklistbank.org/dataset/${catalogueKey}/publisher/${record.id}`;
+                  }} */
                   dangerouslySetInnerHTML={{ __html: text }}
                 />{" "}
               </span>
             ) : (
-              <a
-                href={`${pathToDataset}${record.key}`}
-                onClick={() => {
-                  window.location.href = `${pathToDataset}${record.key}`;
-                }}
-              >
-                {record.alias || record.title}
-              </a>
+              <>
+                {" "}
+                {!!record?.merged && <MergedDataBadge />}{" "}
+                <a
+                  href={`${pathToDataset}${record.key}`}
+                  onClick={() => {
+                    window.location.href = `${pathToDataset}${record.key}`;
+                  }}
+                >
+                  {record.alias || record.title}{" "}
+                  {record.alias === "3i Auchenorrhyncha"
+                    ? record.key + " " + record.sectorModes.join()
+                    : ""}
+                </a>
+              </>
             )}
             {!!record?.taxonomicScope && (
               <div style={{ width: "90%", wordBreak: "break-all" }}>
@@ -83,7 +92,7 @@ const getColumns = (
     dataIndex: ["version"],
     key: "version"
   }, */
-    {
+/*     {
       title: "",
       dataIndex: ["logo"],
       key: "logo",
@@ -96,7 +105,7 @@ const getColumns = (
           size="SMALL"
         />
       ),
-    },
+    }, */
     /* {
     title: "Taxonomic scope",
     dataIndex: ["taxonomicScope"],
@@ -104,6 +113,60 @@ const getColumns = (
     ellipsis: true,
 
   }, */
+   {
+      title: (
+        <Tooltip
+          placement="topLeft"
+          title={"Count of all accepted families including extinct species"}
+          getPopupContainer={() => document.getElementById("familyCount")}
+        >
+          <span id="familyCount">Families</span>
+        </Tooltip>
+      ),
+      dataIndex: ["metrics", "taxaByRankCount", "family"],
+      key: "species",
+      render: (text, record) => (
+        <a
+          href={`${pathToSearch}?${getSearchParam(
+            record
+          )}&rank=family&status=accepted&status=provisionally%20accepted${
+            _.isArray(record.sectorModes)
+              ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("")
+              : ""
+          }`}
+        >
+          {getLivingSpecies(record, "family").toLocaleString("en-GB")}
+        </a>
+      ),
+      sorter: (a, b) => getLivingSpecies(a,"family") - getLivingSpecies(b,"family"),
+    },
+       {
+      title: (
+        <Tooltip
+          placement="topLeft"
+          title={"Count of all accepted genera including extinct species"}
+          getPopupContainer={() => document.getElementById("genusCount")}
+        >
+          <span id="genusCount">Genera</span>
+        </Tooltip>
+      ),
+      dataIndex: ["metrics", "taxaByRankCount", "genus"],
+      key: "species",
+      render: (text, record) => (
+        <a
+          href={`${pathToSearch}?${getSearchParam(
+            record
+          )}&rank=genus&status=accepted&status=provisionally%20accepted${
+            _.isArray(record.sectorModes)
+              ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("")
+              : ""
+          }`}
+        >
+          {getLivingSpecies(record, "genus").toLocaleString("en-GB")}
+        </a>
+      ),
+      sorter: (a, b) => getLivingSpecies(a,"genus") - getLivingSpecies(b,"genus"),
+    },
     {
       title: (
         <Tooltip
@@ -120,35 +183,18 @@ const getColumns = (
         <a
           href={`${pathToSearch}?${getSearchParam(
             record
-          )}&rank=species&status=accepted&status=provisionally%20accepted`}
+          )}&rank=species&status=accepted&status=provisionally%20accepted${
+            _.isArray(record.sectorModes)
+              ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("")
+              : ""
+          }`}
         >
           {getLivingSpecies(record).toLocaleString("en-GB")}
         </a>
       ),
       sorter: (a, b) => getLivingSpecies(a) - getLivingSpecies(b),
     },
-    {
-      title: (
-        <Tooltip
-          placement="topLeft"
-          title={
-            "Total of all names of all ranks including synonyms and molecular names"
-          }
-          getPopupContainer={() => document.getElementById("nameCount")}
-        >
-          <span id="nameCount">Names</span>
-        </Tooltip>
-      ),
-      dataIndex: ["metrics", "nameCount"],
-      key: "names",
-      render: (text, record) => (
-        <a href={`${pathToSearch}?${getSearchParam(record)}`}>
-          {_.get(record, "metrics.nameCount", 0).toLocaleString("en-GB")}
-        </a>
-      ),
-      sorter: (a, b) =>
-        _.get(a, "metrics.nameCount", 0) - _.get(b, "metrics.nameCount", 0),
-    },
+
   ].filter((clm) => (!hasPublishers ? clm.key !== "datasets" : true));
 
 class DatasetSearchPage extends React.Component {
@@ -164,6 +210,7 @@ class DatasetSearchPage extends React.Component {
       rank: null,
       hasPublishers: false,
       loading: false,
+      showMerged: true,
     };
   }
 
@@ -208,7 +255,8 @@ class DatasetSearchPage extends React.Component {
     Promise.all([
       axios(
         /* `${config.dataApi}dataset?limit=1000&contributesTo=${datasetKey}&sortBy=alias` */
-        `${config.dataApi}dataset/${datasetKey}/source?inclPublisherSources=false`
+        // `${config.dataApi}dataset/${datasetKey}/source?inclPublisherSources=false`
+        `${config.dataApi}dataset/${datasetKey}/source?splitMerge=true`
       ),
       axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher`),
     ])
@@ -232,7 +280,7 @@ class DatasetSearchPage extends React.Component {
             );
           }),
           ...datasetData.map((r) => {
-            return this.getMetrics(datasetKey, r.key).then((metrics) => {
+            return this.getMetrics(datasetKey, r).then((metrics) => {
               columns = _.merge(columns, metrics);
               return {
                 ...r,
@@ -253,7 +301,11 @@ class DatasetSearchPage extends React.Component {
               } else if (!!b.id && !a.id) {
                 return b;
               } else if (a.alias && b.alias) {
-                return a.alias.localeCompare(b.alias);
+                return a.alias.localeCompare(b.alias) === 0
+                  ? a.merged === true
+                    ? 1
+                    : -1
+                  : a.alias.localeCompare(b.alias);
               } else {
                 return 0;
               }
@@ -266,9 +318,9 @@ class DatasetSearchPage extends React.Component {
       });
   };
 
-  getMetrics = (datasetKey, sourceDatasetKey) => {
+  getMetrics = (datasetKey, source) => {
     return axios(
-      `${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}/metrics`
+      `${config.dataApi}dataset/${datasetKey}/source/${source?.key}/metrics?merged=${source?.merged}`
     ).then((res) => res.data);
   };
   getPublisherMetrics = (datasetKey, publisherId) => {
@@ -308,8 +360,33 @@ class DatasetSearchPage extends React.Component {
         </Row>
 
         <Row>
-          <Col span={24} style={{ textAlign: "right", marginBottom: "8px" }}>
-            {`Source datasets: ${data.length.toLocaleString("en-GB")}`}
+          <Col span={12} style={{ marginBottom: "8px" }}>
+            Include <MergedDataBadge />{" "}
+            <Checkbox
+              checked={this.state.showMerged}
+              onChange={({ target: { checked } }) =>
+                this.setState({
+                  showMerged: checked,
+                })
+              }
+            />
+          </Col>
+          <Col span={12} style={{ textAlign: "right", marginBottom: "8px" }}>
+            {`Source datasets: ${data
+              .filter((d) => {
+                if (!this.state.showMerged && d?.merged) {
+                  return false;
+                }
+                if (!d?.metrics?.publisherKey) {
+                  return true;
+                } else {
+                  return !(
+                    d?.metrics?.datasetCount === 0 ||
+                    d?.metrics?.usagesCount === 0
+                  );
+                }
+              })
+              .length.toLocaleString("en-GB")}`}
           </Col>
         </Row>
         {!error && (
@@ -324,6 +401,9 @@ class DatasetSearchPage extends React.Component {
               pathToSearch
             )}
             dataSource={data.filter((d) => {
+              if (!this.state.showMerged && d?.merged) {
+                return false;
+              }
               if (!d?.metrics?.publisherKey) {
                 return true;
               } else {
@@ -334,11 +414,23 @@ class DatasetSearchPage extends React.Component {
               }
             })}
             loading={loading}
-            rowKey={(record) => record.key || record.id}
+            rowKey={(record) => `${record.key || record.id}-${record.merged}`}
             showSorterTooltip={false}
             pagination={false}
             expandedRowRender={(dataset) => (
               <div style={{ marginLeft: "40px" }}>
+                <Row>
+                  <Col flex="auto"></Col>
+                  <Col>
+                    <DatasetlogoWithFallback
+                      auth={this.props.auth}
+                      catalogueKey={catalogueKey}
+                      datasetKey={dataset.key}
+                      style={{ maxHeight: "64px" }}
+                      size="MEDIUM"
+                    />
+                  </Col>
+                </Row>
                 <MetricsPresentation
                   metrics={dataset.metrics}
                   dataset={dataset}

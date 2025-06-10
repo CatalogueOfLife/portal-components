@@ -25,7 +25,7 @@ class ColTreeNode extends React.Component {
   render = () => {
     const {
       taxon,
-      taxon: { sector, sourceDatasetKeys },
+      taxon: { sector, sourceDatasetKeys, publisherDatasetKeys },
       catalogueKey,
       pathToTaxon,
       pathToDataset,
@@ -121,7 +121,8 @@ const hasDatasetSectors =
                         {showInfo && hasDatasetSectors && (
                           <React.Fragment> <TaxonSources
 /*                               datasetSectors={sector && sector.subjectDatasetKey ? _.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors}
- */                                                       sourceDatasetKeys={sourceDatasetKeys}
+ */                           sourceDatasetKeys={sourceDatasetKeys}
+ publisherDatasetKeys={publisherDatasetKeys}
 
                               pathToDataset={pathToDataset}
                               taxon={taxon}

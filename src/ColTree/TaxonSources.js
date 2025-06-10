@@ -1,6 +1,6 @@
 import React from "react";
 import { Popover, Spin, Row, Col } from "antd";
-import { getDatasetsBatch } from "../api/dataset";
+import { getDatasetsBatch, getPublishersBatch } from "../api/dataset";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import _ from 'lodash'
 import DataLoader from "dataloader";
@@ -39,18 +39,25 @@ class TaxonSources extends React.Component {
   }; */
 
   componentDidMount = () => {
-    const { sourceDatasetKeys, catalogueKey } = this.props;
+    const { sourceDatasetKeys, publisherDatasetKeys, catalogueKey } = this.props;
     this.datasetLoader = new DataLoader((ids) =>
       getDatasetsBatch(ids, catalogueKey)
     );
+    this.publisherLoader = new DataLoader((ids) =>
+      getPublishersBatch(ids, catalogueKey)
+    );
     if (sourceDatasetKeys?.length < 4) {
       this.setState({ showInNode: true }, this.getData);
+    }
+    if(publisherDatasetKeys) {
+          this.getPublisherData();
+
     }
   };
 
   getData = () => {
     this.setState({ loading: true });
-    const { sourceDatasetKeys } = this.props;
+    const { sourceDatasetKeys, publisherDatasetKeys } = this.props;
     const promises = sourceDatasetKeys.map((s) =>
       this.datasetLoader.load(s).then((dataset) => dataset)
     );
@@ -58,6 +65,21 @@ class TaxonSources extends React.Component {
     Promise.all(promises).then((data) => {
       this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
     });
+
+
+  };
+
+   getPublisherData = () => {
+    const {  publisherDatasetKeys } = this.props;
+    const promises = Object.keys(publisherDatasetKeys).map((s) =>
+      this.publisherLoader.load(s).then((publisher) => ({...publisher, datasets: publisherDatasetKeys[s] }))
+    );
+
+    Promise.all(promises).then((data) => {
+      this.setState({ publishers: _.sortBy(data, ["alias"]) });
+    });
+
+    
   };
 
   render = () => {
@@ -90,7 +112,7 @@ class TaxonSources extends React.Component {
               <Spin />
             ) : (
               <div style={{ maxWidth: "400px" }}>
-                <span>Source databases: </span>{" "}
+               <div> <span>Source databases: </span>{" "}
                 {data
                   .filter((d) => !!d)
                   .map((d, index) => (
@@ -106,7 +128,24 @@ class TaxonSources extends React.Component {
                     </a>
                   ))}
               </div>
+              { this.state.publishers && this.state.publishers.length > 0 && <div>
+                <div>Publishers: </div>{" "}
+                {this.state.publishers
+                  .filter((d) => !!d)
+                  .map((d, index) => (
+                    <Row
+                      key={d.id}
+                     
+                    >
+                      <Col span={4} style={{textAlign: "right"}}>{d.alias}:</Col>
+                      <Col span={12} style={{paddingLeft: "20px"}}>{d.datasets.length.toLocaleString("en-GB")} datasets</Col>
+                       
+                    </Row>
+                  ))}
+              </div>}
+              </div>
             )
+            
           }
           title={
             <Row>

@@ -16,10 +16,10 @@ const getSearchParam = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.
       <div style={style}>
         <React.Fragment>
           <PresentationItem label={`Living species`}>
-          {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&rank=species&extinct=false&extinct=_NULL`} >{getLivingTaxa(metrics, "species").toLocaleString("en-GB")}</a> : getLivingTaxa(metrics, "species").toLocaleString("en-GB")}
+          {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&rank=species&extinct=false&extinct=_NULL${_.isArray(dataset.sectorModes) ?  dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`} >{getLivingTaxa(metrics, "species").toLocaleString("en-GB")}</a> : getLivingTaxa(metrics, "species").toLocaleString("en-GB")}
           </PresentationItem>
           <PresentationItem label={`Extinct species`}>
-          {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&rank=species&extinct=true`} >{getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}</a> : getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}
+          {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&rank=species&extinct=true${_.isArray(dataset.sectorModes) ?  dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`} >{getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}</a> : getExtinctTaxa(metrics, "species").toLocaleString("en-GB")}
           </PresentationItem>
         </React.Fragment>
         {metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount)
@@ -27,17 +27,17 @@ const getSearchParam = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.
           .sort((a, b) => rank.indexOf(b) - rank.indexOf(a))
           .map((k) => (
             <PresentationItem label={`${_.startCase(k)}`} key={k}>
-             {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&rank=${k}`} >{metrics.taxaByRankCount[k].toLocaleString("en-GB")}</a> : metrics.taxaByRankCount[k].toLocaleString("en-GB")}
+             {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&rank=${k}&status=accepted&status=provisionally%20accepted${_.isArray(dataset.sectorModes) ?  dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`} >{metrics.taxaByRankCount[k].toLocaleString("en-GB")}</a> : metrics.taxaByRankCount[k].toLocaleString("en-GB")}
             </PresentationItem>
           ))}
         <PresentationItem label={"Synonyms"} key={"Synonyms"}>
-        {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&status=misapplied&status=synonym&status=ambiguous%20synonym`} >{(metrics.synonymCount || 0).toLocaleString("en-GB")}</a> : (metrics.synonymCount || 0).toLocaleString("en-GB")}
+        {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}&status=misapplied&status=synonym&status=ambiguous%20synonym${_.isArray(dataset.sectorModes) ?  dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`} >{(metrics.synonymCount || 0).toLocaleString("en-GB")}</a> : (metrics.synonymCount || 0).toLocaleString("en-GB")}
         </PresentationItem>
         <PresentationItem label={"Common names"} key={"vernaculars"}>
           {(metrics.vernacularCount || 0).toLocaleString("en-GB")}
         </PresentationItem>
         <PresentationItem label={"Total number of names"} key={"names"}>
-        {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}`} >{(metrics.nameCount || 0).toLocaleString("en-GB")}</a> : (metrics.nameCount || 0).toLocaleString("en-GB")}
+        {dataset && pathToSearch ? <a href={`${pathToSearch}?${getSearchParam(dataset)}${_.isArray(dataset.sectorModes) ?  dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`} >{(metrics.nameCount || 0).toLocaleString("en-GB")}</a> : (metrics.nameCount || 0).toLocaleString("en-GB")}
         </PresentationItem>
       </div>
     ) : (

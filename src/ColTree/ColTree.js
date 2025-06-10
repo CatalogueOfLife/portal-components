@@ -74,8 +74,8 @@ class ColTree extends React.Component {
 
   componentDidUpdate = (prevProps) => {
     if (
-      prevProps.defaultExpandKey !== this.props.defaultExpandKey || prevProps.extinct !== this.props.extinct 
-      /* prevProps.hideExtinct !== this.props.hideExtinct */
+      prevProps.defaultExpandKey !== this.props.defaultExpandKey ||
+      prevProps.hideExtinct !== this.props.hideExtinct
     ) {
       this.reloadRoot();
     }
@@ -121,8 +121,7 @@ class ColTree extends React.Component {
       catalogueKey,
       pathToTaxon,
       pathToDataset,
-/*       hideExtinct,
- */      extinct,
+      hideExtinct,
       type
     } = this.props;
     this.setState({ rootLoading: true, treeData: [] });
@@ -131,7 +130,7 @@ class ColTree extends React.Component {
         config.dataApi
       }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
         this.state.treeData.length
-      }${extinct ? `&extinct=${extinct}` : ""}`
+      }${hideExtinct ? `&extinct=false&extinct=` : ""}`
     )
       .then(this.decorateWithSectorsAndDataset)
       .then((res) => {
@@ -190,9 +189,8 @@ class ColTree extends React.Component {
       catalogueKey,
       pathToTaxon,
       pathToDataset,
-/*       hideExtinct,
- */    extinct, 
- type
+      hideExtinct,
+      type
     } = this.props;
 
     this.setState({ rootLoading: true, treeData: [] });
@@ -200,7 +198,7 @@ class ColTree extends React.Component {
       `${
         config.dataApi
       }dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true${type ? "&type="+type :""}${
-        extinct ? `&extinct=${extinct}` : ""
+        hideExtinct ? `&extinct=false` : ""
       }`
     ).then((res) =>
       this.decorateWithSectorsAndDataset({
@@ -282,8 +280,7 @@ class ColTree extends React.Component {
       catalogueKey,
       pathToTaxon,
       pathToDataset,
-     // hideExtinct,
-     extinct,
+      hideExtinct,
       type
     } = this.props;
     const { treeData } = this.state;
@@ -294,7 +291,7 @@ class ColTree extends React.Component {
       `${config.dataApi}dataset/${catalogueKey}/tree/${
         dataRef.taxon.id //taxonKey
       }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${catalogueKey}${type ? "&type="+type :""}${
-        extinct ? `&extinct=${extinct}` : ""
+        hideExtinct ? `&extinct=false` : ""
       }`
     );
     await this.decorateWithSectorsAndDataset(res);

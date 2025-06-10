@@ -424,8 +424,8 @@ class NameSearchPage extends React.Component {
             />
 
             {dataset &&
-              (dataset.origin === "managed" ||
-                dataset.origin === "released") && (
+              (
+                dataset.origin === "xrelease") && (
                 <div style={{ marginTop: "8px", marginBottom: "8px" }}>
                   <DatasetAutocomplete
                     contributesTo={Number(catalogueKey)}
@@ -453,7 +453,7 @@ class NameSearchPage extends React.Component {
                     }
                   />
                 </FormItem>
-                <FormItem label="Include extinct">
+                {/* <FormItem label="Include extinct">
                   <Checkbox
                     checked={!params.extinct}
                     onChange={({ target: { checked } }) =>
@@ -462,6 +462,39 @@ class NameSearchPage extends React.Component {
                       })
                     }
                   />
+                </FormItem> */}
+                <FormItem label="Content">
+                  <RadioGroup
+                    size="small"
+                    onChange={(evt) => {
+                      this.updateSearch({ sectorMode: evt.target.value.split(",")
+                        .filter((v) => v !== "")});
+                    }}
+                    value={_.isArray(params?.sectorMode) ? params?.sectorMode?.join(",") : params?.sectorMode || ""}
+                    optionType="button"
+                    options={[
+                      { value: "", label: "All" },
+                      { value: "attach,union", label: "Base" },
+                      { value: "merge", label: "Extended" },
+                      
+                    ]}
+                  ></RadioGroup>
+                </FormItem>
+                <FormItem label="Extinct">
+                  <RadioGroup
+                    size="small"
+                    onChange={(evt) => {
+                      this.updateSearch({ extinct: evt.target.value });
+                    }}
+                    value={params.extinct || ""}
+                    optionType="button"
+                    options={[
+                      { value: "", label: "All" },
+                      { value: "false", label: "Extant" },
+                      { value: "true", label: "Extinct" },
+                      
+                    ]}
+                  ></RadioGroup>
                 </FormItem>
                 <FormItem label="Matching">
                   <RadioGroup
