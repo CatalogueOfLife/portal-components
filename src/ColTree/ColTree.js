@@ -100,22 +100,9 @@ class ColTree extends React.Component {
       this.loadRoot
     );
 
-  loadRoot = async () => {
-    const defaultExpandKey = _.get(
-      qs.parse(_.get(location, "search")),
-      "taxonKey"
-    );
-    const { defaultTaxonKey } = this.props;
-    if (defaultExpandKey) {
-      return this.expandToTaxon(defaultExpandKey);
-    } else if (defaultTaxonKey) {
-      return this.expandToTaxon(defaultTaxonKey);
-    } else {
-      return this.loadRoot_();
-    }
-  };
+ 
 
-  loadRoot_ = async () => {
+  loadRoot = async () => {
     const {
       showSourceTaxon,
       catalogueKey,
@@ -124,6 +111,13 @@ class ColTree extends React.Component {
       hideExtinct,
       type
     } = this.props;
+
+    const defaultExpandKey = _.get(
+      qs.parse(_.get(location, "search")),
+      "taxonKey"
+    );
+    const { defaultTaxonKey } = this.props;
+
     this.setState({ rootLoading: true, treeData: [] });
     return axios(
       `${
@@ -160,7 +154,7 @@ class ColTree extends React.Component {
           return dataRef;
         });
 
-        // Do not open incertae sedis with key S by default
+        // Do not
         this.setState({
           rootTotal: rootTotal,
           rootLoading: false,
@@ -168,7 +162,14 @@ class ColTree extends React.Component {
           expandedKeys:
             treeData.length < 10 ? treeData.map((n) => n.taxon.id).filter(n => n !=="S") : [],
           error: null,
-        });
+        },
+          () => {
+            if (defaultExpandKey) {
+              return this.expandToTaxon(defaultExpandKey);
+            } else if (defaultTaxonKey) {
+              return this.expandToTaxon(defaultTaxonKey);
+            }
+          });
         if (treeData.length === 1) {
           this.fetchChildPage(treeData[treeData.length - 1]);
         }
@@ -193,7 +194,7 @@ class ColTree extends React.Component {
       type
     } = this.props;
 
-    this.setState({ rootLoading: true, treeData: [] });
+    this.setState({ rootLoading: true/* , treeData: [] */ });
     const { data } = await axios(
       `${
         config.dataApi
@@ -213,7 +214,7 @@ class ColTree extends React.Component {
             message: `No classification found for Taxon ID: ${defaultExpandKey}`,
           },
         },
-        this.loadRoot_
+        this.loadRoot
       );
     }
     const tx = data[data.length - 1];
@@ -237,6 +238,7 @@ class ColTree extends React.Component {
       />
     );
 
+     root.ref = root;
     const root_ = root;
     for (let i = data.length - 2; i >= 0; i--) {
       const tx = data[i];
@@ -265,8 +267,10 @@ class ColTree extends React.Component {
       root = node;
     }
 
-    const treeData = [root_];
-
+    /* const treeData = [root_]; */
+const { treeData } = this.state;
+    var rootIndex = treeData.findIndex((x) => x.key == root_.key);
+    treeData[rootIndex] = root_;
     const loadedKeys = [...data.map((t) => t.id).reverse()];
 
     this.setState({ treeData }, () =>

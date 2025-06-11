@@ -10,12 +10,14 @@ const Option = Select.Option;
 
 const formItemLayout = {
     labelCol: {
-      xs: { span: 8 },
-      sm: { span: 8 },
+      xs: { span: 24 },
+      sm: { span: 24 },
+      md: { span: 8 },
     },
     wrapperCol: {
-      xs: { span: 16 },
-      sm: { span: 16 },
+      xs: { span: 24 },
+      sm: { span: 24 },
+      md: { span: 16 },
     },
   };
 

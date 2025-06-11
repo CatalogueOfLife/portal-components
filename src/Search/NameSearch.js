@@ -27,6 +27,7 @@ import NameAutocomplete from "../ColTree/NameAutocomplete";
 import DatasetAutocomplete from "../components/DatasetAutocomplete";
 import Citation from "../components/DatasetCitation";
 import MergedDataBadge from "../components/MergedDataBadge";
+
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const FACET_VOCAB = [
@@ -358,7 +359,7 @@ class NameSearchPage extends React.Component {
     const facetExtinct = _.get(facets, "extinct")
       ? facets["extinct"].map((s) => ({
           value: s.value,
-          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+          label: `${s?.value === false ? "Extinct" : "Extant"} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
     const facetEnvironment = _.get(facets, "environment")
@@ -445,14 +446,7 @@ class NameSearchPage extends React.Component {
               )}
             <div style={{ marginTop: "10px" }}>
               <Form layout="inline">
-                <FormItem label="Fuzzy">
-                  <Checkbox
-                    checked={params.fuzzy === true || params.fuzzy === "true"}
-                    onChange={({ target: { checked } }) =>
-                      this.updateSearch({ fuzzy: checked ? checked : null })
-                    }
-                  />
-                </FormItem>
+                
                 {/* <FormItem label="Include extinct">
                   <Checkbox
                     checked={!params.extinct}
@@ -463,8 +457,51 @@ class NameSearchPage extends React.Component {
                     }
                   />
                 </FormItem> */}
-                <FormItem label="Content">
+                
+                {/* <FormItem label="Extinct">
                   <RadioGroup
+                    size="small"
+                    onChange={(evt) => {
+                      this.updateSearch({ extinct: evt.target.value });
+                    }}
+                    value={params.extinct || ""}
+                    optionType="button"
+                    options={[
+                      { value: "", label: "All" },
+                      { value: "false", label: "Extant" },
+                      { value: "true", label: "Extinct" },
+                      
+                    ]}
+                  ></RadioGroup>
+                </FormItem> */}
+                <FormItem label="Matching" >
+                  <RadioGroup
+                    size="small"
+                    onChange={(evt) => {
+                      this.updateSearch({ type: evt.target.value });
+                    }}
+                    value={params.type || "WHOLE_WORDS"}
+                    optionType="button"
+                    options={[
+                      { value: "EXACT", label: "Exact" },
+                      { value: "WHOLE_WORDS", label: "Words" },
+                      { value: "PREFIX", label: "Prefix" },
+                    ]}
+                  ></RadioGroup>
+                </FormItem>
+                <FormItem label="Fuzzy">
+                  <Checkbox
+                    checked={params.fuzzy === true || params.fuzzy === "true"}
+                    onChange={({ target: { checked } }) =>
+                      this.updateSearch({ fuzzy: checked ? checked : null })
+                    }
+                  />
+                </FormItem> 
+               
+              </Form>
+               <FormItem label="Content"  >
+                  <RadioGroup
+                    style={{ marginLeft: "8px" }}
                     size="small"
                     onChange={(evt) => {
                       this.updateSearch({ sectorMode: evt.target.value.split(",")
@@ -480,38 +517,7 @@ class NameSearchPage extends React.Component {
                     ]}
                   ></RadioGroup>
                 </FormItem>
-                <FormItem label="Extinct">
-                  <RadioGroup
-                    size="small"
-                    onChange={(evt) => {
-                      this.updateSearch({ extinct: evt.target.value });
-                    }}
-                    value={params.extinct || ""}
-                    optionType="button"
-                    options={[
-                      { value: "", label: "All" },
-                      { value: "false", label: "Extant" },
-                      { value: "true", label: "Extinct" },
-                      
-                    ]}
-                  ></RadioGroup>
-                </FormItem>
-                <FormItem label="Matching">
-                  <RadioGroup
-                    size="small"
-                    onChange={(evt) => {
-                      this.updateSearch({ type: evt.target.value });
-                    }}
-                    value={params.type || "WHOLE_WORDS"}
-                    optionType="button"
-                    options={[
-                      { value: "EXACT", label: "Exact" },
-                      { value: "WHOLE_WORDS", label: "Words" },
-                      { value: "PREFIX", label: "Prefix" },
-                    ]}
-                  ></RadioGroup>
-                </FormItem>
-              </Form>
+              
             </div>
           </Col>
           <Col xs={24} sm={24} md={12}>
@@ -534,6 +540,20 @@ class NameSearchPage extends React.Component {
               vocab={facetTaxonomicStatus || []}
               label="Status"
             />
+            <MultiValueFilter
+                  defaultValue={_.get(params, "environment")}
+                  onChange={(value) =>
+                    this.updateSearch({ environment: value })
+                  }
+                  vocab={facetEnvironment}
+                  label="Environment"
+                />
+                <MultiValueFilter
+                  // defaultValue={_.get(params, "extinct")}
+                  onChange={(value) => this.updateSearch({ extinct: value })}
+                  vocab={facetExtinct}
+                  label="Extinct"
+                />
             {advancedFilters && (
               <React.Fragment>
                 <MultiValueFilter
@@ -568,20 +588,7 @@ class NameSearchPage extends React.Component {
                   vocab={facetAuthorshipYear}
                   label="Authorship Year"
                 /> */}
-                <MultiValueFilter
-                  defaultValue={_.get(params, "environment")}
-                  onChange={(value) =>
-                    this.updateSearch({ environment: value })
-                  }
-                  vocab={facetEnvironment}
-                  label="Environment"
-                />
-                <MultiValueFilter
-                  // defaultValue={_.get(params, "extinct")}
-                  onChange={(value) => this.updateSearch({ extinct: value })}
-                  vocab={facetExtinct}
-                  label="Extinct"
-                />
+                
                 {/*                 <MultiValueFilter
                   defaultValue={_.get(params, "origin")}
                   onChange={(value) => this.updateSearch({ origin: value })}
@@ -617,6 +624,7 @@ class NameSearchPage extends React.Component {
           <Table
             size="small"
             columns={this.state.columns}
+            scroll={{ x: "max-content" }}
             dataSource={result}
             loading={loading}
             pagination={this.state.pagination}

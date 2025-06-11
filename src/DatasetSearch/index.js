@@ -31,7 +31,7 @@ const getColumns = (
 
       dataIndex: ["alias"],
       key: "title",
-
+      ellipsis: true,
       render: (text, record) => {
         return (
           <>
@@ -58,20 +58,18 @@ const getColumns = (
                     window.location.href = `${pathToDataset}${record.key}`;
                   }}
                 >
-                  {record.alias || record.title}{" "}
-                  {record.alias === "3i Auchenorrhyncha"
-                    ? record.key + " " + record.sectorModes.join()
-                    : ""}
+                  {record.alias || record.title}
                 </a>
+               {!!record?.taxonomicScope && <br/>}
               </>
             )}
-            {!!record?.taxonomicScope && (
+            {!!record?.taxonomicScope && record?.taxonomicScope/* (
               <div style={{ width: "90%", wordBreak: "break-all" }}>
                 {record.taxonomicScope.length > 200
                   ? record.taxonomicScope.substring(0, 200) + "..."
                   : record.taxonomicScope}
               </div>
-            )}
+            ) */}
           </>
         );
       },
@@ -392,7 +390,6 @@ class DatasetSearchPage extends React.Component {
         {!error && (
           <Table
             size="small"
-            scroll={{ x: "1200" }}
             columns={getColumns(
               pathToDataset,
               catalogueKey,
@@ -401,9 +398,10 @@ class DatasetSearchPage extends React.Component {
               pathToSearch
             )}
             dataSource={data.filter((d) => {
-              if (!this.state.showMerged && d?.merged) {
+              if (!this.state.showMerged && (d?.merged || !!d?.id)) {
                 return false;
               }
+              
               if (!d?.metrics?.publisherKey) {
                 return true;
               } else {
