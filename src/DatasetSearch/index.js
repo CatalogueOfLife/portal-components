@@ -51,7 +51,7 @@ const getColumns = (
             ) : (
               <>
                 {" "}
-                {!!record?.merged && <MergedDataBadge />}{" "}
+                {!!record?.merged && <MergedDataBadge style={{marginLeft: "0px"}} />}{" "}
                 <a
                   href={`${pathToDataset}${record.key}`}
                   onClick={() => {
@@ -256,7 +256,7 @@ class DatasetSearchPage extends React.Component {
         // `${config.dataApi}dataset/${datasetKey}/source?inclPublisherSources=false`
         `${config.dataApi}dataset/${datasetKey}/source?splitMerge=true`
       ),
-      axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher`),
+      axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher?limit=1000`),
     ])
       .then(([res, publisherRes]) => {
         let columns = {};
