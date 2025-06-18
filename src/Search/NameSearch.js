@@ -38,10 +38,8 @@ const FACET_VOCAB = [
   "nameType",
   "field",
   "authorship",
-  //  "authorshipYear",
   "extinct",
   "environment",
-  // "origin",
 ];
 const PAGE_SIZE = 50;
 const defaultParams = {
@@ -350,16 +348,10 @@ class NameSearchPage extends React.Component {
           label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
-    /*     const facetAuthorshipYear = _.get(facets, "authorshipYear")
-      ? facets["authorshipYear"].map((s) => ({
-          value: s.value,
-          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
-        }))
-      : []; */
     const facetExtinct = _.get(facets, "extinct")
       ? facets["extinct"].map((s) => ({
           value: s.value,
-          label: `${s?.value === false ? "Extinct" : "Extant"} (${s.count.toLocaleString("en-GB")})`,
+          label: `${s?.value === false ? "Extinct" : (s?.value === true ? "Extant" : "Unknown")} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
     const facetEnvironment = _.get(facets, "environment")
@@ -368,12 +360,6 @@ class NameSearchPage extends React.Component {
           label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
-    /*     const facetOrigin = _.get(facets, "origin")
-      ? facets["origin"].map((s) => ({
-          value: s.value,
-          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
-        }))
-      : [];  */
 
     return (
       <div
@@ -446,34 +432,6 @@ class NameSearchPage extends React.Component {
               )}
             <div style={{ marginTop: "10px" }}>
               <Form layout="inline">
-                
-                {/* <FormItem label="Include extinct">
-                  <Checkbox
-                    checked={!params.extinct}
-                    onChange={({ target: { checked } }) =>
-                      this.updateSearch({
-                        extinct: checked === false ? [false, ""] : null,
-                      })
-                    }
-                  />
-                </FormItem> */}
-                
-                {/* <FormItem label="Extinct">
-                  <RadioGroup
-                    size="small"
-                    onChange={(evt) => {
-                      this.updateSearch({ extinct: evt.target.value });
-                    }}
-                    value={params.extinct || ""}
-                    optionType="button"
-                    options={[
-                      { value: "", label: "All" },
-                      { value: "false", label: "Extant" },
-                      { value: "true", label: "Extinct" },
-                      
-                    ]}
-                  ></RadioGroup>
-                </FormItem> */}
                 <FormItem label="Matching" >
                   <RadioGroup
                     size="small"
@@ -580,21 +538,6 @@ class NameSearchPage extends React.Component {
                   vocab={facetAuthorship}
                   label="Authorship"
                 />
-                {/*                 <MultiValueFilter
-                  defaultValue={_.get(params, "authorshipYear")}
-                  onChange={(value) =>
-                    this.updateSearch({ authorshipYear: value })
-                  }
-                  vocab={facetAuthorshipYear}
-                  label="Authorship Year"
-                /> */}
-                
-                {/*                 <MultiValueFilter
-                  defaultValue={_.get(params, "origin")}
-                  onChange={(value) => this.updateSearch({ origin: value })}
-                  vocab={facetOrigin}
-                  label="Origin"
-                />  */}
               </React.Fragment>
             )}
             <div style={{ textAlign: "right", marginBottom: "8px" }}>
