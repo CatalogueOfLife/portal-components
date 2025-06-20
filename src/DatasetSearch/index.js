@@ -370,7 +370,7 @@ class DatasetSearchPage extends React.Component {
             />
           </Col>
           <Col span={12} style={{ textAlign: "right", marginBottom: "8px" }}>
-            {`Source datasets: ${data
+            {/* {`Source datasets: ${data
               .filter((d) => {
                 if (!this.state.showMerged && d?.merged) {
                   return false;
@@ -384,7 +384,18 @@ class DatasetSearchPage extends React.Component {
                   );
                 }
               })
-              .length.toLocaleString("en-GB")}`}
+              .length.toLocaleString("en-GB")}`} */}
+              {`Source datasets: ${data.reduce((acc, d) => {
+                if (!this.state.showMerged && (d?.merged || !!d?.id)) {
+                  return acc;
+                }
+                if (!d?.metrics?.publisherKey) {
+                  return acc + 1;
+                }
+                if (d?.metrics?.publisherKey) {
+                  return acc + d?.metrics?.datasetCount;
+                }
+              },0).toLocaleString("en-GB")}`}
           </Col>
         </Row>
         {!error && (
@@ -417,8 +428,9 @@ class DatasetSearchPage extends React.Component {
             pagination={false}
             expandedRowRender={(dataset) => (
               <div style={{ marginLeft: "40px" }}>
+                
                 <Row>
-                  <Col flex="auto"></Col>
+                  <Col flex="auto" style={{paddingLeft: "8px"}}><h3>{dataset?.title}</h3></Col>
                   <Col>
                     <DatasetlogoWithFallback
                       auth={this.props.auth}

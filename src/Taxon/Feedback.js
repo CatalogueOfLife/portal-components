@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Form, Input, message, Modal , Spin,  Alert, Row, Col} from "antd";
 import config from "../config";
-import { MessageFilled } from "@ant-design/icons";
+import { MessageFilled, DownloadOutlined } from "@ant-design/icons";
 import { set } from "lodash";
 
 const axiosNoAuth = axios.create({
@@ -125,7 +125,7 @@ const onFinishFailed = ({ errorFields }) => {
         </Form>
         </Spin></>}
       </Modal>
-      <Row><Col flex="auto"></Col><Col></Col><Button style={{marginTop: "12px"} }size="small" onClick={() => setVisible(true)}>Feedback <MessageFilled /></Button></Row>
+      <Row><Col flex="auto"></Col><Col></Col><Button href={`https://www.checklistbank.org/dataset/${datasetKey}/download?taxonID=${taxonKey}`} style={{marginTop: "12px", marginRight: "4px"} }size="small">Download <DownloadOutlined/></Button><Button style={{marginTop: "12px"} }size="small" onClick={() => setVisible(true)}>Feedback <MessageFilled /></Button></Row>
       
     </>
   );
