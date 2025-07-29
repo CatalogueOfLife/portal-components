@@ -23,7 +23,7 @@ class VernacularNamesTable extends React.Component {
           key: "merged",
           width: 12,
           render: (text, record) =>
-            record?.merged ? <MergedDataBadge /> : "",
+            record?.merged ? <MergedDataBadge createdBy={record?.createdBy} datasetKey={record?.datasetKey} verbatimSourceKey={record?.verbatimSourceKey} /> : "",
         },
         {
           title: "Original name",

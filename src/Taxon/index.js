@@ -54,7 +54,7 @@ class TaxonPage extends React.Component {
       logoUrl: null,
       sourceDataset: null,
       includes: [],
-      rank: null,
+      rank: [],
       nomStatus: null,
       catalogue: null,
       referenceIndexMap: {},
@@ -434,7 +434,15 @@ class TaxonPage extends React.Component {
                 >
                   Taxon Details
                 </h1> */}
-                {info?.usage?.merged && <MergedDataBadge style={{marginBottom: "10px"}} sourceDatasetKey={info?.source?.sourceDatasetKey} sourceId={info?.source?.sourceId} pathToDataset={pathToDataset}/>}
+                {info?.usage?.merged && 
+                  <MergedDataBadge 
+                    style={{marginBottom: "10px"}}
+                    createdBy={info?.usage?.createdBy}
+                    datasetKey={info?.usage?.datasetKey} 
+                    verbatimSourceKey={info?.usage?.verbatimSourceKey} 
+                    sourceDatasetKey={info?.source?.sourceDatasetKey} 
+                    sourceId={info?.source?.sourceId} 
+                    pathToDataset={pathToDataset}/>}
                 <h1
                   style={{
                     fontSize: "30px",
@@ -501,6 +509,19 @@ class TaxonPage extends React.Component {
           {_.get(taxon, "status") && (
             <PresentationItem md={md} label="Checklist status">
               {`${_.get(taxon, "status")} ${_.get(taxon, "name.rank")}`}
+              {info?.decisions?.[taxon?.id] && (
+                          <>
+                            &nbsp;with{" "}
+                            {info?.decisions?.[taxon?.id]?.mode}{" "}
+                            decision
+                            <DecisionBadge
+                              style={{ marginLeft: "10px" }}
+                              decision={
+                                info?.decisions?.[taxon?.id]
+                              }
+                            />
+                          </>
+                        )}
             </PresentationItem>
           )}
 
@@ -538,6 +559,7 @@ class TaxonPage extends React.Component {
               <Synonyms
                 primarySource={sourceDataset}
                 data={_.get(info, "synonyms")}
+                decisions={_.get(info, "decisions")}
                 references={_.get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
@@ -706,7 +728,14 @@ class TaxonPage extends React.Component {
           {_.get(sourceDataset, "title") && (
             <PresentationItem md={md} label="Source">
               <div style={{ display: "inline-block" }}>
-              {info?.usage?.merged && <MergedDataBadge sourceDatasetKey={info?.source?.sourceDatasetKey} sourceId={info?.source?.sourceId} pathToDataset={pathToDataset}/>}{" "}
+              {info?.usage?.merged && 
+                <MergedDataBadge 
+                  createdBy={info?.usage?.createdBy}
+                  datasetKey={info?.usage?.datasetKey} 
+                  verbatimSourceKey={info?.usage?.verbatimSourceKey} 
+                  sourceDatasetKey={info?.source?.sourceDatasetKey} 
+                  sourceId={info?.source?.sourceId} 
+                  pathToDataset={pathToDataset}/>}{" "}
                 {info?.source && info?.source?.sourceId && (
                   <>
                     <a

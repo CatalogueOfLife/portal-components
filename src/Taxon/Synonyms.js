@@ -4,7 +4,7 @@ import BorderedListItem from "./BorderedListItem";
 import ReferencePopover from "./ReferencePopover";
 import { Button } from "antd";
 import MergedDataBadge from "../components/MergedDataBadge";
-
+import DecisionBadge from "../components/DecisionBadge";
 // import TypeMaterialPopover from "./TypeMaterialPopover";
 
 
@@ -14,6 +14,7 @@ const SynonymsTable = ({
   style,
   nomStatus,
   references,
+  decisions,
   typeMaterial,
   referenceIndexMap,
   primarySource,
@@ -72,8 +73,16 @@ const SynonymsTable = ({
           <>
           {s?.sourceDatasetKey &&
               _.get(primarySource, "key") !== s?.sourceDatasetKey && (
-                <MergedDataBadge sourceDatasetKey={s?.sourceDatasetKey } pathToDataset={pathToDataset} />
+                <MergedDataBadge
+                  createdBy={s?.createdBy}
+                  datasetKey={s.datasetKey} 
+                  sourceDatasetKey={s?.sourceDatasetKey } 
+                  pathToDataset={pathToDataset} 
+                  verbatimSourceKey={s.verbatimSourceKey}/>
               )}{" "}
+            {decisions?.[s?.id] && (
+              <DecisionBadge decision={decisions?.[s?.id]} />
+            )}{" "}
             {_.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
             {_.get(s, "status") === "misapplied" && _.get(s, "accordingTo")
               ? _.get(s, "accordingTo")

@@ -3,17 +3,27 @@ import { Tag, Popover } from "antd";
 import btoa from "btoa";
 import axios from "axios";
 import config from "../config";
+
+const createdByAlgorithm = {
+  14: "The data was created by the homotypic grouping algorithm"
+}
+
 const MergedDataBadge = ({
   style = {},
+  datasetKey,
   sourceDatasetKey,
   sourceId,
   popoverPlacement,
-  pathToDataset
+  pathToDataset,
+  verbatimSourceKey,
+  createdBy
 }) => {
   const [sourceDataset, setSourceDataset] = useState(null);
   const [sourceDatasetLoading, setSourceDatasetLoading] = useState(false);
   const [sourceTaxon, setSourceTaxon] = useState(null);
   const [sourceTaxonLoading, setSourceTaxonLoading] = useState(null);
+  const [verbatimRecord, setVerbatimRecord] = useState(null);
+  const [verbatimRecordLoading, setVerbatimRecordLoading] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
     if (open && sourceDatasetKey && sourceId) {
@@ -22,7 +32,10 @@ const MergedDataBadge = ({
     if (open && sourceDatasetKey) {
       getSourceDataset()
     }
-  }, [sourceDatasetKey, sourceId, open]);
+    if (open && verbatimSourceKey && !createdByAlgorithm[createdBy]) {
+      getVerbatimRecord();
+    }
+  }, [sourceDatasetKey, sourceId, verbatimSourceKey, open]);
 
   
 
@@ -56,14 +69,29 @@ const MergedDataBadge = ({
       });
   };
 
+  const getVerbatimRecord = () => {
+    setVerbatimRecordLoading(true);
+    setVerbatimRecord(null);
+    axios(`${config.dataApi}dataset/${datasetKey}/verbatimsource/${verbatimSourceKey}`)
+      .then((res) => {
+        setVerbatimRecordLoading(false);
+        setVerbatimRecord(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching verbatim record:", err);
+        setVerbatimRecordLoading(false);
+        setVerbatimRecord(null);
+      });
+  };
+
   const idRef = useRef(Math.random().toString(36).substring(2, 15));
 
-  return !!sourceDatasetKey ? (
+  return (!!sourceDatasetKey || !!verbatimSourceKey )  ? (
     <div style={{ display: "inline" }} id={idRef.current}>
       <Popover
-                 getPopupContainer={() => document.getElementById(idRef.current)}
+          getPopupContainer={() => document.getElementById(idRef.current)}
           content={
-          <>
+          <div style={{ minWidth: "300px" }}>
             {sourceDatasetKey && <div>
               <strong>Source Dataset:</strong>{" "}
               {sourceDatasetLoading
@@ -82,7 +110,29 @@ const MergedDataBadge = ({
                       }}
                     ></a> }
             </div>}
-          </>
+            {verbatimSourceKey && <div>
+              <strong>Source Record:</strong>{" "}
+              {!!createdByAlgorithm[createdBy] && <span>{createdByAlgorithm[createdBy]}</span>}
+              {verbatimRecordLoading
+                ? "Loading..."
+                : !!verbatimRecord ? <> {<a
+                      href={`https://www.dev.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`}
+                      dangerouslySetInnerHTML={ { __html: verbatimRecord?.sourceEntity } }
+                      onClick={() => {
+                        window.location.href = `https://www.dev.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`;
+                      }}
+                    ></a> }
+                    {verbatimRecord?.issues && verbatimRecord?.issues.length > 0 ? <div>
+                      <span>Issues: </span>
+                      {verbatimRecord.issues.map((issue, index) => (
+                        <Tag key={index} style={{ margin: "2px" }}>
+                          {issue}
+                        </Tag>
+                      ))}
+                    </div>: ""}
+                    </>:"" }
+            </div>}
+          </div>
         }
         trigger={"click"}
         placement={popoverPlacement || "right"}
@@ -92,6 +142,7 @@ const MergedDataBadge = ({
            onClick={(e) => {
             getSourceDataset();
             getSourceTaxon();
+            if(!createdByAlgorithm[createdBy]){ getVerbatimRecord(); }
           }} 
           style={{
             cursor: "pointer",
@@ -110,7 +161,7 @@ const MergedDataBadge = ({
       </Popover>
     </div>
   ) : (
-    <Tag
+   <div style={{ display: "inline" }}> <Tag
       color="purple"
       style={{
         fontFamily: "monospace",
@@ -124,7 +175,7 @@ const MergedDataBadge = ({
       }}
     >
       XR
-    </Tag>
+    </Tag></div>
   );
 };
 

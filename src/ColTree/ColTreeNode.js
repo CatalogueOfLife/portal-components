@@ -61,7 +61,7 @@ const hasDatasetSectors =
                             }}
                           />
                           {taxon?.merged && (
-                          <MergedDataBadge style={{ marginLeft: "4px" }} />
+                          <MergedDataBadge style={{ marginLeft: "4px" }} datasetKey={taxon?.datasetKey} verbatimSourceKey={taxon?.verbatimSourceKey}/>
                         )}
                         </span>
                         {/* estimate && (

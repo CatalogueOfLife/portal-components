@@ -56,7 +56,7 @@ const getColumns = (pathToTaxon) => [
     key: "merged",
     width: 12,
     render: (text, record) =>
-      record?.usage?.merged ? <MergedDataBadge /> : "",
+      record?.usage?.merged ? <MergedDataBadge datasetKey={record?.usage?.datasetKey} verbatimSourceKey={record?.usage?.verbatimSourceKey} /> : "",
   },
   {
     title: "Scientific Name",
@@ -436,7 +436,7 @@ class NameSearchPage extends React.Component {
                   <RadioGroup
                     size="small"
                     onChange={(evt) => {
-                      this.updateSearch({ type: evt.target.value });
+                      this.updateSearch(evt.target.value === "EXACT" ? { type: evt.target.value, fuzzy: false } : { type: evt.target.value });
                     }}
                     value={params.type || "WHOLE_WORDS"}
                     optionType="button"
@@ -450,6 +450,7 @@ class NameSearchPage extends React.Component {
                 <FormItem label="Fuzzy">
                   <Checkbox
                     checked={params.fuzzy === true || params.fuzzy === "true"}
+                    disabled={params.type === "EXACT"}
                     onChange={({ target: { checked } }) =>
                       this.updateSearch({ fuzzy: checked ? checked : null })
                     }
