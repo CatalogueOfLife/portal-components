@@ -7,7 +7,7 @@ import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
 import axios from "axios";
 import btoa from "btoa";
-import { Row, Col, Switch, Checkbox, Form } from "antd";
+import { Row, Col, Switch, Checkbox, Form, Tooltip, Popover } from "antd";
 import { ColTreeContext } from "./ColTreeContext";
 import { getDataset } from "../api/dataset";
 import Citation from "../components/DatasetCitation";
@@ -28,6 +28,7 @@ class ColTreeWrapper extends React.Component {
       )}`;
     }
     this.state = {
+      insertPlaceholder: false,
       hideExtinct: false,
       showInfo: false,
       dataset: null,
@@ -57,7 +58,7 @@ class ColTreeWrapper extends React.Component {
       citation,
       type
     } = this.props;
-    const { hideExtinct, dataset } = this.state;
+    const { hideExtinct, insertPlaceholder, dataset } = this.state;
     const params = qs.parse(_.get(location, "search"));
     return (
       <Router history={history}>
@@ -134,10 +135,30 @@ class ColTreeWrapper extends React.Component {
                   >
                     Extant only
                   </Checkbox>
+                  <Tooltip
+                            placement="left"
+                            title={"This virtually groups children of lower ranks into a \"Not assigned\" node for a more compact browsing experience"}
+                            getPopupContainer={() => document.getElementById("col_insertPlaceholder")}
+                          trigger={"hover"}
+                         >
+                          <div id="col_insertPlaceholder" style={{ display: "inline-block" }}>
+                  <Checkbox
+                    
+                    defaultChecked={true}
+                    onChange={({ target: { checked } }) => {
+                      this.setState({ insertPlaceholder: checked });
+                    }}
+                  >
+                    Placeholder
+                  </Checkbox>
+                  </div>
+                  </Tooltip>
+                  
                 </Col>
               )}
             </Row>
             <ColTree
+              insertPlaceholder={insertPlaceholder}
               hideExtinct={hideExtinct}
               catalogueKey={catalogueKey}
               pathToTaxon={pathToTaxon}

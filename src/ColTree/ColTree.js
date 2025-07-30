@@ -75,7 +75,8 @@ class ColTree extends React.Component {
   componentDidUpdate = (prevProps) => {
     if (
       prevProps.defaultExpandKey !== this.props.defaultExpandKey ||
-      prevProps.hideExtinct !== this.props.hideExtinct
+      prevProps.hideExtinct !== this.props.hideExtinct ||
+      prevProps.insertPlaceholder !== this.props.insertPlaceholder
     ) {
       this.reloadRoot();
     }
@@ -109,6 +110,7 @@ class ColTree extends React.Component {
       pathToTaxon,
       pathToDataset,
       hideExtinct,
+      insertPlaceholder,
       type
     } = this.props;
 
@@ -124,7 +126,7 @@ class ColTree extends React.Component {
         config.dataApi
       }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
         this.state.treeData.length
-      }${hideExtinct ? `&extinct=false&extinct=` : ""}`
+      }${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
     )
       .then(this.decorateWithSectorsAndDataset)
       .then((res) => {
@@ -285,6 +287,7 @@ const { treeData } = this.state;
       pathToTaxon,
       pathToDataset,
       hideExtinct,
+      insertPlaceholder,
       type
     } = this.props;
     const { treeData } = this.state;
@@ -294,9 +297,9 @@ const { treeData } = this.state;
     const res = await axios(
       `${config.dataApi}dataset/${catalogueKey}/tree/${
         dataRef.taxon.id //taxonKey
-      }/children?limit=${limit}&offset=${offset}&insertPlaceholder=true&catalogueKey=${catalogueKey}${type ? "&type="+type :""}${
+      }/children?limit=${limit}&offset=${offset}&catalogueKey=${catalogueKey}${type ? "&type="+type :""}${
         hideExtinct ? `&extinct=false` : ""
-      }`
+      }${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
     );
     await this.decorateWithSectorsAndDataset(res);
 
