@@ -4,8 +4,8 @@ import { getSectorsBatch } from "../api/sector";
 import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
 import axios from "axios";
-import { LinkOutlined } from "@ant-design/icons";
-import { Alert, Tag, Row, Col, Button, Rate } from "antd";
+import { LinkOutlined, DownloadOutlined } from "@ant-design/icons";
+import { Alert, Tag, Row, Col, Button, Rate, Tooltip } from "antd";
 // import SynonymTable from "./Synonyms";
 import Synonyms from "./Synonyms";
 
@@ -490,6 +490,21 @@ class TaxonPage extends React.Component {
               >
                 <LinkOutlined />
               </a>
+                <Tooltip title={"Download data for this taxon and descendants"}
+                 getPopupContainer={() => document.getElementById(`col-download-${_.get(taxon, "id")}`) || document.body}
+                >
+              <a
+                style={{ marginLeft: "5px" }}
+                id={`col-download-${_.get(taxon, "id")}`}
+                target="_blank"
+                href={`http://checklistbank.org/dataset/${catalogueKey}/download?taxonID=${encodeURIComponent(_.get(
+                  taxon,
+                  "id"
+                ))}`}
+              >
+                <DownloadOutlined />
+              </a>
+              </Tooltip>
             </PresentationItem>
           )}
           {_.get(taxon, "labelHtml") && (
