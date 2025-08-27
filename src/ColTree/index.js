@@ -124,7 +124,7 @@ class ColTreeWrapper extends React.Component {
                       this.setState({ showInfo: checked });
                     }}
                   >
-                    Info
+                    Source
                   </Checkbox>
 
                   <Checkbox
