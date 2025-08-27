@@ -92,14 +92,14 @@ const MergedDataBadge = ({
           getPopupContainer={() => document.getElementById(idRef.current)}
           content={
           <div style={{ minWidth: "300px" }}>
-            {sourceDatasetKey && <div>
-              <strong>Source Dataset:</strong>{" "}
+            {(!verbatimSourceKey && !sourceId) &&sourceDatasetKey && <div>
+              <strong>Source:</strong>{" "}
               {sourceDatasetLoading
                 ? "Loading..."
                 : <a href={`${pathToDataset}${sourceDataset?.key}`} onClick={() => {window.location.href =  `${pathToDataset}${sourceDataset?.key}`}}  >{sourceDataset?.title}</a> }
             </div>}
             {sourceDatasetKey && sourceId && <div>
-              <strong>Source Taxon:</strong>{" "}
+              <strong>Source:</strong>{" "}
               {sourceTaxonLoading
                 ? "Loading..."
                 : <a
@@ -110,14 +110,14 @@ const MergedDataBadge = ({
                       }}
                     ></a> }
             </div>}
-            {verbatimSourceKey && <div>
-              <strong>Source Record:</strong>{" "}
+            {(!sourceId) && verbatimSourceKey && <div>
+              <strong>Source:</strong>{" "}
               {!!createdByAlgorithm[createdBy] && <span>{createdByAlgorithm[createdBy]}</span>}
               {verbatimRecordLoading
                 ? "Loading..."
                 : !!verbatimRecord ? <> {<a
                       href={`https://www.dev.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`}
-                      dangerouslySetInnerHTML={ { __html: verbatimRecord?.sourceEntity } }
+                      dangerouslySetInnerHTML={ { __html: sourceDataset?.title ||verbatimRecord?.sourceEntity } }
                       onClick={() => {
                         window.location.href = `https://www.dev.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`;
                       }}
@@ -136,14 +136,15 @@ const MergedDataBadge = ({
         }
         trigger={"click"}
         placement={popoverPlacement || "right"}
+        onVisibleChange={setOpen}
       >
         <Tag
           color="purple"
-           onClick={(e) => {
+          /*  onClick={(e) => {
             getSourceDataset();
             getSourceTaxon();
             if(!createdByAlgorithm[createdBy]){ getVerbatimRecord(); }
-          }} 
+          }}  */
           style={{
             cursor: "pointer",
             fontFamily: "monospace",
