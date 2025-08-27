@@ -37,7 +37,7 @@ const getColumns = (
           <>
             {record.id ? (
               <span>
-                {"Publisher: "}{" "}
+               <MergedDataBadge style={{marginLeft: "0px"}} /> {"Publisher: "}{" "}
                 <a
                   href={`https://www.checklistbank.org/dataset/${catalogueKey}/publisher/${record.id}`}
                   target="_blank"
