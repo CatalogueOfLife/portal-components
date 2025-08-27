@@ -156,13 +156,12 @@ class ColTree extends React.Component {
           return dataRef;
         });
 
-        // Do not
         this.setState({
           rootTotal: rootTotal,
           rootLoading: false,
           treeData: [...this.state.treeData, ...treeData],
           expandedKeys:
-            treeData.length < 10 ? treeData.map((n) => n.taxon.id).filter(n => n !=="S") : [],
+            treeData.length < 10 ? treeData.map((n) => n.taxon.id).filter(n => n ==="P8X9H") : [],
           error: null,
         },
           () => {

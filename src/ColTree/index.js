@@ -28,7 +28,7 @@ class ColTreeWrapper extends React.Component {
       )}`;
     }
     this.state = {
-      insertPlaceholder: false,
+      insertPlaceholder: true,
       hideExtinct: false,
       showInfo: false,
       dataset: null,
