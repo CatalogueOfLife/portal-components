@@ -285,6 +285,26 @@ class TaxonPage extends React.Component {
             )
         );
       }
+      if (res?.data?.vernacularNames) {
+        await Promise.allSettled(
+          res.data.vernacularNames.map((name) =>
+            this.sectorLoader.load(name.sectorKey).then((r) => {
+              name.sector = r;
+              name.sourceDatasetKey = r.subjectDatasetKey;
+            })
+          )
+        );
+      }
+      if (res?.data?.distributions) {
+        await Promise.allSettled(
+          res.data.distributions.map((dist) =>
+            this.sectorLoader.load(dist.sectorKey).then((r) => {
+              dist.sector = r;
+              dist.sourceDatasetKey = r.subjectDatasetKey;
+            })
+          )
+        );
+      }
       let sourceDatasetKeyMap = _.get(res, "data.synonyms")
         ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms"))
         : null;
@@ -422,7 +442,7 @@ class TaxonPage extends React.Component {
           )}
           {taxon && (
             <Row>
-              <Col span={sourceDataset ? 18 : 23}>
+              <Col flex="auto">
                 {/*                 <h1
                   style={{
                     fontSize: "30px",
@@ -434,6 +454,7 @@ class TaxonPage extends React.Component {
                 >
                   Taxon Details
                 </h1> */}
+                <div>
                 {info?.usage?.merged && 
                   <MergedDataBadge 
                     style={{marginBottom: "10px"}}
@@ -454,7 +475,7 @@ class TaxonPage extends React.Component {
                   dangerouslySetInnerHTML={{
                     __html: taxon.labelHtml,
                   }}
-                />
+                /></div>
               </Col>
               <Col span={1}>
                 <a href=""></a>
@@ -693,6 +714,7 @@ class TaxonPage extends React.Component {
           {_.get(info, "distributions") && (
             <PresentationItem md={md} label="Distributions">
               <Distributions
+                pathToDataset={pathToDataset}
                 style={{ marginTop: "-3px" }}
                 data={info.distributions}
                 datasetKey={catalogueKey}

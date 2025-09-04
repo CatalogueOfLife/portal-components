@@ -4,8 +4,9 @@ import BorderedListItem from "./BorderedListItem";
 import ReferencePopover from "./ReferencePopover";
 import config from "../config";
 import axios from "axios";
+import MergedDataBadge from "../components/MergedDataBadge";
 
-const DistributionsTable = ({ datasetKey, data, style }) => {
+const DistributionsTable = ({ datasetKey, data, style, pathToDataset }) => {
   const [iso3Map, setIso3Map] = useState({});
 
   useEffect(()=> {   
@@ -28,6 +29,12 @@ const DistributionsTable = ({ datasetKey, data, style }) => {
     <div style={style}>
       {data.map((s, i) => (
         <span key={i}>
+          {s?.merged && <MergedDataBadge
+              createdBy={s?.createdBy}
+              datasetKey={s.datasetKey} 
+              sourceDatasetKey={s?.sourceDatasetKey}
+              verbatimSourceKey={s?.verbatimSourceKey} 
+              pathToDataset={pathToDataset} style={{marginRight: "4px"}} />}
           {(_.get(iso3Map, `[${_.get(s, "area.name")}].name`) ? _.startCase(_.get(iso3Map, `[${_.get(s, "area.name")}].name`)): null )|| _.get(s, "area.name") || _.get(s, "area.globalId")}{" "}
           {s.referenceId && (
             <ReferencePopover

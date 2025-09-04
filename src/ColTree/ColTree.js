@@ -161,7 +161,7 @@ class ColTree extends React.Component {
           rootLoading: false,
           treeData: [...this.state.treeData, ...treeData],
           expandedKeys:
-            treeData.length < 10 ? treeData.map((n) => n.taxon.id).filter(n => n ==="P8X9H") : [],
+            treeData.length < 10 ? treeData.map((n) => n.taxon.id).filter(n => n ==="CS5HF") : [],
           error: null,
         },
           () => {
