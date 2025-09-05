@@ -441,20 +441,10 @@ class TaxonPage extends React.Component {
             <Alert message={<ErrorMsg error={taxonError} />} type="error" />
           )}
           {taxon && (
-            <Row>
+            <Row align="bottom">
               <Col flex="auto">
-                {/*                 <h1
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "400",
-                    paddingLeft: "10px",
-                    display: "inline-block",
-                    textTransform: "none",
-                  }}
-                >
-                  Taxon Details
-                </h1> */}
-                <div>
+                
+                <div style={{marginLeft: info?.usage?.merged  ? "-22px": 0}}>
                 {info?.usage?.merged && 
                   <MergedDataBadge 
                     style={{marginBottom: "10px"}}
