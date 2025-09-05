@@ -287,7 +287,7 @@ class TaxonPage extends React.Component {
       }
       if (res?.data?.vernacularNames) {
         await Promise.allSettled(
-          res.data.vernacularNames.map((name) =>
+          res.data.vernacularNames.filter((name) => !!name.sectorKey).map((name) =>
             this.sectorLoader.load(name.sectorKey).then((r) => {
               name.sector = r;
               name.sourceDatasetKey = r.subjectDatasetKey;
@@ -297,7 +297,7 @@ class TaxonPage extends React.Component {
       }
       if (res?.data?.distributions) {
         await Promise.allSettled(
-          res.data.distributions.map((dist) =>
+          res.data.distributions.filter((dist) => !!dist.sectorKey).map((dist) =>
             this.sectorLoader.load(dist.sectorKey).then((r) => {
               dist.sector = r;
               dist.sourceDatasetKey = r.subjectDatasetKey;
