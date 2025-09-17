@@ -109,8 +109,9 @@ class NameSearchAutocomplete extends React.Component {
     return (
      <div id={`taxon_autocomplete_${randomID}`}>
        <Select 
-                   defaultActiveFirstOption={false}
-showArrow={false}
+       value={value}
+        defaultActiveFirstOption={false}
+        showArrow={false}
        showSearch
        allowClear
              notFoundContent={null}
