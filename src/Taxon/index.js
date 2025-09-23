@@ -8,6 +8,7 @@ import { LinkOutlined, DownloadOutlined } from "@ant-design/icons";
 import { Alert, Tag, Row, Col, Button, Rate, Tooltip } from "antd";
 // import SynonymTable from "./Synonyms";
 import Synonyms from "./Synonyms";
+import TypeMaterial from "./TypeMaterial";
 
 import VernacularNames from "./VernacularNames";
 import Distributions from "./Distributions";
@@ -595,6 +596,15 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
+          {_.get(info, "typeMaterial") &&
+                info.typeMaterial[info?.usage?.name?.id] && (
+                  <PresentationItem md={md} label="Type material">
+                    <TypeMaterial
+                      data={_.get(info, "typeMaterial")}
+                      nameID={_.get(taxon, "name.id")}
+                    />
+                  </PresentationItem>
+                )}
           {_.get(info, "nameRelations") &&
             info.nameRelations.filter((rel) => rel?.usageId === taxon?.id)
               .length > 0 && (
