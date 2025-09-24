@@ -4,6 +4,7 @@ import _ from "lodash";
 import BorderedListItem from "./BorderedListItem";
 import linkify from "linkify-html";
 import { Tag, Space, Tooltip } from "antd";
+import {LinkOutlined} from "@ant-design/icons";
 
 import MergedDataBadge from "../components/MergedDataBadge";
 
@@ -37,19 +38,19 @@ const getLinks = (dataset, s) => {
       : "";
   return (
     (gbifOccLink || ncbiLink) && (
-      <span>
+      <span id={`${s.id}-type-material-links`}>
         <Space>
           {gbifOccLink && (
-            <Tooltip title="Occurrence in GBIF">
-              <a href={gbifOccLink} target="_blank" rel="noreferrer">
-                GBIF
+            <Tooltip title="Occurrence in GBIF" getPopupContainer={() => document.getElementById(`${s.id}-type-material-links`) || document.body}>
+              <a style={{marginLeft: 4}} href={gbifOccLink} target="_blank" rel="noreferrer">
+                GBIF <LinkOutlined />
               </a>
             </Tooltip>
           )}
           {ncbiLink && (
             <Tooltip title="DNA sequence in GenBank">
               <a href={ncbiLink} target="_blank" rel="noreferrer">
-                GenBank
+                GenBank <LinkOutlined />
               </a>
             </Tooltip>
           )}

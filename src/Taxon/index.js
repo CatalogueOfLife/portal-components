@@ -530,7 +530,11 @@ class TaxonPage extends React.Component {
           )}
           {_.get(taxon, "name.publishedIn.citation") && (
             <PresentationItem md={md} label="Published in">
-              {_.get(taxon, "name.publishedIn.citation")}
+            {_.get(info, "source.secondarySources['published in']") && 
+              <MergedDataBadge 
+                sourceDatasetKey={_.get(info, "source.secondarySources['published in'].datasetKey")} 
+                sourceId={_.get(info, "source.secondarySources['published in'].id")} />}  
+                {_.get(taxon, "name.publishedIn.citation")}
             </PresentationItem>
           )}
           {_.get(taxon, "status") && (
@@ -588,6 +592,7 @@ class TaxonPage extends React.Component {
                 data={_.get(info, "synonyms")}
                 decisions={_.get(info, "decisions")}
                 references={_.get(info, "references")}
+                typeMaterial={_.get(info, "typeMaterial")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
                 pathToDataset={pathToDataset}
@@ -818,7 +823,7 @@ class TaxonPage extends React.Component {
           )}
           {info?.source?.secondarySources && (
             <PresentationItem md={md} label="Secondary Sources">
-              <SecondarySources info={info} catalogueKey={catalogueKey} />
+              <SecondarySources info={info} catalogueKey={catalogueKey} pathToTaxon={pathToTaxon} />
             </PresentationItem>
           )}
           {/* {this.state?.sourceDatasetKeyMap && (

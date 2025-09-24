@@ -5,7 +5,7 @@ import ReferencePopover from "./ReferencePopover";
 import { Button } from "antd";
 import MergedDataBadge from "../components/MergedDataBadge";
 import DecisionBadge from "../components/DecisionBadge";
-// import TypeMaterialPopover from "./TypeMaterialPopover";
+import TypeMaterialPopover from "./TypeMaterialPopover";
 
 
 const SynonymsTable = ({
@@ -82,7 +82,12 @@ const SynonymsTable = ({
               )}{" "}
             {decisions?.[s?.id] && (
               <DecisionBadge decision={decisions?.[s?.id]} />
-            )}{" "}
+            )}<TypeMaterialPopover
+              datasetKey={datasetKey}
+              typeMaterial={typeMaterial}
+              nameId={_.get(s, "name.id")}
+              placement="top"
+            />{" "}
             {_.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
             {_.get(s, "status") === "misapplied" && _.get(s, "accordingTo")
               ? _.get(s, "accordingTo")
