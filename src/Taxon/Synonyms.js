@@ -82,7 +82,8 @@ const SynonymsTable = ({
               )}{" "}
             {decisions?.[s?.id] && (
               <DecisionBadge decision={decisions?.[s?.id]} />
-            )}<TypeMaterialPopover
+            )}
+            <TypeMaterialPopover
               datasetKey={datasetKey}
               typeMaterial={typeMaterial}
               nameId={_.get(s, "name.id")}

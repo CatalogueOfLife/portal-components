@@ -16,6 +16,7 @@ const MergedDataBadge = ({
   popoverPlacement,
   pathToDataset,
   verbatimSourceKey,
+  sectorKey,
   createdBy
 }) => {
   const [sourceDataset, setSourceDataset] = useState(null);

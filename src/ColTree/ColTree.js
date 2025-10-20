@@ -341,7 +341,7 @@ const { treeData } = this.state;
     if (res.data.last && dataRef.childCount > dataRef.children.length) {
       dataRef.childCount = dataRef.children.length;
     }
-    if (offset + CHILD_PAGE_SIZE < childcount) {
+    if (!res.data.last) {
       const loadMoreFn = () => {
         dataRef.childOffset += CHILD_PAGE_SIZE;
         if (
