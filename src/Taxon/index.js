@@ -460,7 +460,7 @@ class TaxonPage extends React.Component {
                     fontSize: "30px",
                     fontWeight: "400",
                     paddingLeft: "10px",
-                    display: "inline-block",
+                    display: "inline",
                     textTransform: "none",
                   }}
                   dangerouslySetInnerHTML={{
