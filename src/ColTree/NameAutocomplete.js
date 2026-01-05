@@ -121,7 +121,7 @@ class NameSearchAutocomplete extends React.Component {
         filterOption={false}
         onSelect={this.onSelectName}
         onSearch={(q) => (!!q ? this.getNames(q) : this.onReset())}
-        placeholder={placeHolder || "Find taxon"}
+        placeholder={"Find taxon"}
         autoFocus={autoFocus === false ? false : true}
         disabled={disabled}
         getPopupContainer={() => {
