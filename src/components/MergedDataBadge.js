@@ -117,10 +117,10 @@ const MergedDataBadge = ({
               {verbatimRecordLoading
                 ? "Loading..."
                 : !!verbatimRecord ? <> {<a
-                      href={`https://www.dev.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`}
+                      href={`https://www.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`}
                       dangerouslySetInnerHTML={ { __html: sourceDataset?.title ||verbatimRecord?.sourceEntity } }
                       onClick={() => {
-                        window.location.href = `https://www.dev.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`;
+                        window.location.href = `https://www.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`;
                       }}
                     ></a> }
                     {verbatimRecord?.issues && verbatimRecord?.issues.length > 0 ? <div>
