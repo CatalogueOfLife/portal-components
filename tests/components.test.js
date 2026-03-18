@@ -1,29 +1,12 @@
-
-import expect from 'expect'
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import axios from 'axios'
 import { Tree, Search, Taxon, Dataset, DatasetSearch, BibTex } from 'src/'
 import history from 'src/history'
 
-// Mocha replaces window.onerror with its own handler when the runner starts,
-// so module-level patches are overwritten. A root-level before() hook runs
-// after mocha has installed its handler, giving us a chance to wrap it and
-// drop the benign "ResizeObserver loop" error before mocha ever sees it.
-before(function () {
-  var _onerror = window.onerror
-  window.onerror = function (msg) {
-    if (typeof msg === 'string' && msg.indexOf('ResizeObserver loop') !== -1) {
-      return true // tell the browser the error was handled; do NOT call mocha's handler
-    }
-    return _onerror ? _onerror.apply(this, arguments) : undefined
-  }
-})
-
 const CATALOGUE_KEY = '312578'
 const TAXON_PATH = '/data/taxon/'
 const SOURCE_PATH = '/data/source/'
-// "V" is the Biota/root taxon used for catalogue 312578 in the demo
 const ROOT_TAXON_KEY = 'V'
 
 const waitMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -42,12 +25,11 @@ const unmount = (node) => {
 
 // ─── Tree ──────────────────────────────────────────────────────────────────
 
-describe('Tree', function () {
-  this.timeout(15000)
+describe('Tree', () => {
   let node
-  afterEach(function () { unmount(node) })
+  afterEach(() => { unmount(node) })
 
-  it('renders the tree interface', function () {
+  it('renders the tree interface', () => {
     node = mountIn(
       <Tree
         catalogueKey={CATALOGUE_KEY}
@@ -56,10 +38,10 @@ describe('Tree', function () {
         showTreeOptions={true}
       />
     )
-    expect(node.querySelector('.catalogue-of-life')).toExist()
+    expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
   })
 
-  it('loads root tree nodes from the production API', function () {
+  it('loads root tree nodes from the production API', () => {
     node = mountIn(
       <Tree
         catalogueKey={CATALOGUE_KEY}
@@ -68,49 +50,47 @@ describe('Tree', function () {
       />
     )
     return waitMs(6000).then(() => {
-      expect(node.querySelector('.ant-tree')).toExist()
+      expect(node.querySelector('.ant-tree')).toBeTruthy()
     })
   })
 })
 
 // ─── Search ────────────────────────────────────────────────────────────────
 
-describe('Search', function () {
-  this.timeout(15000)
+describe('Search', () => {
   let node
-  afterEach(function () { unmount(node) })
+  afterEach(() => { unmount(node) })
 
-  it('renders the search form with Matching and Content controls', function () {
+  it('renders the search form with Matching and Content controls', () => {
     node = mountIn(
       <Search catalogueKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
     )
-    expect(node.querySelector('.catalogue-of-life')).toExist()
+    expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
     expect(node.innerHTML).toContain('Matching')
     expect(node.innerHTML).toContain('Content')
   })
 
-  it('loads search results from the production API', function () {
+  it('loads search results from the production API', () => {
     node = mountIn(
       <Search catalogueKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
     )
     return waitMs(6000).then(() => {
-      expect(node.querySelector('.ant-table-tbody')).toExist()
+      expect(node.querySelector('.ant-table-tbody')).toBeTruthy()
     })
   })
 })
 
 // ─── Taxon ─────────────────────────────────────────────────────────────────
 
-describe('Taxon', function () {
-  this.timeout(15000)
+describe('Taxon', () => {
   let node
 
-  beforeEach(function () {
+  beforeEach(() => {
     history.push(`${TAXON_PATH}${ROOT_TAXON_KEY}`)
   })
-  afterEach(function () { unmount(node) })
+  afterEach(() => { unmount(node) })
 
-  it('renders the taxon page container', function () {
+  it('renders the taxon page container', () => {
     node = mountIn(
       <Taxon
         catalogueKey={CATALOGUE_KEY}
@@ -120,10 +100,10 @@ describe('Taxon', function () {
         pathToDataset={SOURCE_PATH}
       />
     )
-    expect(node.querySelector('.catalogue-of-life')).toExist()
+    expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
   })
 
-  it('loads taxon data from the production API', function () {
+  it('loads taxon data from the production API', () => {
     node = mountIn(
       <Taxon
         catalogueKey={CATALOGUE_KEY}
@@ -141,24 +121,25 @@ describe('Taxon', function () {
 
 // ─── Dataset ───────────────────────────────────────────────────────────────
 
-describe('Dataset', function () {
-  this.timeout(15000)
+describe('Dataset', () => {
   let node
   let sourceDatasetKey = null
 
-  before(function () {
-    return axios
-      .get(`https://api.checklistbank.org/dataset/${CATALOGUE_KEY}/source?limit=1`)
-      .then((res) => { sourceDatasetKey = res.data?.[0]?.key })
-      .catch(() => {})
+  beforeAll(async () => {
+    try {
+      const res = await axios.get(`https://api.checklistbank.org/dataset/${CATALOGUE_KEY}/source?limit=1`)
+      sourceDatasetKey = res.data?.[0]?.key
+    } catch (e) {
+      // ignore — fallback key used below
+    }
   })
 
-  beforeEach(function () {
+  beforeEach(() => {
     history.push(`${SOURCE_PATH}${sourceDatasetKey || '1019'}`)
   })
-  afterEach(function () { unmount(node) })
+  afterEach(() => { unmount(node) })
 
-  it('renders the dataset page container', function () {
+  it('renders the dataset page container', () => {
     node = mountIn(
       <Dataset
         catalogueKey={CATALOGUE_KEY}
@@ -166,10 +147,10 @@ describe('Dataset', function () {
         pathToSearch="/data/search"
       />
     )
-    expect(node.querySelector('.catalogue-of-life')).toExist()
+    expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
   })
 
-  it('loads dataset info from the production API', function () {
+  it('loads dataset info from the production API', () => {
     node = mountIn(
       <Dataset
         catalogueKey={CATALOGUE_KEY}
@@ -185,12 +166,11 @@ describe('Dataset', function () {
 
 // ─── DatasetSearch ─────────────────────────────────────────────────────────
 
-describe('DatasetSearch', function () {
-  this.timeout(15000)
+describe('DatasetSearch', () => {
   let node
-  afterEach(function () { unmount(node) })
+  afterEach(() => { unmount(node) })
 
-  it('renders the source datasets container', function () {
+  it('renders the source datasets container', () => {
     node = mountIn(
       <DatasetSearch
         catalogueKey={CATALOGUE_KEY}
@@ -198,10 +178,10 @@ describe('DatasetSearch', function () {
         pathToSearch="/data/search"
       />
     )
-    expect(node.querySelector('.catalogue-of-life')).toExist()
+    expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
   })
 
-  it('loads source datasets from the production API', function () {
+  it('loads source datasets from the production API', () => {
     node = mountIn(
       <DatasetSearch
         catalogueKey={CATALOGUE_KEY}
@@ -210,21 +190,21 @@ describe('DatasetSearch', function () {
       />
     )
     return waitMs(6000).then(() => {
-      expect(node.querySelector('.ant-table-tbody')).toExist()
+      expect(node.querySelector('.ant-table-tbody')).toBeTruthy()
     })
   })
 })
 
 // ─── BibTex ────────────────────────────────────────────────────────────────
 
-describe('BibTex', function () {
+describe('BibTex', () => {
   let node
-  afterEach(function () { unmount(node) })
+  afterEach(() => { unmount(node) })
 
-  it('renders a download link pointing to the production API', function () {
+  it('renders a download link pointing to the production API', () => {
     node = mountIn(<BibTex datasetKey={CATALOGUE_KEY} />)
     const link = node.querySelector('a')
-    expect(link).toExist()
+    expect(link).toBeTruthy()
     expect(link.href).toContain('api.checklistbank.org')
     expect(link.href).toContain(CATALOGUE_KEY)
     expect(link.href).toContain('.bib')

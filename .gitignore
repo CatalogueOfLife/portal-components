@@ -1,8 +1,9 @@
 /coverage
 /demo/dist
-/demo/src
 /es
 /lib
+/dist
+/umd
 /node_modules
 npm-debug.log*
 **/.DS_Store
