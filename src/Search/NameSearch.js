@@ -375,7 +375,7 @@ class NameSearchPage extends React.Component {
     const facetGroup = _.get(facets, "group")
       ? facets["group"].map((s) => ({
           value: s.value,
-          label: `${taxGroups.find((t) => t.name === s.value)?.description || _.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+          label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
     const facetAuthorshipYear = _.get(facets, "authorshipYear")
