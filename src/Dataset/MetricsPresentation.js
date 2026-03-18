@@ -1,7 +1,7 @@
 import React from "react";
 import { Skeleton } from "antd";
 import PresentationItem from "../components/PresentationItem";
-const _ = require("lodash");
+import _ from "lodash";
 
 const getLivingTaxa = (metrics, rank) =>
   (_.get(metrics, `taxaByRankCount.${rank}`) || 0) -

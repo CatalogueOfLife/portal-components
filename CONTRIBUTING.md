@@ -1,6 +1,6 @@
 ## Prerequisites
-[Node.js](http://nodejs.org/) 16.x must be installed.
-It is recommended to use [NVM](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating) 
+[Node.js](http://nodejs.org/) 22.x must be installed.
+It is recommended to use [NVM](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
 This allows to easily switch between node versions.
 
 If you have nvm installed, you can simply run `nvm use`.
@@ -11,7 +11,7 @@ If you have nvm installed, you can simply run `nvm use`.
 
 ## Demo Development Server
 
-- `npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
+- `npm run dev` will run a development server with the component's demo app at [http://localhost:5173](http://localhost:5173) with hot module reloading.
 
 ## Running Tests
 
@@ -23,14 +23,11 @@ If you have nvm installed, you can simply run `nvm use`.
 
 ## Building
 
-- `npm run build` will build the component for publishing to npm and also bundle the demo app.
-
-- `npm run clean` will delete built resources.
-
+- `npm run build:all` will build the ES and UMD bundles for publishing to npm.
 
 ## Releasing a version
 
-- When you have changed code, do a build locally: `npm run build`
+- When you have changed code, do a build locally: `npm run build:all`
 - Remember to update version in [package.json](https://github.com/CatalogueOfLife/portal-components/blob/d2b869bc11382910da4b218fe6f1c1ae6fd50f15/package.json#L3)
 - Add everything in git: `git add -A`, commit and push
 - [Do a release in GitHub](https://github.com/CatalogueOfLife/portal-components/releases)

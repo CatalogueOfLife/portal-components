@@ -2,7 +2,7 @@ import React from "react";
 import config from "../config";
 import axios from "axios";
 import MetricsPresentation from "./MetricsPresentation"
-const _ = require("lodash");
+import _ from "lodash";
 
 
 class Metrics extends React.Component {

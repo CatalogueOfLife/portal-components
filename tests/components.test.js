@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Tree, Search, Taxon, Dataset, DatasetSearch, BibTex } from 'src/'
 import history from 'src/history'
 
-const CATALOGUE_KEY = '312578'
+const CATALOGUE_KEY = '310463'
 const TAXON_PATH = '/data/taxon/'
 const SOURCE_PATH = '/data/source/'
 const ROOT_TAXON_KEY = 'V'
@@ -135,7 +135,7 @@ describe('Dataset', () => {
   })
 
   beforeEach(() => {
-    history.push(`${SOURCE_PATH}${sourceDatasetKey || '1019'}`)
+    history.push(`${SOURCE_PATH}${sourceDatasetKey || '1010'}`)
   })
   afterEach(() => { unmount(node) })
 

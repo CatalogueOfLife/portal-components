@@ -9,7 +9,7 @@
     "umd"
   ],
   "scripts": {
-    "dev": "vite serve demo",
+    "dev": "vite",
     "build": "vite build",
     "build:umd": "vite build --config vite.config.umd.js && terser umd/col-browser.js -o umd/col-browser.min.js --source-map --compress --mangle",
     "build:all": "npm run build && npm run build:umd",

@@ -2,7 +2,7 @@ import React from "react";
 import config from "../config";
 import axios from "axios";
 import {Skeleton} from "antd";
-const _ = require("lodash");
+import _ from "lodash";
 
 class TaxonomicCoverage extends React.Component {
   constructor(props) {

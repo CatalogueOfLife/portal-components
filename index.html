@@ -7,6 +7,7 @@
 </head>
 <body>
   <div id="demo"></div>
-  <script type="module" src="./src/index.js"></script>
+  <script>if(!window.setImmediate)window.setImmediate=function(fn){return setTimeout(fn,0)}</script>
+  <script type="module" src="./demo/src/index.js"></script>
 </body>
 </html>

@@ -18,6 +18,12 @@ const jsxInJs = {
 
 export default defineConfig({
   plugins: [jsxInJs],
+  appType: 'spa',
+  optimizeDeps: {
+    esbuild: {
+      loader: { '.js': 'jsx' },
+    },
+  },
   css: {
     preprocessorOptions: {
       less: { javascriptEnabled: true, math: 'always' },

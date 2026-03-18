@@ -54,4 +54,4 @@ describe('MyComponent', () => {
 Production: `https://api.checklistbank.org/` — used in tests and at runtime.
 Dev/staging: `https://api.dev.checklistbank.org/` — useful for checking OpenAPI schema changes.
 
-Test catalogue key: `312578` (the main COL project dataset). Root taxon key: `V`.
+Test catalogue key: `310463` (the main COL project dataset). Root taxon key: `V`.

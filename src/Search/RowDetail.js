@@ -3,7 +3,7 @@ import { Row, Col, Tag, Tooltip } from "antd";
 import Classification from "./Classification";
 import _ from "lodash";
 
-const RowDetail = ({ issues, usage, classification, issueMap, pathToTaxon }) => (
+const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap, pathToTaxon }) => (
   <React.Fragment>
     {_.get(usage, "id") && (
       <Row style={{ marginBottom: "10px" }}>
@@ -40,6 +40,23 @@ const RowDetail = ({ issues, usage, classification, issueMap, pathToTaxon }) => 
         </Col>
       </Row>
     )}
+    {vernacularNames && (
+      <Row>
+        <Col
+          span={3}
+          style={{
+            textAlign: "right",
+            paddingRight: "16px",
+            fontWeight: "bold"
+          }}
+        >
+          Vernacular:
+        </Col>
+        <Col span={18} style={{paddingBottom: "12px"}}>
+          {vernacularNames.slice(0, 8).map(vn => vn.name).join(", ")}
+        </Col>
+      </Row>
+    )}    
     { /* issues && (
       <Row>
         <Col
