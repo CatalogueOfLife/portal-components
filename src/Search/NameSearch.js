@@ -3,16 +3,17 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 import { getDataset } from "../api/dataset";
+import { getTaxGroup } from "../api/enumeration";
 import {
   Table,
   Alert,
   Switch,
-  Checkbox,
   Row,
   Col,
   Button,
   Form,
   Radio,
+  Select,
 } from "antd";
 import config from "../config";
 import qs from "query-string";
@@ -40,6 +41,8 @@ const FACET_VOCAB = [
   "authorship",
   "extinct",
   "environment",
+  "group",
+  "authorshipYear",
 ];
 const PAGE_SIZE = 50;
 const defaultParams = {
@@ -141,6 +144,7 @@ class NameSearchPage extends React.Component {
       advancedFilters: false,
       columns: getColumns(this.props.pathToTaxon),
       params: {},
+      taxGroups: [],
       pagination: {
         pageSize: PAGE_SIZE,
         current: 1,
@@ -158,6 +162,10 @@ class NameSearchPage extends React.Component {
     try {
       const { data: dataset } = await getDataset(catalogueKey);
       this.setState({ dataset });
+    } catch (err) {}
+    try {
+      const taxGroups = await getTaxGroup();
+      this.setState({ taxGroups });
     } catch (err) {}
   };
 
@@ -186,6 +194,9 @@ class NameSearchPage extends React.Component {
     } else if (!params.facet) {
       params.facet = FACET_VOCAB;
     }
+
+    // fuzzy is no longer a separate API parameter; it's now the FUZZY type value
+    delete params.fuzzy;
 
     if (!params.limit) {
       params.limit = PAGE_SIZE;
@@ -304,6 +315,7 @@ class NameSearchPage extends React.Component {
       pagination,
       advancedFilters,
       dataset,
+      taxGroups,
     } = this.state;
     const { pathToTaxon, catalogueKey, defaultTaxonKey, citation } = this.props;
     const facetRanks = _.get(facets, "rank")
@@ -358,6 +370,18 @@ class NameSearchPage extends React.Component {
       ? facets["environment"].map((s) => ({
           value: s.value,
           label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];
+    const facetGroup = _.get(facets, "group")
+      ? facets["group"].map((s) => ({
+          value: s.value,
+          label: `${taxGroups.find((t) => t.name === s.value)?.description || _.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
+        }))
+      : [];
+    const facetAuthorshipYear = _.get(facets, "authorshipYear")
+      ? facets["authorshipYear"].map((s) => ({
+          value: s.value,
+          label: `${s.value} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
 
@@ -436,7 +460,7 @@ class NameSearchPage extends React.Component {
                   <RadioGroup
                     size="small"
                     onChange={(evt) => {
-                      this.updateSearch(evt.target.value === "EXACT" ? { type: evt.target.value, fuzzy: false } : { type: evt.target.value });
+                      this.updateSearch({ type: evt.target.value });
                     }}
                     value={params.type || "WHOLE_WORDS"}
                     optionType="button"
@@ -444,21 +468,14 @@ class NameSearchPage extends React.Component {
                       { value: "EXACT", label: "Exact" },
                       { value: "WHOLE_WORDS", label: "Words" },
                       { value: "PREFIX", label: "Prefix" },
+                      { value: "FUZZY", label: "Fuzzy" },
                     ]}
                   ></RadioGroup>
                 </FormItem>
-                <FormItem label="Fuzzy">
-                  <Checkbox
-                    checked={params.fuzzy === true || params.fuzzy === "true"}
-                    disabled={params.type === "EXACT"}
-                    onChange={({ target: { checked } }) =>
-                      this.updateSearch({ fuzzy: checked ? checked : null })
-                    }
-                  />
-                </FormItem> 
                
               </Form>
-               <FormItem label="Content"  >
+              <Form layout="inline">
+                <FormItem label="Content">
                   <RadioGroup
                     style={{ marginLeft: "8px" }}
                     size="small"
@@ -472,10 +489,26 @@ class NameSearchPage extends React.Component {
                       { value: "", label: "All" },
                       { value: "attach,union", label: "Base" },
                       { value: "merge", label: "Extended" },
-                      
                     ]}
                   ></RadioGroup>
                 </FormItem>
+                <FormItem>
+                  <Select
+                    mode="multiple"
+                    allowClear
+                    size="small"
+                    style={{ minWidth: 200 }}
+                    placeholder="Search fields"
+                    value={_.isArray(params?.content) ? params.content : (params?.content ? [params.content] : [])}
+                    onChange={(value) => this.updateSearch({ content: value.length ? value : null })}
+                    options={[
+                      { value: "SCIENTIFIC_NAME", label: "Scientific name" },
+                      { value: "AUTHORSHIP", label: "Authorship" },
+                      { value: "VERNACULAR_NAME", label: "Vernacular name" },
+                    ]}
+                  />
+                </FormItem>
+              </Form>
               
             </div>
           </Col>
@@ -538,6 +571,18 @@ class NameSearchPage extends React.Component {
                   onChange={(value) => this.updateSearch({ authorship: value })}
                   vocab={facetAuthorship}
                   label="Authorship"
+                />
+                <MultiValueFilter
+                  defaultValue={_.get(params, "group")}
+                  onChange={(value) => this.updateSearch({ group: value })}
+                  vocab={facetGroup}
+                  label="Taxonomic group"
+                />
+                <MultiValueFilter
+                  defaultValue={_.get(params, "authorshipYear")}
+                  onChange={(value) => this.updateSearch({ authorshipYear: value })}
+                  vocab={facetAuthorshipYear}
+                  label="Authorship year"
                 />
               </React.Fragment>
             )}

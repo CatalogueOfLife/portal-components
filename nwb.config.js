@@ -3,6 +3,20 @@ const path = require('path');
 
 module.exports = {
   type: 'react-component',
+  karma: {
+    browsers: ['ChromeHeadlessNoSandbox'],
+    plugins: [
+      require('karma-chrome-launcher'),
+    ],
+    extra: {
+      customLaunchers: {
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox', '--disable-setuid-sandbox', '--window-size=1280,800'],
+        },
+      },
+    },
+  },
   webpack : {
     
         rules: {

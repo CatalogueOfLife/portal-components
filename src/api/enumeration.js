@@ -98,6 +98,12 @@ export const getCountries = () => {
   );
 };
 
+export const getTaxGroup = () => {
+  return axios(`${config.dataApi}vocab/taxgroup`).then(res =>
+    res.data
+  );
+};
+
 
 
 

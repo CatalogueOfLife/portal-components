@@ -41,6 +41,7 @@
     "react": "16.x"
   },
   "devDependencies": {
+    "karma-chrome-launcher": "^3.2.0",
     "less": "^2.7.2",
     "less-loader": "^5.0.0",
     "nwb": "0.25.x",
@@ -54,7 +55,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sp2000/colplus-portal-components.git"
+    "url": "https://github.com/CatalogueOfLife/portal-components.git"
   },
   "keywords": [
     "react-component",
