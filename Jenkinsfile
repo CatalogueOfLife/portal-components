@@ -5,8 +5,6 @@ pipeline {
         nodejs 'NodeJS 22'
     }
 
-
-
     stages {
         stage('Install') {
             steps {
