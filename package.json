@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:umd": "vite build --config vite.config.umd.js && node scripts/minify.js && cleancss umd/main.css -o umd/col-browser.min.css",
+    "build:umd": "vite build --config vite.config.umd.js && node scripts/minify.js",
     "build:all": "npm run build && npm run build:umd",
     "prepublishOnly": "npm run build:all",
     "test": "vitest run",
@@ -40,7 +40,6 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "clean-css-cli": "^5.6.3",
     "jsdom": "^28.1.0",
     "less": "^4.2.0",
     "react": "^16.12.0",
