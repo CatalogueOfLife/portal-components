@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:umd": "vite build --config vite.config.umd.js && terser umd/col-browser.js -o umd/col-browser.min.js --source-map --compress --mangle && cleancss umd/main.css -o umd/col-browser.min.css",
+    "build:umd": "vite build --config vite.config.umd.js && node scripts/minify.js && cleancss umd/main.css -o umd/col-browser.min.css",
     "build:all": "npm run build && npm run build:umd",
     "prepublishOnly": "npm run build:all",
     "test": "vitest run",
