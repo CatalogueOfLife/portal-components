@@ -67598,7 +67598,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     return lodash$1.exports;
   }
   var lodashExports = requireLodash();
-  const _$2 = /* @__PURE__ */ getDefaultExportFromCjs(lodashExports);
+  const _ = /* @__PURE__ */ getDefaultExportFromCjs(lodashExports);
   var axios$2 = { exports: {} };
   var bind;
   var hasRequiredBind;
@@ -69329,7 +69329,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           (s) => this.datasetLoader.load(s).then((dataset) => dataset)
         );
         Promise.all(promises).then((data) => {
-          this.setState({ data: _$2.sortBy(data, ["alias"]), loading: false });
+          this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
         });
       });
       __publicField(this, "getPublisherData", () => {
@@ -69338,7 +69338,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           (s) => this.publisherLoader.load(s).then((publisher) => ({ ...publisher, datasets: publisherDatasetKeys[s] }))
         );
         Promise.all(promises).then((data) => {
-          this.setState({ publishers: _$2.sortBy(data, ["alias"]) });
+          this.setState({ publishers: _.sortBy(data, ["alias"]) });
         });
       });
       __publicField(this, "render", () => {
@@ -69680,7 +69680,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           pathToTaxon,
           pathToDataset
         } = this.props;
-        const sectorSourceDataset = _$2.get(sector, "dataset");
+        const sectorSourceDataset = _.get(sector, "dataset");
         const hasDatasetSectors = (sourceDatasetKeys || []).filter((d) => (sector == null ? void 0 : sector.subjectDatasetKey) !== d).length > 0;
         taxon.estimate && taxon.estimates ? taxon.estimates.find((e2) => e2.estimate === taxon.estimate) : null;
         return /* @__PURE__ */ jsxRuntimeExports.jsx(ColTreeContext.Consumer, { children: ({ showInfo }) => {
@@ -69713,12 +69713,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               " • ",
               /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "warning", style: { marginRight: 0 }, children: "prov." })
             ] }),
-            !_$2.isUndefined(taxon.count) && this.rankIsAboveSpecies(taxon == null ? void 0 : taxon.rank) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            !_.isUndefined(taxon.count) && this.rankIsAboveSpecies(taxon == null ? void 0 : taxon.rank) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               " ",
               "• ",
               Number(taxon.count).toLocaleString(),
               " ",
-              showInfo && !_$2.isUndefined(taxon.speciesEstimate) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+              showInfo && !_.isUndefined(taxon.speciesEstimate) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                 " ",
                 "of",
                 " ",
@@ -69743,7 +69743,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                     window.location.href = `${pathToDataset}${sector.subjectDatasetKey}`;
                   },
                   children: [
-                    _$2.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
+                    _.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
                     hasDatasetSectors && ", "
                   ]
                 }
@@ -69777,16 +69777,16 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       const { error } = this.props;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         error.message && /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: error.message }),
-        _$2.get(error, "response.data.message") && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: _$2.get(error, "response.data.message") }),
-        _$2.get(error, "response.data.details") && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: _$2.get(error, "response.data.details") }),
-        _$2.get(error, "config.method") && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+        _.get(error, "response.data.message") && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: _.get(error, "response.data.message") }),
+        _.get(error, "response.data.details") && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: _.get(error, "response.data.details") }),
+        _.get(error, "config.method") && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
           "HTTP method: ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: _$2.get(error, "config.method").toUpperCase() })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: _.get(error, "config.method").toUpperCase() })
         ] }),
-        _$2.get(error, "response.request.responseURL") && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: _$2.get(error, "response.request.responseURL"), target: "_blank", children: _$2.get(error, "response.request.responseURL") }) }),
-        _$2.get(error, "config.data") && typeof _$2.get(error, "config.data") === "string" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        _.get(error, "response.request.responseURL") && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: _.get(error, "response.request.responseURL"), target: "_blank", children: _.get(error, "response.request.responseURL") }) }),
+        _.get(error, "config.data") && typeof _.get(error, "config.data") === "string" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Body:" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: _$2.get(error, "config.data") })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: _.get(error, "config.data") })
         ] })
       ] });
     }
@@ -72032,8 +72032,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           insertPlaceholder,
           type: type2
         } = this.props;
-        const defaultExpandKey = _$2.get(
-          qs.parse(_$2.get(location, "search")),
+        const defaultExpandKey = _.get(
+          qs.parse(_.get(location, "search")),
           "taxonKey"
         );
         const { defaultTaxonKey } = this.props;
@@ -72194,9 +72194,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           type: type2
         } = this.props;
         const { treeData } = this.state;
-        _$2.get(dataRef, "childCount");
+        _.get(dataRef, "childCount");
         const limit = CHILD_PAGE_SIZE;
-        const offset2 = _$2.get(dataRef, "childOffset");
+        const offset2 = _.get(dataRef, "childOffset");
         const res = await axios(
           `${config.dataApi}dataset/${catalogueKey}/tree/${dataRef.taxon.id}/children?limit=${limit}&offset=${offset2}&catalogueKey=${catalogueKey}${type2 ? "&type=" + type2 : ""}${hideExtinct ? `&extinct=false` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
         );
@@ -72284,12 +72284,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       });
       __publicField(this, "findNode", (id2, nodeArray) => {
         let node = null;
-        node = nodeArray.find((n2) => _$2.get(n2, "taxon.id") === id2);
+        node = nodeArray.find((n2) => _.get(n2, "taxon.id") === id2);
         if (node) {
           return node;
         } else {
-          const children = nodeArray.map((n2) => _$2.get(n2, "children") || []);
-          const flattenedChildren = _$2.flatten(children);
+          const children = nodeArray.map((n2) => _.get(n2, "children") || []);
+          const flattenedChildren = _.flatten(children);
           if (flattenedChildren.length === 0) {
             return null;
           } else {
@@ -72309,7 +72309,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         }
         if (!node) {
           node = parentNode.children.find(
-            (c) => _$2.get(c, "taxon.id") ? c.taxon.id.indexOf("incertae-sedis") > -1 : false
+            (c) => _.get(c, "taxon.id") ? c.taxon.id.indexOf("incertae-sedis") > -1 : false
           );
         }
         return node;
@@ -72324,7 +72324,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           let node = this.findNode(loadedKeys[index2], treeData);
           if (!node && targetTaxon && loadedKeys[index2 - 1]) {
             const parentNode = this.findNode(loadedKeys[index2 - 1], treeData);
-            if (parentNode && _$2.isArray(_$2.get(parentNode, "children")) && parentNode.children.length > 0) {
+            if (parentNode && _.isArray(_.get(parentNode, "children")) && parentNode.children.length > 0) {
               node = await this.pageThroughChildrenUntilTaxonFound(
                 parentNode,
                 loadedKeys[index2]
@@ -72357,13 +72357,13 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           if (node) {
             await this.fetchChildPage(node, true, true);
             let targetNode = node.children.find(
-              (c) => _$2.get(c, "taxon.id") === _$2.get(targetTaxon, "taxon.id")
+              (c) => _.get(c, "taxon.id") === _.get(targetTaxon, "taxon.id")
             );
-            if (targetTaxon && index2 === loadedKeys.length - 2 && _$2.get(node, "taxon.id") !== _$2.get(targetTaxon, "taxon.id") && _$2.isArray(node.children) && !targetNode) {
+            if (targetTaxon && index2 === loadedKeys.length - 2 && _.get(node, "taxon.id") !== _.get(targetTaxon, "taxon.id") && _.isArray(node.children) && !targetNode) {
               if (node.children.length < node.childCount) {
                 targetNode = await this.pageThroughChildrenUntilTaxonFound(
                   node,
-                  _$2.get(targetTaxon, "taxon.id")
+                  _.get(targetTaxon, "taxon.id")
                 );
                 if (targetNode) {
                   this.setState({ treeData: [...this.state.treeData] }, () => {
@@ -72431,12 +72431,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       } = this.state;
       const { location: location2, treeType, dataset, height } = this.props;
       console.log(height);
-      const defaultExpandKey = _$2.get(
-        qs.parse(_$2.get(location2, "search")),
+      const defaultExpandKey = _.get(
+        qs.parse(_.get(location2, "search")),
         "taxonKey"
       );
       return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        error && /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: _$2.get(error, "response.data.code") !== 404 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        error && /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: _.get(error, "response.data.code") !== 404 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
           Alert,
           {
             closable: true,
@@ -72488,7 +72488,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             onExpand: (expandedKeys2, obj) => {
               this.setState({ expandedKeys: expandedKeys2 });
               if (obj.expanded) {
-                const params = qs.parse(_$2.get(location2, "search"));
+                const params = qs.parse(_.get(location2, "search"));
                 const newParams = { ...params, taxonKey: obj.node.key };
                 history.push({
                   pathname: location2.path,
@@ -72498,7 +72498,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 history.push({
                   pathname: location2.path,
                   search: `?${qs.stringify(
-                    _$2.omit(qs.parse(_$2.get(location2, "search")), "taxonKey")
+                    _.omit(qs.parse(_.get(location2, "search")), "taxonKey")
                   )}`
                 });
               }
@@ -73738,7 +73738,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         axios(
           `${config.dataApi}dataset/${datasetKey}/nameusage/search?USAGE_ID=${usageId}`
         ).then((res) => {
-          this.setState({ value: _$2.get(res, "data.result[0].usage.label") || "" });
+          this.setState({ value: _.get(res, "data.result[0].usage.label") || "" });
         });
       });
       __publicField(this, "getNames", (q) => {
@@ -73762,11 +73762,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         });
       });
       __publicField(this, "onSelectName", (val, obj) => {
-        const selectedTaxon = _$2.get(obj, "data.acceptedUsageId") ? {
-          key: _$2.get(obj, "data.acceptedUsageId"),
-          rank: _$2.get(obj, "data.rank"),
-          title: _$2.get(obj, "data.parentOrAcceptedName")
-        } : { key: _$2.get(obj, "data.usageId"), rank: _$2.get(obj, "data.rank"), title: _$2.get(obj, "data.name") };
+        const selectedTaxon = _.get(obj, "data.acceptedUsageId") ? {
+          key: _.get(obj, "data.acceptedUsageId"),
+          rank: _.get(obj, "data.rank"),
+          title: _.get(obj, "data.parentOrAcceptedName")
+        } : { key: _.get(obj, "data.usageId"), rank: _.get(obj, "data.rank"), title: _.get(obj, "data.name") };
         this.setState({ value: val });
         this.props.onSelectName(selectedTaxon);
       });
@@ -73870,7 +73870,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           type: type2
         } = this.props;
         const { hideExtinct, insertPlaceholder, dataset } = this.state;
-        const params = qs.parse(_$2.get(location, "search"));
+        const params = qs.parse(_.get(location, "search"));
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Router, { history, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "catalogue-of-life", children: [
           citation === "top" && dataset && /* @__PURE__ */ jsxRuntimeExports.jsx(Citation, { dataset }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(ColTreeContext.Provider, { value: this.state, children: [
@@ -73885,16 +73885,16 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                     paddingTop: "5px",
                     paddingBottom: "5px"
                   },
-                  defaultTaxonKey: _$2.get(params, "taxonKey") || null,
+                  defaultTaxonKey: _.get(params, "taxonKey") || null,
                   onSelectName: (name) => {
-                    if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(_$2.get(name, "rank"))) {
+                    if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(_.get(name, "rank"))) {
                       if (typeof pathToTaxon === "string") {
-                        window.location.href = `${pathToTaxon}${_$2.get(
+                        window.location.href = `${pathToTaxon}${_.get(
                           name,
                           "key"
                         )}`;
                       } else if (typeof pathToTaxon === "function") {
-                        pathToTaxon(_$2.get(
+                        pathToTaxon(_.get(
                           name,
                           "key"
                         ));
@@ -73902,7 +73902,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                     } else {
                       const newParams = {
                         ...params,
-                        taxonKey: _$2.get(name, "key")
+                        taxonKey: _.get(name, "key")
                       };
                       history.push({
                         pathname: location.path,
@@ -73916,7 +73916,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                     history.push({
                       pathname: location.path,
                       search: `?${qs.stringify(
-                        _$2.omit(newParams, ["taxonKey"])
+                        _.omit(newParams, ["taxonKey"])
                       )}`
                     });
                   }
@@ -77473,12 +77473,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       __publicField(this, "getData", () => {
         const { referenceId: referenceId2, datasetKey, references } = this.props;
         if (referenceId2) {
-          const refIds = !_$2.isArray(referenceId2) ? [referenceId2] : referenceId2;
+          const refIds = !_.isArray(referenceId2) ? [referenceId2] : referenceId2;
           const reference = [];
           this.setState({ loading: true });
           Promise.allSettled(
             refIds.map(
-              (id2) => _$2.get(references, id2) ? Promise.resolve(reference.push(references[id2])) : axios(
+              (id2) => _.get(references, id2) ? Promise.resolve(reference.push(references[id2])) : axios(
                 `${config.dataApi}dataset/${datasetKey}/reference/${id2}`
               ).then((res) => reference.push(res.data)).catch((err) => this.setState({ error: err }))
             )
@@ -77499,8 +77499,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       });
       __publicField(this, "render", () => {
         const { referenceId: referenceId2, referenceIndexMap, trigger } = this.props;
-        const refIds = !_$2.isArray(referenceId2) ? [referenceId2] : referenceId2;
-        let icon = referenceIndexMap && _$2.get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { className: "col-reference-link", href: `#col-refererence-${r2}`, children: `[${referenceIndexMap[r2]}]` })) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$8, { style: { cursor: "pointer" } });
+        const refIds = !_.isArray(referenceId2) ? [referenceId2] : referenceId2;
+        let icon = referenceIndexMap && _.get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { className: "col-reference-link", href: `#col-refererence-${r2}`, children: `[${referenceIndexMap[r2]}]` })) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$8, { style: { cursor: "pointer" } });
         return referenceId2 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `reference_${referenceId2}`, style: this.props.style, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Popover,
           {
@@ -79683,12 +79683,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       __publicField(this, "getData", () => {
         const { nameId, datasetKey, references } = this.props;
         if (referenceId) {
-          const refIds = !_$2.isArray(referenceId) ? [referenceId] : referenceId;
+          const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
           const typeMaterial = [];
           this.setState({ loading: true });
           Promise.all(
             refIds.map(
-              (id2) => _$2.get(references, id2) ? Promise.resolve(typeMaterial.push(references[nameId])) : axios(
+              (id2) => _.get(references, id2) ? Promise.resolve(typeMaterial.push(references[nameId])) : axios(
                 `${config.dataApi}dataset/${datasetKey}/name/${encodeURIComponent(nameId)}/types`
               ).then((res) => typeMaterial.push(res.data))
             )
@@ -79755,12 +79755,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   }) => {
     React.useEffect(() => {
     }, [data, primarySource]);
-    const getNomStatus = (taxon) => !nomStatus ? _$2.get(taxon, "name.nomStatus") : nomStatus[_$2.get(taxon, "name.nomStatus")][_$2.get(taxon, "name.code"), "zoological"];
+    const getNomStatus = (taxon) => !nomStatus ? _.get(taxon, "name.nomStatus") : nomStatus[_.get(taxon, "name.nomStatus")][_.get(taxon, "name.code"), "zoological"];
     const sorter = (a, b) => {
-      if (_$2.get(a, "name.combinationAuthorship.year") && _$2.get(b, "name.combinationAuthorship.year")) {
-        return _$2.get(b, "name.combinationAuthorship.year") - _$2.get(a, "name.combinationAuthorship.year");
+      if (_.get(a, "name.combinationAuthorship.year") && _.get(b, "name.combinationAuthorship.year")) {
+        return _.get(b, "name.combinationAuthorship.year") - _.get(a, "name.combinationAuthorship.year");
       } else {
-        if (_$2.get(a, "name.scientificName") < _$2.get(b, "name.scientificName")) {
+        if (_.get(a, "name.scientificName") < _.get(b, "name.scientificName")) {
           return -1;
         } else {
           return 1;
@@ -79768,8 +79768,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       }
     };
     const renderSynonym = (syn, homotypic, indent) => {
-      const s = _$2.isArray(syn) ? syn[0] : syn;
-      const isGroup = _$2.isArray(syn);
+      const s = _.isArray(syn) ? syn[0] : syn;
+      const isGroup = _.isArray(syn);
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedListItem$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: indent ? { marginLeft: "10px" } : null, children: [
@@ -79779,10 +79779,10 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               "span",
               {
                 dangerouslySetInnerHTML: {
-                  __html: _$2.get(
+                  __html: _.get(
                     s,
                     "labelHtml",
-                    `${_$2.get(s, "name.scientificName")} ${_$2.get(
+                    `${_.get(s, "name.scientificName")} ${_.get(
                       s,
                       "name.authorship",
                       ""
@@ -79794,7 +79794,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           ] }),
           " ",
           /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            (s == null ? void 0 : s.sourceDatasetKey) && _$2.get(primarySource, "key") !== (s == null ? void 0 : s.sourceDatasetKey) && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            (s == null ? void 0 : s.sourceDatasetKey) && _.get(primarySource, "key") !== (s == null ? void 0 : s.sourceDatasetKey) && /* @__PURE__ */ jsxRuntimeExports.jsx(
               MergedDataBadge,
               {
                 createdBy: s == null ? void 0 : s.createdBy,
@@ -79811,15 +79811,15 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               {
                 datasetKey,
                 typeMaterial,
-                nameId: _$2.get(s, "name.id"),
+                nameId: _.get(s, "name.id"),
                 placement: "top"
               }
             ),
             " ",
-            _$2.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : "",
+            _.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : "",
             " ",
-            _$2.get(s, "status") === "misapplied" && _$2.get(s, "accordingTo") ? _$2.get(s, "accordingTo") : "",
-            _$2.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"
+            _.get(s, "status") === "misapplied" && _.get(s, "accordingTo") ? _.get(s, "accordingTo") : "",
+            _.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             ReferencePopover,
@@ -79827,12 +79827,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               datasetKey,
               references,
               referenceIndexMap,
-              referenceId: _$2.get(s, "name.publishedInId") ? [_$2.get(s, "name.publishedInId"), ...s.referenceIds || []] : s.referenceIds,
+              referenceId: _.get(s, "name.publishedInId") ? [_.get(s, "name.publishedInId"), ...s.referenceIds || []] : s.referenceIds,
               placement: "top",
               style: { display: "inline-block" }
             }
           )
-        ] }, _$2.get(s, "name.id")),
+        ] }, _.get(s, "name.id")),
         isGroup && syn.length > 1 && syn.slice(1).map((sg) => renderSynonym(sg, true, true))
       ] });
     };
@@ -79879,12 +79879,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         if (countryAlpha2 && name.country && name.country.length === 2) {
           return {
             ...name,
-            countryTitle: _$2.get(countryAlpha2, `[${name.country}].title`) || ""
+            countryTitle: _.get(countryAlpha2, `[${name.country}].title`) || ""
           };
         } else if (countryAlpha3 && name.country && name.country.length === 3) {
           return {
             ...name,
-            countryTitle: _$2.get(countryAlpha3, `[${name.country}].title`) || ""
+            countryTitle: _.get(countryAlpha3, `[${name.country}].title`) || ""
           };
         } else {
           return name;
@@ -79978,7 +79978,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       }
       if (isIso) {
         axios(`${config.dataApi}vocab/country`).then((res) => {
-          setIso3Map(_$2.keyBy(res.data, "alpha3"));
+          setIso3Map(_.keyBy(res.data, "alpha3"));
         });
       }
     }, []);
@@ -79994,7 +79994,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           style: { marginRight: "4px" }
         }
       ),
-      (_$2.get(iso3Map, `[${_$2.get(s, "area.name")}].name`) ? _$2.startCase(_$2.get(iso3Map, `[${_$2.get(s, "area.name")}].name`)) : null) || _$2.get(s, "area.name") || _$2.get(s, "area.globalId"),
+      (_.get(iso3Map, `[${_.get(s, "area.name")}].name`) ? _.startCase(_.get(iso3Map, `[${_.get(s, "area.name")}].name`)) : null) || _.get(s, "area.name") || _.get(s, "area.globalId"),
       " ",
       s.referenceId && /* @__PURE__ */ jsxRuntimeExports.jsx(
         ReferencePopover,
@@ -80019,7 +80019,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     pathToTree
   }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
     " ",
-    _$2.reverse([...data]).map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { float: "left", marginRight: "3px" }, children: [
+    _.reverse([...data]).map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { float: "left", marginRight: "3px" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: rankStyle, children: [
         t2.rank,
         ": "
@@ -80037,7 +80037,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       " >"
     ] }, t2.rank)),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { float: "left" }, children: [
-      _$2.get(taxon, "name.rank") && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: rankStyle, children: [
+      _.get(taxon, "name.rank") && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: rankStyle, children: [
         taxon.name.rank,
         ": "
       ] }),
@@ -80148,7 +80148,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         case "type":
           return "Type";
         default:
-          return _$2.capitalize(r2.type);
+          return _.capitalize(r2.type);
       }
     } else {
       switch (r2.type) {
@@ -80167,7 +80167,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         case "type":
           return "Type of";
         default:
-          return _$2.capitalize(r2.type);
+          return _.capitalize(r2.type);
       }
     }
   };
@@ -80960,10 +80960,10 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   }) => {
     React.useEffect(() => {
     }, [referenceIndexMap]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, className: "col-reference-link-container", children: _$2.values(data).map((s) => {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, className: "col-reference-link-container", children: _.values(data).map((s) => {
       var _a, _b;
       return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { style: { paddingRight: "5px" }, children: _$2.get(referenceIndexMap, s.id) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: `[${_$2.get(referenceIndexMap, s.id)}]` }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { style: { paddingRight: "5px" }, children: _.get(referenceIndexMap, s.id) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: `[${_.get(referenceIndexMap, s.id)}]` }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 20, children: [
           ((_a = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _a.key) !== primarySourceDatasetKey && /* @__PURE__ */ jsxRuntimeExports.jsx(
             MergedDataBadge,
@@ -80997,7 +80997,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         PresentationItem$1,
         {
           md: 6,
-          label: _$2.startCase(rankToPlural[t2.value] || t2.value),
+          label: _.startCase(rankToPlural[t2.value] || t2.value),
           classes: { formItem: { borderBottom: "none" } },
           children: pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx(
             "a",
@@ -90240,16 +90240,16 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           taxon.id
         )}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
       );
-      return _$2.keyBy(_$2.get(res, "data.facets.rank", []), "value");
+      return _.keyBy(_.get(res, "data.facets.rank", []), "value");
     };
     const getData = async () => {
       setLoading(true);
       try {
         const counts = await getOverView();
         const ranks2 = canonicalRanks;
-        let taxonRankIdx = ranks2.indexOf(_$2.get(taxon, "name.rank"));
+        let taxonRankIdx = ranks2.indexOf(_.get(taxon, "name.rank"));
         if (taxonRankIdx === -1) {
-          let rankIndex = rank.indexOf(_$2.get(taxon, "name.rank")) + 1;
+          let rankIndex = rank.indexOf(_.get(taxon, "name.rank")) + 1;
           while (taxonRankIdx === -1 && rankIndex < rank.length - 1) {
             let canonicalRankIndex = ranks2.indexOf(rank[rankIndex]);
             if (canonicalRankIndex > -1) {
@@ -90261,8 +90261,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         let childRank;
         let childRankIndex = taxonRankIdx + 1;
         while (!childRank && childRankIndex < ranks2.length) {
-          const nextRank = _$2.get(ranks2, `[${childRankIndex}]`);
-          if (nextRank && _$2.get(counts, `${nextRank}.count`, 0) > 0) {
+          const nextRank = _.get(ranks2, `[${childRankIndex}]`);
+          if (nextRank && _.get(counts, `${nextRank}.count`, 0) > 0) {
             childRank = nextRank;
           } else {
             childRankIndex++;
@@ -90271,16 +90271,16 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         let grandChildRank;
         let grandChildRankIndex = childRankIndex + 1;
         while (!grandChildRank && grandChildRankIndex < ranks2.length) {
-          const nextRank = _$2.get(ranks2, `[${grandChildRankIndex}]`);
-          if (nextRank && _$2.get(counts, `${nextRank}.count`, 0) > 0) {
+          const nextRank = _.get(ranks2, `[${grandChildRankIndex}]`);
+          if (nextRank && _.get(counts, `${nextRank}.count`, 0) > 0) {
             grandChildRank = nextRank;
           } else {
             grandChildRankIndex++;
           }
         }
         let root2;
-        if (!grandChildRank || grandChildRank === "species" || _$2.get(counts, `${grandChildRank}.count`) > MAX_GRAND_CHILDREN) {
-          root2 = [{ name: _$2.get(taxon, "name.scientificName"), id: taxon.id }];
+        if (!grandChildRank || grandChildRank === "species" || _.get(counts, `${grandChildRank}.count`) > MAX_GRAND_CHILDREN) {
+          root2 = [{ name: _.get(taxon, "name.scientificName"), id: taxon.id }];
         }
         if (!childRank) {
           setInvalid(true);
@@ -90290,7 +90290,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown`
           );
           const childRankData = res.data;
-          if (_$2.get(root2, "[0]")) {
+          if (_.get(root2, "[0]")) {
             root2[0].children = processChildren(childRankData);
             root2[0].species = root2[0].children.reduce(
               (acc, cur) => acc + cur.species,
@@ -90326,7 +90326,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         let c = sum < k.species ? [
           ...children,
           {
-            name: `Other / Unknown ${_$2.get(children, "[0].rank", "")}`,
+            name: `Other / Unknown ${_.get(children, "[0].rank", "")}`,
             species: k.species - sum
           }
         ] : children;
@@ -90501,7 +90501,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     return ((_a = info == null ? void 0 : info.source) == null ? void 0 : _a.secondarySources) ? Object.keys(((_b = info == null ? void 0 : info.source) == null ? void 0 : _b.secondarySources) || {}).map((key2) => {
       var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        _$2.startCase(key2),
+        _.startCase(key2),
         ": ",
         /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `https://www.checklistbank.org/dataset/${(_c = (_b2 = (_a2 = info == null ? void 0 : info.source) == null ? void 0 : _a2.secondarySources) == null ? void 0 : _b2[key2]) == null ? void 0 : _c.datasetKey}/taxon/${encodeURIComponent((_f = (_e = (_d = info == null ? void 0 : info.source) == null ? void 0 : _d.secondarySources) == null ? void 0 : _e[key2]) == null ? void 0 : _f.id)}`, children: ((_j = datasets[(_i = (_h = (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.secondarySources) == null ? void 0 : _h[key2]) == null ? void 0 : _i.datasetKey]) == null ? void 0 : _j.title) || ((_m = (_l = (_k = info == null ? void 0 : info.source) == null ? void 0 : _k.secondarySources) == null ? void 0 : _l[key2]) == null ? void 0 : _m.datasetKey) })
       ] });
@@ -90663,16 +90663,16 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         this.setState({ loading: true });
         axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`).then((res) => {
           let promises = [res];
-          if (pageTitleTemplate && _$2.get(res, "data.label")) {
+          if (pageTitleTemplate && _.get(res, "data.label")) {
             document.title = pageTitleTemplate.replace(
               "__taxon__",
               res.data.label
             );
           }
-          if (_$2.get(res, "data.name.publishedInId")) {
+          if (_.get(res, "data.name.publishedInId")) {
             promises.push(
               axios(
-                `${config.dataApi}dataset/${datasetKey}/reference/${_$2.get(
+                `${config.dataApi}dataset/${datasetKey}/reference/${_.get(
                   res,
                   "data.name.publishedInId"
                 )}`
@@ -90682,10 +90682,10 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               })
             );
           }
-          if (_$2.get(res, "data.name")) {
+          if (_.get(res, "data.name")) {
             promises.push(
               axios(
-                `${config.dataApi}dataset/${datasetKey}/name/${_$2.get(
+                `${config.dataApi}dataset/${datasetKey}/name/${_.get(
                   res,
                   "data.name.id"
                 )}/relations`
@@ -90705,21 +90705,21 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               })
             );
           }
-          if (_$2.get(res, "data.sectorKey")) {
+          if (_.get(res, "data.sectorKey")) {
             axios(
-              `${config.dataApi}dataset/${datasetKey}/sector/${_$2.get(
+              `${config.dataApi}dataset/${datasetKey}/sector/${_.get(
                 res,
                 "data.sectorKey"
               )}`
             ).then((sector) => {
               axios(
-                `${config.dataApi}dataset/${datasetKey}/logo/source/${_$2.get(
+                `${config.dataApi}dataset/${datasetKey}/logo/source/${_.get(
                   sector,
                   "data.subjectDatasetKey"
                 )}`
               ).then(() => {
                 this.setState({
-                  logoUrl: `${config.dataApi}dataset/${datasetKey}/logo/source/${_$2.get(
+                  logoUrl: `${config.dataApi}dataset/${datasetKey}/logo/source/${_.get(
                     sector,
                     "data.subjectDatasetKey"
                   )}?size=MEDIUM`
@@ -90727,7 +90727,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               }).catch(() => {
               });
               axios(
-                `${config.dataApi}dataset/${datasetKey}/source/${_$2.get(
+                `${config.dataApi}dataset/${datasetKey}/source/${_.get(
                   sector,
                   "data.subjectDatasetKey"
                 )}`
@@ -90746,7 +90746,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             taxonError: null
           });
         }).catch((err) => {
-          if (_$2.get(err, "response.status") === 404) {
+          if (_.get(err, "response.status") === 404) {
             this.fetchSynonymAndRedirect(taxonKey);
           } else {
             this.setState({ taxonLoading: false, taxonError: err, taxon: null });
@@ -90809,7 +90809,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             `${config.dataApi}dataset/${datasetKey}/nameusage/${taxonKey}/info`
           );
           let referenceIndexMap = {};
-          if (_$2.get(res, "data.references")) {
+          if (_.get(res, "data.references")) {
             Object.keys(res.data.references).forEach((k, i) => {
               referenceIndexMap[k] = (i + 1).toString();
             });
@@ -90844,7 +90844,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               )
             );
           }
-          let sourceDatasetKeyMap = _$2.get(res, "data.synonyms") ? await this.decorateWithSectorsAndDataset(_$2.get(res, "data.synonyms")) : null;
+          let sourceDatasetKeyMap = _.get(res, "data.synonyms") ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms")) : null;
           if (((_c = res == null ? void 0 : res.data) == null ? void 0 : _c.nameRelations) && ((_d = res == null ? void 0 : res.data) == null ? void 0 : _d.names)) {
             (_e = res == null ? void 0 : res.data) == null ? void 0 : _e.nameRelations.forEach((rel) => {
               var _a2, _b2, _c2, _d2;
@@ -90861,7 +90861,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             sourceDatasetKeyMap
           });
         } catch (err) {
-          if (_$2.get(err, "response.status") === 404) {
+          if (_.get(err, "response.status") === 404) {
             this.fetchSynonymAndRedirect(taxonKey);
           } else {
             this.setState({ infoLoading: false, infoError: err, info: null });
@@ -90887,7 +90887,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         ).then((res) => {
           this.setState({
             includesLoading: false,
-            includes: _$2.get(res, "data.facets.rank") || []
+            includes: _.get(res, "data.facets.rank") || []
           });
         }).catch((err) => {
           this.setState({
@@ -90899,12 +90899,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       __publicField(this, "fetchSynonymAndRedirect", (taxonKey) => {
         const { catalogueKey: datasetKey, pathToTaxon } = this.props;
         axios(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`).then((res) => {
-          window.location.href = `${pathToTaxon}${_$2.get(
+          window.location.href = `${pathToTaxon}${_.get(
             res,
             "data.accepted.id"
           )}`;
         }).catch((err) => {
-          if (_$2.get(err, "response.status") === 404) {
+          if (_.get(err, "response.status") === 404) {
             this.setState({ status: 404 });
           }
         });
@@ -90961,9 +90961,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         referenceIndexMap
       } = this.state;
       const genusRankIndex = rank ? rank.indexOf("genus") : -1;
-      const homotypic = _$2.get(info, "synonyms.homotypic", []);
-      const heterotypic = _$2.get(info, "synonyms.heterotypic", []);
-      _$2.get(info, "synonyms.misapplied", []);
+      const homotypic = _.get(info, "synonyms.homotypic", []);
+      const heterotypic = _.get(info, "synonyms.heterotypic", []);
+      _.get(info, "synonyms.misapplied", []);
       [
         ...homotypic.map((h) => ({ ...h, __homotypic: true })),
         ...heterotypic
@@ -91028,18 +91028,18 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 }
               ) })
             ] }),
-            _$2.get(taxon, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            _.get(taxon, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
               PresentationItem$1,
               {
                 md,
-                label: _$2.get(this.props, "identifierLabel", "Identifier"),
+                label: _.get(this.props, "identifierLabel", "Identifier"),
                 children: [
-                  _$2.get(taxon, "id"),
+                  _.get(taxon, "id"),
                   " ",
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "a",
                     {
-                      href: `https://www.checklistbank.org/dataset/${catalogueKey}/taxon/${_$2.get(
+                      href: `https://www.checklistbank.org/dataset/${catalogueKey}/taxon/${_.get(
                         taxon,
                         "id"
                       )}`,
@@ -91050,14 +91050,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                     Tooltip,
                     {
                       title: "Download data for this taxon and descendants",
-                      getPopupContainer: () => document.getElementById(`col-download-${_$2.get(taxon, "id")}`) || document.body,
+                      getPopupContainer: () => document.getElementById(`col-download-${_.get(taxon, "id")}`) || document.body,
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "a",
                         {
                           style: { marginLeft: "5px" },
-                          id: `col-download-${_$2.get(taxon, "id")}`,
+                          id: `col-download-${_.get(taxon, "id")}`,
                           target: "_blank",
-                          href: `http://checklistbank.org/dataset/${catalogueKey}/download?taxonID=${encodeURIComponent(_$2.get(
+                          href: `http://checklistbank.org/dataset/${catalogueKey}/download?taxonID=${encodeURIComponent(_.get(
                             taxon,
                             "id"
                           ))}`,
@@ -91069,7 +91069,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 ]
               }
             ),
-            _$2.get(taxon, "labelHtml") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(taxon, "labelHtml") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
               {
                 dangerouslySetInnerHTML: {
@@ -91077,18 +91077,18 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 }
               }
             ) }),
-            _$2.get(taxon, "name.publishedIn.citation") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Published in", children: [
-              _$2.get(info, "source.secondarySources['published in']") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(taxon, "name.publishedIn.citation") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Published in", children: [
+              _.get(info, "source.secondarySources['published in']") && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 MergedDataBadge,
                 {
-                  sourceDatasetKey: _$2.get(info, "source.secondarySources['published in'].datasetKey"),
-                  sourceId: _$2.get(info, "source.secondarySources['published in'].id")
+                  sourceDatasetKey: _.get(info, "source.secondarySources['published in'].datasetKey"),
+                  sourceId: _.get(info, "source.secondarySources['published in'].id")
                 }
               ),
-              _$2.get(taxon, "name.publishedIn.citation")
+              _.get(taxon, "name.publishedIn.citation")
             ] }),
-            _$2.get(taxon, "status") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Checklist status", children: [
-              `${_$2.get(taxon, "status")} ${_$2.get(taxon, "name.rank")}`,
+            _.get(taxon, "status") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Checklist status", children: [
+              `${_.get(taxon, "status")} ${_.get(taxon, "name.rank")}`,
               ((_h = info == null ? void 0 : info.decisions) == null ? void 0 : _h[taxon == null ? void 0 : taxon.id]) && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                 " with",
                 " ",
@@ -91104,30 +91104,30 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 )
               ] })
             ] }),
-            _$2.get(taxon, "name.nomStatus") && nomStatus && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Nomenclatural Status", children: nomStatus[_$2.get(taxon, "name.nomStatus")][_$2.get(taxon, "name.code"), "zoological"] }),
+            _.get(taxon, "name.nomStatus") && nomStatus && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Nomenclatural Status", children: nomStatus[_.get(taxon, "name.nomStatus")][_.get(taxon, "name.code"), "zoological"] }),
             infoError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: infoError }), type: "error" }),
-            _$2.get(info, "synonyms") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Synonyms and combinations", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "synonyms") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Synonyms and combinations", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               SynonymsTable,
               {
                 primarySource: sourceDataset,
-                data: _$2.get(info, "synonyms"),
-                decisions: _$2.get(info, "decisions"),
-                references: _$2.get(info, "references"),
-                typeMaterial: _$2.get(info, "typeMaterial"),
+                data: _.get(info, "synonyms"),
+                decisions: _.get(info, "decisions"),
+                references: _.get(info, "references"),
+                typeMaterial: _.get(info, "typeMaterial"),
                 referenceIndexMap,
                 style: { marginTop: "-3px" },
                 pathToDataset,
                 datasetKey: catalogueKey
               }
             ) }),
-            _$2.get(info, "typeMaterial") && info.typeMaterial[(_m = (_l = info == null ? void 0 : info.usage) == null ? void 0 : _l.name) == null ? void 0 : _m.id] && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Type material", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "typeMaterial") && info.typeMaterial[(_m = (_l = info == null ? void 0 : info.usage) == null ? void 0 : _l.name) == null ? void 0 : _m.id] && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Type material", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               TypeMaterial,
               {
-                data: _$2.get(info, "typeMaterial"),
-                nameID: _$2.get(taxon, "name.id")
+                data: _.get(info, "typeMaterial"),
+                nameID: _.get(taxon, "name.id")
               }
             ) }),
-            _$2.get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) === (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) === (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
               NameRelations,
               {
                 md,
@@ -91137,7 +91137,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 )
               }
             ),
-            _$2.get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) !== (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) !== (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
               NameRelations,
               {
                 md,
@@ -91167,7 +91167,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 pathToTree
               }
             ) }),
-            (taxon && rank.indexOf(_$2.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(_$2.get(taxon, "name.rank")) > -1 || _$2.get(taxon, "name.rank") === "unranked" && _$2.get(taxon, "name.scientificName") === "Biota") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            (taxon && rank.indexOf(_.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(_.get(taxon, "name.rank")) > -1 || _.get(taxon, "name.rank") === "unranked" && _.get(taxon, "name.scientificName") === "Biota") && /* @__PURE__ */ jsxRuntimeExports.jsx(
               TaxonBreakdown$1,
               {
                 taxon,
@@ -91187,17 +91187,17 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 pathToSearch
               }
             ) }),
-            _$2.get(info, "vernacularNames") && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Vernacular names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "vernacularNames") && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Vernacular names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               VernacularNamesTable,
               {
                 style: { marginTop: "-3px", marginLeft: "-3px" },
                 data: info.vernacularNames,
-                references: _$2.get(info, "references"),
+                references: _.get(info, "references"),
                 datasetKey: taxon.datasetKey,
                 catalogueKey
               }
             ) }),
-            _$2.get(info, "distributions") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "distributions") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               DistributionsTable,
               {
                 pathToDataset,
@@ -91206,14 +91206,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 datasetKey: catalogueKey
               }
             ) }),
-            _$2.get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: _$2.get(taxon, "environments").join(", ") }),
-            _$2.get(taxon, "remarks") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Additional Data", children: taxon.remarks }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { children: _$2.get(taxon, "accordingTo") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md: md * 2, label: "According to", children: [
-              `${_$2.get(taxon, "accordingTo")}`,
-              _$2.get(taxon, "accordingToDate") && `, ${hooks(_$2.get(taxon, "accordingToDate")).format("LL")}`
+            _.get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: _.get(taxon, "environments").join(", ") }),
+            _.get(taxon, "remarks") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Additional Data", children: taxon.remarks }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { children: _.get(taxon, "accordingTo") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md: md * 2, label: "According to", children: [
+              `${_.get(taxon, "accordingTo")}`,
+              _.get(taxon, "accordingToDate") && `, ${hooks(_.get(taxon, "accordingToDate")).format("LL")}`
             ] }) }) }),
-            _$2.get(taxon, "scrutinizer") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md * 2, label: "Taxonomic scrutiny", children: `${_$2.get(taxon, "scrutinizer")}${_$2.get(taxon, "scrutinizerDate") ? ", " + _$2.get(taxon, "scrutinizerDate") : ""}` }) }),
-            _$2.get(sourceDataset, "title") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Source", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "inline-block" }, children: [
+            _.get(taxon, "scrutinizer") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md * 2, label: "Taxonomic scrutiny", children: `${_.get(taxon, "scrutinizer")}${_.get(taxon, "scrutinizerDate") ? ", " + _.get(taxon, "scrutinizerDate") : ""}` }) }),
+            _.get(sourceDataset, "title") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Source", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "inline-block" }, children: [
               ((_n = info == null ? void 0 : info.usage) == null ? void 0 : _n.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 MergedDataBadge,
                 {
@@ -91241,38 +91241,38 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "a",
                 {
-                  href: `${pathToDataset}${_$2.get(sourceDataset, "key")}`,
+                  href: `${pathToDataset}${_.get(sourceDataset, "key")}`,
                   onClick: () => {
-                    window.location = `${pathToDataset}${_$2.get(
+                    window.location = `${pathToDataset}${_.get(
                       sourceDataset,
                       "key"
                     )}`;
                   },
-                  children: `${_$2.get(sourceDataset, "alias")}: ${_$2.get(
+                  children: `${_.get(sourceDataset, "alias")}: ${_.get(
                     sourceDataset,
                     "title"
                   )}`
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: _$2.get(sourceDataset, "completeness") && _$2.get(sourceDataset, "completeness") + "%" }),
-              _$2.get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: _.get(sourceDataset, "completeness") && _.get(sourceDataset, "completeness") + "%" }),
+              _.get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Rate,
                 {
                   style: { marginLeft: "10px" },
-                  value: _$2.get(sourceDataset, "confidence"),
+                  value: _.get(sourceDataset, "confidence"),
                   disabled: true
                 }
               )
             ] }) }),
-            _$2.get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Link to original resource", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: _$2.get(taxon, "link"), children: _$2.get(taxon, "link") }) }),
+            _.get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Link to original resource", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: _.get(taxon, "link"), children: _.get(taxon, "link") }) }),
             ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, catalogueKey, pathToTaxon }) }),
-            _$2.get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            _.get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               ReferencesTable,
               {
                 pathToDataset,
                 referenceIndexMap,
                 primarySourceDatasetKey: (_y = info == null ? void 0 : info.source) == null ? void 0 : _y.sourceDatasetKey,
-                data: _$2.get(info, "references"),
+                data: _.get(info, "references"),
                 style: { marginTop: "-3px" }
               }
             ) }),
@@ -91386,7 +91386,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         const { randomID } = this.state;
         const vocabKeys = /* @__PURE__ */ new Set([...vocab.map((i) => i.value)]);
         let val;
-        if (defaultValue && _$2.isArray(defaultValue)) {
+        if (defaultValue && _.isArray(defaultValue)) {
           val = defaultValue.filter((v) => vocabKeys.has(v));
         } else if (defaultValue) {
           val = [defaultValue].filter((v) => vocabKeys.has(v));
@@ -91397,7 +91397,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             ...formItemLayout,
             label,
             style: { marginBottom: "8px", width: "100%" },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `${_$2.snakeCase(label)}_${randomID}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `${_.snakeCase(label)}_${randomID}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               Select,
               {
                 showSearch: true,
@@ -91405,9 +91405,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 placeholder: "Please select",
                 value: val,
                 onChange: this.handleChange,
-                getPopupContainer: () => document.getElementById(`${_$2.snakeCase(label)}_${randomID}`),
+                getPopupContainer: () => document.getElementById(`${_.snakeCase(label)}_${randomID}`),
                 children: vocab.map((i) => {
-                  return typeof i === "string" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Option, { value: i, children: _$2.startCase(i) }, i) : /* @__PURE__ */ jsxRuntimeExports.jsx(Option, { value: i.value, children: i.label }, i.value);
+                  return typeof i === "string" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Option, { value: i, children: _.startCase(i) }, i) : /* @__PURE__ */ jsxRuntimeExports.jsx(Option, { value: i.value, children: i.label }, i.value);
                 })
               }
             ) })
@@ -91420,8 +91420,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       };
     }
   }
-  const RowDetail = ({ issues, usage, classification, issueMap, pathToTaxon }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-    _$2.get(usage, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { style: { marginBottom: "10px" }, children: [
+  const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap, pathToTaxon }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+    _.get(usage, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { style: { marginBottom: "10px" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Col,
         {
@@ -91434,7 +91434,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           children: "ID:"
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 18, children: _$2.get(usage, "id") })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 18, children: _.get(usage, "id") })
     ] }),
     classification && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { style: { marginBottom: "10px" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -91452,10 +91452,25 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 18, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Classification,
         {
-          classification: _$2.initial(classification),
+          classification: _.initial(classification),
           pathToTaxon
         }
       ) })
+    ] }),
+    vernacularNames && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Col,
+        {
+          span: 3,
+          style: {
+            textAlign: "right",
+            paddingRight: "16px",
+            fontWeight: "bold"
+          },
+          children: "Vernacular:"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 18, style: { paddingBottom: "12px" }, children: vernacularNames.slice(0, 8).map((vn) => vn.name).join(", ") })
     ] })
   ] });
   RefAutoComplete.Option;
@@ -91478,7 +91493,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       });
       __publicField(this, "setDefaultValue", (defaultDatasetKey) => {
         axios(`${config.dataApi}dataset/${defaultDatasetKey}`).then((res) => {
-          this.setState({ value: _$2.get(res, "data.title") || "" });
+          this.setState({ value: _.get(res, "data.title") || "" });
           this.props.onSelectDataset(res.data);
         });
       });
@@ -91583,7 +91598,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       dataIndex: ["usage", "labelHtml"],
       key: "scientificName",
       render: (text2, record) => {
-        const id2 = _$2.get(record, "usage.accepted.id") || _$2.get(record, "usage.id");
+        const id2 = _.get(record, "usage.accepted.id") || _.get(record, "usage.id");
         return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "a",
           {
@@ -91617,11 +91632,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             "span",
             {
               dangerouslySetInnerHTML: {
-                __html: _$2.get(record, "usage.accepted.labelHtml")
+                __html: _.get(record, "usage.accepted.labelHtml")
               }
             }
           )
-        ] }, _$2.get(record, "usage.id"));
+        ] }, _.get(record, "usage.id"));
       }
     },
     {
@@ -91637,15 +91652,15 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       key: "parents",
       width: 180,
       render: (text2, record) => {
-        return !_$2.get(record, "classification") ? "" : /* @__PURE__ */ jsxRuntimeExports.jsx(
+        return !_.get(record, "classification") ? "" : /* @__PURE__ */ jsxRuntimeExports.jsx(
           Classification,
           {
-            classification: _$2.initial(record.classification),
+            classification: _.initial(record.classification),
             truncate: true,
-            datasetKey: _$2.get(record, "usage.name.datasetKey"),
+            datasetKey: _.get(record, "usage.name.datasetKey"),
             pathToTaxon
           },
-          _$2.get(record, "usage.id")
+          _.get(record, "usage.id")
         );
       }
     }
@@ -91668,9 +91683,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         }
       });
       __publicField(this, "componentDidUpdate", (prevProps) => {
-        const params = qs.parse(_$2.get(this.props, "location.search"));
-        const prevParams = qs.parse(_$2.get(prevProps, "location.search"));
-        if (!_$2.isEqual(params, prevParams)) {
+        const params = qs.parse(_.get(this.props, "location.search"));
+        const prevParams = qs.parse(_.get(prevProps, "location.search"));
+        if (!_.isEqual(params, prevParams)) {
           this.parseParamsAndGetData();
         }
       });
@@ -91681,11 +91696,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       });
       __publicField(this, "parseParamsAndGetData", () => {
         const { defaultTaxonKey } = this.props;
-        let params = qs.parse(_$2.get(this.props, "location.search"));
+        let params = qs.parse(_.get(this.props, "location.search"));
         if (defaultTaxonKey && !params.TAXON_ID) {
           params.TAXON_ID = defaultTaxonKey;
         }
-        if (_$2.isEmpty(params)) {
+        if (_.isEmpty(params)) {
           params = defaultParams;
           this.pushParams(defaultParams);
         } else if (!params.facet) {
@@ -91716,7 +91731,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           delete params.q;
         }
         history.push({
-          pathname: _$2.get(this.props, "location.path"),
+          pathname: _.get(this.props, "location.path"),
           search: `?${qs.stringify(params)}`
         });
       });
@@ -91725,7 +91740,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         this.setState({ loading: true });
         const { catalogueKey } = this.props;
         const url = `${config.dataApi}dataset/${catalogueKey}/nameusage/search`;
-        const params_ = _$2.get(params, "status") ? params : { ...params, status: "_NOT_NULL" };
+        const params_ = _.get(params, "status") ? params : { ...params, status: "_NOT_NULL" };
         axios(`${url}?${qs.stringify(params_)}`).then((res) => {
           const pagination = { ...this.state.pagination };
           pagination.total = res.data.total;
@@ -91740,7 +91755,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         });
       });
       __publicField(this, "handleTableChange", (pagination, filters, sorter) => {
-        let query = _$2.merge(this.state.params, {
+        let query = _.merge(this.state.params, {
           limit: pagination.pageSize,
           offset: (pagination.current - 1) * pagination.pageSize,
           ...filters
@@ -91763,7 +91778,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       });
       __publicField(this, "updateSearch", (params) => {
         let newParams = { ...this.state.params, offset: 0, limit: 50 };
-        _$2.forEach(params, (v, k) => {
+        _.forEach(params, (v, k) => {
           newParams[k] = v;
         });
         const notNullParams = Object.keys(newParams).reduce(
@@ -91815,50 +91830,47 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         taxGroups
       } = this.state;
       const { pathToTaxon, catalogueKey, defaultTaxonKey, citation } = this.props;
-      const facetRanks = _$2.get(facets, "rank") ? facets.rank.map((r2) => ({
+      const facetRanks = _.get(facets, "rank") ? facets.rank.map((r2) => ({
         value: r2.value,
-        label: `${_$2.startCase(r2.value)} (${r2.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(r2.value)} (${r2.count.toLocaleString("en-GB")})`
       })) : null;
-      _$2.get(facets, "issue") ? facets.issue.map((i) => ({
+      _.get(facets, "issue") ? facets.issue.map((i) => ({
         value: i.value,
-        label: `${_$2.startCase(i.value)} (${i.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(i.value)} (${i.count.toLocaleString("en-GB")})`
       })) : null;
-      const facetTaxonomicStatus = _$2.get(facets, "status") ? facets.status.map((s) => ({
+      const facetTaxonomicStatus = _.get(facets, "status") ? facets.status.map((s) => ({
         value: s.value,
-        label: `${_$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : null;
-      const facetNomStatus = _$2.get(facets, "nomStatus") ? facets.nomStatus.map((s) => ({
+      const facetNomStatus = _.get(facets, "nomStatus") ? facets.nomStatus.map((s) => ({
         value: s.value,
-        label: `${_$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : null;
-      const facetNomType = _$2.get(facets, "nameType") ? facets.nameType.map((s) => ({
+      const facetNomType = _.get(facets, "nameType") ? facets.nameType.map((s) => ({
         value: s.value,
-        label: `${_$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : null;
-      const facetNomField = _$2.get(facets, "field") ? facets.field.map((s) => ({
+      const facetNomField = _.get(facets, "field") ? facets.field.map((s) => ({
         value: s.value,
-        label: `${_$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : null;
-      const facetAuthorship = _$2.get(facets, "authorship") ? facets["authorship"].map((s) => ({
+      const facetAuthorship = _.get(facets, "authorship") ? facets["authorship"].map((s) => ({
         value: s.value,
-        label: `${_$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : [];
-      const facetExtinct = _$2.get(facets, "extinct") ? facets["extinct"].map((s) => ({
+      const facetExtinct = _.get(facets, "extinct") ? facets["extinct"].map((s) => ({
         value: s.value,
         label: `${(s == null ? void 0 : s.value) === false ? "Extinct" : (s == null ? void 0 : s.value) === true ? "Extant" : "Unknown"} (${s.count.toLocaleString("en-GB")})`
       })) : [];
-      const facetEnvironment = _$2.get(facets, "environment") ? facets["environment"].map((s) => ({
+      const facetEnvironment = _.get(facets, "environment") ? facets["environment"].map((s) => ({
         value: s.value,
-        label: `${_$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : [];
-      const facetGroup = _$2.get(facets, "group") ? facets["group"].map((s) => {
-        var _a2;
-        return {
-          value: s.value,
-          label: `${((_a2 = taxGroups.find((t2) => t2.name === s.value)) == null ? void 0 : _a2.description) || _$2.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
-        };
-      }) : [];
-      const facetAuthorshipYear = _$2.get(facets, "authorshipYear") ? facets["authorshipYear"].map((s) => ({
+      const facetGroup = _.get(facets, "group") ? facets["group"].map((s) => ({
+        value: s.value,
+        label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
+      })) : [];
+      const facetAuthorshipYear = _.get(facets, "authorshipYear") ? facets["authorshipYear"].map((s) => ({
         value: s.value,
         label: `${s.value} (${s.count.toLocaleString("en-GB")})`
       })) : [];
@@ -91886,8 +91898,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   SearchBox,
                   {
-                    defaultValue: _$2.get(
-                      qs.parse(_$2.get(this.props, "location.search")),
+                    defaultValue: _.get(
+                      qs.parse(_.get(this.props, "location.search")),
                       "q"
                     ),
                     onSearch: (value) => this.updateSearch({ q: value }),
@@ -91900,7 +91912,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   {
                     datasetKey: catalogueKey,
                     minRank: "GENUS",
-                    defaultTaxonKey: _$2.get(params, "TAXON_ID") || defaultTaxonKey || null,
+                    defaultTaxonKey: _.get(params, "TAXON_ID") || defaultTaxonKey || null,
                     onSelectName: (value) => {
                       this.updateSearch({ TAXON_ID: value.key });
                     },
@@ -91919,7 +91931,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                     onSelectDataset: (value) => {
                       this.updateSearch({ SECTOR_DATASET_KEY: value.key });
                     },
-                    defaultDatasetKey: _$2.get(params, "SECTOR_DATASET_KEY") || null,
+                    defaultDatasetKey: _.get(params, "SECTOR_DATASET_KEY") || null,
                     onResetSearch: (value) => {
                       this.updateSearch({ SECTOR_DATASET_KEY: null });
                     },
@@ -91954,7 +91966,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                         onChange: (evt) => {
                           this.updateSearch({ sectorMode: evt.target.value.split(",").filter((v) => v !== "") });
                         },
-                        value: _$2.isArray(params == null ? void 0 : params.sectorMode) ? (_a = params == null ? void 0 : params.sectorMode) == null ? void 0 : _a.join(",") : (params == null ? void 0 : params.sectorMode) || "",
+                        value: _.isArray(params == null ? void 0 : params.sectorMode) ? (_a = params == null ? void 0 : params.sectorMode) == null ? void 0 : _a.join(",") : (params == null ? void 0 : params.sectorMode) || "",
                         optionType: "button",
                         options: [
                           { value: "", label: "All" },
@@ -91971,7 +91983,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                         size: "small",
                         style: { minWidth: 200 },
                         placeholder: "Search fields",
-                        value: _$2.isArray(params == null ? void 0 : params.content) ? params.content : (params == null ? void 0 : params.content) ? [params.content] : [],
+                        value: _.isArray(params == null ? void 0 : params.content) ? params.content : (params == null ? void 0 : params.content) ? [params.content] : [],
                         onChange: (value) => this.updateSearch({ content: value.length ? value : null }),
                         options: [
                           { value: "SCIENTIFIC_NAME", label: "Scientific name" },
@@ -91987,7 +91999,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   MultiValueFilter,
                   {
-                    defaultValue: _$2.get(params, "rank"),
+                    defaultValue: _.get(params, "rank"),
                     onChange: (value) => this.updateSearch({ rank: value }),
                     vocab: facetRanks || [],
                     label: "Ranks"
@@ -91996,7 +92008,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   MultiValueFilter,
                   {
-                    defaultValue: _$2.get(params, "status"),
+                    defaultValue: _.get(params, "status"),
                     onChange: (value) => this.updateSearch({ status: value }),
                     vocab: facetTaxonomicStatus || [],
                     label: "Status"
@@ -92005,7 +92017,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   MultiValueFilter,
                   {
-                    defaultValue: _$2.get(params, "environment"),
+                    defaultValue: _.get(params, "environment"),
                     onChange: (value) => this.updateSearch({ environment: value }),
                     vocab: facetEnvironment,
                     label: "Environment"
@@ -92023,7 +92035,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MultiValueFilter,
                     {
-                      defaultValue: _$2.get(params, "nomstatus"),
+                      defaultValue: _.get(params, "nomstatus"),
                       onChange: (value) => this.updateSearch({ nomstatus: value }),
                       vocab: facetNomStatus || [],
                       label: "Nomenclatural status"
@@ -92032,7 +92044,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MultiValueFilter,
                     {
-                      defaultValue: _$2.get(params, "nameType"),
+                      defaultValue: _.get(params, "nameType"),
                       onChange: (value) => this.updateSearch({ nameType: value }),
                       vocab: facetNomType || [],
                       label: "Name type"
@@ -92041,7 +92053,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MultiValueFilter,
                     {
-                      defaultValue: _$2.get(params, "field"),
+                      defaultValue: _.get(params, "field"),
                       onChange: (value) => this.updateSearch({ field: value }),
                       vocab: facetNomField || [],
                       label: "Name field"
@@ -92050,7 +92062,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MultiValueFilter,
                     {
-                      defaultValue: _$2.get(params, "authorship"),
+                      defaultValue: _.get(params, "authorship"),
                       onChange: (value) => this.updateSearch({ authorship: value }),
                       vocab: facetAuthorship,
                       label: "Authorship"
@@ -92059,7 +92071,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MultiValueFilter,
                     {
-                      defaultValue: _$2.get(params, "group"),
+                      defaultValue: _.get(params, "group"),
                       onChange: (value) => this.updateSearch({ group: value }),
                       vocab: facetGroup,
                       label: "Taxonomic group"
@@ -92068,7 +92080,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     MultiValueFilter,
                     {
-                      defaultValue: _$2.get(params, "authorshipYear"),
+                      defaultValue: _.get(params, "authorshipYear"),
                       onChange: (value) => this.updateSearch({ authorshipYear: value }),
                       vocab: facetAuthorshipYear,
                       label: "Authorship year"
@@ -92128,21 +92140,19 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Router, { history, children: /* @__PURE__ */ jsxRuntimeExports.jsx(NameSearch, { catalogueKey, pathToTaxon, defaultTaxonKey, citation }) });
   };
-  const _$1 = require("lodash");
-  const getLivingTaxa = (metrics, rank) => (_$1.get(metrics, `taxaByRankCount.${rank}`) || 0) - (_$1.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
-  const getExtinctTaxa = (metrics, rank) => _$1.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
+  const getLivingTaxa = (metrics, rank) => (_.get(metrics, `taxaByRankCount.${rank}`) || 0) - (_.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
+  const getExtinctTaxa = (metrics, rank) => _.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
   const getSearchParam$1 = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.key}` : `SECTOR_PUBLISHER_KEY=${dataset.id}`;
   const MetricsPresentation = ({ metrics, rank, style: style2, dataset, pathToSearch }) => metrics && rank ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `Living species`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=species&extinct=false&extinct=_NULL${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: getLivingTaxa(metrics, "species").toLocaleString("en-GB") }) : getLivingTaxa(metrics, "species").toLocaleString("en-GB") }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `Extinct species`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=species&extinct=true${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: getExtinctTaxa(metrics, "species").toLocaleString("en-GB") }) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB") })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `Living species`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=species&extinct=false&extinct=_NULL${_.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: getLivingTaxa(metrics, "species").toLocaleString("en-GB") }) : getLivingTaxa(metrics, "species").toLocaleString("en-GB") }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `Extinct species`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=species&extinct=true${_.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: getExtinctTaxa(metrics, "species").toLocaleString("en-GB") }) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB") })
     ] }),
-    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).sort((a, b) => rank.indexOf(b) - rank.indexOf(a)).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `${_$1.startCase(k)}`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=${k}&status=accepted&status=provisionally%20accepted${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: metrics.taxaByRankCount[k].toLocaleString("en-GB") }) : metrics.taxaByRankCount[k].toLocaleString("en-GB") }, k)),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Synonyms", children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&status=misapplied&status=synonym&status=ambiguous%20synonym${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: (metrics.synonymCount || 0).toLocaleString("en-GB") }) : (metrics.synonymCount || 0).toLocaleString("en-GB") }, "Synonyms"),
+    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).sort((a, b) => rank.indexOf(b) - rank.indexOf(a)).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `${_.startCase(k)}`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=${k}&status=accepted&status=provisionally%20accepted${_.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: metrics.taxaByRankCount[k].toLocaleString("en-GB") }) : metrics.taxaByRankCount[k].toLocaleString("en-GB") }, k)),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Synonyms", children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&status=misapplied&status=synonym&status=ambiguous%20synonym${_.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: (metrics.synonymCount || 0).toLocaleString("en-GB") }) : (metrics.synonymCount || 0).toLocaleString("en-GB") }, "Synonyms"),
     /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Common names", children: (metrics.vernacularCount || 0).toLocaleString("en-GB") }, "vernaculars"),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Total number of names", children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: (metrics.nameCount || 0).toLocaleString("en-GB") }) : (metrics.nameCount || 0).toLocaleString("en-GB") }, "names")
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Total number of names", children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}${_.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`, children: (metrics.nameCount || 0).toLocaleString("en-GB") }) : (metrics.nameCount || 0).toLocaleString("en-GB") }, "names")
   ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } }) });
-  require("lodash");
   class Metrics extends React.Component {
     constructor(props) {
       super(props);
@@ -92171,7 +92181,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       this.getRank();
     }
   }
-  const _ = require("lodash");
   class TaxonomicCoverage extends React.Component {
     constructor(props) {
       super(props);
@@ -92237,10 +92246,10 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
   }
   const AgentPresentation = ({ agent, countryAlpha2, style: style2, noLinks }) => {
-    const country = _$2.get(agent, "country") ? _$2.get(
+    const country = _.get(agent, "country") ? _.get(
       countryAlpha2,
-      `[${_$2.get(agent, "country")}].title`,
-      _$2.get(agent, "country")
+      `[${_.get(agent, "country")}].title`,
+      _.get(agent, "country")
     ) : null;
     return agent ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: style2, children: [
       (agent.given || agent.family) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: [agent.family, agent.given].filter((a) => !!a).join(", ") }),
@@ -94326,7 +94335,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         const pathParts = path2.pathname.split("/");
         const datasetKey = pathParts[pathParts.length - 1];
         axios(`${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}`).then((dataset) => {
-          if (pageTitleTemplate && _$2.get(dataset, "data.title")) {
+          if (pageTitleTemplate && _.get(dataset, "data.title")) {
             document.title = pageTitleTemplate.replace(
               "__dataset__",
               dataset.data.title
@@ -94450,14 +94459,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 ),
                 data.doi
               ] }) : "-" }),
-              data.contact && !_$2.isEmpty(data.contact) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Contact", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              data.contact && !_.isEmpty(data.contact) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Contact", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 AgentPresentation,
                 {
                   countryAlpha2,
                   agent: data.contact
                 }
               ) }),
-              data.publisher && !_$2.isEmpty(data.publisher) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Publisher", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              data.publisher && !_.isEmpty(data.publisher) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Publisher", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 AgentPresentation,
                 {
                   countryAlpha2,
@@ -94560,7 +94569,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                   dangerouslySetInnerHTML: { __html: data.citation }
                 }
               ) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Source", children: data.source && _$2.isArray(data.source) ? data.source.map(
+              /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Source", children: data.source && _.isArray(data.source) ? data.source.map(
                 (s) => !!s && (s.citation ? /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
@@ -94575,7 +94584,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       ) });
     }
   }
-  const getLivingSpecies = (record, rank) => _$2.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
+  const getLivingSpecies = (record, rank) => _.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
   const getSearchParam = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.key}` : `SECTOR_PUBLISHER_KEY=${dataset.id}`;
   const getColumns = (pathToDataset, catalogueKey, auth, hasPublishers, pathToSearch) => [
     {
@@ -94627,7 +94636,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       title: "Datasets",
       dataIndex: ["metrics", "datasetCount"],
       key: "datasets",
-      render: (text2, record) => _$2.get(record, "metrics.datasetCount", 1).toLocaleString("en-GB")
+      render: (text2, record) => _.get(record, "metrics.datasetCount", 1).toLocaleString("en-GB")
     },
     /*  {
       title: "Version",
@@ -94672,7 +94681,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         {
           href: `${pathToSearch}?${getSearchParam(
             record
-          )}&rank=family&status=accepted&status=provisionally%20accepted${_$2.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`,
+          )}&rank=family&status=accepted&status=provisionally%20accepted${_.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`,
           children: getLivingSpecies(record, "family").toLocaleString("en-GB")
         }
       ),
@@ -94695,7 +94704,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         {
           href: `${pathToSearch}?${getSearchParam(
             record
-          )}&rank=genus&status=accepted&status=provisionally%20accepted${_$2.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`,
+          )}&rank=genus&status=accepted&status=provisionally%20accepted${_.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`,
           children: getLivingSpecies(record, "genus").toLocaleString("en-GB")
         }
       ),
@@ -94718,7 +94727,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         {
           href: `${pathToSearch}?${getSearchParam(
             record
-          )}&rank=species&status=accepted&status=provisionally%20accepted${_$2.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`,
+          )}&rank=species&status=accepted&status=provisionally%20accepted${_.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("") : ""}`,
           children: getLivingSpecies(record).toLocaleString("en-GB")
         }
       ),
@@ -94774,7 +94783,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         ]).then(([res, publisherRes]) => {
           let columns = {};
           const datasetData = res.data || [];
-          const publisherData = _$2.get(publisherRes, "data.result", []);
+          const publisherData = _.get(publisherRes, "data.result", []);
           if (publisherData.length > 0) {
             this.setState({ hasPublishers: true });
           }
@@ -94791,7 +94800,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             }),
             ...datasetData.map((r2) => {
               return this.getMetrics(datasetKey, r2).then((metrics) => {
-                columns = _$2.merge(columns, metrics);
+                columns = _.merge(columns, metrics);
                 return {
                   ...r2,
                   metrics
