@@ -21,6 +21,9 @@ export default defineConfig({
       less: { javascriptEnabled: true, math: 'always' },
     },
   },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/umd.js'),
