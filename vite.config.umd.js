@@ -22,6 +22,7 @@ export default defineConfig({
     },
   },
   define: {
+    // esbuild (used for CJS transforms) only accepts literals — keep this simple
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
   build: {
@@ -37,6 +38,19 @@ export default defineConfig({
         globals: { react: 'React' },
         assetFileNames: (info) =>
           info.name?.endsWith('.css') ? 'main.css' : info.name,
+        // Inject browser polyfills for Node globals inside the UMD wrapper.
+        // setImmediate: used by some scheduler code.
+        // Buffer: used by the btoa npm package to encode Basic Auth credentials.
+        intro: `
+var setImmediate = typeof globalThis.setImmediate !== 'undefined' ? globalThis.setImmediate : function(fn) { return setTimeout(fn, 0); };
+var Buffer = (function() {
+  function BBuffer(s) { this._s = s; }
+  BBuffer.prototype.toString = function(e) { return e === 'base64' ? btoa(this._s) : this._s; };
+  BBuffer.from = function(s) { return new BBuffer(s); };
+  BBuffer.isBuffer = function() { return false; };
+  return BBuffer;
+})();
+        `,
       },
     },
     outDir: 'umd',

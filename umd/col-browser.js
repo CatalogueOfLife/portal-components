@@ -5,6 +5,24 @@
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
+  var setImmediate = typeof globalThis.setImmediate !== "undefined" ? globalThis.setImmediate : function(fn) {
+    return setTimeout(fn, 0);
+  };
+  var Buffer2 = (function() {
+    function BBuffer(s) {
+      this._s = s;
+    }
+    BBuffer.prototype.toString = function(e2) {
+      return e2 === "base64" ? btoa(this._s) : this._s;
+    };
+    BBuffer.from = function(s) {
+      return new BBuffer(s);
+    };
+    BBuffer.isBuffer = function() {
+      return false;
+    };
+    return BBuffer;
+  })();
   function _interopNamespaceDefault(e2) {
     const n2 = Object.create(null, { [Symbol.toStringTag]: { value: "Module" } });
     if (e2) {
@@ -32993,8 +33011,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       var freeExports = exports$1 && !exports$1.nodeType && exports$1;
       var freeModule = freeExports && true && module2 && !module2.nodeType && module2;
       var moduleExports = freeModule && freeModule.exports === freeExports;
-      var Buffer2 = moduleExports ? root2.Buffer : void 0;
-      var nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : void 0;
+      var Buffer3 = moduleExports ? root2.Buffer : void 0;
+      var nativeIsBuffer = Buffer3 ? Buffer3.isBuffer : void 0;
       var isBuffer2 = nativeIsBuffer || stubFalse;
       module2.exports = isBuffer2;
     })(isBuffer, isBuffer.exports);
@@ -42886,7 +42904,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           var reIsNative = RegExp2(
             "^" + funcToString.call(hasOwnProperty2).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
           );
-          var Buffer2 = moduleExports ? context2.Buffer : undefined$1, Symbol2 = context2.Symbol, Uint8Array2 = context2.Uint8Array, allocUnsafe = Buffer2 ? Buffer2.allocUnsafe : undefined$1, getPrototype = overArg(Object2.getPrototypeOf, Object2), objectCreate = Object2.create, propertyIsEnumerable = objectProto.propertyIsEnumerable, splice = arrayProto.splice, spreadableSymbol = Symbol2 ? Symbol2.isConcatSpreadable : undefined$1, symIterator = Symbol2 ? Symbol2.iterator : undefined$1, symToStringTag = Symbol2 ? Symbol2.toStringTag : undefined$1;
+          var Buffer3 = moduleExports ? context2.Buffer : undefined$1, Symbol2 = context2.Symbol, Uint8Array2 = context2.Uint8Array, allocUnsafe = Buffer3 ? Buffer3.allocUnsafe : undefined$1, getPrototype = overArg(Object2.getPrototypeOf, Object2), objectCreate = Object2.create, propertyIsEnumerable = objectProto.propertyIsEnumerable, splice = arrayProto.splice, spreadableSymbol = Symbol2 ? Symbol2.isConcatSpreadable : undefined$1, symIterator = Symbol2 ? Symbol2.iterator : undefined$1, symToStringTag = Symbol2 ? Symbol2.toStringTag : undefined$1;
           var defineProperty2 = (function() {
             try {
               var func = getNative(Object2, "defineProperty");
@@ -42896,7 +42914,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             }
           })();
           var ctxClearTimeout = context2.clearTimeout !== root2.clearTimeout && context2.clearTimeout, ctxNow = Date2 && Date2.now !== root2.Date.now && Date2.now, ctxSetTimeout = context2.setTimeout !== root2.setTimeout && context2.setTimeout;
-          var nativeCeil = Math2.ceil, nativeFloor = Math2.floor, nativeGetSymbols = Object2.getOwnPropertySymbols, nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : undefined$1, nativeIsFinite = context2.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object2.keys, Object2), nativeMax = Math2.max, nativeMin = Math2.min, nativeNow = Date2.now, nativeParseInt = context2.parseInt, nativeRandom = Math2.random, nativeReverse = arrayProto.reverse;
+          var nativeCeil = Math2.ceil, nativeFloor = Math2.floor, nativeGetSymbols = Object2.getOwnPropertySymbols, nativeIsBuffer = Buffer3 ? Buffer3.isBuffer : undefined$1, nativeIsFinite = context2.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object2.keys, Object2), nativeMax = Math2.max, nativeMin = Math2.min, nativeNow = Date2.now, nativeParseInt = context2.parseInt, nativeRandom = Math2.random, nativeReverse = arrayProto.reverse;
           var DataView = getNative(context2, "DataView"), Map2 = getNative(context2, "Map"), Promise2 = getNative(context2, "Promise"), Set2 = getNative(context2, "Set"), WeakMap2 = getNative(context2, "WeakMap"), nativeCreate = getNative(Object2, "create");
           var metaMap = WeakMap2 && new WeakMap2();
           var realNames = {};
@@ -49521,10 +49539,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     (function() {
       function btoa2(str) {
         var buffer;
-        if (str instanceof Buffer) {
+        if (str instanceof Buffer2) {
           buffer = str;
         } else {
-          buffer = Buffer.from(str.toString(), "binary");
+          buffer = Buffer2.from(str.toString(), "binary");
         }
         return buffer.toString("base64");
       }
