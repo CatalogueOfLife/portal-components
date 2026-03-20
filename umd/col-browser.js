@@ -53221,7 +53221,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const { value } = this.state;
         const url = datasetKey ? `${config.dataApi}dataset/${datasetKey}/nameusage/suggest` : `${config.dataApi}name/search`;
         axios(
-          `${url}?fuzzy=false&limit=25&q=${q}${minRank ? `&minRank=${minRank}` : ""}${extinct ? `&extinct=${extinct}` : ""}`
+          `${url}?limit=25&q=${q}${minRank ? `&minRank=${minRank}` : ""}${extinct ? `&extinct=${extinct}` : ""}`
         ).then((res) => {
           this.setState({
             // names: res.data || [],
