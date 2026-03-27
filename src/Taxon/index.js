@@ -28,7 +28,6 @@ import btoa from "btoa";
 import Page404 from "../components/Page404";
 import TaxonBreakdown from "./TaxonBreakdown";
 import SecondarySources from "./SecondarySources";
-import SourceDatasets from "./SourceDatasets";
 import MergedDataBadge from "../components/MergedDataBadge";
 import DecisionBadge from "../components/DecisionBadge";
 import { Feedback } from "./Feedback";

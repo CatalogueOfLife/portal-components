@@ -14,7 +14,7 @@ const ClassificationTable = ({
 }) => (
   <div style={style}>
     {" "}
-    {_.reverse([...data]).map((t) => (
+    {data.map((t) => (
       <div style={{ float: "left", marginRight: "3px" }} key={t.rank}>
         <span style={rankStyle}>{t.rank}: </span>
         <a
@@ -27,19 +27,6 @@ const ClassificationTable = ({
         {" >"}
       </div>
     ))}
-    <div style={{ float: "left" }}>
-      {_.get(taxon, "name.rank") && (
-        <span style={rankStyle}>{taxon.name.rank}: </span>
-      )}
-      {taxon && (
-        <a
-          onClick={() => {
-            window.location.href = `${pathToTree}?taxonKey=${taxon.id}`;
-          }}
-          dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
-        />
-      )}
-    </div>
   </div>
 );
 

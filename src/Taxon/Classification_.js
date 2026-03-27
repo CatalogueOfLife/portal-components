@@ -12,7 +12,7 @@ const ClassificationTable = ({
 }) => (
   <div style={style}>
     {" "}
-    {_.reverse([...data]).map((t) => (
+    {data.map((t) => (
       <PresentationItem
         md={6}
         label={_.startCase(t.rank)}
@@ -28,20 +28,6 @@ const ClassificationTable = ({
         />
       </PresentationItem>
     ))}
-    <PresentationItem
-      md={6}
-      label={_.get(taxon, "rank") ? _.startCase(taxon.rank) : ""}
-      classes={{ formItem: { borderBottom: "none" } }}
-    >
-      {taxon && (
-        <a
-          onClick={() => {
-            window.location.href = `${pathToTree}?taxonKey=${taxon.id}`;
-          }}
-          dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
-        />
-      )}
-    </PresentationItem>
   </div>
 );
 
