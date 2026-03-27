@@ -32,6 +32,7 @@ If you have nvm installed, you can simply run `nvm use`.
 - Add everything in git: `git add -A`, commit and push
 - [Do a release in GitHub](https://github.com/CatalogueOfLife/portal-components/releases)
 - Go to [https://www.jsdelivr.com/tools/purge](https://www.jsdelivr.com/tools/purge), and purge the cache of these urls:
+- https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components/umd/col-browser.min.js
 - https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/col-browser.min.js
 - https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/main.css
 
