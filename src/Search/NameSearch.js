@@ -49,7 +49,7 @@ const defaultParams = {
   limit: 50,
   offset: 0,
   facet: FACET_VOCAB, //["rank", "issue", "status", "nomStatus", "nameType", "field"],
-  sortBy: "taxonomic",
+  sortBy: "relevance",
 };
 
 const getColumns = (pathToTaxon) => [
@@ -430,7 +430,7 @@ class NameSearchPage extends React.Component {
                 this.updateSearch({ TAXON_ID: null });
               }}
               placeHolder="Search by higher taxon"
-              sortBy="TAXONOMIC"
+              sortBy="relevance"
               autoFocus={false}
             />
 
