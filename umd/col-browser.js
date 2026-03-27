@@ -70998,6 +70998,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     limit: 50,
     offset: 0,
     facet: FACET_VOCAB,
+    //["rank", "issue", "status", "nomStatus", "nameType", "field"],
     sortBy: "relevance"
   };
   const getColumns$1 = (pathToTaxon) => [
