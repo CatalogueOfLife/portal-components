@@ -14,7 +14,7 @@ const ClassificationTable = ({
 }) => (
   <div style={style}>
     {" "}
-    {data.map((t) => (
+    {data.map((t, i) => (
       <div style={{ float: "left", marginRight: "3px" }} key={t.rank}>
         <span style={rankStyle}>{t.rank}: </span>
         <a
@@ -24,7 +24,7 @@ const ClassificationTable = ({
           }}
           dangerouslySetInnerHTML={{ __html: t.labelHtml }}
         />
-        {" >"}
+        {i < data.length - 1 && " >"}
       </div>
     ))}
   </div>
