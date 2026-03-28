@@ -59438,7 +59438,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     pathToTree
   }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
     " ",
-    data.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { float: "left", marginRight: "3px" }, children: [
+    data.map((t2, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { float: "left", marginRight: "3px" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: rankStyle, children: [
         t2.rank,
         ": "
@@ -59453,7 +59453,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           dangerouslySetInnerHTML: { __html: t2.labelHtml }
         }
       ),
-      " >"
+      i < data.length - 1 && " >"
     ] }, t2.rank))
   ] });
   const styles$1 = {
