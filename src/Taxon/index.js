@@ -261,7 +261,7 @@ class TaxonPage extends React.Component {
 
     try {
       const res = await axios(
-        `${config.dataApi}dataset/${datasetKey}/nameusage/${taxonKey}/info`
+        `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
       );
       let referenceIndexMap = {};
       if (_.get(res, "data.references")) {

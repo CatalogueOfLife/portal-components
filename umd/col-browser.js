@@ -70210,7 +70210,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const { catalogueKey: datasetKey } = this.props;
         try {
           const res = await axios(
-            `${config.dataApi}dataset/${datasetKey}/nameusage/${taxonKey}/info`
+            `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
           );
           let referenceIndexMap = {};
           if (_.get(res, "data.references")) {

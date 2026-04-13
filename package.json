@@ -1,6 +1,6 @@
 {
   "name": "col-browser",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "Catalogue of Life browse and search React components",
   "main": "umd/col-browser.js",
   "module": "es/index.js",
