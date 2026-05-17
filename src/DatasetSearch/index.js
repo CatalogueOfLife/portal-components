@@ -20,7 +20,7 @@ const getSearchParam = (dataset) =>
 
 const getColumns = (
   pathToDataset,
-  catalogueKey,
+  datasetKey,
   auth,
   hasPublishers,
   pathToSearch
@@ -39,11 +39,11 @@ const getColumns = (
               <span>
                <MergedDataBadge style={{marginLeft: "0px"}} /> {"Publisher: "}{" "}
                 <a
-                  href={`https://www.checklistbank.org/dataset/${catalogueKey}/publisher/${record.id}`}
+                  href={`https://www.checklistbank.org/dataset/${datasetKey}/publisher/${record.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   /* onClick={() => {
-                    window.location.href = `https://www.checklistbank.org/dataset/${catalogueKey}/publisher/${record.id}`;
+                    window.location.href = `https://www.checklistbank.org/dataset/${datasetKey}/publisher/${record.id}`;
                   }} */
                   dangerouslySetInnerHTML={{ __html: text }}
                 />{" "}
@@ -97,7 +97,7 @@ const getColumns = (
       render: (text, record) => (
         <DatasetlogoWithFallback
           auth={auth}
-          catalogueKey={catalogueKey}
+          datasetKey={datasetKey}
           datasetKey={record.key}
           style={{ maxHeight: "32px" }}
           size="SMALL"
@@ -220,14 +220,14 @@ class DatasetSearchPage extends React.Component {
   /* 
   getDataOLD = () => {
     this.setState({ loading: true });
-    const { catalogueKey } = this.props;
+    const { datasetKey } = this.props;
    
-    axios(`${config.dataApi}dataset/${catalogueKey}/source`)
+    axios(`${config.dataApi}dataset/${datasetKey}/source`)
     .then((res) => {
           return Promise.all(
             res.data.map((r) => 
                 axios(
-                    `${config.dataApi}dataset/${catalogueKey}/source/${r.key}/metrics`
+                    `${config.dataApi}dataset/${datasetKey}/source/${r.key}/metrics`
                   ).then((res) => ({...r, metrics: res.data}))
               
             )
@@ -249,7 +249,7 @@ class DatasetSearchPage extends React.Component {
 
   getData = () => {
     this.setState({ loading: true });
-    const { catalogueKey: datasetKey } = this.props;
+    const { datasetKey } = this.props;
     Promise.all([
       axios(
         /* `${config.dataApi}dataset?limit=1000&contributesTo=${datasetKey}&sortBy=alias` */
@@ -335,7 +335,7 @@ class DatasetSearchPage extends React.Component {
 
   render() {
     const { data, loading, rank, hasPublishers, error } = this.state;
-    const { pathToDataset, pathToSearch, catalogueKey } = this.props;
+    const { pathToDataset, pathToSearch, datasetKey } = this.props;
 
     return (
       <div
@@ -403,7 +403,7 @@ class DatasetSearchPage extends React.Component {
             size="small"
             columns={getColumns(
               pathToDataset,
-              catalogueKey,
+              datasetKey,
               this.props.auth,
               hasPublishers,
               pathToSearch
@@ -434,8 +434,8 @@ class DatasetSearchPage extends React.Component {
                   <Col>
                     <DatasetlogoWithFallback
                       auth={this.props.auth}
-                      catalogueKey={catalogueKey}
-                      datasetKey={dataset.key}
+                      datasetKey={datasetKey}
+                      sourceDatasetKey={dataset.key}
                       style={{ maxHeight: "64px" }}
                       size="MEDIUM"
                     />

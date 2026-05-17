@@ -51,13 +51,13 @@ class DatasetPage extends React.Component {
   };
 
   getData = () => {
-    const { catalogueKey, pageTitleTemplate } = this.props;
+    const { datasetKey, pageTitleTemplate } = this.props;
 
     const { location: path } = history;
     const pathParts = path.pathname.split("/");
-    const datasetKey = pathParts[pathParts.length - 1];
+    const sourceDatasetKey = pathParts[pathParts.length - 1];
 
-    axios(`${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}`)
+    axios(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`)
       .then((dataset) => {
         if (pageTitleTemplate && _.get(dataset, "data.title")) {
           document.title = pageTitleTemplate.replace(
@@ -77,7 +77,7 @@ class DatasetPage extends React.Component {
   };
 
   render() {
-    const { pathToTree, catalogueKey } = this.props;
+    const { pathToTree, datasetKey } = this.props;
     const { data, countryAlpha2, datasetError } = this.state;
 
     return (
@@ -118,10 +118,10 @@ class DatasetPage extends React.Component {
                     <br />
                     <BibTex
                       style={{ marginLeft: "8px", height: "32px" }}
-                      catalogueKey={
-                        catalogueKey !== data.key ? catalogueKey : null
+                      datasetKey={datasetKey}
+                      sourceDatasetKey={
+                        datasetKey !== data.key ? data.key : undefined
                       }
-                      datasetKey={data.key}
                     />
                   </React.Fragment>
                 )}
@@ -135,8 +135,8 @@ class DatasetPage extends React.Component {
                     height: "auto",
                     marginRight: "8px",
                   }}
-                  catalogueKey={catalogueKey}
-                  datasetKey={data.key}
+                  datasetKey={datasetKey}
+                  sourceDatasetKey={data.key}
                 />
               </Col>
             </Row>
@@ -250,12 +250,12 @@ class DatasetPage extends React.Component {
               <PresentationItem label="Taxonomic coverage">
                 <TaxonomicCoverage
                   dataset={data}
-                  catalogueKey={catalogueKey}
+                  datasetKey={datasetKey}
                   pathToTree={pathToTree}
                 />
               </PresentationItem>
               <Metrics
-                catalogueKey={catalogueKey}
+                datasetKey={datasetKey}
                 dataset={data}
                 pathToSearch={this.props.pathToSearch}
               />

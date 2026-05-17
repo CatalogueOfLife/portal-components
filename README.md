@@ -28,6 +28,8 @@ All components are in use on the [main Catalogue of Life portal](https://www.cat
 
 ## Usage
 
+> **Deprecation note:** the prop previously called `catalogueKey` is now called `datasetKey`. The old name still works (with a console warning) but will be removed in a future major release — please update embeddings.
+
 These components can be included in any html page.
 Include dependencies, React and React Dom:
 
@@ -56,7 +58,7 @@ This will create a global `ColBrowser` library variable that has four indvidual 
 
 A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse), takes three properties:
 
-1. `catalogueKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards). Alternatively, you can provide a callback function taking the taxonID as parameter as seen in [this example](https://github.com/CatalogueOfLife/portal-components/issues/27#issuecomment-1144524981).
 3. `defaultTaxonKey` - (Optional) Initially expand the tree down to this taxon.
 4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
@@ -77,7 +79,7 @@ class Tree extends React.Component {
 
       return e(
         ColBrowser.Tree,
-        { catalogueKey: 9999,
+        { datasetKey: 9999,
           pathToTaxon: '/mytaxonomy/taxon/',
           defaultTaxonKey: 'urn:lsid:indexfungorum.org:names:814401',
           pathToDataset: '/sourcedatasets/' }
@@ -94,7 +96,7 @@ ReactDOM.render(e(Tree), domContainer);
 
 [Search component with table view](https://www.catalogueoflife.org/data/search), takes two properties:
 
-1. `catalogueKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
 2. `pathToTaxon` - The local path to the taxon page of your website (for links in the taxon tree to point towards).  Alternatively, you can provide a callback function taking the taxonID as parameter as seen in [this example](https://github.com/CatalogueOfLife/portal-components/issues/27#issuecomment-1144524981).
 3. `defaultTaxonKey` - (Optional) if the search should default to a certain Family, Order etc
 4. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the search component
@@ -111,7 +113,7 @@ class Search extends React.Component {
 
       return e(
         ColBrowser.Search,
-        { catalogueKey: 9999,
+        { datasetKey: 9999,
           pathToTaxon: '/mytaxonomy/taxon/' }
       );
     }
@@ -126,7 +128,7 @@ ReactDOM.render(e(Search), domContainer);
 
 [Taxon detail page](https://www.catalogueoflife.org/data/taxon/623QT), takes three properties:
 
-1. `catalogueKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxon classification to point towards).
 3. `pathToSearch` - The local path to the search page of your website (for links in the classification to point towards).
 4. `pathToDataset` - (Optional, only relevant for datasets compiled from other source datasets) The local path to the source dataset page of your website (for links in the taxon tree to point towards).
@@ -146,7 +148,7 @@ class Taxon extends React.Component {
 
       return e(
         ColBrowser.Taxon,
-        { catalogueKey: 9999,
+        { datasetKey: 9999,
           pathToTree: '/mytaxonomy/browse',
           pathToSearch= '/data/search',
           pathToDataset: '/sourcedatasets/',
@@ -165,7 +167,7 @@ ReactDOM.render(e(Taxon), domContainer);
 
 [Dataset detail page](https://www.catalogueoflife.org/data/dataset/2073), takes two properties:
 
-1. `catalogueKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxonomic coverage section to point towards).
 3. `pathToSearch` - The local path to the search page of your website (for links in the metrics section to point towards).
 4. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__dataset__` that will be replaced with the dataset title name.
@@ -182,7 +184,7 @@ class Dataset extends React.Component {
 
       return e(
         ColBrowser.Taxon,
-        { catalogueKey: 9999,
+        { datasetKey: 9999,
           pathToTree: '/mytaxonomy/browse'
           pathToSearch: '/data/search'
           pageTitleTemplate: 'COL | __dataset__' }
@@ -197,11 +199,12 @@ ReactDOM.render(e(Dataset), domContainer);
 
 ### ColBrowser.BibTex
 
-[Dataset detail page](https://www.catalogueoflife.org/data/dataset/2073), takes two properties:
+Shows source dataset details — a small icon that links to the BibTex citation
+for a dataset on [ChecklistBank](https://www.checklistbank.org/). Properties:
 
-1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
-2. `catalogueKey` - Optional, cite as source in a compiled dataset such the Catalogue of Life.
-3. `style` - To set margins, height etc. Defaults to {height: "40px"}.
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/). When `sourceDatasetKey` is also given, this is the catalogue/project containing it; otherwise it's the dataset being cited directly.
+2. `sourceDatasetKey` - (Optional) the source dataset to cite within the catalogue identified by `datasetKey`. Use this when the citation is for a source compiled into a larger dataset such as the Catalogue of Life.
+3. `style` - To set margins, height etc. Defaults to `{height: "40px"}`.
 
 
 ```
@@ -214,10 +217,17 @@ class BibTex extends React.Component {
 
     render() {
 
+      // Cite a standalone dataset
       return e(
         ColBrowser.BibTex,
         { datasetKey: 9999 }
       );
+
+      // Or cite a source within a catalogue:
+      // return e(
+      //   ColBrowser.BibTex,
+      //   { datasetKey: 9837, sourceDatasetKey: 1010 }
+      // );
     }
   }
 

@@ -19,15 +19,15 @@ class TaxonomicCoverage extends React.Component {
   }
 
   getData = () => {
-    const { dataset, catalogueKey } = this.props;
+    const { dataset, datasetKey } = this.props;
     const taxonMap = {};
     axios(
-      `${config.dataApi}dataset/${catalogueKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
+      `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
     ).then((res) => {
       return Promise.allSettled(
         res.data.result.filter(t => !!t?.target).map((t) =>
           axios(
-            `${config.dataApi}dataset/${catalogueKey}/nameusage/search?TAXON_ID=${t?.target?.id}${t?.subject?.rank ? "&rank="+t?.subject?.rank : ""}&q=${t?.subject?.name}`
+            `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${t?.target?.id}${t?.subject?.rank ? "&rank="+t?.subject?.rank : ""}&q=${t?.subject?.name}`
           ).then((usages) => {
             const taxon = _.get(usages, "data.result[0]");
             if (taxon) {

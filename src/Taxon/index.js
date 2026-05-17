@@ -77,7 +77,7 @@ class TaxonPage extends React.Component {
   };
 
   getTaxon = (taxonKey) => {
-    const { catalogueKey: datasetKey, pageTitleTemplate } = this.props;
+    const { datasetKey, pageTitleTemplate } = this.props;
     this.setState({ loading: true });
     axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`)
       .then((res) => {
@@ -189,8 +189,8 @@ class TaxonPage extends React.Component {
   };
 
   getCatalogue = () => {
-    const { catalogueKey } = this.props;
-    axios(`${config.dataApi}dataset/${catalogueKey}`)
+    const { datasetKey } = this.props;
+    axios(`${config.dataApi}dataset/${datasetKey}`)
       .then((res) => {
         this.setState({ catalogue: res.data });
       })
@@ -199,14 +199,14 @@ class TaxonPage extends React.Component {
       });
   };
   datasetLoader = new DataLoader((ids) =>
-    getDatasetsBatch(ids, this.props.catalogueKey)
+    getDatasetsBatch(ids, this.props.datasetKey)
   );
   sectorLoader = new DataLoader((ids) =>
-    getSectorsBatch(ids, this.props.catalogueKey)
+    getSectorsBatch(ids, this.props.datasetKey)
   );
 
   decorateWithSectorsAndDataset = async (synonyms) => {
-    const { catalogueKey: datasetKey } = this.props;
+    const { datasetKey } = this.props;
     /* const sectorLoader = new DataLoader((ids) =>
       getSectorsBatch(ids, datasetKey)
     ); */
@@ -256,7 +256,7 @@ class TaxonPage extends React.Component {
   };
 
   getInfo = async (taxonKey) => {
-    const { catalogueKey: datasetKey } = this.props;
+    const { datasetKey } = this.props;
 
 
     try {
@@ -348,7 +348,7 @@ class TaxonPage extends React.Component {
   };
 
   getIncludes = (taxonKey) => {
-    const { catalogueKey: datasetKey } = this.props;
+    const { datasetKey } = this.props;
 
     axios(
       `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
@@ -368,7 +368,7 @@ class TaxonPage extends React.Component {
   };
 
   fetchSynonymAndRedirect = (taxonKey) => {
-    const { catalogueKey: datasetKey, pathToTaxon } = this.props;
+    const { datasetKey, pathToTaxon } = this.props;
 
     axios(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`)
       .then((res) => {
@@ -386,7 +386,7 @@ class TaxonPage extends React.Component {
 
   render() {
     const {
-      catalogueKey,
+      datasetKey,
       pathToTaxon,
       pathToSearch,
       pathToDataset,
@@ -481,8 +481,8 @@ class TaxonPage extends React.Component {
                       height: "auto",
                       marginRight: "8px",
                     }}
-                    catalogueKey={catalogueKey}
-                    datasetKey={sourceDataset.key}
+                    datasetKey={datasetKey}
+                    sourceDatasetKey={sourceDataset.key}
                   />
                 </Col>
               )}
@@ -495,7 +495,7 @@ class TaxonPage extends React.Component {
             >
               {_.get(taxon, "id")}{" "}
               <a
-                href={`https://www.checklistbank.org/dataset/${catalogueKey}/taxon/${_.get(
+                href={`https://www.checklistbank.org/dataset/${datasetKey}/taxon/${_.get(
                   taxon,
                   "id"
                 )}`}
@@ -509,7 +509,7 @@ class TaxonPage extends React.Component {
                 style={{ marginLeft: "5px" }}
                 id={`col-download-${_.get(taxon, "id")}`}
                 target="_blank"
-                href={`http://checklistbank.org/dataset/${catalogueKey}/download?taxonID=${encodeURIComponent(_.get(
+                href={`http://checklistbank.org/dataset/${datasetKey}/download?taxonID=${encodeURIComponent(_.get(
                   taxon,
                   "id"
                 ))}`}
@@ -597,7 +597,7 @@ class TaxonPage extends React.Component {
                 style={{ marginTop: "-3px" }}
                 pathToDataset={pathToDataset}
                 /*                     datasetKey={datasetKey}
-                 */ datasetKey={catalogueKey}
+                 */ datasetKey={datasetKey}
               />
             </PresentationItem>
           )}
@@ -643,7 +643,7 @@ class TaxonPage extends React.Component {
                 references={_.get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
-                catalogueKey={catalogueKey}
+                datasetKey={datasetKey}
               />
             </PresentationItem>
           )}
@@ -655,7 +655,7 @@ class TaxonPage extends React.Component {
                 references={_.get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginBottom: 16, marginTop: "-3px" }}
-                catalogueKey={catalogueKey}
+                datasetKey={datasetKey}
                 primarySource={sourceDataset}
               />
             </PresentationItem>
@@ -675,7 +675,7 @@ class TaxonPage extends React.Component {
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}
                 data={classification}
                 taxon={taxon}
-                catalogueKey={catalogueKey}
+                datasetKey={datasetKey}
                 pathToTaxon={pathToTaxon}
                 pathToTree={pathToTree}
               />
@@ -688,7 +688,7 @@ class TaxonPage extends React.Component {
               _.get(taxon, "name.scientificName") === "Biota")) && (
             <TaxonBreakdown
               taxon={taxon}
-              datasetKey={catalogueKey}
+              datasetKey={datasetKey}
               rank={rank}
               pathToTaxon={pathToTaxon}
               dataset={catalogue}
@@ -712,7 +712,6 @@ class TaxonPage extends React.Component {
                 data={info.vernacularNames}
                 references={_.get(info, "references")}
                 datasetKey={taxon.datasetKey}
-                catalogueKey={catalogueKey}
               />
             </PresentationItem>
           )}
@@ -722,7 +721,7 @@ class TaxonPage extends React.Component {
                 pathToDataset={pathToDataset}
                 style={{ marginTop: "-3px" }}
                 data={info.distributions}
-                datasetKey={catalogueKey}
+                datasetKey={datasetKey}
               />
             </PresentationItem>
           )}
@@ -823,7 +822,7 @@ class TaxonPage extends React.Component {
           )}
           {info?.source?.secondarySources && (
             <PresentationItem md={md} label="Secondary Sources">
-              <SecondarySources info={info} catalogueKey={catalogueKey} pathToTaxon={pathToTaxon} />
+              <SecondarySources info={info} datasetKey={datasetKey} pathToTaxon={pathToTaxon} />
             </PresentationItem>
           )}
           {/* {this.state?.sourceDatasetKeyMap && (
@@ -848,7 +847,7 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
           {window?.location?.hostname?.endsWith("catalogueoflife.org") && <PresentationItem md={md} label="">
-              <Feedback taxonKey={this?.state?.taxon?.id} datasetKey={this.props.catalogueKey} />
+              <Feedback taxonKey={this?.state?.taxon?.id} datasetKey={this.props.datasetKey} />
             </PresentationItem>}
         </div>
       </React.Fragment>

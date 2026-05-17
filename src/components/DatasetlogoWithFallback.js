@@ -8,12 +8,12 @@ class DatasetlogoWithFallback extends React.Component {
   }
   render() {
 
-      const {fallBack = null,catalogueKey, datasetKey, style, size = 'MEDIUM'} = this.props;
+      const {fallBack = null, datasetKey, sourceDatasetKey, style, size = 'MEDIUM'} = this.props;
       const {error, loading} = this.state;
-    return (loading || !error) ?  
+    return (loading || !error) ?
         <img
           style={style}
-          src={`${config.dataApi}dataset/${catalogueKey}/logo/source/${datasetKey}?size=${size}`}
+          src={`${config.dataApi}dataset/${datasetKey}/logo/source/${sourceDatasetKey}?size=${size}`}
           onLoad={() => this.setState({error: false, loading: false})}
           onError={() => this.setState({error: true, loading: false})}
         /> : fallBack;

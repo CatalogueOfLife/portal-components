@@ -6,7 +6,7 @@ import DataLoader from "dataloader";
 
 const SecondarySources = ({
     info,
-    catalogueKey,
+    datasetKey,
     pathToTaxon
 }) => {
 
@@ -20,7 +20,7 @@ const SecondarySources = ({
     }, [info])
 
     useEffect(() => { }, [datasets])
-    const datasetLoader = new DataLoader((ids) => getDatasetsBatch(ids, catalogueKey));
+    const datasetLoader = new DataLoader((ids) => getDatasetsBatch(ids, datasetKey));
 
     const getDatasets = async () => {
         let data = {}

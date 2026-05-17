@@ -158,9 +158,9 @@ class NameSearchPage extends React.Component {
 
   componentDidMount = async () => {
     this.parseParamsAndGetData();
-    const { catalogueKey, citation } = this.props;
+    const { datasetKey, citation } = this.props;
     try {
-      const { data: dataset } = await getDataset(catalogueKey);
+      const { data: dataset } = await getDataset(datasetKey);
       this.setState({ dataset });
     } catch (err) {}
     try {
@@ -232,9 +232,9 @@ class NameSearchPage extends React.Component {
   getData = () => {
     const { params } = this.state;
     this.setState({ loading: true });
-    const { catalogueKey } = this.props;
+    const { datasetKey } = this.props;
 
-    const url = `${config.dataApi}dataset/${catalogueKey}/nameusage/search`;
+    const url = `${config.dataApi}dataset/${datasetKey}/nameusage/search`;
     const params_ = _.get(params, "status")
       ? params
       : { ...params, status: "_NOT_NULL" };
@@ -317,7 +317,7 @@ class NameSearchPage extends React.Component {
       dataset,
       taxGroups,
     } = this.state;
-    const { pathToTaxon, catalogueKey, defaultTaxonKey, citation } = this.props;
+    const { pathToTaxon, datasetKey, defaultTaxonKey, citation } = this.props;
     const facetRanks = _.get(facets, "rank")
       ? facets.rank.map((r) => ({
           value: r.value,
@@ -418,7 +418,7 @@ class NameSearchPage extends React.Component {
             />
 
             <NameAutocomplete
-              datasetKey={catalogueKey}
+              datasetKey={datasetKey}
               minRank="GENUS"
               defaultTaxonKey={
                 _.get(params, "TAXON_ID") || defaultTaxonKey || null
@@ -439,7 +439,7 @@ class NameSearchPage extends React.Component {
                 dataset.origin === "xrelease") && (
                 <div style={{ marginTop: "8px", marginBottom: "8px" }}>
                   <DatasetAutocomplete
-                    contributesTo={Number(catalogueKey)}
+                    contributesTo={Number(datasetKey)}
                     onSelectDataset={(value) => {
                       this.updateSearch({ SECTOR_DATASET_KEY: value.key });
                     }}
@@ -623,7 +623,7 @@ class NameSearchPage extends React.Component {
             expandedRowRender={(record) => (
               <RowDetail
                 {...record}
-                catalogueKey={catalogueKey}
+                datasetKey={datasetKey}
                 pathToTaxon={pathToTaxon}
               />
             )}

@@ -26,7 +26,7 @@ class ColTreeNode extends React.Component {
     const {
       taxon,
       taxon: { sector, sourceDatasetKeys, publisherDatasetKeys },
-      catalogueKey,
+      datasetKey,
       pathToTaxon,
       pathToDataset,
     } = this.props;
@@ -111,7 +111,7 @@ const hasDatasetSectors =
                               {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{hasDatasetSectors && ", "}
                               {/* <DatasetlogoWithFallback
                                 style={{ maxHeight: "20px", width: "auto" }}
-                                catalogueKey={catalogueKey}
+                                datasetKey={datasetKey}
                                 datasetKey={sector.subjectDatasetKey}
                                 size="SMALL"
                               /> */}
@@ -126,7 +126,7 @@ const hasDatasetSectors =
 
                               pathToDataset={pathToDataset}
                               taxon={taxon}
-                              catalogueKey={catalogueKey}
+                              datasetKey={datasetKey}
                             />
                           </React.Fragment>
                         )}

@@ -22,9 +22,9 @@ class Metrics extends React.Component {
   }
 
   getData = () => {
-    const { dataset, catalogueKey } = this.props;
+    const { dataset, datasetKey } = this.props;
     axios(
-      `${config.dataApi}dataset/${catalogueKey}/source/${dataset.key}/metrics`
+      `${config.dataApi}dataset/${datasetKey}/source/${dataset.key}/metrics`
     ).then((res) => {
       this.setState({ metrics: res.data });
     });

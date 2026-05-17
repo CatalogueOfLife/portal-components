@@ -1,11 +1,11 @@
 import React from "react";
 import config from "../config";
 
-const BibTex = ({ datasetKey, catalogueKey, style = {} }) => {
+const BibTex = ({ datasetKey, sourceDatasetKey, style = {} }) => {
 const defaultStyle = {
     height: "40px"
 }
-const url = catalogueKey ? `${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`
+const url = sourceDatasetKey ? `${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`
 
   return (
     <a href={url} >

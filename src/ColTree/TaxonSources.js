@@ -17,9 +17,9 @@ class TaxonSources extends React.Component {
   }
 
 /*   componentDidMount = () => {
-    const { datasetSectors, catalogueKey } = this.props;
+    const { datasetSectors, datasetKey } = this.props;
     this.datasetLoader = new DataLoader((ids) =>
-      getDatasetsBatch(ids, catalogueKey)
+      getDatasetsBatch(ids, datasetKey)
     );
     if (Object.keys(datasetSectors).length < 4) {
       this.setState({ showInNode: true }, this.getData);
@@ -39,12 +39,12 @@ class TaxonSources extends React.Component {
   }; */
 
   componentDidMount = () => {
-    const { sourceDatasetKeys, publisherDatasetKeys, catalogueKey } = this.props;
+    const { sourceDatasetKeys, publisherDatasetKeys, datasetKey } = this.props;
     this.datasetLoader = new DataLoader((ids) =>
-      getDatasetsBatch(ids, catalogueKey)
+      getDatasetsBatch(ids, datasetKey)
     );
     this.publisherLoader = new DataLoader((ids) =>
-      getPublishersBatch(ids, catalogueKey)
+      getPublishersBatch(ids, datasetKey)
     );
     if (sourceDatasetKeys?.length < 4) {
       this.setState({ showInNode: true }, this.getData);
@@ -84,7 +84,7 @@ class TaxonSources extends React.Component {
 
   render = () => {
     const { data, showInNode, popOverVisible, loading } = this.state;
-    const { taxon, catalogueKey, pathToDataset } = this.props;
+    const { taxon, datasetKey, pathToDataset } = this.props;
 
     return showInNode ? (
       data

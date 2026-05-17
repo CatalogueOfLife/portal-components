@@ -32,7 +32,7 @@ describe('Tree', () => {
   it('renders the tree interface', () => {
     node = mountIn(
       <Tree
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToTaxon={TAXON_PATH}
         pathToDataset={SOURCE_PATH}
         showTreeOptions={true}
@@ -44,7 +44,7 @@ describe('Tree', () => {
   it('loads root tree nodes from the production API', () => {
     node = mountIn(
       <Tree
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToTaxon={TAXON_PATH}
         pathToDataset={SOURCE_PATH}
       />
@@ -63,7 +63,7 @@ describe('Search', () => {
 
   it('renders the search form with Matching and Content controls', () => {
     node = mountIn(
-      <Search catalogueKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
+      <Search datasetKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
     )
     expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
     expect(node.innerHTML).toContain('Matching')
@@ -72,7 +72,7 @@ describe('Search', () => {
 
   it('loads search results from the production API', () => {
     node = mountIn(
-      <Search catalogueKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
+      <Search datasetKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
     )
     return waitMs(6000).then(() => {
       expect(node.querySelector('.ant-table-tbody')).toBeTruthy()
@@ -93,7 +93,7 @@ describe('Taxon', () => {
   it('renders the taxon page container', () => {
     node = mountIn(
       <Taxon
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToTaxon={TAXON_PATH}
         pathToSearch="/data/search"
         pathToTree="/data/tree"
@@ -106,7 +106,7 @@ describe('Taxon', () => {
   it('loads taxon data from the production API', () => {
     node = mountIn(
       <Taxon
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToTaxon={TAXON_PATH}
         pathToSearch="/data/search"
         pathToTree="/data/tree"
@@ -142,7 +142,7 @@ describe('Dataset', () => {
   it('renders the dataset page container', () => {
     node = mountIn(
       <Dataset
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToTree="/data/tree"
         pathToSearch="/data/search"
       />
@@ -153,7 +153,7 @@ describe('Dataset', () => {
   it('loads dataset info from the production API', () => {
     node = mountIn(
       <Dataset
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToTree="/data/tree"
         pathToSearch="/data/search"
       />
@@ -173,7 +173,7 @@ describe('DatasetSearch', () => {
   it('renders the source datasets container', () => {
     node = mountIn(
       <DatasetSearch
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToDataset={SOURCE_PATH}
         pathToSearch="/data/search"
       />
@@ -184,7 +184,7 @@ describe('DatasetSearch', () => {
   it('loads source datasets from the production API', () => {
     node = mountIn(
       <DatasetSearch
-        catalogueKey={CATALOGUE_KEY}
+        datasetKey={CATALOGUE_KEY}
         pathToDataset={SOURCE_PATH}
         pathToSearch="/data/search"
       />
@@ -208,5 +208,28 @@ describe('BibTex', () => {
     expect(link.href).toContain('api.checklistbank.org')
     expect(link.href).toContain(CATALOGUE_KEY)
     expect(link.href).toContain('.bib')
+  })
+
+  it('renders source-within-catalogue url with the new sourceDatasetKey prop', () => {
+    node = mountIn(<BibTex datasetKey={CATALOGUE_KEY} sourceDatasetKey="1010" />)
+    const link = node.querySelector('a')
+    expect(link).toBeTruthy()
+    expect(link.href).toContain(`dataset/${CATALOGUE_KEY}/source/1010.bib`)
+  })
+
+  it('still accepts the deprecated catalogueKey prop, swapping legacy datasetKey to sourceDatasetKey', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    try {
+      // Legacy call: datasetKey is the source, catalogueKey is the catalogue.
+      // The shim must swap so the URL ends up as dataset/{catalogue}/source/{source}.bib.
+      node = mountIn(<BibTex datasetKey="1010" catalogueKey={CATALOGUE_KEY} />)
+      const link = node.querySelector('a')
+      expect(link).toBeTruthy()
+      expect(link.href).toContain(`dataset/${CATALOGUE_KEY}/source/1010.bib`)
+      expect(warn).toHaveBeenCalled()
+      expect(warn.mock.calls[0][0]).toMatch(/catalogueKey.*deprecated/)
+    } finally {
+      warn.mockRestore()
+    }
   })
 })

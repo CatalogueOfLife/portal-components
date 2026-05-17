@@ -36,10 +36,10 @@ class ColTreeWrapper extends React.Component {
   }
 
   componentDidMount = async () => {
-    const { catalogueKey, citation } = this.props;
+    const { datasetKey, citation } = this.props;
     if (citation) {
       try {
-        const { data: dataset } = await getDataset(catalogueKey);
+        const { data: dataset } = await getDataset(datasetKey);
         this.setState({ dataset });
       } catch (err){
 
@@ -49,7 +49,7 @@ class ColTreeWrapper extends React.Component {
 
   render = () => {
     const {
-      catalogueKey,
+      datasetKey,
       pathToTaxon,
       pathToDataset,
       defaultTaxonKey,
@@ -69,7 +69,7 @@ class ColTreeWrapper extends React.Component {
               <Col flex="auto">
                 <NameAutocomplete
                   hideExtinct={hideExtinct}
-                  datasetKey={catalogueKey}
+                  datasetKey={datasetKey}
                   style={{
                     width: "100%",
                     paddingTop: "5px",
@@ -160,7 +160,7 @@ class ColTreeWrapper extends React.Component {
             <ColTree
               insertPlaceholder={insertPlaceholder}
               hideExtinct={hideExtinct}
-              catalogueKey={catalogueKey}
+              datasetKey={datasetKey}
               pathToTaxon={pathToTaxon}
               pathToDataset={pathToDataset}
               defaultTaxonKey={defaultTaxonKey}

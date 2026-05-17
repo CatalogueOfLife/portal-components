@@ -7,18 +7,18 @@ const reflect = (p) =>
     (e) => null
   );
 
-export const getDatasetsBatch = (ids, catalogueKey) => {
+export const getDatasetsBatch = (ids, datasetKey) => {
   return Promise.all(
     ids.map((i) =>
-      reflect(axios(`${config.dataApi}dataset/${catalogueKey}/source/${i}`))
+      reflect(axios(`${config.dataApi}dataset/${datasetKey}/source/${i}`))
     )
   );
 };
 
-export const getPublishersBatch = (ids, catalogueKey) => {
+export const getPublishersBatch = (ids, datasetKey) => {
   return Promise.all(
     ids.map((i) =>
-      reflect(axios(`${config.dataApi}dataset/${catalogueKey}/sector/publisher/${i}`))
+      reflect(axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher/${i}`))
     )
   );
 };

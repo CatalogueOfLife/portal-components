@@ -58,14 +58,14 @@ class ColTree extends React.Component {
   }
 
   componentDidMount = () => {
-    const { catalogueKey } = this.props;
+    const { datasetKey } = this.props;
     this.loadRoot();
     this.datasetLoader = new DataLoader((ids) =>
-      getDatasetsBatch(ids, catalogueKey)
+      getDatasetsBatch(ids, datasetKey)
     );
 
     this.sectorLoader = new DataLoader((ids) =>
-      getSectorsBatch(ids, catalogueKey)
+      getSectorsBatch(ids, datasetKey)
     );
     this.getRank()
     const { treeRef } = this.props;
@@ -106,7 +106,7 @@ class ColTree extends React.Component {
   loadRoot = async () => {
     const {
       showSourceTaxon,
-      catalogueKey,
+      datasetKey,
       pathToTaxon,
       pathToDataset,
       hideExtinct,
@@ -124,7 +124,7 @@ class ColTree extends React.Component {
     return axios(
       `${
         config.dataApi
-      }dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
+      }dataset/${datasetKey}/tree?projectKey=${datasetKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
         this.state.treeData.length
       }${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
     )
@@ -136,7 +136,7 @@ class ColTree extends React.Component {
           let dataRef = {
             taxon: tx,
             key: tx.id,
-            datasetKey: catalogueKey,
+            datasetKey,
             childCount: tx.childCount,
             isLeaf: tx.childCount === 0,
             childOffset: 0,
@@ -146,7 +146,7 @@ class ColTree extends React.Component {
               taxon={tx}
               pathToTaxon={pathToTaxon}
               pathToDataset={pathToDataset}
-              catalogueKey={catalogueKey}
+              datasetKey={datasetKey}
               showSourceTaxon={showSourceTaxon}
               reloadChildren={() => this.fetchChildPage(dataRef, true)}
               rank={this.state.rank}
@@ -188,7 +188,7 @@ class ColTree extends React.Component {
   expandToTaxon = async (defaultExpandKey) => {
     const {
       showSourceTaxon,
-      catalogueKey,
+      datasetKey,
       pathToTaxon,
       pathToDataset,
       hideExtinct,
@@ -199,7 +199,7 @@ class ColTree extends React.Component {
     const { data } = await axios(
       `${
         config.dataApi
-      }dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true${type ? "&type="+type :""}${
+      }dataset/${datasetKey}/tree/${defaultExpandKey}?projectKey=${datasetKey}&insertPlaceholder=true${type ? "&type="+type :""}${
         hideExtinct ? `&extinct=false` : ""
       }`
     ).then((res) =>
@@ -222,7 +222,7 @@ class ColTree extends React.Component {
     let root = {
       taxon: tx,
       key: tx.id,
-      datasetKey: catalogueKey,
+      datasetKey,
       childCount: tx.childCount,
       isLeaf: tx.childCount === 0,
       childOffset: 0,
@@ -232,7 +232,7 @@ class ColTree extends React.Component {
         taxon={tx}
         pathToTaxon={pathToTaxon}
         pathToDataset={pathToDataset}
-        catalogueKey={catalogueKey}
+        datasetKey={datasetKey}
         showSourceTaxon={showSourceTaxon}
         rank={this.state.rank}
         reloadChildren={() => this.fetchChildPage(root, true)}
@@ -246,7 +246,7 @@ class ColTree extends React.Component {
       const node = {
         taxon: tx,
         key: tx.id,
-        datasetKey: catalogueKey,
+        datasetKey,
         childCount: tx.childCount,
         isLeaf: tx.childCount === 0,
         childOffset: 0,
@@ -257,7 +257,7 @@ class ColTree extends React.Component {
           taxon={tx}
           pathToTaxon={pathToTaxon}
           pathToDataset={pathToDataset}
-          catalogueKey={catalogueKey}
+          datasetKey={datasetKey}
           showSourceTaxon={showSourceTaxon}
           rank={this.state.rank}
           reloadChildren={() => this.fetchChildPage(node, true)}
@@ -282,7 +282,7 @@ const { treeData } = this.state;
   fetchChildPage = async (dataRef, reloadAll, dontUpdateState) => {
     const {
       showSourceTaxon,
-      catalogueKey,
+      datasetKey,
       pathToTaxon,
       pathToDataset,
       hideExtinct,
@@ -294,9 +294,9 @@ const { treeData } = this.state;
     const limit = CHILD_PAGE_SIZE;
     const offset = _.get(dataRef, "childOffset");
     const res = await axios(
-      `${config.dataApi}dataset/${catalogueKey}/tree/${
+      `${config.dataApi}dataset/${datasetKey}/tree/${
         dataRef.taxon.id //taxonKey
-      }/children?limit=${limit}&offset=${offset}&catalogueKey=${catalogueKey}${type ? "&type="+type :""}${
+      }/children?limit=${limit}&offset=${offset}&projectKey=${datasetKey}${type ? "&type="+type :""}${
         hideExtinct ? `&extinct=false` : ""
       }${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
     );
@@ -307,7 +307,7 @@ const { treeData } = this.state;
           let childDataRef = {
             taxon: tx,
             key: tx.id,
-            datasetKey: catalogueKey,
+            datasetKey,
             childCount: tx.childCount,
             isLeaf: tx.childCount === 0,
             childOffset: 0,
@@ -320,7 +320,7 @@ const { treeData } = this.state;
               taxon={tx}
               pathToTaxon={pathToTaxon}
               pathToDataset={pathToDataset}
-              catalogueKey={catalogueKey}
+              datasetKey={datasetKey}
               showSourceTaxon={showSourceTaxon}
               rank={this.state.rank}
               reloadChildren={() => this.fetchChildPage(childDataRef, true)}

@@ -115,7 +115,7 @@ class Demo extends Component {
         {pathname === "/data/tree" && (
           <Tree
             showTreeOptions={true}
-            catalogueKey={datasetKey}
+            datasetKey={datasetKey}
             pathToTaxon="/data/taxon/"
             pathToDataset="/data/source/"
             citation="bottom"
@@ -124,7 +124,7 @@ class Demo extends Component {
         )}
         {pathname.indexOf("/data/taxon/") === 0 && (
           <Taxon
-            catalogueKey={datasetKey}
+            datasetKey={datasetKey}
             pathToTree="/data/tree"
             pathToSearch="/data/search"
             pathToDataset="/data/source/"
@@ -135,14 +135,14 @@ class Demo extends Component {
         )}
         {pathname.indexOf("/data/search") === 0 && (
           <Search
-            catalogueKey={datasetKey}
+            datasetKey={datasetKey}
             pathToTaxon="/data/taxon/"
             citation="bottom"
           />
         )}
         {pathname.indexOf("/data/source") === 0 && (
           <Dataset
-            catalogueKey={datasetKey}
+            datasetKey={datasetKey}
             pathToTree="/data/tree"
             pathToSearch="/data/search"
             pageTitleTemplate="COL | __dataset__"
@@ -150,7 +150,7 @@ class Demo extends Component {
         )}
         {pathname.indexOf("/data/contributors") === 0 && (
           <DatasetSearch
-            catalogueKey={datasetKey}
+            datasetKey={datasetKey}
             pathToDataset="/data/source/"
             pathToSearch="/data/search"
           />
@@ -159,7 +159,7 @@ class Demo extends Component {
           <BibTex datasetKey={datasetKey} />
         )}
         {pathname.indexOf("/data/breakdown") === 0 && (
-          <TaxonBreakdown datasetKey={datasetKey} pathToTaxon="/data/taxon/" taxonId={"V"} />
+          <TaxonBreakdown datasetKey={datasetKey} pathToTaxon="/data/taxon/" taxonId={"ST"} />
         )}
       </div>
     );

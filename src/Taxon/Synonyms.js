@@ -9,7 +9,7 @@ import TypeMaterialPopover from "./TypeMaterialPopover";
 
 
 const SynonymsTable = ({
-  catalogueKey: datasetKey,
+  datasetKey,
   data,
   style,
   nomStatus,
