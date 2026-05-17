@@ -113,6 +113,61 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     return jsxRuntime.exports;
   }
   var jsxRuntimeExports = requireJsxRuntime();
+  const warned$1 = /* @__PURE__ */ new Set();
+  function warnDeprecation(componentName, message) {
+    const key2 = `${componentName}:${message}`;
+    if (warned$1.has(key2)) return;
+    warned$1.add(key2);
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn(`[col-browser] <${componentName}> ${message}`);
+    }
+  }
+  function withDatasetKey(WrappedComponent) {
+    const name = WrappedComponent.displayName || WrappedComponent.name || "Component";
+    const Wrapper = (props) => {
+      const { catalogueKey, datasetKey, ...rest } = props;
+      if (catalogueKey !== void 0 && datasetKey === void 0) {
+        warnDeprecation(
+          name,
+          "the `catalogueKey` prop is deprecated; rename it to `datasetKey`."
+        );
+      }
+      const resolvedDatasetKey = datasetKey !== void 0 ? datasetKey : catalogueKey;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(WrappedComponent, { ...rest, datasetKey: resolvedDatasetKey });
+    };
+    Wrapper.displayName = `withDatasetKey(${name})`;
+    return Wrapper;
+  }
+  function withBibTexLegacyShim(WrappedComponent) {
+    const name = WrappedComponent.displayName || WrappedComponent.name || "BibTex";
+    const Wrapper = (props) => {
+      const { catalogueKey, datasetKey, sourceDatasetKey, ...rest } = props;
+      if (catalogueKey !== void 0) {
+        warnDeprecation(
+          name,
+          "the `catalogueKey` prop is deprecated; pass the catalogue as `datasetKey` and the source as `sourceDatasetKey`."
+        );
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(
+          WrappedComponent,
+          {
+            ...rest,
+            datasetKey: catalogueKey,
+            sourceDatasetKey: sourceDatasetKey !== void 0 ? sourceDatasetKey : datasetKey
+          }
+        );
+      }
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        WrappedComponent,
+        {
+          ...rest,
+          datasetKey,
+          sourceDatasetKey
+        }
+      );
+    };
+    Wrapper.displayName = `withBibTexLegacyShim(${name})`;
+    return Wrapper;
+  }
   function _extends$6() {
     return _extends$6 = Object.assign ? Object.assign.bind() : function(n2) {
       for (var e2 = 1; e2 < arguments.length; e2++) {
@@ -48928,17 +48983,17 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     (v) => v.data,
     (e2) => null
   );
-  const getDatasetsBatch = (ids2, catalogueKey) => {
+  const getDatasetsBatch = (ids2, datasetKey) => {
     return Promise.all(
       ids2.map(
-        (i) => reflect$1(axios(`${config.dataApi}dataset/${catalogueKey}/source/${i}`))
+        (i) => reflect$1(axios(`${config.dataApi}dataset/${datasetKey}/source/${i}`))
       )
     );
   };
-  const getPublishersBatch = (ids2, catalogueKey) => {
+  const getPublishersBatch = (ids2, datasetKey) => {
     return Promise.all(
       ids2.map(
-        (i) => reflect$1(axios(`${config.dataApi}dataset/${catalogueKey}/sector/publisher/${i}`))
+        (i) => reflect$1(axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher/${i}`))
       )
     );
   };
@@ -49335,9 +49390,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     constructor(props) {
       super(props);
       /*   componentDidMount = () => {
-          const { datasetSectors, catalogueKey } = this.props;
+          const { datasetSectors, datasetKey } = this.props;
           this.datasetLoader = new DataLoader((ids) =>
-            getDatasetsBatch(ids, catalogueKey)
+            getDatasetsBatch(ids, datasetKey)
           );
           if (Object.keys(datasetSectors).length < 4) {
             this.setState({ showInNode: true }, this.getData);
@@ -49356,12 +49411,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           });
         }; */
       __publicField(this, "componentDidMount", () => {
-        const { sourceDatasetKeys, publisherDatasetKeys, catalogueKey } = this.props;
+        const { sourceDatasetKeys, publisherDatasetKeys, datasetKey } = this.props;
         this.datasetLoader = new DataLoader(
-          (ids2) => getDatasetsBatch(ids2, catalogueKey)
+          (ids2) => getDatasetsBatch(ids2, datasetKey)
         );
         this.publisherLoader = new DataLoader(
-          (ids2) => getPublishersBatch(ids2, catalogueKey)
+          (ids2) => getPublishersBatch(ids2, datasetKey)
         );
         if ((sourceDatasetKeys == null ? void 0 : sourceDatasetKeys.length) < 4) {
           this.setState({ showInNode: true }, this.getData);
@@ -49391,7 +49446,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       });
       __publicField(this, "render", () => {
         const { data, showInNode, popOverVisible, loading } = this.state;
-        const { taxon, catalogueKey, pathToDataset } = this.props;
+        const { taxon, datasetKey, pathToDataset } = this.props;
         return showInNode ? data.filter((d) => !!d).map((d, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           "a",
           {
@@ -49724,7 +49779,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const {
           taxon,
           taxon: { sector, sourceDatasetKeys, publisherDatasetKeys },
-          catalogueKey,
+          datasetKey,
           pathToTaxon,
           pathToDataset
         } = this.props;
@@ -49806,7 +49861,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                   publisherDatasetKeys,
                   pathToDataset,
                   taxon,
-                  catalogueKey
+                  datasetKey
                 }
               )
             ] })
@@ -49840,9 +49895,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
   }
   const reflect = (p) => p.then((v) => v.data, (e2) => null);
-  const getSectorsBatch = (ids2, catalogueKey) => {
+  const getSectorsBatch = (ids2, datasetKey) => {
     return Promise.all(
-      ids2.map((i) => reflect(axios(`${config.dataApi}dataset/${catalogueKey}/sector/${i}`)))
+      ids2.map((i) => reflect(axios(`${config.dataApi}dataset/${datasetKey}/sector/${i}`)))
     );
   };
   function isAbsolute(pathname) {
@@ -51459,13 +51514,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     constructor(props) {
       super(props);
       __publicField(this, "componentDidMount", () => {
-        const { catalogueKey } = this.props;
+        const { datasetKey } = this.props;
         this.loadRoot();
         this.datasetLoader = new DataLoader(
-          (ids2) => getDatasetsBatch(ids2, catalogueKey)
+          (ids2) => getDatasetsBatch(ids2, datasetKey)
         );
         this.sectorLoader = new DataLoader(
-          (ids2) => getSectorsBatch(ids2, catalogueKey)
+          (ids2) => getSectorsBatch(ids2, datasetKey)
         );
         this.getRank();
         const { treeRef } = this.props;
@@ -51495,7 +51550,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       __publicField(this, "loadRoot", async () => {
         const {
           showSourceTaxon,
-          catalogueKey,
+          datasetKey,
           pathToTaxon,
           pathToDataset,
           hideExtinct,
@@ -51509,7 +51564,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const { defaultTaxonKey } = this.props;
         this.setState({ rootLoading: true, treeData: [] });
         return axios(
-          `${config.dataApi}dataset/${catalogueKey}/tree?catalogueKey=${catalogueKey}${type2 ? "&type=" + type2 : ""}&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
+          `${config.dataApi}dataset/${datasetKey}/tree?projectKey=${datasetKey}${type2 ? "&type=" + type2 : ""}&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
         ).then(this.decorateWithSectorsAndDataset).then((res) => {
           const mainTreeData = res.data.result || [];
           const rootTotal = res.data.total;
@@ -51517,7 +51572,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             let dataRef = {
               taxon: tx,
               key: tx.id,
-              datasetKey: catalogueKey,
+              datasetKey,
               childCount: tx.childCount,
               isLeaf: tx.childCount === 0,
               childOffset: 0
@@ -51528,7 +51583,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 taxon: tx,
                 pathToTaxon,
                 pathToDataset,
-                catalogueKey,
+                datasetKey,
                 showSourceTaxon,
                 reloadChildren: () => this.fetchChildPage(dataRef, true),
                 rank: this.state.rank
@@ -51568,7 +51623,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       __publicField(this, "expandToTaxon", async (defaultExpandKey) => {
         const {
           showSourceTaxon,
-          catalogueKey,
+          datasetKey,
           pathToTaxon,
           pathToDataset,
           hideExtinct,
@@ -51579,7 +51634,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           /* , treeData: [] */
         });
         const { data } = await axios(
-          `${config.dataApi}dataset/${catalogueKey}/tree/${defaultExpandKey}?catalogueKey=${catalogueKey}&insertPlaceholder=true${type2 ? "&type=" + type2 : ""}${hideExtinct ? `&extinct=false` : ""}`
+          `${config.dataApi}dataset/${datasetKey}/tree/${defaultExpandKey}?projectKey=${datasetKey}&insertPlaceholder=true${type2 ? "&type=" + type2 : ""}${hideExtinct ? `&extinct=false` : ""}`
         ).then(
           (res) => this.decorateWithSectorsAndDataset({
             data: { result: res.data }
@@ -51599,7 +51654,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         let root2 = {
           taxon: tx,
           key: tx.id,
-          datasetKey: catalogueKey,
+          datasetKey,
           childCount: tx.childCount,
           isLeaf: tx.childCount === 0,
           childOffset: 0
@@ -51610,7 +51665,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             taxon: tx,
             pathToTaxon,
             pathToDataset,
-            catalogueKey,
+            datasetKey,
             showSourceTaxon,
             rank: this.state.rank,
             reloadChildren: () => this.fetchChildPage(root2, true)
@@ -51623,7 +51678,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           const node = {
             taxon: tx2,
             key: tx2.id,
-            datasetKey: catalogueKey,
+            datasetKey,
             childCount: tx2.childCount,
             isLeaf: tx2.childCount === 0,
             childOffset: 0
@@ -51635,7 +51690,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               taxon: tx2,
               pathToTaxon,
               pathToDataset,
-              catalogueKey,
+              datasetKey,
               showSourceTaxon,
               rank: this.state.rank,
               reloadChildren: () => this.fetchChildPage(node, true)
@@ -51656,7 +51711,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       __publicField(this, "fetchChildPage", async (dataRef, reloadAll, dontUpdateState) => {
         const {
           showSourceTaxon,
-          catalogueKey,
+          datasetKey,
           pathToTaxon,
           pathToDataset,
           hideExtinct,
@@ -51668,14 +51723,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const limit = CHILD_PAGE_SIZE;
         const offset2 = _.get(dataRef, "childOffset");
         const res = await axios(
-          `${config.dataApi}dataset/${catalogueKey}/tree/${dataRef.taxon.id}/children?limit=${limit}&offset=${offset2}&catalogueKey=${catalogueKey}${type2 ? "&type=" + type2 : ""}${hideExtinct ? `&extinct=false` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
+          `${config.dataApi}dataset/${datasetKey}/tree/${dataRef.taxon.id}/children?limit=${limit}&offset=${offset2}&projectKey=${datasetKey}${type2 ? "&type=" + type2 : ""}${hideExtinct ? `&extinct=false` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
         );
         await this.decorateWithSectorsAndDataset(res);
         const data = res.data.result ? res.data.result.map((tx) => {
           let childDataRef = {
             taxon: tx,
             key: tx.id,
-            datasetKey: catalogueKey,
+            datasetKey,
             childCount: tx.childCount,
             isLeaf: tx.childCount === 0,
             childOffset: 0,
@@ -51688,7 +51743,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               taxon: tx,
               pathToTaxon,
               pathToDataset,
-              catalogueKey,
+              datasetKey,
               showSourceTaxon,
               rank: this.state.rank,
               reloadChildren: () => this.fetchChildPage(childDataRef, true)
@@ -53319,10 +53374,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     constructor(props) {
       super(props);
       __publicField(this, "componentDidMount", async () => {
-        const { catalogueKey, citation } = this.props;
+        const { datasetKey, citation } = this.props;
         if (citation) {
           try {
-            const { data: dataset } = await getDataset(catalogueKey);
+            const { data: dataset } = await getDataset(datasetKey);
             this.setState({ dataset });
           } catch (err) {
           }
@@ -53330,7 +53385,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       });
       __publicField(this, "render", () => {
         const {
-          catalogueKey,
+          datasetKey,
           pathToTaxon,
           pathToDataset,
           defaultTaxonKey,
@@ -53349,7 +53404,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 NameSearchAutocomplete,
                 {
                   hideExtinct,
-                  datasetKey: catalogueKey,
+                  datasetKey,
                   style: {
                     width: "100%",
                     paddingTop: "5px",
@@ -53438,7 +53493,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               {
                 insertPlaceholder,
                 hideExtinct,
-                catalogueKey,
+                datasetKey,
                 pathToTaxon,
                 pathToDataset,
                 defaultTaxonKey,
@@ -59161,7 +59216,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
   }
   const SynonymsTable = ({
-    catalogueKey: datasetKey,
+    datasetKey,
     data,
     style: style2,
     nomStatus,
@@ -60424,13 +60479,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       this.state = { error: true, loading: true };
     }
     render() {
-      const { fallBack = null, catalogueKey, datasetKey, style: style2, size = "MEDIUM" } = this.props;
+      const { fallBack = null, datasetKey, sourceDatasetKey, style: style2, size = "MEDIUM" } = this.props;
       const { error, loading } = this.state;
       return loading || !error ? /* @__PURE__ */ jsxRuntimeExports.jsx(
         "img",
         {
           style: style2,
-          src: `${config.dataApi}dataset/${catalogueKey}/logo/source/${datasetKey}?size=${size}`,
+          src: `${config.dataApi}dataset/${datasetKey}/logo/source/${sourceDatasetKey}?size=${size}`,
           onLoad: () => this.setState({ error: false, loading: false }),
           onError: () => this.setState({ error: true, loading: false })
         }
@@ -69871,7 +69926,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   };
   const SecondarySources = ({
     info,
-    catalogueKey,
+    datasetKey,
     pathToTaxon
   }) => {
     var _a, _b;
@@ -69884,7 +69939,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }, [info]);
     React.useEffect(() => {
     }, [datasets]);
-    const datasetLoader = new DataLoader((ids2) => getDatasetsBatch(ids2, catalogueKey));
+    const datasetLoader = new DataLoader((ids2) => getDatasetsBatch(ids2, datasetKey));
     const getDatasets = async () => {
       var _a2;
       let data = {};
@@ -70063,7 +70118,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         this.getNomStatus(taxonKey);
       });
       __publicField(this, "getTaxon", (taxonKey) => {
-        const { catalogueKey: datasetKey, pageTitleTemplate } = this.props;
+        const { datasetKey, pageTitleTemplate } = this.props;
         this.setState({ loading: true });
         axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`).then((res) => {
           let promises = [res];
@@ -70158,20 +70213,20 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         });
       });
       __publicField(this, "getCatalogue", () => {
-        const { catalogueKey } = this.props;
-        axios(`${config.dataApi}dataset/${catalogueKey}`).then((res) => {
+        const { datasetKey } = this.props;
+        axios(`${config.dataApi}dataset/${datasetKey}`).then((res) => {
           this.setState({ catalogue: res.data });
         }).catch((err) => {
         });
       });
       __publicField(this, "datasetLoader", new DataLoader(
-        (ids2) => getDatasetsBatch(ids2, this.props.catalogueKey)
+        (ids2) => getDatasetsBatch(ids2, this.props.datasetKey)
       ));
       __publicField(this, "sectorLoader", new DataLoader(
-        (ids2) => getSectorsBatch(ids2, this.props.catalogueKey)
+        (ids2) => getSectorsBatch(ids2, this.props.datasetKey)
       ));
       __publicField(this, "decorateWithSectorsAndDataset", async (synonyms) => {
-        const { catalogueKey: datasetKey } = this.props;
+        const { datasetKey } = this.props;
         const sourceDatasetsMap = {};
         for (const type2 of ["misapplied", "heterotypic", "homotypic"].filter(
           (t2) => !!synonyms[t2]
@@ -70207,7 +70262,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       });
       __publicField(this, "getInfo", async (taxonKey) => {
         var _a, _b, _c, _d, _e, _f;
-        const { catalogueKey: datasetKey } = this.props;
+        const { datasetKey } = this.props;
         try {
           const res = await axios(
             `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
@@ -70285,7 +70340,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         );
       });
       __publicField(this, "getIncludes", (taxonKey) => {
-        const { catalogueKey: datasetKey } = this.props;
+        const { datasetKey } = this.props;
         axios(
           `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
         ).then((res) => {
@@ -70301,7 +70356,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         });
       });
       __publicField(this, "fetchSynonymAndRedirect", (taxonKey) => {
-        const { catalogueKey: datasetKey, pathToTaxon } = this.props;
+        const { datasetKey, pathToTaxon } = this.props;
         axios(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`).then((res) => {
           window.location.href = `${pathToTaxon}${_.get(
             res,
@@ -70342,7 +70397,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     render() {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C;
       const {
-        catalogueKey,
+        datasetKey,
         pathToTaxon,
         pathToSearch,
         pathToDataset,
@@ -70427,8 +70482,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                     height: "auto",
                     marginRight: "8px"
                   },
-                  catalogueKey,
-                  datasetKey: sourceDataset.key
+                  datasetKey,
+                  sourceDatasetKey: sourceDataset.key
                 }
               ) })
             ] }),
@@ -70443,7 +70498,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "a",
                     {
-                      href: `https://www.checklistbank.org/dataset/${catalogueKey}/taxon/${_.get(
+                      href: `https://www.checklistbank.org/dataset/${datasetKey}/taxon/${_.get(
                         taxon,
                         "id"
                       )}`,
@@ -70461,7 +70516,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                           style: { marginLeft: "5px" },
                           id: `col-download-${_.get(taxon, "id")}`,
                           target: "_blank",
-                          href: `http://checklistbank.org/dataset/${catalogueKey}/download?taxonID=${encodeURIComponent(_.get(
+                          href: `http://checklistbank.org/dataset/${datasetKey}/download?taxonID=${encodeURIComponent(_.get(
                             taxon,
                             "id"
                           ))}`,
@@ -70521,7 +70576,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 referenceIndexMap,
                 style: { marginTop: "-3px" },
                 pathToDataset,
-                datasetKey: catalogueKey
+                datasetKey
               }
             ) }),
             _.get(info, "typeMaterial") && info.typeMaterial[(_m = (_l = info == null ? void 0 : info.usage) == null ? void 0 : _l.name) == null ? void 0 : _m.id] && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Type material", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -70566,7 +70621,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 style: { marginTop: "-3px", marginLeft: "-3px" },
                 data: classification,
                 taxon,
-                catalogueKey,
+                datasetKey,
                 pathToTaxon,
                 pathToTree
               }
@@ -70575,7 +70630,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               TaxonBreakdown$1,
               {
                 taxon,
-                datasetKey: catalogueKey,
+                datasetKey,
                 rank,
                 pathToTaxon,
                 dataset: catalogue
@@ -70597,8 +70652,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 style: { marginTop: "-3px", marginLeft: "-3px" },
                 data: info.vernacularNames,
                 references: _.get(info, "references"),
-                datasetKey: taxon.datasetKey,
-                catalogueKey
+                datasetKey: taxon.datasetKey
               }
             ) }),
             _.get(info, "distributions") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -70607,7 +70661,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 pathToDataset,
                 style: { marginTop: "-3px" },
                 data: info.distributions,
-                datasetKey: catalogueKey
+                datasetKey
               }
             ) }),
             _.get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: _.get(taxon, "environments").join(", ") }),
@@ -70669,7 +70723,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               )
             ] }) }),
             _.get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Link to original resource", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: _.get(taxon, "link"), children: _.get(taxon, "link") }) }),
-            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, catalogueKey, pathToTaxon }) }),
+            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey, pathToTaxon }) }),
             _.get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               ReferencesTable,
               {
@@ -70680,7 +70734,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 style: { marginTop: "-3px" }
               }
             ) }),
-            ((_A = (_z = window == null ? void 0 : window.location) == null ? void 0 : _z.hostname) == null ? void 0 : _A.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_C = (_B = this == null ? void 0 : this.state) == null ? void 0 : _B.taxon) == null ? void 0 : _C.id, datasetKey: this.props.catalogueKey }) })
+            ((_A = (_z = window == null ? void 0 : window.location) == null ? void 0 : _z.hostname) == null ? void 0 : _A.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_C = (_B = this == null ? void 0 : this.state) == null ? void 0 : _B.taxon) == null ? void 0 : _C.id, datasetKey: this.props.datasetKey }) })
           ]
         }
       ) });
@@ -71074,9 +71128,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       super(props);
       __publicField(this, "componentDidMount", async () => {
         this.parseParamsAndGetData();
-        const { catalogueKey, citation } = this.props;
+        const { datasetKey, citation } = this.props;
         try {
-          const { data: dataset } = await getDataset(catalogueKey);
+          const { data: dataset } = await getDataset(datasetKey);
           this.setState({ dataset });
         } catch (err) {
         }
@@ -71142,8 +71196,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       __publicField(this, "getData", () => {
         const { params } = this.state;
         this.setState({ loading: true });
-        const { catalogueKey } = this.props;
-        const url = `${config.dataApi}dataset/${catalogueKey}/nameusage/search`;
+        const { datasetKey } = this.props;
+        const url = `${config.dataApi}dataset/${datasetKey}/nameusage/search`;
         const params_ = _.get(params, "status") ? params : { ...params, status: "_NOT_NULL" };
         axios(`${url}?${qs.stringify(params_)}`).then((res) => {
           const pagination = { ...this.state.pagination };
@@ -71233,7 +71287,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         dataset,
         taxGroups
       } = this.state;
-      const { pathToTaxon, catalogueKey, defaultTaxonKey, citation } = this.props;
+      const { pathToTaxon, datasetKey, defaultTaxonKey, citation } = this.props;
       const facetRanks = _.get(facets, "rank") ? facets.rank.map((r2) => ({
         value: r2.value,
         label: `${_.startCase(r2.value)} (${r2.count.toLocaleString("en-GB")})`
@@ -71314,7 +71368,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   NameSearchAutocomplete,
                   {
-                    datasetKey: catalogueKey,
+                    datasetKey,
                     minRank: "GENUS",
                     defaultTaxonKey: _.get(params, "TAXON_ID") || defaultTaxonKey || null,
                     onSelectName: (value) => {
@@ -71331,7 +71385,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 dataset && dataset.origin === "xrelease" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "8px", marginBottom: "8px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                   DatasetAutocomplete,
                   {
-                    contributesTo: Number(catalogueKey),
+                    contributesTo: Number(datasetKey),
                     onSelectDataset: (value) => {
                       this.updateSearch({ SECTOR_DATASET_KEY: value.key });
                     },
@@ -71525,7 +71579,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                   RowDetail,
                   {
                     ...record,
-                    catalogueKey,
+                    datasetKey,
                     pathToTaxon
                   }
                 )
@@ -71538,11 +71592,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
   }
   const NameSearch = withRouter(NameSearchPage);
-  const search = ({ catalogueKey, pathToTaxon, defaultTaxonKey, citation, auth }) => {
+  const search = ({ datasetKey, pathToTaxon, defaultTaxonKey, citation, auth }) => {
     if (auth) {
       axios.defaults.headers.common["Authorization"] = `Basic ${btoa$1(auth)}`;
     }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Router, { history, children: /* @__PURE__ */ jsxRuntimeExports.jsx(NameSearch, { catalogueKey, pathToTaxon, defaultTaxonKey, citation }) });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Router, { history, children: /* @__PURE__ */ jsxRuntimeExports.jsx(NameSearch, { datasetKey, pathToTaxon, defaultTaxonKey, citation }) });
   };
   const getLivingTaxa = (metrics, rank) => (_.get(metrics, `taxaByRankCount.${rank}`) || 0) - (_.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
   const getExtinctTaxa = (metrics, rank) => _.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
@@ -71561,9 +71615,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     constructor(props) {
       super(props);
       __publicField(this, "getData", () => {
-        const { dataset, catalogueKey } = this.props;
+        const { dataset, datasetKey } = this.props;
         axios(
-          `${config.dataApi}dataset/${catalogueKey}/source/${dataset.key}/metrics`
+          `${config.dataApi}dataset/${datasetKey}/source/${dataset.key}/metrics`
         ).then((res) => {
           this.setState({ metrics: res.data });
         });
@@ -71589,17 +71643,17 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     constructor(props) {
       super(props);
       __publicField(this, "getData", () => {
-        const { dataset, catalogueKey } = this.props;
+        const { dataset, datasetKey } = this.props;
         const taxonMap = {};
         axios(
-          `${config.dataApi}dataset/${catalogueKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
+          `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
         ).then((res) => {
           return Promise.allSettled(
             res.data.result.filter((t2) => !!(t2 == null ? void 0 : t2.target)).map(
               (t2) => {
                 var _a, _b, _c, _d;
                 return axios(
-                  `${config.dataApi}dataset/${catalogueKey}/nameusage/search?TAXON_ID=${(_a = t2 == null ? void 0 : t2.target) == null ? void 0 : _a.id}${((_b = t2 == null ? void 0 : t2.subject) == null ? void 0 : _b.rank) ? "&rank=" + ((_c = t2 == null ? void 0 : t2.subject) == null ? void 0 : _c.rank) : ""}&q=${(_d = t2 == null ? void 0 : t2.subject) == null ? void 0 : _d.name}`
+                  `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${(_a = t2 == null ? void 0 : t2.target) == null ? void 0 : _a.id}${((_b = t2 == null ? void 0 : t2.subject) == null ? void 0 : _b.rank) ? "&rank=" + ((_c = t2 == null ? void 0 : t2.subject) == null ? void 0 : _c.rank) : ""}&q=${(_d = t2 == null ? void 0 : t2.subject) == null ? void 0 : _d.name}`
                 ).then((usages) => {
                   const taxon = _.get(usages, "data.result[0]");
                   if (taxon) {
@@ -71722,11 +71776,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       (agent.city || agent.state || country) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: [agent.city, agent.state, country].filter((a) => !!a).join(", ") })
     ] }) : null;
   };
-  const BibTex$1 = ({ datasetKey, catalogueKey, style: style2 = {} }) => {
+  const BibTex$1 = ({ datasetKey, sourceDatasetKey, style: style2 = {} }) => {
     const defaultStyle = {
       height: "40px"
     };
-    const url = catalogueKey ? `${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`;
+    const url = sourceDatasetKey ? `${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`;
     return /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: url, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "https://www.checklistbank.org/images/bibtex_logo.png", style: { ...defaultStyle, ...style2 } }) });
   };
   var marked$2 = { exports: {} };
@@ -73734,11 +73788,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         });
       });
       __publicField(this, "getData", () => {
-        const { catalogueKey, pageTitleTemplate } = this.props;
+        const { datasetKey, pageTitleTemplate } = this.props;
         const { location: path2 } = history;
         const pathParts = path2.pathname.split("/");
-        const datasetKey = pathParts[pathParts.length - 1];
-        axios(`${config.dataApi}dataset/${catalogueKey}/source/${datasetKey}`).then((dataset) => {
+        const sourceDatasetKey = pathParts[pathParts.length - 1];
+        axios(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`).then((dataset) => {
           if (pageTitleTemplate && _.get(dataset, "data.title")) {
             document.title = pageTitleTemplate.replace(
               "__dataset__",
@@ -73766,7 +73820,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       };
     }
     render() {
-      const { pathToTree, catalogueKey } = this.props;
+      const { pathToTree, datasetKey } = this.props;
       const { data, countryAlpha2, datasetError } = this.state;
       return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -73802,8 +73856,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                     BibTex$1,
                     {
                       style: { marginLeft: "8px", height: "32px" },
-                      catalogueKey: catalogueKey !== data.key ? catalogueKey : null,
-                      datasetKey: data.key
+                      datasetKey,
+                      sourceDatasetKey: datasetKey !== data.key ? data.key : void 0
                     }
                   )
                 ] })
@@ -73817,8 +73871,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                     height: "auto",
                     marginRight: "8px"
                   },
-                  catalogueKey,
-                  datasetKey: data.key
+                  datasetKey,
+                  sourceDatasetKey: data.key
                 }
               ) })
             ] }),
@@ -73902,14 +73956,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 TaxonomicCoverage,
                 {
                   dataset: data,
-                  catalogueKey,
+                  datasetKey,
                   pathToTree
                 }
               ) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Metrics,
                 {
-                  catalogueKey,
+                  datasetKey,
                   dataset: data,
                   pathToSearch: this.props.pathToSearch
                 }
@@ -73990,7 +74044,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }
   const getLivingSpecies = (record, rank) => _.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
   const getSearchParam = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.key}` : `SECTOR_PUBLISHER_KEY=${dataset.id}`;
-  const getColumns = (pathToDataset, catalogueKey, auth, hasPublishers, pathToSearch) => [
+  const getColumns = (pathToDataset, datasetKey, auth, hasPublishers, pathToSearch) => [
     {
       title: "Title",
       dataIndex: ["alias"],
@@ -74006,7 +74060,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: `https://www.checklistbank.org/dataset/${catalogueKey}/publisher/${record.id}`,
+                href: `https://www.checklistbank.org/dataset/${datasetKey}/publisher/${record.id}`,
                 target: "_blank",
                 rel: "noopener noreferrer",
                 dangerouslySetInnerHTML: { __html: text2 }
@@ -74054,7 +74108,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           render: (text, record) => (
             <DatasetlogoWithFallback
               auth={auth}
-              catalogueKey={catalogueKey}
+              datasetKey={datasetKey}
               datasetKey={record.key}
               style={{ maxHeight: "32px" }}
               size="SMALL"
@@ -74148,14 +74202,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       /* 
         getDataOLD = () => {
           this.setState({ loading: true });
-          const { catalogueKey } = this.props;
+          const { datasetKey } = this.props;
          
-          axios(`${config.dataApi}dataset/${catalogueKey}/source`)
+          axios(`${config.dataApi}dataset/${datasetKey}/source`)
           .then((res) => {
                 return Promise.all(
                   res.data.map((r) => 
                       axios(
-                          `${config.dataApi}dataset/${catalogueKey}/source/${r.key}/metrics`
+                          `${config.dataApi}dataset/${datasetKey}/source/${r.key}/metrics`
                         ).then((res) => ({...r, metrics: res.data}))
                     
                   )
@@ -74176,7 +74230,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }; */
       __publicField(this, "getData", () => {
         this.setState({ loading: true });
-        const { catalogueKey: datasetKey } = this.props;
+        const { datasetKey } = this.props;
         Promise.all([
           axios(
             /* `${config.dataApi}dataset?limit=1000&contributesTo=${datasetKey}&sortBy=alias` */
@@ -74265,7 +74319,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
     render() {
       const { data, loading, rank, hasPublishers, error } = this.state;
-      const { pathToDataset, pathToSearch, catalogueKey } = this.props;
+      const { pathToDataset, pathToSearch, datasetKey } = this.props;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
@@ -74319,7 +74373,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 size: "small",
                 columns: getColumns(
                   pathToDataset,
-                  catalogueKey,
+                  datasetKey,
                   this.props.auth,
                   hasPublishers,
                   pathToSearch
@@ -74346,8 +74400,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                       DatasetlogoWithFallback,
                       {
                         auth: this.props.auth,
-                        catalogueKey,
-                        datasetKey: dataset.key,
+                        datasetKey,
+                        sourceDatasetKey: dataset.key,
                         style: { maxHeight: "64px" },
                         size: "MEDIUM"
                       }
@@ -74423,12 +74477,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }
     ) : /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { justify: "center", style: { padding: "24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "large" }) }) });
   };
-  const Tree = ColTreeWrapper;
-  const Taxon = TaxonPage;
-  const Search = search;
-  const Dataset = DatasetPage;
-  const DatasetSearch = DatasetSearchPage;
-  const BibTex = BibTex$1;
+  const Tree = withDatasetKey(ColTreeWrapper);
+  const Taxon = withDatasetKey(TaxonPage);
+  const Search = withDatasetKey(search);
+  const Dataset = withDatasetKey(DatasetPage);
+  const DatasetSearch = withDatasetKey(DatasetSearchPage);
+  const BibTex = withBibTexLegacyShim(BibTex$1);
   const TaxonBreakdown = BreakDownWrapper;
   const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
