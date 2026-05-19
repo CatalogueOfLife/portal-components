@@ -1,0 +1,7 @@
+exclude:
+  - docs
+  - node_modules
+  - src
+  - tests
+  - demo
+  - CLAUDE.md
