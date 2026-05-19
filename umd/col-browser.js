@@ -1,6 +1,6 @@
 (function(global2, factory) {
-  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("react")) : typeof define === "function" && define.amd ? define(["react"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.ColBrowser = factory(global2.React));
-})(this, (function(React) {
+  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("react"), require("leaflet")) : typeof define === "function" && define.amd ? define(["react", "leaflet"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.ColBrowser = factory(global2.React, global2.L));
+})(this, (function(React, L) {
   "use strict";var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -547,7 +547,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           else break a;
         }
       }
-      function L(a) {
+      function L2(a) {
         a = a[0];
         return void 0 === a ? null : a;
       }
@@ -574,19 +574,19 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }
       var N = [], O = [], P = 1, Q = null, R = 3, S = false, T = false, U = false;
       function V(a) {
-        for (var b = L(O); null !== b; ) {
+        for (var b = L2(O); null !== b; ) {
           if (null === b.callback) M(O);
           else if (b.startTime <= a) M(O), b.sortIndex = b.expirationTime, J(N, b);
           else break;
-          b = L(O);
+          b = L2(O);
         }
       }
       function W(a) {
         U = false;
         V(a);
-        if (!T) if (null !== L(N)) T = true, f(X);
+        if (!T) if (null !== L2(N)) T = true, f(X);
         else {
-          var b = L(O);
+          var b = L2(O);
           null !== b && g(W, b.startTime - a);
         }
       }
@@ -597,21 +597,21 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         var c = R;
         try {
           V(b);
-          for (Q = L(N); null !== Q && (!(Q.expirationTime > b) || a && !k()); ) {
+          for (Q = L2(N); null !== Q && (!(Q.expirationTime > b) || a && !k()); ) {
             var d = Q.callback;
             if (null !== d) {
               Q.callback = null;
               R = Q.priorityLevel;
               var e2 = d(Q.expirationTime <= b);
               b = exports$1.unstable_now();
-              "function" === typeof e2 ? Q.callback = e2 : Q === L(N) && M(N);
+              "function" === typeof e2 ? Q.callback = e2 : Q === L2(N) && M(N);
               V(b);
             } else M(N);
-            Q = L(N);
+            Q = L2(N);
           }
           if (null !== Q) var m = true;
           else {
-            var n2 = L(O);
+            var n2 = L2(O);
             null !== n2 && g(W, n2.startTime - b);
             m = false;
           }
@@ -651,7 +651,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return R;
       };
       exports$1.unstable_getFirstCallbackNode = function() {
-        return L(N);
+        return L2(N);
       };
       exports$1.unstable_next = function(a) {
         switch (R) {
@@ -702,13 +702,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         } else c = Y(a), e2 = d;
         c = e2 + c;
         a = { id: P++, callback: b, priorityLevel: a, startTime: e2, expirationTime: c, sortIndex: -1 };
-        e2 > d ? (a.sortIndex = e2, J(O, a), null === L(N) && a === L(O) && (U ? h() : U = true, g(W, e2 - d))) : (a.sortIndex = c, J(N, a), T || S || (T = true, f(X)));
+        e2 > d ? (a.sortIndex = e2, J(O, a), null === L2(N) && a === L2(O) && (U ? h() : U = true, g(W, e2 - d))) : (a.sortIndex = c, J(N, a), T || S || (T = true, f(X)));
         return a;
       };
       exports$1.unstable_shouldYield = function() {
         var a = exports$1.unstable_now();
         V(a);
-        var b = L(N);
+        var b = L2(N);
         return b !== Q && null !== Q && null !== b && null !== b.callback && b.startTime <= a && b.expirationTime < Q.expirationTime || k();
       };
       exports$1.unstable_wrapCallback = function(a) {
@@ -2591,7 +2591,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       d && (a = a.stateNode, a.__reactInternalMemoizedUnmaskedChildContext = b, a.__reactInternalMemoizedMaskedChildContext = e2);
       return e2;
     }
-    function L(a) {
+    function L2(a) {
       a = a.childContextTypes;
       return null !== a && void 0 !== a;
     }
@@ -2908,7 +2908,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     function Lg(a, b, c) {
       var d = false, e2 = Af;
       var f = b.contextType;
-      "object" === typeof f && null !== f ? f = sg(f) : (e2 = L(b) ? Bf : J.current, d = b.contextTypes, f = (d = null !== d && void 0 !== d) ? Cf(a, e2) : Af);
+      "object" === typeof f && null !== f ? f = sg(f) : (e2 = L2(b) ? Bf : J.current, d = b.contextTypes, f = (d = null !== d && void 0 !== d) ? Cf(a, e2) : Af);
       b = new b(c, f);
       a.memoizedState = null !== b.state && void 0 !== b.state ? b.state : null;
       b.updater = Jg;
@@ -2930,7 +2930,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       e2.refs = Eg;
       ug(a);
       var f = b.contextType;
-      "object" === typeof f && null !== f ? e2.context = sg(f) : (f = L(b) ? Bf : J.current, e2.context = Cf(a, f));
+      "object" === typeof f && null !== f ? e2.context = sg(f) : (f = L2(b) ? Bf : J.current, e2.context = Cf(a, f));
       zg(a, c, e2, d);
       e2.state = a.memoizedState;
       f = b.getDerivedStateFromProps;
@@ -3697,7 +3697,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       if (null === a && null !== c || null !== a && a.ref !== c) b.effectTag |= 128;
     }
     function di(a, b, c, d, e2) {
-      var f = L(c) ? Bf : J.current;
+      var f = L2(c) ? Bf : J.current;
       f = Cf(b, f);
       qg(b, e2);
       c = oh(a, b, c, d, f, e2);
@@ -3707,7 +3707,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       return b.child;
     }
     function fi(a, b, c, d, e2) {
-      if (L(c)) {
+      if (L2(c)) {
         var f = true;
         Gf(b);
       } else f = false;
@@ -3717,7 +3717,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         var g = b.stateNode, h = b.memoizedProps;
         g.props = h;
         var k = g.context, l = c.contextType;
-        "object" === typeof l && null !== l ? l = sg(l) : (l = L(c) ? Bf : J.current, l = Cf(b, l));
+        "object" === typeof l && null !== l ? l = sg(l) : (l = L2(c) ? Bf : J.current, l = Cf(b, l));
         var m = c.getDerivedStateFromProps, p = "function" === typeof m || "function" === typeof g.getSnapshotBeforeUpdate;
         p || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== d || k !== l) && Mg(b, g, d, l);
         tg = false;
@@ -3726,7 +3726,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         zg(b, d, g, e2);
         k = b.memoizedState;
         h !== d || x !== k || K.current || tg ? ("function" === typeof m && (Fg(b, c, m, d), k = b.memoizedState), (h = tg || Kg(b, c, h, d, x, k, l)) ? (p || "function" !== typeof g.UNSAFE_componentWillMount && "function" !== typeof g.componentWillMount || ("function" === typeof g.componentWillMount && g.componentWillMount(), "function" === typeof g.UNSAFE_componentWillMount && g.UNSAFE_componentWillMount()), "function" === typeof g.componentDidMount && (b.effectTag |= 4)) : ("function" === typeof g.componentDidMount && (b.effectTag |= 4), b.memoizedProps = d, b.memoizedState = k), g.props = d, g.state = k, g.context = l, d = h) : ("function" === typeof g.componentDidMount && (b.effectTag |= 4), d = false);
-      } else g = b.stateNode, vg(a, b), h = b.memoizedProps, g.props = b.type === b.elementType ? h : ig(b.type, h), k = g.context, l = c.contextType, "object" === typeof l && null !== l ? l = sg(l) : (l = L(c) ? Bf : J.current, l = Cf(b, l)), m = c.getDerivedStateFromProps, (p = "function" === typeof m || "function" === typeof g.getSnapshotBeforeUpdate) || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== d || k !== l) && Mg(b, g, d, l), tg = false, k = b.memoizedState, g.state = k, zg(b, d, g, e2), x = b.memoizedState, h !== d || k !== x || K.current || tg ? ("function" === typeof m && (Fg(b, c, m, d), x = b.memoizedState), (m = tg || Kg(b, c, h, d, k, x, l)) ? (p || "function" !== typeof g.UNSAFE_componentWillUpdate && "function" !== typeof g.componentWillUpdate || ("function" === typeof g.componentWillUpdate && g.componentWillUpdate(
+      } else g = b.stateNode, vg(a, b), h = b.memoizedProps, g.props = b.type === b.elementType ? h : ig(b.type, h), k = g.context, l = c.contextType, "object" === typeof l && null !== l ? l = sg(l) : (l = L2(c) ? Bf : J.current, l = Cf(b, l)), m = c.getDerivedStateFromProps, (p = "function" === typeof m || "function" === typeof g.getSnapshotBeforeUpdate) || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== d || k !== l) && Mg(b, g, d, l), tg = false, k = b.memoizedState, g.state = k, zg(b, d, g, e2), x = b.memoizedState, h !== d || k !== x || K.current || tg ? ("function" === typeof m && (Fg(b, c, m, d), x = b.memoizedState), (m = tg || Kg(b, c, h, d, k, x, l)) ? (p || "function" !== typeof g.UNSAFE_componentWillUpdate && "function" !== typeof g.componentWillUpdate || ("function" === typeof g.componentWillUpdate && g.componentWillUpdate(
         d,
         x,
         l
@@ -3998,7 +3998,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         case 14:
           return null;
         case 1:
-          return L(b.type) && Df(), null;
+          return L2(b.type) && Df(), null;
         case 3:
           return eh(), H(K), H(J), c = b.stateNode, c.pendingContext && (c.context = c.pendingContext, c.pendingContext = null), null !== a && null !== a.child || !Wh(b) || (b.effectTag |= 4), oi(b), null;
         case 5:
@@ -4211,7 +4211,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         case 10:
           return og(b), null;
         case 17:
-          return L(b.type) && Df(), null;
+          return L2(b.type) && Df(), null;
         case 19:
           H(M);
           d = b.memoizedState;
@@ -4252,7 +4252,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     function zi(a) {
       switch (a.tag) {
         case 1:
-          L(a.type) && Df();
+          L2(a.type) && Df();
           var b = a.effectTag;
           return b & 4096 ? (a.effectTag = b & -4097 | 64, a) : null;
         case 3:
@@ -5478,7 +5478,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 if (b.mode & 4 && 1 !== c && e2.hidden) return b.expirationTime = b.childExpirationTime = 1, null;
                 break;
               case 1:
-                L(b.type) && Gf(b);
+                L2(b.type) && Gf(b);
                 break;
               case 4:
                 dh(b, b.stateNode.containerInfo);
@@ -5536,7 +5536,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             b.tag = 1;
             b.memoizedState = null;
             b.updateQueue = null;
-            if (L(d)) {
+            if (L2(d)) {
               var f = true;
               Gf(b);
             } else f = false;
@@ -5680,7 +5680,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         case 15:
           return ci(a, b, b.type, b.pendingProps, d, c);
         case 17:
-          return d = b.type, e2 = b.pendingProps, e2 = b.elementType === d ? e2 : ig(d, e2), null !== a && (a.alternate = null, b.alternate = null, b.effectTag |= 2), b.tag = 1, L(d) ? (a = true, Gf(b)) : a = false, qg(b, c), Lg(b, d, e2), Ng(b, d, e2, c), gi(
+          return d = b.type, e2 = b.pendingProps, e2 = b.elementType === d ? e2 : ig(d, e2), null !== a && (a.alternate = null, b.alternate = null, b.effectTag |= 2), b.tag = 1, L2(d) ? (a = true, Gf(b)) : a = false, qg(b, c), Lg(b, d, e2), Ng(b, d, e2, c), gi(
             null,
             b,
             d,
@@ -5883,7 +5883,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 h = h.stateNode.context;
                 break b;
               case 1:
-                if (L(h.type)) {
+                if (L2(h.type)) {
                   h = h.stateNode.__reactInternalMemoizedMergedChildContext;
                   break b;
                 }
@@ -5894,7 +5894,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }
         if (1 === c.tag) {
           var k = c.type;
-          if (L(k)) {
+          if (L2(k)) {
             c = Ff(c, k, h);
             break a;
           }
@@ -31949,12 +31949,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       null != p && p === document.body && n(p) && !n(document.documentElement) || null != p && n(p, a) && s.push(p);
     }
     for (var m = o.visualViewport ? o.visualViewport.width : innerWidth, g = o.visualViewport ? o.visualViewport.height : innerHeight, w = window.scrollX || pageXOffset, v = window.scrollY || pageYOffset, W = e2.getBoundingClientRect(), b = W.height, H = W.width, y = W.top, E = W.right, M = W.bottom, V = W.left, x = "start" === d || "nearest" === d ? y : "end" === d ? M : y + b / 2, I = "center" === u ? V + H / 2 : "end" === u ? E : V, C = [], T = 0; T < s.length; T++) {
-      var k = s[T], B = k.getBoundingClientRect(), D = B.height, O = B.width, R = B.top, X = B.right, Y = B.bottom, L = B.left;
-      if ("if-needed" === l && y >= 0 && V >= 0 && M <= g && E <= m && y >= R && M <= Y && V >= L && E <= X) return C;
+      var k = s[T], B = k.getBoundingClientRect(), D = B.height, O = B.width, R = B.top, X = B.right, Y = B.bottom, L2 = B.left;
+      if ("if-needed" === l && y >= 0 && V >= 0 && M <= g && E <= m && y >= R && M <= Y && V >= L2 && E <= X) return C;
       var S = getComputedStyle(k), j = parseInt(S.borderLeftWidth, 10), q = parseInt(S.borderTopWidth, 10), z = parseInt(S.borderRightWidth, 10), A = parseInt(S.borderBottomWidth, 10), F = 0, G = 0, J = "offsetWidth" in k ? k.offsetWidth - k.clientWidth - j - z : 0, K = "offsetHeight" in k ? k.offsetHeight - k.clientHeight - q - A : 0;
       if (f === k) F = "start" === d ? x : "end" === d ? x - g : "nearest" === d ? r(v, v + g, g, q, A, v + x, v + x + b, b) : x - g / 2, G = "start" === u ? I : "center" === u ? I - m / 2 : "end" === u ? I - m : r(w, w + m, m, j, z, w + I, w + I + H, H), F = Math.max(0, F + v), G = Math.max(0, G + w);
       else {
-        F = "start" === d ? x - R - q : "end" === d ? x - Y + A + K : "nearest" === d ? r(R, Y, D, q, A + K, x, x + b, b) : x - (R + D / 2) + K / 2, G = "start" === u ? I - L - j : "center" === u ? I - (L + O / 2) + J / 2 : "end" === u ? I - X + z + J : r(L, X, O, j, z + J, I, I + H, H);
+        F = "start" === d ? x - R - q : "end" === d ? x - Y + A + K : "nearest" === d ? r(R, Y, D, q, A + K, x, x + b, b) : x - (R + D / 2) + K / 2, G = "start" === u ? I - L2 - j : "center" === u ? I - (L2 + O / 2) + J / 2 : "end" === u ? I - X + z + J : r(L2, X, O, j, z + J, I, I + H, H);
         var N = k.scrollLeft, P = k.scrollTop;
         x += P - (F = Math.max(0, Math.min(P + F, k.scrollHeight - D + K))), I += N - (G = Math.max(0, Math.min(N + G, k.scrollWidth - O + J)));
       }
@@ -51279,12 +51279,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     };
     return Lifecycle2;
   })(React.Component);
-  var cache$1$1 = {};
+  var cache$1$2 = {};
   var cacheLimit$1 = 1e4;
   var cacheCount$1 = 0;
   function compilePath$1(path2, options) {
     var cacheKey = "" + options.end + options.strict + options.sensitive;
-    var pathCache = cache$1$1[cacheKey] || (cache$1$1[cacheKey] = {});
+    var pathCache = cache$1$2[cacheKey] || (cache$1$2[cacheKey] = {});
     if (pathCache[path2]) return pathCache[path2];
     var keys2 = [];
     var regexp = pathToRegexp(path2, keys2, options);
@@ -56310,15 +56310,15 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     return a;
   }, []);
   var el;
-  var cache = {};
+  var cache$1 = {};
   if (isBrowser) {
     el = document.createElement("p");
     var computed = window.getComputedStyle(document.documentElement, "");
     for (var key$1 in computed) {
-      if (!isNaN(key$1)) cache[computed[key$1]] = computed[key$1];
+      if (!isNaN(key$1)) cache$1[computed[key$1]] = computed[key$1];
     }
     noPrefill.forEach(function(x) {
-      return delete cache[x];
+      return delete cache$1[x];
     });
   }
   function supportedProperty17(prop, options) {
@@ -56326,24 +56326,24 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       options = {};
     }
     if (!el) return prop;
-    if (cache[prop] != null) {
-      return cache[prop];
+    if (cache$1[prop] != null) {
+      return cache$1[prop];
     }
     if (prop === "transition" || prop === "transform") {
       options[prop] = prop in el.style;
     }
     for (var i = 0; i < propertyDetectors.length; i++) {
-      cache[prop] = propertyDetectors[i](prop, el.style, options);
-      if (cache[prop]) break;
+      cache$1[prop] = propertyDetectors[i](prop, el.style, options);
+      if (cache$1[prop]) break;
     }
     try {
       el.style[prop] = "";
     } catch (err) {
       return false;
     }
-    return cache[prop];
+    return cache$1[prop];
   }
-  var cache$1 = {};
+  var cache$1$1 = {};
   var transitionProperties = {
     transition: 1,
     "transition-property": 1,
@@ -56368,13 +56368,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       return prefixedValue;
     }
     var cacheKey = property + prefixedValue;
-    if (cache$1[cacheKey] != null) {
-      return cache$1[cacheKey];
+    if (cache$1$1[cacheKey] != null) {
+      return cache$1$1[cacheKey];
     }
     try {
       el$1.style[property] = prefixedValue;
     } catch (err) {
-      cache$1[cacheKey] = false;
+      cache$1$1[cacheKey] = false;
       return false;
     }
     if (transitionProperties[property]) {
@@ -56384,13 +56384,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       if (prefixedValue === "-ms-flex") el$1.style[property] = "-ms-flexbox";
       el$1.style[property] = prefixedValue;
       if (el$1.style[property] === "") {
-        cache$1[cacheKey] = false;
+        cache$1$1[cacheKey] = false;
         return false;
       }
     }
     el$1.style[property] = "";
-    cache$1[cacheKey] = prefixedValue;
-    return cache$1[cacheKey];
+    cache$1$1[cacheKey] = prefixedValue;
+    return cache$1$1[cacheKey];
   }
   function jssVendorPrefixer() {
     function onProcessRule2(rule) {
@@ -59215,6 +59215,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       };
     }
   }
+  const ShowMoreToggle = ({ total, visible, showAll, onChange }) => {
+    if (total <= visible && !showAll) return null;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: () => onChange(!showAll), style: { cursor: "pointer" }, children: showAll ? "Show less" : `Show all (${total})` });
+  };
+  const TOP_N = 5;
   const SynonymsTable = ({
     datasetKey,
     data,
@@ -59227,8 +59232,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     primarySource,
     pathToDataset
   }) => {
-    React.useEffect(() => {
-    }, [data, primarySource]);
+    const [showAll, setShowAll] = React.useState(false);
     const getNomStatus = (taxon) => !nomStatus ? _.get(taxon, "name.nomStatus") : nomStatus[_.get(taxon, "name.nomStatus")][_.get(taxon, "name.code"), "zoological"];
     const sorter = (a, b) => {
       if (_.get(a, "name.combinationAuthorship.year") && _.get(b, "name.combinationAuthorship.year")) {
@@ -59241,78 +59245,92 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }
       }
     };
-    const renderSynonym = (syn, homotypic, indent) => {
-      const s = _.isArray(syn) ? syn[0] : syn;
-      const isGroup = _.isArray(syn);
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedListItem$1, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: indent ? { marginLeft: "10px" } : null, children: [
-            homotypic === true ? "≡ " : "= ",
-            " ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                dangerouslySetInnerHTML: {
-                  __html: _.get(
-                    s,
-                    "labelHtml",
-                    `${_.get(s, "name.scientificName")} ${_.get(
-                      s,
-                      "name.authorship",
-                      ""
-                    )}`
-                  )
-                }
-              }
-            )
-          ] }),
-          " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            (s == null ? void 0 : s.sourceDatasetKey) && _.get(primarySource, "key") !== (s == null ? void 0 : s.sourceDatasetKey) && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              MergedDataBadge,
-              {
-                createdBy: s == null ? void 0 : s.createdBy,
-                datasetKey: s.datasetKey,
-                sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
-                pathToDataset,
-                verbatimSourceKey: s.verbatimSourceKey
-              }
-            ),
-            " ",
-            (decisions == null ? void 0 : decisions[s == null ? void 0 : s.id]) && /* @__PURE__ */ jsxRuntimeExports.jsx(DecisionBadge, { decision: decisions == null ? void 0 : decisions[s == null ? void 0 : s.id] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TypeMaterialPopover,
-              {
-                datasetKey,
-                typeMaterial,
-                nameId: _.get(s, "name.id"),
-                placement: "top"
-              }
-            ),
-            " ",
-            _.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : "",
-            " ",
-            _.get(s, "status") === "misapplied" && _.get(s, "accordingTo") ? _.get(s, "accordingTo") : "",
-            _.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            ReferencePopover,
-            {
-              datasetKey,
-              references,
-              referenceIndexMap,
-              referenceId: _.get(s, "name.publishedInId") ? [_.get(s, "name.publishedInId"), ...s.referenceIds || []] : s.referenceIds,
-              placement: "top",
-              style: { display: "inline-block" }
+    const items = [];
+    if (data.homotypic) {
+      [...data.homotypic].sort(sorter).forEach((s) => {
+        items.push({ syn: s, homotypic: true, indent: false });
+      });
+    }
+    if (data.heterotypicGroups) {
+      [...data.heterotypicGroups].sort((a, b) => sorter(a[0], b[0])).forEach((group) => {
+        group.forEach((s, i) => {
+          items.push({ syn: s, homotypic: i > 0, indent: i > 0 });
+        });
+      });
+    }
+    const total = items.length;
+    const visibleItems = showAll ? items : items.slice(0, TOP_N);
+    const renderItem = ({ syn: s, homotypic, indent }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedListItem$1, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: indent ? { marginLeft: "10px" } : null, children: [
+        homotypic === true ? "≡ " : "= ",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            dangerouslySetInnerHTML: {
+              __html: _.get(
+                s,
+                "labelHtml",
+                `${_.get(s, "name.scientificName")} ${_.get(
+                  s,
+                  "name.authorship",
+                  ""
+                )}`
+              )
             }
-          )
-        ] }, _.get(s, "name.id")),
-        isGroup && syn.length > 1 && syn.slice(1).map((sg) => renderSynonym(sg, true, true))
-      ] });
-    };
+          }
+        )
+      ] }),
+      " ",
+      (s == null ? void 0 : s.sourceDatasetKey) && _.get(primarySource, "key") !== (s == null ? void 0 : s.sourceDatasetKey) && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MergedDataBadge,
+        {
+          createdBy: s == null ? void 0 : s.createdBy,
+          datasetKey: s.datasetKey,
+          sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
+          pathToDataset,
+          verbatimSourceKey: s.verbatimSourceKey
+        }
+      ),
+      " ",
+      (decisions == null ? void 0 : decisions[s == null ? void 0 : s.id]) && /* @__PURE__ */ jsxRuntimeExports.jsx(DecisionBadge, { decision: decisions == null ? void 0 : decisions[s == null ? void 0 : s.id] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TypeMaterialPopover,
+        {
+          datasetKey,
+          typeMaterial,
+          nameId: _.get(s, "name.id"),
+          placement: "top"
+        }
+      ),
+      " ",
+      _.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : "",
+      " ",
+      _.get(s, "status") === "misapplied" && _.get(s, "accordingTo") ? _.get(s, "accordingTo") : "",
+      _.get(s, "status") === "ambiguous synonym" && "(Ambiguous)",
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ReferencePopover,
+        {
+          datasetKey,
+          references,
+          referenceIndexMap,
+          referenceId: _.get(s, "name.publishedInId") ? [_.get(s, "name.publishedInId"), ...s.referenceIds || []] : s.referenceIds,
+          placement: "top",
+          style: { display: "inline-block" }
+        }
+      )
+    ] }, _.get(s, "name.id"));
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
-      data.homotypic && data.homotypic.sort(sorter).map((s) => renderSynonym(s, true)),
-      data.heterotypicGroups && data.heterotypicGroups.sort((a, b) => sorter(a[0], b[0])).map((s) => renderSynonym(s, false))
+      visibleItems.map(renderItem),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ShowMoreToggle,
+        {
+          total,
+          visible: TOP_N,
+          showAll,
+          onChange: setShowAll
+        }
+      )
     ] });
   };
   const getCountries = () => {
@@ -59372,6 +59390,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       const { references } = this.props;
       this.state = {
         data: this.props.data ? [...this.props.data] : [],
+        showAll: false,
         countryAlpha3: {},
         countryAlpha2: {},
         columns: [
@@ -59425,22 +59444,286 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
     render() {
       const { style: style2 } = this.props;
-      const { data, columns } = this.state;
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Table,
-        {
-          style: style2,
-          className: "colplus-taxon-page-list",
-          columns,
-          dataSource: data,
-          rowKey: "id",
-          pagination: false,
-          size: "middle"
-        }
-      );
+      const { data, columns, showAll } = this.state;
+      const visible = showAll ? data : data.slice(0, 5);
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Table,
+          {
+            style: style2,
+            className: "colplus-taxon-page-list",
+            columns,
+            dataSource: visible,
+            rowKey: "id",
+            pagination: false,
+            size: "middle"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ShowMoreToggle,
+          {
+            total: data.length,
+            visible: 5,
+            showAll,
+            onChange: (v) => this.setState({ showAll: v })
+          }
+        )
+      ] });
     }
   }
-  const DistributionsTable = ({ datasetKey, data, style: style2, pathToDataset }) => {
+  const POPUP_FIELDS = [
+    "establishmentMeans",
+    "degreeOfEstablishment",
+    "pathway",
+    "threatStatus",
+    "year",
+    "lifeStage"
+  ];
+  const ESTABLISHMENT_MEANS = [
+    { key: "nativeendemic", label: "Native endemic", color: "#0F8554" },
+    { key: "native", label: "Native", color: "#87C55F" },
+    { key: "nativereintroduced", label: "Native reintroduced", color: "#C9DB74" },
+    { key: "introduced", label: "Introduced", color: "#FE88B1" },
+    {
+      key: "introducedassistedcolonisation",
+      label: "Introduced assisted colonisation",
+      color: "#DCB0F2"
+    },
+    { key: "vagrant", label: "Vagrant", color: "#F6CF71" },
+    { key: "uncertain", label: "Uncertain", color: "#66C5CC" }
+  ];
+  const ESTABLISHMENT_COLORS = Object.fromEntries(
+    ESTABLISHMENT_MEANS.map((m) => [m.key, m.color])
+  );
+  const DEFAULT_KEY = "uncertain";
+  const normalizeKey = (v) => String(v || "").toLowerCase().replace(/[^a-z]/g, "");
+  const resolveKey = (record) => {
+    const k = normalizeKey(record == null ? void 0 : record.establishmentMeans);
+    return ESTABLISHMENT_COLORS[k] ? k : DEFAULT_KEY;
+  };
+  const colorFor = (record) => ESTABLISHMENT_COLORS[resolveKey(record)];
+  const polygonStyleFor = (color) => ({
+    color,
+    weight: 1,
+    fillColor: color,
+    fillOpacity: 0.75
+  });
+  const polygonHoverStyle = {
+    weight: 2,
+    fillOpacity: 0.95
+  };
+  const BASEMAPS = [
+    {
+      key: "carto",
+      label: "Carto",
+      url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+      options: {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        maxZoom: 19,
+        subdomains: "abcd"
+      }
+    },
+    {
+      key: "osm",
+      label: "OSM",
+      url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      options: {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }
+    },
+    {
+      key: "esri",
+      label: "Esri",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
+      options: {
+        attribution: "Tiles &copy; Esri &mdash; Source: US National Park Service",
+        maxZoom: 8
+      }
+    }
+  ];
+  const DEFAULT_BASEMAP = "carto";
+  const cache = /* @__PURE__ */ new Map();
+  const fetchShape = (gazetteer, id2) => {
+    const key2 = `${gazetteer}:${id2}`;
+    if (cache.has(key2)) return cache.get(key2);
+    const url = `${config.dataApi}vocab/area/${key2}`;
+    const p = axios(url, {
+      headers: { Accept: "application/geo+json" }
+    }).then(
+      (r2) => r2.data,
+      () => null
+    );
+    cache.set(key2, p);
+    return p;
+  };
+  const escapeHtml = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const popupHtml = (record) => {
+    var _a, _b;
+    const title = ((_a = record == null ? void 0 : record.area) == null ? void 0 : _a.name) || ((_b = record == null ? void 0 : record.area) == null ? void 0 : _b.globalId) || "";
+    const rows = POPUP_FIELDS.map((f) => [f, record == null ? void 0 : record[f]]).filter(([, v]) => v != null && v !== "").map(
+      ([k, v]) => `<div><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</div>`
+    ).join("");
+    return `<div style="min-width:180px"><div style="font-weight:600;margin-bottom:4px">${escapeHtml(
+      title
+    )}</div>${rows}</div>`;
+  };
+  const DistributionsMap = ({ records, onUnmappable }) => {
+    const containerRef = React.useRef(null);
+    const mapRef = React.useRef(null);
+    const tileLayerRef = React.useRef(null);
+    const [basemap, setBasemap] = React.useState(DEFAULT_BASEMAP);
+    const presentMeans = React.useMemo(() => {
+      if (!(records == null ? void 0 : records.length)) return [];
+      const seen = new Set(records.map(resolveKey));
+      return ESTABLISHMENT_MEANS.filter((m) => seen.has(m.key));
+    }, [records]);
+    React.useEffect(() => {
+      if (!containerRef.current || mapRef.current) return;
+      const map2 = L.map(containerRef.current, {
+        worldCopyJump: true,
+        minZoom: 1
+      }).setView([20, 0], 2);
+      mapRef.current = map2;
+      return () => {
+        map2.remove();
+        mapRef.current = null;
+        tileLayerRef.current = null;
+      };
+    }, []);
+    React.useEffect(() => {
+      var _a;
+      const map2 = mapRef.current;
+      if (!map2) return;
+      const def = BASEMAPS.find((b) => b.key === basemap) || BASEMAPS[0];
+      const newLayer = L.tileLayer(def.url, def.options).addTo(map2);
+      if (tileLayerRef.current) {
+        map2.removeLayer(tileLayerRef.current);
+      }
+      tileLayerRef.current = newLayer;
+      const max2 = (_a = def.options) == null ? void 0 : _a.maxZoom;
+      if (typeof max2 === "number" && map2.getZoom() > max2) {
+        map2.setZoom(max2);
+      }
+    }, [basemap]);
+    React.useEffect(() => {
+      const map2 = mapRef.current;
+      if (!map2 || !(records == null ? void 0 : records.length)) return;
+      let cancelled = false;
+      const group = L.featureGroup().addTo(map2);
+      let failures = 0;
+      Promise.allSettled(
+        records.map(
+          (r2) => fetchShape(r2.area.gazetteer, r2.area.id).then((geojson) => ({
+            record: r2,
+            geojson
+          }))
+        )
+      ).then((results) => {
+        if (cancelled) return;
+        results.forEach((res) => {
+          if (res.status !== "fulfilled" || !res.value.geojson) {
+            failures += 1;
+            return;
+          }
+          const { record, geojson } = res.value;
+          const baseStyle = polygonStyleFor(colorFor(record));
+          const layer = L.geoJSON(geojson, {
+            style: () => baseStyle,
+            onEachFeature: (_feature, lyr) => {
+              lyr.bindPopup(popupHtml(record));
+              lyr.on("mouseover", () => lyr.setStyle(polygonHoverStyle));
+              lyr.on("mouseout", () => lyr.setStyle(baseStyle));
+            }
+          });
+          layer.addTo(group);
+        });
+        const bounds = group.getBounds();
+        if (bounds.isValid()) {
+          map2.fitBounds(bounds, { padding: [10, 10] });
+        }
+        if (typeof onUnmappable === "function") {
+          onUnmappable(failures);
+        }
+      });
+      return () => {
+        cancelled = true;
+        group.remove();
+      };
+    }, [records, onUnmappable]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          ref: containerRef,
+          style: { height: 360, width: "100%", background: "#f5f5f5" }
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Radio.Group,
+        {
+          size: "small",
+          value: basemap,
+          onChange: (e2) => setBasemap(e2.target.value),
+          style: {
+            position: "absolute",
+            top: 8,
+            right: 8,
+            zIndex: 1e3,
+            background: "#fff",
+            borderRadius: 4,
+            boxShadow: "0 1px 4px rgba(0,0,0,0.2)"
+          },
+          children: BASEMAPS.map((b) => /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: b.key, children: b.label }, b.key))
+        }
+      ),
+      presentMeans.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: {
+            position: "absolute",
+            bottom: 8,
+            left: 8,
+            zIndex: 1e3,
+            background: "#fff",
+            borderRadius: 4,
+            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+            padding: "6px 8px",
+            fontSize: 12,
+            lineHeight: 1.5
+          },
+          children: presentMeans.map((m) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: { display: "flex", alignItems: "center", gap: 6 },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    style: {
+                      display: "inline-block",
+                      width: 12,
+                      height: 12,
+                      background: m.color,
+                      border: "1px solid rgba(0,0,0,0.15)",
+                      borderRadius: 2
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m.label })
+              ]
+            },
+            m.key
+          ))
+        }
+      )
+    ] });
+  };
+  const isMappable = (r2) => {
+    var _a, _b;
+    return ((_a = r2 == null ? void 0 : r2.area) == null ? void 0 : _a.gazetteer) !== "text" && !!((_b = r2 == null ? void 0 : r2.area) == null ? void 0 : _b.globalId);
+  };
+  const ListView = ({ datasetKey, data, pathToDataset }) => {
     const [iso3Map, setIso3Map] = React.useState({});
     React.useEffect(() => {
       let isIso = false;
@@ -59456,7 +59739,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         });
       }
     }, []);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: data.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: data.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
       (s == null ? void 0 : s.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(
         MergedDataBadge,
         {
@@ -59480,6 +59763,68 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       ),
       i < data.length - 1 && ", "
     ] }, i)) });
+  };
+  const DistributionsTable = ({
+    datasetKey,
+    data,
+    style: style2,
+    pathToDataset,
+    showDistributionMap
+  }) => {
+    const mappable = data.filter(isMappable);
+    const baseUnmappable = data.length - mappable.length;
+    const [view, setView] = React.useState("map");
+    const [fetchFailures, setFetchFailures] = React.useState(0);
+    const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
+    if (!showDistributionMap || mappable.length === 0 || allMappableFailed) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ListView,
+        {
+          datasetKey,
+          data,
+          pathToDataset
+        }
+      ) });
+    }
+    const unmappable = baseUnmappable + fetchFailures;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Radio.Group,
+        {
+          size: "small",
+          value: view,
+          onChange: (e2) => setView(e2.target.value),
+          style: { marginBottom: 8 },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
+          ]
+        }
+      ),
+      view === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          DistributionsMap,
+          {
+            records: mappable,
+            onUnmappable: setFetchFailures
+          }
+        ),
+        unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
+          "+",
+          unmappable,
+          " distribution",
+          unmappable === 1 ? "" : "s",
+          " not on map"
+        ] }) })
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ListView,
+        {
+          datasetKey,
+          data,
+          pathToDataset
+        }
+      )
+    ] });
   };
   const rankStyle = {
     color: "rgba(0, 0, 0, 0.45)",
@@ -60668,17 +61013,17 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           }
           function t2(b2, d2, g2) {
             function m(d3, m2) {
-              var L = b2.removeEventListener || a2.removeEventListenerPolyfill;
-              L && L.call(b2, d3, m2, false);
+              var L2 = b2.removeEventListener || a2.removeEventListenerPolyfill;
+              L2 && L2.call(b2, d3, m2, false);
             }
             function x(g3) {
               var x2;
               if (b2.nodeName) {
                 if (d2) {
-                  var L = {};
-                  L[d2] = true;
-                } else L = g3;
-                B(L, function(b3, d3) {
+                  var L2 = {};
+                  L2[d2] = true;
+                } else L2 = g3;
+                B(L2, function(b3, d3) {
                   if (g3[d3]) for (x2 = g3[d3].length; x2--; ) m(d3, g3[d3][x2].fn);
                 });
               }
@@ -61594,18 +61939,18 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               this.doTransform && (this.updateTransform(), this.doTransform = false);
             };
             a3.prototype.align = function(b2, c2, g2) {
-              var m2 = {}, L = this.renderer, e3 = L.alignedObjects, l2, a4, E;
+              var m2 = {}, L2 = this.renderer, e3 = L2.alignedObjects, l2, a4, E;
               if (b2) {
                 if (this.alignOptions = b2, this.alignByTranslate = c2, !g2 || d(g2)) this.alignTo = l2 = g2 || "renderer", J(e3, this), e3.push(this), g2 = void 0;
               } else b2 = this.alignOptions, c2 = this.alignByTranslate, l2 = this.alignTo;
-              g2 = x(g2, L[l2], "scrollablePlotBox" === l2 ? L.plotBox : void 0, L);
+              g2 = x(g2, L2[l2], "scrollablePlotBox" === l2 ? L2.plotBox : void 0, L2);
               l2 = b2.align;
               var r3 = b2.verticalAlign;
-              L = (g2.x || 0) + (b2.x || 0);
+              L2 = (g2.x || 0) + (b2.x || 0);
               e3 = (g2.y || 0) + (b2.y || 0);
               "right" === l2 ? a4 = 1 : "center" === l2 && (a4 = 2);
-              a4 && (L += (g2.width - (b2.width || 0)) / a4);
-              m2[c2 ? "translateX" : "x"] = Math.round(L);
+              a4 && (L2 += (g2.width - (b2.width || 0)) / a4);
+              m2[c2 ? "translateX" : "x"] = Math.round(L2);
               "bottom" === r3 ? E = 1 : "middle" === r3 && (E = 2);
               E && (e3 += (g2.height - (b2.height || 0)) / E);
               m2[c2 ? "translateY" : "y"] = Math.round(e3);
@@ -61664,7 +62009,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }
             };
             a3.prototype.attr = function(b2, d2, c2, g2) {
-              var m2 = this.element, e3 = this.symbolCustomAttribs, L, l2 = this, E, a4;
+              var m2 = this.element, e3 = this.symbolCustomAttribs, L2, l2 = this, E, a4;
               if ("string" === typeof b2 && "undefined" !== typeof d2) {
                 var K = b2;
                 b2 = {};
@@ -61673,7 +62018,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               "string" === typeof b2 ? l2 = (this[b2 + "Getter"] || this._defaultGetter).call(this, b2, m2) : (D(b2, function(d3, c3) {
                 E = false;
                 g2 || A(this, c3);
-                this.symbolName && -1 !== e3.indexOf(c3) && (L || (this.symbolAttr(b2), L = true), E = true);
+                this.symbolName && -1 !== e3.indexOf(c3) && (L2 || (this.symbolAttr(b2), L2 = true), E = true);
                 !this.rotation || "x" !== c3 && "y" !== c3 || (this.doTransform = true);
                 E || (a4 = this[c3 + "Setter"] || this._defaultSetter, a4.call(this, d3, c3, m2), !this.styledMode && this.shadows && /^(width|height|visibility|x|y|d|transform|cx|cy|r)$/.test(c3) && this.updateShadows(c3, d3, a4));
               }, this), this.afterSetters());
@@ -61694,16 +62039,16 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               return b2;
             };
             a3.prototype.complexColor = function(b2, d2, c2) {
-              var g2 = this.renderer, e3, L, a4, h2, E, x2, p2, f2, k2, w2, B2 = [], I2;
+              var g2 = this.renderer, e3, L2, a4, h2, E, x2, p2, f2, k2, w2, B2 = [], I2;
               r2(this.renderer, "complexColor", { args: arguments }, function() {
-                b2.radialGradient ? L = "radialGradient" : b2.linearGradient && (L = "linearGradient");
-                if (L) {
-                  a4 = b2[L];
+                b2.radialGradient ? L2 = "radialGradient" : b2.linearGradient && (L2 = "linearGradient");
+                if (L2) {
+                  a4 = b2[L2];
                   E = g2.gradients;
                   x2 = b2.stops;
                   k2 = c2.radialReference;
-                  l(a4) && (b2[L] = a4 = { x1: a4[0], y1: a4[1], x2: a4[2], y2: a4[3], gradientUnits: "userSpaceOnUse" });
-                  "radialGradient" === L && k2 && !t2(a4.gradientUnits) && (h2 = a4, a4 = m(a4, g2.getRadialAttr(k2, h2), { gradientUnits: "userSpaceOnUse" }));
+                  l(a4) && (b2[L2] = a4 = { x1: a4[0], y1: a4[1], x2: a4[2], y2: a4[3], gradientUnits: "userSpaceOnUse" });
+                  "radialGradient" === L2 && k2 && !t2(a4.gradientUnits) && (h2 = a4, a4 = m(a4, g2.getRadialAttr(k2, h2), { gradientUnits: "userSpaceOnUse" }));
                   D(a4, function(b3, d3) {
                     "id" !== d3 && B2.push(d3, b3);
                   });
@@ -61714,7 +62059,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                   if (E[B2]) w2 = E[B2].attr("id");
                   else {
                     a4.id = w2 = S();
-                    var K = E[B2] = g2.createElement(L).attr(a4).add(g2.defs);
+                    var K = E[B2] = g2.createElement(L2).attr(a4).add(g2.defs);
                     K.radAttr = h2;
                     K.stops = [];
                     x2.forEach(function(b3) {
@@ -61955,12 +62300,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }), l2 && this.destroyShadows(), this.oldShadowOptions = E);
               if (!E) this.destroyShadows();
               else if (!this.shadows) {
-                var L = E.opacity / E.width;
+                var L2 = E.opacity / E.width;
                 var r3 = this.parentInverted ? "translate(" + E.offsetY + ", " + E.offsetX + ")" : "translate(" + E.offsetX + ", " + E.offsetY + ")";
                 for (a4 = 1; a4 <= E.width; a4++) {
                   var h2 = m2.cloneNode(false);
                   var x2 = 2 * E.width + 1 - 2 * a4;
-                  w(h2, { stroke: b2.color || "#000000", "stroke-opacity": L * a4, "stroke-width": x2, transform: r3, fill: "none" });
+                  w(h2, { stroke: b2.color || "#000000", "stroke-opacity": L2 * a4, "stroke-width": x2, transform: r3, fill: "none" });
                   h2.setAttribute("class", (h2.getAttribute("class") || "") + " highcharts-shadow");
                   c2 && (w(h2, "height", Math.max(w(h2, "height") - x2, 0)), h2.cutHeight = x2);
                   d2 ? d2.element.appendChild(h2) : m2.parentNode && m2.parentNode.insertBefore(h2, m2);
@@ -62446,13 +62791,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         M(a, "Core/Renderer/SVG/SVGRenderer.js", [a["Core/Renderer/HTML/AST.js"], a["Core/Color/Color.js"], a["Core/Globals.js"], a["Core/Renderer/RendererRegistry.js"], a["Core/Renderer/SVG/SVGElement.js"], a["Core/Renderer/SVG/SVGLabel.js"], a["Core/Renderer/SVG/Symbols.js"], a["Core/Renderer/SVG/TextBuilder.js"], a["Core/Utilities.js"]], function(a2, u, z, F, y, G, H, A, q) {
           var n2 = z.charts, k = z.deg2rad, e2 = z.doc, c = z.isFirefox, h = z.isMS, f = z.isWebKit, w = z.noop, p = z.SVG_NS, B = z.symbolSizes, t2 = z.win, J = q.addEvent, C = q.attr, r2 = q.createElement, l = q.css, b = q.defined, g = q.destroyObjectProperties, d = q.extend, m = q.isArray, D = q.isNumber, x = q.isObject, I = q.isString, P = q.merge, v = q.pick, O = q.pInt, U = q.uniqueKey, Y;
           z = (function() {
-            function L(b2, d2, a3, c2, g2, m2, e3) {
+            function L2(b2, d2, a3, c2, g2, m2, e3) {
               this.width = this.url = this.style = this.isSVG = this.imgCount = this.height = this.gradients = this.globalAnimation = this.defs = this.chartIndex = this.cacheKeys = this.cache = this.boxWrapper = this.box = this.alignedObjects = void 0;
               this.init(b2, d2, a3, c2, g2, m2, e3);
             }
-            L.prototype.init = function(b2, d2, a3, g2, m2, E, L2) {
+            L2.prototype.init = function(b2, d2, a3, g2, m2, E, L3) {
               var r3 = this.createElement("svg").attr({ version: "1.1", "class": "highcharts-root" }), K = r3.element;
-              L2 || r3.css(this.getStyle(g2));
+              L3 || r3.css(this.getStyle(g2));
               b2.appendChild(K);
               C(b2, "dir", "ltr");
               -1 === b2.innerHTML.indexOf("xmlns") && C(K, "xmlns", this.SVG_NS);
@@ -62465,7 +62810,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               this.defs = this.createElement("defs").add();
               this.allowHTML = E;
               this.forExport = m2;
-              this.styledMode = L2;
+              this.styledMode = L3;
               this.gradients = {};
               this.cache = {};
               this.cacheKeys = [];
@@ -62478,10 +62823,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 l(b2, { left: Math.ceil(p2.left) - p2.left + "px", top: Math.ceil(p2.top) - p2.top + "px" });
               }, d2(), this.unSubPixelFix = J(t2, "resize", d2));
             };
-            L.prototype.definition = function(b2) {
+            L2.prototype.definition = function(b2) {
               return new a2([b2]).addToDOM(this.defs.element);
             };
-            L.prototype.getReferenceURL = function() {
+            L2.prototype.getReferenceURL = function() {
               if ((c || f) && e2.getElementsByTagName("base").length) {
                 if (!b(Y)) {
                   var d2 = U();
@@ -62495,16 +62840,16 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }
               return "";
             };
-            L.prototype.getStyle = function(b2) {
+            L2.prototype.getStyle = function(b2) {
               return this.style = d({ fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif', fontSize: "12px" }, b2);
             };
-            L.prototype.setStyle = function(b2) {
+            L2.prototype.setStyle = function(b2) {
               this.boxWrapper.css(this.getStyle(b2));
             };
-            L.prototype.isHidden = function() {
+            L2.prototype.isHidden = function() {
               return !this.boxWrapper.getBBox().width;
             };
-            L.prototype.destroy = function() {
+            L2.prototype.destroy = function() {
               var b2 = this.defs;
               this.box = null;
               this.boxWrapper = this.boxWrapper.destroy();
@@ -62514,25 +62859,25 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               this.unSubPixelFix && this.unSubPixelFix();
               return this.alignedObjects = null;
             };
-            L.prototype.createElement = function(b2) {
+            L2.prototype.createElement = function(b2) {
               var d2 = new this.Element();
               d2.init(this, b2);
               return d2;
             };
-            L.prototype.getRadialAttr = function(b2, d2) {
+            L2.prototype.getRadialAttr = function(b2, d2) {
               return { cx: b2[0] - b2[2] / 2 + (d2.cx || 0) * b2[2], cy: b2[1] - b2[2] / 2 + (d2.cy || 0) * b2[2], r: (d2.r || 0) * b2[2] };
             };
-            L.prototype.buildText = function(b2) {
+            L2.prototype.buildText = function(b2) {
               new A(b2).buildSVG();
             };
-            L.prototype.getContrast = function(b2) {
+            L2.prototype.getContrast = function(b2) {
               b2 = u.parse(b2).rgba;
               b2[0] *= 1;
               b2[1] *= 1.2;
               b2[2] *= 0.5;
               return 459 < b2[0] + b2[1] + b2[2] ? "#000000" : "#FFFFFF";
             };
-            L.prototype.button = function(b2, c2, g2, m2, e3, l2, L2, r3, p2, x2) {
+            L2.prototype.button = function(b2, c2, g2, m2, e3, l2, L3, r3, p2, x2) {
               var E = this.label(b2, c2, g2, p2, void 0, void 0, x2, void 0, "button"), f2 = this.styledMode, K = 0, D2 = e3 ? P(e3) : {};
               b2 = D2 && D2.style || {};
               D2 = a2.filterUserAttributes(D2);
@@ -62544,9 +62889,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 l2 = P(D2, { fill: "#e6e6e6" }, a2.filterUserAttributes(l2 || {}));
                 var N = l2.style;
                 delete l2.style;
-                L2 = P(D2, { fill: "#e6ebf5", style: { color: "#000000", fontWeight: "bold" } }, a2.filterUserAttributes(L2 || {}));
-                var w2 = L2.style;
-                delete L2.style;
+                L3 = P(D2, { fill: "#e6ebf5", style: { color: "#000000", fontWeight: "bold" } }, a2.filterUserAttributes(L3 || {}));
+                var w2 = L3.style;
+                delete L3.style;
                 r3 = P(D2, { style: { color: "#cccccc" } }, a2.filterUserAttributes(r3 || {}));
                 var t3 = r3.style;
                 delete r3.style;
@@ -62560,7 +62905,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               E.setState = function(b3) {
                 1 !== b3 && (E.state = K = b3);
                 E.removeClass(/highcharts-button-(normal|hover|pressed|disabled)/).addClass("highcharts-button-" + ["normal", "hover", "pressed", "disabled"][b3 || 0]);
-                f2 || E.attr([D2, l2, L2, r3][b3 || 0]).css([k2, N, w2, t3][b3 || 0]);
+                f2 || E.attr([D2, l2, L3, r3][b3 || 0]).css([k2, N, w2, t3][b3 || 0]);
               };
               f2 || E.attr(D2).css(d({ cursor: "default" }, k2));
               return E.on("touchstart", function(b3) {
@@ -62569,19 +62914,19 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 3 !== K && m2.call(E, b3);
               });
             };
-            L.prototype.crispLine = function(d2, a3, c2) {
+            L2.prototype.crispLine = function(d2, a3, c2) {
               void 0 === c2 && (c2 = "round");
               var g2 = d2[0], m2 = d2[1];
               b(g2[1]) && g2[1] === m2[1] && (g2[1] = m2[1] = Math[c2](g2[1]) - a3 % 2 / 2);
               b(g2[2]) && g2[2] === m2[2] && (g2[2] = m2[2] = Math[c2](g2[2]) + a3 % 2 / 2);
               return d2;
             };
-            L.prototype.path = function(b2) {
+            L2.prototype.path = function(b2) {
               var a3 = this.styledMode ? {} : { fill: "none" };
               m(b2) ? a3.d = b2 : x(b2) && d(a3, b2);
               return this.createElement("path").attr(a3);
             };
-            L.prototype.circle = function(b2, d2, a3) {
+            L2.prototype.circle = function(b2, d2, a3) {
               b2 = x(b2) ? b2 : "undefined" === typeof b2 ? {} : { x: b2, y: d2, r: a3 };
               d2 = this.createElement("circle");
               d2.xSetter = d2.ySetter = function(b3, d3, a4) {
@@ -62589,13 +62934,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               };
               return d2.attr(b2);
             };
-            L.prototype.arc = function(b2, d2, a3, c2, g2, m2) {
+            L2.prototype.arc = function(b2, d2, a3, c2, g2, m2) {
               x(b2) ? (c2 = b2, d2 = c2.y, a3 = c2.r, b2 = c2.x) : c2 = { innerR: c2, start: g2, end: m2 };
               b2 = this.symbol("arc", b2, d2, a3, a3, c2);
               b2.r = a3;
               return b2;
             };
-            L.prototype.rect = function(b2, d2, a3, c2, g2, m2) {
+            L2.prototype.rect = function(b2, d2, a3, c2, g2, m2) {
               g2 = x(b2) ? b2.r : g2;
               var e3 = this.createElement("rect");
               b2 = x(b2) ? b2 : "undefined" === typeof b2 ? {} : { x: b2, y: d2, width: Math.max(a3, 0), height: Math.max(c2, 0) };
@@ -62610,7 +62955,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               };
               return e3.attr(b2);
             };
-            L.prototype.setSize = function(b2, d2, a3) {
+            L2.prototype.setSize = function(b2, d2, a3) {
               this.width = b2;
               this.height = d2;
               this.boxWrapper.animate({ width: b2, height: d2 }, { step: function() {
@@ -62621,11 +62966,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               ) ? void 0 : 0 });
               this.alignElements();
             };
-            L.prototype.g = function(b2) {
+            L2.prototype.g = function(b2) {
               var d2 = this.createElement("g");
               return b2 ? d2.attr({ "class": "highcharts-" + b2 }) : d2;
             };
-            L.prototype.image = function(b2, d2, a3, c2, g2, m2) {
+            L2.prototype.image = function(b2, d2, a3, c2, g2, m2) {
               var e3 = { preserveAspectRatio: "none" }, l2 = function(b3, d3) {
                 b3.setAttributeNS ? b3.setAttributeNS("http://www.w3.org/1999/xlink", "href", d3) : b3.setAttribute("hc-svg-href", d3);
               };
@@ -62644,13 +62989,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               ), a3 = new t2.Image(), J(a3, "load", d2), a3.src = b2, a3.complete && d2({})) : l2(E.element, b2);
               return E;
             };
-            L.prototype.symbol = function(a3, c2, g2, m2, L2, E) {
+            L2.prototype.symbol = function(a3, c2, g2, m2, L3, E) {
               var p2 = this, h2 = /^url\((.*?)\)$/, x2 = h2.test(a3), f2 = !x2 && (this.symbols[a3] ? a3 : "circle"), D2 = f2 && this.symbols[f2], k2;
               if (D2) {
-                "number" === typeof c2 && (k2 = D2.call(this.symbols, Math.round(c2 || 0), Math.round(g2 || 0), m2 || 0, L2 || 0, E));
+                "number" === typeof c2 && (k2 = D2.call(this.symbols, Math.round(c2 || 0), Math.round(g2 || 0), m2 || 0, L3 || 0, E));
                 var K = this.path(k2);
                 p2.styledMode || K.attr("fill", "none");
-                d(K, { symbolName: f2 || void 0, x: c2, y: g2, width: m2, height: L2 });
+                d(K, { symbolName: f2 || void 0, x: c2, y: g2, width: m2, height: L3 });
                 E && d(K, E);
               } else if (x2) {
                 var w2 = a3.match(h2)[1];
@@ -62683,7 +63028,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }
               return K;
             };
-            L.prototype.clipRect = function(b2, d2, a3, c2) {
+            L2.prototype.clipRect = function(b2, d2, a3, c2) {
               var g2 = U() + "-", m2 = this.createElement("clipPath").attr({ id: g2 }).add(this.defs);
               b2 = this.rect(b2, d2, a3, c2, 0).add(m2);
               b2.id = g2;
@@ -62691,7 +63036,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               b2.count = 0;
               return b2;
             };
-            L.prototype.text = function(d2, a3, c2, g2) {
+            L2.prototype.text = function(d2, a3, c2, g2) {
               var m2 = {};
               if (g2 && (this.allowHTML || !this.forExport)) return this.html(d2, a3, c2);
               m2.x = Math.round(a3 || 0);
@@ -62704,31 +63049,31 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               };
               return d2;
             };
-            L.prototype.fontMetrics = function(b2, d2) {
+            L2.prototype.fontMetrics = function(b2, d2) {
               b2 = !this.styledMode && /px/.test(b2) || !t2.getComputedStyle ? b2 || d2 && d2.style && d2.style.fontSize || this.style && this.style.fontSize : d2 && y.prototype.getStyle.call(d2, "font-size");
               b2 = /px/.test(b2) ? O(b2) : 12;
               d2 = 24 > b2 ? b2 + 3 : Math.round(1.2 * b2);
               return { h: d2, b: Math.round(0.8 * d2), f: b2 };
             };
-            L.prototype.rotCorr = function(b2, d2, a3) {
+            L2.prototype.rotCorr = function(b2, d2, a3) {
               var c2 = b2;
               d2 && a3 && (c2 = Math.max(c2 * Math.cos(d2 * k), 4));
               return { x: -b2 / 3 * Math.sin(d2 * k), y: c2 };
             };
-            L.prototype.pathToSegments = function(b2) {
+            L2.prototype.pathToSegments = function(b2) {
               for (var d2 = [], a3 = [], c2 = { A: 8, C: 7, H: 2, L: 3, M: 3, Q: 5, S: 5, T: 3, V: 2 }, g2 = 0; g2 < b2.length; g2++) I(a3[0]) && D(b2[g2]) && a3.length === c2[a3[0].toUpperCase()] && b2.splice(g2, 0, a3[0].replace("M", "L").replace("m", "l")), "string" === typeof b2[g2] && (a3.length && d2.push(a3.slice(0)), a3.length = 0), a3.push(b2[g2]);
               d2.push(a3.slice(0));
               return d2;
             };
-            L.prototype.label = function(b2, d2, a3, c2, g2, m2, e3, l2, L2) {
-              return new G(this, b2, d2, a3, c2, g2, m2, e3, l2, L2);
+            L2.prototype.label = function(b2, d2, a3, c2, g2, m2, e3, l2, L3) {
+              return new G(this, b2, d2, a3, c2, g2, m2, e3, l2, L3);
             };
-            L.prototype.alignElements = function() {
+            L2.prototype.alignElements = function() {
               this.alignedObjects.forEach(function(b2) {
                 return b2.align();
               });
             };
-            return L;
+            return L2;
           })();
           d(z.prototype, { Element: y, SVG_NS: p, escapes: { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }, symbols: H, draw: w });
           F.registerRendererType("svg", z, true);
@@ -63292,7 +63637,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 if ("pass" !== n3 && b3 < d3 || b3 > a5) n3 ? b3 = f(b3, d3, a5) : B2 = true;
                 return b3;
               }
-              var a4 = this, c2 = a4.chart, e3 = a4.left, m2 = a4.top, l2 = b2.old, h2 = b2.value, k2 = b2.lineWidth, x2 = l2 && c2.oldChartHeight || c2.chartHeight, D2 = l2 && c2.oldChartWidth || c2.chartWidth, L = a4.transB, p2 = b2.translatedValue, n3 = b2.force, t3, C2, w2, q2, B2;
+              var a4 = this, c2 = a4.chart, e3 = a4.left, m2 = a4.top, l2 = b2.old, h2 = b2.value, k2 = b2.lineWidth, x2 = l2 && c2.oldChartHeight || c2.chartHeight, D2 = l2 && c2.oldChartWidth || c2.chartWidth, L2 = a4.transB, p2 = b2.translatedValue, n3 = b2.force, t3, C2, w2, q2, B2;
               b2 = {
                 value: h2,
                 lineWidth: k2,
@@ -63304,8 +63649,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               r2(this, "getPlotLinePath", b2, function(b3) {
                 p2 = I(p2, a4.translate(h2, null, null, l2));
                 p2 = f(p2, -1e5, 1e5);
-                t3 = w2 = Math.round(p2 + L);
-                C2 = q2 = Math.round(x2 - p2 - L);
+                t3 = w2 = Math.round(p2 + L2);
+                C2 = q2 = Math.round(x2 - p2 - L2);
                 g(p2) ? a4.horiz ? (C2 = m2, q2 = x2 - a4.bottom, t3 = w2 = d2(t3, e3, e3 + a4.width)) : (t3 = e3, w2 = D2 - a4.right, C2 = q2 = d2(C2, m2, m2 + a4.height)) : (B2 = true, n3 = false);
                 b3.path = B2 && !n3 ? null : c2.renderer.crispLine([["M", t3, C2], ["L", w2, q2]], k2 || 1);
               });
@@ -63428,7 +63773,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               return this.max - this.range;
             };
             a3.prototype.setTickInterval = function(b2) {
-              var d2 = this.chart, a4 = this.logarithmic, c2 = this.options, e3 = this.isXAxis, m2 = this.isLinked, f2 = c2.tickPixelInterval, h2 = this.categories, k2 = this.softThreshold, x2 = c2.maxPadding, L = c2.minPadding, n3 = g(c2.tickInterval) && 0 <= c2.tickInterval ? c2.tickInterval : void 0, t3 = g(this.threshold) ? this.threshold : null;
+              var d2 = this.chart, a4 = this.logarithmic, c2 = this.options, e3 = this.isXAxis, m2 = this.isLinked, f2 = c2.tickPixelInterval, h2 = this.categories, k2 = this.softThreshold, x2 = c2.maxPadding, L2 = c2.minPadding, n3 = g(c2.tickInterval) && 0 <= c2.tickInterval ? c2.tickInterval : void 0, t3 = g(this.threshold) ? this.threshold : null;
               this.dateTime || h2 || m2 || this.getTickAmount();
               var C2 = I(this.userMin, c2.min);
               var q2 = I(this.userMax, c2.max);
@@ -63440,7 +63785,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 c2.type !== this.linkedParent.options.type && J(11, 1, d2);
               } else {
                 if (k2 && p(t3)) {
-                  if (this.dataMin >= t3) B2 = t3, L = 0;
+                  if (this.dataMin >= t3) B2 = t3, L2 = 0;
                   else if (this.dataMax <= t3) {
                     var P2 = t3;
                     x2 = 0;
@@ -63454,7 +63799,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               r2(this, "foundExtremes");
               this.beforePadding && this.beforePadding();
               this.adjustForMinRange();
-              !(h2 || this.axisPointRange || this.stacking && this.stacking.usePercentage || m2) && p(this.min) && p(this.max) && (d2 = this.max - this.min) && (!p(C2) && L && (this.min -= d2 * L), !p(q2) && x2 && (this.max += d2 * x2));
+              !(h2 || this.axisPointRange || this.stacking && this.stacking.usePercentage || m2) && p(this.min) && p(this.max) && (d2 = this.max - this.min) && (!p(C2) && L2 && (this.min -= d2 * L2), !p(q2) && x2 && (this.max += d2 * x2));
               g(this.userMin) || (g(c2.softMin) && c2.softMin < this.min && (this.min = C2 = c2.softMin), g(c2.floor) && (this.min = Math.max(this.min, c2.floor)));
               g(this.userMax) || (g(c2.softMax) && c2.softMax > this.max && (this.max = q2 = c2.softMax), g(c2.ceiling) && (this.max = Math.min(this.max, c2.ceiling)));
               k2 && p(this.dataMin) && (t3 = t3 || 0, !p(C2) && this.min < t3 && this.dataMin >= t3 ? this.min = this.options.minRange ? Math.min(t3, this.max - this.minRange) : t3 : !p(q2) && this.max > t3 && this.dataMax <= t3 && (this.max = this.options.minRange ? Math.max(t3, this.min + this.minRange) : t3));
@@ -65656,7 +66001,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           a["Core/Utilities.js"],
           a["Core/Renderer/HTML/AST.js"]
         ], function(a2, u, z, F, y, G, H, A, q, n2, k, e2, c, h, f) {
-          var w = a2.animate, p = a2.animObject, B = a2.setAnimation, t2 = z.numberFormat, v = F.registerEventOptions, C = y.charts, r2 = y.doc, l = y.marginNames, b = y.svg, g = y.win, d = A.defaultOptions, m = A.defaultTime, D = k.seriesTypes, x = h.addEvent, I = h.attr, P = h.cleanRecursively, S = h.createElement, O = h.css, U = h.defined, Y = h.discardElement, L = h.erase, K = h.error, M2 = h.extend, da = h.find, Q = h.fireEvent, ea = h.getStyle, E = h.isArray, T = h.isNumber, N = h.isObject, V = h.isString, W = h.merge, X = h.objectEach, R = h.pick, fa = h.pInt, aa = h.relativeLength, ia = h.removeEvent, ha = h.splat, ba = h.syncTimeout, ka = h.uniqueKey;
+          var w = a2.animate, p = a2.animObject, B = a2.setAnimation, t2 = z.numberFormat, v = F.registerEventOptions, C = y.charts, r2 = y.doc, l = y.marginNames, b = y.svg, g = y.win, d = A.defaultOptions, m = A.defaultTime, D = k.seriesTypes, x = h.addEvent, I = h.attr, P = h.cleanRecursively, S = h.createElement, O = h.css, U = h.defined, Y = h.discardElement, L2 = h.erase, K = h.error, M2 = h.extend, da = h.find, Q = h.fireEvent, ea = h.getStyle, E = h.isArray, T = h.isNumber, N = h.isObject, V = h.isString, W = h.merge, X = h.objectEach, R = h.pick, fa = h.pInt, aa = h.relativeLength, ia = h.removeEvent, ha = h.splat, ba = h.syncTimeout, ka = h.uniqueKey;
           a2 = (function() {
             function a3(b2, a4, c2) {
               this.series = this.renderTo = this.renderer = this.pointer = this.pointCount = this.plotWidth = this.plotTop = this.plotLeft = this.plotHeight = this.plotBox = this.options = this.numberFormatter = this.margin = this.legend = this.labelCollectors = this.isResizing = this.index = this.eventOptions = this.container = this.colorCounter = this.clipBox = this.chartWidth = this.chartHeight = this.bounds = this.axisOffset = this.axes = void 0;
@@ -66140,7 +66485,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             a3.prototype.destroy = function() {
               var b2 = this, a4 = b2.axes, c2 = b2.series, d2 = b2.container, e3 = d2 && d2.parentNode, g2;
               Q(b2, "destroy");
-              b2.renderer.forExport ? L(C, b2) : C[b2.index] = void 0;
+              b2.renderer.forExport ? L2(C, b2) : C[b2.index] = void 0;
               y.chartCount--;
               b2.renderTo.removeAttribute("data-highcharts-chart");
               ia(b2);
@@ -66441,7 +66786,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           a["Core/Renderer/SVG/SVGElement.js"],
           a["Core/Utilities.js"]
         ], function(a2, u, z, F, y, G, H, A, q, n2) {
-          var k = a2.animObject, e2 = a2.setAnimation, c = u.defaultOptions, h = z.registerEventOptions, f = F.hasTouch, w = F.svg, p = F.win, B = A.seriesTypes, t2 = n2.addEvent, v = n2.arrayMax, C = n2.arrayMin, r2 = n2.clamp, l = n2.cleanRecursively, b = n2.correctFloat, g = n2.defined, d = n2.erase, m = n2.error, D = n2.extend, x = n2.find, I = n2.fireEvent, P = n2.getNestedProperty, S = n2.isArray, O = n2.isNumber, U = n2.isString, Y = n2.merge, L = n2.objectEach, K = n2.pick, M2 = n2.removeEvent, da = n2.splat, Q = n2.syncTimeout;
+          var k = a2.animObject, e2 = a2.setAnimation, c = u.defaultOptions, h = z.registerEventOptions, f = F.hasTouch, w = F.svg, p = F.win, B = A.seriesTypes, t2 = n2.addEvent, v = n2.arrayMax, C = n2.arrayMin, r2 = n2.clamp, l = n2.cleanRecursively, b = n2.correctFloat, g = n2.defined, d = n2.erase, m = n2.error, D = n2.extend, x = n2.find, I = n2.fireEvent, P = n2.getNestedProperty, S = n2.isArray, O = n2.isNumber, U = n2.isString, Y = n2.merge, L2 = n2.objectEach, K = n2.pick, M2 = n2.removeEvent, da = n2.splat, Q = n2.syncTimeout;
           a2 = (function() {
             function a3() {
               this.zones = this.yAxis = this.xAxis = this.userOptions = this.tooltipOptions = this.processedYData = this.processedXData = this.points = this.options = this.linkedSeries = this.index = this.eventsToUnbind = this.eventOptions = this.data = this.chart = this._i = void 0;
@@ -66874,7 +67219,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             a3.prototype.afterAnimate = function() {
               var a4 = this;
               this.setClip();
-              L(
+              L2(
                 this.chart.sharedClips,
                 function(b2, c2, d2) {
                   b2 && !a4.chart.container.querySelector('[clip-path="url(#' + b2.id + ')"]') && (b2.destroy(), delete d2[c2]);
@@ -66940,13 +67285,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 return a5.destroy();
               });
               n2.clearTimeout(b2.animationTimeout);
-              L(b2, function(a5, b3) {
+              L2(b2, function(a5, b3) {
                 a5 instanceof q && !a5.survive && (f2 = e3 && "group" === b3 ? "hide" : "destroy", a5[f2]());
               });
               c2.hoverSeries === b2 && (c2.hoverSeries = void 0);
               d(c2.series, b2);
               c2.orderSeries();
-              L(b2, function(c3, d2) {
+              L2(b2, function(c3, d2) {
                 a4 && "hcEvents" === d2 || delete b2[d2];
               });
             };
@@ -69220,7 +69565,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           a["Core/Utilities.js"]
         ], function(a2, e2, g2, t2, z, k, d, J, b) {
           e2 = t2.defaultOptions;
-          var l = d.doc, r2 = d.win, x = b.addEvent, q = b.css, E = b.createElement, K = b.discardElement, F = b.extend, P = b.find, G = b.fireEvent, Q = b.isObject, m = b.merge, L = b.objectEach, w = b.pick, R = b.removeEvent, S = b.uniqueKey, H;
+          var l = d.doc, r2 = d.win, x = b.addEvent, q = b.css, E = b.createElement, K = b.discardElement, F = b.extend, P = b.find, G = b.fireEvent, Q = b.isObject, m = b.merge, L2 = b.objectEach, w = b.pick, R = b.removeEvent, S = b.uniqueKey, H;
           (function(e3) {
             function t3(a3) {
               var c = this, d2 = c.renderer, b2 = m(c.options.navigation.buttonOptions, a3), e4 = b2.onclick, B = b2.menuItems, n2 = b2.symbolSize || 12;
@@ -69458,7 +69803,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                     v.removeChild(A);
                   }
                   if (d.isFirefox || d.isMS) for (var t4 in h) e4(h[t4], t4);
-                  else L(h, e4);
+                  else L2(h, e4);
                   f && (h = c.getAttribute("style"), c.setAttribute("style", (h ? h + ";" : "") + f));
                   "svg" === c.nodeName && c.setAttribute("stroke-width", "1px");
                   "text" !== c.nodeName && [].forEach.call(c.children || c.childNodes, a3);
@@ -69507,7 +69852,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               var a3 = this, b2 = a3.options.exporting, d2 = b2.buttons, e4 = a3.isDirtyExporting || !a3.exportSVGElements;
               a3.buttonOffset = 0;
               a3.isDirtyExporting && a3.destroyExport();
-              e4 && false !== b2.enabled && (a3.exportEvents = [], a3.exportingGroup = a3.exportingGroup || a3.renderer.g("exporting-group").attr({ zIndex: 3 }).add(), L(d2, function(b3) {
+              e4 && false !== b2.enabled && (a3.exportEvents = [], a3.exportingGroup = a3.exportingGroup || a3.renderer.g("exporting-group").attr({ zIndex: 3 }).add(), L2(d2, function(b3) {
                 a3.addButton(b3);
               }), a3.isDirtyExporting = false);
             }
@@ -70401,7 +70746,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         pathToTaxon,
         pathToSearch,
         pathToDataset,
-        pathToTree
+        pathToTree,
+        showDistributionMap
       } = this.props;
       const {
         taxon,
@@ -70661,7 +71007,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 pathToDataset,
                 style: { marginTop: "-3px" },
                 data: info.distributions,
-                datasetKey
+                datasetKey,
+                showDistributionMap
               }
             ) }),
             _.get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: _.get(taxon, "environments").join(", ") }),
