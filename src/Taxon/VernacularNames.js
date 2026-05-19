@@ -5,6 +5,7 @@ import axios from "axios";
 import config from "../config";
 import ReferencePopover from "./ReferencePopover";
 import MergedDataBadge from "../components/MergedDataBadge";
+import ShowMoreToggle from "./ShowMoreToggle";
 
 import { getCountries } from "../api/enumeration";
 
@@ -14,6 +15,7 @@ class VernacularNamesTable extends React.Component {
     const {references} = this.props;
     this.state = {
       data: this.props.data ? [...this.props.data] : [],
+      showAll: false,
       countryAlpha3: {},
       countryAlpha2: {},
       columns: [
@@ -124,18 +126,27 @@ class VernacularNamesTable extends React.Component {
   };
   render() {
     const { style } = this.props;
-    const { data, columns } = this.state;
+    const { data, columns, showAll } = this.state;
+    const visible = showAll ? data : data.slice(0, 5);
 
     return (
-      <Table
-        style={style}
-        className="colplus-taxon-page-list"
-        columns={columns}
-        dataSource={data}
-        rowKey="id"
-        pagination={false}
-        size="middle"
-      />
+      <>
+        <Table
+          style={style}
+          className="colplus-taxon-page-list"
+          columns={columns}
+          dataSource={visible}
+          rowKey="id"
+          pagination={false}
+          size="middle"
+        />
+        <ShowMoreToggle
+          total={data.length}
+          visible={5}
+          showAll={showAll}
+          onChange={(v) => this.setState({ showAll: v })}
+        />
+      </>
     );
   }
 }
