@@ -68,16 +68,6 @@ const BASEMAPS = [
     },
   },
   {
-    key: "osm",
-    label: "OSM",
-    url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    options: {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 19,
-    },
-  },
-  {
     key: "esri",
     label: "Esri",
     url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
@@ -218,6 +208,12 @@ const DistributionsMap = ({ records, onUnmappable }) => {
 
   return (
     <div style={{ position: "relative" }}>
+      <style>{`
+        .leaflet-bar a,
+        .leaflet-bar a:hover {
+          background-color: #fff;
+        }
+      `}</style>
       <div
         ref={containerRef}
         style={{ height: 360, width: "100%", background: "#f5f5f5" }}
