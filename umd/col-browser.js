@@ -59524,15 +59524,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }
     },
     {
-      key: "osm",
-      label: "OSM",
-      url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-      options: {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
-      }
-    },
-    {
       key: "esri",
       label: "Esri",
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
@@ -59652,6 +59643,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       };
     }, [records, onUnmappable]);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
+        .leaflet-bar a,
+        .leaflet-bar a:hover {
+          background-color: #fff;
+        }
+      ` }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
