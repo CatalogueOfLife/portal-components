@@ -135,6 +135,16 @@ ReactDOM.render(e(Search), domContainer);
 5. `pathToTaxon=` - The local path to the taxon page of your website (the page where this component will placed).
 6. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__taxon__` that will be replaced with the taxon name.
 7. `identifierLabel` - Label for the identifier listed on top of the taxon view. Defaults to `Identifier`
+8. `showDistributionMap` - (Optional) When `true`, render an interactive Leaflet map for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. **Requires the consumer to load Leaflet 1.9+ and its CSS** (peer dependency).
+
+To use the map, include Leaflet alongside React in your page:
+
+```
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+```
+
+ES module consumers: `npm install leaflet` and `import "leaflet/dist/leaflet.css"` in your bundle entry.
 
 ```
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
