@@ -45,6 +45,7 @@ export default defineConfig({
         /^highcharts/, /^marked/, /^query-string/,
         /^react-jss/, /^react-highlight-words/,
         /^dompurify/, /^linkify/, /^dataloader/, /^btoa/,
+        /^leaflet/,
       ],
     },
     outDir: 'es',

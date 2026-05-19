@@ -33,9 +33,9 @@ export default defineConfig({
       fileName: () => 'col-browser.js',
     },
     rollupOptions: {
-      external: ['react'],
+      external: ['react', 'leaflet'],
       output: {
-        globals: { react: 'React' },
+        globals: { react: 'React', leaflet: 'L' },
         assetFileNames: (info) =>
           info.name?.endsWith('.css') ? 'main.css' : info.name,
         // Inject browser polyfills for Node globals inside the UMD wrapper.
