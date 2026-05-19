@@ -20,7 +20,7 @@ export default defineConfig({
   plugins: [jsxInJs],
   appType: 'spa',
   optimizeDeps: {
-    esbuild: {
+    esbuildOptions: {
       loader: { '.js': 'jsx' },
     },
   },
