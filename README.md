@@ -33,7 +33,7 @@ All components are in use on the [main Catalogue of Life portal](https://www.cat
 These components can be included in any html page.
 Include dependencies, React and React Dom:
 
-```
+```html
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" ></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" ></script>
 ```
@@ -41,13 +41,13 @@ Include dependencies, React and React Dom:
 Include the Library - current version can be found [here](https://github.com/CatalogueOfLife/portal-components/releases/latest).
 We recommend to always use the @latest version:
 
-```
+```html
 <script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/col-browser.min.js" ></script>
 ```
 
 And the styles:
 
-```
+```html
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@latest/umd/main.css">
 ```
 
@@ -67,7 +67,7 @@ A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse), takes
 7. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the tree component
 8. `type` - (Optional) e.g. `type="project"` this will show info about contributing sources on the tree nodes
 
-```
+```html
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
 ............
 <script >
@@ -101,7 +101,7 @@ ReactDOM.render(e(Tree), domContainer);
 3. `defaultTaxonKey` - (Optional) if the search should default to a certain Family, Order etc
 4. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the search component
 
-```
+```html
 <div id="search"></div> <!- Dom element for the search to attach to -->
 ............
 <script >
@@ -139,14 +139,14 @@ ReactDOM.render(e(Search), domContainer);
 
 To use the map, include Leaflet alongside React in your page:
 
-```
+```html
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 ```
 
 ES module consumers: `npm install leaflet` and `import "leaflet/dist/leaflet.css"` in your bundle entry.
 
-```
+```html
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
 ............
 <script >
@@ -162,8 +162,10 @@ class Taxon extends React.Component {
           pathToTree: '/mytaxonomy/browse',
           pathToSearch= '/data/search',
           pathToDataset: '/sourcedatasets/',
-          pathToTaxon: '/mytaxonomy/taxon/' 
-          pageTitleTemplate: 'COL | __taxon__'}
+          pathToTaxon: '/mytaxonomy/taxon/', 
+          pageTitleTemplate: 'COL | __taxon__',
+          showDistributionMap: true
+        }
       );
     }
   }
@@ -182,7 +184,7 @@ ReactDOM.render(e(Taxon), domContainer);
 3. `pathToSearch` - The local path to the search page of your website (for links in the metrics section to point towards).
 4. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__dataset__` that will be replaced with the dataset title name.
 
-```
+```html
 <div id="dataset"></div> <!- Dom element for the dataset details to attach to -->
 ............
 <script >
@@ -217,7 +219,7 @@ for a dataset on [ChecklistBank](https://www.checklistbank.org/). Properties:
 3. `style` - To set margins, height etc. Defaults to `{height: "40px"}`.
 
 
-```
+```html
 <div id="bibtex"></div> <!- Dom element for the BibTex to attach to -->
 ............
 <script >
