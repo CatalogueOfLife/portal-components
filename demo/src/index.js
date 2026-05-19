@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { render } from "react-dom";
+import "leaflet/dist/leaflet.css";
 
 import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex, TaxonBreakdown } from "../../src";
 
@@ -14,7 +15,7 @@ const environments = {
 const routes = [
   { path: "/data/tree", label: "Tree" },
   { path: "/data/search", label: "Search" },
-  { path: "/data/taxon/622TP", label: "Taxon" },
+  { path: "/data/taxon/6W3C4", label: "Taxon" },
   { path: "/data/source/1010", label: "Dataset" },
   { path: "/data/contributors", label: "DatasetSearch" },
   { path: "/data/bibtex", label: "BibTex" },
@@ -131,6 +132,7 @@ class Demo extends Component {
             pathToTaxon="/data/taxon/"
             pageTitleTemplate="COL | __taxon__"
             identifierLabel="COL identifier"
+            showDistributionMap
           />
         )}
         {pathname.indexOf("/data/search") === 0 && (
