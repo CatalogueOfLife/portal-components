@@ -391,6 +391,7 @@ class TaxonPage extends React.Component {
       pathToSearch,
       pathToDataset,
       pathToTree,
+      showDistributionMap,
     } = this.props;
     const {
       taxon,
@@ -722,6 +723,7 @@ class TaxonPage extends React.Component {
                 style={{ marginTop: "-3px" }}
                 data={info.distributions}
                 datasetKey={datasetKey}
+                showDistributionMap={showDistributionMap}
               />
             </PresentationItem>
           )}
