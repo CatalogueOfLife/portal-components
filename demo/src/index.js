@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import "leaflet/dist/leaflet.css";
 
 import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex, TaxonBreakdown } from "../../src";
+import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
 
 import config from "../../src/config";
 import history from "../../src/history";
@@ -110,6 +111,31 @@ class Demo extends Component {
                 </li>
               ))}
             </ul>
+            <h2>Distribution map legend</h2>
+            <div style={{ fontSize: 13, lineHeight: 1.6 }}>
+              {[
+                ...ESTABLISHMENT_MEANS,
+                { key: "__missing__", label: "(no establishmentMeans — not shown in map legend)", color: MISSING_COLOR },
+              ].map((m) => (
+                <div
+                  key={m.key}
+                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                >
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: 16,
+                      height: 16,
+                      background: m.color,
+                      border: "1px solid rgba(0,0,0,0.15)",
+                      borderRadius: 2,
+                    }}
+                  />
+                  <span style={{ fontFamily: "monospace" }}>{m.color}</span>
+                  <span>{m.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

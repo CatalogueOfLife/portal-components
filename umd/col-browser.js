@@ -59490,18 +59490,23 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       color: "#DCB0F2"
     },
     { key: "vagrant", label: "Vagrant", color: "#F6CF71" },
-    { key: "uncertain", label: "Uncertain", color: "#66C5CC" }
+    { key: "uncertain", label: "Uncertain", color: "#8BE0A4" }
   ];
   const ESTABLISHMENT_COLORS = Object.fromEntries(
     ESTABLISHMENT_MEANS.map((m) => [m.key, m.color])
   );
-  const DEFAULT_KEY = "uncertain";
+  const MISSING_COLOR = "#66C5CC";
   const normalizeKey = (v) => String(v || "").toLowerCase().replace(/[^a-z]/g, "");
   const resolveKey = (record) => {
-    const k = normalizeKey(record == null ? void 0 : record.establishmentMeans);
-    return ESTABLISHMENT_COLORS[k] ? k : DEFAULT_KEY;
+    const raw = record == null ? void 0 : record.establishmentMeans;
+    if (raw == null || raw === "") return null;
+    const k = normalizeKey(raw);
+    return ESTABLISHMENT_COLORS[k] ? k : "uncertain";
   };
-  const colorFor = (record) => ESTABLISHMENT_COLORS[resolveKey(record)];
+  const colorFor = (record) => {
+    const k = resolveKey(record);
+    return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
+  };
   const polygonStyleFor = (color) => ({
     color,
     weight: 1,
@@ -59566,7 +59571,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const [basemap, setBasemap] = React.useState(DEFAULT_BASEMAP);
     const presentMeans = React.useMemo(() => {
       if (!(records == null ? void 0 : records.length)) return [];
-      const seen = new Set(records.map(resolveKey));
+      const seen = /* @__PURE__ */ new Set();
+      records.forEach((r2) => {
+        const k = resolveKey(r2);
+        if (k != null) seen.add(k);
+      });
       return ESTABLISHMENT_MEANS.filter((m) => seen.has(m.key));
     }, [records]);
     React.useEffect(() => {
