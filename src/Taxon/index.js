@@ -392,6 +392,7 @@ class TaxonPage extends React.Component {
       pathToDataset,
       pathToTree,
       showDistributionMap,
+      gbifChecklistKey,
     } = this.props;
     const {
       taxon,
@@ -724,6 +725,9 @@ class TaxonPage extends React.Component {
                 data={info.distributions}
                 datasetKey={datasetKey}
                 showDistributionMap={showDistributionMap}
+                focalTaxon={taxon}
+                rankOrder={rank}
+                gbifChecklistKey={gbifChecklistKey}
               />
             </PresentationItem>
           )}

@@ -1,0 +1,19 @@
+.leaflet-control-layers input {
+  margin-right: 6px;
+}
+
+/* Rank groups (subspecies, varieties, …) stay permanently expanded.
+   The tree control still attaches a click-to-collapse handler on the header,
+   so we both hide the +/- toggle symbols AND force the children to stay
+   visible regardless of the internal hide state. The header click then
+   becomes a visual no-op. */
+.leaflet-control-layers .leaflet-layerstree-closed,
+.leaflet-control-layers .leaflet-layerstree-opened {
+  display: none !important;
+}
+.leaflet-control-layers .leaflet-layerstree-children {
+  display: block !important;
+}
+.leaflet-control-layers .leaflet-layerstree-header {
+  cursor: default;
+}

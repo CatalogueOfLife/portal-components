@@ -6871,7 +6871,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     })()
   );
   var observers = typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : new MapShim();
-  var ResizeObserver$2 = (
+  var ResizeObserver$3 = (
     /** @class */
     /* @__PURE__ */ (function() {
       function ResizeObserver2(callback) {
@@ -6893,7 +6893,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     "unobserve",
     "disconnect"
   ].forEach(function(method) {
-    ResizeObserver$2.prototype[method] = function() {
+    ResizeObserver$3.prototype[method] = function() {
       var _a;
       return (_a = observers.get(this))[method].apply(_a, arguments);
     };
@@ -6902,7 +6902,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     if (typeof global$1.ResizeObserver !== "undefined") {
       return global$1.ResizeObserver;
     }
-    return ResizeObserver$2;
+    return ResizeObserver$3;
   })();
   var INTERNAL_PREFIX_KEY$2 = "rc-observer-key";
   var ReactResizeObserver = /* @__PURE__ */ (function(_React$Component) {
@@ -15165,7 +15165,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }
   var RefSingleObserver$1 = /* @__PURE__ */ React__namespace.forwardRef(SingleObserver$1);
   var INTERNAL_PREFIX_KEY$1 = "rc-observer-key";
-  function ResizeObserver$1(props, ref) {
+  function ResizeObserver$2(props, ref) {
     var children = props.children;
     var childNodes = typeof children === "function" ? [children] : toArray$5(children);
     return childNodes.map(function(child, index2) {
@@ -15176,7 +15176,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }), child);
     });
   }
-  var RefResizeObserver$1 = /* @__PURE__ */ React__namespace.forwardRef(ResizeObserver$1);
+  var RefResizeObserver$1 = /* @__PURE__ */ React__namespace.forwardRef(ResizeObserver$2);
   RefResizeObserver$1.Collection = Collection$1;
   function useEvent(callback) {
     var fnRef = React__namespace.useRef();
@@ -29613,7 +29613,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       var prefixCls = getPrefixCls("row", customizePrefixCls);
       var gutter = getGutter();
       var classes = classNames(prefixCls, (_classNames = {}, _defineProperty$3(_classNames, "".concat(prefixCls, "-").concat(justify), justify), _defineProperty$3(_classNames, "".concat(prefixCls, "-").concat(align), align), _defineProperty$3(_classNames, "".concat(prefixCls, "-rtl"), direction === "rtl"), _classNames), className);
-      var rowStyle = _extends$6(_extends$6(_extends$6({}, gutter[0] > 0 ? {
+      var rowStyle2 = _extends$6(_extends$6(_extends$6({}, gutter[0] > 0 ? {
         marginLeft: gutter[0] / -2,
         marginRight: gutter[0] / -2
       } : {}), gutter[1] > 0 ? {
@@ -29628,7 +29628,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }
       }, /* @__PURE__ */ React__namespace.createElement("div", _extends$6({}, otherProps, {
         className: classes,
-        style: rowStyle,
+        style: rowStyle2,
         ref
       }), children));
     };
@@ -30467,7 +30467,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }
   var RefSingleObserver = /* @__PURE__ */ React__namespace.forwardRef(SingleObserver);
   var INTERNAL_PREFIX_KEY = "rc-observer-key";
-  function ResizeObserver(props, ref) {
+  function ResizeObserver$1(props, ref) {
     var children = props.children;
     var childNodes = typeof children === "function" ? [children] : toArray$5(children);
     return childNodes.map(function(child, index2) {
@@ -30478,7 +30478,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }), child);
     });
   }
-  var RefResizeObserver = /* @__PURE__ */ React__namespace.forwardRef(ResizeObserver);
+  var RefResizeObserver = /* @__PURE__ */ React__namespace.forwardRef(ResizeObserver$1);
   RefResizeObserver.Collection = Collection;
   var HIDDEN_TEXTAREA_STYLE = "\n  min-height:0 !important;\n  max-height:none !important;\n  height:0 !important;\n  visibility:hidden !important;\n  overflow:hidden !important;\n  position:absolute !important;\n  z-index:-1000 !important;\n  top:0 !important;\n  right:0 !important\n";
   var SIZING_STYLE = ["letter-spacing", "line-height", "padding-top", "padding-bottom", "font-family", "font-weight", "font-size", "font-variant", "text-rendering", "text-transform", "width", "text-indent", "padding-left", "padding-right", "border-width", "box-sizing", "word-break"];
@@ -53364,7 +53364,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       ] })
     ] });
   };
-  const INFRASPECIFIC_RANKS = [
+  const INFRASPECIFIC_RANKS$1 = [
     "infraspecific name",
     "species",
     "variety",
@@ -53412,7 +53412,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                   },
                   defaultTaxonKey: _.get(params, "taxonKey") || null,
                   onSelectName: (name) => {
-                    if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(_.get(name, "rank"))) {
+                    if (linkToSpeciesPage && INFRASPECIFIC_RANKS$1.includes(_.get(name, "rank"))) {
                       if (typeof pathToTaxon === "string") {
                         window.location.href = `${pathToTaxon}${_.get(
                           name,
@@ -59471,6 +59471,710 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       ] });
     }
   }
+  var L_Control_Layers_Tree$1 = { exports: {} };
+  var L_Control_Layers_Tree = L_Control_Layers_Tree$1.exports;
+  var hasRequiredL_Control_Layers_Tree;
+  function requireL_Control_Layers_Tree() {
+    if (hasRequiredL_Control_Layers_Tree) return L_Control_Layers_Tree$1.exports;
+    hasRequiredL_Control_Layers_Tree = 1;
+    (function(module2, exports$1) {
+      (function(global2, factory) {
+        factory(exports$1, L);
+      })(L_Control_Layers_Tree, (function(_exports, L2) {
+        if (typeof L2 === "undefined") {
+          throw new Error("Leaflet must be included first");
+        }
+        L2.Control.Layers.Tree = L2.Control.Layers.extend({
+          options: {
+            closedSymbol: "+",
+            openedSymbol: "&minus;",
+            spaceSymbol: " ",
+            selectorBack: false,
+            namedToggle: false,
+            collapseAll: "",
+            expandAll: "",
+            labelIsSelector: "both"
+          },
+          // Class names are error prone texts, so write them once here
+          _initClassesNames: function() {
+            this.cls = {
+              children: "leaflet-layerstree-children",
+              childrenNopad: "leaflet-layerstree-children-nopad",
+              hide: "leaflet-layerstree-hide",
+              closed: "leaflet-layerstree-closed",
+              opened: "leaflet-layerstree-opened",
+              space: "leaflet-layerstree-header-space",
+              pointer: "leaflet-layerstree-header-pointer",
+              header: "leaflet-layerstree-header",
+              neverShow: "leaflet-layerstree-nevershow",
+              node: "leaflet-layerstree-node",
+              name: "leaflet-layerstree-header-name",
+              label: "leaflet-layerstree-header-label",
+              selAllCheckbox: "leaflet-layerstree-sel-all-checkbox"
+            };
+          },
+          initialize: function(baseTree, overlaysTree, options) {
+            this._scrollTop = 0;
+            this._initClassesNames();
+            this._baseTree = null;
+            this._overlaysTree = null;
+            L2.Util.setOptions(this, options);
+            L2.Control.Layers.prototype.initialize.call(this, null, null, options);
+            this._setTrees(baseTree, overlaysTree);
+          },
+          setBaseTree: function(tree) {
+            return this._setTrees(tree);
+          },
+          setOverlayTree: function(tree) {
+            return this._setTrees(void 0, tree);
+          },
+          addBaseLayer: function(_layer, _name) {
+            throw "addBaseLayer is disabled";
+          },
+          addOverlay: function(_layer, _name) {
+            throw "addOverlay is disabled";
+          },
+          removeLayer: function(_layer) {
+            throw "removeLayer is disabled";
+          },
+          collapse: function() {
+            this._scrollTop = this._sect().scrollTop;
+            return L2.Control.Layers.prototype.collapse.call(this);
+          },
+          expand: function() {
+            L2.Control.Layers.prototype.expand.call(this);
+            this._sect().scrollTop = this._scrollTop;
+          },
+          onAdd: function(map2) {
+            function changeName(layer) {
+              if (layer._layersTreeName) {
+                toggle.innerHTML = layer._layersTreeName;
+              }
+            }
+            var ret = L2.Control.Layers.prototype.onAdd.call(this, map2);
+            if (this.options.namedToggle) {
+              var toggle = this._container.getElementsByClassName("leaflet-control-layers-toggle")[0];
+              L2.DomUtil.addClass(toggle, "leaflet-layerstree-named-toggle");
+              map2.eachLayer(function(layer) {
+                changeName(layer);
+              });
+              map2.on("baselayerchange", function(e2) {
+                changeName(e2.layer);
+              }, this);
+            }
+            return ret;
+          },
+          // Expands the whole tree (base other overlays)
+          expandTree: function(overlay) {
+            var container = overlay ? this._overlaysList : this._baseLayersList;
+            if (container) {
+              this._applyOnTree(container, false);
+            }
+            return this._localExpand();
+          },
+          // Collapses the whole tree (base other overlays)
+          collapseTree: function(overlay) {
+            var container = overlay ? this._overlaysList : this._baseLayersList;
+            if (container) {
+              this._applyOnTree(container, true);
+            }
+            return this._localExpand();
+          },
+          // Expands the tree, only to show the selected inputs
+          expandSelected: function(overlay) {
+            function iter(el2) {
+              var p = el2.parentElement;
+              if (p) {
+                if (L2.DomUtil.hasClass(p, that.cls.children) && !L2.DomUtil.hasClass(el2, that.cls.childrenNopad)) {
+                  L2.DomUtil.removeClass(p, hide);
+                }
+                if (L2.DomUtil.hasClass(p, that.cls.node)) {
+                  var h = p.getElementsByClassName(that.cls.header)[0];
+                  that._applyOnTree(h, false);
+                }
+                iter(p);
+              }
+            }
+            var that = this;
+            var container = overlay ? this._overlaysList : this._baseLayersList;
+            if (!container) return this;
+            var hide = this.cls.hide;
+            var inputs = this._layerControlInputs || container.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+              var input = inputs[i];
+              if (this._getLayer && !!this._getLayer(input.layerId).overlay != !!overlay) continue;
+              if (input.checked) {
+                iter(input.parentElement.parentElement.parentElement.parentElement);
+              }
+            }
+            return this._localExpand();
+          },
+          // "private" methods, not exposed in the API
+          _sect: function() {
+            return this._section || this._form;
+          },
+          _setTrees: function(base, overlays) {
+            var id2 = 0;
+            function iterate2(tree, output, overlays2) {
+              if (tree && tree.layer) {
+                if (!overlays2) {
+                  tree.layer._layersTreeName = tree.name || tree.label;
+                }
+                output[id2++] = tree.layer;
+              }
+              if (tree && tree.children && tree.children.length) {
+                tree.children.forEach(function(child) {
+                  iterate2(child, output, overlays2);
+                });
+              }
+              return output;
+            }
+            function forArrays(input) {
+              if (Array.isArray(input)) {
+                return { noShow: true, children: input };
+              } else {
+                return input;
+              }
+            }
+            if (this._layerControlInputs) {
+              this._layerControlInputs = [];
+            }
+            for (var i = 0; i < this._layers.length; ++i) {
+              this._layers[i].layer.off("add remove", this._onLayerChange, this);
+            }
+            this._layers = [];
+            if (base !== void 0) this._baseTree = forArrays(base);
+            if (overlays !== void 0) this._overlaysTree = forArrays(overlays);
+            var bflat = iterate2(this._baseTree, {});
+            for (var j in bflat) {
+              this._addLayer(bflat[j], j);
+            }
+            var oflat = iterate2(this._overlaysTree, {}, true);
+            for (var k in oflat) {
+              this._addLayer(oflat[k], k, true);
+            }
+            return this._map ? this._update() : this;
+          },
+          // Used to update the vertical scrollbar
+          _localExpand: function() {
+            if (this._map && L2.DomUtil.hasClass(this._container, "leaflet-control-layers-expanded")) {
+              var top = this._sect().scrollTop;
+              this.expand();
+              this._sect().scrollTop = top;
+              this._scrollTop = top;
+            }
+            return this;
+          },
+          // collapses or expands the tree in the container.
+          _applyOnTree: function(container, collapse) {
+            var iters = [
+              { cls: this.cls.children, hide: collapse },
+              { cls: this.cls.opened, hide: collapse },
+              { cls: this.cls.closed, hide: !collapse }
+            ];
+            iters.forEach(function(it) {
+              var els = container.getElementsByClassName(it.cls);
+              for (var i = 0; i < els.length; i++) {
+                var el2 = els[i];
+                if (L2.DomUtil.hasClass(el2, this.cls.childrenNopad)) ;
+                else if (it.hide) {
+                  L2.DomUtil.addClass(el2, this.cls.hide);
+                } else {
+                  L2.DomUtil.removeClass(el2, this.cls.hide);
+                }
+              }
+            }, this);
+          },
+          // it is called in the original _update, and shouldn't do anything.
+          _addItem: function(_obj) {
+          },
+          // overwrite _update function in Control.Layers
+          _update: function() {
+            if (!this._container) {
+              return this;
+            }
+            L2.Control.Layers.prototype._update.call(this);
+            this._addTreeLayout(this._baseTree, false);
+            this._addTreeLayout(this._overlaysTree, true);
+            return this._localExpand();
+          },
+          // Create the DOM objects for the tree
+          _addTreeLayout: function(tree, overlay) {
+            if (!tree) return;
+            var container = overlay ? this._overlaysList : this._baseLayersList;
+            this._expandCollapseAll(overlay, this.options.collapseAll, this.collapseTree);
+            this._expandCollapseAll(overlay, this.options.expandAll, this.expandTree);
+            this._iterateTreeLayout(tree, container, overlay, [], tree.noShow);
+            if (this._checkDisabledLayers) {
+              this._checkDisabledLayers();
+            }
+          },
+          // Create the "Collapse all" or expand, if needed.
+          _expandCollapseAll: function(overlay, text2, fn, ctx) {
+            var container = overlay ? this._overlaysList : this._baseLayersList;
+            ctx = ctx ? ctx : this;
+            if (text2) {
+              var o = document.createElement("div");
+              o.className = "leaflet-layerstree-expand-collapse";
+              container.appendChild(o);
+              o.innerHTML = text2;
+              o.tabIndex = 0;
+              L2.DomEvent.on(o, "click keydown", function(e2) {
+                if (e2.type !== "keydown" || e2.keyCode === 32) {
+                  o.blur();
+                  fn.call(ctx, overlay);
+                  this._localExpand();
+                }
+              }, this);
+            }
+          },
+          // recursive function to create the DOM children
+          _iterateTreeLayout: function(tree, container, overlay, selAllNodes, noShow) {
+            if (!tree) return;
+            function creator(type2, cls, append, innerHTML) {
+              var obj2 = L2.DomUtil.create(type2, cls, append);
+              if (innerHTML) obj2.innerHTML = innerHTML;
+              return obj2;
+            }
+            var header = creator("div", this.cls.header, container);
+            var sel = creator("span");
+            var entry = creator("span");
+            var closed = creator("span", this.cls.closed, sel, this.options.closedSymbol);
+            var opened = creator("span", this.cls.opened, sel, this.options.openedSymbol);
+            var space = creator("span", this.cls.space, null, this.options.spaceSymbol);
+            if (this.options.selectorBack) {
+              sel.insertBefore(space, closed);
+              header.appendChild(entry);
+              header.appendChild(sel);
+            } else {
+              sel.appendChild(space);
+              header.appendChild(sel);
+              header.appendChild(entry);
+            }
+            function updateSelAllCheckbox(ancestor) {
+              var selector = ancestor.querySelector("input[type=checkbox]");
+              var selectedAll = true;
+              var selectedNone = true;
+              var inputs = ancestor.querySelectorAll("input[type=checkbox]");
+              [].forEach.call(inputs, function(inp) {
+                if (inp === selector) ;
+                else if (inp.indeterminate) {
+                  selectedAll = false;
+                  selectedNone = false;
+                } else if (inp.checked) {
+                  selectedNone = false;
+                } else if (!inp.checked) {
+                  selectedAll = false;
+                }
+              });
+              if (selectedAll) {
+                selector.indeterminate = false;
+                selector.checked = true;
+              } else if (selectedNone) {
+                selector.indeterminate = false;
+                selector.checked = false;
+              } else {
+                selector.indeterminate = true;
+                selector.checked = false;
+              }
+            }
+            function manageSelectorsAll(input2, ctx) {
+              selAllNodes.forEach(function(ancestor) {
+                L2.DomEvent.on(input2, "click", function(_ev) {
+                  updateSelAllCheckbox(ancestor);
+                }, ctx);
+              }, ctx);
+            }
+            var selAll;
+            if (tree.selectAllCheckbox) {
+              selAll = this._createCheckboxElement(false);
+              selAll.className += " " + this.cls.selAllCheckbox;
+            }
+            var hide = this.cls.hide;
+            if (tree.children) {
+              var children = creator("div", this.cls.children, container);
+              var sensible = tree.layer ? sel : header;
+              L2.DomUtil.addClass(sensible, this.cls.pointer);
+              sensible.tabIndex = 0;
+              L2.DomEvent.on(sensible, "click keydown", function(e3) {
+                if (this._preventClick) {
+                  return;
+                }
+                if (e3.type === "keydown" && e3.keyCode !== 32) {
+                  return;
+                }
+                sensible.blur();
+                if (L2.DomUtil.hasClass(opened, hide)) {
+                  L2.DomUtil.addClass(closed, hide);
+                  L2.DomUtil.removeClass(opened, hide);
+                  L2.DomUtil.removeClass(children, hide);
+                } else {
+                  L2.DomUtil.removeClass(closed, hide);
+                  L2.DomUtil.addClass(opened, hide);
+                  L2.DomUtil.addClass(children, hide);
+                }
+                this._localExpand();
+              }, this);
+              if (selAll) {
+                selAllNodes.splice(0, 0, container);
+              }
+              tree.children.forEach(function(child) {
+                var node = creator("div", this.cls.node, children);
+                this._iterateTreeLayout(child, node, overlay, selAllNodes);
+              }, this);
+              if (selAll) {
+                selAllNodes.splice(0, 1);
+              }
+            } else {
+              L2.DomUtil.addClass(sel, this.cls.neverShow);
+            }
+            var labelType;
+            if (tree.layer) {
+              if (this.options.labelIsSelector === "both" || // if option is set to both
+              overlay && this.options.labelIsSelector === "overlay" || // if an overlay layer and options is set to overlay
+              !overlay && this.options.labelIsSelector === "base") {
+                labelType = "label";
+              } else {
+                labelType = "span";
+              }
+            } else {
+              labelType = "span";
+            }
+            var label = creator(labelType, this.cls.label, entry);
+            if (tree.layer) {
+              var checked = this._map.hasLayer(tree.layer);
+              var input;
+              var radioGroup = overlay ? tree.radioGroup : "leaflet-base-layers_" + L2.Util.stamp(this);
+              if (radioGroup) {
+                input = this._createRadioElement(radioGroup, checked);
+              } else {
+                input = this._createCheckboxElement(checked);
+                manageSelectorsAll(input, this);
+              }
+              if (this._layerControlInputs) {
+                this._layerControlInputs.push(input);
+              }
+              input.layerId = L2.Util.stamp(tree.layer);
+              L2.DomEvent.on(input, "click", this._onInputClick, this);
+              label.appendChild(input);
+            }
+            function isText(variable) {
+              return typeof variable === "string" || variable instanceof String;
+            }
+            function isFunction2(functionToCheck) {
+              return functionToCheck && {}.toString.call(functionToCheck) === "[object Function]";
+            }
+            function selectAllCheckboxes(select, ctx) {
+              var inputs = container.getElementsByTagName("input");
+              for (var i = 0; i < inputs.length; i++) {
+                var input2 = inputs[i];
+                if (input2.type !== "checkbox") continue;
+                input2.checked = select;
+                input2.indeterminate = false;
+              }
+              ctx._onInputClick();
+            }
+            if (tree.selectAllCheckbox) {
+              label.appendChild(selAll);
+              if (isText(tree.selectAllCheckbox)) {
+                selAll.title = tree.selectAllCheckbox;
+              }
+              L2.DomEvent.on(selAll, "click", function(ev) {
+                ev.stopPropagation();
+                selectAllCheckboxes(selAll.checked, this);
+              }, this);
+              updateSelAllCheckbox(container);
+              manageSelectorsAll(selAll, this);
+            }
+            creator("span", this.cls.name, label, tree.label);
+            L2.DomUtil.addClass(tree.collapsed ? opened : closed, hide);
+            tree.collapsed && children && L2.DomUtil.addClass(children, hide);
+            if (noShow) {
+              L2.DomUtil.addClass(header, this.cls.neverShow);
+              L2.DomUtil.addClass(children, this.cls.childrenNopad);
+            }
+            var eventeds = tree.eventedClasses;
+            if (!(eventeds instanceof Array)) {
+              eventeds = [eventeds];
+            }
+            for (var e2 = 0; e2 < eventeds.length; e2++) {
+              var evented = eventeds[e2];
+              if (evented && evented.className) {
+                var obj = container.querySelector("." + evented.className);
+                if (obj) {
+                  L2.DomEvent.on(obj, evented.event || "click", /* @__PURE__ */ (function(selectAll) {
+                    return function(ev) {
+                      ev.stopPropagation();
+                      var select = isFunction2(selectAll) ? selectAll(ev, container, tree, this._map) : selectAll;
+                      if (select !== void 0 && select !== null) {
+                        selectAllCheckboxes(select, this);
+                      }
+                    };
+                  })(evented.selectAll), this);
+                }
+              }
+            }
+          },
+          _createCheckboxElement: function(checked) {
+            var input = document.createElement("input");
+            input.type = "checkbox";
+            input.className = "leaflet-control-layers-selector";
+            input.defaultChecked = checked;
+            return input;
+          }
+        });
+        L2.control.layers.tree = function(base, overlays, options) {
+          return new L2.Control.Layers.Tree(base, overlays, options);
+        };
+      }));
+    })(L_Control_Layers_Tree$1, L_Control_Layers_Tree$1.exports);
+    return L_Control_Layers_Tree$1.exports;
+  }
+  requireL_Control_Layers_Tree();
+  const INFRASPECIFIC_RANKS = [
+    "subspecies",
+    "variety",
+    "subvariety",
+    "form",
+    "subform",
+    "infraspecific name"
+  ];
+  const getDescendantRanks = (focalRank, rankOrder) => {
+    const focalIdx = rankOrder.indexOf(focalRank);
+    if (focalIdx === -1) return [];
+    return INFRASPECIFIC_RANKS.filter((r2) => {
+      const i = rankOrder.indexOf(r2);
+      return i > focalIdx;
+    });
+  };
+  const POOL_SIZE = 16;
+  const isMappable$1 = (r2) => {
+    var _a, _b;
+    return ((_a = r2 == null ? void 0 : r2.area) == null ? void 0 : _a.gazetteer) !== "text" && !!((_b = r2 == null ? void 0 : r2.area) == null ? void 0 : _b.globalId);
+  };
+  const runPool = async (items, worker, size) => {
+    const results = new Array(items.length);
+    let next = 0;
+    const runners = Array.from({ length: Math.min(size, items.length) }, async () => {
+      while (true) {
+        const i = next++;
+        if (i >= items.length) return;
+        results[i] = await worker(items[i], i);
+      }
+    });
+    await Promise.all(runners);
+    return results;
+  };
+  const searchDescendants = async (datasetKey, focalId, ranks2) => {
+    var _a;
+    if (ranks2.length === 0) return [];
+    const params = new URLSearchParams();
+    params.append("TAXON_ID", focalId);
+    ranks2.forEach((r2) => params.append("rank", r2));
+    ["accepted", "provisionally accepted"].forEach(
+      (s) => params.append("status", s)
+    );
+    params.append("limit", "1000");
+    const url = `${config.dataApi}dataset/${datasetKey}/nameusage/search?${params}`;
+    const res = await axios(url);
+    const list = ((_a = res == null ? void 0 : res.data) == null ? void 0 : _a.result) || [];
+    return list.filter((u) => {
+      var _a2;
+      return (_a2 = u == null ? void 0 : u.usage) == null ? void 0 : _a2.id;
+    }).map((u) => {
+      var _a2, _b, _c, _d, _e, _f;
+      return {
+        id: u.usage.id,
+        scientificName: ((_b = (_a2 = u.usage) == null ? void 0 : _a2.name) == null ? void 0 : _b.scientificName) || ((_c = u.usage) == null ? void 0 : _c.label) || u.usage.id,
+        rank: (_e = (_d = u.usage) == null ? void 0 : _d.name) == null ? void 0 : _e.rank,
+        parentId: (_f = u.usage) == null ? void 0 : _f.parentId
+      };
+    });
+  };
+  const fetchDistributions = async (datasetKey, taxonId) => {
+    const url = `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}/distribution`;
+    try {
+      const res = await axios(url);
+      return Array.isArray(res == null ? void 0 : res.data) ? res.data : [];
+    } catch {
+      return [];
+    }
+  };
+  const fetchDescendants = async ({ datasetKey, focalTaxon, rankOrder }) => {
+    var _a;
+    const ranks2 = getDescendantRanks((_a = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a.rank, rankOrder);
+    let descendantsFailed = false;
+    let list = [];
+    try {
+      list = await searchDescendants(datasetKey, focalTaxon.id, ranks2);
+    } catch {
+      descendantsFailed = true;
+      return { taxa: [], descendantsFailed };
+    }
+    const distributions = await runPool(
+      list,
+      (t2) => fetchDistributions(datasetKey, t2.id),
+      POOL_SIZE
+    );
+    const taxa = list.map((t2, i) => {
+      const all = distributions[i] || [];
+      return { ...t2, distributions: all, mappable: all.filter(isMappable$1) };
+    });
+    return { taxa, descendantsFailed };
+  };
+  const VIVID_PALETTE = [
+    "#E58606",
+    "#5D69B1",
+    "#52BCA3",
+    "#99C945",
+    "#CC61B0",
+    "#24796C",
+    "#DAA51B",
+    "#2F8AC4",
+    "#764E9F",
+    "#ED645A",
+    "#CC3A8E",
+    "#A5AA99"
+  ];
+  const rankIndex = (rank, rankOrder) => {
+    const i = rankOrder.indexOf(rank);
+    return i === -1 ? rankOrder.length : i;
+  };
+  const assignColors = (taxa, rankOrder) => {
+    const sorted = [...taxa].sort((a, b) => {
+      const ra = rankIndex(a.rank, rankOrder);
+      const rb = rankIndex(b.rank, rankOrder);
+      if (ra !== rb) return ra - rb;
+      return a.scientificName.localeCompare(b.scientificName);
+    });
+    const out = {};
+    sorted.forEach((t2, i) => {
+      out[t2.id] = VIVID_PALETTE[i % VIVID_PALETTE.length];
+    });
+    return out;
+  };
+  const byName = (a, b) => a.scientificName.localeCompare(b.scientificName);
+  const buildTree = (taxa, focalId) => {
+    const ids2 = new Set(taxa.map((t2) => t2.id));
+    const byParent = {};
+    const roots = [];
+    taxa.forEach((t2) => {
+      const isRoot = t2.parentId === focalId || !ids2.has(t2.parentId);
+      if (isRoot) {
+        roots.push(t2);
+      } else {
+        (byParent[t2.parentId] = byParent[t2.parentId] || []).push(t2);
+      }
+    });
+    roots.sort(byName);
+    Object.values(byParent).forEach((arr) => arr.sort(byName));
+    return { roots, byParent };
+  };
+  const wrapStyle = {
+    position: "absolute",
+    bottom: 8,
+    left: 8,
+    zIndex: 1e3,
+    background: "#fff",
+    borderRadius: 4,
+    boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+    padding: "6px 8px",
+    fontSize: 12,
+    lineHeight: 1.5,
+    maxWidth: 260
+  };
+  const scrollStyle = {
+    maxHeight: 240,
+    overflowY: "auto"
+  };
+  const groupHeadingStyle = {
+    fontWeight: 600,
+    marginTop: 4
+  };
+  const firstGroupHeadingStyle = {
+    ...groupHeadingStyle,
+    marginTop: 0
+  };
+  const rowStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+    paddingLeft: 4
+  };
+  const swatchStyle = (color) => ({
+    display: "inline-block",
+    width: 12,
+    height: 12,
+    background: color,
+    border: "1px solid rgba(0,0,0,0.15)",
+    borderRadius: 2,
+    flex: "0 0 auto"
+  });
+  const footerToggleStyle = {
+    marginTop: 6,
+    cursor: "pointer",
+    color: "#1890ff",
+    fontSize: 11
+  };
+  const footerWrapStyle = {
+    marginTop: 4,
+    borderTop: "1px solid #eee",
+    paddingTop: 4,
+    color: "#666"
+  };
+  const footerGroupHeadingStyle = {
+    fontWeight: 600,
+    marginTop: 4
+  };
+  const footerFirstGroupHeadingStyle = {
+    ...footerGroupHeadingStyle,
+    marginTop: 0
+  };
+  const footerNameStyle = {
+    fontStyle: "italic",
+    paddingLeft: 4
+  };
+  const totalCount = (groups) => groups.reduce((sum, g) => sum + g.taxa.length, 0);
+  const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups }) => {
+    const [showUnmappable, setShowUnmappable] = React.useState(false);
+    const visibleCount = totalCount(visibleGroups);
+    const unmappableCount = totalCount(unmappableGroups);
+    if (visibleCount === 0 && unmappableCount === 0) return null;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: wrapStyle, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: scrollStyle, children: visibleGroups.map((g, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: i === 0 ? firstGroupHeadingStyle : groupHeadingStyle, children: g.label }),
+        g.taxa.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: rowStyle, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: swatchStyle(t2.color) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: t2.displayName || t2.scientificName })
+        ] }, t2.id))
+      ] }, g.rank)) }),
+      unmappableCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: footerToggleStyle,
+            onClick: () => setShowUnmappable((v) => !v),
+            children: [
+              showUnmappable ? "− Hide" : "+",
+              " ",
+              unmappableCount,
+              " without map data"
+            ]
+          }
+        ),
+        showUnmappable && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: footerWrapStyle, children: unmappableGroups.map((g, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: i === 0 ? footerFirstGroupHeadingStyle : footerGroupHeadingStyle,
+              children: g.label
+            }
+          ),
+          g.taxa.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: footerNameStyle, children: t2.displayName || t2.scientificName }, t2.id))
+        ] }, g.rank)) })
+      ] })
+    ] });
+  };
   const POPUP_FIELDS = [
     "establishmentMeans",
     "degreeOfEstablishment",
@@ -59539,6 +60243,50 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
   ];
   const DEFAULT_BASEMAP = "carto";
+  const GBIF_TILE_URL = "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=73&checklistKey={checklistKey}&taxonKey={taxonKey}";
+  const GBIF_PANE = "gbifPane";
+  const GBIF_PANE_Z = 550;
+  const shiftCoords = (coords, offset2) => {
+    if (typeof coords[0] === "number") return [coords[0] + offset2, coords[1]];
+    return coords.map((c) => shiftCoords(c, offset2));
+  };
+  const WORLD_OFFSETS = [-360, 0, 360];
+  const wrapGeoJson = (geojson) => {
+    if (!geojson) return geojson;
+    const features = geojson.type === "FeatureCollection" ? geojson.features : [geojson];
+    const out = [];
+    features.forEach((f) => {
+      WORLD_OFFSETS.forEach((offset2) => {
+        const tagged = {
+          ...f,
+          properties: { ...f.properties || {}, _worldCopy: offset2 }
+        };
+        if (offset2 === 0) {
+          out.push(tagged);
+        } else {
+          out.push({
+            ...tagged,
+            geometry: {
+              ...f.geometry,
+              coordinates: shiftCoords(f.geometry.coordinates, offset2)
+            }
+          });
+        }
+      });
+    });
+    return { type: "FeatureCollection", features: out };
+  };
+  const originalCopyBounds = (geoJsonLayer) => {
+    let bounds = null;
+    geoJsonLayer.eachLayer((sub) => {
+      var _a, _b, _c;
+      if (((_b = (_a = sub.feature) == null ? void 0 : _a.properties) == null ? void 0 : _b._worldCopy) !== 0) return;
+      const b = (_c = sub.getBounds) == null ? void 0 : _c.call(sub);
+      if (!b || !b.isValid()) return;
+      bounds = bounds ? bounds.extend(b) : L.latLngBounds(b.getSouthWest(), b.getNorthEast());
+    });
+    return bounds;
+  };
   const cache = /* @__PURE__ */ new Map();
   const fetchShape = (gazetteer, id2) => {
     const key2 = `${gazetteer}:${id2}`;
@@ -59547,7 +60295,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const p = axios(url, {
       headers: { Accept: "application/geo+json" }
     }).then(
-      (r2) => r2.data,
+      (r2) => wrapGeoJson(r2.data),
       () => null
     );
     cache.set(key2, p);
@@ -59564,11 +60312,46 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       title
     )}</div>${rows}</div>`;
   };
-  const DistributionsMap = ({ records, onUnmappable }) => {
+  const RANK_LABEL_PLURAL = {
+    subspecies: "subspecies",
+    variety: "varieties",
+    subvariety: "subvarieties",
+    form: "forms",
+    subform: "subforms",
+    "infraspecific name": "infraspecific names"
+  };
+  const rankLabelPlural = (rank) => RANK_LABEL_PLURAL[rank] || rank;
+  const taxonLabel = (displayName, color) => `<span style="display:inline-flex;align-items:center;gap:6px"><span style="display:inline-block;width:10px;height:10px;background:${color};border:1px solid rgba(0,0,0,0.15);border-radius:2px"></span><span style="font-style:italic">${escapeHtml(displayName)}</span></span>`;
+  const epithet = (scientificName) => {
+    if (!scientificName) return "";
+    const tokens2 = scientificName.trim().split(/\s+/);
+    return tokens2[tokens2.length - 1];
+  };
+  const italicLabel = (text2) => `<span style="font-style:italic">${escapeHtml(text2)}</span>`;
+  const DistributionsMap = ({
+    records,
+    onUnmappable,
+    datasetKey,
+    focalTaxon,
+    rankOrder,
+    basemap = DEFAULT_BASEMAP,
+    gbifChecklistKey
+  }) => {
     const containerRef = React.useRef(null);
     const mapRef = React.useRef(null);
+    const layerControlRef = React.useRef(null);
+    const focalGroupRef = React.useRef(null);
     const tileLayerRef = React.useRef(null);
-    const [basemap, setBasemap] = React.useState(DEFAULT_BASEMAP);
+    const gbifLayerRef = React.useRef(null);
+    const [descendantState, setDescendantState] = React.useState({
+      status: "idle",
+      // idle | loading | ready | empty | error
+      taxa: []
+    });
+    const [focalReady, setFocalReady] = React.useState(false);
+    const [visibleTaxonIds, setVisibleTaxonIds] = React.useState(/* @__PURE__ */ new Set());
+    const fetchTriggeredRef = React.useRef(false);
+    const descendantGroupsRef = React.useRef({});
     const presentMeans = React.useMemo(() => {
       if (!(records == null ? void 0 : records.length)) return [];
       const seen = /* @__PURE__ */ new Set();
@@ -59578,17 +60361,114 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       });
       return ESTABLISHMENT_MEANS.filter((m) => seen.has(m.key));
     }, [records]);
+    const descendantLegend = React.useMemo(() => {
+      if (descendantState.status !== "ready") {
+        return { visibleGroups: [], unmappableGroups: [] };
+      }
+      const colors = assignColors(
+        descendantState.taxa.filter((t2) => t2.mappable.length > 0),
+        rankOrder || []
+      );
+      const decorate = (t2) => ({
+        ...t2,
+        color: colors[t2.id],
+        displayName: epithet(t2.scientificName)
+      });
+      const groupByRank = (taxa) => {
+        const byRank = {};
+        taxa.forEach((t2) => {
+          (byRank[t2.rank] = byRank[t2.rank] || []).push(decorate(t2));
+        });
+        return INFRASPECIFIC_RANKS.filter((r2) => byRank[r2]).map((r2) => ({
+          rank: r2,
+          label: rankLabelPlural(r2),
+          taxa: byRank[r2]
+        }));
+      };
+      const visibleGroups = groupByRank(
+        descendantState.taxa.filter(
+          (t2) => t2.mappable.length > 0 && visibleTaxonIds.has(t2.id)
+        )
+      );
+      const unmappableGroups = groupByRank(
+        descendantState.taxa.filter((t2) => t2.mappable.length === 0)
+      );
+      return { visibleGroups, unmappableGroups };
+    }, [descendantState, visibleTaxonIds, rankOrder]);
+    const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
     React.useEffect(() => {
       if (!containerRef.current || mapRef.current) return;
       const map2 = L.map(containerRef.current, {
-        worldCopyJump: true,
-        minZoom: 1
+        minZoom: 1,
+        worldCopyJump: true
       }).setView([20, 0], 2);
       mapRef.current = map2;
+      const invalidate = () => map2.invalidateSize();
+      const raf2 = requestAnimationFrame(invalidate);
+      const resizeObserver2 = typeof ResizeObserver !== "undefined" ? new ResizeObserver(invalidate) : null;
+      if (resizeObserver2) resizeObserver2.observe(containerRef.current);
+      const control = L.control.layers.tree(null, [], {
+        collapsed: true,
+        position: "topright",
+        closedSymbol: "+",
+        openedSymbol: "",
+        spaceSymbol: ""
+      }).addTo(map2);
+      layerControlRef.current = control;
+      let isMounted = true;
+      const containerEl = control.getContainer();
+      const triggerFetch = () => {
+        var _a;
+        if (fetchTriggeredRef.current) return;
+        if (!datasetKey || !focalTaxon || !rankOrder) return;
+        const focalRank = (_a = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a.rank;
+        if (!focalRank) return;
+        if (focalRank !== "species" && !INFRASPECIFIC_RANKS.includes(focalRank))
+          return;
+        const ranks2 = getDescendantRanks(focalRank, rankOrder);
+        if (ranks2.length === 0) return;
+        fetchTriggeredRef.current = true;
+        setDescendantState({ status: "loading", taxa: [] });
+        fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
+          ({ taxa, descendantsFailed }) => {
+            if (!isMounted) return;
+            if (descendantsFailed) {
+              setDescendantState({ status: "error", taxa: [] });
+              return;
+            }
+            if (taxa.length === 0) {
+              setDescendantState({ status: "empty", taxa: [] });
+              return;
+            }
+            setDescendantState({ status: "ready", taxa });
+          }
+        );
+      };
+      containerEl.addEventListener("mouseenter", triggerFetch);
+      containerEl.addEventListener("click", triggerFetch);
+      const recomputeVisible = () => {
+        const ids2 = /* @__PURE__ */ new Set();
+        Object.entries(descendantGroupsRef.current).forEach(([id2, g]) => {
+          if (map2.hasLayer(g)) ids2.add(id2);
+        });
+        setVisibleTaxonIds(ids2);
+      };
+      map2.on("overlayadd", recomputeVisible);
+      map2.on("overlayremove", recomputeVisible);
       return () => {
+        isMounted = false;
+        cancelAnimationFrame(raf2);
+        if (resizeObserver2) resizeObserver2.disconnect();
+        containerEl.removeEventListener("mouseenter", triggerFetch);
+        containerEl.removeEventListener("click", triggerFetch);
+        map2.off("overlayadd", recomputeVisible);
+        map2.off("overlayremove", recomputeVisible);
         map2.remove();
         mapRef.current = null;
+        layerControlRef.current = null;
+        focalGroupRef.current = null;
         tileLayerRef.current = null;
+        gbifLayerRef.current = null;
       };
     }, []);
     React.useEffect(() => {
@@ -59609,8 +60489,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     React.useEffect(() => {
       const map2 = mapRef.current;
       if (!map2 || !(records == null ? void 0 : records.length)) return;
+      setFocalReady(false);
       let cancelled = false;
-      const group = L.featureGroup().addTo(map2);
+      const group = L.featureGroup();
+      group.addTo(map2);
+      focalGroupRef.current = group;
       let failures = 0;
       Promise.allSettled(
         records.map(
@@ -59621,6 +60504,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         )
       ).then((results) => {
         if (cancelled) return;
+        let combinedBounds = null;
         results.forEach((res) => {
           if (res.status !== "fulfilled" || !res.value.geojson) {
             failures += 1;
@@ -59637,20 +60521,184 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             }
           });
           layer.addTo(group);
+          const b = originalCopyBounds(layer);
+          if (b) {
+            combinedBounds = combinedBounds ? combinedBounds.extend(b) : b;
+          }
         });
-        const bounds = group.getBounds();
-        if (bounds.isValid()) {
-          map2.fitBounds(bounds, { padding: [10, 10] });
+        if (combinedBounds && combinedBounds.isValid()) {
+          map2.fitBounds(combinedBounds, { padding: [10, 10] });
         }
         if (typeof onUnmappable === "function") {
           onUnmappable(failures);
         }
+        setFocalReady(true);
       });
       return () => {
         cancelled = true;
+        setFocalReady(false);
         group.remove();
+        focalGroupRef.current = null;
       };
     }, [records, onUnmappable]);
+    React.useEffect(() => {
+      const map2 = mapRef.current;
+      if (!map2) return;
+      if (gbifLayerRef.current) {
+        map2.removeLayer(gbifLayerRef.current);
+        gbifLayerRef.current = null;
+      }
+      if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) return;
+      if (!map2.getPane(GBIF_PANE)) {
+        map2.createPane(GBIF_PANE);
+        map2.getPane(GBIF_PANE).style.zIndex = String(GBIF_PANE_Z);
+        map2.getPane(GBIF_PANE).style.pointerEvents = "none";
+      }
+      const url = GBIF_TILE_URL.replace(
+        "{checklistKey}",
+        encodeURIComponent(gbifChecklistKey)
+      ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
+      const layer = L.tileLayer(url, {
+        attribution: '<a href="https://www.gbif.org">GBIF</a> occurrence data',
+        maxZoom: 19,
+        opacity: 0.9,
+        pane: GBIF_PANE
+      }).addTo(map2);
+      gbifLayerRef.current = layer;
+      return () => {
+        if (gbifLayerRef.current) {
+          map2.removeLayer(gbifLayerRef.current);
+          gbifLayerRef.current = null;
+        }
+      };
+    }, [gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
+    React.useEffect(() => {
+      var _a;
+      const map2 = mapRef.current;
+      const control = layerControlRef.current;
+      const focalGroup = focalGroupRef.current;
+      if (!map2 || !control) return;
+      const focalName = ((_a = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a.scientificName) || "";
+      const overlayChildren = [];
+      if (focalReady && focalGroup) {
+        overlayChildren.push({
+          label: italicLabel(focalName || "This taxon"),
+          layer: focalGroup
+        });
+      }
+      if (gbifLayerRef.current) {
+        overlayChildren.push({
+          label: "GBIF occurrences",
+          layer: gbifLayerRef.current
+        });
+      }
+      if (descendantState.status !== "ready") {
+        control.setOverlayTree(overlayChildren);
+        return;
+      }
+      const { taxa } = descendantState;
+      const mappableTaxa = taxa.filter((t2) => t2.mappable.length > 0);
+      const colors = assignColors(mappableTaxa, rankOrder || []);
+      const groups = {};
+      mappableTaxa.forEach((t2) => {
+        const color = colors[t2.id];
+        const baseStyle = {
+          color,
+          weight: 2,
+          fillColor: color,
+          fillOpacity: 0.55
+        };
+        const hoverStyle = { weight: 3, fillOpacity: 0.85 };
+        const group = L.featureGroup();
+        t2.mappable.forEach((rec) => {
+          fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => {
+            if (!geojson) return;
+            const lyr = L.geoJSON(geojson, {
+              style: () => baseStyle,
+              onEachFeature: (_f, l) => {
+                const head = `<div style="font-weight:600;font-style:italic;margin-bottom:4px">${escapeHtml(
+                  t2.scientificName
+                )}</div><div style="color:#888;margin-bottom:4px">${escapeHtml(
+                  t2.rank || ""
+                )}</div>`;
+                l.bindPopup(head + popupHtml(rec));
+                l.on("mouseover", () => l.setStyle(hoverStyle));
+                l.on("mouseout", () => l.setStyle(baseStyle));
+              }
+            });
+            lyr.addTo(group);
+          });
+        });
+        groups[t2.id] = group;
+      });
+      descendantGroupsRef.current = groups;
+      const tree = buildTree(
+        taxa.map((t2) => ({
+          id: t2.id,
+          parentId: t2.parentId,
+          scientificName: t2.scientificName,
+          rank: t2.rank
+        })),
+        focalTaxon.id
+      );
+      const childrenOfTaxonNode = (taxonId) => {
+        const kids = tree.byParent[taxonId] || [];
+        const grouped = {};
+        kids.forEach((k) => {
+          (grouped[k.rank] = grouped[k.rank] || []).push(k);
+        });
+        const out = [];
+        INFRASPECIFIC_RANKS.forEach((rank) => {
+          const inGroup = grouped[rank];
+          if (!inGroup) return;
+          const parentTaxon = taxa.find((t2) => t2.id === taxonId);
+          const parentDisplay = parentTaxon ? epithet(parentTaxon.scientificName) : "";
+          const subLabel = `${rankLabelPlural(rank)} of ${escapeHtml(parentDisplay)}`;
+          const childLeaves = inGroup.filter((k) => groups[k.id]).map((k) => {
+            const nested = childrenOfTaxonNode(k.id);
+            const node = {
+              label: taxonLabel(epithet(k.scientificName), colors[k.id]),
+              layer: groups[k.id]
+            };
+            if (nested.length > 0) node.children = nested;
+            return node;
+          });
+          out.push({
+            label: subLabel,
+            selectAllCheckbox: true,
+            children: childLeaves
+          });
+        });
+        return out;
+      };
+      const byRank = {};
+      taxa.forEach((t2) => {
+        (byRank[t2.rank] = byRank[t2.rank] || []).push(t2);
+      });
+      INFRASPECIFIC_RANKS.forEach((rank) => {
+        const inRank = (byRank[rank] || []).filter((t2) => groups[t2.id]);
+        if (inRank.length === 0) return;
+        const children = inRank.map((t2) => {
+          const nested = childrenOfTaxonNode(t2.id);
+          const node = {
+            label: taxonLabel(epithet(t2.scientificName), colors[t2.id]),
+            layer: groups[t2.id]
+          };
+          if (nested.length > 0) node.children = nested;
+          return node;
+        });
+        overlayChildren.push({
+          label: rankLabelPlural(rank),
+          selectAllCheckbox: true,
+          children
+        });
+      });
+      control.setOverlayTree(overlayChildren);
+      return () => {
+        Object.values(groups).forEach((g) => g.remove());
+        descendantGroupsRef.current = {};
+      };
+    }, [descendantState, focalTaxon, rankOrder, focalReady, gbifChecklistKey]);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
         .leaflet-bar a,
@@ -59665,25 +60713,41 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           style: { height: 360, width: "100%", background: "#f5f5f5" }
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Radio.Group,
+      (descendantState.status === "loading" || descendantState.status === "error") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
         {
-          size: "small",
-          value: basemap,
-          onChange: (e2) => setBasemap(e2.target.value),
           style: {
             position: "absolute",
             top: 8,
-            right: 8,
+            left: 8,
             zIndex: 1e3,
             background: "#fff",
             borderRadius: 4,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.2)"
+            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+            padding: "4px 8px",
+            fontSize: 12
           },
-          children: BASEMAPS.map((b) => /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: b.key, children: b.label }, b.key))
+          children: [
+            descendantState.status === "loading" && "Loading descendants…",
+            descendantState.status === "error" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+              "Couldn't load descendants.",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "a",
+                {
+                  onClick: () => {
+                    fetchTriggeredRef.current = false;
+                    setDescendantState({ status: "idle", taxa: [] });
+                  },
+                  style: { cursor: "pointer" },
+                  children: "Retry"
+                }
+              )
+            ] })
+          ]
         }
       ),
-      presentMeans.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      !showDescendantLegend && presentMeans.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
           style: {
@@ -59721,6 +60785,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             },
             m.key
           ))
+        }
+      ),
+      showDescendantLegend && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        IncludedTaxaLegend,
+        {
+          visibleGroups: descendantLegend.visibleGroups,
+          unmappableGroups: descendantLegend.unmappableGroups
         }
       )
     ] });
@@ -59775,11 +60846,15 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     data,
     style: style2,
     pathToDataset,
-    showDistributionMap
+    showDistributionMap,
+    focalTaxon,
+    rankOrder,
+    gbifChecklistKey
   }) => {
     const mappable = data.filter(isMappable);
     const baseUnmappable = data.length - mappable.length;
     const [view, setView] = React.useState("map");
+    const [basemap, setBasemap] = React.useState(DEFAULT_BASEMAP);
     const [fetchFailures, setFetchFailures] = React.useState(0);
     const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
     if (!showDistributionMap || mappable.length === 0 || allMappableFailed) {
@@ -59795,15 +60870,37 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const unmappable = baseUnmappable + fetchFailures;
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Radio.Group,
+        "div",
         {
-          size: "small",
-          value: view,
-          onChange: (e2) => setView(e2.target.value),
-          style: { marginBottom: 8 },
+          style: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: 8,
+            gap: 8
+          },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Radio.Group,
+              {
+                size: "small",
+                value: view,
+                onChange: (e2) => setView(e2.target.value),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
+                ]
+              }
+            ),
+            view === "map" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Radio.Group,
+              {
+                size: "small",
+                value: basemap,
+                onChange: (e2) => setBasemap(e2.target.value),
+                children: BASEMAPS.map((b) => /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: b.key, children: b.label }, b.key))
+              }
+            )
           ]
         }
       ),
@@ -59812,7 +60909,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           DistributionsMap,
           {
             records: mappable,
-            onUnmappable: setFetchFailures
+            onUnmappable: setFetchFailures,
+            datasetKey,
+            focalTaxon,
+            rankOrder,
+            basemap,
+            gbifChecklistKey
           }
         ),
         unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
@@ -70059,13 +71161,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const ranks2 = canonicalRanks;
         let taxonRankIdx = ranks2.indexOf(_.get(taxon, "name.rank"));
         if (taxonRankIdx === -1) {
-          let rankIndex = rank.indexOf(_.get(taxon, "name.rank")) + 1;
-          while (taxonRankIdx === -1 && rankIndex < rank.length - 1) {
-            let canonicalRankIndex = ranks2.indexOf(rank[rankIndex]);
+          let rankIndex2 = rank.indexOf(_.get(taxon, "name.rank")) + 1;
+          while (taxonRankIdx === -1 && rankIndex2 < rank.length - 1) {
+            let canonicalRankIndex = ranks2.indexOf(rank[rankIndex2]);
             if (canonicalRankIndex > -1) {
               taxonRankIdx = canonicalRankIndex - 1;
             }
-            rankIndex++;
+            rankIndex2++;
           }
         }
         let childRank;
@@ -70129,7 +71231,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     };
     const initChart = (root2) => {
       const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
-      const totalCount = root2.reduce((acc, cur) => acc + cur.species, 0);
+      const totalCount2 = root2.reduce((acc, cur) => acc + cur.species, 0);
       var colors = Highcharts$1.getOptions().colors, categories = root2.map((t2) => t2.name), data = root2.map((k, idx) => {
         const children = processChildren(k.children);
         const sum = k.children.reduce((acc, cur) => acc + cur.species, 0);
@@ -70195,7 +71297,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             size: "60%",
             dataLabels: {
               formatter: function() {
-                return this.y > totalCount / 10 ? this.point.name : null;
+                return this.y > totalCount2 / 10 ? this.point.name : null;
               },
               distance: -30
             },
@@ -70753,7 +71855,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         pathToSearch,
         pathToDataset,
         pathToTree,
-        showDistributionMap
+        showDistributionMap,
+        gbifChecklistKey
       } = this.props;
       const {
         taxon,
@@ -71014,7 +72117,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 style: { marginTop: "-3px" },
                 data: info.distributions,
                 datasetKey,
-                showDistributionMap
+                showDistributionMap,
+                focalTaxon: taxon,
+                rankOrder: rank,
+                gbifChecklistKey
               }
             ) }),
             _.get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: _.get(taxon, "environments").join(", ") }),

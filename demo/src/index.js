@@ -159,6 +159,7 @@ class Demo extends Component {
             pageTitleTemplate="COL | __taxon__"
             identifierLabel="COL identifier"
             showDistributionMap
+            gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
           />
         )}
         {pathname.indexOf("/data/search") === 0 && (
