@@ -17385,3 +17385,13 @@ td.ant-table-cell {
 .leaflet-control-layers .leaflet-layerstree-header {
   cursor: default;
 }
+
+/* On phone-size viewports, break the map out of the Taxon page's outer 24px
+   padding and the PresentationItem column's 10px padding so it spans the
+   full visible width. ResizeObserver in DistributionsMap then refits tiles. */
+@media (max-width: 575px) {
+  .col-distributions-map {
+    margin-left: -34px;
+    margin-right: -34px;
+  }
+}

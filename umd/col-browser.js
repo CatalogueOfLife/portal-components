@@ -60699,7 +60699,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         descendantGroupsRef.current = {};
       };
     }, [descendantState, focalTaxon, rankOrder, focalReady, gbifChecklistKey]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-distributions-map", style: { position: "relative" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
         .leaflet-bar a,
         .leaflet-bar a:hover {

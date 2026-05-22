@@ -643,7 +643,7 @@ const DistributionsMap = ({
   }, [descendantState, focalTaxon, rankOrder, focalReady, gbifChecklistKey]);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="col-distributions-map" style={{ position: "relative" }}>
       <style>{`
         .leaflet-bar a,
         .leaflet-bar a:hover {
