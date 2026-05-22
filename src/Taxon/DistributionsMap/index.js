@@ -1,14 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import L from "leaflet";
-import "leaflet.control.layers.tree";
-import "leaflet.control.layers.tree/L.Control.Layers.Tree.css";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./treeControl.css";
 import axios from "axios";
 import config from "../../config";
 import { fetchDescendants } from "./descendantFetch";
 import { getDescendantRanks, INFRASPECIFIC_RANKS } from "./descendantRanks";
 import { assignColors } from "./colorAssignment";
-import { buildTree } from "./descendantTree";
 import IncludedTaxaLegend from "./IncludedTaxaLegend";
 
 const POPUP_FIELDS = [
@@ -56,109 +54,24 @@ const colorFor = (record) => {
   return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
 };
 
-const polygonStyleFor = (color) => ({
-  color,
-  weight: 1,
-  fillColor: color,
-  fillOpacity: 0.75,
-});
-const polygonHoverStyle = {
-  weight: 2,
-  fillOpacity: 0.95,
-};
+const POSITRON_STYLE =
+  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
-export const BASEMAPS = [
-  {
-    key: "carto",
-    label: "Carto",
-    url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-    options: {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      maxZoom: 19,
-      subdomains: "abcd",
-    },
-  },
-  {
-    key: "esri",
-    label: "Esri",
-    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
-    options: {
-      attribution:
-        "Tiles &copy; Esri &mdash; Source: US National Park Service",
-      maxZoom: 8,
-    },
-  },
-];
-
-export const DEFAULT_BASEMAP = "carto";
-
-// GBIF v2 occurrence-density tile endpoint (multitaxonomy). The checklistKey
-// is provided by the consumer; taxonKey is the focal taxon's identifier from
-// that checklist (i.e. a COL identifier when consuming the COL backbone).
+// GBIF v2 occurrence-density tiles (multitaxonomy).
 const GBIF_TILE_URL =
   "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png" +
   "?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=73" +
   "&checklistKey={checklistKey}&taxonKey={taxonKey}";
 
-// Custom pane name and z-index for the GBIF overlay. Above Leaflet's data
-// panes (tilePane 200, overlayPane 400, shadowPane 500) so occurrence tiles
-// always paint above every other data layer regardless of paint order. Still
-// below markerPane (600), tooltipPane (650) and popupPane (700) so markers
-// and popups remain on top for interactivity.
-const GBIF_PANE = "gbifPane";
-const GBIF_PANE_Z = 550;
-
-// Duplicate every feature at ±360° longitude offsets so the polygon layers
-// repeat across world copies, matching the wrapping basemap. Leaflet's SVG
-// renderer projects each coordinate once, so without this step polygons would
-// only paint in the original world copy even though the basemap tiles repeat.
-const shiftCoords = (coords, offset) => {
-  if (typeof coords[0] === "number") return [coords[0] + offset, coords[1]];
-  return coords.map((c) => shiftCoords(c, offset));
-};
-
-const WORLD_OFFSETS = [-360, 0, 360];
-
-const wrapGeoJson = (geojson) => {
-  if (!geojson) return geojson;
-  const features =
-    geojson.type === "FeatureCollection" ? geojson.features : [geojson];
-  const out = [];
-  features.forEach((f) => {
-    WORLD_OFFSETS.forEach((offset) => {
-      const tagged = {
-        ...f,
-        properties: { ...(f.properties || {}), _worldCopy: offset },
-      };
-      if (offset === 0) {
-        out.push(tagged);
-      } else {
-        out.push({
-          ...tagged,
-          geometry: {
-            ...f.geometry,
-            coordinates: shiftCoords(f.geometry.coordinates, offset),
-          },
-        });
-      }
-    });
-  });
-  return { type: "FeatureCollection", features: out };
-};
-
-// Bounds of just the original (non-shifted) sublayers, so fitBounds doesn't
-// zoom out to span all three world copies.
-const originalCopyBounds = (geoJsonLayer) => {
-  let bounds = null;
-  geoJsonLayer.eachLayer((sub) => {
-    if (sub.feature?.properties?._worldCopy !== 0) return;
-    const b = sub.getBounds?.();
-    if (!b || !b.isValid()) return;
-    bounds = bounds ? bounds.extend(b) : L.latLngBounds(b.getSouthWest(), b.getNorthEast());
-  });
-  return bounds;
-};
+// Layer IDs
+const FOCAL_SOURCE = "col-focal-distributions";
+const FOCAL_FILL = "col-focal-fill";
+const FOCAL_LINE = "col-focal-line";
+const GBIF_SOURCE = "col-gbif-occurrences";
+const GBIF_LAYER = "col-gbif-occurrences";
+const descendantSourceId = (id) => `col-descendant-${id}`;
+const descendantFillId = (id) => `col-descendant-fill-${id}`;
+const descendantLineId = (id) => `col-descendant-line-${id}`;
 
 const cache = new Map();
 
@@ -169,7 +82,7 @@ const fetchShape = (gazetteer, id) => {
   const p = axios(url, {
     headers: { Accept: "application/geo+json" },
   }).then(
-    (r) => wrapGeoJson(r.data),
+    (r) => r.data,
     () => null
   );
   cache.set(key, p);
@@ -197,6 +110,15 @@ const popupHtml = (record) => {
   )}</div>${rows}</div>`;
 };
 
+const descendantPopupHtml = (taxon, record) => {
+  const head =
+    `<div style="font-weight:600;font-style:italic;margin-bottom:4px">${escapeHtml(
+      taxon.scientificName
+    )}</div>` +
+    `<div style="color:#888;margin-bottom:4px">${escapeHtml(taxon.rank || "")}</div>`;
+  return head + popupHtml(record);
+};
+
 const RANK_LABEL_PLURAL = {
   subspecies: "subspecies",
   variety: "varieties",
@@ -207,20 +129,51 @@ const RANK_LABEL_PLURAL = {
 };
 const rankLabelPlural = (rank) => RANK_LABEL_PLURAL[rank] || rank;
 
-const taxonLabel = (displayName, color) =>
-  `<span style="display:inline-flex;align-items:center;gap:6px">` +
-  `<span style="display:inline-block;width:10px;height:10px;background:${color};border:1px solid rgba(0,0,0,0.15);border-radius:2px"></span>` +
-  `<span style="font-style:italic">${escapeHtml(displayName)}</span>` +
-  `</span>`;
-
 const epithet = (scientificName) => {
   if (!scientificName) return "";
   const tokens = scientificName.trim().split(/\s+/);
   return tokens[tokens.length - 1];
 };
 
-const italicLabel = (text) =>
-  `<span style="font-style:italic">${escapeHtml(text)}</span>`;
+// Compute bounds [[minLng,minLat],[maxLng,maxLat]] of a FeatureCollection.
+const computeBounds = (features) => {
+  let minLng = Infinity,
+    minLat = Infinity,
+    maxLng = -Infinity,
+    maxLat = -Infinity;
+  const visit = (coords) => {
+    if (typeof coords[0] === "number") {
+      const [lng, lat] = coords;
+      if (lng < minLng) minLng = lng;
+      if (lng > maxLng) maxLng = lng;
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+    } else {
+      for (let i = 0; i < coords.length; i++) visit(coords[i]);
+    }
+  };
+  for (let i = 0; i < features.length; i++) {
+    const g = features[i]?.geometry;
+    if (g?.coordinates) visit(g.coordinates);
+  }
+  if (minLng === Infinity) return null;
+  return [
+    [minLng, minLat],
+    [maxLng, maxLat],
+  ];
+};
+
+const flattenFeatures = (geojson) => {
+  if (!geojson) return [];
+  if (geojson.type === "FeatureCollection") return geojson.features || [];
+  return [geojson];
+};
+
+const supported = () => {
+  if (typeof maplibregl?.supported === "function") return maplibregl.supported();
+  // Newer maplibre-gl uses isWebGLSupported / no helper — assume true at SSR time.
+  return typeof WebGLRenderingContext !== "undefined";
+};
 
 const DistributionsMap = ({
   records,
@@ -228,24 +181,29 @@ const DistributionsMap = ({
   datasetKey,
   focalTaxon,
   rankOrder,
-  basemap = DEFAULT_BASEMAP,
   gbifChecklistKey,
 }) => {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
-  const layerControlRef = useRef(null);
-  const focalGroupRef = useRef(null);
-  const tileLayerRef = useRef(null);
-  const gbifLayerRef = useRef(null);
+  const popupRef = useRef(null);
+  const recordMapRef = useRef(new Map()); // recordKey → record
+  const descendantTaxonMapRef = useRef(new Map()); // taxonId → taxon
+  const descendantRecordMapRef = useRef(new Map()); // recordKey → { taxon, record }
+  const focalAttachedRef = useRef(false);
+  const gbifAttachedRef = useRef(false);
+  const descendantLayersRef = useRef(new Set()); // taxonIds currently attached
 
+  const [styleReady, setStyleReady] = useState(false);
+  const [focalReady, setFocalReady] = useState(false);
   const [descendantState, setDescendantState] = useState({
     status: "idle", // idle | loading | ready | empty | error
     taxa: [],
   });
-  const [focalReady, setFocalReady] = useState(false);
+  const [focalVisible, setFocalVisible] = useState(true);
+  const [gbifVisible, setGbifVisible] = useState(true);
   const [visibleTaxonIds, setVisibleTaxonIds] = useState(new Set());
+  const [controlOpen, setControlOpen] = useState(false);
   const fetchTriggeredRef = useRef(false);
-  const descendantGroupsRef = useRef({}); // taxonId → L.featureGroup
 
   const presentMeans = useMemo(() => {
     if (!records?.length) return [];
@@ -257,17 +215,21 @@ const DistributionsMap = ({
     return ESTABLISHMENT_MEANS.filter((m) => seen.has(m.key));
   }, [records]);
 
+  const descendantColors = useMemo(() => {
+    if (descendantState.status !== "ready") return {};
+    return assignColors(
+      descendantState.taxa.filter((t) => t.mappable.length > 0),
+      rankOrder || []
+    );
+  }, [descendantState, rankOrder]);
+
   const descendantLegend = useMemo(() => {
     if (descendantState.status !== "ready") {
       return { visibleGroups: [], unmappableGroups: [] };
     }
-    const colors = assignColors(
-      descendantState.taxa.filter((t) => t.mappable.length > 0),
-      rankOrder || []
-    );
     const decorate = (t) => ({
       ...t,
-      color: colors[t.id],
+      color: descendantColors[t.id],
       displayName: epithet(t.scientificName),
     });
     const groupByRank = (taxa) => {
@@ -290,127 +252,64 @@ const DistributionsMap = ({
       descendantState.taxa.filter((t) => t.mappable.length === 0)
     );
     return { visibleGroups, unmappableGroups };
-  }, [descendantState, visibleTaxonIds, rankOrder]);
+  }, [descendantState, descendantColors, visibleTaxonIds]);
 
   const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
 
-  // Mount the map and the layer-tree control with base layers only.
+  // Mount map once.
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
-    const map = L.map(containerRef.current, {
-      minZoom: 1,
-      worldCopyJump: true,
-    }).setView([20, 0], 2);
+    if (!supported()) return;
+    const map = new maplibregl.Map({
+      container: containerRef.current,
+      style: POSITRON_STYLE,
+      center: [0, 20],
+      zoom: 1,
+      minZoom: 0,
+      attributionControl: false,
+      renderWorldCopies: true,
+    });
+    map.addControl(
+      new maplibregl.AttributionControl({ compact: true }),
+      "bottom-right"
+    );
+    map.addControl(
+      new maplibregl.NavigationControl({ showCompass: false }),
+      "top-left"
+    );
     mapRef.current = map;
 
-    // The container may not yet have its final width when Leaflet initialises
-    // (flex/grid layout, late-mounting parents). Invalidate once on the next
-    // frame and again whenever the container resizes so tiles fill the canvas.
-    const invalidate = () => map.invalidateSize();
-    const raf = requestAnimationFrame(invalidate);
+    map.on("load", () => {
+      setStyleReady(true);
+    });
+
     const resizeObserver =
       typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(invalidate)
+        ? new ResizeObserver(() => map.resize())
         : null;
     if (resizeObserver) resizeObserver.observe(containerRef.current);
 
-    const control = L.control.layers
-      .tree(null, [], {
-        collapsed: true,
-        position: "topright",
-        closedSymbol: "+",
-        openedSymbol: "",
-        spaceSymbol: "",
-      })
-      .addTo(map);
-    layerControlRef.current = control;
-
-    let isMounted = true;
-    const containerEl = control.getContainer();
-    const triggerFetch = () => {
-      if (fetchTriggeredRef.current) return;
-      if (!datasetKey || !focalTaxon || !rankOrder) return;
-      const focalRank = focalTaxon?.name?.rank;
-      if (!focalRank) return;
-      if (focalRank !== "species" && !INFRASPECIFIC_RANKS.includes(focalRank))
-        return;
-      const ranks = getDescendantRanks(focalRank, rankOrder);
-      if (ranks.length === 0) return;
-      fetchTriggeredRef.current = true;
-      setDescendantState({ status: "loading", taxa: [] });
-      fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
-        ({ taxa, descendantsFailed }) => {
-          if (!isMounted) return;
-          if (descendantsFailed) {
-            setDescendantState({ status: "error", taxa: [] });
-            return;
-          }
-          if (taxa.length === 0) {
-            setDescendantState({ status: "empty", taxa: [] });
-            return;
-          }
-          setDescendantState({ status: "ready", taxa });
-        }
-      );
-    };
-    containerEl.addEventListener("mouseenter", triggerFetch);
-    containerEl.addEventListener("click", triggerFetch);
-
-    // Track which descendant layers are currently visible (drives the legend).
-    // Do NOT refit bounds here: user-driven layer toggles must preserve the
-    // current zoom/pan.
-    const recomputeVisible = () => {
-      const ids = new Set();
-      Object.entries(descendantGroupsRef.current).forEach(([id, g]) => {
-        if (map.hasLayer(g)) ids.add(id);
-      });
-      setVisibleTaxonIds(ids);
-    };
-    map.on("overlayadd", recomputeVisible);
-    map.on("overlayremove", recomputeVisible);
-
     return () => {
-      isMounted = false;
-      cancelAnimationFrame(raf);
       if (resizeObserver) resizeObserver.disconnect();
-      containerEl.removeEventListener("mouseenter", triggerFetch);
-      containerEl.removeEventListener("click", triggerFetch);
-      map.off("overlayadd", recomputeVisible);
-      map.off("overlayremove", recomputeVisible);
+      if (popupRef.current) {
+        popupRef.current.remove();
+        popupRef.current = null;
+      }
       map.remove();
       mapRef.current = null;
-      layerControlRef.current = null;
-      focalGroupRef.current = null;
-      tileLayerRef.current = null;
-      gbifLayerRef.current = null;
+      focalAttachedRef.current = false;
+      gbifAttachedRef.current = false;
+      descendantLayersRef.current = new Set();
     };
   }, []);
 
+  // Focal taxon polygons.
   useEffect(() => {
+    if (!styleReady || !records?.length) return;
     const map = mapRef.current;
     if (!map) return;
-    const def = BASEMAPS.find((b) => b.key === basemap) || BASEMAPS[0];
-    const newLayer = L.tileLayer(def.url, def.options).addTo(map);
-    if (tileLayerRef.current) {
-      map.removeLayer(tileLayerRef.current);
-    }
-    tileLayerRef.current = newLayer;
-    const max = def.options?.maxZoom;
-    if (typeof max === "number" && map.getZoom() > max) {
-      map.setZoom(max);
-    }
-  }, [basemap]);
-
-  // Focal taxon polygons — rebuilt whenever `records` changes.
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !records?.length) return;
-    setFocalReady(false);
     let cancelled = false;
-    const group = L.featureGroup();
-    group.addTo(map);
-    focalGroupRef.current = group;
-    let failures = 0;
+    setFocalReady(false);
 
     Promise.allSettled(
       records.map((r) =>
@@ -421,278 +320,390 @@ const DistributionsMap = ({
       )
     ).then((results) => {
       if (cancelled) return;
-      let combinedBounds = null;
-      results.forEach((res) => {
+      const features = [];
+      const recordMap = new Map();
+      let failures = 0;
+      results.forEach((res, i) => {
         if (res.status !== "fulfilled" || !res.value.geojson) {
           failures += 1;
           return;
         }
         const { record, geojson } = res.value;
-        const baseStyle = polygonStyleFor(colorFor(record));
-        const layer = L.geoJSON(geojson, {
-          style: () => baseStyle,
-          onEachFeature: (_feature, lyr) => {
-            lyr.bindPopup(popupHtml(record));
-            lyr.on("mouseover", () => lyr.setStyle(polygonHoverStyle));
-            lyr.on("mouseout", () => lyr.setStyle(baseStyle));
+        const color = colorFor(record);
+        const recordKey = `focal-${i}`;
+        recordMap.set(recordKey, record);
+        flattenFeatures(geojson).forEach((f) => {
+          features.push({
+            ...f,
+            properties: {
+              ...(f.properties || {}),
+              _recordKey: recordKey,
+              _color: color,
+            },
+          });
+        });
+      });
+      recordMapRef.current = recordMap;
+
+      const data = { type: "FeatureCollection", features };
+      if (map.getSource(FOCAL_SOURCE)) {
+        map.getSource(FOCAL_SOURCE).setData(data);
+      } else {
+        map.addSource(FOCAL_SOURCE, { type: "geojson", data });
+        map.addLayer({
+          id: FOCAL_FILL,
+          type: "fill",
+          source: FOCAL_SOURCE,
+          paint: {
+            "fill-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+            "fill-opacity": 0.65,
           },
         });
-        layer.addTo(group);
-        const b = originalCopyBounds(layer);
-        if (b) {
-          combinedBounds = combinedBounds ? combinedBounds.extend(b) : b;
-        }
-      });
-      if (combinedBounds && combinedBounds.isValid()) {
-        map.fitBounds(combinedBounds, { padding: [10, 10] });
+        map.addLayer({
+          id: FOCAL_LINE,
+          type: "line",
+          source: FOCAL_SOURCE,
+          paint: {
+            "line-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+            "line-width": 1,
+          },
+        });
+        map.on("click", FOCAL_FILL, onFocalClick);
+        map.on("mouseenter", FOCAL_FILL, onMouseEnter);
+        map.on("mouseleave", FOCAL_FILL, onMouseLeave);
+        focalAttachedRef.current = true;
       }
-      if (typeof onUnmappable === "function") {
-        onUnmappable(failures);
+
+      if (features.length > 0) {
+        const bounds = computeBounds(features);
+        if (bounds) map.fitBounds(bounds, { padding: 20, animate: false });
       }
+      if (typeof onUnmappable === "function") onUnmappable(failures);
       setFocalReady(true);
     });
 
     return () => {
       cancelled = true;
-      setFocalReady(false);
-      group.remove();
-      focalGroupRef.current = null;
     };
-  }, [records, onUnmappable]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [styleReady, records]);
 
-  // GBIF occurrence layer for the focal taxon. Re-created when the
-  // checklistKey or focal taxon changes; teardown removes it from the map
-  // and from the layer-tree control.
-  useEffect(() => {
+  // Focal click handler — defined as stable closure that reads ref.
+  const onFocalClick = (e) => {
     const map = mapRef.current;
     if (!map) return;
-    if (gbifLayerRef.current) {
-      map.removeLayer(gbifLayerRef.current);
-      gbifLayerRef.current = null;
-    }
+    const feature = e.features?.[0];
+    const key = feature?.properties?._recordKey;
+    const record = key ? recordMapRef.current.get(key) : null;
+    if (!record) return;
+    if (popupRef.current) popupRef.current.remove();
+    popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "320px" })
+      .setLngLat(e.lngLat)
+      .setHTML(popupHtml(record))
+      .addTo(map);
+  };
+
+  const onMouseEnter = () => {
+    const map = mapRef.current;
+    if (map) map.getCanvas().style.cursor = "pointer";
+  };
+  const onMouseLeave = () => {
+    const map = mapRef.current;
+    if (map) map.getCanvas().style.cursor = "";
+  };
+
+  // Sync focal visibility.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !focalAttachedRef.current) return;
+    const v = focalVisible ? "visible" : "none";
+    if (map.getLayer(FOCAL_FILL)) map.setLayoutProperty(FOCAL_FILL, "visibility", v);
+    if (map.getLayer(FOCAL_LINE)) map.setLayoutProperty(FOCAL_LINE, "visibility", v);
+  }, [focalVisible, focalReady]);
+
+  // GBIF raster layer — added always last so it sits on top.
+  useEffect(() => {
+    if (!styleReady) return;
+    const map = mapRef.current;
+    if (!map) return;
+    const removeGbif = () => {
+      if (map.getLayer(GBIF_LAYER)) map.removeLayer(GBIF_LAYER);
+      if (map.getSource(GBIF_SOURCE)) map.removeSource(GBIF_SOURCE);
+      gbifAttachedRef.current = false;
+    };
+    removeGbif();
     if (!gbifChecklistKey || !focalTaxon?.id) return;
-    if (!map.getPane(GBIF_PANE)) {
-      map.createPane(GBIF_PANE);
-      map.getPane(GBIF_PANE).style.zIndex = String(GBIF_PANE_Z);
-      map.getPane(GBIF_PANE).style.pointerEvents = "none";
-    }
     const url = GBIF_TILE_URL.replace(
       "{checklistKey}",
       encodeURIComponent(gbifChecklistKey)
     ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
-    const layer = L.tileLayer(url, {
-      attribution:
-        '<a href="https://www.gbif.org">GBIF</a> occurrence data',
-      maxZoom: 19,
-      opacity: 0.9,
-      pane: GBIF_PANE,
-    }).addTo(map);
-    gbifLayerRef.current = layer;
-    return () => {
-      if (gbifLayerRef.current) {
-        map.removeLayer(gbifLayerRef.current);
-        gbifLayerRef.current = null;
-      }
-    };
-  }, [gbifChecklistKey, focalTaxon?.id]);
+    map.addSource(GBIF_SOURCE, {
+      type: "raster",
+      tiles: [url],
+      tileSize: 256,
+      attribution: '<a href="https://www.gbif.org">GBIF</a> occurrence data',
+    });
+    map.addLayer({
+      id: GBIF_LAYER,
+      type: "raster",
+      source: GBIF_SOURCE,
+      paint: { "raster-opacity": 0.9 },
+      layout: { visibility: gbifVisible ? "visible" : "none" },
+    });
+    gbifAttachedRef.current = true;
+    return removeGbif;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [styleReady, gbifChecklistKey, focalTaxon?.id]);
 
+  // Sync GBIF visibility.
   useEffect(() => {
     const map = mapRef.current;
-    const control = layerControlRef.current;
-    const focalGroup = focalGroupRef.current;
-    if (!map || !control) return;
+    if (!map || !gbifAttachedRef.current) return;
+    const v = gbifVisible ? "visible" : "none";
+    if (map.getLayer(GBIF_LAYER)) map.setLayoutProperty(GBIF_LAYER, "visibility", v);
+  }, [gbifVisible]);
 
-    const focalName = focalTaxon?.name?.scientificName || "";
-    const overlayChildren = [];
-    if (focalReady && focalGroup) {
-      overlayChildren.push({
-        label: italicLabel(focalName || "This taxon"),
-        layer: focalGroup,
-      });
-    }
-    if (gbifLayerRef.current) {
-      overlayChildren.push({
-        label: "GBIF occurrences",
-        layer: gbifLayerRef.current,
-      });
-    }
+  // Descendant layers — added once when state.status becomes "ready".
+  useEffect(() => {
+    if (!styleReady) return;
+    const map = mapRef.current;
+    if (!map) return;
+    // Tear down previous descendant layers.
+    descendantLayersRef.current.forEach((id) => {
+      if (map.getLayer(descendantFillId(id))) map.removeLayer(descendantFillId(id));
+      if (map.getLayer(descendantLineId(id))) map.removeLayer(descendantLineId(id));
+      if (map.getSource(descendantSourceId(id))) map.removeSource(descendantSourceId(id));
+    });
+    descendantLayersRef.current = new Set();
+    descendantTaxonMapRef.current = new Map();
+    descendantRecordMapRef.current = new Map();
 
-    if (descendantState.status !== "ready") {
-      control.setOverlayTree(overlayChildren);
-      return;
-    }
-
-    const { taxa } = descendantState;
-    const mappableTaxa = taxa.filter((t) => t.mappable.length > 0);
-    const colors = assignColors(mappableTaxa, rankOrder || []);
-
-    // Build a feature group per mappable taxon.
-    const groups = {};
-    mappableTaxa.forEach((t) => {
-      const color = colors[t.id];
-      const baseStyle = {
-        color,
-        weight: 2,
-        fillColor: color,
-        fillOpacity: 0.55,
-      };
-      const hoverStyle = { weight: 3, fillOpacity: 0.85 };
-      const group = L.featureGroup();
-      t.mappable.forEach((rec) => {
-        fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => {
-          if (!geojson) return;
-          const lyr = L.geoJSON(geojson, {
-            style: () => baseStyle,
-            onEachFeature: (_f, l) => {
-              const head = `<div style="font-weight:600;font-style:italic;margin-bottom:4px">${escapeHtml(
-                t.scientificName
-              )}</div><div style="color:#888;margin-bottom:4px">${escapeHtml(
-                t.rank || ""
-              )}</div>`;
-              l.bindPopup(head + popupHtml(rec));
-              l.on("mouseover", () => l.setStyle(hoverStyle));
-              l.on("mouseout", () => l.setStyle(baseStyle));
+    if (descendantState.status !== "ready") return;
+    const colors = descendantColors;
+    descendantState.taxa.forEach((t) => {
+      if (t.mappable.length === 0) return;
+      descendantTaxonMapRef.current.set(t.id, t);
+      Promise.allSettled(
+        t.mappable.map((rec) =>
+          fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => ({
+            record: rec,
+            geojson,
+          }))
+        )
+      ).then((results) => {
+        if (!mapRef.current) return;
+        const features = [];
+        results.forEach((res, i) => {
+          if (res.status !== "fulfilled" || !res.value.geojson) return;
+          const { record, geojson } = res.value;
+          const recordKey = `desc-${t.id}-${i}`;
+          descendantRecordMapRef.current.set(recordKey, { taxon: t, record });
+          flattenFeatures(geojson).forEach((f) => {
+            features.push({
+              ...f,
+              properties: {
+                ...(f.properties || {}),
+                _recordKey: recordKey,
+              },
+            });
+          });
+        });
+        const color = colors[t.id] || MISSING_COLOR;
+        const data = { type: "FeatureCollection", features };
+        const srcId = descendantSourceId(t.id);
+        if (mapRef.current.getSource(srcId)) {
+          mapRef.current.getSource(srcId).setData(data);
+        } else {
+          mapRef.current.addSource(srcId, { type: "geojson", data });
+          const fillId = descendantFillId(t.id);
+          const lineId = descendantLineId(t.id);
+          const beforeId = mapRef.current.getLayer(GBIF_LAYER) ? GBIF_LAYER : undefined;
+          mapRef.current.addLayer(
+            {
+              id: fillId,
+              type: "fill",
+              source: srcId,
+              paint: { "fill-color": color, "fill-opacity": 0.55 },
+              layout: { visibility: "none" },
             },
-          });
-          lyr.addTo(group);
-        });
+            beforeId
+          );
+          mapRef.current.addLayer(
+            {
+              id: lineId,
+              type: "line",
+              source: srcId,
+              paint: { "line-color": color, "line-width": 2 },
+              layout: { visibility: "none" },
+            },
+            beforeId
+          );
+          mapRef.current.on("click", fillId, onDescendantClick);
+          mapRef.current.on("mouseenter", fillId, onMouseEnter);
+          mapRef.current.on("mouseleave", fillId, onMouseLeave);
+          descendantLayersRef.current.add(t.id);
+        }
       });
-      groups[t.id] = group;
     });
-    descendantGroupsRef.current = groups;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [styleReady, descendantState, descendantColors]);
 
-    // Tree by rank: top-level group per rank present, with each individual
-    // taxon as a child; if a taxon has lower-ranked descendants in the same
-    // fetch, those appear as a nested sub-group ("<rank> of <name>").
-    const tree = buildTree(
-      taxa.map((t) => ({
-        id: t.id,
-        parentId: t.parentId,
-        scientificName: t.scientificName,
-        rank: t.rank,
-      })),
-      focalTaxon.id
+  const onDescendantClick = (e) => {
+    const map = mapRef.current;
+    if (!map) return;
+    const feature = e.features?.[0];
+    const key = feature?.properties?._recordKey;
+    const data = key ? descendantRecordMapRef.current.get(key) : null;
+    if (!data) return;
+    if (popupRef.current) popupRef.current.remove();
+    popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "320px" })
+      .setLngLat(e.lngLat)
+      .setHTML(descendantPopupHtml(data.taxon, data.record))
+      .addTo(map);
+  };
+
+  // Sync descendant visibility.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    descendantLayersRef.current.forEach((id) => {
+      const v = visibleTaxonIds.has(id) ? "visible" : "none";
+      if (map.getLayer(descendantFillId(id))) {
+        map.setLayoutProperty(descendantFillId(id), "visibility", v);
+      }
+      if (map.getLayer(descendantLineId(id))) {
+        map.setLayoutProperty(descendantLineId(id), "visibility", v);
+      }
+    });
+  }, [visibleTaxonIds, descendantState]);
+
+  // Trigger descendant fetch (on control open).
+  const triggerDescendantFetch = () => {
+    if (fetchTriggeredRef.current) return;
+    if (!datasetKey || !focalTaxon || !rankOrder) return;
+    const focalRank = focalTaxon?.name?.rank;
+    if (!focalRank) return;
+    if (focalRank !== "species" && !INFRASPECIFIC_RANKS.includes(focalRank)) return;
+    const ranks = getDescendantRanks(focalRank, rankOrder);
+    if (ranks.length === 0) return;
+    fetchTriggeredRef.current = true;
+    setDescendantState({ status: "loading", taxa: [] });
+    fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
+      ({ taxa, descendantsFailed }) => {
+        if (descendantsFailed) {
+          setDescendantState({ status: "error", taxa: [] });
+          return;
+        }
+        if (taxa.length === 0) {
+          setDescendantState({ status: "empty", taxa: [] });
+          return;
+        }
+        setDescendantState({ status: "ready", taxa });
+      }
     );
+  };
 
-    const childrenOfTaxonNode = (taxonId) => {
-      const kids = tree.byParent[taxonId] || [];
-      const grouped = {};
-      kids.forEach((k) => {
-        (grouped[k.rank] = grouped[k.rank] || []).push(k);
-      });
-      const out = [];
-      INFRASPECIFIC_RANKS.forEach((rank) => {
-        const inGroup = grouped[rank];
-        if (!inGroup) return;
-        const parentTaxon = taxa.find((t) => t.id === taxonId);
-        const parentDisplay = parentTaxon
-          ? epithet(parentTaxon.scientificName)
-          : "";
-        const subLabel = `${rankLabelPlural(rank)} of ${escapeHtml(parentDisplay)}`;
-        const childLeaves = inGroup
-          .filter((k) => groups[k.id])
-          .map((k) => {
-            const nested = childrenOfTaxonNode(k.id);
-            const node = {
-              label: taxonLabel(epithet(k.scientificName), colors[k.id]),
-              layer: groups[k.id],
-            };
-            if (nested.length > 0) node.children = nested;
-            return node;
-          });
-        out.push({
-          label: subLabel,
-          selectAllCheckbox: true,
-          children: childLeaves,
-        });
-      });
-      return out;
-    };
+  const openControl = () => {
+    setControlOpen(true);
+    triggerDescendantFetch();
+  };
 
-    // Top-level rank groups: every taxon of that rank across the whole subtree.
+  // Group descendants by rank for the control panel.
+  const descendantsByRank = useMemo(() => {
+    if (descendantState.status !== "ready") return [];
     const byRank = {};
-    taxa.forEach((t) => {
-      (byRank[t.rank] = byRank[t.rank] || []).push(t);
-    });
-
-    INFRASPECIFIC_RANKS.forEach((rank) => {
-      const inRank = (byRank[rank] || []).filter((t) => groups[t.id]);
-      if (inRank.length === 0) return;
-      const children = inRank.map((t) => {
-        const nested = childrenOfTaxonNode(t.id);
-        const node = {
-          label: taxonLabel(epithet(t.scientificName), colors[t.id]),
-          layer: groups[t.id],
-        };
-        if (nested.length > 0) node.children = nested;
-        return node;
+    descendantState.taxa
+      .filter((t) => t.mappable.length > 0)
+      .forEach((t) => {
+        (byRank[t.rank] = byRank[t.rank] || []).push(t);
       });
-      overlayChildren.push({
-        label: rankLabelPlural(rank),
-        selectAllCheckbox: true,
-        children,
-      });
+    return INFRASPECIFIC_RANKS.filter((r) => byRank[r]).map((r) => ({
+      rank: r,
+      label: rankLabelPlural(r),
+      taxa: byRank[r].slice().sort((a, b) =>
+        a.scientificName.localeCompare(b.scientificName)
+      ),
+    }));
+  }, [descendantState]);
+
+  const toggleTaxon = (id) => {
+    setVisibleTaxonIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
     });
+  };
 
-    control.setOverlayTree(overlayChildren);
+  const toggleRankGroup = (rankTaxa) => {
+    setVisibleTaxonIds((prev) => {
+      const next = new Set(prev);
+      const allOn = rankTaxa.every((t) => prev.has(t.id));
+      rankTaxa.forEach((t) => {
+        if (allOn) next.delete(t.id);
+        else next.add(t.id);
+      });
+      return next;
+    });
+  };
 
-    return () => {
-      Object.values(groups).forEach((g) => g.remove());
-      descendantGroupsRef.current = {};
-    };
-  }, [descendantState, focalTaxon, rankOrder, focalReady, gbifChecklistKey]);
+  if (!supported()) {
+    return (
+      <div
+        style={{
+          padding: 12,
+          background: "#fafafa",
+          border: "1px solid #eee",
+          borderRadius: 4,
+          color: "#666",
+          fontSize: 12,
+        }}
+      >
+        Maps require WebGL, which your browser doesn't support.
+      </div>
+    );
+  }
+
+  const focalName = focalTaxon?.name?.scientificName || "This taxon";
 
   return (
     <div className="col-distributions-map" style={{ position: "relative" }}>
-      <style>{`
-        .leaflet-bar a,
-        .leaflet-bar a:hover {
-          background-color: #fff;
-        }
-      `}</style>
       <div
         ref={containerRef}
         style={{ height: 360, width: "100%", background: "#f5f5f5" }}
       />
-      {(descendantState.status === "loading" ||
-        descendantState.status === "error") && (
-        <div
-          style={{
-            position: "absolute",
-            top: 8,
-            left: 8,
-            zIndex: 1000,
-            background: "#fff",
-            borderRadius: 4,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-            padding: "4px 8px",
-            fontSize: 12,
-          }}
-        >
-          {descendantState.status === "loading" && "Loading descendants…"}
-          {descendantState.status === "error" && (
-            <>
-              Couldn't load descendants.{" "}
-              <a
-                onClick={() => {
-                  fetchTriggeredRef.current = false;
-                  setDescendantState({ status: "idle", taxa: [] });
-                }}
-                style={{ cursor: "pointer" }}
-              >
-                Retry
-              </a>
-            </>
-          )}
-        </div>
-      )}
+
+      <LayerControl
+        open={controlOpen}
+        onOpen={openControl}
+        onClose={() => setControlOpen(false)}
+        focalName={focalName}
+        focalReady={focalReady}
+        focalVisible={focalVisible}
+        onToggleFocal={() => setFocalVisible((v) => !v)}
+        gbifEnabled={!!gbifChecklistKey}
+        gbifVisible={gbifVisible}
+        onToggleGbif={() => setGbifVisible((v) => !v)}
+        descendantStatus={descendantState.status}
+        descendantsByRank={descendantsByRank}
+        descendantColors={descendantColors}
+        visibleTaxonIds={visibleTaxonIds}
+        onToggleTaxon={toggleTaxon}
+        onToggleRankGroup={toggleRankGroup}
+        onRetry={() => {
+          fetchTriggeredRef.current = false;
+          setDescendantState({ status: "idle", taxa: [] });
+          triggerDescendantFetch();
+        }}
+      />
+
       {!showDescendantLegend && presentMeans.length > 0 && (
         <div
           style={{
             position: "absolute",
             bottom: 8,
             left: 8,
-            zIndex: 1000,
+            zIndex: 1,
             background: "#fff",
             borderRadius: 4,
             boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
@@ -727,6 +738,161 @@ const DistributionsMap = ({
           unmappableGroups={descendantLegend.unmappableGroups}
         />
       )}
+    </div>
+  );
+};
+
+// Layer toggle panel — collapsed "+" button at top-right that expands on click.
+const LayerControl = ({
+  open,
+  onOpen,
+  onClose,
+  focalName,
+  focalReady,
+  focalVisible,
+  onToggleFocal,
+  gbifEnabled,
+  gbifVisible,
+  onToggleGbif,
+  descendantStatus,
+  descendantsByRank,
+  descendantColors,
+  visibleTaxonIds,
+  onToggleTaxon,
+  onToggleRankGroup,
+  onRetry,
+}) => {
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={onOpen}
+        onMouseEnter={onOpen}
+        title="Layers"
+        style={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+          zIndex: 2,
+          width: 30,
+          height: 30,
+          background: "#fff",
+          border: "1px solid rgba(0,0,0,0.2)",
+          borderRadius: 4,
+          cursor: "pointer",
+          fontSize: 18,
+          lineHeight: "26px",
+          padding: 0,
+          boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+        }}
+      >
+        +
+      </button>
+    );
+  }
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 10,
+        right: 10,
+        zIndex: 2,
+        background: "#fff",
+        borderRadius: 4,
+        boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+        padding: "6px 10px",
+        fontSize: 12,
+        lineHeight: 1.5,
+        maxHeight: 320,
+        overflowY: "auto",
+        minWidth: 160,
+      }}
+      onMouseLeave={onClose}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <input
+          type="checkbox"
+          checked={focalVisible}
+          disabled={!focalReady}
+          onChange={onToggleFocal}
+        />
+        <span style={{ fontStyle: "italic" }}>{focalName}</span>
+      </div>
+      {gbifEnabled && (
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <input type="checkbox" checked={gbifVisible} onChange={onToggleGbif} />
+          <span>GBIF occurrences</span>
+        </div>
+      )}
+      {descendantStatus === "loading" && (
+        <div style={{ marginTop: 6, color: "#888" }}>Loading descendants…</div>
+      )}
+      {descendantStatus === "error" && (
+        <div style={{ marginTop: 6, color: "#888" }}>
+          Couldn&apos;t load descendants.{" "}
+          <a onClick={onRetry} style={{ cursor: "pointer" }}>
+            Retry
+          </a>
+        </div>
+      )}
+      {descendantStatus === "ready" &&
+        descendantsByRank.map((group) => {
+          const allOn = group.taxa.every((t) => visibleTaxonIds.has(t.id));
+          const someOn = group.taxa.some((t) => visibleTaxonIds.has(t.id));
+          return (
+            <div key={group.rank} style={{ marginTop: 6 }}>
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontWeight: 600,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={allOn}
+                  ref={(el) => {
+                    if (el) el.indeterminate = !allOn && someOn;
+                  }}
+                  onChange={() => onToggleRankGroup(group.taxa)}
+                />
+                {group.label}
+              </label>
+              <div style={{ paddingLeft: 18 }}>
+                {group.taxa.map((t) => (
+                  <label
+                    key={t.id}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={visibleTaxonIds.has(t.id)}
+                      onChange={() => onToggleTaxon(t.id)}
+                    />
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: 10,
+                        height: 10,
+                        background: descendantColors[t.id],
+                        border: "1px solid rgba(0,0,0,0.15)",
+                        borderRadius: 2,
+                      }}
+                    />
+                    <span style={{ fontStyle: "italic" }}>
+                      {epithet(t.scientificName)}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };

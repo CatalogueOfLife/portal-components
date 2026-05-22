@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { render } from "react-dom";
-import "leaflet/dist/leaflet.css";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex, TaxonBreakdown } from "../../src";
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";

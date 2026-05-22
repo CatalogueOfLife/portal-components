@@ -1,26 +1,7 @@
-.leaflet-control-layers input {
-  margin-right: 6px;
-}
-
-/* Rank groups (subspecies, varieties, …) stay permanently expanded.
-   The tree control still attaches a click-to-collapse handler on the header,
-   so we both hide the +/- toggle symbols AND force the children to stay
-   visible regardless of the internal hide state. The header click then
-   becomes a visual no-op. */
-.leaflet-control-layers .leaflet-layerstree-closed,
-.leaflet-control-layers .leaflet-layerstree-opened {
-  display: none !important;
-}
-.leaflet-control-layers .leaflet-layerstree-children {
-  display: block !important;
-}
-.leaflet-control-layers .leaflet-layerstree-header {
-  cursor: default;
-}
-
-/* On phone-size viewports, break the map out of the Taxon page's outer 24px
-   padding and the PresentationItem column's 10px padding so it spans the
-   full visible width. ResizeObserver in DistributionsMap then refits tiles. */
+/* On phone-size viewports, break the map out of the Taxon page's outer 24 px
+   padding and the PresentationItem column's 10 px inner padding so it spans
+   the full visible width. The ResizeObserver in DistributionsMap calls
+   map.resize() automatically. */
 @media (max-width: 575px) {
   .col-distributions-map {
     margin-left: -34px;

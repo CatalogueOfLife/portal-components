@@ -5,6 +5,19 @@ globalThis.ResizeObserver = class {
   disconnect() {}
 }
 
+// maplibre-gl calls window.URL.createObjectURL at import time to set up its
+// web worker. jsdom doesn't implement it — stub minimal blob/Worker plumbing
+// so the module loads. No tests actually mount the map, so the worker URL is
+// never used.
+if (typeof window !== 'undefined') {
+  if (!window.URL.createObjectURL) {
+    window.URL.createObjectURL = () => 'blob://stub'
+  }
+  if (!window.URL.revokeObjectURL) {
+    window.URL.revokeObjectURL = () => {}
+  }
+}
+
 // jsdom has no matchMedia — stub it for antd's responsive observer
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

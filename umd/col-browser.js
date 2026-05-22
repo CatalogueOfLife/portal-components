@@ -1,6 +1,6 @@
 (function(global2, factory) {
-  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("react"), require("leaflet")) : typeof define === "function" && define.amd ? define(["react", "leaflet"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.ColBrowser = factory(global2.React, global2.L));
-})(this, (function(React, L) {
+  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("react"), require("maplibre-gl")) : typeof define === "function" && define.amd ? define(["react", "maplibre-gl"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.ColBrowser = factory(global2.React, global2.maplibregl));
+})(this, (function(React, maplibregl) {
   "use strict";var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -547,7 +547,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           else break a;
         }
       }
-      function L2(a) {
+      function L(a) {
         a = a[0];
         return void 0 === a ? null : a;
       }
@@ -574,19 +574,19 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }
       var N = [], O = [], P = 1, Q = null, R = 3, S = false, T = false, U = false;
       function V(a) {
-        for (var b = L2(O); null !== b; ) {
+        for (var b = L(O); null !== b; ) {
           if (null === b.callback) M(O);
           else if (b.startTime <= a) M(O), b.sortIndex = b.expirationTime, J(N, b);
           else break;
-          b = L2(O);
+          b = L(O);
         }
       }
       function W(a) {
         U = false;
         V(a);
-        if (!T) if (null !== L2(N)) T = true, f(X);
+        if (!T) if (null !== L(N)) T = true, f(X);
         else {
-          var b = L2(O);
+          var b = L(O);
           null !== b && g(W, b.startTime - a);
         }
       }
@@ -597,21 +597,21 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         var c = R;
         try {
           V(b);
-          for (Q = L2(N); null !== Q && (!(Q.expirationTime > b) || a && !k()); ) {
+          for (Q = L(N); null !== Q && (!(Q.expirationTime > b) || a && !k()); ) {
             var d = Q.callback;
             if (null !== d) {
               Q.callback = null;
               R = Q.priorityLevel;
               var e2 = d(Q.expirationTime <= b);
               b = exports$1.unstable_now();
-              "function" === typeof e2 ? Q.callback = e2 : Q === L2(N) && M(N);
+              "function" === typeof e2 ? Q.callback = e2 : Q === L(N) && M(N);
               V(b);
             } else M(N);
-            Q = L2(N);
+            Q = L(N);
           }
           if (null !== Q) var m = true;
           else {
-            var n2 = L2(O);
+            var n2 = L(O);
             null !== n2 && g(W, n2.startTime - b);
             m = false;
           }
@@ -651,7 +651,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return R;
       };
       exports$1.unstable_getFirstCallbackNode = function() {
-        return L2(N);
+        return L(N);
       };
       exports$1.unstable_next = function(a) {
         switch (R) {
@@ -702,13 +702,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         } else c = Y(a), e2 = d;
         c = e2 + c;
         a = { id: P++, callback: b, priorityLevel: a, startTime: e2, expirationTime: c, sortIndex: -1 };
-        e2 > d ? (a.sortIndex = e2, J(O, a), null === L2(N) && a === L2(O) && (U ? h() : U = true, g(W, e2 - d))) : (a.sortIndex = c, J(N, a), T || S || (T = true, f(X)));
+        e2 > d ? (a.sortIndex = e2, J(O, a), null === L(N) && a === L(O) && (U ? h() : U = true, g(W, e2 - d))) : (a.sortIndex = c, J(N, a), T || S || (T = true, f(X)));
         return a;
       };
       exports$1.unstable_shouldYield = function() {
         var a = exports$1.unstable_now();
         V(a);
-        var b = L2(N);
+        var b = L(N);
         return b !== Q && null !== Q && null !== b && null !== b.callback && b.startTime <= a && b.expirationTime < Q.expirationTime || k();
       };
       exports$1.unstable_wrapCallback = function(a) {
@@ -2591,7 +2591,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       d && (a = a.stateNode, a.__reactInternalMemoizedUnmaskedChildContext = b, a.__reactInternalMemoizedMaskedChildContext = e2);
       return e2;
     }
-    function L2(a) {
+    function L(a) {
       a = a.childContextTypes;
       return null !== a && void 0 !== a;
     }
@@ -2908,7 +2908,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     function Lg(a, b, c) {
       var d = false, e2 = Af;
       var f = b.contextType;
-      "object" === typeof f && null !== f ? f = sg(f) : (e2 = L2(b) ? Bf : J.current, d = b.contextTypes, f = (d = null !== d && void 0 !== d) ? Cf(a, e2) : Af);
+      "object" === typeof f && null !== f ? f = sg(f) : (e2 = L(b) ? Bf : J.current, d = b.contextTypes, f = (d = null !== d && void 0 !== d) ? Cf(a, e2) : Af);
       b = new b(c, f);
       a.memoizedState = null !== b.state && void 0 !== b.state ? b.state : null;
       b.updater = Jg;
@@ -2930,7 +2930,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       e2.refs = Eg;
       ug(a);
       var f = b.contextType;
-      "object" === typeof f && null !== f ? e2.context = sg(f) : (f = L2(b) ? Bf : J.current, e2.context = Cf(a, f));
+      "object" === typeof f && null !== f ? e2.context = sg(f) : (f = L(b) ? Bf : J.current, e2.context = Cf(a, f));
       zg(a, c, e2, d);
       e2.state = a.memoizedState;
       f = b.getDerivedStateFromProps;
@@ -3697,7 +3697,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       if (null === a && null !== c || null !== a && a.ref !== c) b.effectTag |= 128;
     }
     function di(a, b, c, d, e2) {
-      var f = L2(c) ? Bf : J.current;
+      var f = L(c) ? Bf : J.current;
       f = Cf(b, f);
       qg(b, e2);
       c = oh(a, b, c, d, f, e2);
@@ -3707,7 +3707,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       return b.child;
     }
     function fi(a, b, c, d, e2) {
-      if (L2(c)) {
+      if (L(c)) {
         var f = true;
         Gf(b);
       } else f = false;
@@ -3717,7 +3717,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         var g = b.stateNode, h = b.memoizedProps;
         g.props = h;
         var k = g.context, l = c.contextType;
-        "object" === typeof l && null !== l ? l = sg(l) : (l = L2(c) ? Bf : J.current, l = Cf(b, l));
+        "object" === typeof l && null !== l ? l = sg(l) : (l = L(c) ? Bf : J.current, l = Cf(b, l));
         var m = c.getDerivedStateFromProps, p = "function" === typeof m || "function" === typeof g.getSnapshotBeforeUpdate;
         p || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== d || k !== l) && Mg(b, g, d, l);
         tg = false;
@@ -3726,7 +3726,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         zg(b, d, g, e2);
         k = b.memoizedState;
         h !== d || x !== k || K.current || tg ? ("function" === typeof m && (Fg(b, c, m, d), k = b.memoizedState), (h = tg || Kg(b, c, h, d, x, k, l)) ? (p || "function" !== typeof g.UNSAFE_componentWillMount && "function" !== typeof g.componentWillMount || ("function" === typeof g.componentWillMount && g.componentWillMount(), "function" === typeof g.UNSAFE_componentWillMount && g.UNSAFE_componentWillMount()), "function" === typeof g.componentDidMount && (b.effectTag |= 4)) : ("function" === typeof g.componentDidMount && (b.effectTag |= 4), b.memoizedProps = d, b.memoizedState = k), g.props = d, g.state = k, g.context = l, d = h) : ("function" === typeof g.componentDidMount && (b.effectTag |= 4), d = false);
-      } else g = b.stateNode, vg(a, b), h = b.memoizedProps, g.props = b.type === b.elementType ? h : ig(b.type, h), k = g.context, l = c.contextType, "object" === typeof l && null !== l ? l = sg(l) : (l = L2(c) ? Bf : J.current, l = Cf(b, l)), m = c.getDerivedStateFromProps, (p = "function" === typeof m || "function" === typeof g.getSnapshotBeforeUpdate) || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== d || k !== l) && Mg(b, g, d, l), tg = false, k = b.memoizedState, g.state = k, zg(b, d, g, e2), x = b.memoizedState, h !== d || k !== x || K.current || tg ? ("function" === typeof m && (Fg(b, c, m, d), x = b.memoizedState), (m = tg || Kg(b, c, h, d, k, x, l)) ? (p || "function" !== typeof g.UNSAFE_componentWillUpdate && "function" !== typeof g.componentWillUpdate || ("function" === typeof g.componentWillUpdate && g.componentWillUpdate(
+      } else g = b.stateNode, vg(a, b), h = b.memoizedProps, g.props = b.type === b.elementType ? h : ig(b.type, h), k = g.context, l = c.contextType, "object" === typeof l && null !== l ? l = sg(l) : (l = L(c) ? Bf : J.current, l = Cf(b, l)), m = c.getDerivedStateFromProps, (p = "function" === typeof m || "function" === typeof g.getSnapshotBeforeUpdate) || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== d || k !== l) && Mg(b, g, d, l), tg = false, k = b.memoizedState, g.state = k, zg(b, d, g, e2), x = b.memoizedState, h !== d || k !== x || K.current || tg ? ("function" === typeof m && (Fg(b, c, m, d), x = b.memoizedState), (m = tg || Kg(b, c, h, d, k, x, l)) ? (p || "function" !== typeof g.UNSAFE_componentWillUpdate && "function" !== typeof g.componentWillUpdate || ("function" === typeof g.componentWillUpdate && g.componentWillUpdate(
         d,
         x,
         l
@@ -3998,7 +3998,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         case 14:
           return null;
         case 1:
-          return L2(b.type) && Df(), null;
+          return L(b.type) && Df(), null;
         case 3:
           return eh(), H(K), H(J), c = b.stateNode, c.pendingContext && (c.context = c.pendingContext, c.pendingContext = null), null !== a && null !== a.child || !Wh(b) || (b.effectTag |= 4), oi(b), null;
         case 5:
@@ -4211,7 +4211,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         case 10:
           return og(b), null;
         case 17:
-          return L2(b.type) && Df(), null;
+          return L(b.type) && Df(), null;
         case 19:
           H(M);
           d = b.memoizedState;
@@ -4252,7 +4252,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     function zi(a) {
       switch (a.tag) {
         case 1:
-          L2(a.type) && Df();
+          L(a.type) && Df();
           var b = a.effectTag;
           return b & 4096 ? (a.effectTag = b & -4097 | 64, a) : null;
         case 3:
@@ -5478,7 +5478,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 if (b.mode & 4 && 1 !== c && e2.hidden) return b.expirationTime = b.childExpirationTime = 1, null;
                 break;
               case 1:
-                L2(b.type) && Gf(b);
+                L(b.type) && Gf(b);
                 break;
               case 4:
                 dh(b, b.stateNode.containerInfo);
@@ -5536,7 +5536,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             b.tag = 1;
             b.memoizedState = null;
             b.updateQueue = null;
-            if (L2(d)) {
+            if (L(d)) {
               var f = true;
               Gf(b);
             } else f = false;
@@ -5680,7 +5680,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         case 15:
           return ci(a, b, b.type, b.pendingProps, d, c);
         case 17:
-          return d = b.type, e2 = b.pendingProps, e2 = b.elementType === d ? e2 : ig(d, e2), null !== a && (a.alternate = null, b.alternate = null, b.effectTag |= 2), b.tag = 1, L2(d) ? (a = true, Gf(b)) : a = false, qg(b, c), Lg(b, d, e2), Ng(b, d, e2, c), gi(
+          return d = b.type, e2 = b.pendingProps, e2 = b.elementType === d ? e2 : ig(d, e2), null !== a && (a.alternate = null, b.alternate = null, b.effectTag |= 2), b.tag = 1, L(d) ? (a = true, Gf(b)) : a = false, qg(b, c), Lg(b, d, e2), Ng(b, d, e2, c), gi(
             null,
             b,
             d,
@@ -5883,7 +5883,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 h = h.stateNode.context;
                 break b;
               case 1:
-                if (L2(h.type)) {
+                if (L(h.type)) {
                   h = h.stateNode.__reactInternalMemoizedMergedChildContext;
                   break b;
                 }
@@ -5894,7 +5894,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }
         if (1 === c.tag) {
           var k = c.type;
-          if (L2(k)) {
+          if (L(k)) {
             c = Ff(c, k, h);
             break a;
           }
@@ -31949,12 +31949,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       null != p && p === document.body && n(p) && !n(document.documentElement) || null != p && n(p, a) && s.push(p);
     }
     for (var m = o.visualViewport ? o.visualViewport.width : innerWidth, g = o.visualViewport ? o.visualViewport.height : innerHeight, w = window.scrollX || pageXOffset, v = window.scrollY || pageYOffset, W = e2.getBoundingClientRect(), b = W.height, H = W.width, y = W.top, E = W.right, M = W.bottom, V = W.left, x = "start" === d || "nearest" === d ? y : "end" === d ? M : y + b / 2, I = "center" === u ? V + H / 2 : "end" === u ? E : V, C = [], T = 0; T < s.length; T++) {
-      var k = s[T], B = k.getBoundingClientRect(), D = B.height, O = B.width, R = B.top, X = B.right, Y = B.bottom, L2 = B.left;
-      if ("if-needed" === l && y >= 0 && V >= 0 && M <= g && E <= m && y >= R && M <= Y && V >= L2 && E <= X) return C;
+      var k = s[T], B = k.getBoundingClientRect(), D = B.height, O = B.width, R = B.top, X = B.right, Y = B.bottom, L = B.left;
+      if ("if-needed" === l && y >= 0 && V >= 0 && M <= g && E <= m && y >= R && M <= Y && V >= L && E <= X) return C;
       var S = getComputedStyle(k), j = parseInt(S.borderLeftWidth, 10), q = parseInt(S.borderTopWidth, 10), z = parseInt(S.borderRightWidth, 10), A = parseInt(S.borderBottomWidth, 10), F = 0, G = 0, J = "offsetWidth" in k ? k.offsetWidth - k.clientWidth - j - z : 0, K = "offsetHeight" in k ? k.offsetHeight - k.clientHeight - q - A : 0;
       if (f === k) F = "start" === d ? x : "end" === d ? x - g : "nearest" === d ? r(v, v + g, g, q, A, v + x, v + x + b, b) : x - g / 2, G = "start" === u ? I : "center" === u ? I - m / 2 : "end" === u ? I - m : r(w, w + m, m, j, z, w + I, w + I + H, H), F = Math.max(0, F + v), G = Math.max(0, G + w);
       else {
-        F = "start" === d ? x - R - q : "end" === d ? x - Y + A + K : "nearest" === d ? r(R, Y, D, q, A + K, x, x + b, b) : x - (R + D / 2) + K / 2, G = "start" === u ? I - L2 - j : "center" === u ? I - (L2 + O / 2) + J / 2 : "end" === u ? I - X + z + J : r(L2, X, O, j, z + J, I, I + H, H);
+        F = "start" === d ? x - R - q : "end" === d ? x - Y + A + K : "nearest" === d ? r(R, Y, D, q, A + K, x, x + b, b) : x - (R + D / 2) + K / 2, G = "start" === u ? I - L - j : "center" === u ? I - (L + O / 2) + J / 2 : "end" === u ? I - X + z + J : r(L, X, O, j, z + J, I, I + H, H);
         var N = k.scrollLeft, P = k.scrollTop;
         x += P - (F = Math.max(0, Math.min(P + F, k.scrollHeight - D + K))), I += N - (G = Math.max(0, Math.min(N + G, k.scrollWidth - O + J)));
       }
@@ -59471,466 +59471,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       ] });
     }
   }
-  var L_Control_Layers_Tree$1 = { exports: {} };
-  var L_Control_Layers_Tree = L_Control_Layers_Tree$1.exports;
-  var hasRequiredL_Control_Layers_Tree;
-  function requireL_Control_Layers_Tree() {
-    if (hasRequiredL_Control_Layers_Tree) return L_Control_Layers_Tree$1.exports;
-    hasRequiredL_Control_Layers_Tree = 1;
-    (function(module2, exports$1) {
-      (function(global2, factory) {
-        factory(exports$1, L);
-      })(L_Control_Layers_Tree, (function(_exports, L2) {
-        if (typeof L2 === "undefined") {
-          throw new Error("Leaflet must be included first");
-        }
-        L2.Control.Layers.Tree = L2.Control.Layers.extend({
-          options: {
-            closedSymbol: "+",
-            openedSymbol: "&minus;",
-            spaceSymbol: " ",
-            selectorBack: false,
-            namedToggle: false,
-            collapseAll: "",
-            expandAll: "",
-            labelIsSelector: "both"
-          },
-          // Class names are error prone texts, so write them once here
-          _initClassesNames: function() {
-            this.cls = {
-              children: "leaflet-layerstree-children",
-              childrenNopad: "leaflet-layerstree-children-nopad",
-              hide: "leaflet-layerstree-hide",
-              closed: "leaflet-layerstree-closed",
-              opened: "leaflet-layerstree-opened",
-              space: "leaflet-layerstree-header-space",
-              pointer: "leaflet-layerstree-header-pointer",
-              header: "leaflet-layerstree-header",
-              neverShow: "leaflet-layerstree-nevershow",
-              node: "leaflet-layerstree-node",
-              name: "leaflet-layerstree-header-name",
-              label: "leaflet-layerstree-header-label",
-              selAllCheckbox: "leaflet-layerstree-sel-all-checkbox"
-            };
-          },
-          initialize: function(baseTree, overlaysTree, options) {
-            this._scrollTop = 0;
-            this._initClassesNames();
-            this._baseTree = null;
-            this._overlaysTree = null;
-            L2.Util.setOptions(this, options);
-            L2.Control.Layers.prototype.initialize.call(this, null, null, options);
-            this._setTrees(baseTree, overlaysTree);
-          },
-          setBaseTree: function(tree) {
-            return this._setTrees(tree);
-          },
-          setOverlayTree: function(tree) {
-            return this._setTrees(void 0, tree);
-          },
-          addBaseLayer: function(_layer, _name) {
-            throw "addBaseLayer is disabled";
-          },
-          addOverlay: function(_layer, _name) {
-            throw "addOverlay is disabled";
-          },
-          removeLayer: function(_layer) {
-            throw "removeLayer is disabled";
-          },
-          collapse: function() {
-            this._scrollTop = this._sect().scrollTop;
-            return L2.Control.Layers.prototype.collapse.call(this);
-          },
-          expand: function() {
-            L2.Control.Layers.prototype.expand.call(this);
-            this._sect().scrollTop = this._scrollTop;
-          },
-          onAdd: function(map2) {
-            function changeName(layer) {
-              if (layer._layersTreeName) {
-                toggle.innerHTML = layer._layersTreeName;
-              }
-            }
-            var ret = L2.Control.Layers.prototype.onAdd.call(this, map2);
-            if (this.options.namedToggle) {
-              var toggle = this._container.getElementsByClassName("leaflet-control-layers-toggle")[0];
-              L2.DomUtil.addClass(toggle, "leaflet-layerstree-named-toggle");
-              map2.eachLayer(function(layer) {
-                changeName(layer);
-              });
-              map2.on("baselayerchange", function(e2) {
-                changeName(e2.layer);
-              }, this);
-            }
-            return ret;
-          },
-          // Expands the whole tree (base other overlays)
-          expandTree: function(overlay) {
-            var container = overlay ? this._overlaysList : this._baseLayersList;
-            if (container) {
-              this._applyOnTree(container, false);
-            }
-            return this._localExpand();
-          },
-          // Collapses the whole tree (base other overlays)
-          collapseTree: function(overlay) {
-            var container = overlay ? this._overlaysList : this._baseLayersList;
-            if (container) {
-              this._applyOnTree(container, true);
-            }
-            return this._localExpand();
-          },
-          // Expands the tree, only to show the selected inputs
-          expandSelected: function(overlay) {
-            function iter(el2) {
-              var p = el2.parentElement;
-              if (p) {
-                if (L2.DomUtil.hasClass(p, that.cls.children) && !L2.DomUtil.hasClass(el2, that.cls.childrenNopad)) {
-                  L2.DomUtil.removeClass(p, hide);
-                }
-                if (L2.DomUtil.hasClass(p, that.cls.node)) {
-                  var h = p.getElementsByClassName(that.cls.header)[0];
-                  that._applyOnTree(h, false);
-                }
-                iter(p);
-              }
-            }
-            var that = this;
-            var container = overlay ? this._overlaysList : this._baseLayersList;
-            if (!container) return this;
-            var hide = this.cls.hide;
-            var inputs = this._layerControlInputs || container.getElementsByTagName("input");
-            for (var i = 0; i < inputs.length; i++) {
-              var input = inputs[i];
-              if (this._getLayer && !!this._getLayer(input.layerId).overlay != !!overlay) continue;
-              if (input.checked) {
-                iter(input.parentElement.parentElement.parentElement.parentElement);
-              }
-            }
-            return this._localExpand();
-          },
-          // "private" methods, not exposed in the API
-          _sect: function() {
-            return this._section || this._form;
-          },
-          _setTrees: function(base, overlays) {
-            var id2 = 0;
-            function iterate2(tree, output, overlays2) {
-              if (tree && tree.layer) {
-                if (!overlays2) {
-                  tree.layer._layersTreeName = tree.name || tree.label;
-                }
-                output[id2++] = tree.layer;
-              }
-              if (tree && tree.children && tree.children.length) {
-                tree.children.forEach(function(child) {
-                  iterate2(child, output, overlays2);
-                });
-              }
-              return output;
-            }
-            function forArrays(input) {
-              if (Array.isArray(input)) {
-                return { noShow: true, children: input };
-              } else {
-                return input;
-              }
-            }
-            if (this._layerControlInputs) {
-              this._layerControlInputs = [];
-            }
-            for (var i = 0; i < this._layers.length; ++i) {
-              this._layers[i].layer.off("add remove", this._onLayerChange, this);
-            }
-            this._layers = [];
-            if (base !== void 0) this._baseTree = forArrays(base);
-            if (overlays !== void 0) this._overlaysTree = forArrays(overlays);
-            var bflat = iterate2(this._baseTree, {});
-            for (var j in bflat) {
-              this._addLayer(bflat[j], j);
-            }
-            var oflat = iterate2(this._overlaysTree, {}, true);
-            for (var k in oflat) {
-              this._addLayer(oflat[k], k, true);
-            }
-            return this._map ? this._update() : this;
-          },
-          // Used to update the vertical scrollbar
-          _localExpand: function() {
-            if (this._map && L2.DomUtil.hasClass(this._container, "leaflet-control-layers-expanded")) {
-              var top = this._sect().scrollTop;
-              this.expand();
-              this._sect().scrollTop = top;
-              this._scrollTop = top;
-            }
-            return this;
-          },
-          // collapses or expands the tree in the container.
-          _applyOnTree: function(container, collapse) {
-            var iters = [
-              { cls: this.cls.children, hide: collapse },
-              { cls: this.cls.opened, hide: collapse },
-              { cls: this.cls.closed, hide: !collapse }
-            ];
-            iters.forEach(function(it) {
-              var els = container.getElementsByClassName(it.cls);
-              for (var i = 0; i < els.length; i++) {
-                var el2 = els[i];
-                if (L2.DomUtil.hasClass(el2, this.cls.childrenNopad)) ;
-                else if (it.hide) {
-                  L2.DomUtil.addClass(el2, this.cls.hide);
-                } else {
-                  L2.DomUtil.removeClass(el2, this.cls.hide);
-                }
-              }
-            }, this);
-          },
-          // it is called in the original _update, and shouldn't do anything.
-          _addItem: function(_obj) {
-          },
-          // overwrite _update function in Control.Layers
-          _update: function() {
-            if (!this._container) {
-              return this;
-            }
-            L2.Control.Layers.prototype._update.call(this);
-            this._addTreeLayout(this._baseTree, false);
-            this._addTreeLayout(this._overlaysTree, true);
-            return this._localExpand();
-          },
-          // Create the DOM objects for the tree
-          _addTreeLayout: function(tree, overlay) {
-            if (!tree) return;
-            var container = overlay ? this._overlaysList : this._baseLayersList;
-            this._expandCollapseAll(overlay, this.options.collapseAll, this.collapseTree);
-            this._expandCollapseAll(overlay, this.options.expandAll, this.expandTree);
-            this._iterateTreeLayout(tree, container, overlay, [], tree.noShow);
-            if (this._checkDisabledLayers) {
-              this._checkDisabledLayers();
-            }
-          },
-          // Create the "Collapse all" or expand, if needed.
-          _expandCollapseAll: function(overlay, text2, fn, ctx) {
-            var container = overlay ? this._overlaysList : this._baseLayersList;
-            ctx = ctx ? ctx : this;
-            if (text2) {
-              var o = document.createElement("div");
-              o.className = "leaflet-layerstree-expand-collapse";
-              container.appendChild(o);
-              o.innerHTML = text2;
-              o.tabIndex = 0;
-              L2.DomEvent.on(o, "click keydown", function(e2) {
-                if (e2.type !== "keydown" || e2.keyCode === 32) {
-                  o.blur();
-                  fn.call(ctx, overlay);
-                  this._localExpand();
-                }
-              }, this);
-            }
-          },
-          // recursive function to create the DOM children
-          _iterateTreeLayout: function(tree, container, overlay, selAllNodes, noShow) {
-            if (!tree) return;
-            function creator(type2, cls, append, innerHTML) {
-              var obj2 = L2.DomUtil.create(type2, cls, append);
-              if (innerHTML) obj2.innerHTML = innerHTML;
-              return obj2;
-            }
-            var header = creator("div", this.cls.header, container);
-            var sel = creator("span");
-            var entry = creator("span");
-            var closed = creator("span", this.cls.closed, sel, this.options.closedSymbol);
-            var opened = creator("span", this.cls.opened, sel, this.options.openedSymbol);
-            var space = creator("span", this.cls.space, null, this.options.spaceSymbol);
-            if (this.options.selectorBack) {
-              sel.insertBefore(space, closed);
-              header.appendChild(entry);
-              header.appendChild(sel);
-            } else {
-              sel.appendChild(space);
-              header.appendChild(sel);
-              header.appendChild(entry);
-            }
-            function updateSelAllCheckbox(ancestor) {
-              var selector = ancestor.querySelector("input[type=checkbox]");
-              var selectedAll = true;
-              var selectedNone = true;
-              var inputs = ancestor.querySelectorAll("input[type=checkbox]");
-              [].forEach.call(inputs, function(inp) {
-                if (inp === selector) ;
-                else if (inp.indeterminate) {
-                  selectedAll = false;
-                  selectedNone = false;
-                } else if (inp.checked) {
-                  selectedNone = false;
-                } else if (!inp.checked) {
-                  selectedAll = false;
-                }
-              });
-              if (selectedAll) {
-                selector.indeterminate = false;
-                selector.checked = true;
-              } else if (selectedNone) {
-                selector.indeterminate = false;
-                selector.checked = false;
-              } else {
-                selector.indeterminate = true;
-                selector.checked = false;
-              }
-            }
-            function manageSelectorsAll(input2, ctx) {
-              selAllNodes.forEach(function(ancestor) {
-                L2.DomEvent.on(input2, "click", function(_ev) {
-                  updateSelAllCheckbox(ancestor);
-                }, ctx);
-              }, ctx);
-            }
-            var selAll;
-            if (tree.selectAllCheckbox) {
-              selAll = this._createCheckboxElement(false);
-              selAll.className += " " + this.cls.selAllCheckbox;
-            }
-            var hide = this.cls.hide;
-            if (tree.children) {
-              var children = creator("div", this.cls.children, container);
-              var sensible = tree.layer ? sel : header;
-              L2.DomUtil.addClass(sensible, this.cls.pointer);
-              sensible.tabIndex = 0;
-              L2.DomEvent.on(sensible, "click keydown", function(e3) {
-                if (this._preventClick) {
-                  return;
-                }
-                if (e3.type === "keydown" && e3.keyCode !== 32) {
-                  return;
-                }
-                sensible.blur();
-                if (L2.DomUtil.hasClass(opened, hide)) {
-                  L2.DomUtil.addClass(closed, hide);
-                  L2.DomUtil.removeClass(opened, hide);
-                  L2.DomUtil.removeClass(children, hide);
-                } else {
-                  L2.DomUtil.removeClass(closed, hide);
-                  L2.DomUtil.addClass(opened, hide);
-                  L2.DomUtil.addClass(children, hide);
-                }
-                this._localExpand();
-              }, this);
-              if (selAll) {
-                selAllNodes.splice(0, 0, container);
-              }
-              tree.children.forEach(function(child) {
-                var node = creator("div", this.cls.node, children);
-                this._iterateTreeLayout(child, node, overlay, selAllNodes);
-              }, this);
-              if (selAll) {
-                selAllNodes.splice(0, 1);
-              }
-            } else {
-              L2.DomUtil.addClass(sel, this.cls.neverShow);
-            }
-            var labelType;
-            if (tree.layer) {
-              if (this.options.labelIsSelector === "both" || // if option is set to both
-              overlay && this.options.labelIsSelector === "overlay" || // if an overlay layer and options is set to overlay
-              !overlay && this.options.labelIsSelector === "base") {
-                labelType = "label";
-              } else {
-                labelType = "span";
-              }
-            } else {
-              labelType = "span";
-            }
-            var label = creator(labelType, this.cls.label, entry);
-            if (tree.layer) {
-              var checked = this._map.hasLayer(tree.layer);
-              var input;
-              var radioGroup = overlay ? tree.radioGroup : "leaflet-base-layers_" + L2.Util.stamp(this);
-              if (radioGroup) {
-                input = this._createRadioElement(radioGroup, checked);
-              } else {
-                input = this._createCheckboxElement(checked);
-                manageSelectorsAll(input, this);
-              }
-              if (this._layerControlInputs) {
-                this._layerControlInputs.push(input);
-              }
-              input.layerId = L2.Util.stamp(tree.layer);
-              L2.DomEvent.on(input, "click", this._onInputClick, this);
-              label.appendChild(input);
-            }
-            function isText(variable) {
-              return typeof variable === "string" || variable instanceof String;
-            }
-            function isFunction2(functionToCheck) {
-              return functionToCheck && {}.toString.call(functionToCheck) === "[object Function]";
-            }
-            function selectAllCheckboxes(select, ctx) {
-              var inputs = container.getElementsByTagName("input");
-              for (var i = 0; i < inputs.length; i++) {
-                var input2 = inputs[i];
-                if (input2.type !== "checkbox") continue;
-                input2.checked = select;
-                input2.indeterminate = false;
-              }
-              ctx._onInputClick();
-            }
-            if (tree.selectAllCheckbox) {
-              label.appendChild(selAll);
-              if (isText(tree.selectAllCheckbox)) {
-                selAll.title = tree.selectAllCheckbox;
-              }
-              L2.DomEvent.on(selAll, "click", function(ev) {
-                ev.stopPropagation();
-                selectAllCheckboxes(selAll.checked, this);
-              }, this);
-              updateSelAllCheckbox(container);
-              manageSelectorsAll(selAll, this);
-            }
-            creator("span", this.cls.name, label, tree.label);
-            L2.DomUtil.addClass(tree.collapsed ? opened : closed, hide);
-            tree.collapsed && children && L2.DomUtil.addClass(children, hide);
-            if (noShow) {
-              L2.DomUtil.addClass(header, this.cls.neverShow);
-              L2.DomUtil.addClass(children, this.cls.childrenNopad);
-            }
-            var eventeds = tree.eventedClasses;
-            if (!(eventeds instanceof Array)) {
-              eventeds = [eventeds];
-            }
-            for (var e2 = 0; e2 < eventeds.length; e2++) {
-              var evented = eventeds[e2];
-              if (evented && evented.className) {
-                var obj = container.querySelector("." + evented.className);
-                if (obj) {
-                  L2.DomEvent.on(obj, evented.event || "click", /* @__PURE__ */ (function(selectAll) {
-                    return function(ev) {
-                      ev.stopPropagation();
-                      var select = isFunction2(selectAll) ? selectAll(ev, container, tree, this._map) : selectAll;
-                      if (select !== void 0 && select !== null) {
-                        selectAllCheckboxes(select, this);
-                      }
-                    };
-                  })(evented.selectAll), this);
-                }
-              }
-            }
-          },
-          _createCheckboxElement: function(checked) {
-            var input = document.createElement("input");
-            input.type = "checkbox";
-            input.className = "leaflet-control-layers-selector";
-            input.defaultChecked = checked;
-            return input;
-          }
-        });
-        L2.control.layers.tree = function(base, overlays, options) {
-          return new L2.Control.Layers.Tree(base, overlays, options);
-        };
-      }));
-    })(L_Control_Layers_Tree$1, L_Control_Layers_Tree$1.exports);
-    return L_Control_Layers_Tree$1.exports;
-  }
-  requireL_Control_Layers_Tree();
   const INFRASPECIFIC_RANKS = [
     "subspecies",
     "variety",
@@ -60052,23 +59592,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       out[t2.id] = VIVID_PALETTE[i % VIVID_PALETTE.length];
     });
     return out;
-  };
-  const byName = (a, b) => a.scientificName.localeCompare(b.scientificName);
-  const buildTree = (taxa, focalId) => {
-    const ids2 = new Set(taxa.map((t2) => t2.id));
-    const byParent = {};
-    const roots = [];
-    taxa.forEach((t2) => {
-      const isRoot = t2.parentId === focalId || !ids2.has(t2.parentId);
-      if (isRoot) {
-        roots.push(t2);
-      } else {
-        (byParent[t2.parentId] = byParent[t2.parentId] || []).push(t2);
-      }
-    });
-    roots.sort(byName);
-    Object.values(byParent).forEach((arr) => arr.sort(byName));
-    return { roots, byParent };
   };
   const wrapStyle = {
     position: "absolute",
@@ -60211,82 +59734,16 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const k = resolveKey(record);
     return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
   };
-  const polygonStyleFor = (color) => ({
-    color,
-    weight: 1,
-    fillColor: color,
-    fillOpacity: 0.75
-  });
-  const polygonHoverStyle = {
-    weight: 2,
-    fillOpacity: 0.95
-  };
-  const BASEMAPS = [
-    {
-      key: "carto",
-      label: "Carto",
-      url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-      options: {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        maxZoom: 19,
-        subdomains: "abcd"
-      }
-    },
-    {
-      key: "esri",
-      label: "Esri",
-      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
-      options: {
-        attribution: "Tiles &copy; Esri &mdash; Source: US National Park Service",
-        maxZoom: 8
-      }
-    }
-  ];
-  const DEFAULT_BASEMAP = "carto";
+  const POSITRON_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
   const GBIF_TILE_URL = "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=73&checklistKey={checklistKey}&taxonKey={taxonKey}";
-  const GBIF_PANE = "gbifPane";
-  const GBIF_PANE_Z = 550;
-  const shiftCoords = (coords, offset2) => {
-    if (typeof coords[0] === "number") return [coords[0] + offset2, coords[1]];
-    return coords.map((c) => shiftCoords(c, offset2));
-  };
-  const WORLD_OFFSETS = [-360, 0, 360];
-  const wrapGeoJson = (geojson) => {
-    if (!geojson) return geojson;
-    const features = geojson.type === "FeatureCollection" ? geojson.features : [geojson];
-    const out = [];
-    features.forEach((f) => {
-      WORLD_OFFSETS.forEach((offset2) => {
-        const tagged = {
-          ...f,
-          properties: { ...f.properties || {}, _worldCopy: offset2 }
-        };
-        if (offset2 === 0) {
-          out.push(tagged);
-        } else {
-          out.push({
-            ...tagged,
-            geometry: {
-              ...f.geometry,
-              coordinates: shiftCoords(f.geometry.coordinates, offset2)
-            }
-          });
-        }
-      });
-    });
-    return { type: "FeatureCollection", features: out };
-  };
-  const originalCopyBounds = (geoJsonLayer) => {
-    let bounds = null;
-    geoJsonLayer.eachLayer((sub) => {
-      var _a, _b, _c;
-      if (((_b = (_a = sub.feature) == null ? void 0 : _a.properties) == null ? void 0 : _b._worldCopy) !== 0) return;
-      const b = (_c = sub.getBounds) == null ? void 0 : _c.call(sub);
-      if (!b || !b.isValid()) return;
-      bounds = bounds ? bounds.extend(b) : L.latLngBounds(b.getSouthWest(), b.getNorthEast());
-    });
-    return bounds;
-  };
+  const FOCAL_SOURCE = "col-focal-distributions";
+  const FOCAL_FILL = "col-focal-fill";
+  const FOCAL_LINE = "col-focal-line";
+  const GBIF_SOURCE = "col-gbif-occurrences";
+  const GBIF_LAYER = "col-gbif-occurrences";
+  const descendantSourceId = (id2) => `col-descendant-${id2}`;
+  const descendantFillId = (id2) => `col-descendant-fill-${id2}`;
+  const descendantLineId = (id2) => `col-descendant-line-${id2}`;
   const cache = /* @__PURE__ */ new Map();
   const fetchShape = (gazetteer, id2) => {
     const key2 = `${gazetteer}:${id2}`;
@@ -60295,7 +59752,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const p = axios(url, {
       headers: { Accept: "application/geo+json" }
     }).then(
-      (r2) => wrapGeoJson(r2.data),
+      (r2) => r2.data,
       () => null
     );
     cache.set(key2, p);
@@ -60312,6 +59769,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       title
     )}</div>${rows}</div>`;
   };
+  const descendantPopupHtml = (taxon, record) => {
+    const head = `<div style="font-weight:600;font-style:italic;margin-bottom:4px">${escapeHtml(
+      taxon.scientificName
+    )}</div><div style="color:#888;margin-bottom:4px">${escapeHtml(taxon.rank || "")}</div>`;
+    return head + popupHtml(record);
+  };
   const RANK_LABEL_PLURAL = {
     subspecies: "subspecies",
     variety: "varieties",
@@ -60321,37 +59784,74 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     "infraspecific name": "infraspecific names"
   };
   const rankLabelPlural = (rank) => RANK_LABEL_PLURAL[rank] || rank;
-  const taxonLabel = (displayName, color) => `<span style="display:inline-flex;align-items:center;gap:6px"><span style="display:inline-block;width:10px;height:10px;background:${color};border:1px solid rgba(0,0,0,0.15);border-radius:2px"></span><span style="font-style:italic">${escapeHtml(displayName)}</span></span>`;
   const epithet = (scientificName) => {
     if (!scientificName) return "";
     const tokens2 = scientificName.trim().split(/\s+/);
     return tokens2[tokens2.length - 1];
   };
-  const italicLabel = (text2) => `<span style="font-style:italic">${escapeHtml(text2)}</span>`;
+  const computeBounds = (features) => {
+    var _a;
+    let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
+    const visit = (coords) => {
+      if (typeof coords[0] === "number") {
+        const [lng, lat] = coords;
+        if (lng < minLng) minLng = lng;
+        if (lng > maxLng) maxLng = lng;
+        if (lat < minLat) minLat = lat;
+        if (lat > maxLat) maxLat = lat;
+      } else {
+        for (let i = 0; i < coords.length; i++) visit(coords[i]);
+      }
+    };
+    for (let i = 0; i < features.length; i++) {
+      const g = (_a = features[i]) == null ? void 0 : _a.geometry;
+      if (g == null ? void 0 : g.coordinates) visit(g.coordinates);
+    }
+    if (minLng === Infinity) return null;
+    return [
+      [minLng, minLat],
+      [maxLng, maxLat]
+    ];
+  };
+  const flattenFeatures = (geojson) => {
+    if (!geojson) return [];
+    if (geojson.type === "FeatureCollection") return geojson.features || [];
+    return [geojson];
+  };
+  const supported = () => {
+    if (typeof (maplibregl == null ? void 0 : maplibregl.supported) === "function") return maplibregl.supported();
+    return typeof WebGLRenderingContext !== "undefined";
+  };
   const DistributionsMap = ({
     records,
     onUnmappable,
     datasetKey,
     focalTaxon,
     rankOrder,
-    basemap = DEFAULT_BASEMAP,
     gbifChecklistKey
   }) => {
+    var _a;
     const containerRef = React.useRef(null);
     const mapRef = React.useRef(null);
-    const layerControlRef = React.useRef(null);
-    const focalGroupRef = React.useRef(null);
-    const tileLayerRef = React.useRef(null);
-    const gbifLayerRef = React.useRef(null);
+    const popupRef = React.useRef(null);
+    const recordMapRef = React.useRef(/* @__PURE__ */ new Map());
+    const descendantTaxonMapRef = React.useRef(/* @__PURE__ */ new Map());
+    const descendantRecordMapRef = React.useRef(/* @__PURE__ */ new Map());
+    const focalAttachedRef = React.useRef(false);
+    const gbifAttachedRef = React.useRef(false);
+    const descendantLayersRef = React.useRef(/* @__PURE__ */ new Set());
+    const [styleReady, setStyleReady] = React.useState(false);
+    const [focalReady, setFocalReady] = React.useState(false);
     const [descendantState, setDescendantState] = React.useState({
       status: "idle",
       // idle | loading | ready | empty | error
       taxa: []
     });
-    const [focalReady, setFocalReady] = React.useState(false);
+    const [focalVisible, setFocalVisible] = React.useState(true);
+    const [gbifVisible, setGbifVisible] = React.useState(true);
     const [visibleTaxonIds, setVisibleTaxonIds] = React.useState(/* @__PURE__ */ new Set());
+    const [controlOpen, setControlOpen] = React.useState(false);
     const fetchTriggeredRef = React.useRef(false);
-    const descendantGroupsRef = React.useRef({});
     const presentMeans = React.useMemo(() => {
       if (!(records == null ? void 0 : records.length)) return [];
       const seen = /* @__PURE__ */ new Set();
@@ -60361,17 +59861,20 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       });
       return ESTABLISHMENT_MEANS.filter((m) => seen.has(m.key));
     }, [records]);
+    const descendantColors = React.useMemo(() => {
+      if (descendantState.status !== "ready") return {};
+      return assignColors(
+        descendantState.taxa.filter((t2) => t2.mappable.length > 0),
+        rankOrder || []
+      );
+    }, [descendantState, rankOrder]);
     const descendantLegend = React.useMemo(() => {
       if (descendantState.status !== "ready") {
         return { visibleGroups: [], unmappableGroups: [] };
       }
-      const colors = assignColors(
-        descendantState.taxa.filter((t2) => t2.mappable.length > 0),
-        rankOrder || []
-      );
       const decorate = (t2) => ({
         ...t2,
-        color: colors[t2.id],
+        color: descendantColors[t2.id],
         displayName: epithet(t2.scientificName)
       });
       const groupByRank = (taxa) => {
@@ -60394,107 +59897,53 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         descendantState.taxa.filter((t2) => t2.mappable.length === 0)
       );
       return { visibleGroups, unmappableGroups };
-    }, [descendantState, visibleTaxonIds, rankOrder]);
+    }, [descendantState, descendantColors, visibleTaxonIds]);
     const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
     React.useEffect(() => {
       if (!containerRef.current || mapRef.current) return;
-      const map2 = L.map(containerRef.current, {
-        minZoom: 1,
-        worldCopyJump: true
-      }).setView([20, 0], 2);
+      if (!supported()) return;
+      const map2 = new maplibregl.Map({
+        container: containerRef.current,
+        style: POSITRON_STYLE,
+        center: [0, 20],
+        zoom: 1,
+        minZoom: 0,
+        attributionControl: false,
+        renderWorldCopies: true
+      });
+      map2.addControl(
+        new maplibregl.AttributionControl({ compact: true }),
+        "bottom-right"
+      );
+      map2.addControl(
+        new maplibregl.NavigationControl({ showCompass: false }),
+        "top-left"
+      );
       mapRef.current = map2;
-      const invalidate = () => map2.invalidateSize();
-      const raf2 = requestAnimationFrame(invalidate);
-      const resizeObserver2 = typeof ResizeObserver !== "undefined" ? new ResizeObserver(invalidate) : null;
+      map2.on("load", () => {
+        setStyleReady(true);
+      });
+      const resizeObserver2 = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => map2.resize()) : null;
       if (resizeObserver2) resizeObserver2.observe(containerRef.current);
-      const control = L.control.layers.tree(null, [], {
-        collapsed: true,
-        position: "topright",
-        closedSymbol: "+",
-        openedSymbol: "",
-        spaceSymbol: ""
-      }).addTo(map2);
-      layerControlRef.current = control;
-      let isMounted = true;
-      const containerEl = control.getContainer();
-      const triggerFetch = () => {
-        var _a;
-        if (fetchTriggeredRef.current) return;
-        if (!datasetKey || !focalTaxon || !rankOrder) return;
-        const focalRank = (_a = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a.rank;
-        if (!focalRank) return;
-        if (focalRank !== "species" && !INFRASPECIFIC_RANKS.includes(focalRank))
-          return;
-        const ranks2 = getDescendantRanks(focalRank, rankOrder);
-        if (ranks2.length === 0) return;
-        fetchTriggeredRef.current = true;
-        setDescendantState({ status: "loading", taxa: [] });
-        fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
-          ({ taxa, descendantsFailed }) => {
-            if (!isMounted) return;
-            if (descendantsFailed) {
-              setDescendantState({ status: "error", taxa: [] });
-              return;
-            }
-            if (taxa.length === 0) {
-              setDescendantState({ status: "empty", taxa: [] });
-              return;
-            }
-            setDescendantState({ status: "ready", taxa });
-          }
-        );
-      };
-      containerEl.addEventListener("mouseenter", triggerFetch);
-      containerEl.addEventListener("click", triggerFetch);
-      const recomputeVisible = () => {
-        const ids2 = /* @__PURE__ */ new Set();
-        Object.entries(descendantGroupsRef.current).forEach(([id2, g]) => {
-          if (map2.hasLayer(g)) ids2.add(id2);
-        });
-        setVisibleTaxonIds(ids2);
-      };
-      map2.on("overlayadd", recomputeVisible);
-      map2.on("overlayremove", recomputeVisible);
       return () => {
-        isMounted = false;
-        cancelAnimationFrame(raf2);
         if (resizeObserver2) resizeObserver2.disconnect();
-        containerEl.removeEventListener("mouseenter", triggerFetch);
-        containerEl.removeEventListener("click", triggerFetch);
-        map2.off("overlayadd", recomputeVisible);
-        map2.off("overlayremove", recomputeVisible);
+        if (popupRef.current) {
+          popupRef.current.remove();
+          popupRef.current = null;
+        }
         map2.remove();
         mapRef.current = null;
-        layerControlRef.current = null;
-        focalGroupRef.current = null;
-        tileLayerRef.current = null;
-        gbifLayerRef.current = null;
+        focalAttachedRef.current = false;
+        gbifAttachedRef.current = false;
+        descendantLayersRef.current = /* @__PURE__ */ new Set();
       };
     }, []);
     React.useEffect(() => {
-      var _a;
+      if (!styleReady || !(records == null ? void 0 : records.length)) return;
       const map2 = mapRef.current;
       if (!map2) return;
-      const def = BASEMAPS.find((b) => b.key === basemap) || BASEMAPS[0];
-      const newLayer = L.tileLayer(def.url, def.options).addTo(map2);
-      if (tileLayerRef.current) {
-        map2.removeLayer(tileLayerRef.current);
-      }
-      tileLayerRef.current = newLayer;
-      const max2 = (_a = def.options) == null ? void 0 : _a.maxZoom;
-      if (typeof max2 === "number" && map2.getZoom() > max2) {
-        map2.setZoom(max2);
-      }
-    }, [basemap]);
-    React.useEffect(() => {
-      const map2 = mapRef.current;
-      if (!map2 || !(records == null ? void 0 : records.length)) return;
-      setFocalReady(false);
       let cancelled = false;
-      const group = L.featureGroup();
-      group.addTo(map2);
-      focalGroupRef.current = group;
-      let failures = 0;
+      setFocalReady(false);
       Promise.allSettled(
         records.map(
           (r2) => fetchShape(r2.area.gazetteer, r2.area.id).then((geojson) => ({
@@ -60504,208 +59953,316 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         )
       ).then((results) => {
         if (cancelled) return;
-        let combinedBounds = null;
-        results.forEach((res) => {
+        const features = [];
+        const recordMap = /* @__PURE__ */ new Map();
+        let failures = 0;
+        results.forEach((res, i) => {
           if (res.status !== "fulfilled" || !res.value.geojson) {
             failures += 1;
             return;
           }
           const { record, geojson } = res.value;
-          const baseStyle = polygonStyleFor(colorFor(record));
-          const layer = L.geoJSON(geojson, {
-            style: () => baseStyle,
-            onEachFeature: (_feature, lyr) => {
-              lyr.bindPopup(popupHtml(record));
-              lyr.on("mouseover", () => lyr.setStyle(polygonHoverStyle));
-              lyr.on("mouseout", () => lyr.setStyle(baseStyle));
+          const color = colorFor(record);
+          const recordKey = `focal-${i}`;
+          recordMap.set(recordKey, record);
+          flattenFeatures(geojson).forEach((f) => {
+            features.push({
+              ...f,
+              properties: {
+                ...f.properties || {},
+                _recordKey: recordKey,
+                _color: color
+              }
+            });
+          });
+        });
+        recordMapRef.current = recordMap;
+        const data = { type: "FeatureCollection", features };
+        if (map2.getSource(FOCAL_SOURCE)) {
+          map2.getSource(FOCAL_SOURCE).setData(data);
+        } else {
+          map2.addSource(FOCAL_SOURCE, { type: "geojson", data });
+          map2.addLayer({
+            id: FOCAL_FILL,
+            type: "fill",
+            source: FOCAL_SOURCE,
+            paint: {
+              "fill-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+              "fill-opacity": 0.65
             }
           });
-          layer.addTo(group);
-          const b = originalCopyBounds(layer);
-          if (b) {
-            combinedBounds = combinedBounds ? combinedBounds.extend(b) : b;
-          }
-        });
-        if (combinedBounds && combinedBounds.isValid()) {
-          map2.fitBounds(combinedBounds, { padding: [10, 10] });
+          map2.addLayer({
+            id: FOCAL_LINE,
+            type: "line",
+            source: FOCAL_SOURCE,
+            paint: {
+              "line-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+              "line-width": 1
+            }
+          });
+          map2.on("click", FOCAL_FILL, onFocalClick);
+          map2.on("mouseenter", FOCAL_FILL, onMouseEnter);
+          map2.on("mouseleave", FOCAL_FILL, onMouseLeave);
+          focalAttachedRef.current = true;
         }
-        if (typeof onUnmappable === "function") {
-          onUnmappable(failures);
+        if (features.length > 0) {
+          const bounds = computeBounds(features);
+          if (bounds) map2.fitBounds(bounds, { padding: 20, animate: false });
         }
+        if (typeof onUnmappable === "function") onUnmappable(failures);
         setFocalReady(true);
       });
       return () => {
         cancelled = true;
-        setFocalReady(false);
-        group.remove();
-        focalGroupRef.current = null;
       };
-    }, [records, onUnmappable]);
-    React.useEffect(() => {
+    }, [styleReady, records]);
+    const onFocalClick = (e2) => {
+      var _a2, _b;
       const map2 = mapRef.current;
       if (!map2) return;
-      if (gbifLayerRef.current) {
-        map2.removeLayer(gbifLayerRef.current);
-        gbifLayerRef.current = null;
-      }
+      const feature = (_a2 = e2.features) == null ? void 0 : _a2[0];
+      const key2 = (_b = feature == null ? void 0 : feature.properties) == null ? void 0 : _b._recordKey;
+      const record = key2 ? recordMapRef.current.get(key2) : null;
+      if (!record) return;
+      if (popupRef.current) popupRef.current.remove();
+      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "320px" }).setLngLat(e2.lngLat).setHTML(popupHtml(record)).addTo(map2);
+    };
+    const onMouseEnter = () => {
+      const map2 = mapRef.current;
+      if (map2) map2.getCanvas().style.cursor = "pointer";
+    };
+    const onMouseLeave = () => {
+      const map2 = mapRef.current;
+      if (map2) map2.getCanvas().style.cursor = "";
+    };
+    React.useEffect(() => {
+      const map2 = mapRef.current;
+      if (!map2 || !focalAttachedRef.current) return;
+      const v = focalVisible ? "visible" : "none";
+      if (map2.getLayer(FOCAL_FILL)) map2.setLayoutProperty(FOCAL_FILL, "visibility", v);
+      if (map2.getLayer(FOCAL_LINE)) map2.setLayoutProperty(FOCAL_LINE, "visibility", v);
+    }, [focalVisible, focalReady]);
+    React.useEffect(() => {
+      if (!styleReady) return;
+      const map2 = mapRef.current;
+      if (!map2) return;
+      const removeGbif = () => {
+        if (map2.getLayer(GBIF_LAYER)) map2.removeLayer(GBIF_LAYER);
+        if (map2.getSource(GBIF_SOURCE)) map2.removeSource(GBIF_SOURCE);
+        gbifAttachedRef.current = false;
+      };
+      removeGbif();
       if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) return;
-      if (!map2.getPane(GBIF_PANE)) {
-        map2.createPane(GBIF_PANE);
-        map2.getPane(GBIF_PANE).style.zIndex = String(GBIF_PANE_Z);
-        map2.getPane(GBIF_PANE).style.pointerEvents = "none";
-      }
       const url = GBIF_TILE_URL.replace(
         "{checklistKey}",
         encodeURIComponent(gbifChecklistKey)
       ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
-      const layer = L.tileLayer(url, {
-        attribution: '<a href="https://www.gbif.org">GBIF</a> occurrence data',
-        maxZoom: 19,
-        opacity: 0.9,
-        pane: GBIF_PANE
-      }).addTo(map2);
-      gbifLayerRef.current = layer;
-      return () => {
-        if (gbifLayerRef.current) {
-          map2.removeLayer(gbifLayerRef.current);
-          gbifLayerRef.current = null;
-        }
-      };
-    }, [gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
-    React.useEffect(() => {
-      var _a;
-      const map2 = mapRef.current;
-      const control = layerControlRef.current;
-      const focalGroup = focalGroupRef.current;
-      if (!map2 || !control) return;
-      const focalName = ((_a = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a.scientificName) || "";
-      const overlayChildren = [];
-      if (focalReady && focalGroup) {
-        overlayChildren.push({
-          label: italicLabel(focalName || "This taxon"),
-          layer: focalGroup
-        });
-      }
-      if (gbifLayerRef.current) {
-        overlayChildren.push({
-          label: "GBIF occurrences",
-          layer: gbifLayerRef.current
-        });
-      }
-      if (descendantState.status !== "ready") {
-        control.setOverlayTree(overlayChildren);
-        return;
-      }
-      const { taxa } = descendantState;
-      const mappableTaxa = taxa.filter((t2) => t2.mappable.length > 0);
-      const colors = assignColors(mappableTaxa, rankOrder || []);
-      const groups = {};
-      mappableTaxa.forEach((t2) => {
-        const color = colors[t2.id];
-        const baseStyle = {
-          color,
-          weight: 2,
-          fillColor: color,
-          fillOpacity: 0.55
-        };
-        const hoverStyle = { weight: 3, fillOpacity: 0.85 };
-        const group = L.featureGroup();
-        t2.mappable.forEach((rec) => {
-          fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => {
-            if (!geojson) return;
-            const lyr = L.geoJSON(geojson, {
-              style: () => baseStyle,
-              onEachFeature: (_f, l) => {
-                const head = `<div style="font-weight:600;font-style:italic;margin-bottom:4px">${escapeHtml(
-                  t2.scientificName
-                )}</div><div style="color:#888;margin-bottom:4px">${escapeHtml(
-                  t2.rank || ""
-                )}</div>`;
-                l.bindPopup(head + popupHtml(rec));
-                l.on("mouseover", () => l.setStyle(hoverStyle));
-                l.on("mouseout", () => l.setStyle(baseStyle));
-              }
-            });
-            lyr.addTo(group);
-          });
-        });
-        groups[t2.id] = group;
+      map2.addSource(GBIF_SOURCE, {
+        type: "raster",
+        tiles: [url],
+        tileSize: 256,
+        attribution: '<a href="https://www.gbif.org">GBIF</a> occurrence data'
       });
-      descendantGroupsRef.current = groups;
-      const tree = buildTree(
-        taxa.map((t2) => ({
-          id: t2.id,
-          parentId: t2.parentId,
-          scientificName: t2.scientificName,
-          rank: t2.rank
-        })),
-        focalTaxon.id
+      map2.addLayer({
+        id: GBIF_LAYER,
+        type: "raster",
+        source: GBIF_SOURCE,
+        paint: { "raster-opacity": 0.9 },
+        layout: { visibility: gbifVisible ? "visible" : "none" }
+      });
+      gbifAttachedRef.current = true;
+      return removeGbif;
+    }, [styleReady, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
+    React.useEffect(() => {
+      const map2 = mapRef.current;
+      if (!map2 || !gbifAttachedRef.current) return;
+      const v = gbifVisible ? "visible" : "none";
+      if (map2.getLayer(GBIF_LAYER)) map2.setLayoutProperty(GBIF_LAYER, "visibility", v);
+    }, [gbifVisible]);
+    React.useEffect(() => {
+      if (!styleReady) return;
+      const map2 = mapRef.current;
+      if (!map2) return;
+      descendantLayersRef.current.forEach((id2) => {
+        if (map2.getLayer(descendantFillId(id2))) map2.removeLayer(descendantFillId(id2));
+        if (map2.getLayer(descendantLineId(id2))) map2.removeLayer(descendantLineId(id2));
+        if (map2.getSource(descendantSourceId(id2))) map2.removeSource(descendantSourceId(id2));
+      });
+      descendantLayersRef.current = /* @__PURE__ */ new Set();
+      descendantTaxonMapRef.current = /* @__PURE__ */ new Map();
+      descendantRecordMapRef.current = /* @__PURE__ */ new Map();
+      if (descendantState.status !== "ready") return;
+      const colors = descendantColors;
+      descendantState.taxa.forEach((t2) => {
+        if (t2.mappable.length === 0) return;
+        descendantTaxonMapRef.current.set(t2.id, t2);
+        Promise.allSettled(
+          t2.mappable.map(
+            (rec) => fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => ({
+              record: rec,
+              geojson
+            }))
+          )
+        ).then((results) => {
+          if (!mapRef.current) return;
+          const features = [];
+          results.forEach((res, i) => {
+            if (res.status !== "fulfilled" || !res.value.geojson) return;
+            const { record, geojson } = res.value;
+            const recordKey = `desc-${t2.id}-${i}`;
+            descendantRecordMapRef.current.set(recordKey, { taxon: t2, record });
+            flattenFeatures(geojson).forEach((f) => {
+              features.push({
+                ...f,
+                properties: {
+                  ...f.properties || {},
+                  _recordKey: recordKey
+                }
+              });
+            });
+          });
+          const color = colors[t2.id] || MISSING_COLOR;
+          const data = { type: "FeatureCollection", features };
+          const srcId = descendantSourceId(t2.id);
+          if (mapRef.current.getSource(srcId)) {
+            mapRef.current.getSource(srcId).setData(data);
+          } else {
+            mapRef.current.addSource(srcId, { type: "geojson", data });
+            const fillId = descendantFillId(t2.id);
+            const lineId = descendantLineId(t2.id);
+            const beforeId = mapRef.current.getLayer(GBIF_LAYER) ? GBIF_LAYER : void 0;
+            mapRef.current.addLayer(
+              {
+                id: fillId,
+                type: "fill",
+                source: srcId,
+                paint: { "fill-color": color, "fill-opacity": 0.55 },
+                layout: { visibility: "none" }
+              },
+              beforeId
+            );
+            mapRef.current.addLayer(
+              {
+                id: lineId,
+                type: "line",
+                source: srcId,
+                paint: { "line-color": color, "line-width": 2 },
+                layout: { visibility: "none" }
+              },
+              beforeId
+            );
+            mapRef.current.on("click", fillId, onDescendantClick);
+            mapRef.current.on("mouseenter", fillId, onMouseEnter);
+            mapRef.current.on("mouseleave", fillId, onMouseLeave);
+            descendantLayersRef.current.add(t2.id);
+          }
+        });
+      });
+    }, [styleReady, descendantState, descendantColors]);
+    const onDescendantClick = (e2) => {
+      var _a2, _b;
+      const map2 = mapRef.current;
+      if (!map2) return;
+      const feature = (_a2 = e2.features) == null ? void 0 : _a2[0];
+      const key2 = (_b = feature == null ? void 0 : feature.properties) == null ? void 0 : _b._recordKey;
+      const data = key2 ? descendantRecordMapRef.current.get(key2) : null;
+      if (!data) return;
+      if (popupRef.current) popupRef.current.remove();
+      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "320px" }).setLngLat(e2.lngLat).setHTML(descendantPopupHtml(data.taxon, data.record)).addTo(map2);
+    };
+    React.useEffect(() => {
+      const map2 = mapRef.current;
+      if (!map2) return;
+      descendantLayersRef.current.forEach((id2) => {
+        const v = visibleTaxonIds.has(id2) ? "visible" : "none";
+        if (map2.getLayer(descendantFillId(id2))) {
+          map2.setLayoutProperty(descendantFillId(id2), "visibility", v);
+        }
+        if (map2.getLayer(descendantLineId(id2))) {
+          map2.setLayoutProperty(descendantLineId(id2), "visibility", v);
+        }
+      });
+    }, [visibleTaxonIds, descendantState]);
+    const triggerDescendantFetch = () => {
+      var _a2;
+      if (fetchTriggeredRef.current) return;
+      if (!datasetKey || !focalTaxon || !rankOrder) return;
+      const focalRank = (_a2 = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a2.rank;
+      if (!focalRank) return;
+      if (focalRank !== "species" && !INFRASPECIFIC_RANKS.includes(focalRank)) return;
+      const ranks2 = getDescendantRanks(focalRank, rankOrder);
+      if (ranks2.length === 0) return;
+      fetchTriggeredRef.current = true;
+      setDescendantState({ status: "loading", taxa: [] });
+      fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
+        ({ taxa, descendantsFailed }) => {
+          if (descendantsFailed) {
+            setDescendantState({ status: "error", taxa: [] });
+            return;
+          }
+          if (taxa.length === 0) {
+            setDescendantState({ status: "empty", taxa: [] });
+            return;
+          }
+          setDescendantState({ status: "ready", taxa });
+        }
       );
-      const childrenOfTaxonNode = (taxonId) => {
-        const kids = tree.byParent[taxonId] || [];
-        const grouped = {};
-        kids.forEach((k) => {
-          (grouped[k.rank] = grouped[k.rank] || []).push(k);
-        });
-        const out = [];
-        INFRASPECIFIC_RANKS.forEach((rank) => {
-          const inGroup = grouped[rank];
-          if (!inGroup) return;
-          const parentTaxon = taxa.find((t2) => t2.id === taxonId);
-          const parentDisplay = parentTaxon ? epithet(parentTaxon.scientificName) : "";
-          const subLabel = `${rankLabelPlural(rank)} of ${escapeHtml(parentDisplay)}`;
-          const childLeaves = inGroup.filter((k) => groups[k.id]).map((k) => {
-            const nested = childrenOfTaxonNode(k.id);
-            const node = {
-              label: taxonLabel(epithet(k.scientificName), colors[k.id]),
-              layer: groups[k.id]
-            };
-            if (nested.length > 0) node.children = nested;
-            return node;
-          });
-          out.push({
-            label: subLabel,
-            selectAllCheckbox: true,
-            children: childLeaves
-          });
-        });
-        return out;
-      };
+    };
+    const openControl = () => {
+      setControlOpen(true);
+      triggerDescendantFetch();
+    };
+    const descendantsByRank = React.useMemo(() => {
+      if (descendantState.status !== "ready") return [];
       const byRank = {};
-      taxa.forEach((t2) => {
+      descendantState.taxa.filter((t2) => t2.mappable.length > 0).forEach((t2) => {
         (byRank[t2.rank] = byRank[t2.rank] || []).push(t2);
       });
-      INFRASPECIFIC_RANKS.forEach((rank) => {
-        const inRank = (byRank[rank] || []).filter((t2) => groups[t2.id]);
-        if (inRank.length === 0) return;
-        const children = inRank.map((t2) => {
-          const nested = childrenOfTaxonNode(t2.id);
-          const node = {
-            label: taxonLabel(epithet(t2.scientificName), colors[t2.id]),
-            layer: groups[t2.id]
-          };
-          if (nested.length > 0) node.children = nested;
-          return node;
-        });
-        overlayChildren.push({
-          label: rankLabelPlural(rank),
-          selectAllCheckbox: true,
-          children
-        });
+      return INFRASPECIFIC_RANKS.filter((r2) => byRank[r2]).map((r2) => ({
+        rank: r2,
+        label: rankLabelPlural(r2),
+        taxa: byRank[r2].slice().sort(
+          (a, b) => a.scientificName.localeCompare(b.scientificName)
+        )
+      }));
+    }, [descendantState]);
+    const toggleTaxon = (id2) => {
+      setVisibleTaxonIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id2)) next.delete(id2);
+        else next.add(id2);
+        return next;
       });
-      control.setOverlayTree(overlayChildren);
-      return () => {
-        Object.values(groups).forEach((g) => g.remove());
-        descendantGroupsRef.current = {};
-      };
-    }, [descendantState, focalTaxon, rankOrder, focalReady, gbifChecklistKey]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-distributions-map", style: { position: "relative" }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
-        .leaflet-bar a,
-        .leaflet-bar a:hover {
-          background-color: #fff;
+    };
+    const toggleRankGroup = (rankTaxa) => {
+      setVisibleTaxonIds((prev) => {
+        const next = new Set(prev);
+        const allOn = rankTaxa.every((t2) => prev.has(t2.id));
+        rankTaxa.forEach((t2) => {
+          if (allOn) next.delete(t2.id);
+          else next.add(t2.id);
+        });
+        return next;
+      });
+    };
+    if (!supported()) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: {
+            padding: 12,
+            background: "#fafafa",
+            border: "1px solid #eee",
+            borderRadius: 4,
+            color: "#666",
+            fontSize: 12
+          },
+          children: "Maps require WebGL, which your browser doesn't support."
         }
-      ` }),
+      );
+    }
+    const focalName = ((_a = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a.scientificName) || "This taxon";
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-distributions-map", style: { position: "relative" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
@@ -60713,38 +60270,30 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           style: { height: 360, width: "100%", background: "#f5f5f5" }
         }
       ),
-      (descendantState.status === "loading" || descendantState.status === "error") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        LayerControl,
         {
-          style: {
-            position: "absolute",
-            top: 8,
-            left: 8,
-            zIndex: 1e3,
-            background: "#fff",
-            borderRadius: 4,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-            padding: "4px 8px",
-            fontSize: 12
-          },
-          children: [
-            descendantState.status === "loading" && "Loading descendants…",
-            descendantState.status === "error" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-              "Couldn't load descendants.",
-              " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "a",
-                {
-                  onClick: () => {
-                    fetchTriggeredRef.current = false;
-                    setDescendantState({ status: "idle", taxa: [] });
-                  },
-                  style: { cursor: "pointer" },
-                  children: "Retry"
-                }
-              )
-            ] })
-          ]
+          open: controlOpen,
+          onOpen: openControl,
+          onClose: () => setControlOpen(false),
+          focalName,
+          focalReady,
+          focalVisible,
+          onToggleFocal: () => setFocalVisible((v) => !v),
+          gbifEnabled: !!gbifChecklistKey,
+          gbifVisible,
+          onToggleGbif: () => setGbifVisible((v) => !v),
+          descendantStatus: descendantState.status,
+          descendantsByRank,
+          descendantColors,
+          visibleTaxonIds,
+          onToggleTaxon: toggleTaxon,
+          onToggleRankGroup: toggleRankGroup,
+          onRetry: () => {
+            fetchTriggeredRef.current = false;
+            setDescendantState({ status: "idle", taxa: [] });
+            triggerDescendantFetch();
+          }
         }
       ),
       !showDescendantLegend && presentMeans.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -60754,7 +60303,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             position: "absolute",
             bottom: 8,
             left: 8,
-            zIndex: 1e3,
+            zIndex: 1,
             background: "#fff",
             borderRadius: 4,
             boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
@@ -60795,6 +60344,165 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         }
       )
     ] });
+  };
+  const LayerControl = ({
+    open,
+    onOpen,
+    onClose,
+    focalName,
+    focalReady,
+    focalVisible,
+    onToggleFocal,
+    gbifEnabled,
+    gbifVisible,
+    onToggleGbif,
+    descendantStatus,
+    descendantsByRank,
+    descendantColors,
+    visibleTaxonIds,
+    onToggleTaxon,
+    onToggleRankGroup,
+    onRetry
+  }) => {
+    if (!open) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          onClick: onOpen,
+          onMouseEnter: onOpen,
+          title: "Layers",
+          style: {
+            position: "absolute",
+            top: 10,
+            right: 10,
+            zIndex: 2,
+            width: 30,
+            height: 30,
+            background: "#fff",
+            border: "1px solid rgba(0,0,0,0.2)",
+            borderRadius: 4,
+            cursor: "pointer",
+            fontSize: 18,
+            lineHeight: "26px",
+            padding: 0,
+            boxShadow: "0 1px 4px rgba(0,0,0,0.2)"
+          },
+          children: "+"
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          position: "absolute",
+          top: 10,
+          right: 10,
+          zIndex: 2,
+          background: "#fff",
+          borderRadius: 4,
+          boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+          padding: "6px 10px",
+          fontSize: 12,
+          lineHeight: 1.5,
+          maxHeight: 320,
+          overflowY: "auto",
+          minWidth: 160
+        },
+        onMouseLeave: onClose,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "checkbox",
+                checked: focalVisible,
+                disabled: !focalReady,
+                onChange: onToggleFocal
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: focalName })
+          ] }),
+          gbifEnabled && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", checked: gbifVisible, onChange: onToggleGbif }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
+          ] }),
+          descendantStatus === "loading" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6, color: "#888" }, children: "Loading descendants…" }),
+          descendantStatus === "error" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: 6, color: "#888" }, children: [
+            "Couldn't load descendants.",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: onRetry, style: { cursor: "pointer" }, children: "Retry" })
+          ] }),
+          descendantStatus === "ready" && descendantsByRank.map((group) => {
+            const allOn = group.taxa.every((t2) => visibleTaxonIds.has(t2.id));
+            const someOn = group.taxa.some((t2) => visibleTaxonIds.has(t2.id));
+            return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: 6 }, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "label",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    fontWeight: 600
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "input",
+                      {
+                        type: "checkbox",
+                        checked: allOn,
+                        ref: (el2) => {
+                          if (el2) el2.indeterminate = !allOn && someOn;
+                        },
+                        onChange: () => onToggleRankGroup(group.taxa)
+                      }
+                    ),
+                    group.label
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { paddingLeft: 18 }, children: group.taxa.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "label",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "input",
+                      {
+                        type: "checkbox",
+                        checked: visibleTaxonIds.has(t2.id),
+                        onChange: () => onToggleTaxon(t2.id)
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        style: {
+                          display: "inline-block",
+                          width: 10,
+                          height: 10,
+                          background: descendantColors[t2.id],
+                          border: "1px solid rgba(0,0,0,0.15)",
+                          borderRadius: 2
+                        }
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: epithet(t2.scientificName) })
+                  ]
+                },
+                t2.id
+              )) })
+            ] }, group.rank);
+          })
+        ]
+      }
+    );
   };
   const isMappable = (r2) => {
     var _a, _b;
@@ -60854,7 +60562,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const mappable = data.filter(isMappable);
     const baseUnmappable = data.length - mappable.length;
     const [view, setView] = React.useState("map");
-    const [basemap, setBasemap] = React.useState(DEFAULT_BASEMAP);
     const [fetchFailures, setFetchFailures] = React.useState(0);
     const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
     if (!showDistributionMap || mappable.length === 0 || allMappableFailed) {
@@ -60870,37 +60577,15 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const unmappable = baseUnmappable + fetchFailures;
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
+        Radio.Group,
         {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 8,
-            gap: 8
-          },
+          size: "small",
+          value: view,
+          onChange: (e2) => setView(e2.target.value),
+          style: { marginBottom: 8 },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Radio.Group,
-              {
-                size: "small",
-                value: view,
-                onChange: (e2) => setView(e2.target.value),
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
-                ]
-              }
-            ),
-            view === "map" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Radio.Group,
-              {
-                size: "small",
-                value: basemap,
-                onChange: (e2) => setBasemap(e2.target.value),
-                children: BASEMAPS.map((b) => /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: b.key, children: b.label }, b.key))
-              }
-            )
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
           ]
         }
       ),
@@ -60913,7 +60598,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             datasetKey,
             focalTaxon,
             rankOrder,
-            basemap,
             gbifChecklistKey
           }
         ),
@@ -62121,17 +61805,17 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           }
           function t2(b2, d2, g2) {
             function m(d3, m2) {
-              var L2 = b2.removeEventListener || a2.removeEventListenerPolyfill;
-              L2 && L2.call(b2, d3, m2, false);
+              var L = b2.removeEventListener || a2.removeEventListenerPolyfill;
+              L && L.call(b2, d3, m2, false);
             }
             function x(g3) {
               var x2;
               if (b2.nodeName) {
                 if (d2) {
-                  var L2 = {};
-                  L2[d2] = true;
-                } else L2 = g3;
-                B(L2, function(b3, d3) {
+                  var L = {};
+                  L[d2] = true;
+                } else L = g3;
+                B(L, function(b3, d3) {
                   if (g3[d3]) for (x2 = g3[d3].length; x2--; ) m(d3, g3[d3][x2].fn);
                 });
               }
@@ -63047,18 +62731,18 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               this.doTransform && (this.updateTransform(), this.doTransform = false);
             };
             a3.prototype.align = function(b2, c2, g2) {
-              var m2 = {}, L2 = this.renderer, e3 = L2.alignedObjects, l2, a4, E;
+              var m2 = {}, L = this.renderer, e3 = L.alignedObjects, l2, a4, E;
               if (b2) {
                 if (this.alignOptions = b2, this.alignByTranslate = c2, !g2 || d(g2)) this.alignTo = l2 = g2 || "renderer", J(e3, this), e3.push(this), g2 = void 0;
               } else b2 = this.alignOptions, c2 = this.alignByTranslate, l2 = this.alignTo;
-              g2 = x(g2, L2[l2], "scrollablePlotBox" === l2 ? L2.plotBox : void 0, L2);
+              g2 = x(g2, L[l2], "scrollablePlotBox" === l2 ? L.plotBox : void 0, L);
               l2 = b2.align;
               var r3 = b2.verticalAlign;
-              L2 = (g2.x || 0) + (b2.x || 0);
+              L = (g2.x || 0) + (b2.x || 0);
               e3 = (g2.y || 0) + (b2.y || 0);
               "right" === l2 ? a4 = 1 : "center" === l2 && (a4 = 2);
-              a4 && (L2 += (g2.width - (b2.width || 0)) / a4);
-              m2[c2 ? "translateX" : "x"] = Math.round(L2);
+              a4 && (L += (g2.width - (b2.width || 0)) / a4);
+              m2[c2 ? "translateX" : "x"] = Math.round(L);
               "bottom" === r3 ? E = 1 : "middle" === r3 && (E = 2);
               E && (e3 += (g2.height - (b2.height || 0)) / E);
               m2[c2 ? "translateY" : "y"] = Math.round(e3);
@@ -63117,7 +62801,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }
             };
             a3.prototype.attr = function(b2, d2, c2, g2) {
-              var m2 = this.element, e3 = this.symbolCustomAttribs, L2, l2 = this, E, a4;
+              var m2 = this.element, e3 = this.symbolCustomAttribs, L, l2 = this, E, a4;
               if ("string" === typeof b2 && "undefined" !== typeof d2) {
                 var K = b2;
                 b2 = {};
@@ -63126,7 +62810,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               "string" === typeof b2 ? l2 = (this[b2 + "Getter"] || this._defaultGetter).call(this, b2, m2) : (D(b2, function(d3, c3) {
                 E = false;
                 g2 || A(this, c3);
-                this.symbolName && -1 !== e3.indexOf(c3) && (L2 || (this.symbolAttr(b2), L2 = true), E = true);
+                this.symbolName && -1 !== e3.indexOf(c3) && (L || (this.symbolAttr(b2), L = true), E = true);
                 !this.rotation || "x" !== c3 && "y" !== c3 || (this.doTransform = true);
                 E || (a4 = this[c3 + "Setter"] || this._defaultSetter, a4.call(this, d3, c3, m2), !this.styledMode && this.shadows && /^(width|height|visibility|x|y|d|transform|cx|cy|r)$/.test(c3) && this.updateShadows(c3, d3, a4));
               }, this), this.afterSetters());
@@ -63147,16 +62831,16 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               return b2;
             };
             a3.prototype.complexColor = function(b2, d2, c2) {
-              var g2 = this.renderer, e3, L2, a4, h2, E, x2, p2, f2, k2, w2, B2 = [], I2;
+              var g2 = this.renderer, e3, L, a4, h2, E, x2, p2, f2, k2, w2, B2 = [], I2;
               r2(this.renderer, "complexColor", { args: arguments }, function() {
-                b2.radialGradient ? L2 = "radialGradient" : b2.linearGradient && (L2 = "linearGradient");
-                if (L2) {
-                  a4 = b2[L2];
+                b2.radialGradient ? L = "radialGradient" : b2.linearGradient && (L = "linearGradient");
+                if (L) {
+                  a4 = b2[L];
                   E = g2.gradients;
                   x2 = b2.stops;
                   k2 = c2.radialReference;
-                  l(a4) && (b2[L2] = a4 = { x1: a4[0], y1: a4[1], x2: a4[2], y2: a4[3], gradientUnits: "userSpaceOnUse" });
-                  "radialGradient" === L2 && k2 && !t2(a4.gradientUnits) && (h2 = a4, a4 = m(a4, g2.getRadialAttr(k2, h2), { gradientUnits: "userSpaceOnUse" }));
+                  l(a4) && (b2[L] = a4 = { x1: a4[0], y1: a4[1], x2: a4[2], y2: a4[3], gradientUnits: "userSpaceOnUse" });
+                  "radialGradient" === L && k2 && !t2(a4.gradientUnits) && (h2 = a4, a4 = m(a4, g2.getRadialAttr(k2, h2), { gradientUnits: "userSpaceOnUse" }));
                   D(a4, function(b3, d3) {
                     "id" !== d3 && B2.push(d3, b3);
                   });
@@ -63167,7 +62851,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                   if (E[B2]) w2 = E[B2].attr("id");
                   else {
                     a4.id = w2 = S();
-                    var K = E[B2] = g2.createElement(L2).attr(a4).add(g2.defs);
+                    var K = E[B2] = g2.createElement(L).attr(a4).add(g2.defs);
                     K.radAttr = h2;
                     K.stops = [];
                     x2.forEach(function(b3) {
@@ -63408,12 +63092,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }), l2 && this.destroyShadows(), this.oldShadowOptions = E);
               if (!E) this.destroyShadows();
               else if (!this.shadows) {
-                var L2 = E.opacity / E.width;
+                var L = E.opacity / E.width;
                 var r3 = this.parentInverted ? "translate(" + E.offsetY + ", " + E.offsetX + ")" : "translate(" + E.offsetX + ", " + E.offsetY + ")";
                 for (a4 = 1; a4 <= E.width; a4++) {
                   var h2 = m2.cloneNode(false);
                   var x2 = 2 * E.width + 1 - 2 * a4;
-                  w(h2, { stroke: b2.color || "#000000", "stroke-opacity": L2 * a4, "stroke-width": x2, transform: r3, fill: "none" });
+                  w(h2, { stroke: b2.color || "#000000", "stroke-opacity": L * a4, "stroke-width": x2, transform: r3, fill: "none" });
                   h2.setAttribute("class", (h2.getAttribute("class") || "") + " highcharts-shadow");
                   c2 && (w(h2, "height", Math.max(w(h2, "height") - x2, 0)), h2.cutHeight = x2);
                   d2 ? d2.element.appendChild(h2) : m2.parentNode && m2.parentNode.insertBefore(h2, m2);
@@ -63899,13 +63583,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         M(a, "Core/Renderer/SVG/SVGRenderer.js", [a["Core/Renderer/HTML/AST.js"], a["Core/Color/Color.js"], a["Core/Globals.js"], a["Core/Renderer/RendererRegistry.js"], a["Core/Renderer/SVG/SVGElement.js"], a["Core/Renderer/SVG/SVGLabel.js"], a["Core/Renderer/SVG/Symbols.js"], a["Core/Renderer/SVG/TextBuilder.js"], a["Core/Utilities.js"]], function(a2, u, z, F, y, G, H, A, q) {
           var n2 = z.charts, k = z.deg2rad, e2 = z.doc, c = z.isFirefox, h = z.isMS, f = z.isWebKit, w = z.noop, p = z.SVG_NS, B = z.symbolSizes, t2 = z.win, J = q.addEvent, C = q.attr, r2 = q.createElement, l = q.css, b = q.defined, g = q.destroyObjectProperties, d = q.extend, m = q.isArray, D = q.isNumber, x = q.isObject, I = q.isString, P = q.merge, v = q.pick, O = q.pInt, U = q.uniqueKey, Y;
           z = (function() {
-            function L2(b2, d2, a3, c2, g2, m2, e3) {
+            function L(b2, d2, a3, c2, g2, m2, e3) {
               this.width = this.url = this.style = this.isSVG = this.imgCount = this.height = this.gradients = this.globalAnimation = this.defs = this.chartIndex = this.cacheKeys = this.cache = this.boxWrapper = this.box = this.alignedObjects = void 0;
               this.init(b2, d2, a3, c2, g2, m2, e3);
             }
-            L2.prototype.init = function(b2, d2, a3, g2, m2, E, L3) {
+            L.prototype.init = function(b2, d2, a3, g2, m2, E, L2) {
               var r3 = this.createElement("svg").attr({ version: "1.1", "class": "highcharts-root" }), K = r3.element;
-              L3 || r3.css(this.getStyle(g2));
+              L2 || r3.css(this.getStyle(g2));
               b2.appendChild(K);
               C(b2, "dir", "ltr");
               -1 === b2.innerHTML.indexOf("xmlns") && C(K, "xmlns", this.SVG_NS);
@@ -63918,7 +63602,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               this.defs = this.createElement("defs").add();
               this.allowHTML = E;
               this.forExport = m2;
-              this.styledMode = L3;
+              this.styledMode = L2;
               this.gradients = {};
               this.cache = {};
               this.cacheKeys = [];
@@ -63931,10 +63615,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 l(b2, { left: Math.ceil(p2.left) - p2.left + "px", top: Math.ceil(p2.top) - p2.top + "px" });
               }, d2(), this.unSubPixelFix = J(t2, "resize", d2));
             };
-            L2.prototype.definition = function(b2) {
+            L.prototype.definition = function(b2) {
               return new a2([b2]).addToDOM(this.defs.element);
             };
-            L2.prototype.getReferenceURL = function() {
+            L.prototype.getReferenceURL = function() {
               if ((c || f) && e2.getElementsByTagName("base").length) {
                 if (!b(Y)) {
                   var d2 = U();
@@ -63948,16 +63632,16 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }
               return "";
             };
-            L2.prototype.getStyle = function(b2) {
+            L.prototype.getStyle = function(b2) {
               return this.style = d({ fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif', fontSize: "12px" }, b2);
             };
-            L2.prototype.setStyle = function(b2) {
+            L.prototype.setStyle = function(b2) {
               this.boxWrapper.css(this.getStyle(b2));
             };
-            L2.prototype.isHidden = function() {
+            L.prototype.isHidden = function() {
               return !this.boxWrapper.getBBox().width;
             };
-            L2.prototype.destroy = function() {
+            L.prototype.destroy = function() {
               var b2 = this.defs;
               this.box = null;
               this.boxWrapper = this.boxWrapper.destroy();
@@ -63967,25 +63651,25 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               this.unSubPixelFix && this.unSubPixelFix();
               return this.alignedObjects = null;
             };
-            L2.prototype.createElement = function(b2) {
+            L.prototype.createElement = function(b2) {
               var d2 = new this.Element();
               d2.init(this, b2);
               return d2;
             };
-            L2.prototype.getRadialAttr = function(b2, d2) {
+            L.prototype.getRadialAttr = function(b2, d2) {
               return { cx: b2[0] - b2[2] / 2 + (d2.cx || 0) * b2[2], cy: b2[1] - b2[2] / 2 + (d2.cy || 0) * b2[2], r: (d2.r || 0) * b2[2] };
             };
-            L2.prototype.buildText = function(b2) {
+            L.prototype.buildText = function(b2) {
               new A(b2).buildSVG();
             };
-            L2.prototype.getContrast = function(b2) {
+            L.prototype.getContrast = function(b2) {
               b2 = u.parse(b2).rgba;
               b2[0] *= 1;
               b2[1] *= 1.2;
               b2[2] *= 0.5;
               return 459 < b2[0] + b2[1] + b2[2] ? "#000000" : "#FFFFFF";
             };
-            L2.prototype.button = function(b2, c2, g2, m2, e3, l2, L3, r3, p2, x2) {
+            L.prototype.button = function(b2, c2, g2, m2, e3, l2, L2, r3, p2, x2) {
               var E = this.label(b2, c2, g2, p2, void 0, void 0, x2, void 0, "button"), f2 = this.styledMode, K = 0, D2 = e3 ? P(e3) : {};
               b2 = D2 && D2.style || {};
               D2 = a2.filterUserAttributes(D2);
@@ -63997,9 +63681,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 l2 = P(D2, { fill: "#e6e6e6" }, a2.filterUserAttributes(l2 || {}));
                 var N = l2.style;
                 delete l2.style;
-                L3 = P(D2, { fill: "#e6ebf5", style: { color: "#000000", fontWeight: "bold" } }, a2.filterUserAttributes(L3 || {}));
-                var w2 = L3.style;
-                delete L3.style;
+                L2 = P(D2, { fill: "#e6ebf5", style: { color: "#000000", fontWeight: "bold" } }, a2.filterUserAttributes(L2 || {}));
+                var w2 = L2.style;
+                delete L2.style;
                 r3 = P(D2, { style: { color: "#cccccc" } }, a2.filterUserAttributes(r3 || {}));
                 var t3 = r3.style;
                 delete r3.style;
@@ -64013,7 +63697,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               E.setState = function(b3) {
                 1 !== b3 && (E.state = K = b3);
                 E.removeClass(/highcharts-button-(normal|hover|pressed|disabled)/).addClass("highcharts-button-" + ["normal", "hover", "pressed", "disabled"][b3 || 0]);
-                f2 || E.attr([D2, l2, L3, r3][b3 || 0]).css([k2, N, w2, t3][b3 || 0]);
+                f2 || E.attr([D2, l2, L2, r3][b3 || 0]).css([k2, N, w2, t3][b3 || 0]);
               };
               f2 || E.attr(D2).css(d({ cursor: "default" }, k2));
               return E.on("touchstart", function(b3) {
@@ -64022,19 +63706,19 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 3 !== K && m2.call(E, b3);
               });
             };
-            L2.prototype.crispLine = function(d2, a3, c2) {
+            L.prototype.crispLine = function(d2, a3, c2) {
               void 0 === c2 && (c2 = "round");
               var g2 = d2[0], m2 = d2[1];
               b(g2[1]) && g2[1] === m2[1] && (g2[1] = m2[1] = Math[c2](g2[1]) - a3 % 2 / 2);
               b(g2[2]) && g2[2] === m2[2] && (g2[2] = m2[2] = Math[c2](g2[2]) + a3 % 2 / 2);
               return d2;
             };
-            L2.prototype.path = function(b2) {
+            L.prototype.path = function(b2) {
               var a3 = this.styledMode ? {} : { fill: "none" };
               m(b2) ? a3.d = b2 : x(b2) && d(a3, b2);
               return this.createElement("path").attr(a3);
             };
-            L2.prototype.circle = function(b2, d2, a3) {
+            L.prototype.circle = function(b2, d2, a3) {
               b2 = x(b2) ? b2 : "undefined" === typeof b2 ? {} : { x: b2, y: d2, r: a3 };
               d2 = this.createElement("circle");
               d2.xSetter = d2.ySetter = function(b3, d3, a4) {
@@ -64042,13 +63726,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               };
               return d2.attr(b2);
             };
-            L2.prototype.arc = function(b2, d2, a3, c2, g2, m2) {
+            L.prototype.arc = function(b2, d2, a3, c2, g2, m2) {
               x(b2) ? (c2 = b2, d2 = c2.y, a3 = c2.r, b2 = c2.x) : c2 = { innerR: c2, start: g2, end: m2 };
               b2 = this.symbol("arc", b2, d2, a3, a3, c2);
               b2.r = a3;
               return b2;
             };
-            L2.prototype.rect = function(b2, d2, a3, c2, g2, m2) {
+            L.prototype.rect = function(b2, d2, a3, c2, g2, m2) {
               g2 = x(b2) ? b2.r : g2;
               var e3 = this.createElement("rect");
               b2 = x(b2) ? b2 : "undefined" === typeof b2 ? {} : { x: b2, y: d2, width: Math.max(a3, 0), height: Math.max(c2, 0) };
@@ -64063,7 +63747,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               };
               return e3.attr(b2);
             };
-            L2.prototype.setSize = function(b2, d2, a3) {
+            L.prototype.setSize = function(b2, d2, a3) {
               this.width = b2;
               this.height = d2;
               this.boxWrapper.animate({ width: b2, height: d2 }, { step: function() {
@@ -64074,11 +63758,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               ) ? void 0 : 0 });
               this.alignElements();
             };
-            L2.prototype.g = function(b2) {
+            L.prototype.g = function(b2) {
               var d2 = this.createElement("g");
               return b2 ? d2.attr({ "class": "highcharts-" + b2 }) : d2;
             };
-            L2.prototype.image = function(b2, d2, a3, c2, g2, m2) {
+            L.prototype.image = function(b2, d2, a3, c2, g2, m2) {
               var e3 = { preserveAspectRatio: "none" }, l2 = function(b3, d3) {
                 b3.setAttributeNS ? b3.setAttributeNS("http://www.w3.org/1999/xlink", "href", d3) : b3.setAttribute("hc-svg-href", d3);
               };
@@ -64097,13 +63781,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               ), a3 = new t2.Image(), J(a3, "load", d2), a3.src = b2, a3.complete && d2({})) : l2(E.element, b2);
               return E;
             };
-            L2.prototype.symbol = function(a3, c2, g2, m2, L3, E) {
+            L.prototype.symbol = function(a3, c2, g2, m2, L2, E) {
               var p2 = this, h2 = /^url\((.*?)\)$/, x2 = h2.test(a3), f2 = !x2 && (this.symbols[a3] ? a3 : "circle"), D2 = f2 && this.symbols[f2], k2;
               if (D2) {
-                "number" === typeof c2 && (k2 = D2.call(this.symbols, Math.round(c2 || 0), Math.round(g2 || 0), m2 || 0, L3 || 0, E));
+                "number" === typeof c2 && (k2 = D2.call(this.symbols, Math.round(c2 || 0), Math.round(g2 || 0), m2 || 0, L2 || 0, E));
                 var K = this.path(k2);
                 p2.styledMode || K.attr("fill", "none");
-                d(K, { symbolName: f2 || void 0, x: c2, y: g2, width: m2, height: L3 });
+                d(K, { symbolName: f2 || void 0, x: c2, y: g2, width: m2, height: L2 });
                 E && d(K, E);
               } else if (x2) {
                 var w2 = a3.match(h2)[1];
@@ -64136,7 +63820,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               }
               return K;
             };
-            L2.prototype.clipRect = function(b2, d2, a3, c2) {
+            L.prototype.clipRect = function(b2, d2, a3, c2) {
               var g2 = U() + "-", m2 = this.createElement("clipPath").attr({ id: g2 }).add(this.defs);
               b2 = this.rect(b2, d2, a3, c2, 0).add(m2);
               b2.id = g2;
@@ -64144,7 +63828,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               b2.count = 0;
               return b2;
             };
-            L2.prototype.text = function(d2, a3, c2, g2) {
+            L.prototype.text = function(d2, a3, c2, g2) {
               var m2 = {};
               if (g2 && (this.allowHTML || !this.forExport)) return this.html(d2, a3, c2);
               m2.x = Math.round(a3 || 0);
@@ -64157,31 +63841,31 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               };
               return d2;
             };
-            L2.prototype.fontMetrics = function(b2, d2) {
+            L.prototype.fontMetrics = function(b2, d2) {
               b2 = !this.styledMode && /px/.test(b2) || !t2.getComputedStyle ? b2 || d2 && d2.style && d2.style.fontSize || this.style && this.style.fontSize : d2 && y.prototype.getStyle.call(d2, "font-size");
               b2 = /px/.test(b2) ? O(b2) : 12;
               d2 = 24 > b2 ? b2 + 3 : Math.round(1.2 * b2);
               return { h: d2, b: Math.round(0.8 * d2), f: b2 };
             };
-            L2.prototype.rotCorr = function(b2, d2, a3) {
+            L.prototype.rotCorr = function(b2, d2, a3) {
               var c2 = b2;
               d2 && a3 && (c2 = Math.max(c2 * Math.cos(d2 * k), 4));
               return { x: -b2 / 3 * Math.sin(d2 * k), y: c2 };
             };
-            L2.prototype.pathToSegments = function(b2) {
+            L.prototype.pathToSegments = function(b2) {
               for (var d2 = [], a3 = [], c2 = { A: 8, C: 7, H: 2, L: 3, M: 3, Q: 5, S: 5, T: 3, V: 2 }, g2 = 0; g2 < b2.length; g2++) I(a3[0]) && D(b2[g2]) && a3.length === c2[a3[0].toUpperCase()] && b2.splice(g2, 0, a3[0].replace("M", "L").replace("m", "l")), "string" === typeof b2[g2] && (a3.length && d2.push(a3.slice(0)), a3.length = 0), a3.push(b2[g2]);
               d2.push(a3.slice(0));
               return d2;
             };
-            L2.prototype.label = function(b2, d2, a3, c2, g2, m2, e3, l2, L3) {
-              return new G(this, b2, d2, a3, c2, g2, m2, e3, l2, L3);
+            L.prototype.label = function(b2, d2, a3, c2, g2, m2, e3, l2, L2) {
+              return new G(this, b2, d2, a3, c2, g2, m2, e3, l2, L2);
             };
-            L2.prototype.alignElements = function() {
+            L.prototype.alignElements = function() {
               this.alignedObjects.forEach(function(b2) {
                 return b2.align();
               });
             };
-            return L2;
+            return L;
           })();
           d(z.prototype, { Element: y, SVG_NS: p, escapes: { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }, symbols: H, draw: w });
           F.registerRendererType("svg", z, true);
@@ -64745,7 +64429,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 if ("pass" !== n3 && b3 < d3 || b3 > a5) n3 ? b3 = f(b3, d3, a5) : B2 = true;
                 return b3;
               }
-              var a4 = this, c2 = a4.chart, e3 = a4.left, m2 = a4.top, l2 = b2.old, h2 = b2.value, k2 = b2.lineWidth, x2 = l2 && c2.oldChartHeight || c2.chartHeight, D2 = l2 && c2.oldChartWidth || c2.chartWidth, L2 = a4.transB, p2 = b2.translatedValue, n3 = b2.force, t3, C2, w2, q2, B2;
+              var a4 = this, c2 = a4.chart, e3 = a4.left, m2 = a4.top, l2 = b2.old, h2 = b2.value, k2 = b2.lineWidth, x2 = l2 && c2.oldChartHeight || c2.chartHeight, D2 = l2 && c2.oldChartWidth || c2.chartWidth, L = a4.transB, p2 = b2.translatedValue, n3 = b2.force, t3, C2, w2, q2, B2;
               b2 = {
                 value: h2,
                 lineWidth: k2,
@@ -64757,8 +64441,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               r2(this, "getPlotLinePath", b2, function(b3) {
                 p2 = I(p2, a4.translate(h2, null, null, l2));
                 p2 = f(p2, -1e5, 1e5);
-                t3 = w2 = Math.round(p2 + L2);
-                C2 = q2 = Math.round(x2 - p2 - L2);
+                t3 = w2 = Math.round(p2 + L);
+                C2 = q2 = Math.round(x2 - p2 - L);
                 g(p2) ? a4.horiz ? (C2 = m2, q2 = x2 - a4.bottom, t3 = w2 = d2(t3, e3, e3 + a4.width)) : (t3 = e3, w2 = D2 - a4.right, C2 = q2 = d2(C2, m2, m2 + a4.height)) : (B2 = true, n3 = false);
                 b3.path = B2 && !n3 ? null : c2.renderer.crispLine([["M", t3, C2], ["L", w2, q2]], k2 || 1);
               });
@@ -64881,7 +64565,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               return this.max - this.range;
             };
             a3.prototype.setTickInterval = function(b2) {
-              var d2 = this.chart, a4 = this.logarithmic, c2 = this.options, e3 = this.isXAxis, m2 = this.isLinked, f2 = c2.tickPixelInterval, h2 = this.categories, k2 = this.softThreshold, x2 = c2.maxPadding, L2 = c2.minPadding, n3 = g(c2.tickInterval) && 0 <= c2.tickInterval ? c2.tickInterval : void 0, t3 = g(this.threshold) ? this.threshold : null;
+              var d2 = this.chart, a4 = this.logarithmic, c2 = this.options, e3 = this.isXAxis, m2 = this.isLinked, f2 = c2.tickPixelInterval, h2 = this.categories, k2 = this.softThreshold, x2 = c2.maxPadding, L = c2.minPadding, n3 = g(c2.tickInterval) && 0 <= c2.tickInterval ? c2.tickInterval : void 0, t3 = g(this.threshold) ? this.threshold : null;
               this.dateTime || h2 || m2 || this.getTickAmount();
               var C2 = I(this.userMin, c2.min);
               var q2 = I(this.userMax, c2.max);
@@ -64893,7 +64577,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 c2.type !== this.linkedParent.options.type && J(11, 1, d2);
               } else {
                 if (k2 && p(t3)) {
-                  if (this.dataMin >= t3) B2 = t3, L2 = 0;
+                  if (this.dataMin >= t3) B2 = t3, L = 0;
                   else if (this.dataMax <= t3) {
                     var P2 = t3;
                     x2 = 0;
@@ -64907,7 +64591,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               r2(this, "foundExtremes");
               this.beforePadding && this.beforePadding();
               this.adjustForMinRange();
-              !(h2 || this.axisPointRange || this.stacking && this.stacking.usePercentage || m2) && p(this.min) && p(this.max) && (d2 = this.max - this.min) && (!p(C2) && L2 && (this.min -= d2 * L2), !p(q2) && x2 && (this.max += d2 * x2));
+              !(h2 || this.axisPointRange || this.stacking && this.stacking.usePercentage || m2) && p(this.min) && p(this.max) && (d2 = this.max - this.min) && (!p(C2) && L && (this.min -= d2 * L), !p(q2) && x2 && (this.max += d2 * x2));
               g(this.userMin) || (g(c2.softMin) && c2.softMin < this.min && (this.min = C2 = c2.softMin), g(c2.floor) && (this.min = Math.max(this.min, c2.floor)));
               g(this.userMax) || (g(c2.softMax) && c2.softMax > this.max && (this.max = q2 = c2.softMax), g(c2.ceiling) && (this.max = Math.min(this.max, c2.ceiling)));
               k2 && p(this.dataMin) && (t3 = t3 || 0, !p(C2) && this.min < t3 && this.dataMin >= t3 ? this.min = this.options.minRange ? Math.min(t3, this.max - this.minRange) : t3 : !p(q2) && this.max > t3 && this.dataMax <= t3 && (this.max = this.options.minRange ? Math.max(t3, this.min + this.minRange) : t3));
@@ -67109,7 +66793,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           a["Core/Utilities.js"],
           a["Core/Renderer/HTML/AST.js"]
         ], function(a2, u, z, F, y, G, H, A, q, n2, k, e2, c, h, f) {
-          var w = a2.animate, p = a2.animObject, B = a2.setAnimation, t2 = z.numberFormat, v = F.registerEventOptions, C = y.charts, r2 = y.doc, l = y.marginNames, b = y.svg, g = y.win, d = A.defaultOptions, m = A.defaultTime, D = k.seriesTypes, x = h.addEvent, I = h.attr, P = h.cleanRecursively, S = h.createElement, O = h.css, U = h.defined, Y = h.discardElement, L2 = h.erase, K = h.error, M2 = h.extend, da = h.find, Q = h.fireEvent, ea = h.getStyle, E = h.isArray, T = h.isNumber, N = h.isObject, V = h.isString, W = h.merge, X = h.objectEach, R = h.pick, fa = h.pInt, aa = h.relativeLength, ia = h.removeEvent, ha = h.splat, ba = h.syncTimeout, ka = h.uniqueKey;
+          var w = a2.animate, p = a2.animObject, B = a2.setAnimation, t2 = z.numberFormat, v = F.registerEventOptions, C = y.charts, r2 = y.doc, l = y.marginNames, b = y.svg, g = y.win, d = A.defaultOptions, m = A.defaultTime, D = k.seriesTypes, x = h.addEvent, I = h.attr, P = h.cleanRecursively, S = h.createElement, O = h.css, U = h.defined, Y = h.discardElement, L = h.erase, K = h.error, M2 = h.extend, da = h.find, Q = h.fireEvent, ea = h.getStyle, E = h.isArray, T = h.isNumber, N = h.isObject, V = h.isString, W = h.merge, X = h.objectEach, R = h.pick, fa = h.pInt, aa = h.relativeLength, ia = h.removeEvent, ha = h.splat, ba = h.syncTimeout, ka = h.uniqueKey;
           a2 = (function() {
             function a3(b2, a4, c2) {
               this.series = this.renderTo = this.renderer = this.pointer = this.pointCount = this.plotWidth = this.plotTop = this.plotLeft = this.plotHeight = this.plotBox = this.options = this.numberFormatter = this.margin = this.legend = this.labelCollectors = this.isResizing = this.index = this.eventOptions = this.container = this.colorCounter = this.clipBox = this.chartWidth = this.chartHeight = this.bounds = this.axisOffset = this.axes = void 0;
@@ -67593,7 +67277,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             a3.prototype.destroy = function() {
               var b2 = this, a4 = b2.axes, c2 = b2.series, d2 = b2.container, e3 = d2 && d2.parentNode, g2;
               Q(b2, "destroy");
-              b2.renderer.forExport ? L2(C, b2) : C[b2.index] = void 0;
+              b2.renderer.forExport ? L(C, b2) : C[b2.index] = void 0;
               y.chartCount--;
               b2.renderTo.removeAttribute("data-highcharts-chart");
               ia(b2);
@@ -67894,7 +67578,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           a["Core/Renderer/SVG/SVGElement.js"],
           a["Core/Utilities.js"]
         ], function(a2, u, z, F, y, G, H, A, q, n2) {
-          var k = a2.animObject, e2 = a2.setAnimation, c = u.defaultOptions, h = z.registerEventOptions, f = F.hasTouch, w = F.svg, p = F.win, B = A.seriesTypes, t2 = n2.addEvent, v = n2.arrayMax, C = n2.arrayMin, r2 = n2.clamp, l = n2.cleanRecursively, b = n2.correctFloat, g = n2.defined, d = n2.erase, m = n2.error, D = n2.extend, x = n2.find, I = n2.fireEvent, P = n2.getNestedProperty, S = n2.isArray, O = n2.isNumber, U = n2.isString, Y = n2.merge, L2 = n2.objectEach, K = n2.pick, M2 = n2.removeEvent, da = n2.splat, Q = n2.syncTimeout;
+          var k = a2.animObject, e2 = a2.setAnimation, c = u.defaultOptions, h = z.registerEventOptions, f = F.hasTouch, w = F.svg, p = F.win, B = A.seriesTypes, t2 = n2.addEvent, v = n2.arrayMax, C = n2.arrayMin, r2 = n2.clamp, l = n2.cleanRecursively, b = n2.correctFloat, g = n2.defined, d = n2.erase, m = n2.error, D = n2.extend, x = n2.find, I = n2.fireEvent, P = n2.getNestedProperty, S = n2.isArray, O = n2.isNumber, U = n2.isString, Y = n2.merge, L = n2.objectEach, K = n2.pick, M2 = n2.removeEvent, da = n2.splat, Q = n2.syncTimeout;
           a2 = (function() {
             function a3() {
               this.zones = this.yAxis = this.xAxis = this.userOptions = this.tooltipOptions = this.processedYData = this.processedXData = this.points = this.options = this.linkedSeries = this.index = this.eventsToUnbind = this.eventOptions = this.data = this.chart = this._i = void 0;
@@ -68327,7 +68011,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             a3.prototype.afterAnimate = function() {
               var a4 = this;
               this.setClip();
-              L2(
+              L(
                 this.chart.sharedClips,
                 function(b2, c2, d2) {
                   b2 && !a4.chart.container.querySelector('[clip-path="url(#' + b2.id + ')"]') && (b2.destroy(), delete d2[c2]);
@@ -68393,13 +68077,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 return a5.destroy();
               });
               n2.clearTimeout(b2.animationTimeout);
-              L2(b2, function(a5, b3) {
+              L(b2, function(a5, b3) {
                 a5 instanceof q && !a5.survive && (f2 = e3 && "group" === b3 ? "hide" : "destroy", a5[f2]());
               });
               c2.hoverSeries === b2 && (c2.hoverSeries = void 0);
               d(c2.series, b2);
               c2.orderSeries();
-              L2(b2, function(c3, d2) {
+              L(b2, function(c3, d2) {
                 a4 && "hcEvents" === d2 || delete b2[d2];
               });
             };
@@ -70673,7 +70357,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           a["Core/Utilities.js"]
         ], function(a2, e2, g2, t2, z, k, d, J, b) {
           e2 = t2.defaultOptions;
-          var l = d.doc, r2 = d.win, x = b.addEvent, q = b.css, E = b.createElement, K = b.discardElement, F = b.extend, P = b.find, G = b.fireEvent, Q = b.isObject, m = b.merge, L2 = b.objectEach, w = b.pick, R = b.removeEvent, S = b.uniqueKey, H;
+          var l = d.doc, r2 = d.win, x = b.addEvent, q = b.css, E = b.createElement, K = b.discardElement, F = b.extend, P = b.find, G = b.fireEvent, Q = b.isObject, m = b.merge, L = b.objectEach, w = b.pick, R = b.removeEvent, S = b.uniqueKey, H;
           (function(e3) {
             function t3(a3) {
               var c = this, d2 = c.renderer, b2 = m(c.options.navigation.buttonOptions, a3), e4 = b2.onclick, B = b2.menuItems, n2 = b2.symbolSize || 12;
@@ -70911,7 +70595,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                     v.removeChild(A);
                   }
                   if (d.isFirefox || d.isMS) for (var t4 in h) e4(h[t4], t4);
-                  else L2(h, e4);
+                  else L(h, e4);
                   f && (h = c.getAttribute("style"), c.setAttribute("style", (h ? h + ";" : "") + f));
                   "svg" === c.nodeName && c.setAttribute("stroke-width", "1px");
                   "text" !== c.nodeName && [].forEach.call(c.children || c.childNodes, a3);
@@ -70960,7 +70644,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               var a3 = this, b2 = a3.options.exporting, d2 = b2.buttons, e4 = a3.isDirtyExporting || !a3.exportSVGElements;
               a3.buttonOffset = 0;
               a3.isDirtyExporting && a3.destroyExport();
-              e4 && false !== b2.enabled && (a3.exportEvents = [], a3.exportingGroup = a3.exportingGroup || a3.renderer.g("exporting-group").attr({ zIndex: 3 }).add(), L2(d2, function(b3) {
+              e4 && false !== b2.enabled && (a3.exportEvents = [], a3.exportingGroup = a3.exportingGroup || a3.renderer.g("exporting-group").attr({ zIndex: 3 }).add(), L(d2, function(b3) {
                 a3.addButton(b3);
               }), a3.isDirtyExporting = false);
             }

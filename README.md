@@ -135,21 +135,21 @@ ReactDOM.render(e(Search), domContainer);
 5. `pathToTaxon=` - The local path to the taxon page of your website (the page where this component will placed).
 6. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__taxon__` that will be replaced with the taxon name.
 7. `identifierLabel` - Label for the identifier listed on top of the taxon view. Defaults to `Identifier`
-8. `showDistributionMap` - (Optional) When `true`, render an interactive Leaflet map for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. **Requires the consumer to load Leaflet 1.9+ and its CSS** (peer dependency).
-9. `gbifChecklistKey` - (Optional) When set, the distribution map adds a GBIF occurrence overlay (purple-heat point style) for the focal taxon, using the GBIF v2 multitaxonomy tile endpoint. The value is passed as the `checklistKey` query parameter; the focal taxon's id is passed as `taxonKey`. **The consumer is responsible for only setting this when the configured `datasetKey` actually uses identifiers that GBIF recognises under the given checklist.** For datasets keyed by COL identifiers, use the Catalogue of Life backbone UUID:
+8. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL map (CARTO Positron vector basemap) for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. **Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency).
+9. `gbifChecklistKey` - (Optional) When set, the distribution map adds a GBIF occurrence overlay (iNaturalist.poly hex bins) for the focal taxon, using the GBIF v2 multitaxonomy tile endpoint. The value is passed as the `checklistKey` query parameter; the focal taxon's id is passed as `taxonKey`. **The consumer is responsible for only setting this when the configured `datasetKey` actually uses identifiers that GBIF recognises under the given checklist.** For datasets keyed by COL identifiers, use the Catalogue of Life backbone UUID:
 
     ```
     gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
     ```
 
-To use the map, include Leaflet alongside React in your page:
+To use the map, include MapLibre GL JS alongside React in your page:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" />
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 ```
 
-ES module consumers: `npm install leaflet` and `import "leaflet/dist/leaflet.css"` in your bundle entry.
+ES module consumers: `npm install maplibre-gl` and `import "maplibre-gl/dist/maplibre-gl.css"` in your bundle entry.
 
 ```html
 <div id="taxon"></div> <!- Dom element for the taxon details to attach to -->
