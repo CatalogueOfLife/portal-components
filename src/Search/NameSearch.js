@@ -49,6 +49,7 @@ const defaultParams = {
   limit: 50,
   offset: 0,
   facet: FACET_VOCAB, //["rank", "issue", "status", "nomStatus", "nameType", "field"],
+  facetLimit: 50,
   sortBy: "relevance",
 };
 
@@ -193,6 +194,9 @@ class NameSearchPage extends React.Component {
       this.pushParams(defaultParams);
     } else if (!params.facet) {
       params.facet = FACET_VOCAB;
+    }
+    if (!params.facetLimit) {
+      params.facetLimit = 50;
     }
 
     // fuzzy is no longer a separate API parameter; it's now the FUZZY type value

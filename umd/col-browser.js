@@ -72326,6 +72326,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     offset: 0,
     facet: FACET_VOCAB,
     //["rank", "issue", "status", "nomStatus", "nameType", "field"],
+    facetLimit: 50,
     sortBy: "relevance"
   };
   const getColumns$1 = (pathToTaxon) => [
@@ -72451,6 +72452,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           this.pushParams(defaultParams);
         } else if (!params.facet) {
           params.facet = FACET_VOCAB;
+        }
+        if (!params.facetLimit) {
+          params.facetLimit = 50;
         }
         delete params.fuzzy;
         if (!params.limit) {
