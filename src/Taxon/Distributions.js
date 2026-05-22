@@ -73,17 +73,74 @@ const DistributionsTable = ({
 }) => {
   const mappable = data.filter(isMappable);
   const baseUnmappable = data.length - mappable.length;
-  const hasGbif = !!gbifChecklistKey;
+  const hasGbifConfigured = !!gbifChecklistKey;
   const hasAnyRecords = data.length > 0;
   const [view, setView] = useState("map");
   const [fetchFailures, setFetchFailures] = useState(0);
+
+  // null = unknown (loading or unconfigured), number = occurrence count.
+  const [gbifCount, setGbifCount] = useState(null);
+  useEffect(() => {
+    if (!gbifChecklistKey || !focalTaxon?.id) {
+      setGbifCount(null);
+      return undefined;
+    }
+    setGbifCount(null);
+    let cancelled = false;
+    axios
+      .get(`${config.gbifApi}/v1/occurrence/search`, {
+        params: {
+          checklistKey: gbifChecklistKey,
+          taxonKey: focalTaxon.id,
+          hasCoordinate: true,
+          hasGeospatialIssue: false,
+          occurrenceStatus: 'PRESENT',
+          limit: 0,
+        },
+      })
+      .then(
+        (res) => {
+          if (!cancelled) setGbifCount(res?.data?.count ?? 0);
+        },
+        () => {
+          // On API failure, treat as "unknown" — leave the toggle enabled
+          // rather than greying it out for an outage.
+          if (!cancelled) setGbifCount(null);
+        }
+      );
+    return () => {
+      cancelled = true;
+    };
+  }, [gbifChecklistKey, focalTaxon?.id]);
+
+  // true  → GBIF has occurrences (or unknown — still loading or API failed)
+  // false → GBIF returned count = 0
+  const gbifAvailable = !hasGbifConfigured
+    ? false
+    : gbifCount === null || gbifCount > 0;
 
   const allMappableFailed =
     mappable.length > 0 && fetchFailures >= mappable.length;
   const showMap =
     showDistributionMap &&
-    (mappable.length > 0 || hasGbif) &&
-    !(mappable.length > 0 && allMappableFailed && !hasGbif);
+    (mappable.length > 0 || gbifAvailable) &&
+    !(mappable.length > 0 && allMappableFailed && !gbifAvailable);
+
+  // GBIF configured but found 0 occurrences AND nothing else mappable → say so.
+  if (
+    !showMap &&
+    hasGbifConfigured &&
+    mappable.length === 0 &&
+    gbifCount === 0
+  ) {
+    return (
+      <div style={style}>
+        <span style={{ color: "#888" }}>
+          No occurrence data on GBIF for this taxon.
+        </span>
+      </div>
+    );
+  }
 
   // Fall back to the plain list when there's no map to show.
   if (!showMap) {
@@ -129,6 +186,7 @@ const DistributionsTable = ({
             focalTaxon={focalTaxon}
             rankOrder={rankOrder}
             gbifChecklistKey={gbifChecklistKey}
+            gbifAvailable={gbifAvailable}
           />
           {showToggle && unmappable > 0 && (
             <div style={{ marginTop: 6 }}>

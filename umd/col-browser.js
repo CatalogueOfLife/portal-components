@@ -48977,7 +48977,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   var axiosExports = requireAxios();
   const axios = /* @__PURE__ */ getDefaultExportFromCjs(axiosExports);
   const config = {
-    dataApi: "https://api.checklistbank.org/"
+    dataApi: "https://api.checklistbank.org/",
+    // GBIF API base (no trailing slash). Used for the occurrence count and
+    // the v2 map tile endpoint.
+    gbifApi: "https://api.gbif.org",
+    // GBIF human-facing portal where the attribution link points. Stays on
+    // demo.gbif.org until the multitaxonomy occurrence search ships on
+    // www.gbif.org (expected mid-2026).
+    gbifPortal: "https://demo.gbif.org"
   };
   const reflect$1 = (p) => p.then(
     (v) => v.data,
@@ -59769,7 +59776,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     } catch {
     }
   };
-  const GBIF_TILE_URL = "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64&checklistKey={checklistKey}&taxonKey={taxonKey}";
+  const GBIF_TILE_PATH = "/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&checklistKey={checklistKey}&taxonKey={taxonKey}";
   const FOCAL_SOURCE = "col-focal-distributions";
   const FOCAL_FILL = "col-focal-fill";
   const FOCAL_LINE = "col-focal-line";
@@ -59874,7 +59881,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     datasetKey,
     focalTaxon,
     rankOrder,
-    gbifChecklistKey
+    gbifChecklistKey,
+    // true | null → show GBIF layer; false → GBIF API returned 0 occurrences,
+    // grey out the toggle and skip loading tiles. Defaults to true so the
+    // component works without the count check.
+    gbifAvailable = true
   }) => {
     var _a;
     const containerRef = React.useRef(null);
@@ -60118,11 +60129,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       };
       removeGbif();
       if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) return;
-      const url = GBIF_TILE_URL.replace(
-        "{checklistKey}",
-        encodeURIComponent(gbifChecklistKey)
-      ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
-      const searchUrl = "https://demo.gbif.org/occurrence/search?checklist_key=" + encodeURIComponent(gbifChecklistKey) + "&taxon_key=" + encodeURIComponent(focalTaxon.id);
+      if (gbifAvailable === false) return;
+      const url = (config.gbifApi + GBIF_TILE_PATH).replace("{checklistKey}", encodeURIComponent(gbifChecklistKey)).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
+      const searchUrl = config.gbifPortal + "/occurrence/search?checklist_key=" + encodeURIComponent(gbifChecklistKey) + "&taxon_key=" + encodeURIComponent(focalTaxon.id);
       map2.addSource(GBIF_SOURCE, {
         type: "raster",
         tiles: [url],
@@ -60137,7 +60146,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         layout: { visibility: gbifVisible ? "visible" : "none" }
       });
       gbifAttachedRef.current = true;
-    }, [styleReady, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
+    }, [styleReady, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id, gbifAvailable]);
     React.useEffect(() => {
       const map2 = mapRef.current;
       if (!map2 || !gbifAttachedRef.current) return;
@@ -60347,6 +60356,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           onToggleFocal: () => setFocalVisible((v) => !v),
           gbifEnabled: !!gbifChecklistKey,
           gbifVisible,
+          gbifAvailable,
           onToggleGbif: handleToggleGbif,
           descendantStatus: descendantState.status,
           descendantsByRank,
@@ -60361,7 +60371,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           }
         }
       ),
-      !showDescendantLegend && (presentMeans.length > 0 || gbifChecklistKey && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      !showDescendantLegend && (presentMeans.length > 0 || gbifChecklistKey && gbifAvailable !== false && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
           style: {
@@ -60400,7 +60410,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
               },
               m.key
             )),
-            gbifChecklistKey && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
+            gbifChecklistKey && gbifAvailable !== false && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
           ]
         }
       ),
@@ -60409,7 +60419,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         {
           visibleGroups: descendantLegend.visibleGroups,
           unmappableGroups: descendantLegend.unmappableGroups,
-          showGbif: !!gbifChecklistKey && gbifVisible
+          showGbif: !!gbifChecklistKey && gbifAvailable !== false && gbifVisible
         }
       )
     ] });
@@ -60424,6 +60434,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     onToggleFocal,
     gbifEnabled,
     gbifVisible,
+    gbifAvailable,
     onToggleGbif,
     descendantStatus,
     descendantsByRank,
@@ -60493,10 +60504,30 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: focalName })
           ] }),
-          gbifEnabled && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", checked: gbifVisible, onChange: onToggleGbif }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
-          ] }),
+          gbifEnabled && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                opacity: gbifAvailable === false ? 0.5 : 1
+              },
+              title: gbifAvailable === false ? "GBIF has no occurrence records for this taxon." : void 0,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "input",
+                  {
+                    type: "checkbox",
+                    checked: gbifAvailable === false ? false : gbifVisible,
+                    disabled: gbifAvailable === false,
+                    onChange: onToggleGbif
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
+              ]
+            }
+          ),
           descendantStatus === "loading" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6, color: "#888" }, children: "Loading descendants…" }),
           descendantStatus === "error" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: 6, color: "#888" }, children: [
             "Couldn't load descendants.",
@@ -60630,12 +60661,46 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }) => {
     const mappable = data.filter(isMappable);
     const baseUnmappable = data.length - mappable.length;
-    const hasGbif = !!gbifChecklistKey;
+    const hasGbifConfigured = !!gbifChecklistKey;
     const hasAnyRecords = data.length > 0;
     const [view, setView] = React.useState("map");
     const [fetchFailures, setFetchFailures] = React.useState(0);
+    const [gbifCount, setGbifCount] = React.useState(null);
+    React.useEffect(() => {
+      if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) {
+        setGbifCount(null);
+        return void 0;
+      }
+      setGbifCount(null);
+      let cancelled = false;
+      axios.get(`${config.gbifApi}/v1/occurrence/search`, {
+        params: {
+          checklistKey: gbifChecklistKey,
+          taxonKey: focalTaxon.id,
+          hasCoordinate: true,
+          hasGeospatialIssue: false,
+          occurrenceStatus: "PRESENT",
+          limit: 0
+        }
+      }).then(
+        (res) => {
+          var _a;
+          if (!cancelled) setGbifCount(((_a = res == null ? void 0 : res.data) == null ? void 0 : _a.count) ?? 0);
+        },
+        () => {
+          if (!cancelled) setGbifCount(null);
+        }
+      );
+      return () => {
+        cancelled = true;
+      };
+    }, [gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
+    const gbifAvailable = !hasGbifConfigured ? false : gbifCount === null || gbifCount > 0;
     const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
-    const showMap = showDistributionMap && (mappable.length > 0 || hasGbif) && !(mappable.length > 0 && allMappableFailed && !hasGbif);
+    const showMap = showDistributionMap && (mappable.length > 0 || gbifAvailable) && !(mappable.length > 0 && allMappableFailed && !gbifAvailable);
+    if (!showMap && hasGbifConfigured && mappable.length === 0 && gbifCount === 0) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "#888" }, children: "No occurrence data on GBIF for this taxon." }) });
+    }
     if (!showMap) {
       if (!hasAnyRecords) return null;
       return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -60677,7 +60742,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             datasetKey,
             focalTaxon,
             rankOrder,
-            gbifChecklistKey
+            gbifChecklistKey,
+            gbifAvailable
           }
         ),
         showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [

@@ -85,10 +85,12 @@ const writeStoredGbifVisible = (visible) => {
   }
 };
 
-// GBIF v2 occurrence-density tiles (multitaxonomy).
-const GBIF_TILE_URL =
-  "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png" +
+// GBIF v2 occurrence-density tile path (multitaxonomy). Concatenated with
+// config.gbifApi at request time.
+const GBIF_TILE_PATH =
+  "/v2/map/occurrence/density/{z}/{x}/{y}@1x.png" +
   "?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64" +
+  "&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT" +
   "&checklistKey={checklistKey}&taxonKey={taxonKey}";
 
 // Layer IDs
@@ -225,6 +227,10 @@ const DistributionsMap = ({
   focalTaxon,
   rankOrder,
   gbifChecklistKey,
+  // true | null → show GBIF layer; false → GBIF API returned 0 occurrences,
+  // grey out the toggle and skip loading tiles. Defaults to true so the
+  // component works without the count check.
+  gbifAvailable = true,
 }) => {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
@@ -510,17 +516,20 @@ const DistributionsMap = ({
     };
     removeGbif();
     if (!gbifChecklistKey || !focalTaxon?.id) return;
-    const url = GBIF_TILE_URL.replace(
-      "{checklistKey}",
-      encodeURIComponent(gbifChecklistKey)
-    ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
+    // GBIF API said this taxon has 0 occurrences — skip the tile request.
+    if (gbifAvailable === false) return;
+    const url = (config.gbifApi + GBIF_TILE_PATH)
+      .replace("{checklistKey}", encodeURIComponent(gbifChecklistKey))
+      .replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
     // Link to GBIF's multitaxonomy occurrence search for the focal taxon.
-    // Lives on demo.gbif.org until that feature moves to the production
-    // portal (expected mid-2026); same checklistKey we pass to the tile API.
+    // Lives on demo.gbif.org (config.gbifPortal) until that feature moves to
+    // the production portal; same checklistKey we pass to the tile API.
     const searchUrl =
-      "https://demo.gbif.org/occurrence/search?" +
-      "checklist_key=" + encodeURIComponent(gbifChecklistKey) +
-      "&taxon_key=" + encodeURIComponent(focalTaxon.id);
+      config.gbifPortal +
+      "/occurrence/search?checklist_key=" +
+      encodeURIComponent(gbifChecklistKey) +
+      "&taxon_key=" +
+      encodeURIComponent(focalTaxon.id);
     map.addSource(GBIF_SOURCE, {
       type: "raster",
       tiles: [url],
@@ -545,7 +554,7 @@ const DistributionsMap = ({
     // runs cleanups in reverse declaration order on unmount) and throw
     // because MapLibre nulls map.style during remove().
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [styleReady, gbifChecklistKey, focalTaxon?.id]);
+  }, [styleReady, gbifChecklistKey, focalTaxon?.id, gbifAvailable]);
 
   // Sync GBIF visibility.
   useEffect(() => {
@@ -775,6 +784,7 @@ const DistributionsMap = ({
         onToggleFocal={() => setFocalVisible((v) => !v)}
         gbifEnabled={!!gbifChecklistKey}
         gbifVisible={gbifVisible}
+        gbifAvailable={gbifAvailable}
         onToggleGbif={handleToggleGbif}
         descendantStatus={descendantState.status}
         descendantsByRank={descendantsByRank}
@@ -790,7 +800,8 @@ const DistributionsMap = ({
       />
 
       {!showDescendantLegend &&
-        (presentMeans.length > 0 || (gbifChecklistKey && gbifVisible)) && (
+        (presentMeans.length > 0 ||
+          (gbifChecklistKey && gbifAvailable !== false && gbifVisible)) && (
           <div
             style={{
               position: "absolute",
@@ -823,14 +834,16 @@ const DistributionsMap = ({
                 <span>{m.label}</span>
               </div>
             ))}
-            {gbifChecklistKey && gbifVisible && <GbifLegendEntry />}
+            {gbifChecklistKey && gbifAvailable !== false && gbifVisible && (
+              <GbifLegendEntry />
+            )}
           </div>
         )}
       {showDescendantLegend && (
         <IncludedTaxaLegend
           visibleGroups={descendantLegend.visibleGroups}
           unmappableGroups={descendantLegend.unmappableGroups}
-          showGbif={!!gbifChecklistKey && gbifVisible}
+          showGbif={!!gbifChecklistKey && gbifAvailable !== false && gbifVisible}
         />
       )}
     </div>
@@ -848,6 +861,7 @@ const LayerControl = ({
   onToggleFocal,
   gbifEnabled,
   gbifVisible,
+  gbifAvailable,
   onToggleGbif,
   descendantStatus,
   descendantsByRank,
@@ -914,8 +928,25 @@ const LayerControl = ({
         <span style={{ fontStyle: "italic" }}>{focalName}</span>
       </div>
       {gbifEnabled && (
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <input type="checkbox" checked={gbifVisible} onChange={onToggleGbif} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            opacity: gbifAvailable === false ? 0.5 : 1,
+          }}
+          title={
+            gbifAvailable === false
+              ? "GBIF has no occurrence records for this taxon."
+              : undefined
+          }
+        >
+          <input
+            type="checkbox"
+            checked={gbifAvailable === false ? false : gbifVisible}
+            disabled={gbifAvailable === false}
+            onChange={onToggleGbif}
+          />
           <span>GBIF occurrences</span>
         </div>
       )}
