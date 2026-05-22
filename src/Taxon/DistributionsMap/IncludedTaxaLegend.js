@@ -78,11 +78,25 @@ const footerNameStyle = {
 const totalCount = (groups) =>
   groups.reduce((sum, g) => sum + g.taxa.length, 0);
 
-const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups }) => {
+const GbifHexEntry = () => (
+  <div style={rowStyle}>
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+      <polygon
+        points="3,1 9,1 11,6 9,11 3,11 1,6"
+        fill="#de1e6e"
+        stroke="rgba(0,0,0,0.25)"
+        strokeWidth="0.75"
+      />
+    </svg>
+    <span>GBIF occurrences</span>
+  </div>
+);
+
+const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups, showGbif }) => {
   const [showUnmappable, setShowUnmappable] = useState(false);
   const visibleCount = totalCount(visibleGroups);
   const unmappableCount = totalCount(unmappableGroups);
-  if (visibleCount === 0 && unmappableCount === 0) return null;
+  if (visibleCount === 0 && unmappableCount === 0 && !showGbif) return null;
   return (
     <div style={wrapStyle}>
       <div style={scrollStyle}>
@@ -101,6 +115,7 @@ const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups }) => {
             ))}
           </div>
         ))}
+        {showGbif && <GbifHexEntry />}
       </div>
       {unmappableCount > 0 && (
         <>

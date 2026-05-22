@@ -57,10 +57,38 @@ const colorFor = (record) => {
 const POSITRON_STYLE =
   "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
+// sessionStorage key for the GBIF overlay toggle. Persists across navigations
+// within a tab so a user who turns the overlay off on one taxon page sees it
+// off on the next (when that page actually has distribution polygons to fall
+// back to). GBIF-only maps ignore this and always show the overlay.
+const GBIF_VISIBLE_STORAGE_KEY = "col-browser:gbif-visible";
+
+const readStoredGbifVisible = (defaultValue) => {
+  try {
+    const v = window.sessionStorage.getItem(GBIF_VISIBLE_STORAGE_KEY);
+    if (v === "true") return true;
+    if (v === "false") return false;
+  } catch {
+    // sessionStorage can throw in private browsing or restrictive contexts.
+  }
+  return defaultValue;
+};
+
+const writeStoredGbifVisible = (visible) => {
+  try {
+    window.sessionStorage.setItem(
+      GBIF_VISIBLE_STORAGE_KEY,
+      visible ? "true" : "false"
+    );
+  } catch {
+    // ignore
+  }
+};
+
 // GBIF v2 occurrence-density tiles (multitaxonomy).
 const GBIF_TILE_URL =
   "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png" +
-  "?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=73" +
+  "?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64" +
   "&checklistKey={checklistKey}&taxonKey={taxonKey}";
 
 // Layer IDs
@@ -135,6 +163,21 @@ const epithet = (scientificName) => {
   return tokens[tokens.length - 1];
 };
 
+// Hex swatch + label for the GBIF density layer.
+const GbifLegendEntry = () => (
+  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+      <polygon
+        points="3,1 9,1 11,6 9,11 3,11 1,6"
+        fill="#de1e6e"
+        stroke="rgba(0,0,0,0.25)"
+        strokeWidth="0.75"
+      />
+    </svg>
+    <span>GBIF occurrences</span>
+  </div>
+);
+
 // Compute bounds [[minLng,minLat],[maxLng,maxLat]] of a FeatureCollection.
 const computeBounds = (features) => {
   let minLng = Infinity,
@@ -200,10 +243,26 @@ const DistributionsMap = ({
     taxa: [],
   });
   const [focalVisible, setFocalVisible] = useState(true);
-  const [gbifVisible, setGbifVisible] = useState(true);
+  // GBIF-only maps (no distribution polygons) always show the overlay
+  // regardless of any saved preference — there's nothing else to look at.
+  const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
+  const [gbifVisible, setGbifVisible] = useState(() =>
+    isGbifOnly ? true : readStoredGbifVisible(true)
+  );
   const [visibleTaxonIds, setVisibleTaxonIds] = useState(new Set());
   const [controlOpen, setControlOpen] = useState(false);
   const fetchTriggeredRef = useRef(false);
+
+  const handleToggleGbif = () => {
+    setGbifVisible((v) => {
+      const next = !v;
+      // Only persist when this page has distribution polygons — otherwise
+      // saving a toggle-off here would affect maps that have nothing else to
+      // show, which the consumer explicitly asked us to keep visible.
+      if (!isGbifOnly) writeStoredGbifVisible(next);
+      return next;
+    });
+  };
 
   const presentMeans = useMemo(() => {
     if (!records?.length) return [];
@@ -281,6 +340,14 @@ const DistributionsMap = ({
 
     map.on("load", () => {
       setStyleReady(true);
+      // Start the attribution control collapsed. MapLibre opens it by
+      // default in compact mode and only closes it on drag; remove the
+      // `compact-show` class to hide the inner attribution text until the
+      // user clicks the (i) button.
+      const attrib = map
+        .getContainer()
+        .querySelector(".maplibregl-ctrl-attrib");
+      if (attrib) attrib.classList.remove("maplibregl-compact-show");
     });
 
     const resizeObserver =
@@ -349,25 +416,35 @@ const DistributionsMap = ({
       if (map.getSource(FOCAL_SOURCE)) {
         map.getSource(FOCAL_SOURCE).setData(data);
       } else {
+        // GBIF raster may already be on the map (its effect runs synchronously
+        // while this one is async). Insert focal layers below GBIF so the
+        // occurrence overlay always paints on top.
+        const beforeId = map.getLayer(GBIF_LAYER) ? GBIF_LAYER : undefined;
         map.addSource(FOCAL_SOURCE, { type: "geojson", data });
-        map.addLayer({
-          id: FOCAL_FILL,
-          type: "fill",
-          source: FOCAL_SOURCE,
-          paint: {
-            "fill-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
-            "fill-opacity": 0.65,
+        map.addLayer(
+          {
+            id: FOCAL_FILL,
+            type: "fill",
+            source: FOCAL_SOURCE,
+            paint: {
+              "fill-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+              "fill-opacity": 0.65,
+            },
           },
-        });
-        map.addLayer({
-          id: FOCAL_LINE,
-          type: "line",
-          source: FOCAL_SOURCE,
-          paint: {
-            "line-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
-            "line-width": 1,
+          beforeId
+        );
+        map.addLayer(
+          {
+            id: FOCAL_LINE,
+            type: "line",
+            source: FOCAL_SOURCE,
+            paint: {
+              "line-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+              "line-width": 1,
+            },
           },
-        });
+          beforeId
+        );
         map.on("click", FOCAL_FILL, onFocalClick);
         map.on("mouseenter", FOCAL_FILL, onMouseEnter);
         map.on("mouseleave", FOCAL_FILL, onMouseLeave);
@@ -437,11 +514,21 @@ const DistributionsMap = ({
       "{checklistKey}",
       encodeURIComponent(gbifChecklistKey)
     ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
+    // Link to GBIF's multitaxonomy occurrence search for the focal taxon.
+    // Lives on demo.gbif.org until that feature moves to the production
+    // portal (expected mid-2026); same checklistKey we pass to the tile API.
+    const searchUrl =
+      "https://demo.gbif.org/occurrence/search?" +
+      "checklist_key=" + encodeURIComponent(gbifChecklistKey) +
+      "&taxon_key=" + encodeURIComponent(focalTaxon.id);
     map.addSource(GBIF_SOURCE, {
       type: "raster",
       tiles: [url],
       tileSize: 256,
-      attribution: '<a href="https://www.gbif.org">GBIF</a> occurrence data',
+      attribution:
+        '<a href="' +
+        searchUrl +
+        '" target="_blank" rel="noopener">GBIF</a> occurrence data',
     });
     map.addLayer({
       id: GBIF_LAYER,
@@ -451,7 +538,12 @@ const DistributionsMap = ({
       layout: { visibility: gbifVisible ? "visible" : "none" },
     });
     gbifAttachedRef.current = true;
-    return removeGbif;
+    // Intentionally no cleanup return: deps changes are handled by the
+    // removeGbif() call at the top of the next run, and unmount is handled
+    // by the mount effect's map.remove() which disposes everything. If we
+    // returned removeGbif here, it could run after map.remove() (React
+    // runs cleanups in reverse declaration order on unmount) and throw
+    // because MapLibre nulls map.style during remove().
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [styleReady, gbifChecklistKey, focalTaxon?.id]);
 
@@ -683,7 +775,7 @@ const DistributionsMap = ({
         onToggleFocal={() => setFocalVisible((v) => !v)}
         gbifEnabled={!!gbifChecklistKey}
         gbifVisible={gbifVisible}
-        onToggleGbif={() => setGbifVisible((v) => !v)}
+        onToggleGbif={handleToggleGbif}
         descendantStatus={descendantState.status}
         descendantsByRank={descendantsByRank}
         descendantColors={descendantColors}
@@ -697,45 +789,48 @@ const DistributionsMap = ({
         }}
       />
 
-      {!showDescendantLegend && presentMeans.length > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 8,
-            left: 8,
-            zIndex: 1,
-            background: "#fff",
-            borderRadius: 4,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-            padding: "6px 8px",
-            fontSize: 12,
-            lineHeight: 1.5,
-          }}
-        >
-          {presentMeans.map((m) => (
-            <div
-              key={m.key}
-              style={{ display: "flex", alignItems: "center", gap: 6 }}
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: 12,
-                  height: 12,
-                  background: m.color,
-                  border: "1px solid rgba(0,0,0,0.15)",
-                  borderRadius: 2,
-                }}
-              />
-              <span>{m.label}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      {!showDescendantLegend &&
+        (presentMeans.length > 0 || (gbifChecklistKey && gbifVisible)) && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: 8,
+              left: 8,
+              zIndex: 1,
+              background: "#fff",
+              borderRadius: 4,
+              boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+              padding: "6px 8px",
+              fontSize: 12,
+              lineHeight: 1.5,
+            }}
+          >
+            {presentMeans.map((m) => (
+              <div
+                key={m.key}
+                style={{ display: "flex", alignItems: "center", gap: 6 }}
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: 12,
+                    height: 12,
+                    background: m.color,
+                    border: "1px solid rgba(0,0,0,0.15)",
+                    borderRadius: 2,
+                  }}
+                />
+                <span>{m.label}</span>
+              </div>
+            ))}
+            {gbifChecklistKey && gbifVisible && <GbifLegendEntry />}
+          </div>
+        )}
       {showDescendantLegend && (
         <IncludedTaxaLegend
           visibleGroups={descendantLegend.visibleGroups}
           unmappableGroups={descendantLegend.unmappableGroups}
+          showGbif={!!gbifChecklistKey && gbifVisible}
         />
       )}
     </div>

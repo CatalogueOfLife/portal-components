@@ -59658,19 +59658,34 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     paddingLeft: 4
   };
   const totalCount = (groups) => groups.reduce((sum, g) => sum + g.taxa.length, 0);
-  const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups }) => {
+  const GbifHexEntry = () => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: rowStyle, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "12", height: "12", viewBox: "0 0 12 12", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "polygon",
+      {
+        points: "3,1 9,1 11,6 9,11 3,11 1,6",
+        fill: "#de1e6e",
+        stroke: "rgba(0,0,0,0.25)",
+        strokeWidth: "0.75"
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
+  ] });
+  const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups, showGbif }) => {
     const [showUnmappable, setShowUnmappable] = React.useState(false);
     const visibleCount = totalCount(visibleGroups);
     const unmappableCount = totalCount(unmappableGroups);
-    if (visibleCount === 0 && unmappableCount === 0) return null;
+    if (visibleCount === 0 && unmappableCount === 0 && !showGbif) return null;
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: wrapStyle, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: scrollStyle, children: visibleGroups.map((g, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: i === 0 ? firstGroupHeadingStyle : groupHeadingStyle, children: g.label }),
-        g.taxa.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: rowStyle, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: swatchStyle(t2.color) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: t2.displayName || t2.scientificName })
-        ] }, t2.id))
-      ] }, g.rank)) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: scrollStyle, children: [
+        visibleGroups.map((g, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: i === 0 ? firstGroupHeadingStyle : groupHeadingStyle, children: g.label }),
+          g.taxa.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: rowStyle, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: swatchStyle(t2.color) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: t2.displayName || t2.scientificName })
+          ] }, t2.id))
+        ] }, g.rank)),
+        showGbif && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifHexEntry, {})
+      ] }),
       unmappableCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "div",
@@ -59735,7 +59750,26 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
   };
   const POSITRON_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
-  const GBIF_TILE_URL = "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=73&checklistKey={checklistKey}&taxonKey={taxonKey}";
+  const GBIF_VISIBLE_STORAGE_KEY = "col-browser:gbif-visible";
+  const readStoredGbifVisible = (defaultValue) => {
+    try {
+      const v = window.sessionStorage.getItem(GBIF_VISIBLE_STORAGE_KEY);
+      if (v === "true") return true;
+      if (v === "false") return false;
+    } catch {
+    }
+    return defaultValue;
+  };
+  const writeStoredGbifVisible = (visible) => {
+    try {
+      window.sessionStorage.setItem(
+        GBIF_VISIBLE_STORAGE_KEY,
+        visible ? "true" : "false"
+      );
+    } catch {
+    }
+  };
+  const GBIF_TILE_URL = "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64&checklistKey={checklistKey}&taxonKey={taxonKey}";
   const FOCAL_SOURCE = "col-focal-distributions";
   const FOCAL_FILL = "col-focal-fill";
   const FOCAL_LINE = "col-focal-line";
@@ -59789,6 +59823,18 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const tokens2 = scientificName.trim().split(/\s+/);
     return tokens2[tokens2.length - 1];
   };
+  const GbifLegendEntry = () => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "12", height: "12", viewBox: "0 0 12 12", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "polygon",
+      {
+        points: "3,1 9,1 11,6 9,11 3,11 1,6",
+        fill: "#de1e6e",
+        stroke: "rgba(0,0,0,0.25)",
+        strokeWidth: "0.75"
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
+  ] });
   const computeBounds = (features) => {
     var _a;
     let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
@@ -59848,10 +59894,20 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       taxa: []
     });
     const [focalVisible, setFocalVisible] = React.useState(true);
-    const [gbifVisible, setGbifVisible] = React.useState(true);
+    const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
+    const [gbifVisible, setGbifVisible] = React.useState(
+      () => isGbifOnly ? true : readStoredGbifVisible(true)
+    );
     const [visibleTaxonIds, setVisibleTaxonIds] = React.useState(/* @__PURE__ */ new Set());
     const [controlOpen, setControlOpen] = React.useState(false);
     const fetchTriggeredRef = React.useRef(false);
+    const handleToggleGbif = () => {
+      setGbifVisible((v) => {
+        const next = !v;
+        if (!isGbifOnly) writeStoredGbifVisible(next);
+        return next;
+      });
+    };
     const presentMeans = React.useMemo(() => {
       if (!(records == null ? void 0 : records.length)) return [];
       const seen = /* @__PURE__ */ new Set();
@@ -59922,6 +59978,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       mapRef.current = map2;
       map2.on("load", () => {
         setStyleReady(true);
+        const attrib = map2.getContainer().querySelector(".maplibregl-ctrl-attrib");
+        if (attrib) attrib.classList.remove("maplibregl-compact-show");
       });
       const resizeObserver2 = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => map2.resize()) : null;
       if (resizeObserver2) resizeObserver2.observe(containerRef.current);
@@ -59981,25 +60039,32 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         if (map2.getSource(FOCAL_SOURCE)) {
           map2.getSource(FOCAL_SOURCE).setData(data);
         } else {
+          const beforeId = map2.getLayer(GBIF_LAYER) ? GBIF_LAYER : void 0;
           map2.addSource(FOCAL_SOURCE, { type: "geojson", data });
-          map2.addLayer({
-            id: FOCAL_FILL,
-            type: "fill",
-            source: FOCAL_SOURCE,
-            paint: {
-              "fill-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
-              "fill-opacity": 0.65
-            }
-          });
-          map2.addLayer({
-            id: FOCAL_LINE,
-            type: "line",
-            source: FOCAL_SOURCE,
-            paint: {
-              "line-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
-              "line-width": 1
-            }
-          });
+          map2.addLayer(
+            {
+              id: FOCAL_FILL,
+              type: "fill",
+              source: FOCAL_SOURCE,
+              paint: {
+                "fill-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+                "fill-opacity": 0.65
+              }
+            },
+            beforeId
+          );
+          map2.addLayer(
+            {
+              id: FOCAL_LINE,
+              type: "line",
+              source: FOCAL_SOURCE,
+              paint: {
+                "line-color": ["coalesce", ["get", "_color"], MISSING_COLOR],
+                "line-width": 1
+              }
+            },
+            beforeId
+          );
           map2.on("click", FOCAL_FILL, onFocalClick);
           map2.on("mouseenter", FOCAL_FILL, onMouseEnter);
           map2.on("mouseleave", FOCAL_FILL, onMouseLeave);
@@ -60057,11 +60122,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         "{checklistKey}",
         encodeURIComponent(gbifChecklistKey)
       ).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
+      const searchUrl = "https://demo.gbif.org/occurrence/search?checklist_key=" + encodeURIComponent(gbifChecklistKey) + "&taxon_key=" + encodeURIComponent(focalTaxon.id);
       map2.addSource(GBIF_SOURCE, {
         type: "raster",
         tiles: [url],
         tileSize: 256,
-        attribution: '<a href="https://www.gbif.org">GBIF</a> occurrence data'
+        attribution: '<a href="' + searchUrl + '" target="_blank" rel="noopener">GBIF</a> occurrence data'
       });
       map2.addLayer({
         id: GBIF_LAYER,
@@ -60071,7 +60137,6 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         layout: { visibility: gbifVisible ? "visible" : "none" }
       });
       gbifAttachedRef.current = true;
-      return removeGbif;
     }, [styleReady, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
     React.useEffect(() => {
       const map2 = mapRef.current;
@@ -60282,7 +60347,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           onToggleFocal: () => setFocalVisible((v) => !v),
           gbifEnabled: !!gbifChecklistKey,
           gbifVisible,
-          onToggleGbif: () => setGbifVisible((v) => !v),
+          onToggleGbif: handleToggleGbif,
           descendantStatus: descendantState.status,
           descendantsByRank,
           descendantColors,
@@ -60296,7 +60361,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           }
         }
       ),
-      !showDescendantLegend && presentMeans.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      !showDescendantLegend && (presentMeans.length > 0 || gbifChecklistKey && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
           style: {
@@ -60311,36 +60376,40 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             fontSize: 12,
             lineHeight: 1.5
           },
-          children: presentMeans.map((m) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: { display: "flex", alignItems: "center", gap: 6 },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "span",
-                  {
-                    style: {
-                      display: "inline-block",
-                      width: 12,
-                      height: 12,
-                      background: m.color,
-                      border: "1px solid rgba(0,0,0,0.15)",
-                      borderRadius: 2
+          children: [
+            presentMeans.map((m) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: { display: "flex", alignItems: "center", gap: 6 },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      style: {
+                        display: "inline-block",
+                        width: 12,
+                        height: 12,
+                        background: m.color,
+                        border: "1px solid rgba(0,0,0,0.15)",
+                        borderRadius: 2
+                      }
                     }
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m.label })
-              ]
-            },
-            m.key
-          ))
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m.label })
+                ]
+              },
+              m.key
+            )),
+            gbifChecklistKey && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
+          ]
         }
       ),
       showDescendantLegend && /* @__PURE__ */ jsxRuntimeExports.jsx(
         IncludedTaxaLegend,
         {
           visibleGroups: descendantLegend.visibleGroups,
-          unmappableGroups: descendantLegend.unmappableGroups
+          unmappableGroups: descendantLegend.unmappableGroups,
+          showGbif: !!gbifChecklistKey && gbifVisible
         }
       )
     ] });
@@ -60561,10 +60630,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }) => {
     const mappable = data.filter(isMappable);
     const baseUnmappable = data.length - mappable.length;
+    const hasGbif = !!gbifChecklistKey;
+    const hasAnyRecords = data.length > 0;
     const [view, setView] = React.useState("map");
     const [fetchFailures, setFetchFailures] = React.useState(0);
     const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
-    if (!showDistributionMap || mappable.length === 0 || allMappableFailed) {
+    const showMap = showDistributionMap && (mappable.length > 0 || hasGbif) && !(mappable.length > 0 && allMappableFailed && !hasGbif);
+    if (!showMap) {
+      if (!hasAnyRecords) return null;
       return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         ListView,
         {
@@ -60575,12 +60648,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       ) });
     }
     const unmappable = baseUnmappable + fetchFailures;
+    const showToggle = hasAnyRecords;
+    const activeView = showToggle ? view : "map";
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      showToggle ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
         Radio.Group,
         {
           size: "small",
-          value: view,
+          value: activeView,
           onChange: (e2) => setView(e2.target.value),
           style: { marginBottom: 8 },
           children: [
@@ -60588,8 +60663,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
           ]
         }
+      ) : (
+        // Reserve the vertical space the Map/List toggle would occupy so the
+        // map's top edge lines up with the "Distributions" label.
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { height: 24, marginBottom: 8 } })
       ),
-      view === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      activeView === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           DistributionsMap,
           {
@@ -60601,7 +60680,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             gbifChecklistKey
           }
         ),
-        unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
+        showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
           "+",
           unmappable,
           " distribution",
@@ -71794,12 +71873,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                 datasetKey: taxon.datasetKey
               }
             ) }),
-            _.get(info, "distributions") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            (_.get(info, "distributions") || showDistributionMap && gbifChecklistKey && taxon) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               DistributionsTable,
               {
                 pathToDataset,
                 style: { marginTop: "-3px" },
-                data: info.distributions,
+                data: (info == null ? void 0 : info.distributions) || [],
                 datasetKey,
                 showDistributionMap,
                 focalTaxon: taxon,

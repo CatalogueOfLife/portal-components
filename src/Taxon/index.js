@@ -717,12 +717,13 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {_.get(info, "distributions") && (
+          {(_.get(info, "distributions") ||
+            (showDistributionMap && gbifChecklistKey && taxon)) && (
             <PresentationItem md={md} label="Distributions">
               <Distributions
                 pathToDataset={pathToDataset}
                 style={{ marginTop: "-3px" }}
-                data={info.distributions}
+                data={info?.distributions || []}
                 datasetKey={datasetKey}
                 showDistributionMap={showDistributionMap}
                 focalTaxon={taxon}
