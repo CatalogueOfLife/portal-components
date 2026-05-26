@@ -53331,7 +53331,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       __publicField(this, "render", () => {
         const { placeHolder, autoFocus, disabled } = this.props;
         const { value, options, randomID } = this.state;
-        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `taxon_autocomplete_${randomID}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `taxon_autocomplete_${randomID}`, className: "taxon-autocomplete", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Select,
           {
             value,
@@ -53344,6 +53344,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             options,
             filterOption: false,
             onSelect: this.onSelectName,
+            onClear: this.onReset,
             onSearch: (q) => !!q ? this.getNames(q) : this.onReset(),
             placeholder: placeHolder || "Find taxon",
             autoFocus: autoFocus === false ? false : true,

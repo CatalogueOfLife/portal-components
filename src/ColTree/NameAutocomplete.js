@@ -111,7 +111,7 @@ class NameSearchAutocomplete extends React.Component {
    // const options = this.getOptions(this.state.names, value)
 
     return (
-     <div id={`taxon_autocomplete_${randomID}`}>
+     <div id={`taxon_autocomplete_${randomID}`} className="taxon-autocomplete">
        <Select 
        value={value}
         defaultActiveFirstOption={false}
@@ -124,6 +124,7 @@ class NameSearchAutocomplete extends React.Component {
         options={options}
         filterOption={false}
         onSelect={this.onSelectName}
+        onClear={this.onReset}
         onSearch={(q) => (!!q ? this.getNames(q) : this.onReset())}
         placeholder={placeHolder || "Find taxon"}
         autoFocus={autoFocus === false ? false : true}
