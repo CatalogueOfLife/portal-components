@@ -53334,7 +53334,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `taxon_autocomplete_${randomID}`, className: "taxon-autocomplete", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Select,
           {
-            value,
+            value: value || void 0,
             defaultActiveFirstOption: false,
             showArrow: false,
             showSearch: true,
