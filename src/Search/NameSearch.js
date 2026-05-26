@@ -45,11 +45,12 @@ const FACET_VOCAB = [
   "authorshipYear",
 ];
 const PAGE_SIZE = 50;
+const FACET_LIMIT = 50;
 const defaultParams = {
   limit: 50,
   offset: 0,
   facet: FACET_VOCAB, //["rank", "issue", "status", "nomStatus", "nameType", "field"],
-  facetLimit: 50,
+  facetLimit: FACET_LIMIT,
   sortBy: "relevance",
 };
 
@@ -196,7 +197,7 @@ class NameSearchPage extends React.Component {
       params.facet = FACET_VOCAB;
     }
     if (!params.facetLimit) {
-      params.facetLimit = 50;
+      params.facetLimit = FACET_LIMIT;
     }
 
     // fuzzy is no longer a separate API parameter; it's now the FUZZY type value
@@ -364,10 +365,15 @@ class NameSearchPage extends React.Component {
           label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
+    const extinctLabel = (v) => {
+      if (v === "1" || v === true || v === "true") return "Extinct";
+      if (v === "0" || v === false || v === "false") return "Extant";
+      return "Unknown";
+    };
     const facetExtinct = _.get(facets, "extinct")
       ? facets["extinct"].map((s) => ({
           value: s.value,
-          label: `${s?.value === false ? "Extinct" : (s?.value === true ? "Extant" : "Unknown")} (${s.count.toLocaleString("en-GB")})`,
+          label: `${extinctLabel(s?.value)} (${s.count.toLocaleString("en-GB")})`,
         }))
       : [];
     const facetEnvironment = _.get(facets, "environment")

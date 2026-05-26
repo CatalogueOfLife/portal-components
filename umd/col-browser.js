@@ -53261,8 +53261,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       });
       __publicField(this, "componentDidUpdate", (prevProps) => {
         const { defaultTaxonKey } = this.props;
-        if (defaultTaxonKey && defaultTaxonKey !== prevProps.defaultTaxonKey) {
-          this.setDefaultValue(defaultTaxonKey);
+        if (defaultTaxonKey !== prevProps.defaultTaxonKey) {
+          if (defaultTaxonKey) {
+            this.setDefaultValue(defaultTaxonKey);
+          } else {
+            this.setState({ value: "", options: [] });
+          }
         }
       });
       __publicField(this, "setDefaultValue", (usageId) => {
@@ -53341,7 +53345,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             filterOption: false,
             onSelect: this.onSelectName,
             onSearch: (q) => !!q ? this.getNames(q) : this.onReset(),
-            placeholder: "Find taxon",
+            placeholder: placeHolder || "Find taxon",
             autoFocus: autoFocus === false ? false : true,
             disabled,
             getPopupContainer: () => {
@@ -72321,12 +72325,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     "authorshipYear"
   ];
   const PAGE_SIZE = 50;
+  const FACET_LIMIT = 50;
   const defaultParams = {
     limit: 50,
     offset: 0,
     facet: FACET_VOCAB,
     //["rank", "issue", "status", "nomStatus", "nameType", "field"],
-    facetLimit: 50,
+    facetLimit: FACET_LIMIT,
     sortBy: "relevance"
   };
   const getColumns$1 = (pathToTaxon) => [
@@ -72454,7 +72459,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           params.facet = FACET_VOCAB;
         }
         if (!params.facetLimit) {
-          params.facetLimit = 50;
+          params.facetLimit = FACET_LIMIT;
         }
         delete params.fuzzy;
         if (!params.limit) {
@@ -72608,9 +72613,14 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         value: s.value,
         label: `${_.startCase(s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : [];
+      const extinctLabel = (v) => {
+        if (v === "1" || v === true || v === "true") return "Extinct";
+        if (v === "0" || v === false || v === "false") return "Extant";
+        return "Unknown";
+      };
       const facetExtinct = _.get(facets, "extinct") ? facets["extinct"].map((s) => ({
         value: s.value,
-        label: `${(s == null ? void 0 : s.value) === false ? "Extinct" : (s == null ? void 0 : s.value) === true ? "Extant" : "Unknown"} (${s.count.toLocaleString("en-GB")})`
+        label: `${extinctLabel(s == null ? void 0 : s.value)} (${s.count.toLocaleString("en-GB")})`
       })) : [];
       const facetEnvironment = _.get(facets, "environment") ? facets["environment"].map((s) => ({
         value: s.value,

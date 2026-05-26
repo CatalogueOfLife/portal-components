@@ -28,8 +28,12 @@ class NameSearchAutocomplete extends React.Component {
 
   componentDidUpdate = (prevProps) => {
     const { defaultTaxonKey } = this.props;
-    if (defaultTaxonKey && defaultTaxonKey !== prevProps.defaultTaxonKey) {
-      this.setDefaultValue(defaultTaxonKey);
+    if (defaultTaxonKey !== prevProps.defaultTaxonKey) {
+      if (defaultTaxonKey) {
+        this.setDefaultValue(defaultTaxonKey);
+      } else {
+        this.setState({ value: "", options: [] });
+      }
     }
   };
 
@@ -121,7 +125,7 @@ class NameSearchAutocomplete extends React.Component {
         filterOption={false}
         onSelect={this.onSelectName}
         onSearch={(q) => (!!q ? this.getNames(q) : this.onReset())}
-        placeholder={"Find taxon"}
+        placeholder={placeHolder || "Find taxon"}
         autoFocus={autoFocus === false ? false : true}
         disabled={disabled}
         getPopupContainer={() => {
