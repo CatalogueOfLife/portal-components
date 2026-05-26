@@ -33,7 +33,7 @@ class SearchBox extends React.Component {
     return (
       <Search
         style={this.props.style || null}
-        placeholder="input search text"
+        placeholder="Search query"
         value={this.state.search}
         onSearch={value => this.props.onSearch(this.state.search)}
         onChange={event => this.setState({ search: event.target.value})}

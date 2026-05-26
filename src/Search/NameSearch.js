@@ -439,7 +439,7 @@ class NameSearchPage extends React.Component {
               onResetSearch={(value) => {
                 this.updateSearch({ TAXON_ID: null });
               }}
-              placeHolder="Search by higher taxon"
+              placeHolder="Filter by higher taxon"
               sortBy="relevance"
               autoFocus={false}
             />

@@ -72095,7 +72095,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           Search$1,
           {
             style: this.props.style || null,
-            placeholder: "input search text",
+            placeholder: "Search query",
             value: this.state.search,
             onSearch: (value) => this.props.onSearch(this.state.search),
             onChange: (event) => this.setState({ search: event.target.value }),
@@ -72680,7 +72680,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
                     onResetSearch: (value) => {
                       this.updateSearch({ TAXON_ID: null });
                     },
-                    placeHolder: "Search by higher taxon",
+                    placeHolder: "Filter by higher taxon",
                     sortBy: "relevance",
                     autoFocus: false
                   }
