@@ -118,13 +118,13 @@ const TaxonBreakdown = ({
       const totalSpecies = _.get(counts, "species.count", 0);
 
       setLoading(false);
-      buildChart(children, totalSpecies, level);
+      buildChart(children, totalSpecies);
     } catch (err) {
       setLoading(false);
     }
   };
 
-  const buildChart = (children, totalSpecies, depth) => {
+  const buildChart = (children, totalSpecies) => {
     const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
     const baseColors = Highcharts.getOptions().colors;
     const navigateToTaxon = {
@@ -135,7 +135,7 @@ const TaxonBreakdown = ({
       },
     };
 
-    // Inner ring: direct children of the focal taxon. Pad with a single
+    // Inner pie: direct children of the focal taxon. Pad with a single
     // "Not assigned <rank>" slice if focal-taxon species don't fully sum up.
     const innerNodes = padNotAssigned(children, totalSpecies);
     const innerData = innerNodes.map((n, i) => ({
@@ -146,47 +146,33 @@ const TaxonBreakdown = ({
       _kids: n.children,
     }));
 
-    // Middle ring: children of each inner slice. Color is a monochrome
-    // brightness shift of the parent so the family of arcs visually groups.
-    const middleData = [];
-    innerData.forEach((slice) => {
-      const ring = padNotAssigned(slice._kids, slice.y);
-      ring.forEach((g, j) => {
-        const t = ring.length > 1 ? j / (ring.length - 1) : 0;
-        const shift = -0.1 + t * 0.4;
-        middleData.push({
-          name: g.name,
-          y: g.species,
-          _id: g.id,
-          color: Highcharts.color(slice.color).brighten(shift).get(),
-          _parentColor: slice.color,
-          _kids: g.children,
-        });
-      });
-    });
-
-    // Outer ring (level=2 only): one further level down, again monochrome
-    // relative to the *inner* ancestor so each family stays one hue.
+    // Outer ring: children of each inner slice (grandchildren of focal),
+    // coloured as a monochrome brightness shift of the parent so each
+    // family of arcs reads as one hue group. We only render the outer ring
+    // if at least one inner slice has real child data — otherwise the API
+    // hasn't returned that level and we don't want a ring of all
+    // "Not assigned" wedges.
     const outerData = [];
-    if (depth >= 2) {
-      middleData.forEach((slice) => {
+    const hasOuterData = innerData.some(
+      (s) => s._kids && s._kids.length > 0
+    );
+    if (hasOuterData) {
+      innerData.forEach((slice) => {
         const ring = padNotAssigned(slice._kids, slice.y);
         ring.forEach((g, j) => {
           const t = ring.length > 1 ? j / (ring.length - 1) : 0;
-          const shift = -0.05 + t * 0.2;
+          const shift = -0.1 + t * 0.4;
           outerData.push({
             name: g.name,
             y: g.species,
             _id: g.id,
-            color: Highcharts.color(slice._parentColor).brighten(shift).get(),
+            color: Highcharts.color(slice.color).brighten(shift).get(),
           });
         });
       });
     }
 
-    const clean = (rows) =>
-      rows.map(({ _kids, _parentColor, ...rest }) => rest);
-
+    const clean = (rows) => rows.map(({ _kids, ...rest }) => rest);
     const grandTotal = totalSpecies || innerData.reduce((a, s) => a + s.y, 0);
 
     const innerLabelStyle = {
@@ -195,58 +181,11 @@ const TaxonBreakdown = ({
       fontWeight: "bold",
     };
 
-    const series = [];
-    if (depth >= 2) {
-      // 3-ring layout. Inner labels live inside the ring so they don't
-      // collide with the outer ring's external labels.
-      series.push({
+    const series = [
+      {
         name: "Species",
         data: clean(innerData),
-        size: "45%",
-        dataLabels: {
-          formatter: function () {
-            return this.y > grandTotal / 15 ? this.point.name : null;
-          },
-          distance: -25,
-          style: innerLabelStyle,
-        },
-        point: { events: navigateToTaxon },
-      });
-      series.push({
-        name: "Species",
-        data: clean(middleData),
-        size: "70%",
-        innerSize: "45%",
-        dataLabels: {
-          formatter: function () {
-            return this.y > grandTotal / 60 ? this.point.name : null;
-          },
-        },
-        point: { events: navigateToTaxon },
-      });
-      series.push({
-        name: "Species",
-        data: clean(outerData),
-        size: "95%",
-        innerSize: "70%",
-        dataLabels: {
-          formatter: function () {
-            return this.y > 1
-              ? "<b>" +
-                  this.point.name +
-                  ":</b> " +
-                  this.y.toLocaleString("en-GB")
-              : null;
-          },
-        },
-        point: { events: navigateToTaxon },
-      });
-    } else {
-      // 2-ring (level=1) layout.
-      series.push({
-        name: "Species",
-        data: clean(innerData),
-        size: "60%",
+        size: hasOuterData ? "60%" : "85%",
         dataLabels: {
           formatter: function () {
             return this.y > grandTotal / 10 ? this.point.name : null;
@@ -255,10 +194,12 @@ const TaxonBreakdown = ({
           style: innerLabelStyle,
         },
         point: { events: navigateToTaxon },
-      });
+      },
+    ];
+    if (hasOuterData) {
       series.push({
         name: "Species",
-        data: clean(middleData),
+        data: outerData,
         size: "85%",
         innerSize: "60%",
         dataLabels: {
@@ -292,14 +233,9 @@ const TaxonBreakdown = ({
           {
             condition: { maxWidth: 400 },
             chartOptions: {
-              series:
-                depth >= 2
-                  ? [
-                      {},
-                      { dataLabels: { enabled: false } },
-                      { dataLabels: { enabled: false } },
-                    ]
-                  : [{}, { dataLabels: { enabled: false } }],
+              series: hasOuterData
+                ? [{}, { dataLabels: { enabled: false } }]
+                : [{}],
             },
           },
         ],
