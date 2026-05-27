@@ -5,7 +5,7 @@ import Highcharts from "highcharts";
 import "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
-import { Spin, Row, Col, Segmented } from "antd";
+import { Spin, Row, Col, Switch } from "antd";
 import { useNavigateTo } from "../router";
 
 const MAX_SLICES_PER_RING = 100;
@@ -299,24 +299,28 @@ const TaxonBreakdown = ({
 
   if (invalid) return null;
 
+  // Place the level toggle inside the chart's top-right area, just left of
+  // the Highcharts context-menu (≡) icon, so it doesn't consume an extra
+  // row. Colourless switch with lvl1 / lvl2 labels.
   const levelSwitch = showLevelSwitch ? (
-    <Row justify="end" style={{ padding: "8px 0 0" }}>
-      <Col>
-        <Segmented
-          size="small"
-          value={activeLevel}
-          onChange={(v) => setActiveLevel(Number(v))}
-          options={[
-            { label: "Level 1", value: 1 },
-            { label: "Level 2", value: 2 },
-          ]}
-        />
-      </Col>
-    </Row>
+    <Switch
+      size="small"
+      checked={activeLevel === 2}
+      onChange={(checked) => setActiveLevel(checked ? 2 : 1)}
+      checkedChildren="lvl2"
+      unCheckedChildren="lvl1"
+      style={{
+        position: "absolute",
+        top: 8,
+        right: 44,
+        zIndex: 2,
+        background: activeLevel === 2 ? "#8c8c8c" : "#bfbfbf",
+      }}
+    />
   ) : null;
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       {levelSwitch}
       {loading || !options ? (
         <Row style={{ padding: "48px" }}>
@@ -329,7 +333,7 @@ const TaxonBreakdown = ({
       ) : (
         <HighchartsReact highcharts={Highcharts} options={options} />
       )}
-    </>
+    </div>
   );
 };
 
