@@ -58,8 +58,8 @@ class TaxonEstimate extends React.Component {
               </Col>
             </Row>
           }
-          visible={popOverVisible}
-          onVisibleChange={(visible) =>
+          open={popOverVisible}
+          onOpenChange={(visible) =>
             this.setState({ popOverVisible: visible }, () => {
               if (visible && !data) {
                 this.getData();

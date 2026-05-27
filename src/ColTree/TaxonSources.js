@@ -181,8 +181,8 @@ class TaxonSources extends React.Component {
               </Col>
             </Row>
           }
-          visible={popOverVisible}
-          onVisibleChange={(visible) =>
+          open={popOverVisible}
+          onOpenChange={(visible) =>
             this.setState({ popOverVisible: visible }, () => {
               if (visible && this.state.data.length === 0) this.getData();
               if (

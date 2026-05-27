@@ -68,7 +68,7 @@ class ReferencePopover extends React.Component {
           }
           placement={this.props.placement || "left"}
           title="Reference"
-          onVisibleChange={(visible) => visible && this.getData()}
+          onOpenChange={(visible) => visible && this.getData()}
           content={<div style={{ maxWidth: "500px" }}>{this.getContent()}</div>}
           trigger={trigger || "hover"}
         >

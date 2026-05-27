@@ -67,7 +67,7 @@ const onFinishFailed = ({ errorFields }) => {
       <Modal
         getContainer={".catalogue-of-life"}
         title="Feedback"
-        visible={visible}
+        open={visible}
         destroyOnClose={true}
         onOk={() => {
           if(issueUrl){
