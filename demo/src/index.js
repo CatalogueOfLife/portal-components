@@ -73,39 +73,98 @@ class Demo extends Component {
     // the previous history.replace round-trip.
     const mountKey = `${env}-${datasetKey}`;
 
-    const linkStyle = (active) => ({
-      marginRight: "16px",
-      fontWeight: active ? "bold" : "normal",
+    const sans = "'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+
+    const navLinkStyle = (active) => ({
+      padding: "6px 12px",
+      borderRadius: "8px",
+      fontSize: "13px",
+      fontWeight: 500,
+      letterSpacing: "0.01em",
+      color: active ? "#fff" : "#444",
+      background: active ? "#111" : "transparent",
+      textDecoration: "none",
+      transition: "background 0.15s, color 0.15s",
     });
 
+    const inputStyle = {
+      padding: "6px 10px",
+      border: "1px solid #d4d4d8",
+      borderRadius: "8px",
+      fontFamily: sans,
+      fontSize: "13px",
+      background: "#fff",
+      outline: "none",
+    };
+
     return (
-      <div style={{ background: "#fff", minHeight: "100%" }}>
-        <nav style={{ padding: "16px", borderBottom: "1px solid #ccc", marginBottom: "16px", fontFamily: "system-ui, -apple-system, sans-serif", display: "flex", alignItems: "center" }}>
-          <a href="#/" style={{ fontWeight: "bold", marginRight: "24px" }}>col-browser Demo</a>
-          {routes.map((r) => (
-            <a
-              key={r.path}
-              href={`#${r.path}`}
-              style={linkStyle(route.indexOf(r.path) === 0)}
-            >
-              {r.label}
-            </a>
-          ))}
-          <form onSubmit={this.applyDatasetKey} style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px" }}>
-            <label>Dataset:
+      <div style={{ background: "#fff", minHeight: "100%", fontFamily: sans, color: "#222" }}>
+        <style>{`
+          a.col-demo-navlink:hover {
+            background: #f3f4f6;
+            color: #111;
+          }
+          a.col-demo-navlink.is-active:hover {
+            background: #111;
+            color: #fff;
+          }
+          .col-demo-brand:hover { color: #111; }
+        `}</style>
+        <nav style={{
+          padding: "12px 20px",
+          borderBottom: "1px solid #e5e7eb",
+          marginBottom: "16px",
+          fontFamily: sans,
+          display: "flex",
+          alignItems: "center",
+          gap: "4px",
+        }}>
+          <a
+            href="#/"
+            className="col-demo-brand"
+            style={{
+              fontWeight: 700,
+              fontSize: "14px",
+              letterSpacing: "-0.01em",
+              marginRight: "24px",
+              color: "#111",
+              textDecoration: "none",
+            }}
+          >
+            col-browser
+          </a>
+          {routes.map((r) => {
+            const active = route.indexOf(r.path) === 0;
+            return (
+              <a
+                key={r.path}
+                href={`#${r.path}`}
+                className={`col-demo-navlink${active ? " is-active" : ""}`}
+                style={navLinkStyle(active)}
+              >
+                {r.label}
+              </a>
+            );
+          })}
+          <form
+            onSubmit={this.applyDatasetKey}
+            style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px" }}
+          >
+            <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#666", letterSpacing: "0.04em", textTransform: "uppercase" }}>
+              Dataset
               <input
                 value={this.state.datasetKeyInput}
                 onChange={(e) => this.setState({ datasetKeyInput: e.target.value })}
-                style={{ marginLeft: "4px", width: "80px", padding: "4px 8px", fontFamily: "inherit" }}
+                style={{ ...inputStyle, width: "80px", textTransform: "none", letterSpacing: 0, color: "#222" }}
               />
             </label>
             <select
               value={env}
               onChange={this.switchEnv}
-              style={{ padding: "4px 8px", fontFamily: "inherit" }}
+              style={inputStyle}
             >
-              <option value="production">Production API</option>
-              <option value="development">Development API</option>
+              <option value="production">Production</option>
+              <option value="development">Development</option>
             </select>
           </form>
         </nav>
