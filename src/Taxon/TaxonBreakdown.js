@@ -127,6 +127,13 @@ const TaxonBreakdown = ({
   const buildChart = (children, totalSpecies) => {
     const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
     const baseColors = Highcharts.getOptions().colors;
+    // Colour used for outer-ring "gap" slices: match the page background so
+    // the wedge reads as empty space rather than overlapping the inner pie.
+    const prefersDark =
+      typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const gapColor = prefersDark ? "#1f1f1f" : "#ffffff";
     const navigateToTaxon = {
       click: (e) => {
         if (e.point._id) {
@@ -176,13 +183,12 @@ const TaxonBreakdown = ({
         // (rather than a labelled "Not assigned" wedge).
         if (sum < slice.y) {
           outerData.push({
-            name: "",
+            name: notAssignedLabel(_.get(sorted, "[0].rank", "")),
             y: slice.y - sum,
-            color: "transparent",
-            borderColor: "transparent",
+            color: gapColor,
+            borderColor: gapColor,
             borderWidth: 0,
             dataLabels: { enabled: false },
-            enableMouseTracking: false,
           });
         }
       });
