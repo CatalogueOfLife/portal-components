@@ -165,19 +165,6 @@ class Demo extends Component {
                 </li>
               ))}
             </ul>
-            <h2>Distribution map legend</h2>
-            <div style={{ fontSize: 13, lineHeight: 1.6 }}>
-              {[
-                ...ESTABLISHMENT_MEANS,
-                { key: "__missing__", label: "(no establishmentMeans — not shown in map legend)", color: MISSING_COLOR },
-              ].map((m) => (
-                <div key={m.key} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ display: "inline-block", width: 16, height: 16, background: m.color, border: "1px solid rgba(0,0,0,0.15)", borderRadius: 2 }} />
-                  <span style={{ fontFamily: "monospace" }}>{m.color}</span>
-                  <span>{m.label}</span>
-                </div>
-              ))}
-            </div>
           </div>
         )}
 
@@ -233,11 +220,28 @@ class Demo extends Component {
           </div>
         )}
         {(route === "distribution" || route.indexOf("distribution/") === 0) && (
-          <URLTaxonDistribution
-            key={mountKey + "-" + route}
-            datasetKey={datasetKey}
-            gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
-          />
+          <>
+            <URLTaxonDistribution
+              key={mountKey + "-" + route}
+              datasetKey={datasetKey}
+              gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
+            />
+            <div style={{ padding: "24px 16px", borderTop: "1px solid #e5e7eb", marginTop: "24px" }}>
+              <h3 style={{ marginTop: 0 }}>Distribution map legend</h3>
+              <div style={{ fontSize: 13, lineHeight: 1.6 }}>
+                {[
+                  ...ESTABLISHMENT_MEANS,
+                  { key: "__missing__", label: "(no establishmentMeans — not shown in map legend)", color: MISSING_COLOR },
+                ].map((m) => (
+                  <div key={m.key} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ display: "inline-block", width: 16, height: 16, background: m.color, border: "1px solid rgba(0,0,0,0.15)", borderRadius: 2 }} />
+                    <span style={{ fontFamily: "monospace" }}>{m.color}</span>
+                    <span>{m.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
         )}
       </div>
     );

@@ -161,7 +161,13 @@ class TaxonSources extends React.Component {
           trigger="click"
           placement="rightTop"
         >
-          <a className="col-tree-data-source"  href="">
+          <a
+            className="col-tree-data-source"
+            role="button"
+            tabIndex={0}
+            style={{ cursor: "pointer" }}
+            onClick={(e) => e.preventDefault()}
+          >
             Multiple sources
           </a>
         </Popover>
