@@ -7,6 +7,7 @@ This is a small React Component library consisting of
 3. Taxon page
 4. Dataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
 5. BibTex citation - simple icon that downloads a BibTex citation for a dataset
+6. TaxonBreakdown - pie chart of a taxon's children by rank with drill-down
 
 ## Examples
 
@@ -309,6 +310,35 @@ class BibTex extends React.Component {
 
 const domContainer = document.querySelector('#bibtex');
 ReactDOM.createRoot(domContainer).render(e(BibTex));
+</script>
+```
+
+### ColBrowser.TaxonBreakdown
+
+A Highcharts pie chart breaking the accepted children of a taxon down by rank, with click-to-drill into each child. Rendered inside the Taxon page but also exported standalone for use on dashboards or summary pages.
+
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
+2. `taxonId` - the taxon to break down. The chart loads the taxon, its rank vocabulary, and the dataset citation itself, so no preloading is needed.
+3. `pathToTaxon` - the local path used when a slice is clicked to navigate to a child taxon page. Same semantics as the Taxon and Tree components.
+
+```html
+<div id="breakdown"></div>
+<script>
+'use strict';
+const e = React.createElement;
+class Breakdown extends React.Component {
+    render() {
+      return e(
+        ColBrowser.TaxonBreakdown,
+        { datasetKey: '3LR',
+          taxonId: 'ST',
+          pathToTaxon: '/data/taxon/' }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#breakdown');
+ReactDOM.createRoot(domContainer).render(e(Breakdown));
 </script>
 ```
 
