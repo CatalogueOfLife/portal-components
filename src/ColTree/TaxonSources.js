@@ -1,11 +1,11 @@
 import React from "react";
-import { Popover, Spin, Row, Col } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { Popover, Spin, Divider } from "antd";
 import DataLoader from "dataloader";
 import _ from "lodash";
 import { LinkTo } from "../router";
 import { TreeCacheContext } from "./treeCache";
 import { getDatasetsBatch, getPublishersBatch } from "../api/dataset";
+import config from "../config";
 
 class TaxonSources extends React.Component {
   static contextType = TreeCacheContext;
@@ -93,8 +93,10 @@ class TaxonSources extends React.Component {
 
   render = () => {
     const { data, showInNode, popOverVisible, loading } = this.state;
-    const { taxon } = this.props;
+    const { taxon, datasetKey } = this.props;
     const linkStyle = { color: "orange", fontSize: "11px" };
+    const publisherUrl = (uuid) =>
+      `${config.clbPortal}/dataset/${datasetKey}/publisher/${uuid}`;
 
     if (showInNode) {
       return data
@@ -129,7 +131,6 @@ class TaxonSources extends React.Component {
               <div style={{ maxWidth: "500px" }}>
                 {data.length > 0 && (
                   <div>
-                    <strong>Source databases:</strong>{" "}
                     {data
                       .filter((d) => !!d)
                       .map((d, index) => (
@@ -147,18 +148,21 @@ class TaxonSources extends React.Component {
                 )}
                 {this.state.publishers && this.state.publishers.length > 0 && (
                   <div style={{ marginTop: "8px" }}>
-                    <strong>Publishers:</strong>
                     {this.state.publishers
                       .filter((d) => !!d)
-                      .map((d) => (
-                        <Row key={d.id}>
-                          <Col span={8} style={{ textAlign: "right" }}>
-                            {d.alias}:
-                          </Col>
-                          <Col span={12} style={{ paddingLeft: "20px" }}>
-                            {d.datasets.length.toLocaleString("en-GB")} datasets
-                          </Col>
-                        </Row>
+                      .map((d, index) => (
+                        <a
+                          key={d.id}
+                          href={publisherUrl(d.id)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={linkStyle}
+                        >
+                          {(index ? ", " : "") + (d.alias || d.id)}
+                          {d.datasets?.length
+                            ? ` (${d.datasets.length.toLocaleString("en-GB")})`
+                            : ""}
+                        </a>
                       ))}
                   </div>
                 )}
@@ -166,20 +170,11 @@ class TaxonSources extends React.Component {
             )
           }
           title={
-            <Row>
-              <Col flex="auto">
-                <span dangerouslySetInnerHTML={{ __html: taxon.name }} />
-              </Col>
-              <Col>
-                <span>
-                  <CloseCircleOutlined
-                    onClick={() => {
-                      this.setState({ popOverVisible: false });
-                    }}
-                  />
-                </span>
-              </Col>
-            </Row>
+            <div style={{ padding: "4px 0" }}>
+              <span style={{ fontWeight: 500 }}>Source for </span>
+              <em>{taxon?.name}</em>
+              <Divider style={{ margin: "8px 0 0" }} />
+            </div>
           }
           open={popOverVisible}
           onOpenChange={(visible) =>
