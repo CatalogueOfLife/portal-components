@@ -117,6 +117,7 @@ class TaxonSources extends React.Component {
     return (
       <div style={{ display: "inline" }} id={`taxon_sources_${taxon.id}`}>
         <Popover
+          arrow={false}
           getPopupContainer={() =>
             document.getElementById(`taxon_sources_${taxon.id}`)
           }
@@ -147,23 +148,26 @@ class TaxonSources extends React.Component {
                   </div>
                 )}
                 {this.state.publishers && this.state.publishers.length > 0 && (
-                  <div style={{ marginTop: "8px" }}>
-                    {this.state.publishers
-                      .filter((d) => !!d)
-                      .map((d, index) => (
-                        <a
-                          key={d.id}
-                          href={publisherUrl(d.id)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={linkStyle}
-                        >
-                          {(index ? ", " : "") + (d.alias || d.id)}
-                          {d.datasets?.length
-                            ? ` (${d.datasets.length.toLocaleString("en-GB")})`
-                            : ""}
-                        </a>
-                      ))}
+                  <div style={{ marginTop: "12px" }}>
+                    <strong>Publishers</strong>
+                    <div>
+                      {this.state.publishers
+                        .filter((d) => !!d)
+                        .map((d, index) => (
+                          <a
+                            key={d.id}
+                            href={publisherUrl(d.id)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={linkStyle}
+                          >
+                            {(index ? ", " : "") + (d.alias || d.id)}
+                            {d.datasets?.length
+                              ? ` (${d.datasets.length.toLocaleString("en-GB")})`
+                              : ""}
+                          </a>
+                        ))}
+                    </div>
                   </div>
                 )}
               </div>
