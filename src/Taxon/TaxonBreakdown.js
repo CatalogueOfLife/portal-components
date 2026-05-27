@@ -206,18 +206,35 @@ const TaxonBreakdown = ({
       fontWeight: "bold",
     };
 
-    const series = [
-      {
-        name: "Species",
-        data: clean(innerData),
-        size: hasOuterData ? "60%" : "85%",
-        dataLabels: {
+    // Inner-ring data labels: only positioned inside the ring when there's
+    // an outer ring fighting for the external label gutter. With just one
+    // ring (level=1) the labels live outside the chart, same as the outer
+    // ring at level=2, with the slice name + species count.
+    const innerDataLabels = hasOuterData
+      ? {
           formatter: function () {
             return this.y > grandTotal / 10 ? this.point.name : null;
           },
           distance: -30,
           style: innerLabelStyle,
-        },
+        }
+      : {
+          formatter: function () {
+            return this.y > 1
+              ? "<b>" +
+                  this.point.name +
+                  ":</b> " +
+                  this.y.toLocaleString("en-GB")
+              : null;
+          },
+        };
+
+    const series = [
+      {
+        name: "Species",
+        data: clean(innerData),
+        size: hasOuterData ? "60%" : "85%",
+        dataLabels: innerDataLabels,
         point: { events: taxonClickHandler },
       },
     ];
