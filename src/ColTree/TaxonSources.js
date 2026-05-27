@@ -1,9 +1,11 @@
 import React from "react";
 import { Popover, Spin, Row, Col } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
+import DataLoader from "dataloader";
 import _ from "lodash";
 import { LinkTo } from "../router";
 import { TreeCacheContext } from "./treeCache";
+import { getDatasetsBatch, getPublishersBatch } from "../api/dataset";
 
 class TaxonSources extends React.Component {
   static contextType = TreeCacheContext;
@@ -17,6 +19,32 @@ class TaxonSources extends React.Component {
     };
   }
 
+  // Returns the shared cache from TreeCacheContext if available, or a
+  // throwaway local DataLoader so the popover still works even if context
+  // doesn't reach this instance (which used to leave the spinner stuck
+  // because getData early-returned with no loading state set).
+  getDatasetLoader = () => {
+    const { datasetKey } = this.props;
+    if (this.context?.datasetLoader) return this.context.datasetLoader;
+    if (!this._localDatasetLoader) {
+      this._localDatasetLoader = new DataLoader((ids) =>
+        getDatasetsBatch(ids, datasetKey)
+      );
+    }
+    return this._localDatasetLoader;
+  };
+
+  getPublisherLoader = () => {
+    const { datasetKey } = this.props;
+    if (this.context?.publisherLoader) return this.context.publisherLoader;
+    if (!this._localPublisherLoader) {
+      this._localPublisherLoader = new DataLoader((ids) =>
+        getPublishersBatch(ids, datasetKey)
+      );
+    }
+    return this._localPublisherLoader;
+  };
+
   componentDidMount = () => {
     const { sourceDatasetKeys } = this.props;
     if (sourceDatasetKeys && sourceDatasetKeys.length < 4) {
@@ -26,16 +54,11 @@ class TaxonSources extends React.Component {
 
   getData = () => {
     const { sourceDatasetKeys } = this.props;
-    const { datasetLoader } = this.context || {};
-    if (!sourceDatasetKeys?.length || !datasetLoader) return;
+    if (!sourceDatasetKeys?.length) return;
     this.setState({ loading: true });
-    // Always clear loading, even on a failed bulk lookup, so the popover
-    // doesn't hang on a spinner. Each load() may also reject individually
-    // if the batch fn returns Error instances; coerce to null in that case.
+    const loader = this.getDatasetLoader();
     Promise.all(
-      sourceDatasetKeys.map((s) =>
-        datasetLoader.load(s).catch(() => null)
-      )
+      sourceDatasetKeys.map((s) => loader.load(s).catch(() => null))
     )
       .then((data) => {
         this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
@@ -47,20 +70,25 @@ class TaxonSources extends React.Component {
 
   getPublisherData = () => {
     const { publisherDatasetKeys } = this.props;
-    const { publisherLoader } = this.context || {};
-    if (!publisherDatasetKeys || !publisherLoader) return;
+    if (!publisherDatasetKeys) return;
+    const loader = this.getPublisherLoader();
     Promise.all(
       Object.keys(publisherDatasetKeys).map((s) =>
-        publisherLoader
+        loader
           .load(s)
           .then((publisher) => ({
             ...publisher,
             datasets: publisherDatasetKeys[s],
           }))
+          .catch(() => null)
       )
-    ).then((data) => {
-      this.setState({ publishers: _.sortBy(data, ["alias"]) });
-    });
+    )
+      .then((data) => {
+        this.setState({ publishers: _.sortBy(data.filter(Boolean), ["alias"]) });
+      })
+      .catch(() => {
+        this.setState({ publishers: [] });
+      });
   };
 
   render = () => {
