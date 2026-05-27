@@ -160,14 +160,12 @@ const TaxonBreakdown = ({
 
     // Outer ring: children of each inner slice (grandchildren of focal),
     // coloured as a monochrome brightness shift of the parent so each
-    // family of arcs reads as one hue group. We only render the outer ring
-    // if at least one inner slice has real child data — otherwise the API
-    // hasn't returned that level and we don't want a ring of all
-    // "Not assigned" wedges.
+    // family of arcs reads as one hue group. Only rendered when level >= 2
+    // AND the response actually carries that depth. With level=1 we draw
+    // a single-ring pie even if the API returned nested children.
     const outerData = [];
-    const hasOuterData = innerData.some(
-      (s) => s._kids && s._kids.length > 0
-    );
+    const hasOuterData =
+      level >= 2 && innerData.some((s) => s._kids && s._kids.length > 0);
     if (hasOuterData) {
       innerData.forEach((slice) => {
         const sorted = sortAndClip(slice._kids || []);
