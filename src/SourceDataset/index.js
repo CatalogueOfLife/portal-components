@@ -54,7 +54,9 @@ class SourceDatasetPage extends React.Component {
     const { datasetKey, pageTitleTemplate } = this.props;
 
     const { location: path } = history;
-    const pathParts = path.pathname.split("/");
+    // Include hash so this works both for path-based embedding and
+    // hash-routed hosts. The key is always the last `/`-delimited segment.
+    const pathParts = `${path.pathname}${path.hash}`.split("/");
     const sourceDatasetKey = pathParts[pathParts.length - 1];
 
     axios(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`)

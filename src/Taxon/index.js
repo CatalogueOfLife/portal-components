@@ -68,7 +68,9 @@ class TaxonPage extends React.Component {
   componentDidMount = () => {
     const { pathToTaxon } = this.props;
     const { location } = history;
-    const uri = `${location.pathname}${location.search}`;
+    // Include hash so this works both for path-based embedding
+    // (`/data/taxon/X`) and hash-routed hosts (`#/data/taxon/X`).
+    const uri = `${location.pathname}${location.search}${location.hash}`;
     const taxonKey = uri.split(pathToTaxon)[1];
     this.getCatalogue();
     this.getTaxon(taxonKey);
