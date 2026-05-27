@@ -71,10 +71,15 @@ Net wire size for a typical embedder (`col-browser.min.js` + `main.css`) is roug
 
 The biggest API change in 2.0 is that **the library no longer reads or writes the URL**. Every top-level component takes its identifier and navigation as plain props:
 
-- The identifier (`taxonKey`, `sourceDatasetKey`, `expandedTaxonKey`, `filters`) is a controlled prop.
-- Navigation is two optional callbacks per target — `onNavigateToTaxon(id)` for the click handler and `hrefForTaxon(id)` for the `<a href>`. When neither is wired, the affected link renders as plain text. When both are wired, you get full anchor semantics (right-click → open in new tab, etc.).
+- **Identifier** (whichever of `taxonKey`, `sourceDatasetKey`, `taxonId`, `expandedTaxonKey`, `filters` applies) is a controlled prop.
+- **Navigation** is two optional callbacks per target — `onNavigateToTaxon(id)` for the click handler and `hrefForTaxon(id)` for the `<a href>`. When neither is wired, the affected link renders as plain text. When both are wired, you get full anchor semantics (right-click → open in new tab, etc.).
+- **Component-local state changes** (e.g. tree expansion, search filters) emit through `onExpandedTaxonKeyChange` / `onFiltersChange` callbacks — never via a URL write inside the library.
 
-Most hosts don't want to write that wiring themselves. The library ships an opt-in adapter at `col-browser/url` that does it for you:
+This makes the components host-agnostic: they work the same inside react-router, Next.js, TanStack Router, an unrouted page, a Storybook story, or a Redux app.
+
+#### Quickstart: use the built-in URL adapter
+
+Most hosts don't want to write the wiring themselves. The library ships an opt-in adapter at `col-browser/url` that does it for you:
 
 ```jsx
 import { Taxon } from 'col-browser';
@@ -94,30 +99,116 @@ const URLTaxon = withRouting(Taxon, {
 <URLTaxon datasetKey="3LR" />
 ```
 
-Wrappers exist for every component (`kind: 'taxon' | 'tree' | 'source' | 'sourceList' | 'search'`). They auto-read the identifier from the URL (path or hash, configurable) and emit the URL-write callbacks. The COL portal uses `mode: 'path'`; the GitHub Pages demo uses `mode: 'hash'`.
+One wrapper per top-level component. The adapter reads the identifier from the URL (path or hash, configurable via `mode`), and provides the `onNavigateToX` / `hrefForX` pair built from the `paths` map.
 
-If you've embedded the v1 components with `pathToTaxon` / `pathToTree` / `pathToSearch` / `pathToDataset` props, the shortest migration is:
+Available kinds and what each one wires up:
+
+| `kind`              | Controlled identifier from URL              | State callbacks                            |
+| ---                 | ---                                         | ---                                        |
+| `taxon`             | `taxonKey` from path after `paths.taxon`    | —                                          |
+| `tree`              | `expandedTaxonKey` from `?taxonKey=…`       | `onExpandedTaxonKeyChange` writes to URL   |
+| `search`            | `filters` from query string                 | `onFiltersChange` writes to query string   |
+| `source`            | `sourceDatasetKey` from `paths.source`      | —                                          |
+| `sourceList`        | none (it's a static-by-datasetKey list)     | —                                          |
+| `taxonBreakdown`    | `taxonId` from `paths.taxonBreakdown`       | —                                          |
+| `taxonDistribution` | `taxonId` from `paths.taxonDistribution`    | —                                          |
+| `bibtex`            | `sourceDatasetKey` from `paths.bibtex`      | —                                          |
+
+Every kind also gets the four navigation pairs (`hrefForTaxon` / `onNavigateToTaxon`, `hrefForTree` / `onNavigateToTree`, `hrefForSearch` / `onNavigateToSearch`, `hrefForSource` / `onNavigateToSource`) wired automatically from the `paths` map.
+
+The COL portal uses `mode: 'path'`. The GitHub Pages demo uses `mode: 'hash'` and just changes the `paths` map — same components, same adapter.
+
+#### Migrating from v1
 
 ```diff
 -import { Taxon } from 'col-browser';
 +import { Taxon } from 'col-browser';
 +import { withRouting } from 'col-browser/url';
-+const URLTaxon = withRouting(Taxon, { kind: 'taxon', mode: 'path', paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' } });
++const URLTaxon = withRouting(Taxon, {
++  kind: 'taxon',
++  mode: 'path',
++  paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
++});
 
 -<Taxon datasetKey="3LR" pathToTaxon="/taxon/" pathToTree="/tree" pathToSearch="/search" pathToDataset="/source/" />
 +<URLTaxon datasetKey="3LR" />
 ```
 
-If you want full control over the URL shape (or aren't using URLs at all — Redux, in-memory state, etc.), skip the adapter and provide the controlled props yourself:
+#### Bypassing the adapter (custom router, Redux, no URL at all)
+
+You don't have to use `col-browser/url`. Every top-level component is a plain controlled React component — feed it the props it needs and the library will never touch the URL.
 
 ```jsx
-<Taxon
+function MyTaxonPage() {
+  const { taxonKey } = useParams();              // react-router
+  const navigate = useNavigate();
+  return (
+    <Taxon
+      datasetKey="3LR"
+      taxonKey={taxonKey}
+      hrefForTaxon={(id) => `/taxon/${id}`}      // your URL shape
+      onNavigateToTaxon={(id) => navigate(`/taxon/${id}`)}
+      hrefForTree={({ taxonKey }) => `/tree?t=${taxonKey || ''}`}
+      onNavigateToTree={({ taxonKey }) => navigate(`/tree?t=${taxonKey || ''}`)}
+      hrefForSearch={(filters) => `/search?${new URLSearchParams(filters)}`}
+      onNavigateToSearch={(filters) => navigate(`/search?${new URLSearchParams(filters)}`)}
+      hrefForSource={(id) => `/source/${id}`}
+      onNavigateToSource={(id) => navigate(`/source/${id}`)}
+    />
+  );
+}
+```
+
+Tree and Search take additional state callbacks:
+
+```jsx
+const [expanded, setExpanded] = useState(undefined);
+<Tree
   datasetKey="3LR"
-  taxonKey="6W3C4"
-  hrefForTaxon={(id) => `/t/${id}`}
-  onNavigateToTaxon={(id) => router.push(`/t/${id}`)}
+  expandedTaxonKey={expanded}
+  onExpandedTaxonKeyChange={setExpanded}
+  /* …plus the four nav pairs from above */
+/>
+
+const [filters, setFilters] = useState({});
+<Search
+  datasetKey="3LR"
+  filters={filters}                              // { q, rank, status, TAXON_ID, sortBy, … }
+  onFiltersChange={setFilters}
 />
 ```
+
+Any callback you don't supply just makes that link render as plain text — no crash, no warning. So you can wire the navigations gradually.
+
+#### Building your own adapter
+
+`withRouting` is ~150 LOC; nothing stops you from writing your own. The shape is simply:
+
+```jsx
+function withMyRouting(Component) {
+  return function Wrapped(props) {
+    // 1. Derive the controlled identifier from wherever your state lives
+    const taxonKey = useMyRouter().params.taxonKey;
+
+    // 2. Build the four nav pairs
+    const hrefForTaxon = (id) => `/taxon/${id}`;
+    const onNavigateToTaxon = (id) => myNavigate(`/taxon/${id}`);
+    // …same for tree / search / source
+
+    return (
+      <Component
+        {...props}
+        taxonKey={taxonKey}
+        hrefForTaxon={hrefForTaxon}
+        onNavigateToTaxon={onNavigateToTaxon}
+        /* …rest */
+      />
+    );
+  };
+}
+```
+
+You can copy `src/url/index.js` as a starting template — it covers both path and hash modes plus the per-kind state wiring (Tree's `expandedTaxonKey` ↔ `?taxonKey=`, Search's `filters` ↔ query string).
 
 ### 5. `Dataset` and `DatasetSearch` were renamed
 
