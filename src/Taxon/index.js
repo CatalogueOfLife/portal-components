@@ -699,6 +699,7 @@ class TaxonPage extends React.Component {
                 datasetKey={datasetKey}
                 rank={rank}
                 dataset={catalogue}
+                showLevelSwitch
               />
             </PresentationItem>
           )}

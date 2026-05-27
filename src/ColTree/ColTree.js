@@ -6,8 +6,8 @@ import config from "../config";
 import ColTreeNode from "./ColTreeNode";
 import ErrorMsg from "../components/ErrorMsg";
 import { getSectorsBatch } from "../api/sector";
-import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
+import { TreeCacheContext } from "./treeCache";
 
 const CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
 
@@ -38,6 +38,8 @@ class LoadMoreChildrenTreeNode extends React.Component {
 }
 
 class ColTree extends React.Component {
+  static contextType = TreeCacheContext;
+
   constructor(props) {
     super(props);
 
@@ -54,13 +56,16 @@ class ColTree extends React.Component {
     this.treeRef = React.createRef();
   }
 
+  // datasetLoader comes from the shared TreeCacheContext so multiple tree
+  // nodes (and TaxonSources instances) share one in-memory cache instead
+  // of each re-fetching the same source datasets.
+  get datasetLoader() {
+    return this.context.datasetLoader;
+  }
+
   componentDidMount = () => {
     const { datasetKey } = this.props;
     this.loadRoot();
-    this.datasetLoader = new DataLoader((ids) =>
-      getDatasetsBatch(ids, datasetKey)
-    );
-
     this.sectorLoader = new DataLoader((ids) =>
       getSectorsBatch(ids, datasetKey)
     );

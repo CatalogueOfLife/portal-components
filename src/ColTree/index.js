@@ -6,6 +6,7 @@ import axios from "axios";
 import btoa from "btoa";
 import { Row, Col, Checkbox } from "antd";
 import { ColTreeContext } from "./ColTreeContext";
+import { TreeCacheContext, createTreeCache } from "./treeCache";
 import { getDataset } from "../api/dataset";
 import Citation from "../components/DatasetCitation";
 import { RouterContext, buildRouter } from "../router";
@@ -32,6 +33,14 @@ class ColTreeWrapper extends React.Component {
       showInfo: false,
       dataset: null,
     };
+    // Per-Tree DataLoader cache. Rebuilt only if datasetKey changes (rare).
+    this.cache = createTreeCache(this.props.datasetKey);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.datasetKey !== this.props.datasetKey) {
+      this.cache = createTreeCache(this.props.datasetKey);
+    }
   }
 
   componentDidMount = async () => {
@@ -81,6 +90,7 @@ class ColTreeWrapper extends React.Component {
     return (
       <div className="catalogue-of-life">
         {citation === "top" && dataset && <Citation dataset={dataset} />}
+        <TreeCacheContext.Provider value={this.cache}>
         <ColTreeContext.Provider value={this.state}>
           <Row>
             <Col flex="auto">
@@ -129,6 +139,7 @@ class ColTreeWrapper extends React.Component {
             type={type}
           />
         </ColTreeContext.Provider>
+        </TreeCacheContext.Provider>
         {citation === "bottom" && dataset && <Citation dataset={dataset} />}
       </div>
     );

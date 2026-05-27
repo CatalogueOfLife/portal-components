@@ -1,12 +1,13 @@
 import React from "react";
 import { Popover, Spin, Row, Col } from "antd";
-import { getDatasetsBatch, getPublishersBatch } from "../api/dataset";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import _ from "lodash";
-import DataLoader from "dataloader";
 import { LinkTo } from "../router";
+import { TreeCacheContext } from "./treeCache";
 
 class TaxonSources extends React.Component {
+  static contextType = TreeCacheContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,43 +18,38 @@ class TaxonSources extends React.Component {
   }
 
   componentDidMount = () => {
-    const { sourceDatasetKeys, datasetKey } = this.props;
-    this.datasetLoader = new DataLoader((ids) =>
-      getDatasetsBatch(ids, datasetKey)
-    );
-    this.publisherLoader = new DataLoader((ids) =>
-      getPublishersBatch(ids, datasetKey)
-    );
-    // Few sources → render the links inline directly; fetch their details
-    // up front since the user can see them without any interaction.
+    const { sourceDatasetKeys } = this.props;
     if (sourceDatasetKeys && sourceDatasetKeys.length < 4) {
       this.setState({ showInNode: true }, this.getData);
     }
-    // For lots of sources we wait until the popover is opened to fetch.
-    // No eager publisher load either — same reason: avoid N×M lookups
-    // across every visible tree node when "Source" is toggled on.
   };
 
   getData = () => {
     const { sourceDatasetKeys } = this.props;
-    if (!sourceDatasetKeys?.length) return;
+    const { datasetLoader } = this.context || {};
+    if (!sourceDatasetKeys?.length || !datasetLoader) return;
     this.setState({ loading: true });
-    const promises = sourceDatasetKeys.map((s) =>
-      this.datasetLoader.load(s).then((dataset) => dataset)
+    Promise.all(sourceDatasetKeys.map((s) => datasetLoader.load(s))).then(
+      (data) => {
+        this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
+      }
     );
-    Promise.all(promises).then((data) => {
-      this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
-    });
   };
 
   getPublisherData = () => {
     const { publisherDatasetKeys } = this.props;
-    const promises = Object.keys(publisherDatasetKeys).map((s) =>
-      this.publisherLoader
-        .load(s)
-        .then((publisher) => ({ ...publisher, datasets: publisherDatasetKeys[s] }))
-    );
-    Promise.all(promises).then((data) => {
+    const { publisherLoader } = this.context || {};
+    if (!publisherDatasetKeys || !publisherLoader) return;
+    Promise.all(
+      Object.keys(publisherDatasetKeys).map((s) =>
+        publisherLoader
+          .load(s)
+          .then((publisher) => ({
+            ...publisher,
+            datasets: publisherDatasetKeys[s],
+          }))
+      )
+    ).then((data) => {
       this.setState({ publishers: _.sortBy(data, ["alias"]) });
     });
   };
@@ -61,11 +57,6 @@ class TaxonSources extends React.Component {
   render = () => {
     const { data, showInNode, popOverVisible, loading } = this.state;
     const { taxon } = this.props;
-
-    // Small orange link styling for the source list — matches the prod
-    // CoL portal look. Defined inline so the popover content (rendered in
-    // a portal that may sit outside the .catalogue-of-life wrapper) still
-    // picks it up.
     const linkStyle = { color: "orange", fontSize: "11px" };
 
     if (showInNode) {
@@ -92,7 +83,9 @@ class TaxonSources extends React.Component {
           }
           content={
             loading || data.length === 0 ? (
-              <div style={{ minWidth: "200px", textAlign: "center", padding: "8px 0" }}>
+              <div
+                style={{ minWidth: "200px", textAlign: "center", padding: "8px 0" }}
+              >
                 <Spin size="small" />
               </div>
             ) : (
@@ -115,24 +108,23 @@ class TaxonSources extends React.Component {
                       ))}
                   </div>
                 )}
-                {this.state.publishers &&
-                  this.state.publishers.length > 0 && (
-                    <div style={{ marginTop: "8px" }}>
-                      <strong>Publishers:</strong>
-                      {this.state.publishers
-                        .filter((d) => !!d)
-                        .map((d) => (
-                          <Row key={d.id}>
-                            <Col span={8} style={{ textAlign: "right" }}>
-                              {d.alias}:
-                            </Col>
-                            <Col span={12} style={{ paddingLeft: "20px" }}>
-                              {d.datasets.length.toLocaleString("en-GB")} datasets
-                            </Col>
-                          </Row>
-                        ))}
-                    </div>
-                  )}
+                {this.state.publishers && this.state.publishers.length > 0 && (
+                  <div style={{ marginTop: "8px" }}>
+                    <strong>Publishers:</strong>
+                    {this.state.publishers
+                      .filter((d) => !!d)
+                      .map((d) => (
+                        <Row key={d.id}>
+                          <Col span={8} style={{ textAlign: "right" }}>
+                            {d.alias}:
+                          </Col>
+                          <Col span={12} style={{ paddingLeft: "20px" }}>
+                            {d.datasets.length.toLocaleString("en-GB")} datasets
+                          </Col>
+                        </Row>
+                      ))}
+                  </div>
+                )}
               </div>
             )
           }
