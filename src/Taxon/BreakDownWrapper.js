@@ -3,7 +3,7 @@ import React,  { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../config";
 import {Row, Col, Spin} from "antd";
-export const BreakDownWrapper = ({ taxonId, datasetKey, pathToTaxon }) => {
+export const BreakDownWrapper = ({ taxonId, datasetKey, pathToTaxon, level }) => {
   const [taxon, setTaxon] = useState(null);
   const [dataset, setDataset] = useState(null);
   const [rank, setRank] = useState([]);
@@ -44,6 +44,7 @@ export const BreakDownWrapper = ({ taxonId, datasetKey, pathToTaxon }) => {
         rank={rank}
         pathToTaxon={pathToTaxon}
         dataset={dataset}
+        level={level}
       />
   ) : <Row justify="center" style={{ padding: "24px" }}>
     <Col>

@@ -24,6 +24,7 @@ const TaxonBreakdown = ({
   rank = [],
   pathToTaxon,
   dataset,
+  level = 1,
 }) => {
   const [options, setOptions] = useState(null);
   const [error, setError] = useState(null);
@@ -120,7 +121,7 @@ const TaxonBreakdown = ({
           }&countBy=${countBy}&taxonID=${taxon.id}`
         ); */
         const res = await axios(
-          `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown`
+          `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${level}`
         );
         //Api returns both ranks in the root array
         const childRankData = res.data; //.filter((t) => t.rank === childRank);
@@ -134,7 +135,11 @@ const TaxonBreakdown = ({
           root = processChildren(childRankData);
         }
         setLoading(false);
-        initChart(root);
+        if (level === 2) {
+          initThreeRingChart(root);
+        } else {
+          initChart(root);
+        }
       }
     } catch (err) {
       setError(err);
@@ -151,6 +156,159 @@ const TaxonBreakdown = ({
     } else {
       return children.slice(0, 100);
     }
+  };
+
+  const initThreeRingChart = (root) => {
+    const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
+    const baseColors = Highcharts.getOptions().colors;
+    const totalCount = root.reduce((acc, cur) => acc + cur.species, 0);
+    const navigateToTaxon = {
+      click: (e) => {
+        if (e.point._id) {
+          window.location.href = `${pathToTaxon}${e.point._id}`;
+        }
+      },
+    };
+    const rootData = [];
+    const childData = [];
+    const grandchildData = [];
+
+    root.forEach((r, i) => {
+      const color = baseColors[i % baseColors.length];
+      rootData.push({ name: r.name, y: r.species, _id: r.id, color });
+
+      const children = processChildren(r.children || []);
+      const childrenSum = children.reduce((acc, c) => acc + c.species, 0);
+      const childRing =
+        childrenSum < r.species
+          ? [
+              ...children,
+              {
+                name: `Other / Unknown ${_.get(children, "[0].rank", "")}`,
+                species: r.species - childrenSum,
+                children: [],
+              },
+            ]
+          : children;
+
+      childRing.forEach((c, j) => {
+        const childColor = Highcharts.color(color)
+          .brighten(0.2 - j / childRing.length / 5)
+          .get();
+        childData.push({
+          name: c.name,
+          y: c.species,
+          _id: c.id,
+          color: childColor,
+        });
+
+        // Grandchildren — present only when the API returns level=2 nesting.
+        // Until the API change ships, c.children is empty and this ring stays
+        // empty (chart visually degrades to a 2-ring donut).
+        const grandchildren = processChildren(c.children || []);
+        if (!grandchildren.length) return;
+        const grandchildSum = grandchildren.reduce(
+          (acc, gc) => acc + gc.species,
+          0
+        );
+        const grandchildRing =
+          grandchildSum < c.species
+            ? [
+                ...grandchildren,
+                {
+                  name: `Other / Unknown ${_.get(grandchildren, "[0].rank", "")}`,
+                  species: c.species - grandchildSum,
+                },
+              ]
+            : grandchildren;
+        grandchildRing.forEach((gc, k) => {
+          grandchildData.push({
+            name: gc.name,
+            y: gc.species,
+            _id: gc.id,
+            color: Highcharts.color(childColor)
+              .brighten(0.2 - k / grandchildRing.length / 5)
+              .get(),
+          });
+        });
+      });
+    });
+
+    setOptions({
+      chart: { type: "pie" },
+      credits: {
+        text: `${taxon.name.scientificName} in ${dataset.title}${
+          dataset.version ? " (" + dataset.version + ")" : ""
+        }. ${(dataset.doi ? "DOI:" + dataset.doi : null) || dataset.url || ""}`,
+        href: DOI || dataset.url || "",
+      },
+      title: { text: "" },
+      plotOptions: { pie: { shadow: false, center: ["50%", "50%"] } },
+      tooltip: {},
+      series: [
+        {
+          name: "Species",
+          data: rootData,
+          size: "40%",
+          dataLabels: {
+            formatter: function () {
+              return this.y > totalCount / 10 ? this.point.name : null;
+            },
+            distance: -25,
+          },
+          point: { events: navigateToTaxon },
+        },
+        {
+          name: "Species",
+          data: childData,
+          size: "65%",
+          innerSize: "40%",
+          dataLabels: {
+            formatter: function () {
+              return this.y > totalCount / 30 ? this.point.name : null;
+            },
+          },
+          point: { events: navigateToTaxon },
+        },
+        {
+          name: "Species",
+          data: grandchildData,
+          size: "90%",
+          innerSize: "65%",
+          dataLabels: {
+            formatter: function () {
+              return this.y > 1
+                ? "<b>" +
+                    this.point.name +
+                    ":</b> " +
+                    this.y.toLocaleString("en-GB")
+                : null;
+            },
+          },
+          point: { events: navigateToTaxon },
+        },
+      ],
+      responsive: {
+        rules: [
+          {
+            condition: { maxWidth: 400 },
+            chartOptions: {
+              series: [
+                {},
+                { dataLabels: { enabled: false } },
+                { dataLabels: { enabled: false } },
+              ],
+            },
+          },
+        ],
+      },
+      exporting: {
+        chartOptions: {
+          plotOptions: { series: { dataLabels: { enabled: true } } },
+        },
+        fallbackToExportServer: false,
+      },
+    });
   };
 
   const initChart = (root) => {

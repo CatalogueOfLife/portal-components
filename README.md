@@ -320,6 +320,7 @@ A Highcharts pie chart breaking the accepted children of a taxon down by rank, w
 1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
 2. `taxonId` - the taxon to break down. The chart loads the taxon, its rank vocabulary, and the dataset citation itself, so no preloading is needed.
 3. `pathToTaxon` - the local path used when a slice is clicked to navigate to a child taxon page. Same semantics as the Taxon and Tree components.
+4. `level` - (Optional, `1` or `2`, default `1`). Controls how deep the breakdown nests. `1` renders the existing two-ring donut (children + grandchildren of `taxonId`). `2` requests an extra nesting level from the API and renders a three-ring donut down to great-grandchildren — useful for higher-rank summary pages. The value is passed through as the `level` query parameter on the `/dataset/{key}/taxon/{id}/breakdown` API; until the API change ships, level=2 degrades visually to a two-ring chart because the third ring stays empty.
 
 ```html
 <div id="breakdown"></div>
