@@ -5,7 +5,7 @@ import Highcharts from "highcharts";
 import "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
-import { Spin, Row, Col } from "antd";
+import { Spin, Row, Col, Segmented } from "antd";
 import { useNavigateTo } from "../router";
 
 const MAX_SLICES_PER_RING = 100;
@@ -53,20 +53,26 @@ const TaxonBreakdown = ({
   rank = [],
   dataset,
   level = 1,
+  showLevelSwitch = false,
   darkMode,
 }) => {
   const navigateToTaxon = useNavigateTo("taxon");
   const [options, setOptions] = useState(null);
   const [loading, setLoading] = useState(false);
   const [invalid, setInvalid] = useState(false);
-  const [taxonID, setTaxonID] = useState(null);
+  // The chart's effective level is controlled internally when the switch
+  // is enabled, so toggling can refetch + re-render the chart. Otherwise
+  // the prop drives directly.
+  const [activeLevel, setActiveLevel] = useState(level);
   useEffect(() => {
-    if (taxon?.id !== taxonID) {
+    setActiveLevel(level);
+  }, [level]);
+  useEffect(() => {
+    if (taxon?.id && datasetKey) {
       getData();
-      setTaxonID(taxon?.id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [taxon, datasetKey]);
+  }, [taxon, datasetKey, activeLevel]);
 
   const getOverView = async () => {
     const res = await axios(
@@ -114,7 +120,7 @@ const TaxonBreakdown = ({
       }
 
       const res = await axios(
-        `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${level}`
+        `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${activeLevel}`
       );
       const children = res.data || [];
       const totalSpecies = _.get(counts, "species.count", 0);
@@ -165,7 +171,7 @@ const TaxonBreakdown = ({
     // a single-ring pie even if the API returned nested children.
     const outerData = [];
     const hasOuterData =
-      level >= 2 && innerData.some((s) => s._kids && s._kids.length > 0);
+      activeLevel >= 2 && innerData.some((s) => s._kids && s._kids.length > 0);
     if (hasOuterData) {
       innerData.forEach((slice) => {
         const sorted = sortAndClip(slice._kids || []);
@@ -291,16 +297,39 @@ const TaxonBreakdown = ({
     });
   };
 
-  return invalid ? null : loading || !options ? (
-    <Row style={{ padding: "48px" }}>
-      <Col flex="auto"></Col>
+  if (invalid) return null;
+
+  const levelSwitch = showLevelSwitch ? (
+    <Row justify="end" style={{ padding: "8px 0 0" }}>
       <Col>
-        <Spin size="large" />
+        <Segmented
+          size="small"
+          value={activeLevel}
+          onChange={(v) => setActiveLevel(Number(v))}
+          options={[
+            { label: "Level 1", value: 1 },
+            { label: "Level 2", value: 2 },
+          ]}
+        />
       </Col>
-      <Col flex="auto"></Col>
     </Row>
-  ) : (
-    <HighchartsReact highcharts={Highcharts} options={options} />
+  ) : null;
+
+  return (
+    <>
+      {levelSwitch}
+      {loading || !options ? (
+        <Row style={{ padding: "48px" }}>
+          <Col flex="auto"></Col>
+          <Col>
+            <Spin size="large" />
+          </Col>
+          <Col flex="auto"></Col>
+        </Row>
+      ) : (
+        <HighchartsReact highcharts={Highcharts} options={options} />
+      )}
+    </>
   );
 };
 
