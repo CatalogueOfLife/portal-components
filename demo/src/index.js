@@ -30,13 +30,13 @@ const paths = {
 };
 
 const URLTree              = withRouting(Tree,              { kind: "tree",              mode: "hash", paths });
-const URLTaxon             = withRouting(Taxon,             { kind: "taxon",             mode: "hash", paths });
 const URLSearch            = withRouting(Search,            { kind: "search",            mode: "hash", paths });
-const URLSourceDataset     = withRouting(SourceDataset,     { kind: "source",            mode: "hash", paths });
-const URLSourceDatasetList = withRouting(SourceDatasetList, { kind: "sourceList",        mode: "hash", paths });
-const URLBibTex            = withRouting(BibTex,            { kind: "bibtex",            mode: "hash", paths });
+const URLTaxon             = withRouting(Taxon,             { kind: "taxon",             mode: "hash", paths });
 const URLTaxonBreakdown    = withRouting(TaxonBreakdown,    { kind: "taxonBreakdown",    mode: "hash", paths });
 const URLTaxonDistribution = withRouting(TaxonDistribution, { kind: "taxonDistribution", mode: "hash", paths });
+const URLSourceDatasetList = withRouting(SourceDatasetList, { kind: "sourceList",        mode: "hash", paths });
+const URLSourceDataset     = withRouting(SourceDataset,     { kind: "source",            mode: "hash", paths });
+const URLBibTex            = withRouting(BibTex,            { kind: "bibtex",            mode: "hash", paths });
 
 const environments = {
   production: "https://api.checklistbank.org/",
@@ -47,11 +47,11 @@ const routes = [
   { path: "tree", label: "Tree" },
   { path: "search", label: "Search" },
   { path: "taxon/6W3C4", label: "Taxon" },
-  { path: "source/1010", label: "SourceDataset" },
-  { path: "contributors", label: "SourceDatasetList" },
-  { path: "bibtex/1010", label: "BibTex" },
   { path: "breakdown/ST", label: "TaxonBreakdown" },
-  { path: "distribution/6W3C4", label: "TaxonDistribution" },
+  { path: "distribution/HWCX", label: "TaxonDistribution" },
+  { path: "sources", label: "SourceDatasetList" },
+  { path: "source/1010", label: "SourceDataset" },
+  { path: "bibtex/1010", label: "BibTex" },
 ];
 
 const parseRoute = () => {
@@ -203,14 +203,14 @@ class Demo extends Component {
         {route === "search" && (
           <URLSearch key={mountKey} datasetKey={datasetKey} citation="bottom" />
         )}
-        {route.indexOf("source") === 0 && (
+        {route.indexOf("source/") === 0 && (
           <URLSourceDataset
             key={mountKey + "-" + route}
             datasetKey={datasetKey}
             pageTitleTemplate="COL | __dataset__"
           />
         )}
-        {route === "contributors" && (
+        {route === "sources" && (
           <URLSourceDatasetList key={mountKey} datasetKey={datasetKey} />
         )}
         {(route === "bibtex" || route.indexOf("bibtex/") === 0) && (
