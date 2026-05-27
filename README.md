@@ -1,6 +1,6 @@
-# Dynamic components for Taxon browse and search
+# ChecklistBank ReactJS components
 
-This is a small React Component library consisting of
+This is a small ReactJS component library to visualise datasets in [checklistbank.org](https://www.checklistbank.org/dataset)
 
 1. Tree browser
 2. Taxon search page, table view
@@ -276,6 +276,7 @@ ReactDOM.createRoot(domContainer).render(e(Tree));
 </script>
 ```
 
+
 ### ColBrowser.Search
 
 [Search component with table view](https://www.catalogueoflife.org/data/search), takes two properties:
@@ -307,6 +308,7 @@ const domContainer = document.querySelector('#search');
 ReactDOM.createRoot(domContainer).render(e(Search));
 </script>
 ```
+
 
 ### ColBrowser.Taxon
 
@@ -365,107 +367,6 @@ ReactDOM.createRoot(domContainer).render(e(Taxon));
 </script>
 ```
 
-### ColBrowser.SourceDataset
-
-[Source-dataset detail page](https://www.catalogueoflife.org/data/dataset/2073), takes two properties:
-
-1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
-2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxonomic coverage section to point towards).
-3. `pathToSearch` - The local path to the search page of your website (for links in the metrics section to point towards).
-4. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__dataset__` that will be replaced with the dataset title name.
-
-```html
-<div id="dataset"></div> <!- Dom element for the dataset details to attach to -->
-............
-<script >
-'use strict';
-const e = React.createElement;
-class SourceDataset extends React.Component {
-
-    render() {
-
-      return e(
-        ColBrowser.SourceDataset,
-        { datasetKey: 9999,
-          pathToTree: '/mytaxonomy/browse',
-          pathToSearch: '/data/search',
-          pageTitleTemplate: 'COL | __dataset__' }
-      );
-    }
-  }
-
-const domContainer = document.querySelector('#dataset');
-ReactDOM.createRoot(domContainer).render(e(SourceDataset));
-</script>
-```
-
-### ColBrowser.SourceDatasetList
-
-[Sortable table of the source datasets contributing to a project](https://www.catalogueoflife.org/data/contributors), grouped by publisher. Each row shows the source dataset's alias, publisher, number of taxa and last import — and the merged-data badge where applicable. Only useful for *compiled* datasets like the Catalogue of Life that pull from many sources; for standalone datasets the table will be empty.
-
-1. `datasetKey` - the dataset key of the catalogue/project from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
-2. `pathToDataset` - The local path to the source-dataset page of your website (each row's title is a link to `${pathToDataset}${sourceKey}`).
-3. `pathToSearch` - The local path to the search page of your website (used by the per-row metrics links).
-
-```html
-<div id="contributors"></div>
-<script>
-'use strict';
-const e = React.createElement;
-class SourceDatasetList extends React.Component {
-    render() {
-      return e(
-        ColBrowser.SourceDatasetList,
-        { datasetKey: 9999,
-          pathToDataset: '/sourcedatasets/',
-          pathToSearch: '/data/search' }
-      );
-    }
-  }
-
-const domContainer = document.querySelector('#contributors');
-ReactDOM.createRoot(domContainer).render(e(SourceDatasetList));
-</script>
-```
-
-### ColBrowser.BibTex
-
-Shows source dataset details — a small icon that links to the BibTex citation
-for a dataset on [ChecklistBank](https://www.checklistbank.org/). Properties:
-
-1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/). When `sourceDatasetKey` is also given, this is the catalogue/project containing it; otherwise it's the dataset being cited directly.
-2. `sourceDatasetKey` - (Optional) the source dataset to cite within the catalogue identified by `datasetKey`. Use this when the citation is for a source compiled into a larger dataset such as the Catalogue of Life.
-3. `style` - To set margins, height etc. Defaults to `{height: "40px"}`.
-
-
-```html
-<div id="bibtex"></div> <!- Dom element for the BibTex to attach to -->
-............
-<script >
-'use strict';
-const e = React.createElement;
-class BibTex extends React.Component {
-
-    render() {
-
-      // Cite a standalone dataset
-      return e(
-        ColBrowser.BibTex,
-        { datasetKey: 9999 }
-      );
-
-      // Or cite a source within a catalogue:
-      // return e(
-      //   ColBrowser.BibTex,
-      //   { datasetKey: 9837, sourceDatasetKey: 1010 }
-      // );
-    }
-  }
-
-const domContainer = document.querySelector('#bibtex');
-ReactDOM.createRoot(domContainer).render(e(BibTex));
-</script>
-```
 
 ### ColBrowser.TaxonBreakdown
 
@@ -496,6 +397,7 @@ const domContainer = document.querySelector('#breakdown');
 ReactDOM.createRoot(domContainer).render(e(Breakdown));
 </script>
 ```
+
 
 ### ColBrowser.TaxonDistribution
 
@@ -533,6 +435,111 @@ class Distribution extends React.Component {
 
 const domContainer = document.querySelector('#distribution');
 ReactDOM.createRoot(domContainer).render(e(Distribution));
+</script>
+```
+
+
+### ColBrowser.SourceDatasetList
+
+[Sortable table of the source datasets contributing to a project](https://www.catalogueoflife.org/data/contributors), grouped by publisher. Each row shows the source dataset's alias, publisher, number of taxa and last import — and the merged-data badge where applicable. Only useful for *compiled* datasets like the Catalogue of Life that pull from many sources; for standalone datasets the table will be empty.
+
+1. `datasetKey` - the dataset key of the catalogue/project from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
+2. `pathToDataset` - The local path to the source-dataset page of your website (each row's title is a link to `${pathToDataset}${sourceKey}`).
+3. `pathToSearch` - The local path to the search page of your website (used by the per-row metrics links).
+
+```html
+<div id="contributors"></div>
+<script>
+'use strict';
+const e = React.createElement;
+class SourceDatasetList extends React.Component {
+    render() {
+      return e(
+        ColBrowser.SourceDatasetList,
+        { datasetKey: 9999,
+          pathToDataset: '/sourcedatasets/',
+          pathToSearch: '/data/search' }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#contributors');
+ReactDOM.createRoot(domContainer).render(e(SourceDatasetList));
+</script>
+```
+
+
+### ColBrowser.SourceDataset
+
+[Source-dataset detail page](https://www.catalogueoflife.org/data/dataset/2073), takes two properties:
+
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
+2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxonomic coverage section to point towards).
+3. `pathToSearch` - The local path to the search page of your website (for links in the metrics section to point towards).
+4. `pageTitleTemplate` - A template for formatting the page title. It should be a string containg the variable `__dataset__` that will be replaced with the dataset title name.
+
+```html
+<div id="dataset"></div> <!- Dom element for the dataset details to attach to -->
+............
+<script >
+'use strict';
+const e = React.createElement;
+class SourceDataset extends React.Component {
+
+    render() {
+
+      return e(
+        ColBrowser.SourceDataset,
+        { datasetKey: 9999,
+          pathToTree: '/mytaxonomy/browse',
+          pathToSearch: '/data/search',
+          pageTitleTemplate: 'COL | __dataset__' }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#dataset');
+ReactDOM.createRoot(domContainer).render(e(SourceDataset));
+</script>
+```
+
+
+### ColBrowser.BibTex
+
+Shows source dataset details — a small icon that links to the BibTex citation
+for a dataset on [ChecklistBank](https://www.checklistbank.org/). Properties:
+
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/). When `sourceDatasetKey` is also given, this is the catalogue/project containing it; otherwise it's the dataset being cited directly.
+2. `sourceDatasetKey` - (Optional) the source dataset to cite within the catalogue identified by `datasetKey`. Use this when the citation is for a source compiled into a larger dataset such as the Catalogue of Life.
+3. `style` - To set margins, height etc. Defaults to `{height: "40px"}`.
+
+
+```html
+<div id="bibtex"></div> <!- Dom element for the BibTex to attach to -->
+............
+<script >
+'use strict';
+const e = React.createElement;
+class BibTex extends React.Component {
+
+    render() {
+
+      // Cite a standalone dataset
+      return e(
+        ColBrowser.BibTex,
+        { datasetKey: 9999 }
+      );
+
+      // Or cite a source within a catalogue:
+      // return e(
+      //   ColBrowser.BibTex,
+      //   { datasetKey: 9837, sourceDatasetKey: 1010 }
+      // );
+    }
+  }
+
+const domContainer = document.querySelector('#bibtex');
+ReactDOM.createRoot(domContainer).render(e(BibTex));
 </script>
 ```
 
