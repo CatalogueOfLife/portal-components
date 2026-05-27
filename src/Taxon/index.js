@@ -693,12 +693,14 @@ class TaxonPage extends React.Component {
             rank.indexOf(_.get(taxon, "name.rank")) > -1) ||
             (_.get(taxon, "name.rank") === "unranked" &&
               _.get(taxon, "name.scientificName") === "Biota")) && (
-            <TaxonBreakdown
-              taxon={taxon}
-              datasetKey={datasetKey}
-              rank={rank}
-                            dataset={catalogue}
-            />
+            <PresentationItem md={md} label="Breakdown">
+              <TaxonBreakdown
+                taxon={taxon}
+                datasetKey={datasetKey}
+                rank={rank}
+                dataset={catalogue}
+              />
+            </PresentationItem>
           )}
           {includes.length > 1 && rank && taxon && (
             <PresentationItem md={md} label="Statistics">
