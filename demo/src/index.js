@@ -6,7 +6,6 @@ import { Tree, Taxon, Search, SourceDataset, SourceDatasetList, BibTex, TaxonBre
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
 
 import config from "../../src/config";
-import history from "../../src/history";
 
 const environments = {
   production: "https://api.checklistbank.org/",
@@ -24,59 +23,70 @@ const routes = [
   { path: "/data/distribution", label: "TaxonDistribution" },
 ];
 
+// Demo uses hash-based routing so it can be hosted on GitHub Pages without
+// SPA fallback config. Real pathname/query writes from the library (e.g.
+// `?taxonKey=…`) still happen and survive refresh; the demo just doesn't
+// care about them for which-view-to-render.
+const parseRoute = () => {
+  const raw = window.location.hash || "";
+  return raw.startsWith("#") ? raw.slice(1) : raw;
+};
+
 class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pathname: history.location.pathname,
+      route: parseRoute() || "/",
       env: "production",
       datasetKey: "3LR",
       datasetKeyInput: "3LR",
     };
-    this.unlisten = history.listen(({ location }) => {
-      this.setState({ pathname: location.pathname });
-    });
+    this._onHash = () => this.setState({ route: parseRoute() || "/" });
+    window.addEventListener("hashchange", this._onHash);
   }
 
   componentWillUnmount() {
-    this.unlisten();
+    window.removeEventListener("hashchange", this._onHash);
   }
+
+  navigate = (path) => {
+    window.location.hash = path;
+  };
 
   switchEnv = (e) => {
     const env = e.target.value;
     config.dataApi = environments[env];
-    this.remount();
     this.setState({ env });
   };
 
   applyDatasetKey = (e) => {
     e.preventDefault();
-    this.setState({ datasetKey: this.state.datasetKeyInput }, () => this.remount());
+    this.setState({ datasetKey: this.state.datasetKeyInput });
   };
 
-  remount() {
-    const current = history.location.pathname;
-    history.replace("/");
-    setTimeout(() => history.replace(current), 0);
-  }
-
   render() {
-    const { pathname, env, datasetKey } = this.state;
-    const isHome = pathname === "/";
+    const { route, env, datasetKey } = this.state;
+    const isHome = route === "/" || route === "";
+
+    // Bumping the key whenever env / datasetKey changes is enough to force
+    // each library component to fully remount with the new config — replaces
+    // the previous history.replace round-trip.
+    const mountKey = `${env}-${datasetKey}`;
+
+    const linkStyle = (active) => ({
+      marginRight: "16px",
+      fontWeight: active ? "bold" : "normal",
+    });
 
     return (
       <div style={{ background: "#f2f3ed", minHeight: "100%" }}>
         <nav style={{ padding: "16px", borderBottom: "1px solid #ccc", marginBottom: "16px", fontFamily: "system-ui, -apple-system, sans-serif", display: "flex", alignItems: "center" }}>
-          <a href="/" style={{ fontWeight: "bold", marginRight: "24px" }}>col-browser Demo</a>
+          <a href="#/" style={{ fontWeight: "bold", marginRight: "24px" }}>col-browser Demo</a>
           {routes.map((r) => (
             <a
               key={r.path}
-              href={r.path}
-              onClick={(e) => { e.preventDefault(); history.push(r.path); }}
-              style={{
-                marginRight: "16px",
-                fontWeight: pathname.indexOf(r.path) === 0 ? "bold" : "normal",
-              }}
+              href={`#${r.path}`}
+              style={linkStyle(route.indexOf(r.path) === 0)}
             >
               {r.label}
             </a>
@@ -106,9 +116,7 @@ class Demo extends Component {
             <ul>
               {routes.map((r) => (
                 <li key={r.path} style={{ margin: "8px 0" }}>
-                  <a href={r.path} onClick={(e) => { e.preventDefault(); history.push(r.path); }}>
-                    {r.label}
-                  </a>
+                  <a href={`#${r.path}`}>{r.label}</a>
                 </li>
               ))}
             </ul>
@@ -140,62 +148,68 @@ class Demo extends Component {
           </div>
         )}
 
-        {pathname === "/data/tree" && (
+        {route === "/data/tree" && (
           <Tree
+            key={mountKey}
             showTreeOptions={true}
             datasetKey={datasetKey}
-            pathToTaxon="/data/taxon/"
-            pathToDataset="/data/source/"
+            pathToTaxon="#/data/taxon/"
+            pathToDataset="#/data/source/"
             citation="bottom"
             type="project"
           />
         )}
-        {pathname.indexOf("/data/taxon/") === 0 && (
+        {route.indexOf("/data/taxon/") === 0 && (
           <Taxon
+            key={mountKey + "-" + route}
             datasetKey={datasetKey}
-            pathToTree="/data/tree"
-            pathToSearch="/data/search"
-            pathToDataset="/data/source/"
-            pathToTaxon="/data/taxon/"
+            pathToTree="#/data/tree"
+            pathToSearch="#/data/search"
+            pathToDataset="#/data/source/"
+            pathToTaxon="#/data/taxon/"
             pageTitleTemplate="COL | __taxon__"
             identifierLabel="COL identifier"
             showDistributionMap
             gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
           />
         )}
-        {pathname.indexOf("/data/search") === 0 && (
+        {route.indexOf("/data/search") === 0 && (
           <Search
+            key={mountKey}
             datasetKey={datasetKey}
-            pathToTaxon="/data/taxon/"
+            pathToTaxon="#/data/taxon/"
             citation="bottom"
           />
         )}
-        {pathname.indexOf("/data/source") === 0 && (
+        {route.indexOf("/data/source") === 0 && (
           <SourceDataset
+            key={mountKey + "-" + route}
             datasetKey={datasetKey}
-            pathToTree="/data/tree"
-            pathToSearch="/data/search"
+            pathToTree="#/data/tree"
+            pathToSearch="#/data/search"
             pageTitleTemplate="COL | __dataset__"
           />
         )}
-        {pathname.indexOf("/data/contributors") === 0 && (
+        {route.indexOf("/data/contributors") === 0 && (
           <SourceDatasetList
+            key={mountKey}
             datasetKey={datasetKey}
-            pathToDataset="/data/source/"
-            pathToSearch="/data/search"
+            pathToDataset="#/data/source/"
+            pathToSearch="#/data/search"
           />
         )}
-        {pathname.indexOf("/data/bibtex") === 0 && (
-          <BibTex datasetKey={datasetKey} />
+        {route.indexOf("/data/bibtex") === 0 && (
+          <BibTex key={mountKey} datasetKey={datasetKey} />
         )}
-        {pathname.indexOf("/data/breakdown") === 0 && (
-          <TaxonBreakdown datasetKey={datasetKey} pathToTaxon="/data/taxon/" taxonId={"ST"} level={2} />
+        {route.indexOf("/data/breakdown") === 0 && (
+          <TaxonBreakdown key={mountKey} datasetKey={datasetKey} pathToTaxon="#/data/taxon/" taxonId={"ST"} level={2} />
         )}
-        {pathname.indexOf("/data/distribution") === 0 && (
+        {route.indexOf("/data/distribution") === 0 && (
           <TaxonDistribution
+            key={mountKey}
             datasetKey={datasetKey}
             taxonId={"6W3C4"}
-            pathToDataset="/data/source/"
+            pathToDataset="#/data/source/"
             gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
           />
         )}

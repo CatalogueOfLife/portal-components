@@ -13,6 +13,10 @@ This is a small React Component library consisting of
 
 ## Examples
 
+### Live demo
+
+A hosted demo of the latest released version is at <https://catalogueoflife.github.io/portal-components/>. It exercises every top-level component against the production ChecklistBank API. The page is rebuilt and redeployed by `.github/workflows/pages.yml` on every `v*` tag push.
+
 ### Catalogue of Life
 All components are in use on the [main Catalogue of Life portal](https://www.catalogueoflife.org).
 

@@ -12,6 +12,7 @@
     "dev": "vite",
     "build": "vite build",
     "build:umd": "vite build --config vite.config.umd.js && node scripts/minify.js",
+    "build:demo": "vite build --config vite.config.demo.js",
     "build:all": "npm run build && npm run build:umd",
     "prepublishOnly": "npm run build:all",
     "test": "vitest run",
