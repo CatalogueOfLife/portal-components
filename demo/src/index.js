@@ -20,10 +20,10 @@ import config from "../../src/config";
 // hash mode. Each top-level component gets its own wrapper that knows the
 // route prefix to mount under.
 const paths = {
-  taxon: "/data/taxon/",
-  tree: "/data/tree",
-  search: "/data/search",
-  source: "/data/source/",
+  taxon: "taxon/",
+  tree: "tree",
+  search: "search",
+  source: "source/",
 };
 
 const URLTree           = withRouting(Tree,             { kind: "tree",        mode: "hash", paths });
@@ -41,14 +41,14 @@ const environments = {
 };
 
 const routes = [
-  { path: "/data/tree", label: "Tree" },
-  { path: "/data/search", label: "Search" },
-  { path: "/data/taxon/6W3C4", label: "Taxon" },
-  { path: "/data/source/1010", label: "SourceDataset" },
-  { path: "/data/contributors", label: "SourceDatasetList" },
-  { path: "/data/bibtex", label: "BibTex" },
-  { path: "/data/breakdown", label: "TaxonBreakdown" },
-  { path: "/data/distribution", label: "TaxonDistribution" },
+  { path: "tree", label: "Tree" },
+  { path: "search", label: "Search" },
+  { path: "taxon/6W3C4", label: "Taxon" },
+  { path: "source/1010", label: "SourceDataset" },
+  { path: "contributors", label: "SourceDatasetList" },
+  { path: "bibtex", label: "BibTex" },
+  { path: "breakdown", label: "TaxonBreakdown" },
+  { path: "distribution", label: "TaxonDistribution" },
 ];
 
 const parseRoute = () => {
@@ -178,7 +178,7 @@ class Demo extends Component {
           </div>
         )}
 
-        {route === "/data/tree" && (
+        {route === "tree" && (
           <URLTree
             key={mountKey}
             showTreeOptions={true}
@@ -187,7 +187,7 @@ class Demo extends Component {
             type="project"
           />
         )}
-        {route.indexOf("/data/taxon/") === 0 && (
+        {route.indexOf("taxon/") === 0 && (
           <URLTaxon
             key={mountKey + "-" + route}
             datasetKey={datasetKey}
@@ -197,26 +197,26 @@ class Demo extends Component {
             gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
           />
         )}
-        {route.indexOf("/data/search") === 0 && (
+        {route === "search" && (
           <URLSearch key={mountKey} datasetKey={datasetKey} citation="bottom" />
         )}
-        {route.indexOf("/data/source") === 0 && (
+        {route.indexOf("source") === 0 && (
           <URLSourceDataset
             key={mountKey + "-" + route}
             datasetKey={datasetKey}
             pageTitleTemplate="COL | __dataset__"
           />
         )}
-        {route.indexOf("/data/contributors") === 0 && (
+        {route === "contributors" && (
           <URLSourceDatasetList key={mountKey} datasetKey={datasetKey} />
         )}
-        {route.indexOf("/data/bibtex") === 0 && (
+        {route === "bibtex" && (
           <URLBibTex key={mountKey} datasetKey={datasetKey} />
         )}
-        {route.indexOf("/data/breakdown") === 0 && (
+        {route === "breakdown" && (
           <URLTaxonBreakdown key={mountKey} datasetKey={datasetKey} taxonId="ST" level={2} />
         )}
-        {route.indexOf("/data/distribution") === 0 && (
+        {route === "distribution" && (
           <URLTaxonDistribution
             key={mountKey}
             datasetKey={datasetKey}
