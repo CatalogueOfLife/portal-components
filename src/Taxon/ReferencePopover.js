@@ -58,7 +58,7 @@ class ReferencePopover extends React.Component {
   render = () => {
     const { referenceId, referenceIndexMap, trigger } = this.props;
     const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
-    let icon = referenceIndexMap && _.get(referenceIndexMap, refIds[0]) ? refIds.map(r => <a className="col-reference-link" href={`#col-refererence-${r}`}>{`[${referenceIndexMap[r]}]`}</a>) : <BookOutlined style={{ cursor: "pointer" }} />;
+    let icon = referenceIndexMap && _.get(referenceIndexMap, refIds[0]) ? refIds.map(r => <a key={r} className="col-reference-link" href={`#col-refererence-${r}`}>{`[${referenceIndexMap[r]}]`}</a>) : <BookOutlined style={{ cursor: "pointer" }} />;
 
     return referenceId ? (
       <div id={`reference_${referenceId}`} key={`reference_${referenceId}`} style={this.props.style}>
