@@ -110,6 +110,39 @@ jsDelivr resolves semver-style git tags, so you can pick the granularity that su
 
 After a versioned release, the `@latest`, `@1`, or `@2` URLs cache for up to ~12 h on the jsDelivr edge — purge them via <https://www.jsdelivr.com/tools/purge> if you need to roll out faster.
 
+### Theming (optional)
+
+Every top-level component accepts two optional theming props. When neither is set, the library's defaults are used and no Ant Design `ConfigProvider` is mounted.
+
+- `theme` — full antd `ThemeConfig` forwarded straight to `ConfigProvider.theme`. Use it to override design tokens, component-level styles, or the algorithm.
+- `darkMode` — convenience boolean. When `true` and `theme.algorithm` is not set, `theme.darkAlgorithm` is applied. The `TaxonBreakdown` chart also uses this flag to colour the outer-ring gap arcs; otherwise it falls back to `prefers-color-scheme`.
+
+```jsx
+// ES module
+import { Search } from 'col-browser';
+
+<Search
+  datasetKey="3LR"
+  pathToTaxon="/taxon/"
+  darkMode
+  theme={{ token: { colorPrimary: '#d97706', borderRadius: 6 } }}
+/>
+```
+
+```html
+<!-- UMD -->
+<script>
+  ReactDOM.createRoot(document.querySelector('#search')).render(
+    React.createElement(ColBrowser.Search, {
+      datasetKey: '3LR',
+      pathToTaxon: '/taxon/',
+      darkMode: true,
+      theme: { token: { colorPrimary: '#d97706' } },
+    })
+  );
+</script>
+```
+
 
 This will create a global `ColBrowser` library variable that has four indvidual components:
 

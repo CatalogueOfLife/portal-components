@@ -53,6 +53,7 @@ const TaxonBreakdown = ({
   pathToTaxon,
   dataset,
   level = 1,
+  darkMode,
 }) => {
   const [options, setOptions] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -129,10 +130,13 @@ const TaxonBreakdown = ({
     const baseColors = Highcharts.getOptions().colors;
     // Colour used for outer-ring "gap" slices: match the page background so
     // the wedge reads as empty space rather than overlapping the inner pie.
+    // Follows the explicit `darkMode` prop if given, otherwise prefers-color-scheme.
     const prefersDark =
-      typeof window !== "undefined" &&
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
+      typeof darkMode === "boolean"
+        ? darkMode
+        : typeof window !== "undefined" &&
+          typeof window.matchMedia === "function" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
     const gapColor = prefersDark ? "#1f1f1f" : "#ffffff";
     const navigateToTaxon = {
       click: (e) => {
