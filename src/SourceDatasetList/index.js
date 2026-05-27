@@ -6,7 +6,7 @@ import btoa from "btoa";
 import _ from "lodash";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
-import MetricsPresentation from "../Dataset/MetricsPresentation";
+import MetricsPresentation from "../SourceDataset/MetricsPresentation";
 import PresentationItem from "../components/PresentationItem";
 import MergedDataBadge from "../components/MergedDataBadge";
 const getLivingSpecies = (record, rank) =>
@@ -195,7 +195,7 @@ const getColumns = (
 
   ].filter((clm) => (!hasPublishers ? clm.key !== "datasets" : true));
 
-class DatasetSearchPage extends React.Component {
+class SourceDatasetListPage extends React.Component {
   constructor(props) {
     super(props);
     if (this.props.auth) {
@@ -479,4 +479,4 @@ class DatasetSearchPage extends React.Component {
   }
 }
 
-export default DatasetSearchPage;
+export default SourceDatasetListPage;

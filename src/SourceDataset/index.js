@@ -23,7 +23,7 @@ const IDENTIFIER_TYPES = {
   plazi: "http://publication.plazi.org/id/",
   doi: "https://doi.org/",
 };
-class DatasetPage extends React.Component {
+class SourceDatasetPage extends React.Component {
   constructor(props) {
     super(props);
     if (this.props.auth) {
@@ -413,4 +413,4 @@ class DatasetPage extends React.Component {
   }
 }
 
-export default DatasetPage;
+export default SourceDatasetPage;

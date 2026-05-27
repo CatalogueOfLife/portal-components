@@ -2,7 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { act } from 'react'
 import axios from 'axios'
-import { Tree, Search, Taxon, Dataset, DatasetSearch, BibTex } from 'src/'
+import { Tree, Search, Taxon, SourceDataset, SourceDatasetList, BibTex } from 'src/'
 import history from 'src/history'
 
 const CATALOGUE_KEY = '310463'
@@ -122,9 +122,9 @@ describe('Taxon', () => {
   })
 })
 
-// ─── Dataset ───────────────────────────────────────────────────────────────
+// ─── SourceDataset ─────────────────────────────────────────────────────────
 
-describe('Dataset', () => {
+describe('SourceDataset', () => {
   let node
   let sourceDatasetKey = null
 
@@ -144,7 +144,7 @@ describe('Dataset', () => {
 
   it('renders the dataset page container', () => {
     node = mountIn(
-      <Dataset
+      <SourceDataset
         datasetKey={CATALOGUE_KEY}
         pathToTree="/data/tree"
         pathToSearch="/data/search"
@@ -155,7 +155,7 @@ describe('Dataset', () => {
 
   it('loads dataset info from the production API', () => {
     node = mountIn(
-      <Dataset
+      <SourceDataset
         datasetKey={CATALOGUE_KEY}
         pathToTree="/data/tree"
         pathToSearch="/data/search"
@@ -167,15 +167,15 @@ describe('Dataset', () => {
   })
 })
 
-// ─── DatasetSearch ─────────────────────────────────────────────────────────
+// ─── SourceDatasetList ─────────────────────────────────────────────────────────
 
-describe('DatasetSearch', () => {
+describe('SourceDatasetList', () => {
   let node
   afterEach(() => { unmount(node) })
 
   it('renders the source datasets container', () => {
     node = mountIn(
-      <DatasetSearch
+      <SourceDatasetList
         datasetKey={CATALOGUE_KEY}
         pathToDataset={SOURCE_PATH}
         pathToSearch="/data/search"
@@ -186,7 +186,7 @@ describe('DatasetSearch', () => {
 
   it('loads source datasets from the production API', () => {
     node = mountIn(
-      <DatasetSearch
+      <SourceDatasetList
         datasetKey={CATALOGUE_KEY}
         pathToDataset={SOURCE_PATH}
         pathToSearch="/data/search"

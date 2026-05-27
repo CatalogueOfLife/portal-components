@@ -2,7 +2,7 @@ import { Component } from "react";
 import { createRoot } from "react-dom/client";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex, TaxonBreakdown } from "../../src";
+import { Tree, Taxon, Search, SourceDataset, SourceDatasetList, BibTex, TaxonBreakdown } from "../../src";
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
 
 import config from "../../src/config";
@@ -17,8 +17,8 @@ const routes = [
   { path: "/data/tree", label: "Tree" },
   { path: "/data/search", label: "Search" },
   { path: "/data/taxon/6W3C4", label: "Taxon" },
-  { path: "/data/source/1010", label: "Dataset" },
-  { path: "/data/contributors", label: "DatasetSearch" },
+  { path: "/data/source/1010", label: "SourceDataset" },
+  { path: "/data/contributors", label: "SourceDatasetList" },
   { path: "/data/bibtex", label: "BibTex" },
   { path: "/data/breakdown", label: "TaxonBreakdown" },
 ];
@@ -170,7 +170,7 @@ class Demo extends Component {
           />
         )}
         {pathname.indexOf("/data/source") === 0 && (
-          <Dataset
+          <SourceDataset
             datasetKey={datasetKey}
             pathToTree="/data/tree"
             pathToSearch="/data/search"
@@ -178,7 +178,7 @@ class Demo extends Component {
           />
         )}
         {pathname.indexOf("/data/contributors") === 0 && (
-          <DatasetSearch
+          <SourceDatasetList
             datasetKey={datasetKey}
             pathToDataset="/data/source/"
             pathToSearch="/data/search"
@@ -188,7 +188,7 @@ class Demo extends Component {
           <BibTex datasetKey={datasetKey} />
         )}
         {pathname.indexOf("/data/breakdown") === 0 && (
-          <TaxonBreakdown datasetKey={datasetKey} pathToTaxon="/data/taxon/" taxonId={"ST"} />
+          <TaxonBreakdown datasetKey={datasetKey} pathToTaxon="/data/taxon/" taxonId={"ST"} level={2} />
         )}
       </div>
     );

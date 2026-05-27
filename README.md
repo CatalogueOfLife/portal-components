@@ -5,7 +5,7 @@ This is a small React Component library consisting of
 1. Tree browser
 2. Taxon search page, table view
 3. Taxon page
-4. Dataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
+4. SourceDataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
 5. BibTex citation - simple icon that downloads a BibTex citation for a dataset
 6. TaxonBreakdown - pie chart of a taxon's children by rank with drill-down
 
@@ -61,7 +61,36 @@ Ant Design 5+ injects component styles via cssinjs at runtime when components mo
 
 Net wire size for a typical embedder (`col-browser.min.js` + `main.css`) is roughly unchanged: ~532 KB → ~577 KB gzipped (+8 %).
 
-### 4. If you call `history.listen` directly
+### 4. `Dataset` and `DatasetSearch` were renamed
+
+The two source-dataset components were renamed to make their purpose explicit (a "dataset" in COL terms is a source dataset contributing to a project, not a generic CRUD-style dataset):
+
+| Old export | New export |
+|---|---|
+| `Dataset` | `SourceDataset` |
+| `DatasetSearch` | `SourceDatasetList` |
+
+Update imports:
+
+```js
+// old
+import { Dataset, DatasetSearch } from 'col-browser';
+// new
+import { SourceDataset, SourceDatasetList } from 'col-browser';
+```
+
+```html
+<!-- old -->
+ColBrowser.Dataset
+ColBrowser.DatasetSearch
+<!-- new -->
+ColBrowser.SourceDataset
+ColBrowser.SourceDatasetList
+```
+
+Props and behaviour are unchanged.
+
+### 5. If you call `history.listen` directly
 
 Internal to the library this doesn't matter, but if your host page subscribes to the shared `history` singleton, the v5 listener signature changed from `(location, action)` to `({ location, action })`:
 
@@ -274,9 +303,9 @@ ReactDOM.createRoot(domContainer).render(e(Taxon));
 </script>
 ```
 
-### ColBrowser.Dataset
+### ColBrowser.SourceDataset
 
-[Dataset detail page](https://www.catalogueoflife.org/data/dataset/2073), takes two properties:
+[Source-dataset detail page](https://www.catalogueoflife.org/data/dataset/2073), takes two properties:
 
 1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/)
 2. `pathToTree` - The local path to the tree browser page of your website (for links in the taxonomic coverage section to point towards).
@@ -289,22 +318,22 @@ ReactDOM.createRoot(domContainer).render(e(Taxon));
 <script >
 'use strict';
 const e = React.createElement;
-class Dataset extends React.Component {
+class SourceDataset extends React.Component {
 
     render() {
 
       return e(
-        ColBrowser.Taxon,
+        ColBrowser.SourceDataset,
         { datasetKey: 9999,
-          pathToTree: '/mytaxonomy/browse'
-          pathToSearch: '/data/search'
+          pathToTree: '/mytaxonomy/browse',
+          pathToSearch: '/data/search',
           pageTitleTemplate: 'COL | __dataset__' }
       );
     }
   }
 
 const domContainer = document.querySelector('#dataset');
-ReactDOM.createRoot(domContainer).render(e(Dataset));
+ReactDOM.createRoot(domContainer).render(e(SourceDataset));
 </script>
 ```
 
