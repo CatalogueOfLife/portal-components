@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 import { LinkTo } from "../router";
-import { getDataset } from "../api/dataset";
+import { getDatasetSimple } from "../api/dataset";
 import { getTaxGroup } from "../api/enumeration";
 import {
   Table,
@@ -146,10 +146,16 @@ class NameSearchPage extends React.Component {
 
   componentDidMount = async () => {
     this.parseParamsAndGetData();
-    const { datasetKey, citation } = this.props;
+    const { datasetKey } = this.props;
+    // Single dataset lookup. Stores both the descriptor (used by the
+    // citation footer when enabled) and the lowercase origin, which gates
+    // the source-dataset and Content filter UI.
     try {
-      const { data: dataset } = await getDataset(datasetKey);
-      this.setState({ dataset });
+      const { data: dataset } = await getDatasetSimple(datasetKey);
+      this.setState({
+        dataset,
+        datasetOrigin: (dataset?.origin || "").toLowerCase(),
+      });
     } catch (err) {}
     try {
       const taxGroups = await getTaxGroup();
@@ -421,9 +427,8 @@ class NameSearchPage extends React.Component {
               autoFocus={false}
             />
 
-            {dataset &&
-              (
-                dataset.origin === "xrelease") && (
+            {(this.state.datasetOrigin === "xrelease" ||
+              this.state.datasetOrigin === "release") && (
                 <div style={{ marginTop: "8px", marginBottom: "8px" }}>
                   <DatasetAutocomplete
                     contributesTo={Number(datasetKey)}
@@ -462,23 +467,26 @@ class NameSearchPage extends React.Component {
                
               </Form>
               <Form layout="inline">
-                <FormItem label="Content">
-                  <RadioGroup
-                    style={{ marginLeft: "8px" }}
-                    size="small"
-                    onChange={(evt) => {
-                      this.updateSearch({ sectorMode: evt.target.value.split(",")
-                        .filter((v) => v !== "")});
-                    }}
-                    value={_.isArray(params?.sectorMode) ? params?.sectorMode?.join(",") : params?.sectorMode || ""}
-                    optionType="button"
-                    options={[
-                      { value: "", label: "All" },
-                      { value: "attach,union", label: "Base" },
-                      { value: "merge", label: "Extended" },
-                    ]}
-                  ></RadioGroup>
-                </FormItem>
+                {(this.state.datasetOrigin === "xrelease" ||
+                  this.state.datasetOrigin === "project") && (
+                  <FormItem label="Content">
+                    <RadioGroup
+                      style={{ marginLeft: "8px" }}
+                      size="small"
+                      onChange={(evt) => {
+                        this.updateSearch({ sectorMode: evt.target.value.split(",")
+                          .filter((v) => v !== "")});
+                      }}
+                      value={_.isArray(params?.sectorMode) ? params?.sectorMode?.join(",") : params?.sectorMode || ""}
+                      optionType="button"
+                      options={[
+                        { value: "", label: "All" },
+                        { value: "attach,union", label: "Base" },
+                        { value: "merge", label: "Extended" },
+                      ]}
+                    ></RadioGroup>
+                  </FormItem>
+                )}
                 <FormItem>
                   <Select
                     mode="multiple"

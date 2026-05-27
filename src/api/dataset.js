@@ -31,3 +31,10 @@ export const getCatalogues = () => {
 
 export const getDataset = (datasetKey) =>
   axios(`${config.dataApi}dataset/${datasetKey}`);
+
+// Lightweight dataset descriptor — includes `origin`, `title`, `version`,
+// `key`, etc. Used by Search to gate filter UI on the dataset's origin.
+// TODO: switch to `/dataset/{key}/simple` once that endpoint deploys.
+// The full /dataset/{key} response is a superset, so it works today.
+export const getDatasetSimple = (datasetKey) =>
+  axios(`${config.dataApi}dataset/${datasetKey}`);
