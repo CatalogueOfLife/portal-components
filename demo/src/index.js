@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import { Tree, Taxon, Search, Dataset, DatasetSearch, BibTex, TaxonBreakdown } from "../../src";
@@ -32,7 +32,7 @@ class Demo extends Component {
       datasetKey: "3LR",
       datasetKeyInput: "3LR",
     };
-    this.unlisten = history.listen((location) => {
+    this.unlisten = history.listen(({ location }) => {
       this.setState({ pathname: location.pathname });
     });
   }
@@ -195,4 +195,4 @@ class Demo extends Component {
   }
 }
 
-render(<Demo />, document.querySelector("#demo"));
+createRoot(document.querySelector("#demo")).render(<Demo />);
