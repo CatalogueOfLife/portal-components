@@ -4,6 +4,15 @@
   "description": "Catalogue of Life browse and search React components",
   "main": "umd/col-browser.js",
   "module": "es/index.js",
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./umd/col-browser.js"
+    },
+    "./url": {
+      "import": "./es/url.js"
+    }
+  },
   "files": [
     "es",
     "umd"

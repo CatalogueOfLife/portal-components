@@ -34,9 +34,11 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.js'),
+      entry: {
+        index: resolve(__dirname, 'src/index.js'),
+        url: resolve(__dirname, 'src/url/index.js'),
+      },
       formats: ['es'],
-      fileName: () => 'index.js',
     },
     rollupOptions: {
       external: [
@@ -47,6 +49,10 @@ export default defineConfig({
         /^dompurify/, /^linkify/, /^dataloader/, /^btoa/,
         /^maplibre-gl/,
       ],
+      output: {
+        entryFileNames: '[name].js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
+      },
     },
     outDir: 'es',
     cssCodeSplit: false,

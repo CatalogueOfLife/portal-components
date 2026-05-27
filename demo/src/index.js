@@ -2,10 +2,38 @@ import { Component } from "react";
 import { createRoot } from "react-dom/client";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { Tree, Taxon, Search, SourceDataset, SourceDatasetList, BibTex, TaxonBreakdown, TaxonDistribution } from "../../src";
+import {
+  Tree,
+  Taxon,
+  Search,
+  SourceDataset,
+  SourceDatasetList,
+  BibTex,
+  TaxonBreakdown,
+  TaxonDistribution,
+} from "../../src";
+import { withRouting } from "../../src/url";
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
-
 import config from "../../src/config";
+
+// All hosted on GitHub Pages with hash routing, so the URL adapter speaks
+// hash mode. Each top-level component gets its own wrapper that knows the
+// route prefix to mount under.
+const paths = {
+  taxon: "/data/taxon/",
+  tree: "/data/tree",
+  search: "/data/search",
+  source: "/data/source/",
+};
+
+const URLTree           = withRouting(Tree,             { kind: "tree",        mode: "hash", paths });
+const URLTaxon          = withRouting(Taxon,            { kind: "taxon",       mode: "hash", paths });
+const URLSearch         = withRouting(Search,           { kind: "search",      mode: "hash", paths });
+const URLSourceDataset  = withRouting(SourceDataset,    { kind: "source",      mode: "hash", paths });
+const URLSourceDatasetList = withRouting(SourceDatasetList, { kind: "sourceList", mode: "hash", paths });
+const URLBibTex            = withRouting(BibTex,            { kind: "sourceList", mode: "hash", paths });
+const URLTaxonBreakdown    = withRouting(TaxonBreakdown,    { kind: "sourceList", mode: "hash", paths });
+const URLTaxonDistribution = withRouting(TaxonDistribution, { kind: "sourceList", mode: "hash", paths });
 
 const environments = {
   production: "https://api.checklistbank.org/",
@@ -23,13 +51,9 @@ const routes = [
   { path: "/data/distribution", label: "TaxonDistribution" },
 ];
 
-// Demo uses hash-based routing so it can be hosted on GitHub Pages without
-// SPA fallback config. Real pathname/query writes from the library (e.g.
-// `?taxonKey=…`) still happen and survive refresh; the demo just doesn't
-// care about them for which-view-to-render.
 const parseRoute = () => {
   const raw = window.location.hash || "";
-  return raw.startsWith("#") ? raw.slice(1) : raw;
+  return raw.startsWith("#") ? raw.slice(1).split("?")[0] : raw.split("?")[0];
 };
 
 class Demo extends Component {
@@ -49,10 +73,6 @@ class Demo extends Component {
     window.removeEventListener("hashchange", this._onHash);
   }
 
-  navigate = (path) => {
-    window.location.hash = path;
-  };
-
   switchEnv = (e) => {
     const env = e.target.value;
     config.dataApi = environments[env];
@@ -68,13 +88,9 @@ class Demo extends Component {
     const { route, env, datasetKey } = this.state;
     const isHome = route === "/" || route === "";
 
-    // Bumping the key whenever env / datasetKey changes is enough to force
-    // each library component to fully remount with the new config — replaces
-    // the previous history.replace round-trip.
     const mountKey = `${env}-${datasetKey}`;
 
     const sans = "'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
-
     const navLinkStyle = (active) => ({
       padding: "6px 12px",
       borderRadius: "8px",
@@ -86,7 +102,6 @@ class Demo extends Component {
       textDecoration: "none",
       transition: "background 0.15s, color 0.15s",
     });
-
     const inputStyle = {
       padding: "6px 10px",
       border: "1px solid #d4d4d8",
@@ -100,37 +115,12 @@ class Demo extends Component {
     return (
       <div style={{ background: "#fff", minHeight: "100%", fontFamily: sans, color: "#222" }}>
         <style>{`
-          a.col-demo-navlink:hover {
-            background: #f3f4f6;
-            color: #111;
-          }
-          a.col-demo-navlink.is-active:hover {
-            background: #111;
-            color: #fff;
-          }
+          a.col-demo-navlink:hover { background: #f3f4f6; color: #111; }
+          a.col-demo-navlink.is-active:hover { background: #111; color: #fff; }
           .col-demo-brand:hover { color: #111; }
         `}</style>
-        <nav style={{
-          padding: "12px 20px",
-          borderBottom: "1px solid #e5e7eb",
-          marginBottom: "16px",
-          fontFamily: sans,
-          display: "flex",
-          alignItems: "center",
-          gap: "4px",
-        }}>
-          <a
-            href="#/"
-            className="col-demo-brand"
-            style={{
-              fontWeight: 700,
-              fontSize: "14px",
-              letterSpacing: "-0.01em",
-              marginRight: "24px",
-              color: "#111",
-              textDecoration: "none",
-            }}
-          >
+        <nav style={{ padding: "12px 20px", borderBottom: "1px solid #e5e7eb", marginBottom: "16px", fontFamily: sans, display: "flex", alignItems: "center", gap: "4px" }}>
+          <a href="#/" className="col-demo-brand" style={{ fontWeight: 700, fontSize: "14px", letterSpacing: "-0.01em", marginRight: "24px", color: "#111", textDecoration: "none" }}>
             col-browser
           </a>
           {routes.map((r) => {
@@ -146,10 +136,7 @@ class Demo extends Component {
               </a>
             );
           })}
-          <form
-            onSubmit={this.applyDatasetKey}
-            style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px" }}
-          >
+          <form onSubmit={this.applyDatasetKey} style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px" }}>
             <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#666", letterSpacing: "0.04em", textTransform: "uppercase" }}>
               Dataset
               <input
@@ -158,11 +145,7 @@ class Demo extends Component {
                 style={{ ...inputStyle, width: "80px", textTransform: "none", letterSpacing: 0, color: "#222" }}
               />
             </label>
-            <select
-              value={env}
-              onChange={this.switchEnv}
-              style={inputStyle}
-            >
+            <select value={env} onChange={this.switchEnv} style={inputStyle}>
               <option value="production">Production</option>
               <option value="development">Development</option>
             </select>
@@ -185,20 +168,8 @@ class Demo extends Component {
                 ...ESTABLISHMENT_MEANS,
                 { key: "__missing__", label: "(no establishmentMeans — not shown in map legend)", color: MISSING_COLOR },
               ].map((m) => (
-                <div
-                  key={m.key}
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                >
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: 16,
-                      height: 16,
-                      background: m.color,
-                      border: "1px solid rgba(0,0,0,0.15)",
-                      borderRadius: 2,
-                    }}
-                  />
+                <div key={m.key} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ display: "inline-block", width: 16, height: 16, background: m.color, border: "1px solid rgba(0,0,0,0.15)", borderRadius: 2 }} />
                   <span style={{ fontFamily: "monospace" }}>{m.color}</span>
                   <span>{m.label}</span>
                 </div>
@@ -208,24 +179,18 @@ class Demo extends Component {
         )}
 
         {route === "/data/tree" && (
-          <Tree
+          <URLTree
             key={mountKey}
             showTreeOptions={true}
             datasetKey={datasetKey}
-            pathToTaxon="#/data/taxon/"
-            pathToDataset="#/data/source/"
             citation="bottom"
             type="project"
           />
         )}
         {route.indexOf("/data/taxon/") === 0 && (
-          <Taxon
+          <URLTaxon
             key={mountKey + "-" + route}
             datasetKey={datasetKey}
-            pathToTree="#/data/tree"
-            pathToSearch="#/data/search"
-            pathToDataset="#/data/source/"
-            pathToTaxon="#/data/taxon/"
             pageTitleTemplate="COL | __taxon__"
             identifierLabel="COL identifier"
             showDistributionMap
@@ -233,42 +198,29 @@ class Demo extends Component {
           />
         )}
         {route.indexOf("/data/search") === 0 && (
-          <Search
-            key={mountKey}
-            datasetKey={datasetKey}
-            pathToTaxon="#/data/taxon/"
-            citation="bottom"
-          />
+          <URLSearch key={mountKey} datasetKey={datasetKey} citation="bottom" />
         )}
         {route.indexOf("/data/source") === 0 && (
-          <SourceDataset
+          <URLSourceDataset
             key={mountKey + "-" + route}
             datasetKey={datasetKey}
-            pathToTree="#/data/tree"
-            pathToSearch="#/data/search"
             pageTitleTemplate="COL | __dataset__"
           />
         )}
         {route.indexOf("/data/contributors") === 0 && (
-          <SourceDatasetList
-            key={mountKey}
-            datasetKey={datasetKey}
-            pathToDataset="#/data/source/"
-            pathToSearch="#/data/search"
-          />
+          <URLSourceDatasetList key={mountKey} datasetKey={datasetKey} />
         )}
         {route.indexOf("/data/bibtex") === 0 && (
-          <BibTex key={mountKey} datasetKey={datasetKey} />
+          <URLBibTex key={mountKey} datasetKey={datasetKey} />
         )}
         {route.indexOf("/data/breakdown") === 0 && (
-          <TaxonBreakdown key={mountKey} datasetKey={datasetKey} pathToTaxon="#/data/taxon/" taxonId={"ST"} level={2} />
+          <URLTaxonBreakdown key={mountKey} datasetKey={datasetKey} taxonId="ST" level={2} />
         )}
         {route.indexOf("/data/distribution") === 0 && (
-          <TaxonDistribution
+          <URLTaxonDistribution
             key={mountKey}
             datasetKey={datasetKey}
-            taxonId={"6W3C4"}
-            pathToDataset="#/data/source/"
+            taxonId="6W3C4"
             gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
           />
         )}

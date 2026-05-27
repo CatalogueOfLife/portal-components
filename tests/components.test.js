@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import { act } from 'react'
 import axios from 'axios'
 import { Tree, Search, Taxon, SourceDataset, SourceDatasetList, BibTex } from 'src/'
-import history from 'src/history'
 
 const CATALOGUE_KEY = '310463'
 const TAXON_PATH = '/data/taxon/'
@@ -87,10 +86,6 @@ describe('Search', () => {
 
 describe('Taxon', () => {
   let node
-
-  beforeEach(() => {
-    history.push(`${TAXON_PATH}${ROOT_TAXON_KEY}`)
-  })
   afterEach(() => { unmount(node) })
 
   it('renders the taxon page container', () => {
