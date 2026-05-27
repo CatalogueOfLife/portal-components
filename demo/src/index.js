@@ -214,7 +214,22 @@ class Demo extends Component {
           <URLBibTex key={mountKey} datasetKey={datasetKey} />
         )}
         {route === "breakdown" && (
-          <URLTaxonBreakdown key={mountKey} datasetKey={datasetKey} taxonId="ST" level={2} />
+          <div>
+            <h3 style={{ padding: "0 16px", marginTop: 0 }}>level=1</h3>
+            <URLTaxonBreakdown
+              key={mountKey + "-l1"}
+              datasetKey={datasetKey}
+              taxonId="ST"
+              level={1}
+            />
+            <h3 style={{ padding: "0 16px", marginTop: "32px" }}>level=2</h3>
+            <URLTaxonBreakdown
+              key={mountKey + "-l2"}
+              datasetKey={datasetKey}
+              taxonId="ST"
+              level={2}
+            />
+          </div>
         )}
         {route === "distribution" && (
           <URLTaxonDistribution
