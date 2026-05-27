@@ -8,6 +8,7 @@ This is a small React Component library consisting of
 4. SourceDataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
 5. BibTex citation - simple icon that downloads a BibTex citation for a dataset
 6. TaxonBreakdown - pie chart of a taxon's children by rank with drill-down
+7. TaxonDistribution - the Taxon page's distribution map (MapLibre + optional GBIF overlay) as a standalone component
 
 ## Examples
 
@@ -403,6 +404,45 @@ class Breakdown extends React.Component {
 
 const domContainer = document.querySelector('#breakdown');
 ReactDOM.createRoot(domContainer).render(e(Breakdown));
+</script>
+```
+
+### ColBrowser.TaxonDistribution
+
+The Taxon page's distribution block — a MapLibre GL vector map of the taxon's distribution polygons, with an optional GBIF occurrence overlay and a Map/List toggle — exposed as a standalone component. Useful when you want to surface a taxon's distribution on a non-COL page without rendering the whole Taxon view.
+
+1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
+2. `taxonId` - the taxon to render. The component loads the taxon, its distributions, and the rank vocabulary itself.
+3. `pathToDataset` - (Optional) the local path used by the in-map source-dataset links.
+4. `gbifChecklistKey` - (Optional) when set, adds the GBIF occurrence overlay (iNaturalist.poly hex bins) for the focal taxon. See the same prop on `ColBrowser.Taxon` for the caveat about checklist-key alignment.
+5. `style` - (Optional) inline style passed through to the outer wrapper.
+
+**Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency), same as `ColBrowser.Taxon` with `showDistributionMap`:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" />
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+```
+
+```html
+<div id="distribution"></div>
+<script>
+'use strict';
+const e = React.createElement;
+class Distribution extends React.Component {
+    render() {
+      return e(
+        ColBrowser.TaxonDistribution,
+        { datasetKey: '3LR',
+          taxonId: '6W3C4',
+          pathToDataset: '/data/source/',
+          gbifChecklistKey: '7ddf754f-d193-4cc9-b351-99906754a03b' }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#distribution');
+ReactDOM.createRoot(domContainer).render(e(Distribution));
 </script>
 ```
 

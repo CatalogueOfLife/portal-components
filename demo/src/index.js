@@ -2,7 +2,7 @@ import { Component } from "react";
 import { createRoot } from "react-dom/client";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { Tree, Taxon, Search, SourceDataset, SourceDatasetList, BibTex, TaxonBreakdown } from "../../src";
+import { Tree, Taxon, Search, SourceDataset, SourceDatasetList, BibTex, TaxonBreakdown, TaxonDistribution } from "../../src";
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
 
 import config from "../../src/config";
@@ -21,6 +21,7 @@ const routes = [
   { path: "/data/contributors", label: "SourceDatasetList" },
   { path: "/data/bibtex", label: "BibTex" },
   { path: "/data/breakdown", label: "TaxonBreakdown" },
+  { path: "/data/distribution", label: "TaxonDistribution" },
 ];
 
 class Demo extends Component {
@@ -189,6 +190,14 @@ class Demo extends Component {
         )}
         {pathname.indexOf("/data/breakdown") === 0 && (
           <TaxonBreakdown datasetKey={datasetKey} pathToTaxon="/data/taxon/" taxonId={"ST"} level={2} />
+        )}
+        {pathname.indexOf("/data/distribution") === 0 && (
+          <TaxonDistribution
+            datasetKey={datasetKey}
+            taxonId={"6W3C4"}
+            pathToDataset="/data/source/"
+            gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
+          />
         )}
       </div>
     );
