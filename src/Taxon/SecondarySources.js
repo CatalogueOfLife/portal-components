@@ -44,8 +44,8 @@ const SecondarySources = ({
 
     return info?.source?.secondarySources ?
         Object.keys(info?.source?.secondarySources || {}).map((key) =>
-            <>{_.startCase(key)}: <a href={`https://www.checklistbank.org/dataset/${info?.source?.secondarySources?.[key]?.datasetKey}/taxon/${encodeURIComponent(info?.source?.secondarySources?.[key]?.id)}`} >{datasets[info?.source?.secondarySources?.[key]?.datasetKey]?.title || info?.source?.secondarySources?.[key]?.datasetKey}</a>
-            </>)
+            <React.Fragment key={key}>{_.startCase(key)}: <a href={`https://www.checklistbank.org/dataset/${info?.source?.secondarySources?.[key]?.datasetKey}/taxon/${encodeURIComponent(info?.source?.secondarySources?.[key]?.id)}`} >{datasets[info?.source?.secondarySources?.[key]?.datasetKey]?.title || info?.source?.secondarySources?.[key]?.datasetKey}</a>
+            </React.Fragment>)
         : null;
 };
 
