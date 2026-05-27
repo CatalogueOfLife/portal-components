@@ -1,12 +1,10 @@
 import React from "react";
 import { Tag } from "antd";
 import _ from "lodash";
-// import config from "../config";
 import TaxonSources from "./TaxonSources";
-import TaxonEstimate from "./TaxonEstimate";
 import MergedDataBadge from "../components/MergedDataBadge";
-// import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import {ColTreeContext} from "./ColTreeContext"
+import { LinkTo } from "../router";
 
 class ColTreeNode extends React.Component {
   constructor(props) {
@@ -27,8 +25,6 @@ class ColTreeNode extends React.Component {
       taxon,
       taxon: { sector, sourceDatasetKeys, publisherDatasetKeys },
       datasetKey,
-      pathToTaxon,
-      pathToDataset,
     } = this.props;
 
     const sectorSourceDataset = _.get(sector, "dataset");
@@ -45,21 +41,9 @@ const hasDatasetSectors =
                         <div id={taxon.id}>
                         <span>
                           <span className="tree-node-rank">{taxon.rank}: </span>
-                          <a
-                            dangerouslySetInnerHTML={{ __html: taxon.labelHtml }}
-                            href={typeof pathToTaxon === "string" ? `${pathToTaxon}${taxon.id}`: "#"}
-                            disabled={taxon?.id?.indexOf("--incertae-sedis--") > -1 ? true : false}
-                            
-                            onClick={(e) => {
-                              if(typeof pathToTaxon === "string"){
-                                window.location.href = `${pathToTaxon}${taxon.id}`;
-                              } else if(typeof pathToTaxon === "function"){
-                                e.preventDefault()
-                                pathToTaxon(taxon.id)
-                              }
-                              
-                            }}
-                          />
+                          <LinkTo to="taxon" args={taxon.id}>
+                            <span dangerouslySetInnerHTML={{ __html: taxon.labelHtml }} />
+                          </LinkTo>
                           {taxon?.merged && (
                           <MergedDataBadge style={{ marginLeft: "4px" }} datasetKey={taxon?.datasetKey} verbatimSourceKey={taxon?.verbatimSourceKey}/>
                         )}
@@ -100,31 +84,20 @@ const hasDatasetSectors =
                         {showInfo && sector && (
                           <span>
                             <span> • </span>
-                            <a
+                            <LinkTo
+                              to="source"
+                              args={sector.subjectDatasetKey}
                               style={hasDatasetSectors ? {fontWeight: 'bold'} : null}
-                              href={`${pathToDataset}${sector.subjectDatasetKey}`}
                               className="col-tree-data-source"
-                              onClick={() => {
-                                window.location.href = `${pathToDataset}${sector.subjectDatasetKey}`;
-                              }}
                             >
                               {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{hasDatasetSectors && ", "}
-                              {/* <DatasetlogoWithFallback
-                                style={{ maxHeight: "20px", width: "auto" }}
-                                datasetKey={datasetKey}
-                                datasetKey={sector.subjectDatasetKey}
-                                size="SMALL"
-                              /> */}
-                            </a>
+                            </LinkTo>
                           </span>
                         )}
                         {showInfo && hasDatasetSectors && (
                           <React.Fragment> <TaxonSources
-/*                               datasetSectors={sector && sector.subjectDatasetKey ? _.omit(datasetSectors, [sector.subjectDatasetKey]) : datasetSectors}
- */                           sourceDatasetKeys={sourceDatasetKeys}
- publisherDatasetKeys={publisherDatasetKeys}
-
-                              pathToDataset={pathToDataset}
+                              sourceDatasetKeys={sourceDatasetKeys}
+                              publisherDatasetKeys={publisherDatasetKeys}
                               taxon={taxon}
                               datasetKey={datasetKey}
                             />

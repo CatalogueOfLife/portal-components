@@ -8,9 +8,6 @@ import ErrorMsg from "../components/ErrorMsg";
 import { getSectorsBatch } from "../api/sector";
 import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
-import history from "../history";
-import qs from "query-string";
-import { withRouter } from "../withRouter";
 
 const CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
 
@@ -107,17 +104,13 @@ class ColTree extends React.Component {
     const {
       showSourceTaxon,
       datasetKey,
-      pathToTaxon,
-      pathToDataset,
       hideExtinct,
       insertPlaceholder,
-      type
+      type,
+      expandedTaxonKey,
     } = this.props;
 
-    const defaultExpandKey = _.get(
-      qs.parse(_.get(location, "search")),
-      "taxonKey"
-    );
+    const defaultExpandKey = expandedTaxonKey;
     const { defaultTaxonKey } = this.props;
 
     this.setState({ rootLoading: true, treeData: [] });
@@ -144,8 +137,8 @@ class ColTree extends React.Component {
           dataRef.title = (
             <ColTreeNode
               taxon={tx}
-              pathToTaxon={pathToTaxon}
-              pathToDataset={pathToDataset}
+              
+              
               datasetKey={datasetKey}
               showSourceTaxon={showSourceTaxon}
               reloadChildren={() => this.fetchChildPage(dataRef, true)}
@@ -189,8 +182,6 @@ class ColTree extends React.Component {
     const {
       showSourceTaxon,
       datasetKey,
-      pathToTaxon,
-      pathToDataset,
       hideExtinct,
       type
     } = this.props;
@@ -230,8 +221,8 @@ class ColTree extends React.Component {
     root.title = (
       <ColTreeNode
         taxon={tx}
-        pathToTaxon={pathToTaxon}
-        pathToDataset={pathToDataset}
+        
+        
         datasetKey={datasetKey}
         showSourceTaxon={showSourceTaxon}
         rank={this.state.rank}
@@ -255,8 +246,8 @@ class ColTree extends React.Component {
       node.title = (
         <ColTreeNode
           taxon={tx}
-          pathToTaxon={pathToTaxon}
-          pathToDataset={pathToDataset}
+          
+          
           datasetKey={datasetKey}
           showSourceTaxon={showSourceTaxon}
           rank={this.state.rank}
@@ -283,8 +274,6 @@ const { treeData } = this.state;
     const {
       showSourceTaxon,
       datasetKey,
-      pathToTaxon,
-      pathToDataset,
       hideExtinct,
       insertPlaceholder,
       type
@@ -318,8 +307,8 @@ const { treeData } = this.state;
           childDataRef.title = (
             <ColTreeNode
               taxon={tx}
-              pathToTaxon={pathToTaxon}
-              pathToDataset={pathToDataset}
+              
+              
               datasetKey={datasetKey}
               showSourceTaxon={showSourceTaxon}
               rank={this.state.rank}
@@ -566,12 +555,9 @@ const { treeData } = this.state;
       loadedKeys,
       expandedKeys,
     } = this.state;
-    const { location, treeType, dataset, height } = this.props;
-    console.log(height);
-    const defaultExpandKey = _.get(
-      qs.parse(_.get(location, "search")),
-      "taxonKey"
-    );
+    const { treeType, dataset, height, expandedTaxonKey } = this.props;
+    void height;
+    const defaultExpandKey = expandedTaxonKey;
 
     return (
       <div>
@@ -627,21 +613,10 @@ const { treeData } = this.state;
             filterTreeNode={(node) => node.key === defaultExpandKey}
             onExpand={(expandedKeys, obj) => {
               this.setState({ expandedKeys });
-              if (obj.expanded) {
-                const params = qs.parse(_.get(location, "search"));
-                const newParams = { ...params, taxonKey: obj.node.key };
-
-                history.push({
-                  pathname: location.pathname,
-                  search: `?${qs.stringify(newParams)}`,
-                });
-              } else {
-                history.push({
-                  pathname: location.pathname,
-                  search: `?${qs.stringify(
-                    _.omit(qs.parse(_.get(location, "search")), "taxonKey")
-                  )}`,
-                });
+              if (this.props.onExpandedTaxonKeyChange) {
+                this.props.onExpandedTaxonKeyChange(
+                  obj.expanded ? obj.node.key : null
+                );
               }
             }}
           ></Tree>
@@ -657,4 +632,4 @@ const { treeData } = this.state;
   }
 }
 
-export default withRouter(ColTree);
+export default ColTree;

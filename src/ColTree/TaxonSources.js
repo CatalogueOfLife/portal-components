@@ -5,6 +5,7 @@ import { CloseCircleOutlined } from "@ant-design/icons";
 import _ from 'lodash'
 import DataLoader from "dataloader";
 import config from "../config";
+import { LinkTo } from "../router";
 
 class TaxonSources extends React.Component {
   constructor(props) {
@@ -84,22 +85,15 @@ class TaxonSources extends React.Component {
 
   render = () => {
     const { data, showInNode, popOverVisible, loading } = this.state;
-    const { taxon, datasetKey, pathToDataset } = this.props;
+    const { taxon } = this.props;
 
     return showInNode ? (
       data
         .filter((d) => !!d)
         .map((d, index) => (
-          <a
-            className="col-tree-data-source"
-            key={d.key}
-            href={`${pathToDataset}${d.key}`}
-            onClick={() => {
-              window.location.href = `${pathToDataset}${d.key}`;
-            }}
-          >
+          <LinkTo to="source" args={d.key} key={d.key} className="col-tree-data-source">
             {(index ? ", " : "") + (d.alias || d.key)}
-          </a>
+          </LinkTo>
         ))
     ) : (
       <div style={{ display: "inline" }} id={`taxon_sources_${taxon.id}`}>
@@ -116,16 +110,9 @@ class TaxonSources extends React.Component {
                 {data
                   .filter((d) => !!d)
                   .map((d, index) => (
-                    <a
-                      className="col-tree-data-source"
-                      key={d.key}
-                      href={`${pathToDataset}${d.key}`}
-                      onClick={() => {
-                        window.location.href = `${pathToDataset}${d.key}`;
-                      }}
-                    >
+                    <LinkTo to="source" args={d.key} key={d.key} className="col-tree-data-source">
                       {(index ? ", " : "") + (d.alias || d.key)}
-                    </a>
+                    </LinkTo>
                   ))}
               </div>
               { this.state.publishers && this.state.publishers.length > 0 && <div>

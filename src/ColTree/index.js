@@ -1,9 +1,6 @@
 import React from "react";
 import ColTree from "./ColTree";
-import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
-import qs from "query-string";
 import _ from "lodash";
-import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
 import axios from "axios";
 import btoa from "btoa";
@@ -11,6 +8,7 @@ import { Row, Col, Checkbox } from "antd";
 import { ColTreeContext } from "./ColTreeContext";
 import { getDataset } from "../api/dataset";
 import Citation from "../components/DatasetCitation";
+import { RouterContext, buildRouter } from "../router";
 
 const INFRASPECIFIC_RANKS = [
   "infraspecific name",
@@ -20,6 +18,8 @@ const INFRASPECIFIC_RANKS = [
 ];
 
 class ColTreeWrapper extends React.Component {
+  static contextType = RouterContext;
+
   constructor(props) {
     super(props);
     if (this.props.auth) {
@@ -40,8 +40,8 @@ class ColTreeWrapper extends React.Component {
       try {
         const { data: dataset } = await getDataset(datasetKey);
         this.setState({ dataset });
-      } catch (err){
-
+      } catch (err) {
+        // ignore
       }
     }
   };
@@ -49,9 +49,9 @@ class ColTreeWrapper extends React.Component {
   render = () => {
     const {
       datasetKey,
-      pathToTaxon,
-      pathToDataset,
       defaultTaxonKey,
+      expandedTaxonKey,
+      onExpandedTaxonKeyChange,
       showTreeOptions,
       linkToSpeciesPage,
       citation,
@@ -59,101 +59,111 @@ class ColTreeWrapper extends React.Component {
       insertPlaceholder = true,
     } = this.props;
     const { hideExtinct, dataset } = this.state;
-    const params = qs.parse(_.get(location, "search"));
+
+    const handleSelectName = (name) => {
+      const key = _.get(name, "key");
+      if (!key) return;
+      const rank = _.get(name, "rank");
+      if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(rank)) {
+        // Leaf-like selection: jump to the taxon page via the host's nav.
+        const navigateToTaxon = this.context?.taxon?.onNavigate;
+        if (navigateToTaxon) navigateToTaxon(key);
+      } else if (onExpandedTaxonKeyChange) {
+        onExpandedTaxonKeyChange(key);
+        if (this.treeRef && this.treeRef.reloadRoot) this.treeRef.reloadRoot();
+      }
+    };
+
+    const handleResetSearch = () => {
+      if (onExpandedTaxonKeyChange) onExpandedTaxonKeyChange(null);
+    };
+
     return (
-      <HistoryRouter history={history}>
-        <div className="catalogue-of-life">
-          {citation === "top" && dataset && <Citation dataset={dataset} />}
-          <ColTreeContext.Provider value={this.state}>
-            <Row>
-              <Col flex="auto">
-                <NameAutocomplete
-                  hideExtinct={hideExtinct}
-                  datasetKey={datasetKey}
-                  style={{
-                    width: "100%",
-                    paddingTop: "5px",
-                    paddingBottom: "5px",
+      <div className="catalogue-of-life">
+        {citation === "top" && dataset && <Citation dataset={dataset} />}
+        <ColTreeContext.Provider value={this.state}>
+          <Row>
+            <Col flex="auto">
+              <NameAutocomplete
+                hideExtinct={hideExtinct}
+                datasetKey={datasetKey}
+                style={{
+                  width: "100%",
+                  paddingTop: "5px",
+                  paddingBottom: "5px",
+                }}
+                defaultTaxonKey={expandedTaxonKey || null}
+                onSelectName={handleSelectName}
+                onResetSearch={handleResetSearch}
+              />
+            </Col>
+            {showTreeOptions && (
+              <Col style={{ paddingLeft: "8px" }}>
+                <Checkbox
+                  onChange={({ target: { checked } }) => {
+                    this.setState({ showInfo: checked });
                   }}
-                  defaultTaxonKey={_.get(params, "taxonKey") || null}
-                  onSelectName={(name) => {
-                    if (
-                      linkToSpeciesPage &&
-                      INFRASPECIFIC_RANKS.includes(_.get(name, "rank"))
-                    ) {
-                      if(typeof pathToTaxon === "string"){
-                        window.location.href = `${pathToTaxon}${_.get(
-                          name,
-                          "key"
-                        )}`;
-                      } else if(typeof pathToTaxon === "function"){
-                        pathToTaxon(_.get(
-                          name,
-                          "key"
-                        ))
-                      }
-                      
-                    } else {
-                      const newParams = {
-                        ...params,
-                        taxonKey: _.get(name, "key"),
-                      };
+                >
+                  Source
+                </Checkbox>
 
-                      history.push({
-                        pathname: location.pathname,
-                        search: `?${qs.stringify(newParams)}`,
-                      });
-                      this.treeRef.reloadRoot();
-                    }
+                <Checkbox
+                  defaultChecked={false}
+                  onChange={({ target: { checked } }) => {
+                    this.setState({ hideExtinct: checked });
                   }}
-                  onResetSearch={() => {
-                    const newParams = { ...params, taxonKey: null };
-                    history.push({
-                      pathname: location.pathname,
-                      search: `?${qs.stringify(
-                        _.omit(newParams, ["taxonKey"])
-                      )}`,
-                    });
-                  }}
-                />
+                >
+                  Extant only
+                </Checkbox>
               </Col>
-              {showTreeOptions && (
-                <Col style={{ paddingLeft: "8px" }}>
-                  <Checkbox
-                    onChange={({ target: { checked } }) => {
-                      this.setState({ showInfo: checked });
-                    }}
-                  >
-                    Source
-                  </Checkbox>
-
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={({ target: { checked } }) => {
-                      this.setState({ hideExtinct: checked });
-                    }}
-                  >
-                    Extant only
-                  </Checkbox>
-                </Col>
-              )}
-            </Row>
-            <ColTree
-              insertPlaceholder={insertPlaceholder}
-              hideExtinct={hideExtinct}
-              datasetKey={datasetKey}
-              pathToTaxon={pathToTaxon}
-              pathToDataset={pathToDataset}
-              defaultTaxonKey={defaultTaxonKey}
-              treeRef={(ref) => (this.treeRef = ref)}
-              type={type}
-            />
-          </ColTreeContext.Provider>
-          {citation === "bottom" && dataset && <Citation dataset={dataset} />}
-        </div>
-      </HistoryRouter>
+            )}
+          </Row>
+          <ColTree
+            insertPlaceholder={insertPlaceholder}
+            hideExtinct={hideExtinct}
+            datasetKey={datasetKey}
+            defaultTaxonKey={defaultTaxonKey}
+            expandedTaxonKey={expandedTaxonKey}
+            onExpandedTaxonKeyChange={onExpandedTaxonKeyChange}
+            treeRef={(ref) => (this.treeRef = ref)}
+            type={type}
+          />
+        </ColTreeContext.Provider>
+        {citation === "bottom" && dataset && <Citation dataset={dataset} />}
+      </div>
     );
   };
 }
 
-export default ColTreeWrapper;
+// Public wrapper: takes controlled props + navigation callbacks, builds
+// the RouterContext, hands the rest down.
+export default function Tree({
+  datasetKey,
+  defaultTaxonKey,
+  expandedTaxonKey,
+  onExpandedTaxonKeyChange,
+  showTreeOptions,
+  linkToSpeciesPage,
+  citation,
+  type,
+  insertPlaceholder,
+  auth,
+  ...routerProps
+}) {
+  return (
+    <RouterContext.Provider value={buildRouter(routerProps)}>
+      <ColTreeWrapper
+        datasetKey={datasetKey}
+        defaultTaxonKey={defaultTaxonKey}
+        expandedTaxonKey={expandedTaxonKey}
+        onExpandedTaxonKeyChange={onExpandedTaxonKeyChange}
+        showTreeOptions={showTreeOptions}
+        linkToSpeciesPage={linkToSpeciesPage}
+        citation={citation}
+        type={type}
+        insertPlaceholder={insertPlaceholder}
+        auth={auth}
+      />
+    </RouterContext.Provider>
+  );
+}

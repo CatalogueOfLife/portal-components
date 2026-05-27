@@ -36,8 +36,8 @@ describe('Tree', () => {
     node = mountIn(
       <Tree
         datasetKey={CATALOGUE_KEY}
-        pathToTaxon={TAXON_PATH}
-        pathToDataset={SOURCE_PATH}
+        hrefForTaxon={(id) => `${TAXON_PATH}${id}`}
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
         showTreeOptions={true}
       />
     )
@@ -48,8 +48,8 @@ describe('Tree', () => {
     node = mountIn(
       <Tree
         datasetKey={CATALOGUE_KEY}
-        pathToTaxon={TAXON_PATH}
-        pathToDataset={SOURCE_PATH}
+        hrefForTaxon={(id) => `${TAXON_PATH}${id}`}
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
       />
     )
     return waitMs(6000).then(() => {
