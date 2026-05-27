@@ -7,8 +7,9 @@ This is a small React Component library consisting of
 3. Taxon page
 4. SourceDataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
 5. BibTex citation - simple icon that downloads a BibTex citation for a dataset
-6. TaxonBreakdown - pie chart of a taxon's children by rank with drill-down
-7. TaxonDistribution - the Taxon page's distribution map (MapLibre + optional GBIF overlay) as a standalone component
+6. SourceDatasetList - table of source datasets contributing to a compiled project (for `/contributors`-style pages)
+7. TaxonBreakdown - pie chart of a taxon's children by rank with drill-down
+8. TaxonDistribution - the Taxon page's distribution map (MapLibre + optional GBIF overlay) as a standalone component
 
 ## Examples
 
@@ -335,6 +336,35 @@ class SourceDataset extends React.Component {
 
 const domContainer = document.querySelector('#dataset');
 ReactDOM.createRoot(domContainer).render(e(SourceDataset));
+</script>
+```
+
+### ColBrowser.SourceDatasetList
+
+[Sortable table of the source datasets contributing to a project](https://www.catalogueoflife.org/data/contributors), grouped by publisher. Each row shows the source dataset's alias, publisher, number of taxa and last import — and the merged-data badge where applicable. Only useful for *compiled* datasets like the Catalogue of Life that pull from many sources; for standalone datasets the table will be empty.
+
+1. `datasetKey` - the dataset key of the catalogue/project from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
+2. `pathToDataset` - The local path to the source-dataset page of your website (each row's title is a link to `${pathToDataset}${sourceKey}`).
+3. `pathToSearch` - The local path to the search page of your website (used by the per-row metrics links).
+
+```html
+<div id="contributors"></div>
+<script>
+'use strict';
+const e = React.createElement;
+class SourceDatasetList extends React.Component {
+    render() {
+      return e(
+        ColBrowser.SourceDatasetList,
+        { datasetKey: 9999,
+          pathToDataset: '/sourcedatasets/',
+          pathToSearch: '/data/search' }
+      );
+    }
+  }
+
+const domContainer = document.querySelector('#contributors');
+ReactDOM.createRoot(domContainer).render(e(SourceDatasetList));
 </script>
 ```
 
