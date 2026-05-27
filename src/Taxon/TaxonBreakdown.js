@@ -158,9 +158,10 @@ const TaxonBreakdown = ({
     );
     if (hasOuterData) {
       innerData.forEach((slice) => {
-        const ring = padNotAssigned(slice._kids, slice.y);
-        ring.forEach((g, j) => {
-          const t = ring.length > 1 ? j / (ring.length - 1) : 0;
+        const sorted = sortAndClip(slice._kids || []);
+        const sum = sorted.reduce((a, n) => a + (n.species || 0), 0);
+        sorted.forEach((g, j) => {
+          const t = sorted.length > 1 ? j / (sorted.length - 1) : 0;
           const shift = -0.1 + t * 0.4;
           outerData.push({
             name: g.name,
@@ -169,6 +170,21 @@ const TaxonBreakdown = ({
             color: Highcharts.color(slice.color).brighten(shift).get(),
           });
         });
+        // Where children don't fully account for the inner slice, add a
+        // transparent gap slice so the outer ring stays angularly aligned
+        // with the inner pie but the missing portion reads as empty space
+        // (rather than a labelled "Not assigned" wedge).
+        if (sum < slice.y) {
+          outerData.push({
+            name: "",
+            y: slice.y - sum,
+            color: "transparent",
+            borderColor: "transparent",
+            borderWidth: 0,
+            dataLabels: { enabled: false },
+            enableMouseTracking: false,
+          });
+        }
       });
     }
 
