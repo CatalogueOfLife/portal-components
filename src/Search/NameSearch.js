@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { withRouter } from "../withRouter";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
+import { LinkTo } from "../router";
 import { getDataset } from "../api/dataset";
 import { getTaxGroup } from "../api/enumeration";
 import {
@@ -16,7 +16,6 @@ import {
 } from "antd";
 import config from "../config";
 import qs from "query-string";
-import history from "../history";
 import Classification from "./Classification";
 import SearchBox from "./SearchBox";
 import MultiValueFilter from "./MultiValueFilter";
@@ -53,7 +52,7 @@ const defaultParams = {
   sortBy: "relevance",
 };
 
-const getColumns = (pathToTaxon) => [
+const getColumns = () => [
   {
     title: "",
     dataIndex: ["usage", "merged"],
@@ -70,20 +69,9 @@ const getColumns = (pathToTaxon) => [
       const id =
         _.get(record, "usage.accepted.id") || _.get(record, "usage.id");
       return (
-        <>
-          <a
-            href={typeof pathToTaxon === "string" ? `${pathToTaxon}${id}` : "#"}
-            onClick={(e) => {
-              if (typeof pathToTaxon === "string") {
-                window.location.href = `${pathToTaxon}${id}`;
-              } else if (typeof pathToTaxon === "function") {
-                e.preventDefault();
-                pathToTaxon(id);
-              }
-            }}
-            dangerouslySetInnerHTML={{ __html: text }}
-          />
-        </>
+        <LinkTo to="taxon" args={id}>
+          <span dangerouslySetInnerHTML={{ __html: text }} />
+        </LinkTo>
       );
     },
     width: 200,
@@ -130,7 +118,6 @@ const getColumns = (pathToTaxon) => [
           classification={_.initial(record.classification)}
           truncate={true}
           datasetKey={_.get(record, "usage.name.datasetKey")}
-          pathToTaxon={pathToTaxon}
         />
       );
     },
@@ -143,7 +130,7 @@ class NameSearchPage extends React.Component {
     this.state = {
       data: [],
       advancedFilters: false,
-      columns: getColumns(this.props.pathToTaxon),
+      columns: getColumns(),
       params: {},
       taxGroups: [],
       pagination: {
@@ -171,9 +158,7 @@ class NameSearchPage extends React.Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    const params = qs.parse(_.get(this.props, "location.search"));
-    const prevParams = qs.parse(_.get(prevProps, "location.search"));
-    if (!_.isEqual(params, prevParams)) {
+    if (!_.isEqual(prevProps.filters, this.props.filters)) {
       this.parseParamsAndGetData();
     }
   };
@@ -184,8 +169,8 @@ class NameSearchPage extends React.Component {
     );
   };
   parseParamsAndGetData = () => {
-    const { defaultTaxonKey } = this.props;
-    let params = qs.parse(_.get(this.props, "location.search"));
+    const { defaultTaxonKey, filters } = this.props;
+    let params = { ...(filters || {}) };
     if (defaultTaxonKey && !params.TAXON_ID) {
       params.TAXON_ID = defaultTaxonKey;
     }
@@ -224,13 +209,9 @@ class NameSearchPage extends React.Component {
   };
 
   pushParams = (params) => {
-    if (!params.q) {
-      delete params.q;
-    }
-    history.push({
-      pathname: _.get(this.props, "location.pathname"),
-      search: `?${qs.stringify(params)}`,
-    });
+    const next = { ...params };
+    if (!next.q) delete next.q;
+    if (this.props.onFiltersChange) this.props.onFiltersChange(next);
   };
 
   getData = () => {
@@ -321,7 +302,7 @@ class NameSearchPage extends React.Component {
       dataset,
       taxGroups,
     } = this.state;
-    const { pathToTaxon, datasetKey, defaultTaxonKey, citation } = this.props;
+    const { datasetKey, defaultTaxonKey, citation } = this.props;
     const facetRanks = _.get(facets, "rank")
       ? facets.rank.map((r) => ({
           value: r.value,
@@ -417,10 +398,7 @@ class NameSearchPage extends React.Component {
         <Row>
           <Col xs={24} sm={24} md={12} style={{ marginBottom: "8px" }}>
             <SearchBox
-              defaultValue={_.get(
-                qs.parse(_.get(this.props, "location.search")),
-                "q"
-              )}
+              defaultValue={_.get(this.props.filters || {}, "q")}
               onSearch={(value) => this.updateSearch({ q: value })}
               onResetSearch={(value) => this.updateSearch({ q: null })}
               style={{ marginBottom: "8px", width: "100%" }}
@@ -633,7 +611,6 @@ class NameSearchPage extends React.Component {
               <RowDetail
                 {...record}
                 datasetKey={datasetKey}
-                pathToTaxon={pathToTaxon}
               />
             )}
           />
@@ -644,4 +621,4 @@ class NameSearchPage extends React.Component {
   }
 }
 
-export default withRouter(NameSearchPage);
+export default NameSearchPage;
