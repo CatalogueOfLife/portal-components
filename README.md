@@ -158,6 +158,7 @@ A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse), takes
 6. `linkToSpeciesPage`- (Optional) when the searchbox finds a species or infraspecific taxon, jump directly to the taxon page rather than opening the tree 
 7. `citation` - (Optional) either "top" or "bottom" include the neccessary dataset citation above or below the tree component
 8. `type` - (Optional) e.g. `type="project"` this will show info about contributing sources on the tree nodes
+9. `insertPlaceholder` - (Optional, defaults to `true`) when true, the API virtually groups children of lower ranks into a "Not assigned" placeholder node for a more compact browsing experience. Pass `false` to disable. Was previously a runtime checkbox under `showTreeOptions`.
 
 ```html
 <div id="tree"></div> <!- Dom element for the tree to attach to -->
