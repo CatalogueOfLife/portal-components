@@ -17,25 +17,21 @@ class TaxonSources extends React.Component {
   }
 
   componentDidMount = () => {
-    const { sourceDatasetKeys, publisherDatasetKeys, datasetKey } = this.props;
+    const { sourceDatasetKeys, datasetKey } = this.props;
     this.datasetLoader = new DataLoader((ids) =>
       getDatasetsBatch(ids, datasetKey)
     );
     this.publisherLoader = new DataLoader((ids) =>
       getPublishersBatch(ids, datasetKey)
     );
-    if (sourceDatasetKeys?.length < 4) {
-      this.setState({ showInNode: true });
+    // Few sources → render the links inline directly; fetch their details
+    // up front since the user can see them without any interaction.
+    if (sourceDatasetKeys && sourceDatasetKeys.length < 4) {
+      this.setState({ showInNode: true }, this.getData);
     }
-    // Eagerly fetch the source-dataset details so the popover content is
-    // ready before the user opens it. Otherwise the popover appears empty
-    // on first click and only fills in after a network round-trip.
-    if (sourceDatasetKeys?.length) {
-      this.getData();
-    }
-    if (publisherDatasetKeys) {
-      this.getPublisherData();
-    }
+    // For lots of sources we wait until the popover is opened to fetch.
+    // No eager publisher load either — same reason: avoid N×M lookups
+    // across every visible tree node when "Source" is toggled on.
   };
 
   getData = () => {
@@ -95,8 +91,10 @@ class TaxonSources extends React.Component {
             document.getElementById(`taxon_sources_${taxon.id}`)
           }
           content={
-            loading && data.length === 0 ? (
-              <Spin />
+            loading || data.length === 0 ? (
+              <div style={{ minWidth: "200px", textAlign: "center", padding: "8px 0" }}>
+                <Spin size="small" />
+              </div>
             ) : (
               <div style={{ maxWidth: "500px" }}>
                 {data.length > 0 && (
@@ -156,7 +154,16 @@ class TaxonSources extends React.Component {
           }
           visible={popOverVisible}
           onVisibleChange={(visible) =>
-            this.setState({ popOverVisible: visible })
+            this.setState({ popOverVisible: visible }, () => {
+              if (visible && this.state.data.length === 0) this.getData();
+              if (
+                visible &&
+                this.props.publisherDatasetKeys &&
+                !this.state.publishers
+              ) {
+                this.getPublisherData();
+              }
+            })
           }
           trigger="click"
           placement="rightTop"
