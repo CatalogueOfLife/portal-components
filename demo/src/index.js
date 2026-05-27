@@ -79,7 +79,7 @@ class Demo extends Component {
     });
 
     return (
-      <div style={{ background: "#f2f3ed", minHeight: "100%" }}>
+      <div style={{ background: "#fff", minHeight: "100%" }}>
         <nav style={{ padding: "16px", borderBottom: "1px solid #ccc", marginBottom: "16px", fontFamily: "system-ui, -apple-system, sans-serif", display: "flex", alignItems: "center" }}>
           <a href="#/" style={{ fontWeight: "bold", marginRight: "24px" }}>col-browser Demo</a>
           {routes.map((r) => (
