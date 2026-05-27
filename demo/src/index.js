@@ -24,16 +24,19 @@ const paths = {
   tree: "tree",
   search: "search",
   source: "source/",
+  taxonBreakdown: "breakdown/",
+  taxonDistribution: "distribution/",
+  bibtex: "bibtex/",
 };
 
-const URLTree           = withRouting(Tree,             { kind: "tree",        mode: "hash", paths });
-const URLTaxon          = withRouting(Taxon,            { kind: "taxon",       mode: "hash", paths });
-const URLSearch         = withRouting(Search,           { kind: "search",      mode: "hash", paths });
-const URLSourceDataset  = withRouting(SourceDataset,    { kind: "source",      mode: "hash", paths });
-const URLSourceDatasetList = withRouting(SourceDatasetList, { kind: "sourceList", mode: "hash", paths });
-const URLBibTex            = withRouting(BibTex,            { kind: "sourceList", mode: "hash", paths });
-const URLTaxonBreakdown    = withRouting(TaxonBreakdown,    { kind: "sourceList", mode: "hash", paths });
-const URLTaxonDistribution = withRouting(TaxonDistribution, { kind: "sourceList", mode: "hash", paths });
+const URLTree              = withRouting(Tree,              { kind: "tree",              mode: "hash", paths });
+const URLTaxon             = withRouting(Taxon,             { kind: "taxon",             mode: "hash", paths });
+const URLSearch            = withRouting(Search,            { kind: "search",            mode: "hash", paths });
+const URLSourceDataset     = withRouting(SourceDataset,     { kind: "source",            mode: "hash", paths });
+const URLSourceDatasetList = withRouting(SourceDatasetList, { kind: "sourceList",        mode: "hash", paths });
+const URLBibTex            = withRouting(BibTex,            { kind: "bibtex",            mode: "hash", paths });
+const URLTaxonBreakdown    = withRouting(TaxonBreakdown,    { kind: "taxonBreakdown",    mode: "hash", paths });
+const URLTaxonDistribution = withRouting(TaxonDistribution, { kind: "taxonDistribution", mode: "hash", paths });
 
 const environments = {
   production: "https://api.checklistbank.org/",
@@ -46,9 +49,9 @@ const routes = [
   { path: "taxon/6W3C4", label: "Taxon" },
   { path: "source/1010", label: "SourceDataset" },
   { path: "contributors", label: "SourceDatasetList" },
-  { path: "bibtex", label: "BibTex" },
-  { path: "breakdown", label: "TaxonBreakdown" },
-  { path: "distribution", label: "TaxonDistribution" },
+  { path: "bibtex/1010", label: "BibTex" },
+  { path: "breakdown/ST", label: "TaxonBreakdown" },
+  { path: "distribution/6W3C4", label: "TaxonDistribution" },
 ];
 
 const parseRoute = () => {
@@ -210,32 +213,29 @@ class Demo extends Component {
         {route === "contributors" && (
           <URLSourceDatasetList key={mountKey} datasetKey={datasetKey} />
         )}
-        {route === "bibtex" && (
-          <URLBibTex key={mountKey} datasetKey={datasetKey} />
+        {(route === "bibtex" || route.indexOf("bibtex/") === 0) && (
+          <URLBibTex key={mountKey + "-" + route} datasetKey={datasetKey} />
         )}
-        {route === "breakdown" && (
+        {(route === "breakdown" || route.indexOf("breakdown/") === 0) && (
           <div>
-            <h3 style={{ padding: "0 16px", marginTop: 0 }}>level=1</h3>
+            <h3 style={{ padding: "0 16px", marginTop: 0 }}>level=2</h3>
             <URLTaxonBreakdown
-              key={mountKey + "-l1"}
+              key={mountKey + "-l2-" + route}
               datasetKey={datasetKey}
-              taxonId="ST"
-              level={1}
-            />
-            <h3 style={{ padding: "0 16px", marginTop: "32px" }}>level=2</h3>
-            <URLTaxonBreakdown
-              key={mountKey + "-l2"}
-              datasetKey={datasetKey}
-              taxonId="ST"
               level={2}
+            />
+            <h3 style={{ padding: "0 16px", marginTop: "32px" }}>level=1</h3>
+            <URLTaxonBreakdown
+              key={mountKey + "-l1-" + route}
+              datasetKey={datasetKey}
+              level={1}
             />
           </div>
         )}
-        {route === "distribution" && (
+        {(route === "distribution" || route.indexOf("distribution/") === 0) && (
           <URLTaxonDistribution
-            key={mountKey}
+            key={mountKey + "-" + route}
             datasetKey={datasetKey}
-            taxonId="6W3C4"
             gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
           />
         )}

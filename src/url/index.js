@@ -124,6 +124,12 @@ export function withRouting(Component, options) {
       extra.taxonKey = lastSegmentAfter(path, paths.taxon);
     } else if (kind === "source") {
       extra.sourceDatasetKey = lastSegmentAfter(path, paths.source);
+    } else if (kind === "taxonBreakdown") {
+      extra.taxonId = lastSegmentAfter(path, paths.taxonBreakdown);
+    } else if (kind === "taxonDistribution") {
+      extra.taxonId = lastSegmentAfter(path, paths.taxonDistribution);
+    } else if (kind === "bibtex") {
+      extra.sourceDatasetKey = lastSegmentAfter(path, paths.bibtex);
     } else if (kind === "tree") {
       const parsed = qs.parse(search);
       extra.expandedTaxonKey = parsed.taxonKey || undefined;
