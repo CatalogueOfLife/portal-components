@@ -311,7 +311,7 @@ const TaxonBreakdown = ({
       unCheckedChildren="lvl1"
       style={{
         position: "absolute",
-        top: 14,
+        top: 11,
         right: 44,
         zIndex: 2,
         background: activeLevel === 2 ? "#8c8c8c" : "#bfbfbf",
