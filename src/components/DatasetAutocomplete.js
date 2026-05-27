@@ -102,7 +102,6 @@ class DatasetAutocomplete extends React.Component {
             style={style ? style : { width: '100%' }}
             onChange={(value) => this.setState({value})}
             value={value}
-            optionLabelProp="value"
             getPopupContainer={() =>
                 document.getElementById(`dataset_autocomplete_${randomID}`)
               }
