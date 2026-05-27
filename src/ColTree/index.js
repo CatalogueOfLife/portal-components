@@ -1,13 +1,13 @@
 import React from "react";
 import ColTree from "./ColTree";
-import { Router } from "react-router-dom";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import qs from "query-string";
 import _ from "lodash";
 import history from "../history";
 import NameAutocomplete from "./NameAutocomplete";
 import axios from "axios";
 import btoa from "btoa";
-import { Row, Col, Switch, Checkbox, Form, Tooltip, Popover } from "antd";
+import { Row, Col, Checkbox, Tooltip } from "antd";
 import { ColTreeContext } from "./ColTreeContext";
 import { getDataset } from "../api/dataset";
 import Citation from "../components/DatasetCitation";
@@ -61,7 +61,7 @@ class ColTreeWrapper extends React.Component {
     const { hideExtinct, insertPlaceholder, dataset } = this.state;
     const params = qs.parse(_.get(location, "search"));
     return (
-      <Router history={history}>
+      <HistoryRouter history={history}>
         <div className="catalogue-of-life">
           {citation === "top" && dataset && <Citation dataset={dataset} />}
           <ColTreeContext.Provider value={this.state}>
@@ -170,7 +170,7 @@ class ColTreeWrapper extends React.Component {
           </ColTreeContext.Provider>
           {citation === "bottom" && dataset && <Citation dataset={dataset} />}
         </div>
-      </Router>
+      </HistoryRouter>
     );
   };
 }

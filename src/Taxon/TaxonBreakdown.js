@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import axios from "axios";
 import Highcharts from "highcharts";
-import HC_exporting from "highcharts/modules/exporting";
+import "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
 import { Spin, Row, Col } from "antd";
-
-HC_exporting(Highcharts);
 
 const MAX_GRAND_CHILDREN = 1000;
 const canonicalRanks = [

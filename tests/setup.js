@@ -1,3 +1,9 @@
+// React 18+ checks this flag to decide whether the testing environment supports
+// concurrent act(). Setting it silences the "current testing environment is not
+// configured to support act(...)" warning we get from createRoot.render under
+// vitest+jsdom.
+globalThis.IS_REACT_ACT_ENVIRONMENT = true
+
 // jsdom has no ResizeObserver — stub it so antd components don't throw
 globalThis.ResizeObserver = class {
   observe() {}
@@ -33,14 +39,6 @@ Object.defineProperty(window, 'matchMedia', {
   }),
 })
 
-// Suppress React 16 "setState on unmounted component" warnings.
-// These fire because async API calls resolve after tests unmount components.
-// Not a real leak — React 18 removed this warning entirely.
-const _consoleError = console.error
-console.error = (...args) => {
-  if (typeof args[0] === 'string' && args[0].includes('Can\'t perform a React state update on an unmounted component')) return
-  _consoleError.apply(console, args)
-}
 
 // Suppress unhandled rejections from async API calls that resolve after
 // components unmount (e.g. 404 from /vocab/country). These are benign

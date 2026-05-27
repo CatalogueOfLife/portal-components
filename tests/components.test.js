@@ -1,5 +1,6 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { createRoot } from 'react-dom/client'
+import { act } from 'react'
 import axios from 'axios'
 import { Tree, Search, Taxon, Dataset, DatasetSearch, BibTex } from 'src/'
 import history from 'src/history'
@@ -14,13 +15,15 @@ const waitMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const mountIn = (component) => {
   const node = document.createElement('div')
   document.body.appendChild(node)
-  render(component, node)
+  const root = createRoot(node)
+  act(() => { root.render(component) })
+  node.__root = root
   return node
 }
 
 const unmount = (node) => {
-  unmountComponentAtNode(node)
-  document.body.removeChild(node)
+  if (node.__root) act(() => { node.__root.unmount() })
+  if (node.parentNode) node.parentNode.removeChild(node)
 }
 
 // ─── Tree ──────────────────────────────────────────────────────────────────

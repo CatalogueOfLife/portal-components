@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Router } from "react-router-dom";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import history from "../history";
 import NameSearch from "./NameSearch";
 import axios from "axios";
@@ -12,9 +12,9 @@ export default   ({datasetKey, pathToTaxon, defaultTaxonKey, citation, auth}) =>
       axios.defaults.headers.common['Authorization'] = `Basic ${btoa(auth)}`;
     
   }
-  return  <Router history={history}>
-          
+  return  <HistoryRouter history={history}>
+
                 <NameSearch datasetKey={datasetKey} pathToTaxon={pathToTaxon} defaultTaxonKey={defaultTaxonKey} citation={citation}/>
-                    
-          </Router>
+
+          </HistoryRouter>
 }

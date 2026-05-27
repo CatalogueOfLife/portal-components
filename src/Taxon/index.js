@@ -18,7 +18,9 @@ import References from "./References";
 import ErrorMsg from "../components/ErrorMsg";
 import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
-import moment from "moment";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+dayjs.extend(localizedFormat);
 import history from "../history";
 import BooleanValue from "../components/BooleanValue";
 // import ReferencePopover from "./ReferencePopover"
@@ -750,7 +752,7 @@ class TaxonPage extends React.Component {
                 <PresentationItem md={md * 2} label="According to">
                   {`${_.get(taxon, "accordingTo")}`}
                   {_.get(taxon, "accordingToDate") &&
-                    `, ${moment(_.get(taxon, "accordingToDate")).format("LL")}`}
+                    `, ${dayjs(_.get(taxon, "accordingToDate")).format("LL")}`}
                 </PresentationItem>
               </Col>
             )}

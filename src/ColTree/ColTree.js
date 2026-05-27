@@ -10,7 +10,7 @@ import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
 import history from "../history";
 import qs from "query-string";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "../withRouter";
 
 const CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
 

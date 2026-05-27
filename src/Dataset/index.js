@@ -14,7 +14,7 @@ import AgentPresentation from "./AgentPresentation";
 import { getCountries } from "../api/enumeration";
 import BibTex from "../components/BibTex";
 import { LinkOutlined } from "@ant-design/icons";
-import marked from "marked";
+import { marked } from "marked";
 import DOMPurify from "dompurify";
 // import ReferencePopover from "./ReferencePopover"
 const IDENTIFIER_TYPES = {
@@ -264,7 +264,7 @@ class DatasetPage extends React.Component {
                 {data.description ? (
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(marked(data.description)),
+                    __html: DOMPurify.sanitize(marked.parse(data.description)),
                   }}
                 ></span>
               ) : ""}
