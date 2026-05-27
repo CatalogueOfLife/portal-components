@@ -115,7 +115,7 @@ class NameSearchAutocomplete extends React.Component {
        <Select
        value={value || undefined}
         defaultActiveFirstOption={false}
-        showArrow={false}
+        suffixIcon={null}
        showSearch
        allowClear
              notFoundContent={null}

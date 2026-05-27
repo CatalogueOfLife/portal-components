@@ -100,7 +100,7 @@ class ColTreeWrapper extends React.Component {
                       };
 
                       history.push({
-                        pathname: location.path,
+                        pathname: location.pathname,
                         search: `?${qs.stringify(newParams)}`,
                       });
                       this.treeRef.reloadRoot();
@@ -109,7 +109,7 @@ class ColTreeWrapper extends React.Component {
                   onResetSearch={() => {
                     const newParams = { ...params, taxonKey: null };
                     history.push({
-                      pathname: location.path,
+                      pathname: location.pathname,
                       search: `?${qs.stringify(
                         _.omit(newParams, ["taxonKey"])
                       )}`,

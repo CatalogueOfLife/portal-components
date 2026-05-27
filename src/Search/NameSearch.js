@@ -228,7 +228,7 @@ class NameSearchPage extends React.Component {
       delete params.q;
     }
     history.push({
-      pathname: _.get(this.props, "location.path"),
+      pathname: _.get(this.props, "location.pathname"),
       search: `?${qs.stringify(params)}`,
     });
   };

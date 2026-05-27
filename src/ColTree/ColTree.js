@@ -632,12 +632,12 @@ const { treeData } = this.state;
                 const newParams = { ...params, taxonKey: obj.node.key };
 
                 history.push({
-                  pathname: location.path,
+                  pathname: location.pathname,
                   search: `?${qs.stringify(newParams)}`,
                 });
               } else {
                 history.push({
-                  pathname: location.path,
+                  pathname: location.pathname,
                   search: `?${qs.stringify(
                     _.omit(qs.parse(_.get(location, "search")), "taxonKey")
                   )}`,
