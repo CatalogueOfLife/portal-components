@@ -6,6 +6,7 @@ import "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
 import { Spin, Row, Col } from "antd";
+import { useNavigateTo } from "../router";
 
 const MAX_SLICES_PER_RING = 100;
 const canonicalRanks = [
@@ -50,11 +51,11 @@ const TaxonBreakdown = ({
   taxon,
   datasetKey,
   rank = [],
-  pathToTaxon,
   dataset,
   level = 1,
   darkMode,
 }) => {
+  const navigateToTaxon = useNavigateTo("taxon");
   const [options, setOptions] = useState(null);
   const [loading, setLoading] = useState(false);
   const [invalid, setInvalid] = useState(false);
@@ -138,10 +139,10 @@ const TaxonBreakdown = ({
           typeof window.matchMedia === "function" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches;
     const gapColor = prefersDark ? "#1f1f1f" : "#ffffff";
-    const navigateToTaxon = {
+    const taxonClickHandler = {
       click: (e) => {
         if (e.point._id) {
-          window.location.href = `${pathToTaxon}${e.point._id}`;
+          navigateToTaxon(e.point._id);
         }
       },
     };
@@ -219,7 +220,7 @@ const TaxonBreakdown = ({
           distance: -30,
           style: innerLabelStyle,
         },
-        point: { events: navigateToTaxon },
+        point: { events: taxonClickHandler },
       },
     ];
     if (hasOuterData) {
@@ -238,7 +239,7 @@ const TaxonBreakdown = ({
               : null;
           },
         },
-        point: { events: navigateToTaxon },
+        point: { events: taxonClickHandler },
       });
     }
 

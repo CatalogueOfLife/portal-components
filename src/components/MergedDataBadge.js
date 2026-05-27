@@ -3,6 +3,7 @@ import { Tag, Popover } from "antd";
 import btoa from "btoa";
 import axios from "axios";
 import config from "../config";
+import { LinkTo } from "../router";
 
 const createdByAlgorithm = {
   14: "The data was created by the homotypic grouping algorithm"
@@ -14,7 +15,6 @@ const MergedDataBadge = ({
   sourceDatasetKey,
   sourceId,
   popoverPlacement,
-  pathToDataset,
   verbatimSourceKey,
   sectorKey,
   createdBy
@@ -97,7 +97,7 @@ const MergedDataBadge = ({
               <strong>Source:</strong>{" "}
               {sourceDatasetLoading
                 ? "Loading..."
-                : <a href={`${pathToDataset}${sourceDataset?.key}`} onClick={() => {window.location.href =  `${pathToDataset}${sourceDataset?.key}`}}  >{sourceDataset?.title}</a> }
+                : <LinkTo to="source" args={sourceDataset?.key}>{sourceDataset?.title}</LinkTo>}
             </div>}
             {sourceDatasetKey && sourceId && <div>
               <strong>Source:</strong>{" "}

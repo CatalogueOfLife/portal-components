@@ -3,6 +3,7 @@ import axios from "axios";
 import config from "../config";
 import { Row, Col, Spin } from "antd";
 import Distributions from "./Distributions";
+import { RouterContext, buildRouter } from "../router";
 
 // Standalone wrapper around the Taxon page's Distributions block.
 // Loads the focal taxon, its info (which carries the distributions array),
@@ -11,9 +12,9 @@ import Distributions from "./Distributions";
 export const DistributionsWrapper = ({
   taxonId,
   datasetKey,
-  pathToDataset,
   gbifChecklistKey,
   style,
+  ...routerProps
 }) => {
   const [taxon, setTaxon] = useState(null);
   const [distributions, setDistributions] = useState(null);
@@ -45,27 +46,26 @@ export const DistributionsWrapper = ({
     };
   }, [taxonId, datasetKey]);
 
-  if (!taxon || distributions === null || rank.length === 0) {
-    return (
-      <Row justify="center" style={{ padding: "24px" }}>
-        <Col>
-          <Spin size="large" />
-        </Col>
-      </Row>
-    );
-  }
-
   return (
-    <Distributions
-      data={distributions}
-      datasetKey={datasetKey}
-      focalTaxon={taxon}
-      rankOrder={rank}
-      gbifChecklistKey={gbifChecklistKey}
-      pathToDataset={pathToDataset}
-      showDistributionMap={true}
-      style={style}
-    />
+    <RouterContext.Provider value={buildRouter(routerProps)}>
+      {!taxon || distributions === null || rank.length === 0 ? (
+        <Row justify="center" style={{ padding: "24px" }}>
+          <Col>
+            <Spin size="large" />
+          </Col>
+        </Row>
+      ) : (
+        <Distributions
+          data={distributions}
+          datasetKey={datasetKey}
+          focalTaxon={taxon}
+          rankOrder={rank}
+          gbifChecklistKey={gbifChecklistKey}
+          showDistributionMap={true}
+          style={style}
+        />
+      )}
+    </RouterContext.Provider>
   );
 };
 

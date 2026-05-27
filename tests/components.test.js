@@ -97,10 +97,11 @@ describe('Taxon', () => {
     node = mountIn(
       <Taxon
         datasetKey={CATALOGUE_KEY}
-        pathToTaxon={TAXON_PATH}
-        pathToSearch="/data/search"
-        pathToTree="/data/tree"
-        pathToDataset={SOURCE_PATH}
+        taxonKey="6W3C4"
+        hrefForTaxon={(id) => `${TAXON_PATH}${id}`}
+        hrefForSearch={() => `/data/search`}
+        hrefForTree={() => `/data/tree`}
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
       />
     )
     expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
@@ -110,10 +111,11 @@ describe('Taxon', () => {
     node = mountIn(
       <Taxon
         datasetKey={CATALOGUE_KEY}
-        pathToTaxon={TAXON_PATH}
-        pathToSearch="/data/search"
-        pathToTree="/data/tree"
-        pathToDataset={SOURCE_PATH}
+        taxonKey="6W3C4"
+        hrefForTaxon={(id) => `${TAXON_PATH}${id}`}
+        hrefForSearch={() => `/data/search`}
+        hrefForTree={() => `/data/tree`}
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
       />
     )
     return waitMs(6000).then(() => {

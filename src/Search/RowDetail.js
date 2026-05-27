@@ -3,7 +3,7 @@ import { Row, Col, Tag, Tooltip } from "antd";
 import Classification from "./Classification";
 import _ from "lodash";
 
-const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap, pathToTaxon }) => (
+const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap }) => (
   <React.Fragment>
     {_.get(usage, "id") && (
       <Row style={{ marginBottom: "10px" }}>
@@ -35,7 +35,6 @@ const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap, p
         <Col span={18}>
           <Classification
             classification={_.initial(classification)}
-            pathToTaxon={pathToTaxon}
           />
         </Col>
       </Row>

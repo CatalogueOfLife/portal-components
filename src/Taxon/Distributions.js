@@ -10,7 +10,7 @@ import DistributionsMap from "./DistributionsMap";
 const isMappable = (r) =>
   r?.area?.gazetteer !== "text" && !!r?.area?.globalId;
 
-const ListView = ({ datasetKey, data, pathToDataset }) => {
+const ListView = ({ datasetKey, data }) => {
   const [iso3Map, setIso3Map] = useState({});
 
   useEffect(() => {
@@ -38,7 +38,6 @@ const ListView = ({ datasetKey, data, pathToDataset }) => {
               datasetKey={s.datasetKey}
               sourceDatasetKey={s?.sourceDatasetKey}
               verbatimSourceKey={s?.verbatimSourceKey}
-              pathToDataset={pathToDataset}
               style={{ marginRight: "4px" }}
             />
           )}
@@ -65,7 +64,6 @@ const DistributionsTable = ({
   datasetKey,
   data,
   style,
-  pathToDataset,
   showDistributionMap,
   focalTaxon,
   rankOrder,
@@ -147,11 +145,7 @@ const DistributionsTable = ({
     if (!hasAnyRecords) return null;
     return (
       <div style={style}>
-        <ListView
-          datasetKey={datasetKey}
-          data={data}
-          pathToDataset={pathToDataset}
-        />
+        <ListView datasetKey={datasetKey} data={data} />
       </div>
     );
   }
@@ -198,11 +192,7 @@ const DistributionsTable = ({
           )}
         </>
       ) : (
-        <ListView
-          datasetKey={datasetKey}
-          data={data}
-          pathToDataset={pathToDataset}
-        />
+        <ListView datasetKey={datasetKey} data={data} />
       )}
     </div>
   );

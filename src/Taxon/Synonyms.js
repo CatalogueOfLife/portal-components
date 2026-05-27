@@ -19,7 +19,6 @@ const SynonymsTable = ({
   typeMaterial,
   referenceIndexMap,
   primarySource,
-  pathToDataset,
 }) => {
   const [showAll, setShowAll] = useState(false);
 
@@ -95,7 +94,6 @@ const SynonymsTable = ({
             createdBy={s?.createdBy}
             datasetKey={s.datasetKey}
             sourceDatasetKey={s?.sourceDatasetKey}
-            pathToDataset={pathToDataset}
             verbatimSourceKey={s.verbatimSourceKey}
           />
         )}{" "}

@@ -21,7 +21,7 @@ import PresentationItem from "../components/PresentationItem";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(localizedFormat);
-import history from "../history";
+import { RouterContext, buildRouter, LinkTo } from "../router";
 import BooleanValue from "../components/BooleanValue";
 // import ReferencePopover from "./ReferencePopover"
 import IncludesTable from "./Includes";
@@ -36,6 +36,8 @@ import { Feedback } from "./Feedback";
 const md = 5;
 
 class TaxonPage extends React.Component {
+  static contextType = RouterContext;
+
   constructor(props) {
     super(props);
     if (this.props.auth) {
@@ -66,19 +68,27 @@ class TaxonPage extends React.Component {
   }
 
   componentDidMount = () => {
-    const { pathToTaxon } = this.props;
-    const { location } = history;
-    // Include hash so this works both for path-based embedding
-    // (`/data/taxon/X`) and hash-routed hosts (`#/data/taxon/X`).
-    const uri = `${location.pathname}${location.search}${location.hash}`;
-    const taxonKey = uri.split(pathToTaxon)[1];
+    const { taxonKey } = this.props;
     this.getCatalogue();
-    this.getTaxon(taxonKey);
-    this.getInfo(taxonKey);
-    this.getRank(taxonKey);
-    this.getIncludes(taxonKey);
-    this.getNomStatus(taxonKey);
+    if (taxonKey) {
+      this.getTaxon(taxonKey);
+      this.getInfo(taxonKey);
+      this.getRank(taxonKey);
+      this.getIncludes(taxonKey);
+      this.getNomStatus(taxonKey);
+    }
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.taxonKey !== this.props.taxonKey && this.props.taxonKey) {
+      const taxonKey = this.props.taxonKey;
+      this.getTaxon(taxonKey);
+      this.getInfo(taxonKey);
+      this.getRank(taxonKey);
+      this.getIncludes(taxonKey);
+      this.getNomStatus(taxonKey);
+    }
+  }
 
   getTaxon = (taxonKey) => {
     const { datasetKey, pageTitleTemplate } = this.props;
@@ -372,14 +382,13 @@ class TaxonPage extends React.Component {
   };
 
   fetchSynonymAndRedirect = (taxonKey) => {
-    const { datasetKey, pathToTaxon } = this.props;
+    const { datasetKey } = this.props;
+    const navigateToTaxon = this.context?.taxon?.onNavigate;
 
     axios(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`)
       .then((res) => {
-        window.location.href = `${pathToTaxon}${_.get(
-          res,
-          "data.accepted.id"
-        )}`;
+        const acceptedId = _.get(res, "data.accepted.id");
+        if (acceptedId && navigateToTaxon) navigateToTaxon(acceptedId);
       })
       .catch((err) => {
         if (_.get(err, "response.status") === 404) {
@@ -391,10 +400,6 @@ class TaxonPage extends React.Component {
   render() {
     const {
       datasetKey,
-      pathToTaxon,
-      pathToSearch,
-      pathToDataset,
-      pathToTree,
       showDistributionMap,
       gbifChecklistKey,
     } = this.props;
@@ -460,7 +465,7 @@ class TaxonPage extends React.Component {
                     verbatimSourceKey={info?.usage?.verbatimSourceKey} 
                     sourceDatasetKey={info?.source?.sourceDatasetKey} 
                     sourceId={info?.source?.sourceId} 
-                    pathToDataset={pathToDataset}/>}
+                    />}
                 <h1
                   style={{
                     fontSize: "30px",
@@ -601,8 +606,7 @@ class TaxonPage extends React.Component {
                 typeMaterial={_.get(info, "typeMaterial")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
-                pathToDataset={pathToDataset}
-                /*                     datasetKey={datasetKey}
+                                /*                     datasetKey={datasetKey}
                  */ datasetKey={datasetKey}
               />
             </PresentationItem>
@@ -644,8 +648,7 @@ class TaxonPage extends React.Component {
             <PresentationItem md={md} label="Synonyms and Combinations">
               <SynonymTable
                 data={synonyms}
-                pathToTaxon={pathToTaxon}
-                nomStatus={nomStatus}
+                                nomStatus={nomStatus}
                 references={_.get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
@@ -682,9 +685,7 @@ class TaxonPage extends React.Component {
                 data={classification}
                 taxon={taxon}
                 datasetKey={datasetKey}
-                pathToTaxon={pathToTaxon}
-                pathToTree={pathToTree}
-              />
+                                              />
             </PresentationItem>
           )}
           {((taxon &&
@@ -696,8 +697,7 @@ class TaxonPage extends React.Component {
               taxon={taxon}
               datasetKey={datasetKey}
               rank={rank}
-              pathToTaxon={pathToTaxon}
-              dataset={catalogue}
+                            dataset={catalogue}
             />
           )}
           {includes.length > 1 && rank && taxon && (
@@ -707,8 +707,7 @@ class TaxonPage extends React.Component {
                 data={includes}
                 rank={rank}
                 taxon={taxon}
-                pathToSearch={pathToSearch}
-              />
+                              />
             </PresentationItem>
           )}
           {_.get(info, "vernacularNames") && taxon && (
@@ -725,8 +724,7 @@ class TaxonPage extends React.Component {
             (showDistributionMap && gbifChecklistKey && taxon)) && (
             <PresentationItem md={md} label="Distributions">
               <Distributions
-                pathToDataset={pathToDataset}
-                style={{ marginTop: "-3px" }}
+                                style={{ marginTop: "-3px" }}
                 data={info?.distributions || []}
                 datasetKey={datasetKey}
                 showDistributionMap={showDistributionMap}
@@ -787,7 +785,7 @@ class TaxonPage extends React.Component {
                   verbatimSourceKey={info?.usage?.verbatimSourceKey} 
                   sourceDatasetKey={info?.source?.sourceDatasetKey} 
                   sourceId={info?.source?.sourceId} 
-                  pathToDataset={pathToDataset}/>}{" "}
+                  />}{" "}
                 {info?.source && info?.source?.sourceId && (
                   <>
                     <a
@@ -798,20 +796,12 @@ class TaxonPage extends React.Component {
                     in{" "}
                   </>
                 )}
-                <a
-                  href={`${pathToDataset}${_.get(sourceDataset, "key")}`}
-                  onClick={() => {
-                    window.location = `${pathToDataset}${_.get(
-                      sourceDataset,
-                      "key"
-                    )}`;
-                  }}
-                >
+                <LinkTo to="source" args={_.get(sourceDataset, "key")}>
                   {`${_.get(sourceDataset, "alias")}: ${_.get(
                     sourceDataset,
                     "title"
                   )}`}
-                </a>
+                </LinkTo>
                 <span style={{ marginLeft: "10px" }}>
                   {_.get(sourceDataset, "completeness") &&
                     _.get(sourceDataset, "completeness") + "%"}
@@ -833,14 +823,13 @@ class TaxonPage extends React.Component {
           )}
           {info?.source?.secondarySources && (
             <PresentationItem md={md} label="Secondary Sources">
-              <SecondarySources info={info} datasetKey={datasetKey} pathToTaxon={pathToTaxon} />
+              <SecondarySources info={info} datasetKey={datasetKey}  />
             </PresentationItem>
           )}
           {/* {this.state?.sourceDatasetKeyMap && (
             <PresentationItem md={md} label="Synonym Sources">
               <SourceDatasets
-                pathToDataset={pathToDataset}
-                datasetKey={this.props.datasetKey}
+                                datasetKey={this.props.datasetKey}
                 primarySourceDatasetKey={info?.source?.sourceDatasetKey}
                 sourceDatasetKeyMap={this.state.sourceDatasetKeyMap}
               />
@@ -849,8 +838,7 @@ class TaxonPage extends React.Component {
           {_.get(info, "references") && (
             <PresentationItem md={md} label="References">
               <References
-                pathToDataset={pathToDataset}
-                referenceIndexMap={referenceIndexMap}
+                                referenceIndexMap={referenceIndexMap}
                 primarySourceDatasetKey={info?.source?.sourceDatasetKey}
                 data={_.get(info, "references")}
                 style={{ marginTop: "-3px" }}
@@ -866,4 +854,29 @@ class TaxonPage extends React.Component {
   }
 }
 
-export default TaxonPage;
+// Public wrapper: takes the controlled props + navigation callbacks,
+// builds the RouterContext, hands the rest down to TaxonPage.
+export default function Taxon({
+  taxonKey,
+  datasetKey,
+  pageTitleTemplate,
+  identifierLabel,
+  showDistributionMap,
+  gbifChecklistKey,
+  auth,
+  ...routerProps
+}) {
+  return (
+    <RouterContext.Provider value={buildRouter(routerProps)}>
+      <TaxonPage
+        taxonKey={taxonKey}
+        datasetKey={datasetKey}
+        pageTitleTemplate={pageTitleTemplate}
+        identifierLabel={identifierLabel}
+        showDistributionMap={showDistributionMap}
+        gbifChecklistKey={gbifChecklistKey}
+        auth={auth}
+      />
+    </RouterContext.Provider>
+  );
+}

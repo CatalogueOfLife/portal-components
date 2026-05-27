@@ -1,53 +1,48 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
-// import { NavLink } from "react-router-dom";
 import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
 
-const SecondarySources = ({
-    info,
-    datasetKey,
-    pathToTaxon
-}) => {
+const SecondarySources = ({ info, datasetKey }) => {
+  const [datasets, setDatasets] = useState({});
 
-    const [datasets, setDatasets] = useState({})
+  useEffect(() => {
+    if (info?.source?.secondarySources) getDatasets();
+  }, [info]);
 
-    useEffect(() => {
-        if (info?.source?.secondarySources) {
-            getDatasets()
-        }
+  const datasetLoader = new DataLoader((ids) => getDatasetsBatch(ids, datasetKey));
 
-    }, [info])
-
-    useEffect(() => { }, [datasets])
-    const datasetLoader = new DataLoader((ids) => getDatasetsBatch(ids, datasetKey));
-
-    const getDatasets = async () => {
-        let data = {}
-        try {
-            await Promise.all(Object.keys(info?.source?.secondarySources || {}).map(key => {
-                return  datasetLoader
-                .load(info?.source?.secondarySources[key].datasetKey)
-                .then((dataset) => {
-                    data[dataset.key] = dataset
-                })
-            }
-               
-            ))  
-        } catch (error) {
-            console.log(error)
-        }
-        
-        setDatasets(data)
-
-    }
-
-    return info?.source?.secondarySources ?
+  const getDatasets = async () => {
+    const data = {};
+    try {
+      await Promise.all(
         Object.keys(info?.source?.secondarySources || {}).map((key) =>
-            <React.Fragment key={key}>{_.startCase(key)}: <a href={`https://www.checklistbank.org/dataset/${info?.source?.secondarySources?.[key]?.datasetKey}/taxon/${encodeURIComponent(info?.source?.secondarySources?.[key]?.id)}`} >{datasets[info?.source?.secondarySources?.[key]?.datasetKey]?.title || info?.source?.secondarySources?.[key]?.datasetKey}</a>
-            </React.Fragment>)
-        : null;
+          datasetLoader
+            .load(info?.source?.secondarySources[key].datasetKey)
+            .then((dataset) => {
+              data[dataset.key] = dataset;
+            })
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    setDatasets(data);
+  };
+
+  return info?.source?.secondarySources
+    ? Object.keys(info?.source?.secondarySources || {}).map((key) => (
+        <React.Fragment key={key}>
+          {_.startCase(key)}:{" "}
+          <a
+            href={`https://www.checklistbank.org/dataset/${info?.source?.secondarySources?.[key]?.datasetKey}/taxon/${encodeURIComponent(info?.source?.secondarySources?.[key]?.id)}`}
+          >
+            {datasets[info?.source?.secondarySources?.[key]?.datasetKey]?.title ||
+              info?.source?.secondarySources?.[key]?.datasetKey}
+          </a>
+        </React.Fragment>
+      ))
+    : null;
 };
 
 export default SecondarySources;
-

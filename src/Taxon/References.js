@@ -10,7 +10,6 @@ const ReferencesTable = ({
   referenceIndexMap,
   style,
   primarySourceDatasetKey,
-  pathToDataset,
 }) => {
   useEffect(() => {}, [referenceIndexMap]);
   return (
@@ -29,7 +28,6 @@ const ReferencesTable = ({
                 datasetKey={s.datasetKey}
                 verbatimSourceKey={s?.verbatimSourceKey}
                 sourceDatasetKey={s?.sourceDataset?.key}
-                pathToDataset={pathToDataset}
               />
             )}
             <span

@@ -1,9 +1,8 @@
 import React from "react";
-import _ from "lodash";
 import { Row, Col } from "antd";
+import { LinkTo } from "../router";
 
 const SourceDatasets = ({
-  pathToDataset,
   sourceDatasetKeyMap,
   primarySourceDatasetKey,
   style,
@@ -15,8 +14,7 @@ const SourceDatasets = ({
         .map((s) => (
           <Row key={s}>
             <Col style={{ paddingRight: "5px" }}>
-                <a href={`${pathToDataset}${s}`}>{`[${s}]`}</a>
-         
+              <LinkTo to="source" args={s}>{`[${s}]`}</LinkTo>
             </Col>
             <Col span={20} flex="auto">
               <div id={`col-sourcedataset-${s}`}>

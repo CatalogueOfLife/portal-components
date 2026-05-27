@@ -1,8 +1,9 @@
 import React from "react";
 import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
+import { LinkTo } from "../router";
 
-const IncludesTable = ({ data, style, rank, pathToSearch, taxon }) => {
+const IncludesTable = ({ data, style, rank, taxon }) => {
   const rankToPlural = rank.reduce(
     (acc, cur) => ((acc[cur.value] = cur.plural), acc),
     {}
@@ -20,18 +21,16 @@ const IncludesTable = ({ data, style, rank, pathToSearch, taxon }) => {
             classes={{ formItem: { borderBottom: "none" } }}
             key={t.value}
           >
-            {pathToSearch ? (
-              <a
-                href={`${pathToSearch}?TAXON_ID=${taxon.id}&rank=${t.value}&status=accepted&status=provisionally%20accepted`}
-                onClick={() => {
-                  window.location.href = `${pathToSearch}?TAXON_ID=${taxon.id}&rank=${t.value}&status=accepted&status=provisionally%20accepted`;
-                }}
-              >
-                {t.count}
-              </a>
-            ) : (
-              t.count
-            )}
+            <LinkTo
+              to="search"
+              args={{
+                TAXON_ID: taxon.id,
+                rank: t.value,
+                status: ["accepted", "provisionally accepted"],
+              }}
+            >
+              {t.count}
+            </LinkTo>
           </PresentationItem>
         ))}
     </div>
