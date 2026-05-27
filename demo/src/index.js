@@ -65,8 +65,8 @@ class Demo extends Component {
     this.state = {
       route: parseRoute() || "/",
       env: "production",
-      datasetKey: "3LR",
-      datasetKeyInput: "3LR",
+      datasetKey: "3LXR",
+      datasetKeyInput: "3LXR",
     };
     this._onHash = () => this.setState({ route: parseRoute() || "/" });
     window.addEventListener("hashchange", this._onHash);
@@ -218,17 +218,17 @@ class Demo extends Component {
         )}
         {(route === "breakdown" || route.indexOf("breakdown/") === 0) && (
           <div>
-            <h3 style={{ padding: "0 16px", marginTop: 0 }}>level=2</h3>
-            <URLTaxonBreakdown
-              key={mountKey + "-l2-" + route}
-              datasetKey={datasetKey}
-              level={2}
-            />
-            <h3 style={{ padding: "0 16px", marginTop: "32px" }}>level=1</h3>
+            <h3 style={{ padding: "0 16px", marginTop: 0 }}>level=1</h3>
             <URLTaxonBreakdown
               key={mountKey + "-l1-" + route}
               datasetKey={datasetKey}
               level={1}
+            />
+            <h3 style={{ padding: "0 16px", marginTop: "32px" }}>level=2</h3>
+            <URLTaxonBreakdown
+              key={mountKey + "-l2-" + route}
+              datasetKey={datasetKey}
+              level={2}
             />
           </div>
         )}
