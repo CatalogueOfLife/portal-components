@@ -171,7 +171,7 @@ class TaxonSources extends React.Component {
           }
           title={
             <div style={{ padding: "4px 0" }}>
-              <span style={{ fontWeight: 500 }}>Source for </span>
+              <span style={{ fontWeight: 500 }}>Sources for </span>
               <em>{taxon?.name}</em>
               <Divider style={{ margin: "8px 0 0" }} />
             </div>
