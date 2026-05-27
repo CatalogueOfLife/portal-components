@@ -67,7 +67,59 @@ Ant Design 5+ injects component styles via cssinjs at runtime when components mo
 
 Net wire size for a typical embedder (`col-browser.min.js` + `main.css`) is roughly unchanged: ~532 KB → ~577 KB gzipped (+8 %).
 
-### 4. `Dataset` and `DatasetSearch` were renamed
+### 4. Components are now fully controlled
+
+The biggest API change in 2.0 is that **the library no longer reads or writes the URL**. Every top-level component takes its identifier and navigation as plain props:
+
+- The identifier (`taxonKey`, `sourceDatasetKey`, `expandedTaxonKey`, `filters`) is a controlled prop.
+- Navigation is two optional callbacks per target — `onNavigateToTaxon(id)` for the click handler and `hrefForTaxon(id)` for the `<a href>`. When neither is wired, the affected link renders as plain text. When both are wired, you get full anchor semantics (right-click → open in new tab, etc.).
+
+Most hosts don't want to write that wiring themselves. The library ships an opt-in adapter at `col-browser/url` that does it for you:
+
+```jsx
+import { Taxon } from 'col-browser';
+import { withRouting } from 'col-browser/url';
+
+const URLTaxon = withRouting(Taxon, {
+  kind: 'taxon',
+  mode: 'path', // or 'hash'
+  paths: {
+    taxon:  '/data/taxon/',
+    tree:   '/data/tree',
+    search: '/data/search',
+    source: '/data/source/',
+  },
+});
+
+<URLTaxon datasetKey="3LR" />
+```
+
+Wrappers exist for every component (`kind: 'taxon' | 'tree' | 'source' | 'sourceList' | 'search'`). They auto-read the identifier from the URL (path or hash, configurable) and emit the URL-write callbacks. The COL portal uses `mode: 'path'`; the GitHub Pages demo uses `mode: 'hash'`.
+
+If you've embedded the v1 components with `pathToTaxon` / `pathToTree` / `pathToSearch` / `pathToDataset` props, the shortest migration is:
+
+```diff
+-import { Taxon } from 'col-browser';
++import { Taxon } from 'col-browser';
++import { withRouting } from 'col-browser/url';
++const URLTaxon = withRouting(Taxon, { kind: 'taxon', mode: 'path', paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' } });
+
+-<Taxon datasetKey="3LR" pathToTaxon="/taxon/" pathToTree="/tree" pathToSearch="/search" pathToDataset="/source/" />
++<URLTaxon datasetKey="3LR" />
+```
+
+If you want full control over the URL shape (or aren't using URLs at all — Redux, in-memory state, etc.), skip the adapter and provide the controlled props yourself:
+
+```jsx
+<Taxon
+  datasetKey="3LR"
+  taxonKey="6W3C4"
+  hrefForTaxon={(id) => `/t/${id}`}
+  onNavigateToTaxon={(id) => router.push(`/t/${id}`)}
+/>
+```
+
+### 5. `Dataset` and `DatasetSearch` were renamed
 
 The two source-dataset components were renamed to make their purpose explicit (a "dataset" in COL terms is a source dataset contributing to a project, not a generic CRUD-style dataset):
 
@@ -96,9 +148,11 @@ ColBrowser.SourceDatasetList
 
 Props and behaviour are unchanged.
 
-### 5. If you call `history.listen` directly
+### 6. The shared `history` singleton is gone
 
-Internal to the library this doesn't matter, but if your host page subscribes to the shared `history` singleton, the v5 listener signature changed from `(location, action)` to `({ location, action })`:
+v1 exported a `history` singleton from `col-browser/history` (used internally for the in-component navigation). It is no longer needed and no longer exported, because the library no longer mutates the URL.
+
+If your host page subscribes to its own history@5 listener and the signature change matters to you, note that v5's listener receives `({ location, action })` instead of `(location, action)`:
 
 ```js
 // old (history@4)
@@ -179,7 +233,9 @@ import { Search } from 'col-browser';
 ```
 
 
-This will create a global `ColBrowser` library variable that has four indvidual components:
+This will create a global `ColBrowser` library variable with the components documented below.
+
+> The prop tables below describe each component's **component-specific** props (identifier, content options). Every component also accepts the four navigation pairs — `hrefForTaxon` / `onNavigateToTaxon`, `hrefForTree` / `onNavigateToTree`, `hrefForSearch` / `onNavigateToSearch`, `hrefForSource` / `onNavigateToSource` — described in the [controlled-components upgrade section](#4-components-are-now-fully-controlled). Use the `col-browser/url` adapter to wire those automatically from your host's URL.
 
 ### ColBrowser.Tree
 
