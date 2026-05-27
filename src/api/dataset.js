@@ -12,16 +12,31 @@ const reflect = (p) =>
 // lightweight dataset object per id; results may come back in any order,
 // so we reorder by `key` to match what DataLoader expects (same length
 // and same order as the requested ids).
+//
+// Tolerates any failure mode (404, network error, malformed response, …)
+// by resolving every id in the failing batch to null. Returning the
+// expected-length array is critical — DataLoader rejects every pending
+// load() if the batch function rejects or returns the wrong length, and
+// the per-id load() rejections would in turn reject the Promise.all in
+// TaxonSources and leave the popover spinner stuck.
 export const getDatasetsBatch = (ids, datasetKey) => {
   if (!ids?.length) return Promise.resolve([]);
+  const nullsForAll = () => ids.map(() => null);
   const params = ids.map((id) => `id=${encodeURIComponent(id)}`).join("&");
   return axios(`${config.dataApi}dataset/${datasetKey}/source/simple?${params}`)
     .then((res) => {
-      const byKey = new Map();
-      (res.data || []).forEach((d) => byKey.set(d.key, d));
-      return ids.map((id) => byKey.get(id) ?? byKey.get(Number(id)) ?? null);
+      try {
+        const byKey = new Map();
+        const arr = Array.isArray(res?.data) ? res.data : [];
+        arr.forEach((d) => {
+          if (d && d.key != null) byKey.set(d.key, d);
+        });
+        return ids.map((id) => byKey.get(id) ?? byKey.get(Number(id)) ?? null);
+      } catch (parseErr) {
+        return nullsForAll();
+      }
     })
-    .catch(() => ids.map(() => null));
+    .catch(() => nullsForAll());
 };
 
 export const getPublishersBatch = (ids, datasetKey) => {

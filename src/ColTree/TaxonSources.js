@@ -29,11 +29,20 @@ class TaxonSources extends React.Component {
     const { datasetLoader } = this.context || {};
     if (!sourceDatasetKeys?.length || !datasetLoader) return;
     this.setState({ loading: true });
-    Promise.all(sourceDatasetKeys.map((s) => datasetLoader.load(s))).then(
-      (data) => {
+    // Always clear loading, even on a failed bulk lookup, so the popover
+    // doesn't hang on a spinner. Each load() may also reject individually
+    // if the batch fn returns Error instances; coerce to null in that case.
+    Promise.all(
+      sourceDatasetKeys.map((s) =>
+        datasetLoader.load(s).catch(() => null)
+      )
+    )
+      .then((data) => {
         this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
-      }
-    );
+      })
+      .catch(() => {
+        this.setState({ data: [], loading: false });
+      });
   };
 
   getPublisherData = () => {
