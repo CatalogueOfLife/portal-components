@@ -9,6 +9,14 @@ import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import MetricsPresentation from "../SourceDataset/MetricsPresentation";
 import PresentationItem from "../components/PresentationItem";
 import MergedDataBadge from "../components/MergedDataBadge";
+import { RouterContext, buildRouter, LinkTo } from "../router";
+const baseFilters = (record) => {
+  const f = record.key
+    ? { SECTOR_DATASET_KEY: record.key }
+    : { SECTOR_PUBLISHER_KEY: record.id };
+  if (_.isArray(record.sectorModes)) f.sectorMode = record.sectorModes;
+  return f;
+};
 const getLivingSpecies = (record, rank) =>
   _.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
 const getExtinctSpecies = (record) =>
@@ -19,11 +27,9 @@ const getSearchParam = (dataset) =>
     : `SECTOR_PUBLISHER_KEY=${dataset.id}`;
 
 const getColumns = (
-  pathToDataset,
   datasetKey,
   auth,
-  hasPublishers,
-  pathToSearch
+  hasPublishers
 ) =>
   [
     {
@@ -52,14 +58,9 @@ const getColumns = (
               <>
                 {" "}
                 {!!record?.merged && <MergedDataBadge style={{marginLeft: "0px"}} />}{" "}
-                <a
-                  href={`${pathToDataset}${record.key}`}
-                  onClick={() => {
-                    window.location.href = `${pathToDataset}${record.key}`;
-                  }}
-                >
+                <LinkTo to="source" args={record.key}>
                   {record.alias || record.title}
-                </a>
+                </LinkTo>
                {!!record?.taxonomicScope && <br/>}
               </>
             )}
@@ -124,17 +125,16 @@ const getColumns = (
       dataIndex: ["metrics", "taxaByRankCount", "family"],
       key: "species",
       render: (text, record) => (
-        <a
-          href={`${pathToSearch}?${getSearchParam(
-            record
-          )}&rank=family&status=accepted&status=provisionally%20accepted${
-            _.isArray(record.sectorModes)
-              ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("")
-              : ""
-          }`}
+        <LinkTo
+          to="search"
+          args={{
+            ...baseFilters(record),
+            rank: "family",
+            status: ["accepted", "provisionally accepted"],
+          }}
         >
           {getLivingSpecies(record, "family").toLocaleString("en-GB")}
-        </a>
+        </LinkTo>
       ),
       sorter: (a, b) => getLivingSpecies(a,"family") - getLivingSpecies(b,"family"),
     },
@@ -151,17 +151,16 @@ const getColumns = (
       dataIndex: ["metrics", "taxaByRankCount", "genus"],
       key: "species",
       render: (text, record) => (
-        <a
-          href={`${pathToSearch}?${getSearchParam(
-            record
-          )}&rank=genus&status=accepted&status=provisionally%20accepted${
-            _.isArray(record.sectorModes)
-              ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("")
-              : ""
-          }`}
+        <LinkTo
+          to="search"
+          args={{
+            ...baseFilters(record),
+            rank: "genus",
+            status: ["accepted", "provisionally accepted"],
+          }}
         >
           {getLivingSpecies(record, "genus").toLocaleString("en-GB")}
-        </a>
+        </LinkTo>
       ),
       sorter: (a, b) => getLivingSpecies(a,"genus") - getLivingSpecies(b,"genus"),
     },
@@ -178,17 +177,16 @@ const getColumns = (
       dataIndex: ["metrics", "taxaByRankCount", "species"],
       key: "species",
       render: (text, record) => (
-        <a
-          href={`${pathToSearch}?${getSearchParam(
-            record
-          )}&rank=species&status=accepted&status=provisionally%20accepted${
-            _.isArray(record.sectorModes)
-              ? "&" + record.sectorModes.map((m) => `&sectorMode=${m}`).join("")
-              : ""
-          }`}
+        <LinkTo
+          to="search"
+          args={{
+            ...baseFilters(record),
+            rank: "species",
+            status: ["accepted", "provisionally accepted"],
+          }}
         >
           {getLivingSpecies(record).toLocaleString("en-GB")}
-        </a>
+        </LinkTo>
       ),
       sorter: (a, b) => getLivingSpecies(a) - getLivingSpecies(b),
     },
@@ -335,7 +333,7 @@ class SourceDatasetListPage extends React.Component {
 
   render() {
     const { data, loading, rank, hasPublishers, error } = this.state;
-    const { pathToDataset, pathToSearch, datasetKey } = this.props;
+    const { datasetKey } = this.props;
 
     return (
       <div
@@ -401,13 +399,7 @@ class SourceDatasetListPage extends React.Component {
         {!error && (
           <Table
             size="small"
-            columns={getColumns(
-              pathToDataset,
-              datasetKey,
-              this.props.auth,
-              hasPublishers,
-              pathToSearch
-            )}
+            columns={getColumns(datasetKey, this.props.auth, hasPublishers)}
             dataSource={data.filter((d) => {
               if (!this.state.showMerged && (d?.merged || !!d?.id)) {
                 return false;
@@ -444,7 +436,6 @@ class SourceDatasetListPage extends React.Component {
                 <MetricsPresentation
                   metrics={dataset.metrics}
                   dataset={dataset}
-                  pathToSearch={this.props.pathToSearch}
                   rank={rank}
                 />
                 <div style={{ marginTop: "12px" }}>
@@ -479,4 +470,14 @@ class SourceDatasetListPage extends React.Component {
   }
 }
 
-export default SourceDatasetListPage;
+export default function SourceDatasetList({
+  datasetKey,
+  auth,
+  ...routerProps
+}) {
+  return (
+    <RouterContext.Provider value={buildRouter(routerProps)}>
+      <SourceDatasetListPage datasetKey={datasetKey} auth={auth} />
+    </RouterContext.Provider>
+  );
+}

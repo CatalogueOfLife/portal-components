@@ -3,6 +3,7 @@ import config from "../config";
 import axios from "axios";
 import {Skeleton} from "antd";
 import _ from "lodash";
+import { LinkTo } from "../router";
 
 class TaxonomicCoverage extends React.Component {
   constructor(props) {
@@ -56,20 +57,20 @@ class TaxonomicCoverage extends React.Component {
 
   render = () => {
     const { taxonMap } = this.state;
-    const { style, pathToTree } = this.props;
+    const { style } = this.props;
     return taxonMap
       ? (Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort((a,b) => a.length - b.length).map((k) => (
           <div style={style} key={k}>
             <span>{k}{k !== "" ? ":" : ""}</span>{" "}
             {taxonMap[k].map((tx, idx) => (
               <React.Fragment key={idx}>
-                  <a href={`${pathToTree}?taxonKey=${tx.id}`} onClick={() => {window.location.href =  `${pathToTree}?taxonKey=${tx.id}`}}  >{tx.name}</a>
+                <LinkTo to="tree" args={{ taxonKey: tx.id }}>{tx.name}</LinkTo>
                 {idx !== taxonMap[k].length - 1 ? ", " : ""}
               </React.Fragment>
             ))}
           </div>
         )) : "N/A")
-      : 
+      :
         <Skeleton active paragraph={{ rows: 4 }} />
       ;
   };

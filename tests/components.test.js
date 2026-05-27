@@ -139,17 +139,15 @@ describe('SourceDataset', () => {
     }
   })
 
-  beforeEach(() => {
-    history.push(`${SOURCE_PATH}${sourceDatasetKey || '1010'}`)
-  })
   afterEach(() => { unmount(node) })
 
   it('renders the dataset page container', () => {
     node = mountIn(
       <SourceDataset
         datasetKey={CATALOGUE_KEY}
-        pathToTree="/data/tree"
-        pathToSearch="/data/search"
+        sourceDatasetKey={sourceDatasetKey || '1010'}
+        hrefForTree={() => '/data/tree'}
+        hrefForSearch={() => '/data/search'}
       />
     )
     expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
@@ -159,8 +157,9 @@ describe('SourceDataset', () => {
     node = mountIn(
       <SourceDataset
         datasetKey={CATALOGUE_KEY}
-        pathToTree="/data/tree"
-        pathToSearch="/data/search"
+        sourceDatasetKey={sourceDatasetKey || '1010'}
+        hrefForTree={() => '/data/tree'}
+        hrefForSearch={() => '/data/search'}
       />
     )
     return waitMs(6000).then(() => {
@@ -179,8 +178,8 @@ describe('SourceDatasetList', () => {
     node = mountIn(
       <SourceDatasetList
         datasetKey={CATALOGUE_KEY}
-        pathToDataset={SOURCE_PATH}
-        pathToSearch="/data/search"
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
+        hrefForSearch={() => '/data/search'}
       />
     )
     expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
@@ -190,8 +189,8 @@ describe('SourceDatasetList', () => {
     node = mountIn(
       <SourceDatasetList
         datasetKey={CATALOGUE_KEY}
-        pathToDataset={SOURCE_PATH}
-        pathToSearch="/data/search"
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
+        hrefForSearch={() => '/data/search'}
       />
     )
     return waitMs(6000).then(() => {

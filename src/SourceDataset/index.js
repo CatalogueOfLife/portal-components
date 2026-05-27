@@ -8,8 +8,8 @@ import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import Metrics from "./Metrics";
 import _ from "lodash";
 import PresentationItem from "../components/PresentationItem";
-import history from "../history";
 import TaxonomicCoverage from "./TaxonomicCoverage";
+import { RouterContext, buildRouter } from "../router";
 import AgentPresentation from "./AgentPresentation";
 import { getCountries } from "../api/enumeration";
 import BibTex from "../components/BibTex";
@@ -50,14 +50,18 @@ class SourceDatasetPage extends React.Component {
     });
   };
 
-  getData = () => {
-    const { datasetKey, pageTitleTemplate } = this.props;
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.sourceDatasetKey !== this.props.sourceDatasetKey ||
+      prevProps.datasetKey !== this.props.datasetKey
+    ) {
+      this.getData();
+    }
+  }
 
-    const { location: path } = history;
-    // Include hash so this works both for path-based embedding and
-    // hash-routed hosts. The key is always the last `/`-delimited segment.
-    const pathParts = `${path.pathname}${path.hash}`.split("/");
-    const sourceDatasetKey = pathParts[pathParts.length - 1];
+  getData = () => {
+    const { datasetKey, sourceDatasetKey, pageTitleTemplate } = this.props;
+    if (!sourceDatasetKey) return;
 
     axios(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`)
       .then((dataset) => {
@@ -79,7 +83,7 @@ class SourceDatasetPage extends React.Component {
   };
 
   render() {
-    const { pathToTree, datasetKey } = this.props;
+    const { datasetKey } = this.props;
     const { data, countryAlpha2, datasetError } = this.state;
 
     return (
@@ -253,13 +257,11 @@ class SourceDatasetPage extends React.Component {
                 <TaxonomicCoverage
                   dataset={data}
                   datasetKey={datasetKey}
-                  pathToTree={pathToTree}
                 />
               </PresentationItem>
               <Metrics
                 datasetKey={datasetKey}
                 dataset={data}
-                pathToSearch={this.props.pathToSearch}
               />
               <PresentationItem label="Abstract">
               
@@ -415,4 +417,21 @@ class SourceDatasetPage extends React.Component {
   }
 }
 
-export default SourceDatasetPage;
+export default function SourceDataset({
+  sourceDatasetKey,
+  datasetKey,
+  pageTitleTemplate,
+  auth,
+  ...routerProps
+}) {
+  return (
+    <RouterContext.Provider value={buildRouter(routerProps)}>
+      <SourceDatasetPage
+        sourceDatasetKey={sourceDatasetKey}
+        datasetKey={datasetKey}
+        pageTitleTemplate={pageTitleTemplate}
+        auth={auth}
+      />
+    </RouterContext.Provider>
+  );
+}
