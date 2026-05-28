@@ -156,8 +156,35 @@ class Demo extends Component {
         </nav>
 
         {isHome && (
-          <div style={{ padding: "16px" }}>
-            <h2>Components</h2>
+          <div style={{ padding: "16px", maxWidth: 720 }}>
+            <h2 style={{ marginTop: 0 }}>col-browser demo</h2>
+            <p>
+              This page exercises the <code>col-browser</code> React component
+              library — embeddable browse / search / taxon views for any dataset
+              hosted in <a href="https://www.checklistbank.org/">ChecklistBank</a>.
+              It runs against the live production API.
+            </p>
+            <p>
+              Each link below mounts one top-level component against the
+              configured <code>datasetKey</code> (top-right). Switch dataset or
+              environment using the pills in the header. Routing uses the
+              built-in <code>withRouting</code> URL adapter in <code>hash</code>{" "}
+              mode, so navigating between components updates{" "}
+              <code>window.location.hash</code> and back/forward work.
+            </p>
+            <p>
+              <strong>To embed in your own site</strong>, see the{" "}
+              <a
+                href="https://github.com/CatalogueOfLife/portal-components#usage"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                README
+              </a>
+              {" "}— it covers UMD <code>&lt;script&gt;</code> tag usage (no
+              bundler), ES module imports, theming, and the URL adapter.
+            </p>
+            <h3>Components</h3>
             <ul>
               {routes.map((r) => (
                 <li key={r.path} style={{ margin: "8px 0" }}>
