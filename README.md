@@ -1,15 +1,16 @@
 # ChecklistBank ReactJS components
 
-This is a small ReactJS component library to visualise datasets in [checklistbank.org](https://www.checklistbank.org/dataset)
+This is a small ReactJS component library to visualise datasets in [checklistbank.org](https://www.checklistbank.org/dataset).
+The components work against a single dataset, configured by a datasetKey, and can be used to interact with each other.
 
-1. Tree browser
-2. Taxon search page, table view
-3. Taxon page
-4. SourceDataset page (Relevant for projects compiled from several source datasets providing taxonomic 'sectors' i.e. subtrees)
-5. BibTex citation - simple icon that downloads a BibTex citation for a dataset
-6. SourceDatasetList - table of source datasets contributing to a compiled project (for `/contributors`-style pages)
-7. TaxonBreakdown - pie chart of a taxon's children by rank with drill-down
-8. TaxonDistribution - the Taxon page's distribution map (MapLibre + optional GBIF overlay) as a standalone component
+1. [Tree](https://catalogueoflife.github.io/portal-components/#tree) - navigate the taxonomic tree of a dataset in checklistbank, linking out to individual taxa
+2. [Search](https://catalogueoflife.github.io/portal-components/#search) - a search form with filters and a tabular response view
+3. [Taxon](https://catalogueoflife.github.io/portal-components/#taxon/6W3C4) - comprehensive information of a single taxon including the taxon breakdown and distribution map
+4. [TaxonBreakdown](https://catalogueoflife.github.io/portal-components/#breakdown/ST) - one or two level pie chart of a taxon's major groups by rank
+5. [TaxonDistribution](https://catalogueoflife.github.io/portal-components/#distribution/HWCX) - the Taxon page's distribution map (MapLibre + optional GBIF overlay) as a standalone component
+6. [SourceDatasetList](https://catalogueoflife.github.io/portal-components/#sources) - table of source datasets contributing to a compiled project
+7. [SourceDataset](https://catalogueoflife.github.io/portal-components/#source/1010) - source dataset details. Relevant for projects compiled from several source datasets providing taxonomic 'sectors'
+8. [BibTex](https://catalogueoflife.github.io/portal-components/#bibtex/1010) - simple icon that provides a BibTex citation for a dataset
 
 ## Examples
 
