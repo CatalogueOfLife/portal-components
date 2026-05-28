@@ -36,7 +36,6 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.js'),
-        url: resolve(__dirname, 'src/url/index.js'),
       },
       formats: ['es'],
     },

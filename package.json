@@ -8,9 +8,6 @@
     ".": {
       "import": "./es/index.js",
       "require": "./umd/col-browser.js"
-    },
-    "./url": {
-      "import": "./es/url.js"
     }
   },
   "files": [

@@ -11,8 +11,8 @@ import {
   BibTex,
   TaxonBreakdown,
   TaxonDistribution,
+  withRouting,
 } from "../../src";
-import { withRouting } from "../../src/url";
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
 import config from "../../src/config";
 

@@ -70,6 +70,66 @@ jsDelivr resolves semver-style git tags, so you can pick the granularity that su
 
 After a versioned release, the `@latest`, `@1`, or `@2` URLs cache for up to ~12 h on the jsDelivr edge — purge them via <https://www.jsdelivr.com/tools/purge> if you need to roll out faster.
 
+### URL adapter (optional)
+
+The 2.x components are fully controlled: they take their identifier (e.g. `taxonKey`, `sourceDatasetKey`, `taxonId`) and their navigation as plain props. To wire identifiers to your URL and links into the right paths, you can either:
+
+1. Pass `hrefForTaxon` / `onNavigateToTaxon` (and the equivalents for Tree, Search and Source) yourself — see the [per-component examples below](#colbrowsertree) and the [bypassing-the-adapter section](#bypassing-the-adapter-custom-router-redux-no-url-at-all).
+2. Wrap the component with the built-in **`withRouting`** adapter, which reads the identifier from `window.location` and provides all four navigation pairs from a single `paths` map.
+
+`withRouting` is exported from the main entry — available both as `ColBrowser.withRouting` in UMD `<script>` tags and as `import { withRouting } from 'col-browser'` in ES module builds.
+
+```html
+<!-- UMD -->
+<script>
+  const URLTaxon = ColBrowser.withRouting(ColBrowser.Taxon, {
+    kind: 'taxon',
+    mode: 'path', // or 'hash' — see the GitHub Pages demo
+    paths: {
+      taxon:  '/taxon/',   // /taxon/{taxonKey}
+      tree:   '/tree',     // /tree?taxonKey={…}
+      search: '/search',   // /search?q=…
+      source: '/source/',  // /source/{sourceDatasetKey}
+    },
+  });
+
+  ReactDOM.createRoot(document.querySelector('#taxon'))
+          .render(React.createElement(URLTaxon, { datasetKey: '3LR' }));
+</script>
+```
+
+```jsx
+// ES module
+import { Taxon, withRouting } from 'col-browser';
+
+const URLTaxon = withRouting(Taxon, {
+  kind: 'taxon',
+  mode: 'path',
+  paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
+});
+
+<URLTaxon datasetKey="3LR" />
+```
+
+One wrapper per top-level component. The `mode` controls whether identifiers are read from `location.pathname` (`"path"`) or from `location.hash` (`"hash"`). The `paths` map gives each navigation target a prefix; the adapter appends the identifier when navigating (e.g. `/taxon/` + `6W3C4` → `/taxon/6W3C4`).
+
+Available kinds and what each one wires up:
+
+| `kind`              | Controlled identifier from URL              | State callbacks                            |
+| ---                 | ---                                         | ---                                        |
+| `taxon`             | `taxonKey` from path after `paths.taxon`    | —                                          |
+| `tree`              | `expandedTaxonKey` from `?taxonKey=…`       | `onExpandedTaxonKeyChange` writes to URL   |
+| `search`            | `filters` from query string                 | `onFiltersChange` writes to query string   |
+| `source`            | `sourceDatasetKey` from `paths.source`      | —                                          |
+| `sourceList`        | none (it's a static-by-datasetKey list)     | —                                          |
+| `taxonBreakdown`    | `taxonId` from `paths.taxonBreakdown`       | —                                          |
+| `taxonDistribution` | `taxonId` from `paths.taxonDistribution`    | —                                          |
+| `bibtex`            | `sourceDatasetKey` from `paths.bibtex`      | —                                          |
+
+The COL portal uses `mode: 'path'`. The GitHub Pages demo uses `mode: 'hash'` against the same components — see [`demo/src/index.js`](demo/src/index.js).
+
+For SPA frameworks where the adapter doesn't fit (a custom router, Redux state, no URL at all), every component also works as a plain controlled component — see [Bypassing the adapter](#bypassing-the-adapter-custom-router-redux-no-url-at-all).
+
 ### Theming (optional)
 
 Every top-level component accepts two optional theming props. When neither is set, the library's defaults are used and no Ant Design `ConfigProvider` is mounted.
@@ -104,7 +164,7 @@ import { Search } from 'col-browser';
 
 This will create a global `ColBrowser` library variable with the components documented below.
 
-> The prop tables below describe each component's **component-specific** props (identifier, content options). Every component also accepts the four navigation pairs — `hrefForTaxon` / `onNavigateToTaxon`, `hrefForTree` / `onNavigateToTree`, `hrefForSearch` / `onNavigateToSearch`, `hrefForSource` / `onNavigateToSource` — described in the [controlled-components upgrade section](#4-components-are-now-fully-controlled). Use the `col-browser/url` adapter to wire those automatically from your host's URL.
+> The prop tables below describe each component's **component-specific** props (identifier, content options). Every component also accepts the four navigation pairs — `hrefForTaxon` / `onNavigateToTaxon`, `hrefForTree` / `onNavigateToTree`, `hrefForSearch` / `onNavigateToSearch`, `hrefForSource` / `onNavigateToSource`. Each section below shows two examples: one wiring the navigation pairs manually, and one using the built-in [`withRouting` adapter](#url-adapter-optional).
 
 ### ColBrowser.Tree
 
@@ -136,7 +196,26 @@ ReactDOM.createRoot(document.querySelector('#tree')).render(
 </script>
 ```
 
-Wire only `hrefForX` for plain anchor navigation (the browser does a full page load on click — fine for static portals). Add `onNavigateToX` as well for SPA-style in-page navigation, or use the [`col-browser/url` adapter](#4-components-are-now-fully-controlled) (ES modules only) to wire both from a `paths` map.
+Wire only `hrefForX` for plain anchor navigation (the browser does a full page load on click — fine for static portals). Add `onNavigateToX` as well for SPA-style in-page navigation, or use the [`withRouting` adapter](#url-adapter-optional) to wire both from a single `paths` map.
+
+With the URL adapter:
+
+```html
+<div id="tree"></div>
+<script>
+'use strict';
+const URLTree = ColBrowser.withRouting(ColBrowser.Tree, {
+  kind: 'tree',
+  mode: 'path',
+  paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
+});
+
+// /tree?taxonKey=…  is read into `expandedTaxonKey`; changes write back.
+ReactDOM.createRoot(document.querySelector('#tree')).render(
+  React.createElement(URLTree, { datasetKey: '3LR' })
+);
+</script>
+```
 
 
 ### ColBrowser.Search
@@ -158,6 +237,25 @@ ReactDOM.createRoot(document.querySelector('#search')).render(
     datasetKey: 9999,
     hrefForTaxon: (id) => `/taxon/${id}`,
   })
+);
+</script>
+```
+
+With the URL adapter:
+
+```html
+<div id="search"></div>
+<script>
+'use strict';
+const URLSearch = ColBrowser.withRouting(ColBrowser.Search, {
+  kind: 'search',
+  mode: 'path',
+  paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
+});
+
+// /search?q=…&rank=…  is read into `filters`; user changes write back.
+ReactDOM.createRoot(document.querySelector('#search')).render(
+  React.createElement(URLSearch, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -212,6 +310,25 @@ ReactDOM.createRoot(document.querySelector('#taxon')).render(
 </script>
 ```
 
+With the URL adapter:
+
+```html
+<div id="taxon"></div>
+<script>
+'use strict';
+const URLTaxon = ColBrowser.withRouting(ColBrowser.Taxon, {
+  kind: 'taxon',
+  mode: 'path',
+  paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
+});
+
+// On a route like /taxon/6W3C4, the adapter reads `taxonKey` itself.
+ReactDOM.createRoot(document.querySelector('#taxon')).render(
+  React.createElement(URLTaxon, { datasetKey: '3LR', showDistributionMap: true })
+);
+</script>
+```
+
 
 ### ColBrowser.TaxonBreakdown
 
@@ -234,6 +351,25 @@ ReactDOM.createRoot(document.querySelector('#breakdown')).render(
     showLevelSwitch: true,
     hrefForTaxon: (id) => `/taxon/${id}`,
   })
+);
+</script>
+```
+
+With the URL adapter:
+
+```html
+<div id="breakdown"></div>
+<script>
+'use strict';
+const URLBreakdown = ColBrowser.withRouting(ColBrowser.TaxonBreakdown, {
+  kind: 'taxonBreakdown',
+  mode: 'path',
+  paths: { taxonBreakdown: '/breakdown/', taxon: '/taxon/' },
+});
+
+// On a route like /breakdown/ST, the adapter reads `taxonId` itself.
+ReactDOM.createRoot(document.querySelector('#breakdown')).render(
+  React.createElement(URLBreakdown, { datasetKey: '3LR', showLevelSwitch: true })
 );
 </script>
 ```
@@ -270,6 +406,25 @@ ReactDOM.createRoot(document.querySelector('#distribution')).render(
 </script>
 ```
 
+With the URL adapter:
+
+```html
+<div id="distribution"></div>
+<script>
+'use strict';
+const URLDistribution = ColBrowser.withRouting(ColBrowser.TaxonDistribution, {
+  kind: 'taxonDistribution',
+  mode: 'path',
+  paths: { taxonDistribution: '/distribution/', source: '/source/' },
+});
+
+// On a route like /distribution/6W3C4, the adapter reads `taxonId` itself.
+ReactDOM.createRoot(document.querySelector('#distribution')).render(
+  React.createElement(URLDistribution, { datasetKey: '3LR' })
+);
+</script>
+```
+
 
 ### ColBrowser.SourceDatasetList
 
@@ -289,6 +444,24 @@ ReactDOM.createRoot(document.querySelector('#contributors')).render(
     hrefForSource: (id) => `/source/${id}`,
     hrefForSearch: (filters) => `/search?${new URLSearchParams(filters)}`,
   })
+);
+</script>
+```
+
+With the URL adapter:
+
+```html
+<div id="contributors"></div>
+<script>
+'use strict';
+const URLSourceList = ColBrowser.withRouting(ColBrowser.SourceDatasetList, {
+  kind: 'sourceList',
+  mode: 'path',
+  paths: { search: '/search', source: '/source/' },
+});
+
+ReactDOM.createRoot(document.querySelector('#contributors')).render(
+  React.createElement(URLSourceList, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -318,6 +491,25 @@ ReactDOM.createRoot(document.querySelector('#dataset')).render(
 </script>
 ```
 
+With the URL adapter:
+
+```html
+<div id="dataset"></div>
+<script>
+'use strict';
+const URLSourceDataset = ColBrowser.withRouting(ColBrowser.SourceDataset, {
+  kind: 'source',
+  mode: 'path',
+  paths: { source: '/source/', tree: '/tree', search: '/search' },
+});
+
+// On a route like /source/2073, the adapter reads `sourceDatasetKey` itself.
+ReactDOM.createRoot(document.querySelector('#dataset')).render(
+  React.createElement(URLSourceDataset, { datasetKey: '3LR' })
+);
+</script>
+```
+
 
 ### ColBrowser.BibTex
 
@@ -338,6 +530,25 @@ ReactDOM.createRoot(document.querySelector('#bibtex')).render(
 
 // Or cite a source within a catalogue:
 // React.createElement(ColBrowser.BibTex, { datasetKey: 9837, sourceDatasetKey: 1010 })
+</script>
+```
+
+With the URL adapter:
+
+```html
+<div id="bibtex"></div>
+<script>
+'use strict';
+const URLBibTex = ColBrowser.withRouting(ColBrowser.BibTex, {
+  kind: 'bibtex',
+  mode: 'path',
+  paths: { bibtex: '/bibtex/' },
+});
+
+// On a route like /bibtex/1010, the adapter reads `sourceDatasetKey` itself.
+ReactDOM.createRoot(document.querySelector('#bibtex')).render(
+  React.createElement(URLBibTex, { datasetKey: '3LR' })
+);
 </script>
 ```
 
@@ -386,53 +597,14 @@ The biggest API change in 2.0 is that **the library no longer reads or writes th
 
 This makes the components host-agnostic: they work the same inside react-router, Next.js, TanStack Router, an unrouted page, a Storybook story, or a Redux app.
 
-#### Quickstart: use the built-in URL adapter
-
-Most hosts don't want to write the wiring themselves. The library ships an opt-in adapter at `col-browser/url` that does it for you:
-
-```jsx
-import { Taxon } from 'col-browser';
-import { withRouting } from 'col-browser/url';
-
-const URLTaxon = withRouting(Taxon, {
-  kind: 'taxon',
-  mode: 'path', // or 'hash'
-  paths: {
-    taxon:  '/data/taxon/',
-    tree:   '/data/tree',
-    search: '/data/search',
-    source: '/data/source/',
-  },
-});
-
-<URLTaxon datasetKey="3LR" />
-```
-
-One wrapper per top-level component. The adapter reads the identifier from the URL (path or hash, configurable via `mode`), and provides the `onNavigateToX` / `hrefForX` pair built from the `paths` map.
-
-Available kinds and what each one wires up:
-
-| `kind`              | Controlled identifier from URL              | State callbacks                            |
-| ---                 | ---                                         | ---                                        |
-| `taxon`             | `taxonKey` from path after `paths.taxon`    | —                                          |
-| `tree`              | `expandedTaxonKey` from `?taxonKey=…`       | `onExpandedTaxonKeyChange` writes to URL   |
-| `search`            | `filters` from query string                 | `onFiltersChange` writes to query string   |
-| `source`            | `sourceDatasetKey` from `paths.source`      | —                                          |
-| `sourceList`        | none (it's a static-by-datasetKey list)     | —                                          |
-| `taxonBreakdown`    | `taxonId` from `paths.taxonBreakdown`       | —                                          |
-| `taxonDistribution` | `taxonId` from `paths.taxonDistribution`    | —                                          |
-| `bibtex`            | `sourceDatasetKey` from `paths.bibtex`      | —                                          |
-
-Every kind also gets the four navigation pairs (`hrefForTaxon` / `onNavigateToTaxon`, `hrefForTree` / `onNavigateToTree`, `hrefForSearch` / `onNavigateToSearch`, `hrefForSource` / `onNavigateToSource`) wired automatically from the `paths` map.
-
-The COL portal uses `mode: 'path'`. The GitHub Pages demo uses `mode: 'hash'` and just changes the `paths` map — same components, same adapter.
+For new code, the easiest way to wire identifiers and links is the built-in [URL adapter](#url-adapter-optional) — its kinds table lists exactly which identifier each component reads.
 
 #### Migrating from v1
 
 ```diff
 -import { Taxon } from 'col-browser';
-+import { Taxon } from 'col-browser';
-+import { withRouting } from 'col-browser/url';
++import { Taxon, withRouting } from 'col-browser';
++
 +const URLTaxon = withRouting(Taxon, {
 +  kind: 'taxon',
 +  mode: 'path',
@@ -445,7 +617,7 @@ The COL portal uses `mode: 'path'`. The GitHub Pages demo uses `mode: 'hash'` an
 
 #### Bypassing the adapter (custom router, Redux, no URL at all)
 
-You don't have to use `col-browser/url`. Every top-level component is a plain controlled React component — feed it the props it needs and the library will never touch the URL.
+You don't have to use `withRouting`. Every top-level component is a plain controlled React component — feed it the props it needs and the library will never touch the URL.
 
 ```jsx
 function MyTaxonPage() {

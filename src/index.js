@@ -9,6 +9,7 @@ import sourceDatasetList from "./SourceDatasetList"
 import bibTex from "./components/BibTex"
 import { BreakDownWrapper } from './Taxon/BreakDownWrapper';
 import { DistributionsWrapper } from './Taxon/DistributionsWrapper';
+export { withRouting } from './url';
 export const Tree = withTheme(withDatasetKey(colTree));
 export const Taxon = withTheme(withDatasetKey(taxon));
 export const Search = withTheme(withDatasetKey(search));

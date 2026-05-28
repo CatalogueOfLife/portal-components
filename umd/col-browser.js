@@ -5095,7 +5095,7 @@ ${heightStyle}
       }
       return [newState, dispatch];
     }
-    function updateSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
+    function updateSyncExternalStore(subscribe2, getSnapshot, getServerSnapshot) {
       var fiber = currentlyRenderingFiber, hook = updateWorkInProgressHook(), isHydrating$jscomp$0 = isHydrating;
       if (isHydrating$jscomp$0) {
         if (void 0 === getServerSnapshot) throw Error(formatProdErrorMessage(407));
@@ -5107,8 +5107,8 @@ ${heightStyle}
       );
       snapshotChanged && (hook.memoizedState = getServerSnapshot, didReceiveUpdate = true);
       hook = hook.queue;
-      updateEffect(subscribeToStore.bind(null, fiber, hook, subscribe), [
-        subscribe
+      updateEffect(subscribeToStore.bind(null, fiber, hook, subscribe2), [
+        subscribe2
       ]);
       if (hook.getSnapshot !== getSnapshot || snapshotChanged || null !== workInProgressHook && workInProgressHook.memoizedState.tag & 1) {
         fiber.flags |= 2048;
@@ -5140,8 +5140,8 @@ ${heightStyle}
       inst.getSnapshot = getSnapshot;
       checkIfSnapshotChanged(inst) && forceStoreRerender(fiber);
     }
-    function subscribeToStore(fiber, inst, subscribe) {
-      return subscribe(function() {
+    function subscribeToStore(fiber, inst, subscribe2) {
+      return subscribe2(function() {
         checkIfSnapshotChanged(inst) && forceStoreRerender(fiber);
       });
     }
@@ -5860,7 +5860,7 @@ ${heightStyle}
         mountWorkInProgressHook().memoizedState = stateHook;
         return [false, stateHook];
       },
-      useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
+      useSyncExternalStore: function(subscribe2, getSnapshot, getServerSnapshot) {
         var fiber = currentlyRenderingFiber, hook = mountWorkInProgressHook();
         if (isHydrating) {
           if (void 0 === getServerSnapshot)
@@ -5875,8 +5875,8 @@ ${heightStyle}
         hook.memoizedState = getServerSnapshot;
         var inst = { value: getServerSnapshot, getSnapshot };
         hook.queue = inst;
-        mountEffect(subscribeToStore.bind(null, fiber, inst, subscribe), [
-          subscribe
+        mountEffect(subscribeToStore.bind(null, fiber, inst, subscribe2), [
+          subscribe2
         ]);
         fiber.flags |= 2048;
         pushSimpleEffect(
@@ -74150,8 +74150,8 @@ html body {
     const router = useRouter();
     const slot = router[to];
     if (!slot) return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: style2, className, title, children });
-    const { onNavigate, hrefFor } = slot;
-    const href = hrefFor ? hrefFor(args) : onNavigate ? "#" : null;
+    const { onNavigate, hrefFor: hrefFor2 } = slot;
+    const href = hrefFor2 ? hrefFor2(args) : onNavigate ? "#" : null;
     if (!onNavigate && !href) {
       return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: style2, className, title, children });
     }
@@ -95884,6 +95884,116 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       }
     ) });
   };
+  const isHash = (mode) => mode === "hash";
+  const readLocationKind = (mode) => {
+    if (isHash(mode)) {
+      const raw = typeof window !== "undefined" && window.location.hash || "";
+      const hash2 = raw.startsWith("#") ? raw.slice(1) : raw;
+      const qIdx = hash2.indexOf("?");
+      return {
+        path: qIdx >= 0 ? hash2.slice(0, qIdx) : hash2,
+        search: qIdx >= 0 ? hash2.slice(qIdx) : ""
+      };
+    }
+    return {
+      path: typeof window !== "undefined" && window.location.pathname || "",
+      search: typeof window !== "undefined" && window.location.search || ""
+    };
+  };
+  const writeLocation = (mode, path, search) => {
+    const searchStr = search && Object.keys(search).length > 0 ? `?${queryString.stringify(search, { arrayFormat: "none" })}` : "";
+    if (isHash(mode)) {
+      const next2 = `${path}${searchStr}`;
+      window.location.hash = next2;
+    } else {
+      const url = `${path}${searchStr}`;
+      window.history.pushState(null, "", url);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    }
+  };
+  const subscribe = (mode, cb) => {
+    const evt = isHash(mode) ? "hashchange" : "popstate";
+    window.addEventListener(evt, cb);
+    return () => window.removeEventListener(evt, cb);
+  };
+  const hrefFor = (mode, prefix2, args) => {
+    if (!prefix2) return null;
+    const arg = args == null ? "" : typeof args === "object" ? "" : String(args);
+    const tail = typeof args === "object" && args && Object.keys(args).length > 0 ? `?${queryString.stringify(args, { arrayFormat: "none" })}` : "";
+    const url = `${prefix2}${arg}${tail}`;
+    return isHash(mode) ? `#${url}` : url;
+  };
+  const navigate = (mode, prefix2, args) => {
+    if (!prefix2) return;
+    let path = prefix2;
+    let search = null;
+    if (typeof args === "string" || typeof args === "number") {
+      path = `${prefix2}${args}`;
+    } else if (args && typeof args === "object") {
+      search = args;
+    }
+    writeLocation(mode, path, search);
+  };
+  const buildNavProps = (mode, paths) => ({
+    hrefForTaxon: (id) => hrefFor(mode, paths.taxon, id),
+    hrefForTree: (a) => hrefFor(mode, paths.tree, a),
+    hrefForSearch: (a) => hrefFor(mode, paths.search, a),
+    hrefForSource: (id) => hrefFor(mode, paths.source, id),
+    onNavigateToTaxon: (id) => navigate(mode, paths.taxon, id),
+    onNavigateToTree: (a) => navigate(mode, paths.tree, a),
+    onNavigateToSearch: (a) => navigate(mode, paths.search, a),
+    onNavigateToSource: (id) => navigate(mode, paths.source, id)
+  });
+  const lastSegmentAfter = (path, prefix2) => {
+    if (!prefix2) return void 0;
+    if (!path.startsWith(prefix2)) {
+      const i = path.indexOf(prefix2);
+      if (i < 0) return void 0;
+      return path.slice(i + prefix2.length).split("/").filter(Boolean).pop();
+    }
+    return path.slice(prefix2.length).split("/").filter(Boolean).pop();
+  };
+  function withRouting(Component, options) {
+    const { kind, mode = "path", paths = {} } = options;
+    const Wrapped = (props) => {
+      const [tick, setTick] = React.useState(0);
+      React.useEffect(() => subscribe(mode, () => setTick((t2) => t2 + 1)), []);
+      const { path, search } = readLocationKind(mode);
+      const navProps = React.useMemo(() => buildNavProps(mode, paths), []);
+      let extra = {};
+      if (kind === "taxon") {
+        extra.taxonKey = lastSegmentAfter(path, paths.taxon);
+      } else if (kind === "source") {
+        extra.sourceDatasetKey = lastSegmentAfter(path, paths.source);
+      } else if (kind === "taxonBreakdown") {
+        extra.taxonId = lastSegmentAfter(path, paths.taxonBreakdown);
+      } else if (kind === "taxonDistribution") {
+        extra.taxonId = lastSegmentAfter(path, paths.taxonDistribution);
+      } else if (kind === "bibtex") {
+        extra.sourceDatasetKey = lastSegmentAfter(path, paths.bibtex);
+      } else if (kind === "tree") {
+        const parsed = queryString.parse(search);
+        extra.expandedTaxonKey = parsed.taxonKey || void 0;
+        extra.onExpandedTaxonKeyChange = React.useCallback((id) => {
+          const cur = readLocationKind(mode);
+          const next2 = queryString.parse(cur.search);
+          if (id) next2.taxonKey = id;
+          else delete next2.taxonKey;
+          writeLocation(mode, cur.path || paths.tree || "/", next2);
+        }, []);
+      } else if (kind === "search") {
+        const parsed = queryString.parse(search, { arrayFormat: "none" });
+        extra.filters = parsed;
+        extra.onFiltersChange = React.useCallback((filters) => {
+          const cur = readLocationKind(mode);
+          writeLocation(mode, cur.path || paths.search || "/", filters);
+        }, []);
+      }
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(Component, { ...navProps, ...extra, ...props });
+    };
+    Wrapped.displayName = `withRouting(${Component.displayName || Component.name || "Component"})`;
+    return Wrapped;
+  }
   const Tree = withTheme(withDatasetKey(Tree$1));
   const Taxon = withTheme(withDatasetKey(Taxon$1));
   const Search = withTheme(withDatasetKey(Search$1));
@@ -95901,7 +96011,8 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     Taxon,
     TaxonBreakdown,
     TaxonDistribution,
-    Tree
+    Tree,
+    withRouting
   }, Symbol.toStringTag, { value: "Module" }));
   return components;
 }));
