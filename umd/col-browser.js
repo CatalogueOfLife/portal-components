@@ -94120,7 +94120,7 @@ html body {
               ] })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, style: { textAlign: "left", marginBottom: "8px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { type: "danger", onClick: this.resetSearch, children: "Reset all" }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, style: { textAlign: "left", marginBottom: "8px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { type: "primary", danger: true, onClick: this.resetSearch, children: "Reset all" }) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, style: { textAlign: "right", marginBottom: "8px" }, children: pagination && !isNaN(pagination.total) && `results: ${pagination.total.toLocaleString("en-GB")}` })
             ] }),
             !error && /* @__PURE__ */ jsxRuntimeExports.jsx(
