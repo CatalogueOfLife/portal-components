@@ -1,6 +1,6 @@
 (function(global2, factory) {
-  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("react"), require("maplibre-gl")) : typeof define === "function" && define.amd ? define(["react", "maplibre-gl"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.ColBrowser = factory(global2.React, global2.maplibregl));
-})(this, (function(React, maplibregl) {
+  typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory(require("maplibre-gl")) : typeof define === "function" && define.amd ? define(["maplibre-gl"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.ColBrowser = factory(global2.maplibregl));
+})(this, (function(maplibregl) {
   "use strict";var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -24,1299 +24,480 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     };
     return BBuffer;
   })();
-  function _interopNamespaceDefault(e2) {
-    const n2 = Object.create(null, { [Symbol.toStringTag]: { value: "Module" } });
-    if (e2) {
-      for (const k in e2) {
-        if (k !== "default") {
-          const d2 = Object.getOwnPropertyDescriptor(e2, k);
-          Object.defineProperty(n2, k, d2.get ? d2 : {
-            enumerable: true,
-            get: () => e2[k]
-          });
+  function _mergeNamespaces(n2, m2) {
+    for (var i = 0; i < m2.length; i++) {
+      const e2 = m2[i];
+      if (typeof e2 !== "string" && !Array.isArray(e2)) {
+        for (const k in e2) {
+          if (k !== "default" && !(k in n2)) {
+            const d2 = Object.getOwnPropertyDescriptor(e2, k);
+            if (d2) {
+              Object.defineProperty(n2, k, d2.get ? d2 : {
+                enumerable: true,
+                get: () => e2[k]
+              });
+            }
+          }
         }
       }
     }
-    n2.default = e2;
-    return Object.freeze(n2);
+    return Object.freeze(Object.defineProperty(n2, Symbol.toStringTag, { value: "Module" }));
   }
-  const React__namespace = /* @__PURE__ */ _interopNamespaceDefault(React);
   var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
   function getDefaultExportFromCjs(x2) {
     return x2 && x2.__esModule && Object.prototype.hasOwnProperty.call(x2, "default") ? x2["default"] : x2;
   }
-  var jsxRuntime = { exports: {} };
-  var reactJsxRuntime_production = {};
+  var react = { exports: {} };
+  var react_production = {};
   /**
    * @license React
-   * react-jsx-runtime.production.js
+   * react.production.js
    *
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
    * This source code is licensed under the MIT license found in the
    * LICENSE file in the root directory of this source tree.
    */
-  var hasRequiredReactJsxRuntime_production;
-  function requireReactJsxRuntime_production() {
-    if (hasRequiredReactJsxRuntime_production) return reactJsxRuntime_production;
-    hasRequiredReactJsxRuntime_production = 1;
-    var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_FRAGMENT_TYPE2 = Symbol.for("react.fragment");
-    function jsxProd(type2, config2, maybeKey) {
-      var key2 = null;
-      void 0 !== maybeKey && (key2 = "" + maybeKey);
-      void 0 !== config2.key && (key2 = "" + config2.key);
-      if ("key" in config2) {
-        maybeKey = {};
-        for (var propName in config2)
-          "key" !== propName && (maybeKey[propName] = config2[propName]);
-      } else maybeKey = config2;
-      config2 = maybeKey.ref;
+  var hasRequiredReact_production;
+  function requireReact_production() {
+    if (hasRequiredReact_production) return react_production;
+    hasRequiredReact_production = 1;
+    var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE2 = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+    function getIteratorFn(maybeIterable) {
+      if (null === maybeIterable || "object" !== typeof maybeIterable) return null;
+      maybeIterable = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable["@@iterator"];
+      return "function" === typeof maybeIterable ? maybeIterable : null;
+    }
+    var ReactNoopUpdateQueue = {
+      isMounted: function() {
+        return false;
+      },
+      enqueueForceUpdate: function() {
+      },
+      enqueueReplaceState: function() {
+      },
+      enqueueSetState: function() {
+      }
+    }, assign2 = Object.assign, emptyObject = {};
+    function Component(props, context, updater) {
+      this.props = props;
+      this.context = context;
+      this.refs = emptyObject;
+      this.updater = updater || ReactNoopUpdateQueue;
+    }
+    Component.prototype.isReactComponent = {};
+    Component.prototype.setState = function(partialState, callback) {
+      if ("object" !== typeof partialState && "function" !== typeof partialState && null != partialState)
+        throw Error(
+          "takes an object of state variables to update or a function which returns an object of state variables."
+        );
+      this.updater.enqueueSetState(this, partialState, callback, "setState");
+    };
+    Component.prototype.forceUpdate = function(callback) {
+      this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
+    };
+    function ComponentDummy() {
+    }
+    ComponentDummy.prototype = Component.prototype;
+    function PureComponent(props, context, updater) {
+      this.props = props;
+      this.context = context;
+      this.refs = emptyObject;
+      this.updater = updater || ReactNoopUpdateQueue;
+    }
+    var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
+    pureComponentPrototype.constructor = PureComponent;
+    assign2(pureComponentPrototype, Component.prototype);
+    pureComponentPrototype.isPureReactComponent = true;
+    var isArrayImpl = Array.isArray;
+    function noop2() {
+    }
+    var ReactSharedInternals = { H: null, A: null, T: null, S: null }, hasOwnProperty2 = Object.prototype.hasOwnProperty;
+    function ReactElement(type2, key2, props) {
+      var refProp = props.ref;
       return {
         $$typeof: REACT_ELEMENT_TYPE,
         type: type2,
         key: key2,
-        ref: void 0 !== config2 ? config2 : null,
-        props: maybeKey
+        ref: void 0 !== refProp ? refProp : null,
+        props
       };
     }
-    reactJsxRuntime_production.Fragment = REACT_FRAGMENT_TYPE2;
-    reactJsxRuntime_production.jsx = jsxProd;
-    reactJsxRuntime_production.jsxs = jsxProd;
-    return reactJsxRuntime_production;
-  }
-  var hasRequiredJsxRuntime;
-  function requireJsxRuntime() {
-    if (hasRequiredJsxRuntime) return jsxRuntime.exports;
-    hasRequiredJsxRuntime = 1;
-    {
-      jsxRuntime.exports = requireReactJsxRuntime_production();
+    function cloneAndReplaceKey(oldElement, newKey) {
+      return ReactElement(oldElement.type, newKey, oldElement.props);
     }
-    return jsxRuntime.exports;
-  }
-  var jsxRuntimeExports = requireJsxRuntime();
-  const warned$1 = /* @__PURE__ */ new Set();
-  function warnDeprecation(componentName, message2) {
-    const key2 = `${componentName}:${message2}`;
-    if (warned$1.has(key2)) return;
-    warned$1.add(key2);
-    if (typeof console !== "undefined" && console.warn) {
-      console.warn(`[col-browser] <${componentName}> ${message2}`);
+    function isValidElement(object2) {
+      return "object" === typeof object2 && null !== object2 && object2.$$typeof === REACT_ELEMENT_TYPE;
     }
-  }
-  function withDatasetKey(WrappedComponent) {
-    const name = WrappedComponent.displayName || WrappedComponent.name || "Component";
-    const Wrapper2 = (props) => {
-      const { catalogueKey, datasetKey, ...rest } = props;
-      if (catalogueKey !== void 0 && datasetKey === void 0) {
-        warnDeprecation(
-          name,
-          "the `catalogueKey` prop is deprecated; rename it to `datasetKey`."
-        );
-      }
-      const resolvedDatasetKey = datasetKey !== void 0 ? datasetKey : catalogueKey;
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(WrappedComponent, { ...rest, datasetKey: resolvedDatasetKey });
-    };
-    Wrapper2.displayName = `withDatasetKey(${name})`;
-    return Wrapper2;
-  }
-  function withBibTexLegacyShim(WrappedComponent) {
-    const name = WrappedComponent.displayName || WrappedComponent.name || "BibTex";
-    const Wrapper2 = (props) => {
-      const { catalogueKey, datasetKey, sourceDatasetKey, ...rest } = props;
-      if (catalogueKey !== void 0) {
-        warnDeprecation(
-          name,
-          "the `catalogueKey` prop is deprecated; pass the catalogue as `datasetKey` and the source as `sourceDatasetKey`."
-        );
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-          WrappedComponent,
-          {
-            ...rest,
-            datasetKey: catalogueKey,
-            sourceDatasetKey: sourceDatasetKey !== void 0 ? sourceDatasetKey : datasetKey
-          }
-        );
-      }
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(
-        WrappedComponent,
-        {
-          ...rest,
-          datasetKey,
-          sourceDatasetKey
-        }
-      );
-    };
-    Wrapper2.displayName = `withBibTexLegacyShim(${name})`;
-    return Wrapper2;
-  }
-  const useEvent = (callback) => {
-    const fnRef = React__namespace.useRef(callback);
-    fnRef.current = callback;
-    const memoFn = React__namespace.useCallback((...args) => {
-      var _a2;
-      return (_a2 = fnRef.current) == null ? void 0 : _a2.call(fnRef, ...args);
-    }, []);
-    return memoFn;
-  };
-  function canUseDom() {
-    return !!(typeof window !== "undefined" && window.document && window.document.createElement);
-  }
-  const useInternalLayoutEffect = canUseDom() ? React__namespace.useLayoutEffect : React__namespace.useEffect;
-  const useLayoutEffect = (callback, deps) => {
-    const firstMountRef = React__namespace.useRef(true);
-    useInternalLayoutEffect(() => {
-      return callback(firstMountRef.current);
-    }, deps);
-    useInternalLayoutEffect(() => {
-      firstMountRef.current = false;
-      return () => {
-        firstMountRef.current = true;
-      };
-    }, []);
-  };
-  const useSafeState = (defaultValue) => {
-    const destroyRef = React__namespace.useRef(false);
-    const [value, setValue] = React__namespace.useState(defaultValue);
-    React__namespace.useEffect(() => {
-      destroyRef.current = false;
-      return () => {
-        destroyRef.current = true;
-      };
-    }, []);
-    function safeSetState(updater, ignoreDestroy) {
-      if (ignoreDestroy && destroyRef.current) {
-        return;
-      }
-      setValue(updater);
-    }
-    return [value, safeSetState];
-  };
-  function useControlledState(defaultStateValue, value) {
-    const [innerValue, setInnerValue] = React.useState(defaultStateValue);
-    const mergedValue = value !== void 0 ? value : innerValue;
-    useLayoutEffect((mount) => {
-      if (!mount) {
-        setInnerValue(value);
-      }
-    }, [value]);
-    return [
-      // Value
-      mergedValue,
-      // Update function
-      setInnerValue
-    ];
-  }
-  function getUseId() {
-    const fullClone = {
-      ...React__namespace
-    };
-    return fullClone.useId;
-  }
-  let uuid$3 = 0;
-  function getId(prefix2, key2) {
-    const keyStr = String(key2);
-    const sanitizedKey = keyStr.replace(/[^a-zA-Z0-9_.:-]/g, "-");
-    return `${prefix2}-${sanitizedKey}`;
-  }
-  const useOriginId = getUseId();
-  const useId = useOriginId ? (
-    // Use React `useId`
-    (function useId2(id) {
-      const reactId = useOriginId();
-      if (id) {
-        return id;
-      }
-      return reactId;
-    })
-  ) : (
-    // Use compatible of `useId`
-    (function useCompatId(id) {
-      const [innerId, setInnerId] = React__namespace.useState("ssr-id");
-      React__namespace.useEffect(() => {
-        const nextId = uuid$3;
-        uuid$3 += 1;
-        setInnerId(`rc_unique_${nextId}`);
-      }, []);
-      if (id) {
-        return id;
-      }
-      return innerId;
-    })
-  );
-  function useMemo(getValue2, condition, shouldUpdate) {
-    const cacheRef = React__namespace.useRef({});
-    if (!("value" in cacheRef.current) || shouldUpdate(cacheRef.current.condition, condition)) {
-      cacheRef.current.value = getValue2();
-      cacheRef.current.condition = condition;
-    }
-    return cacheRef.current.value;
-  }
-  function useSyncState$1(defaultValue) {
-    const [, forceUpdate] = React__namespace.useReducer((x2) => x2 + 1, 0);
-    const currentValueRef = React__namespace.useRef(defaultValue);
-    const getValue2 = useEvent(() => {
-      return currentValueRef.current;
-    });
-    const setValue = useEvent((updater) => {
-      currentValueRef.current = typeof updater === "function" ? updater(currentValueRef.current) : updater;
-      forceUpdate();
-    });
-    return [getValue2, setValue];
-  }
-  var reactIs$1 = { exports: {} };
-  var reactIs_production_min$1 = {};
-  /**
-   * @license React
-   * react-is.production.min.js
-   *
-   * Copyright (c) Facebook, Inc. and its affiliates.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   */
-  var hasRequiredReactIs_production_min$1;
-  function requireReactIs_production_min$1() {
-    if (hasRequiredReactIs_production_min$1) return reactIs_production_min$1;
-    hasRequiredReactIs_production_min$1 = 1;
-    var b2 = Symbol.for("react.element"), c = Symbol.for("react.portal"), d2 = Symbol.for("react.fragment"), e2 = Symbol.for("react.strict_mode"), f = Symbol.for("react.profiler"), g2 = Symbol.for("react.provider"), h = Symbol.for("react.context"), k = Symbol.for("react.server_context"), l2 = Symbol.for("react.forward_ref"), m2 = Symbol.for("react.suspense"), n2 = Symbol.for("react.suspense_list"), p = Symbol.for("react.memo"), q2 = Symbol.for("react.lazy"), t2 = Symbol.for("react.offscreen"), u;
-    u = Symbol.for("react.module.reference");
-    function v2(a) {
-      if ("object" === typeof a && null !== a) {
-        var r2 = a.$$typeof;
-        switch (r2) {
-          case b2:
-            switch (a = a.type, a) {
-              case d2:
-              case f:
-              case e2:
-              case m2:
-              case n2:
-                return a;
-              default:
-                switch (a = a && a.$$typeof, a) {
-                  case k:
-                  case h:
-                  case l2:
-                  case q2:
-                  case p:
-                  case g2:
-                    return a;
-                  default:
-                    return r2;
-                }
-            }
-          case c:
-            return r2;
-        }
-      }
-    }
-    reactIs_production_min$1.ContextConsumer = h;
-    reactIs_production_min$1.ContextProvider = g2;
-    reactIs_production_min$1.Element = b2;
-    reactIs_production_min$1.ForwardRef = l2;
-    reactIs_production_min$1.Fragment = d2;
-    reactIs_production_min$1.Lazy = q2;
-    reactIs_production_min$1.Memo = p;
-    reactIs_production_min$1.Portal = c;
-    reactIs_production_min$1.Profiler = f;
-    reactIs_production_min$1.StrictMode = e2;
-    reactIs_production_min$1.Suspense = m2;
-    reactIs_production_min$1.SuspenseList = n2;
-    reactIs_production_min$1.isAsyncMode = function() {
-      return false;
-    };
-    reactIs_production_min$1.isConcurrentMode = function() {
-      return false;
-    };
-    reactIs_production_min$1.isContextConsumer = function(a) {
-      return v2(a) === h;
-    };
-    reactIs_production_min$1.isContextProvider = function(a) {
-      return v2(a) === g2;
-    };
-    reactIs_production_min$1.isElement = function(a) {
-      return "object" === typeof a && null !== a && a.$$typeof === b2;
-    };
-    reactIs_production_min$1.isForwardRef = function(a) {
-      return v2(a) === l2;
-    };
-    reactIs_production_min$1.isFragment = function(a) {
-      return v2(a) === d2;
-    };
-    reactIs_production_min$1.isLazy = function(a) {
-      return v2(a) === q2;
-    };
-    reactIs_production_min$1.isMemo = function(a) {
-      return v2(a) === p;
-    };
-    reactIs_production_min$1.isPortal = function(a) {
-      return v2(a) === c;
-    };
-    reactIs_production_min$1.isProfiler = function(a) {
-      return v2(a) === f;
-    };
-    reactIs_production_min$1.isStrictMode = function(a) {
-      return v2(a) === e2;
-    };
-    reactIs_production_min$1.isSuspense = function(a) {
-      return v2(a) === m2;
-    };
-    reactIs_production_min$1.isSuspenseList = function(a) {
-      return v2(a) === n2;
-    };
-    reactIs_production_min$1.isValidElementType = function(a) {
-      return "string" === typeof a || "function" === typeof a || a === d2 || a === f || a === e2 || a === m2 || a === n2 || a === t2 || "object" === typeof a && null !== a && (a.$$typeof === q2 || a.$$typeof === p || a.$$typeof === g2 || a.$$typeof === h || a.$$typeof === l2 || a.$$typeof === u || void 0 !== a.getModuleId) ? true : false;
-    };
-    reactIs_production_min$1.typeOf = v2;
-    return reactIs_production_min$1;
-  }
-  var hasRequiredReactIs$1;
-  function requireReactIs$1() {
-    if (hasRequiredReactIs$1) return reactIs$1.exports;
-    hasRequiredReactIs$1 = 1;
-    {
-      reactIs$1.exports = requireReactIs_production_min$1();
-    }
-    return reactIs$1.exports;
-  }
-  var reactIsExports = requireReactIs$1();
-  const REACT_ELEMENT_TYPE_18 = Symbol.for("react.element");
-  const REACT_ELEMENT_TYPE_19 = Symbol.for("react.transitional.element");
-  const REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-  function isFragment$1(object2) {
-    return (
-      // Base object type
-      object2 && typeof object2 === "object" && // React Element type
-      (object2.$$typeof === REACT_ELEMENT_TYPE_18 || object2.$$typeof === REACT_ELEMENT_TYPE_19) && // React Fragment type
-      object2.type === REACT_FRAGMENT_TYPE
-    );
-  }
-  const ReactMajorVersion = Number(React.version.split(".")[0]);
-  const fillRef = (ref, node2) => {
-    if (typeof ref === "function") {
-      ref(node2);
-    } else if (typeof ref === "object" && ref && "current" in ref) {
-      ref.current = node2;
-    }
-  };
-  const composeRef = (...refs) => {
-    const refList = refs.filter(Boolean);
-    if (refList.length <= 1) {
-      return refList[0];
-    }
-    return (node2) => {
-      refs.forEach((ref) => {
-        fillRef(ref, node2);
+    function escape2(key2) {
+      var escaperLookup = { "=": "=0", ":": "=2" };
+      return "$" + key2.replace(/[=:]/g, function(match2) {
+        return escaperLookup[match2];
       });
-    };
-  };
-  const useComposeRef = (...refs) => {
-    return useMemo(
-      () => composeRef(...refs),
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      refs,
-      (prev2, next2) => prev2.length !== next2.length || prev2.every((ref, i) => ref !== next2[i])
-    );
-  };
-  const supportRef = (nodeOrComponent) => {
-    var _a2, _b2;
-    if (!nodeOrComponent) {
-      return false;
     }
-    if (isReactElement(nodeOrComponent) && ReactMajorVersion >= 19) {
-      return true;
+    var userProvidedKeyEscapeRegex = /\/+/g;
+    function getElementKey(element, index2) {
+      return "object" === typeof element && null !== element && null != element.key ? escape2("" + element.key) : index2.toString(36);
     }
-    const type2 = reactIsExports.isMemo(nodeOrComponent) ? nodeOrComponent.type.type : nodeOrComponent.type;
-    if (typeof type2 === "function" && !((_a2 = type2.prototype) == null ? void 0 : _a2.render) && type2.$$typeof !== reactIsExports.ForwardRef) {
-      return false;
-    }
-    if (typeof nodeOrComponent === "function" && !((_b2 = nodeOrComponent.prototype) == null ? void 0 : _b2.render) && nodeOrComponent.$$typeof !== reactIsExports.ForwardRef) {
-      return false;
-    }
-    return true;
-  };
-  function isReactElement(node2) {
-    return /* @__PURE__ */ React.isValidElement(node2) && !isFragment$1(node2);
-  }
-  const supportNodeRef = (node2) => {
-    return isReactElement(node2) && supportRef(node2);
-  };
-  const getNodeRef = (node2) => {
-    if (node2 && isReactElement(node2)) {
-      const ele = node2;
-      return ele.props.propertyIsEnumerable("ref") ? ele.props.ref : ele.ref;
-    }
-    return null;
-  };
-  function contains(root2, n2) {
-    if (!root2) {
-      return false;
-    }
-    if (root2.contains) {
-      return root2.contains(n2);
-    }
-    let node2 = n2;
-    while (node2) {
-      if (node2 === root2) {
-        return true;
-      }
-      node2 = node2.parentNode;
-    }
-    return false;
-  }
-  const APPEND_ORDER = "data-rc-order";
-  const APPEND_PRIORITY = "data-rc-priority";
-  const MARK_KEY = `rc-util-key`;
-  const containerCache = /* @__PURE__ */ new Map();
-  function getMark({
-    mark
-  } = {}) {
-    if (mark) {
-      return mark.startsWith("data-") ? mark : `data-${mark}`;
-    }
-    return MARK_KEY;
-  }
-  function getContainer(option) {
-    if (option.attachTo) {
-      return option.attachTo;
-    }
-    const head = document.querySelector("head");
-    return head || document.body;
-  }
-  function getOrder(prepend) {
-    if (prepend === "queue") {
-      return "prependQueue";
-    }
-    return prepend ? "prepend" : "append";
-  }
-  function findStyles(container) {
-    return Array.from((containerCache.get(container) || container).children).filter((node2) => node2.tagName === "STYLE");
-  }
-  function injectCSS(css2, option = {}) {
-    if (!canUseDom()) {
-      return null;
-    }
-    const {
-      csp,
-      prepend,
-      priority = 0
-    } = option;
-    const mergedOrder = getOrder(prepend);
-    const isPrependQueue = mergedOrder === "prependQueue";
-    const styleNode = document.createElement("style");
-    styleNode.setAttribute(APPEND_ORDER, mergedOrder);
-    if (isPrependQueue && priority) {
-      styleNode.setAttribute(APPEND_PRIORITY, `${priority}`);
-    }
-    if (csp == null ? void 0 : csp.nonce) {
-      styleNode.nonce = csp == null ? void 0 : csp.nonce;
-    }
-    styleNode.innerHTML = css2;
-    const container = getContainer(option);
-    const {
-      firstChild
-    } = container;
-    if (prepend) {
-      if (isPrependQueue) {
-        const existStyle = (option.styles || findStyles(container)).filter((node2) => {
-          if (!["prepend", "prependQueue"].includes(node2.getAttribute(APPEND_ORDER))) {
-            return false;
-          }
-          const nodePriority = Number(node2.getAttribute(APPEND_PRIORITY) || 0);
-          return priority >= nodePriority;
-        });
-        if (existStyle.length) {
-          container.insertBefore(styleNode, existStyle[existStyle.length - 1].nextSibling);
-          return styleNode;
-        }
-      }
-      container.insertBefore(styleNode, firstChild);
-    } else {
-      container.appendChild(styleNode);
-    }
-    return styleNode;
-  }
-  function findExistNode(key2, option = {}) {
-    let {
-      styles: styles2
-    } = option;
-    styles2 || (styles2 = findStyles(getContainer(option)));
-    return styles2.find((node2) => node2.getAttribute(getMark(option)) === key2);
-  }
-  function removeCSS(key2, option = {}) {
-    const existNode = findExistNode(key2, option);
-    if (existNode) {
-      const container = getContainer(option);
-      container.removeChild(existNode);
-    }
-  }
-  function syncRealContainer(container, option) {
-    const cachedRealContainer = containerCache.get(container);
-    if (!cachedRealContainer || !contains(document, cachedRealContainer)) {
-      const placeholderStyle = injectCSS("", option);
-      const {
-        parentNode
-      } = placeholderStyle;
-      containerCache.set(container, parentNode);
-      container.removeChild(placeholderStyle);
-    }
-  }
-  function updateCSS(css2, key2, originOption = {}) {
-    var _a2, _b2, _c;
-    const container = getContainer(originOption);
-    const styles2 = findStyles(container);
-    const option = {
-      ...originOption,
-      styles: styles2
-    };
-    syncRealContainer(container, option);
-    const existNode = findExistNode(key2, option);
-    if (existNode) {
-      if (((_a2 = option.csp) == null ? void 0 : _a2.nonce) && existNode.nonce !== ((_b2 = option.csp) == null ? void 0 : _b2.nonce)) {
-        existNode.nonce = (_c = option.csp) == null ? void 0 : _c.nonce;
-      }
-      if (existNode.innerHTML !== css2) {
-        existNode.innerHTML = css2;
-      }
-      return existNode;
-    }
-    const newNode = injectCSS(css2, option);
-    newNode.setAttribute(getMark(option), key2);
-    return newNode;
-  }
-  function isDOM(node2) {
-    return node2 instanceof HTMLElement || node2 instanceof SVGElement;
-  }
-  function getDOM(node2) {
-    if (node2 && typeof node2 === "object" && isDOM(node2.nativeElement)) {
-      return node2.nativeElement;
-    }
-    if (isDOM(node2)) {
-      return node2;
-    }
-    return null;
-  }
-  const isVisible = ((element) => {
-    if (!element) {
-      return false;
-    }
-    if (element instanceof Element) {
-      if (element.offsetParent) {
-        return true;
-      }
-      if (element.getBBox) {
-        const {
-          width,
-          height
-        } = element.getBBox();
-        if (width || height) {
-          return true;
-        }
-      }
-      if (element.getBoundingClientRect) {
-        const {
-          width,
-          height
-        } = element.getBoundingClientRect();
-        if (width || height) {
-          return true;
-        }
-      }
-    }
-    return false;
-  });
-  function focusable(node2, includePositive = false) {
-    if (isVisible(node2)) {
-      const nodeName = node2.nodeName.toLowerCase();
-      const isFocusableElement = (
-        // Focusable element
-        ["input", "select", "textarea", "button"].includes(nodeName) || // Editable element
-        node2.isContentEditable || // Anchor with href element
-        nodeName === "a" && !!node2.getAttribute("href")
-      );
-      const tabIndexAttr = node2.getAttribute("tabindex");
-      const tabIndexNum = Number(tabIndexAttr);
-      let tabIndex = null;
-      if (tabIndexAttr && !Number.isNaN(tabIndexNum)) {
-        tabIndex = tabIndexNum;
-      } else if (isFocusableElement && tabIndex === null) {
-        tabIndex = 0;
-      }
-      if (isFocusableElement && node2.disabled) {
-        tabIndex = null;
-      }
-      return tabIndex !== null && (tabIndex >= 0 || includePositive && tabIndex < 0);
-    }
-    return false;
-  }
-  function getFocusNodeList(node2, includePositive = false) {
-    const res = [...node2.querySelectorAll("*")].filter((child) => {
-      return focusable(child, includePositive);
-    });
-    if (focusable(node2, includePositive)) {
-      res.unshift(node2);
-    }
-    return res;
-  }
-  function triggerFocus(element, option) {
-    if (!element) return;
-    element.focus(option);
-    const {
-      cursor
-    } = option || {};
-    if (cursor && (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
-      const len = element.value.length;
-      switch (cursor) {
-        case "start":
-          element.setSelectionRange(0, 0);
-          break;
-        case "end":
-          element.setSelectionRange(len, len);
-          break;
+    function resolveThenable(thenable) {
+      switch (thenable.status) {
+        case "fulfilled":
+          return thenable.value;
+        case "rejected":
+          throw thenable.reason;
         default:
-          element.setSelectionRange(0, len);
-      }
-    }
-  }
-  let lastFocusElement = null;
-  let focusElements = [];
-  const idToElementMap = /* @__PURE__ */ new Map();
-  const ignoredElementMap = /* @__PURE__ */ new Map();
-  function getLastElement() {
-    return focusElements[focusElements.length - 1];
-  }
-  function isIgnoredElement(element) {
-    const lastElement = getLastElement();
-    if (element && lastElement) {
-      let lockId;
-      for (const [id, ele] of idToElementMap.entries()) {
-        if (ele === lastElement) {
-          lockId = id;
-          break;
-        }
-      }
-      const ignoredEle = ignoredElementMap.get(lockId);
-      return !!ignoredEle && (ignoredEle === element || ignoredEle.contains(element));
-    }
-    return false;
-  }
-  function hasFocus(element) {
-    const {
-      activeElement
-    } = document;
-    return element === activeElement || element.contains(activeElement);
-  }
-  function syncFocus() {
-    const lastElement = getLastElement();
-    const {
-      activeElement
-    } = document;
-    if (isIgnoredElement(activeElement)) {
-      return;
-    }
-    if (lastElement && !hasFocus(lastElement)) {
-      const focusableList = getFocusNodeList(lastElement);
-      const matchElement = focusableList.includes(lastFocusElement) ? lastFocusElement : focusableList[0];
-      matchElement == null ? void 0 : matchElement.focus({
-        preventScroll: true
-      });
-    } else {
-      lastFocusElement = activeElement;
-    }
-  }
-  function onWindowKeyDown(e2) {
-    if (e2.key === "Tab") {
-      const {
-        activeElement
-      } = document;
-      const lastElement = getLastElement();
-      const focusableList = getFocusNodeList(lastElement);
-      const last = focusableList[focusableList.length - 1];
-      if (e2.shiftKey && activeElement === focusableList[0]) {
-        lastFocusElement = last;
-      } else if (!e2.shiftKey && activeElement === last) {
-        lastFocusElement = focusableList[0];
-      }
-    }
-  }
-  function lockFocus(element, id) {
-    if (element) {
-      idToElementMap.set(id, element);
-      focusElements = focusElements.filter((ele) => ele !== element);
-      focusElements.push(element);
-      window.addEventListener("focusin", syncFocus);
-      window.addEventListener("keydown", onWindowKeyDown, true);
-      syncFocus();
-    }
-    return () => {
-      lastFocusElement = null;
-      focusElements = focusElements.filter((ele) => ele !== element);
-      idToElementMap.delete(id);
-      ignoredElementMap.delete(id);
-      if (focusElements.length === 0) {
-        window.removeEventListener("focusin", syncFocus);
-        window.removeEventListener("keydown", onWindowKeyDown, true);
-      }
-    };
-  }
-  function useRetryEffect(func, deps) {
-    const retryTimesRef = React.useRef(0);
-    const [retryMark, setRetryMark] = React.useState(0);
-    React.useEffect(() => {
-      retryTimesRef.current = 0;
-    }, deps);
-    React.useEffect(() => {
-      const [clearFn, ready] = func(retryTimesRef.current);
-      if (!ready) {
-        retryTimesRef.current += 1;
-        setRetryMark((count) => count + 1);
-      }
-      return clearFn;
-    }, [...deps, retryMark]);
-  }
-  function useLockFocus(lock, getElement) {
-    const id = useId();
-    const getElementRef = React.useRef(getElement);
-    getElementRef.current = getElement;
-    const lockEffect = (retryTimes) => {
-      if (!lock) {
-        return [void 0, true];
-      }
-      const element = getElementRef.current();
-      if (element) {
-        return [lockFocus(element, id), true];
-      }
-      return [void 0, retryTimes >= 1];
-    };
-    useRetryEffect(lockEffect, [id, lock]);
-    const ignoreElement = (ele) => {
-      if (ele) {
-        ignoredElementMap.set(id, ele);
-      }
-    };
-    return [ignoreElement];
-  }
-  function getRoot(ele) {
-    var _a2;
-    return (_a2 = ele == null ? void 0 : ele.getRootNode) == null ? void 0 : _a2.call(ele);
-  }
-  function inShadow(ele) {
-    return getRoot(ele) instanceof ShadowRoot;
-  }
-  function getShadowRoot(ele) {
-    return inShadow(ele) ? getRoot(ele) : null;
-  }
-  const KeyCode = {
-    /**
-     * BACKSPACE
-     */
-    BACKSPACE: 8,
-    /**
-     * TAB
-     */
-    TAB: 9,
-    // NUMLOCK on FF/Safari Mac
-    /**
-     * ENTER
-     */
-    ENTER: 13,
-    /**
-     * SHIFT
-     */
-    SHIFT: 16,
-    /**
-     * CTRL
-     */
-    CTRL: 17,
-    /**
-     * ALT
-     */
-    ALT: 18,
-    /**
-     * CAPS_LOCK
-     */
-    CAPS_LOCK: 20,
-    /**
-     * ESC
-     */
-    ESC: 27,
-    // also NUM_SOUTH_EAST
-    /**
-     * END
-     */
-    END: 35,
-    // also NUM_SOUTH_WEST
-    /**
-     * HOME
-     */
-    HOME: 36,
-    // also NUM_NORTH_WEST
-    /**
-     * LEFT
-     */
-    LEFT: 37,
-    // also NUM_WEST
-    /**
-     * UP
-     */
-    UP: 38,
-    // also NUM_NORTH
-    /**
-     * RIGHT
-     */
-    RIGHT: 39,
-    // also NUM_EAST
-    /**
-     * DOWN
-     */
-    DOWN: 40,
-    /**
-     * N
-     */
-    N: 78,
-    /**
-     * P
-     */
-    P: 80,
-    /**
-     * META
-     */
-    META: 91,
-    // WIN_KEY_LEFT
-    /**
-     * WIN_KEY_RIGHT
-     */
-    WIN_KEY_RIGHT: 92,
-    /**
-     * CONTEXT_MENU
-     */
-    CONTEXT_MENU: 93,
-    /**
-     * F1
-     */
-    F1: 112,
-    /**
-     * F2
-     */
-    F2: 113,
-    /**
-     * F3
-     */
-    F3: 114,
-    /**
-     * F4
-     */
-    F4: 115,
-    /**
-     * F5
-     */
-    F5: 116,
-    /**
-     * F6
-     */
-    F6: 117,
-    /**
-     * F7
-     */
-    F7: 118,
-    /**
-     * F8
-     */
-    F8: 119,
-    /**
-     * F9
-     */
-    F9: 120,
-    /**
-     * F10
-     */
-    F10: 121,
-    /**
-     * F11
-     */
-    F11: 122,
-    /**
-     * F12
-     */
-    F12: 123,
-    /**
-     * SEMICOLON
-     */
-    SEMICOLON: 186,
-    // needs localization
-    /**
-     * EQUALS
-     */
-    EQUALS: 187,
-    // needs localization
-    /**
-     * WIN_KEY
-     */
-    WIN_KEY: 224
-  };
-  let cached;
-  function measureScrollbarSize(ele) {
-    const randomId = `rc-scrollbar-measure-${Math.random().toString(36).substring(7)}`;
-    const measureEle = document.createElement("div");
-    measureEle.id = randomId;
-    const measureStyle = measureEle.style;
-    measureStyle.position = "absolute";
-    measureStyle.left = "0";
-    measureStyle.top = "0";
-    measureStyle.width = "100px";
-    measureStyle.height = "100px";
-    measureStyle.overflow = "scroll";
-    let fallbackWidth;
-    let fallbackHeight;
-    if (ele) {
-      const targetStyle = getComputedStyle(ele);
-      measureStyle.scrollbarColor = targetStyle.scrollbarColor;
-      measureStyle.scrollbarWidth = targetStyle.scrollbarWidth;
-      const webkitScrollbarStyle = getComputedStyle(ele, "::-webkit-scrollbar");
-      const width = parseInt(webkitScrollbarStyle.width, 10);
-      const height = parseInt(webkitScrollbarStyle.height, 10);
-      try {
-        const widthStyle = width ? `width: ${webkitScrollbarStyle.width};` : "";
-        const heightStyle = height ? `height: ${webkitScrollbarStyle.height};` : "";
-        updateCSS(`
-#${randomId}::-webkit-scrollbar {
-${widthStyle}
-${heightStyle}
-}`, randomId);
-      } catch (e2) {
-        console.error(e2);
-        fallbackWidth = width;
-        fallbackHeight = height;
-      }
-    }
-    document.body.appendChild(measureEle);
-    const scrollWidth = ele && fallbackWidth && !Number.isNaN(fallbackWidth) ? fallbackWidth : measureEle.offsetWidth - measureEle.clientWidth;
-    const scrollHeight = ele && fallbackHeight && !Number.isNaN(fallbackHeight) ? fallbackHeight : measureEle.offsetHeight - measureEle.clientHeight;
-    document.body.removeChild(measureEle);
-    removeCSS(randomId);
-    return {
-      width: scrollWidth,
-      height: scrollHeight
-    };
-  }
-  function getScrollBarSize(fresh) {
-    if (typeof document === "undefined") {
-      return 0;
-    }
-    if (cached === void 0) {
-      cached = measureScrollbarSize();
-    }
-    return cached.width;
-  }
-  function getTargetScrollBarSize(target) {
-    if (typeof document === "undefined" || !target || !(target instanceof Element)) {
-      return {
-        width: 0,
-        height: 0
-      };
-    }
-    return measureScrollbarSize(target);
-  }
-  let warned = {};
-  const preMessage = (fn) => {
-  };
-  function warning$2(valid, message2) {
-  }
-  function note(valid, message2) {
-  }
-  function resetWarned() {
-    warned = {};
-  }
-  function call(method2, valid, message2) {
-    if (!valid && !warned[message2]) {
-      method2(false, message2);
-      warned[message2] = true;
-    }
-  }
-  function warningOnce(valid, message2) {
-    call(warning$2, valid, message2);
-  }
-  function noteOnce(valid, message2) {
-    call(note, valid, message2);
-  }
-  warningOnce.preMessage = preMessage;
-  warningOnce.resetWarned = resetWarned;
-  warningOnce.noteOnce = noteOnce;
-  function isEqual(obj1, obj2, shallow = false) {
-    const refSet = /* @__PURE__ */ new Set();
-    function deepEqual(a, b2, level = 1) {
-      const circular = refSet.has(a);
-      warningOnce(!circular, "Warning: There may be circular references");
-      if (circular) {
-        return false;
-      }
-      if (a === b2) {
-        return true;
-      }
-      if (shallow && level > 1) {
-        return false;
-      }
-      refSet.add(a);
-      const newLevel = level + 1;
-      if (Array.isArray(a)) {
-        if (!Array.isArray(b2) || a.length !== b2.length) {
-          return false;
-        }
-        for (let i = 0; i < a.length; i++) {
-          if (!deepEqual(a[i], b2[i], newLevel)) {
-            return false;
+          switch ("string" === typeof thenable.status ? thenable.then(noop2, noop2) : (thenable.status = "pending", thenable.then(
+            function(fulfilledValue) {
+              "pending" === thenable.status && (thenable.status = "fulfilled", thenable.value = fulfilledValue);
+            },
+            function(error) {
+              "pending" === thenable.status && (thenable.status = "rejected", thenable.reason = error);
+            }
+          )), thenable.status) {
+            case "fulfilled":
+              return thenable.value;
+            case "rejected":
+              throw thenable.reason;
           }
-        }
-        return true;
       }
-      if (a && b2 && typeof a === "object" && typeof b2 === "object") {
-        const keys2 = Object.keys(a);
-        if (keys2.length !== Object.keys(b2).length) {
-          return false;
-        }
-        return keys2.every((key2) => deepEqual(a[key2], b2[key2], newLevel));
-      }
-      return false;
+      throw thenable;
     }
-    return deepEqual(obj1, obj2);
-  }
-  var isMobile = { exports: {} };
-  var hasRequiredIsMobile;
-  function requireIsMobile() {
-    if (hasRequiredIsMobile) return isMobile.exports;
-    hasRequiredIsMobile = 1;
-    isMobile.exports = isMobile$1;
-    isMobile.exports.isMobile = isMobile$1;
-    isMobile.exports.default = isMobile$1;
-    const mobileRE = /(android|bb\d+|meego).+mobile|armv7l|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|redmi|series[46]0|samsungbrowser.*mobile|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i;
-    const notMobileRE = /CrOS/;
-    const tabletRE = /android|ipad|playbook|silk/i;
-    function isMobile$1(opts) {
-      if (!opts) opts = {};
-      let ua = opts.ua;
-      if (!ua && typeof navigator !== "undefined") ua = navigator.userAgent;
-      if (ua && ua.headers && typeof ua.headers["user-agent"] === "string") {
-        ua = ua.headers["user-agent"];
+    function mapIntoArray(children, array2, escapedPrefix, nameSoFar, callback) {
+      var type2 = typeof children;
+      if ("undefined" === type2 || "boolean" === type2) children = null;
+      var invokeCallback = false;
+      if (null === children) invokeCallback = true;
+      else
+        switch (type2) {
+          case "bigint":
+          case "string":
+          case "number":
+            invokeCallback = true;
+            break;
+          case "object":
+            switch (children.$$typeof) {
+              case REACT_ELEMENT_TYPE:
+              case REACT_PORTAL_TYPE:
+                invokeCallback = true;
+                break;
+              case REACT_LAZY_TYPE:
+                return invokeCallback = children._init, mapIntoArray(
+                  invokeCallback(children._payload),
+                  array2,
+                  escapedPrefix,
+                  nameSoFar,
+                  callback
+                );
+            }
+        }
+      if (invokeCallback)
+        return callback = callback(children), invokeCallback = "" === nameSoFar ? "." + getElementKey(children, 0) : nameSoFar, isArrayImpl(callback) ? (escapedPrefix = "", null != invokeCallback && (escapedPrefix = invokeCallback.replace(userProvidedKeyEscapeRegex, "$&/") + "/"), mapIntoArray(callback, array2, escapedPrefix, "", function(c) {
+          return c;
+        })) : null != callback && (isValidElement(callback) && (callback = cloneAndReplaceKey(
+          callback,
+          escapedPrefix + (null == callback.key || children && children.key === callback.key ? "" : ("" + callback.key).replace(
+            userProvidedKeyEscapeRegex,
+            "$&/"
+          ) + "/") + invokeCallback
+        )), array2.push(callback)), 1;
+      invokeCallback = 0;
+      var nextNamePrefix = "" === nameSoFar ? "." : nameSoFar + ":";
+      if (isArrayImpl(children))
+        for (var i = 0; i < children.length; i++)
+          nameSoFar = children[i], type2 = nextNamePrefix + getElementKey(nameSoFar, i), invokeCallback += mapIntoArray(
+            nameSoFar,
+            array2,
+            escapedPrefix,
+            type2,
+            callback
+          );
+      else if (i = getIteratorFn(children), "function" === typeof i)
+        for (children = i.call(children), i = 0; !(nameSoFar = children.next()).done; )
+          nameSoFar = nameSoFar.value, type2 = nextNamePrefix + getElementKey(nameSoFar, i++), invokeCallback += mapIntoArray(
+            nameSoFar,
+            array2,
+            escapedPrefix,
+            type2,
+            callback
+          );
+      else if ("object" === type2) {
+        if ("function" === typeof children.then)
+          return mapIntoArray(
+            resolveThenable(children),
+            array2,
+            escapedPrefix,
+            nameSoFar,
+            callback
+          );
+        array2 = String(children);
+        throw Error(
+          "Objects are not valid as a React child (found: " + ("[object Object]" === array2 ? "object with keys {" + Object.keys(children).join(", ") + "}" : array2) + "). If you meant to render a collection of children, use an array instead."
+        );
       }
-      if (typeof ua !== "string") return false;
-      let result2 = mobileRE.test(ua) && !notMobileRE.test(ua) || !!opts.tablet && tabletRE.test(ua);
-      if (!result2 && opts.tablet && opts.featureDetect && navigator && navigator.maxTouchPoints > 1 && ua.indexOf("Macintosh") !== -1 && ua.indexOf("Safari") !== -1) {
-        result2 = true;
-      }
+      return invokeCallback;
+    }
+    function mapChildren(children, func, context) {
+      if (null == children) return children;
+      var result2 = [], count = 0;
+      mapIntoArray(children, result2, "", "", function(child) {
+        return func.call(context, child, count++);
+      });
       return result2;
     }
-    return isMobile.exports;
-  }
-  requireIsMobile();
-  function omit(obj, fields) {
-    const clone2 = Object.assign({}, obj);
-    if (Array.isArray(fields)) {
-      fields.forEach((key2) => {
-        delete clone2[key2];
-      });
-    }
-    return clone2;
-  }
-  const attributes = `accept acceptCharset accessKey action allowFullScreen allowTransparency
-    alt async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
-    charSet checked classID className colSpan cols content contentEditable contextMenu
-    controls coords crossOrigin data dateTime default defer dir disabled download draggable
-    encType form formAction formEncType formMethod formNoValidate formTarget frameBorder
-    headers height hidden high href hrefLang htmlFor httpEquiv icon id inputMode integrity
-    is keyParams keyType kind label lang list loop low manifest marginHeight marginWidth max maxLength media
-    mediaGroup method min minLength multiple muted name noValidate nonce open
-    optimum pattern placeholder poster preload radioGroup readOnly rel required
-    reversed role rowSpan rows sandbox scope scoped scrolling seamless selected
-    shape size sizes span spellCheck src srcDoc srcLang srcSet start step style
-    summary tabIndex target title type useMap value width wmode wrap`;
-  const eventsName = `onCopy onCut onPaste onCompositionEnd onCompositionStart onCompositionUpdate onKeyDown
-    onKeyPress onKeyUp onFocus onBlur onChange onInput onSubmit onClick onContextMenu onDoubleClick
-    onDrag onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop onMouseDown
-    onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp onSelect onTouchCancel
-    onTouchEnd onTouchMove onTouchStart onScroll onWheel onAbort onCanPlay onCanPlayThrough
-    onDurationChange onEmptied onEncrypted onEnded onError onLoadedData onLoadedMetadata
-    onLoadStart onPause onPlay onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend onTimeUpdate onVolumeChange onWaiting onLoad onError`;
-  const propList = `${attributes} ${eventsName}`.split(/[\s\n]+/);
-  const ariaPrefix = "aria-";
-  const dataPrefix = "data-";
-  function match$1(key2, prefix2) {
-    return key2.indexOf(prefix2) === 0;
-  }
-  function pickAttrs(props, ariaOnly = false) {
-    let mergedConfig;
-    if (ariaOnly === false) {
-      mergedConfig = {
-        aria: true,
-        data: true,
-        attr: true
-      };
-    } else if (ariaOnly === true) {
-      mergedConfig = {
-        aria: true
-      };
-    } else {
-      mergedConfig = {
-        ...ariaOnly
-      };
-    }
-    const attrs = {};
-    Object.keys(props).forEach((key2) => {
-      if (
-        // Aria
-        mergedConfig.aria && (key2 === "role" || match$1(key2, ariaPrefix)) || // Data
-        mergedConfig.data && match$1(key2, dataPrefix) || // Attr
-        mergedConfig.attr && propList.includes(key2)
-      ) {
-        attrs[key2] = props[key2];
+    function lazyInitializer(payload) {
+      if (-1 === payload._status) {
+        var ctor = payload._result;
+        ctor = ctor();
+        ctor.then(
+          function(moduleObject) {
+            if (0 === payload._status || -1 === payload._status)
+              payload._status = 1, payload._result = moduleObject;
+          },
+          function(error) {
+            if (0 === payload._status || -1 === payload._status)
+              payload._status = 2, payload._result = error;
+          }
+        );
+        -1 === payload._status && (payload._status = 0, payload._result = ctor);
       }
-    });
-    return attrs;
-  }
-  let raf = (callback) => +setTimeout(callback, 16);
-  let caf = (num) => clearTimeout(num);
-  if (typeof window !== "undefined" && "requestAnimationFrame" in window) {
-    raf = (callback) => window.requestAnimationFrame(callback);
-    caf = (handle) => window.cancelAnimationFrame(handle);
-  }
-  let rafUUID = 0;
-  const rafIds = /* @__PURE__ */ new Map();
-  function cleanup(id) {
-    rafIds.delete(id);
-  }
-  const wrapperRaf = (callback, times = 1) => {
-    rafUUID += 1;
-    const id = rafUUID;
-    function callRef(leftTimes) {
-      if (leftTimes === 0) {
-        cleanup(id);
-        callback();
-      } else {
-        const realId = raf(() => {
-          callRef(leftTimes - 1);
+      if (1 === payload._status) return payload._result.default;
+      throw payload._result;
+    }
+    var reportGlobalError = "function" === typeof reportError ? reportError : function(error) {
+      if ("object" === typeof window && "function" === typeof window.ErrorEvent) {
+        var event = new window.ErrorEvent("error", {
+          bubbles: true,
+          cancelable: true,
+          message: "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error),
+          error
         });
-        rafIds.set(id, realId);
-      }
-    }
-    callRef(times);
-    return id;
-  };
-  wrapperRaf.cancel = (id) => {
-    const realId = rafIds.get(id);
-    cleanup(id);
-    return caf(realId);
-  };
-  function toArray$6(children, option = {}) {
-    let ret = [];
-    React.Children.forEach(children, (child) => {
-      if ((child === void 0 || child === null) && !option.keepEmpty) {
+        if (!window.dispatchEvent(event)) return;
+      } else if ("object" === typeof process && "function" === typeof process.emit) {
+        process.emit("uncaughtException", error);
         return;
       }
-      if (Array.isArray(child)) {
-        ret = ret.concat(toArray$6(child));
-      } else if (isFragment$1(child) && child.props) {
-        ret = ret.concat(toArray$6(child.props.children, option));
-      } else {
-        ret.push(child);
+      console.error(error);
+    }, Children = {
+      map: mapChildren,
+      forEach: function(children, forEachFunc, forEachContext) {
+        mapChildren(
+          children,
+          function() {
+            forEachFunc.apply(this, arguments);
+          },
+          forEachContext
+        );
+      },
+      count: function(children) {
+        var n2 = 0;
+        mapChildren(children, function() {
+          n2++;
+        });
+        return n2;
+      },
+      toArray: function(children) {
+        return mapChildren(children, function(child) {
+          return child;
+        }) || [];
+      },
+      only: function(children) {
+        if (!isValidElement(children))
+          throw Error(
+            "React.Children.only expected to receive a single React element child."
+          );
+        return children;
       }
-    });
-    return ret;
-  }
-  function mergeProps$1(...items) {
-    const ret = {};
-    for (const item of items) {
-      if (item) {
-        for (const key2 of Object.keys(item)) {
-          if (item[key2] !== void 0) {
-            ret[key2] = item[key2];
-          }
-        }
+    };
+    react_production.Activity = REACT_ACTIVITY_TYPE;
+    react_production.Children = Children;
+    react_production.Component = Component;
+    react_production.Fragment = REACT_FRAGMENT_TYPE2;
+    react_production.Profiler = REACT_PROFILER_TYPE;
+    react_production.PureComponent = PureComponent;
+    react_production.StrictMode = REACT_STRICT_MODE_TYPE;
+    react_production.Suspense = REACT_SUSPENSE_TYPE;
+    react_production.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ReactSharedInternals;
+    react_production.__COMPILER_RUNTIME = {
+      __proto__: null,
+      c: function(size) {
+        return ReactSharedInternals.H.useMemoCache(size);
       }
-    }
-    return ret;
-  }
-  function get(entity, path) {
-    let current = entity;
-    for (let i = 0; i < path.length; i += 1) {
-      if (current === null || current === void 0) {
-        return void 0;
-      }
-      current = current[path[i]];
-    }
-    return current;
-  }
-  function internalSet(entity, paths, value, removeIfUndefined) {
-    if (!paths.length) {
-      return value;
-    }
-    const [path, ...restPath] = paths;
-    let clone2;
-    if (!entity && typeof path === "number") {
-      clone2 = [];
-    } else if (Array.isArray(entity)) {
-      clone2 = [...entity];
-    } else {
-      clone2 = {
-        ...entity
+    };
+    react_production.cache = function(fn) {
+      return function() {
+        return fn.apply(null, arguments);
       };
-    }
-    if (removeIfUndefined && value === void 0 && restPath.length === 1) {
-      delete clone2[path][restPath[0]];
-    } else {
-      clone2[path] = internalSet(clone2[path], restPath, value, removeIfUndefined);
-    }
-    return clone2;
-  }
-  function set(entity, paths, value, removeIfUndefined = false) {
-    if (paths.length && removeIfUndefined && value === void 0 && !get(entity, paths.slice(0, -1))) {
-      return entity;
-    }
-    return internalSet(entity, paths, value, removeIfUndefined);
-  }
-  function isObject$2(obj) {
-    return typeof obj === "object" && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
-  }
-  function createEmpty(source) {
-    return Array.isArray(source) ? [] : {};
-  }
-  const keys = typeof Reflect === "undefined" ? Object.keys : Reflect.ownKeys;
-  function mergeWith(sources, config2 = {}) {
-    const {
-      prepareArray
-    } = config2;
-    const finalPrepareArray = prepareArray || (() => []);
-    let clone2 = createEmpty(sources[0]);
-    sources.forEach((src) => {
-      function internalMerge(path, parentLoopSet) {
-        const loopSet = new Set(parentLoopSet);
-        const value = get(src, path);
-        const isArr = Array.isArray(value);
-        if (isArr || isObject$2(value)) {
-          if (!loopSet.has(value)) {
-            loopSet.add(value);
-            const originValue = get(clone2, path);
-            if (isArr) {
-              clone2 = set(clone2, path, finalPrepareArray(originValue, value));
-            } else if (!originValue || typeof originValue !== "object") {
-              clone2 = set(clone2, path, createEmpty(value));
-            }
-            keys(value).forEach((key2) => {
-              if (Object.getOwnPropertyDescriptor(value, key2).enumerable) {
-                internalMerge([...path, key2], loopSet);
-              }
-            });
-          }
-        } else {
-          clone2 = set(clone2, path, value);
-        }
+    };
+    react_production.cacheSignal = function() {
+      return null;
+    };
+    react_production.cloneElement = function(element, config2, children) {
+      if (null === element || void 0 === element)
+        throw Error(
+          "The argument must be a React element, but you passed " + element + "."
+        );
+      var props = assign2({}, element.props), key2 = element.key;
+      if (null != config2)
+        for (propName in void 0 !== config2.key && (key2 = "" + config2.key), config2)
+          !hasOwnProperty2.call(config2, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config2.ref || (props[propName] = config2[propName]);
+      var propName = arguments.length - 2;
+      if (1 === propName) props.children = children;
+      else if (1 < propName) {
+        for (var childArray = Array(propName), i = 0; i < propName; i++)
+          childArray[i] = arguments[i + 2];
+        props.children = childArray;
       }
-      internalMerge([]);
-    });
-    return clone2;
+      return ReactElement(element.type, key2, props);
+    };
+    react_production.createContext = function(defaultValue) {
+      defaultValue = {
+        $$typeof: REACT_CONTEXT_TYPE,
+        _currentValue: defaultValue,
+        _currentValue2: defaultValue,
+        _threadCount: 0,
+        Provider: null,
+        Consumer: null
+      };
+      defaultValue.Provider = defaultValue;
+      defaultValue.Consumer = {
+        $$typeof: REACT_CONSUMER_TYPE,
+        _context: defaultValue
+      };
+      return defaultValue;
+    };
+    react_production.createElement = function(type2, config2, children) {
+      var propName, props = {}, key2 = null;
+      if (null != config2)
+        for (propName in void 0 !== config2.key && (key2 = "" + config2.key), config2)
+          hasOwnProperty2.call(config2, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (props[propName] = config2[propName]);
+      var childrenLength = arguments.length - 2;
+      if (1 === childrenLength) props.children = children;
+      else if (1 < childrenLength) {
+        for (var childArray = Array(childrenLength), i = 0; i < childrenLength; i++)
+          childArray[i] = arguments[i + 2];
+        props.children = childArray;
+      }
+      if (type2 && type2.defaultProps)
+        for (propName in childrenLength = type2.defaultProps, childrenLength)
+          void 0 === props[propName] && (props[propName] = childrenLength[propName]);
+      return ReactElement(type2, key2, props);
+    };
+    react_production.createRef = function() {
+      return { current: null };
+    };
+    react_production.forwardRef = function(render2) {
+      return { $$typeof: REACT_FORWARD_REF_TYPE, render: render2 };
+    };
+    react_production.isValidElement = isValidElement;
+    react_production.lazy = function(ctor) {
+      return {
+        $$typeof: REACT_LAZY_TYPE,
+        _payload: { _status: -1, _result: ctor },
+        _init: lazyInitializer
+      };
+    };
+    react_production.memo = function(type2, compare) {
+      return {
+        $$typeof: REACT_MEMO_TYPE,
+        type: type2,
+        compare: void 0 === compare ? null : compare
+      };
+    };
+    react_production.startTransition = function(scope) {
+      var prevTransition = ReactSharedInternals.T, currentTransition = {};
+      ReactSharedInternals.T = currentTransition;
+      try {
+        var returnValue = scope(), onStartTransitionFinish = ReactSharedInternals.S;
+        null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
+        "object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then && returnValue.then(noop2, reportGlobalError);
+      } catch (error) {
+        reportGlobalError(error);
+      } finally {
+        null !== prevTransition && null !== currentTransition.types && (prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition;
+      }
+    };
+    react_production.unstable_useCacheRefresh = function() {
+      return ReactSharedInternals.H.useCacheRefresh();
+    };
+    react_production.use = function(usable) {
+      return ReactSharedInternals.H.use(usable);
+    };
+    react_production.useActionState = function(action, initialState, permalink) {
+      return ReactSharedInternals.H.useActionState(action, initialState, permalink);
+    };
+    react_production.useCallback = function(callback, deps) {
+      return ReactSharedInternals.H.useCallback(callback, deps);
+    };
+    react_production.useContext = function(Context2) {
+      return ReactSharedInternals.H.useContext(Context2);
+    };
+    react_production.useDebugValue = function() {
+    };
+    react_production.useDeferredValue = function(value, initialValue) {
+      return ReactSharedInternals.H.useDeferredValue(value, initialValue);
+    };
+    react_production.useEffect = function(create2, deps) {
+      return ReactSharedInternals.H.useEffect(create2, deps);
+    };
+    react_production.useEffectEvent = function(callback) {
+      return ReactSharedInternals.H.useEffectEvent(callback);
+    };
+    react_production.useId = function() {
+      return ReactSharedInternals.H.useId();
+    };
+    react_production.useImperativeHandle = function(ref, create2, deps) {
+      return ReactSharedInternals.H.useImperativeHandle(ref, create2, deps);
+    };
+    react_production.useInsertionEffect = function(create2, deps) {
+      return ReactSharedInternals.H.useInsertionEffect(create2, deps);
+    };
+    react_production.useLayoutEffect = function(create2, deps) {
+      return ReactSharedInternals.H.useLayoutEffect(create2, deps);
+    };
+    react_production.useMemo = function(create2, deps) {
+      return ReactSharedInternals.H.useMemo(create2, deps);
+    };
+    react_production.useOptimistic = function(passthrough, reducer) {
+      return ReactSharedInternals.H.useOptimistic(passthrough, reducer);
+    };
+    react_production.useReducer = function(reducer, initialArg, init2) {
+      return ReactSharedInternals.H.useReducer(reducer, initialArg, init2);
+    };
+    react_production.useRef = function(initialValue) {
+      return ReactSharedInternals.H.useRef(initialValue);
+    };
+    react_production.useState = function(initialState) {
+      return ReactSharedInternals.H.useState(initialState);
+    };
+    react_production.useSyncExternalStore = function(subscribe2, getSnapshot, getServerSnapshot) {
+      return ReactSharedInternals.H.useSyncExternalStore(
+        subscribe2,
+        getSnapshot,
+        getServerSnapshot
+      );
+    };
+    react_production.useTransition = function() {
+      return ReactSharedInternals.H.useTransition();
+    };
+    react_production.version = "19.2.6";
+    return react_production;
   }
-  function merge$2(...sources) {
-    return mergeWith(sources);
+  var hasRequiredReact;
+  function requireReact() {
+    if (hasRequiredReact) return react.exports;
+    hasRequiredReact = 1;
+    {
+      react.exports = requireReact_production();
+    }
+    return react.exports;
   }
-  var client = { exports: {} };
+  var reactExports = requireReact();
+  const React = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
+  const React$1 = /* @__PURE__ */ _mergeNamespaces({
+    __proto__: null,
+    default: React
+  }, [reactExports]);
+  var client$1 = { exports: {} };
   var reactDomClient_production = {};
   var scheduler = { exports: {} };
   var scheduler_production = {};
@@ -1608,7 +789,7 @@ ${heightStyle}
   function requireReactDom_production() {
     if (hasRequiredReactDom_production) return reactDom_production;
     hasRequiredReactDom_production = 1;
-    var React$1 = React;
+    var React2 = requireReact();
     function formatProdErrorMessage(code) {
       var url = "https://react.dev/errors/" + code;
       if (1 < arguments.length) {
@@ -1647,7 +828,7 @@ ${heightStyle}
         implementation
       };
     }
-    var ReactSharedInternals = React$1.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+    var ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     function getCrossOriginStringAs(as, input) {
       if ("font" === as) return "";
       if ("string" === typeof input)
@@ -1784,7 +965,7 @@ ${heightStyle}
   function requireReactDomClient_production() {
     if (hasRequiredReactDomClient_production) return reactDomClient_production;
     hasRequiredReactDomClient_production = 1;
-    var Scheduler = requireScheduler(), React$1 = React, ReactDOM = requireReactDom();
+    var Scheduler = requireScheduler(), React2 = requireReact(), ReactDOM = requireReactDom();
     function formatProdErrorMessage(code) {
       var url = "https://react.dev/errors/" + code;
       if (1 < arguments.length) {
@@ -1960,7 +1141,7 @@ ${heightStyle}
         }
       return null;
     }
-    var isArrayImpl = Array.isArray, ReactSharedInternals = React$1.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, sharedNotPendingObject = {
+    var isArrayImpl = Array.isArray, ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, sharedNotPendingObject = {
       pending: false,
       data: null,
       method: null,
@@ -13200,7 +12381,7 @@ ${heightStyle}
         0 === i && attemptExplicitHydrationTarget(target);
       }
     };
-    var isomorphicReactPackageVersion$jscomp$inline_1840 = React$1.version;
+    var isomorphicReactPackageVersion$jscomp$inline_1840 = React2.version;
     if ("19.2.6" !== isomorphicReactPackageVersion$jscomp$inline_1840)
       throw Error(
         formatProdErrorMessage(
@@ -13299,7 +12480,7 @@ ${heightStyle}
   }
   var hasRequiredClient;
   function requireClient() {
-    if (hasRequiredClient) return client.exports;
+    if (hasRequiredClient) return client$1.exports;
     hasRequiredClient = 1;
     function checkDCE() {
       if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") {
@@ -13313,11 +12494,1287 @@ ${heightStyle}
     }
     {
       checkDCE();
-      client.exports = requireReactDomClient_production();
+      client$1.exports = requireReactDomClient_production();
     }
-    return client.exports;
+    return client$1.exports;
   }
   var clientExports = requireClient();
+  const client = /* @__PURE__ */ getDefaultExportFromCjs(clientExports);
+  const ReactDOMClient = /* @__PURE__ */ _mergeNamespaces({
+    __proto__: null,
+    default: client
+  }, [clientExports]);
+  var jsxRuntime = { exports: {} };
+  var reactJsxRuntime_production = {};
+  /**
+   * @license React
+   * react-jsx-runtime.production.js
+   *
+   * Copyright (c) Meta Platforms, Inc. and affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   */
+  var hasRequiredReactJsxRuntime_production;
+  function requireReactJsxRuntime_production() {
+    if (hasRequiredReactJsxRuntime_production) return reactJsxRuntime_production;
+    hasRequiredReactJsxRuntime_production = 1;
+    var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_FRAGMENT_TYPE2 = Symbol.for("react.fragment");
+    function jsxProd(type2, config2, maybeKey) {
+      var key2 = null;
+      void 0 !== maybeKey && (key2 = "" + maybeKey);
+      void 0 !== config2.key && (key2 = "" + config2.key);
+      if ("key" in config2) {
+        maybeKey = {};
+        for (var propName in config2)
+          "key" !== propName && (maybeKey[propName] = config2[propName]);
+      } else maybeKey = config2;
+      config2 = maybeKey.ref;
+      return {
+        $$typeof: REACT_ELEMENT_TYPE,
+        type: type2,
+        key: key2,
+        ref: void 0 !== config2 ? config2 : null,
+        props: maybeKey
+      };
+    }
+    reactJsxRuntime_production.Fragment = REACT_FRAGMENT_TYPE2;
+    reactJsxRuntime_production.jsx = jsxProd;
+    reactJsxRuntime_production.jsxs = jsxProd;
+    return reactJsxRuntime_production;
+  }
+  var hasRequiredJsxRuntime;
+  function requireJsxRuntime() {
+    if (hasRequiredJsxRuntime) return jsxRuntime.exports;
+    hasRequiredJsxRuntime = 1;
+    {
+      jsxRuntime.exports = requireReactJsxRuntime_production();
+    }
+    return jsxRuntime.exports;
+  }
+  var jsxRuntimeExports = requireJsxRuntime();
+  const warned$1 = /* @__PURE__ */ new Set();
+  function warnDeprecation(componentName, message2) {
+    const key2 = `${componentName}:${message2}`;
+    if (warned$1.has(key2)) return;
+    warned$1.add(key2);
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn(`[col-browser] <${componentName}> ${message2}`);
+    }
+  }
+  function withDatasetKey(WrappedComponent) {
+    const name = WrappedComponent.displayName || WrappedComponent.name || "Component";
+    const Wrapper2 = (props) => {
+      const { catalogueKey, datasetKey, ...rest } = props;
+      if (catalogueKey !== void 0 && datasetKey === void 0) {
+        warnDeprecation(
+          name,
+          "the `catalogueKey` prop is deprecated; rename it to `datasetKey`."
+        );
+      }
+      const resolvedDatasetKey = datasetKey !== void 0 ? datasetKey : catalogueKey;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(WrappedComponent, { ...rest, datasetKey: resolvedDatasetKey });
+    };
+    Wrapper2.displayName = `withDatasetKey(${name})`;
+    return Wrapper2;
+  }
+  function withBibTexLegacyShim(WrappedComponent) {
+    const name = WrappedComponent.displayName || WrappedComponent.name || "BibTex";
+    const Wrapper2 = (props) => {
+      const { catalogueKey, datasetKey, sourceDatasetKey, ...rest } = props;
+      if (catalogueKey !== void 0) {
+        warnDeprecation(
+          name,
+          "the `catalogueKey` prop is deprecated; pass the catalogue as `datasetKey` and the source as `sourceDatasetKey`."
+        );
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(
+          WrappedComponent,
+          {
+            ...rest,
+            datasetKey: catalogueKey,
+            sourceDatasetKey: sourceDatasetKey !== void 0 ? sourceDatasetKey : datasetKey
+          }
+        );
+      }
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        WrappedComponent,
+        {
+          ...rest,
+          datasetKey,
+          sourceDatasetKey
+        }
+      );
+    };
+    Wrapper2.displayName = `withBibTexLegacyShim(${name})`;
+    return Wrapper2;
+  }
+  const useEvent = (callback) => {
+    const fnRef = reactExports.useRef(callback);
+    fnRef.current = callback;
+    const memoFn = reactExports.useCallback((...args) => {
+      var _a2;
+      return (_a2 = fnRef.current) == null ? void 0 : _a2.call(fnRef, ...args);
+    }, []);
+    return memoFn;
+  };
+  function canUseDom() {
+    return !!(typeof window !== "undefined" && window.document && window.document.createElement);
+  }
+  const useInternalLayoutEffect = canUseDom() ? reactExports.useLayoutEffect : reactExports.useEffect;
+  const useLayoutEffect = (callback, deps) => {
+    const firstMountRef = reactExports.useRef(true);
+    useInternalLayoutEffect(() => {
+      return callback(firstMountRef.current);
+    }, deps);
+    useInternalLayoutEffect(() => {
+      firstMountRef.current = false;
+      return () => {
+        firstMountRef.current = true;
+      };
+    }, []);
+  };
+  const useSafeState = (defaultValue) => {
+    const destroyRef = reactExports.useRef(false);
+    const [value, setValue] = reactExports.useState(defaultValue);
+    reactExports.useEffect(() => {
+      destroyRef.current = false;
+      return () => {
+        destroyRef.current = true;
+      };
+    }, []);
+    function safeSetState(updater, ignoreDestroy) {
+      if (ignoreDestroy && destroyRef.current) {
+        return;
+      }
+      setValue(updater);
+    }
+    return [value, safeSetState];
+  };
+  function useControlledState(defaultStateValue, value) {
+    const [innerValue, setInnerValue] = reactExports.useState(defaultStateValue);
+    const mergedValue = value !== void 0 ? value : innerValue;
+    useLayoutEffect((mount) => {
+      if (!mount) {
+        setInnerValue(value);
+      }
+    }, [value]);
+    return [
+      // Value
+      mergedValue,
+      // Update function
+      setInnerValue
+    ];
+  }
+  function getUseId() {
+    const fullClone = {
+      ...React$1
+    };
+    return fullClone.useId;
+  }
+  let uuid$3 = 0;
+  function getId(prefix2, key2) {
+    const keyStr = String(key2);
+    const sanitizedKey = keyStr.replace(/[^a-zA-Z0-9_.:-]/g, "-");
+    return `${prefix2}-${sanitizedKey}`;
+  }
+  const useOriginId = getUseId();
+  const useId = useOriginId ? (
+    // Use React `useId`
+    (function useId2(id) {
+      const reactId = useOriginId();
+      if (id) {
+        return id;
+      }
+      return reactId;
+    })
+  ) : (
+    // Use compatible of `useId`
+    (function useCompatId(id) {
+      const [innerId, setInnerId] = reactExports.useState("ssr-id");
+      reactExports.useEffect(() => {
+        const nextId = uuid$3;
+        uuid$3 += 1;
+        setInnerId(`rc_unique_${nextId}`);
+      }, []);
+      if (id) {
+        return id;
+      }
+      return innerId;
+    })
+  );
+  function useMemo(getValue2, condition, shouldUpdate) {
+    const cacheRef = reactExports.useRef({});
+    if (!("value" in cacheRef.current) || shouldUpdate(cacheRef.current.condition, condition)) {
+      cacheRef.current.value = getValue2();
+      cacheRef.current.condition = condition;
+    }
+    return cacheRef.current.value;
+  }
+  function useSyncState$1(defaultValue) {
+    const [, forceUpdate] = reactExports.useReducer((x2) => x2 + 1, 0);
+    const currentValueRef = reactExports.useRef(defaultValue);
+    const getValue2 = useEvent(() => {
+      return currentValueRef.current;
+    });
+    const setValue = useEvent((updater) => {
+      currentValueRef.current = typeof updater === "function" ? updater(currentValueRef.current) : updater;
+      forceUpdate();
+    });
+    return [getValue2, setValue];
+  }
+  var reactIs$1 = { exports: {} };
+  var reactIs_production_min$1 = {};
+  /**
+   * @license React
+   * react-is.production.min.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   */
+  var hasRequiredReactIs_production_min$1;
+  function requireReactIs_production_min$1() {
+    if (hasRequiredReactIs_production_min$1) return reactIs_production_min$1;
+    hasRequiredReactIs_production_min$1 = 1;
+    var b2 = Symbol.for("react.element"), c = Symbol.for("react.portal"), d2 = Symbol.for("react.fragment"), e2 = Symbol.for("react.strict_mode"), f = Symbol.for("react.profiler"), g2 = Symbol.for("react.provider"), h = Symbol.for("react.context"), k = Symbol.for("react.server_context"), l2 = Symbol.for("react.forward_ref"), m2 = Symbol.for("react.suspense"), n2 = Symbol.for("react.suspense_list"), p = Symbol.for("react.memo"), q2 = Symbol.for("react.lazy"), t2 = Symbol.for("react.offscreen"), u;
+    u = Symbol.for("react.module.reference");
+    function v2(a) {
+      if ("object" === typeof a && null !== a) {
+        var r2 = a.$$typeof;
+        switch (r2) {
+          case b2:
+            switch (a = a.type, a) {
+              case d2:
+              case f:
+              case e2:
+              case m2:
+              case n2:
+                return a;
+              default:
+                switch (a = a && a.$$typeof, a) {
+                  case k:
+                  case h:
+                  case l2:
+                  case q2:
+                  case p:
+                  case g2:
+                    return a;
+                  default:
+                    return r2;
+                }
+            }
+          case c:
+            return r2;
+        }
+      }
+    }
+    reactIs_production_min$1.ContextConsumer = h;
+    reactIs_production_min$1.ContextProvider = g2;
+    reactIs_production_min$1.Element = b2;
+    reactIs_production_min$1.ForwardRef = l2;
+    reactIs_production_min$1.Fragment = d2;
+    reactIs_production_min$1.Lazy = q2;
+    reactIs_production_min$1.Memo = p;
+    reactIs_production_min$1.Portal = c;
+    reactIs_production_min$1.Profiler = f;
+    reactIs_production_min$1.StrictMode = e2;
+    reactIs_production_min$1.Suspense = m2;
+    reactIs_production_min$1.SuspenseList = n2;
+    reactIs_production_min$1.isAsyncMode = function() {
+      return false;
+    };
+    reactIs_production_min$1.isConcurrentMode = function() {
+      return false;
+    };
+    reactIs_production_min$1.isContextConsumer = function(a) {
+      return v2(a) === h;
+    };
+    reactIs_production_min$1.isContextProvider = function(a) {
+      return v2(a) === g2;
+    };
+    reactIs_production_min$1.isElement = function(a) {
+      return "object" === typeof a && null !== a && a.$$typeof === b2;
+    };
+    reactIs_production_min$1.isForwardRef = function(a) {
+      return v2(a) === l2;
+    };
+    reactIs_production_min$1.isFragment = function(a) {
+      return v2(a) === d2;
+    };
+    reactIs_production_min$1.isLazy = function(a) {
+      return v2(a) === q2;
+    };
+    reactIs_production_min$1.isMemo = function(a) {
+      return v2(a) === p;
+    };
+    reactIs_production_min$1.isPortal = function(a) {
+      return v2(a) === c;
+    };
+    reactIs_production_min$1.isProfiler = function(a) {
+      return v2(a) === f;
+    };
+    reactIs_production_min$1.isStrictMode = function(a) {
+      return v2(a) === e2;
+    };
+    reactIs_production_min$1.isSuspense = function(a) {
+      return v2(a) === m2;
+    };
+    reactIs_production_min$1.isSuspenseList = function(a) {
+      return v2(a) === n2;
+    };
+    reactIs_production_min$1.isValidElementType = function(a) {
+      return "string" === typeof a || "function" === typeof a || a === d2 || a === f || a === e2 || a === m2 || a === n2 || a === t2 || "object" === typeof a && null !== a && (a.$$typeof === q2 || a.$$typeof === p || a.$$typeof === g2 || a.$$typeof === h || a.$$typeof === l2 || a.$$typeof === u || void 0 !== a.getModuleId) ? true : false;
+    };
+    reactIs_production_min$1.typeOf = v2;
+    return reactIs_production_min$1;
+  }
+  var hasRequiredReactIs$1;
+  function requireReactIs$1() {
+    if (hasRequiredReactIs$1) return reactIs$1.exports;
+    hasRequiredReactIs$1 = 1;
+    {
+      reactIs$1.exports = requireReactIs_production_min$1();
+    }
+    return reactIs$1.exports;
+  }
+  var reactIsExports = requireReactIs$1();
+  const REACT_ELEMENT_TYPE_18 = Symbol.for("react.element");
+  const REACT_ELEMENT_TYPE_19 = Symbol.for("react.transitional.element");
+  const REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+  function isFragment$1(object2) {
+    return (
+      // Base object type
+      object2 && typeof object2 === "object" && // React Element type
+      (object2.$$typeof === REACT_ELEMENT_TYPE_18 || object2.$$typeof === REACT_ELEMENT_TYPE_19) && // React Fragment type
+      object2.type === REACT_FRAGMENT_TYPE
+    );
+  }
+  const ReactMajorVersion = Number(reactExports.version.split(".")[0]);
+  const fillRef = (ref, node2) => {
+    if (typeof ref === "function") {
+      ref(node2);
+    } else if (typeof ref === "object" && ref && "current" in ref) {
+      ref.current = node2;
+    }
+  };
+  const composeRef = (...refs) => {
+    const refList = refs.filter(Boolean);
+    if (refList.length <= 1) {
+      return refList[0];
+    }
+    return (node2) => {
+      refs.forEach((ref) => {
+        fillRef(ref, node2);
+      });
+    };
+  };
+  const useComposeRef = (...refs) => {
+    return useMemo(
+      () => composeRef(...refs),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      refs,
+      (prev2, next2) => prev2.length !== next2.length || prev2.every((ref, i) => ref !== next2[i])
+    );
+  };
+  const supportRef = (nodeOrComponent) => {
+    var _a2, _b2;
+    if (!nodeOrComponent) {
+      return false;
+    }
+    if (isReactElement(nodeOrComponent) && ReactMajorVersion >= 19) {
+      return true;
+    }
+    const type2 = reactIsExports.isMemo(nodeOrComponent) ? nodeOrComponent.type.type : nodeOrComponent.type;
+    if (typeof type2 === "function" && !((_a2 = type2.prototype) == null ? void 0 : _a2.render) && type2.$$typeof !== reactIsExports.ForwardRef) {
+      return false;
+    }
+    if (typeof nodeOrComponent === "function" && !((_b2 = nodeOrComponent.prototype) == null ? void 0 : _b2.render) && nodeOrComponent.$$typeof !== reactIsExports.ForwardRef) {
+      return false;
+    }
+    return true;
+  };
+  function isReactElement(node2) {
+    return /* @__PURE__ */ reactExports.isValidElement(node2) && !isFragment$1(node2);
+  }
+  const supportNodeRef = (node2) => {
+    return isReactElement(node2) && supportRef(node2);
+  };
+  const getNodeRef = (node2) => {
+    if (node2 && isReactElement(node2)) {
+      const ele = node2;
+      return ele.props.propertyIsEnumerable("ref") ? ele.props.ref : ele.ref;
+    }
+    return null;
+  };
+  function contains(root2, n2) {
+    if (!root2) {
+      return false;
+    }
+    if (root2.contains) {
+      return root2.contains(n2);
+    }
+    let node2 = n2;
+    while (node2) {
+      if (node2 === root2) {
+        return true;
+      }
+      node2 = node2.parentNode;
+    }
+    return false;
+  }
+  const APPEND_ORDER = "data-rc-order";
+  const APPEND_PRIORITY = "data-rc-priority";
+  const MARK_KEY = `rc-util-key`;
+  const containerCache = /* @__PURE__ */ new Map();
+  function getMark({
+    mark
+  } = {}) {
+    if (mark) {
+      return mark.startsWith("data-") ? mark : `data-${mark}`;
+    }
+    return MARK_KEY;
+  }
+  function getContainer(option) {
+    if (option.attachTo) {
+      return option.attachTo;
+    }
+    const head = document.querySelector("head");
+    return head || document.body;
+  }
+  function getOrder(prepend) {
+    if (prepend === "queue") {
+      return "prependQueue";
+    }
+    return prepend ? "prepend" : "append";
+  }
+  function findStyles(container) {
+    return Array.from((containerCache.get(container) || container).children).filter((node2) => node2.tagName === "STYLE");
+  }
+  function injectCSS(css2, option = {}) {
+    if (!canUseDom()) {
+      return null;
+    }
+    const {
+      csp,
+      prepend,
+      priority = 0
+    } = option;
+    const mergedOrder = getOrder(prepend);
+    const isPrependQueue = mergedOrder === "prependQueue";
+    const styleNode = document.createElement("style");
+    styleNode.setAttribute(APPEND_ORDER, mergedOrder);
+    if (isPrependQueue && priority) {
+      styleNode.setAttribute(APPEND_PRIORITY, `${priority}`);
+    }
+    if (csp == null ? void 0 : csp.nonce) {
+      styleNode.nonce = csp == null ? void 0 : csp.nonce;
+    }
+    styleNode.innerHTML = css2;
+    const container = getContainer(option);
+    const {
+      firstChild
+    } = container;
+    if (prepend) {
+      if (isPrependQueue) {
+        const existStyle = (option.styles || findStyles(container)).filter((node2) => {
+          if (!["prepend", "prependQueue"].includes(node2.getAttribute(APPEND_ORDER))) {
+            return false;
+          }
+          const nodePriority = Number(node2.getAttribute(APPEND_PRIORITY) || 0);
+          return priority >= nodePriority;
+        });
+        if (existStyle.length) {
+          container.insertBefore(styleNode, existStyle[existStyle.length - 1].nextSibling);
+          return styleNode;
+        }
+      }
+      container.insertBefore(styleNode, firstChild);
+    } else {
+      container.appendChild(styleNode);
+    }
+    return styleNode;
+  }
+  function findExistNode(key2, option = {}) {
+    let {
+      styles: styles2
+    } = option;
+    styles2 || (styles2 = findStyles(getContainer(option)));
+    return styles2.find((node2) => node2.getAttribute(getMark(option)) === key2);
+  }
+  function removeCSS(key2, option = {}) {
+    const existNode = findExistNode(key2, option);
+    if (existNode) {
+      const container = getContainer(option);
+      container.removeChild(existNode);
+    }
+  }
+  function syncRealContainer(container, option) {
+    const cachedRealContainer = containerCache.get(container);
+    if (!cachedRealContainer || !contains(document, cachedRealContainer)) {
+      const placeholderStyle = injectCSS("", option);
+      const {
+        parentNode
+      } = placeholderStyle;
+      containerCache.set(container, parentNode);
+      container.removeChild(placeholderStyle);
+    }
+  }
+  function updateCSS(css2, key2, originOption = {}) {
+    var _a2, _b2, _c;
+    const container = getContainer(originOption);
+    const styles2 = findStyles(container);
+    const option = {
+      ...originOption,
+      styles: styles2
+    };
+    syncRealContainer(container, option);
+    const existNode = findExistNode(key2, option);
+    if (existNode) {
+      if (((_a2 = option.csp) == null ? void 0 : _a2.nonce) && existNode.nonce !== ((_b2 = option.csp) == null ? void 0 : _b2.nonce)) {
+        existNode.nonce = (_c = option.csp) == null ? void 0 : _c.nonce;
+      }
+      if (existNode.innerHTML !== css2) {
+        existNode.innerHTML = css2;
+      }
+      return existNode;
+    }
+    const newNode = injectCSS(css2, option);
+    newNode.setAttribute(getMark(option), key2);
+    return newNode;
+  }
+  function isDOM(node2) {
+    return node2 instanceof HTMLElement || node2 instanceof SVGElement;
+  }
+  function getDOM(node2) {
+    if (node2 && typeof node2 === "object" && isDOM(node2.nativeElement)) {
+      return node2.nativeElement;
+    }
+    if (isDOM(node2)) {
+      return node2;
+    }
+    return null;
+  }
+  const isVisible = ((element) => {
+    if (!element) {
+      return false;
+    }
+    if (element instanceof Element) {
+      if (element.offsetParent) {
+        return true;
+      }
+      if (element.getBBox) {
+        const {
+          width,
+          height
+        } = element.getBBox();
+        if (width || height) {
+          return true;
+        }
+      }
+      if (element.getBoundingClientRect) {
+        const {
+          width,
+          height
+        } = element.getBoundingClientRect();
+        if (width || height) {
+          return true;
+        }
+      }
+    }
+    return false;
+  });
+  function focusable(node2, includePositive = false) {
+    if (isVisible(node2)) {
+      const nodeName = node2.nodeName.toLowerCase();
+      const isFocusableElement = (
+        // Focusable element
+        ["input", "select", "textarea", "button"].includes(nodeName) || // Editable element
+        node2.isContentEditable || // Anchor with href element
+        nodeName === "a" && !!node2.getAttribute("href")
+      );
+      const tabIndexAttr = node2.getAttribute("tabindex");
+      const tabIndexNum = Number(tabIndexAttr);
+      let tabIndex = null;
+      if (tabIndexAttr && !Number.isNaN(tabIndexNum)) {
+        tabIndex = tabIndexNum;
+      } else if (isFocusableElement && tabIndex === null) {
+        tabIndex = 0;
+      }
+      if (isFocusableElement && node2.disabled) {
+        tabIndex = null;
+      }
+      return tabIndex !== null && (tabIndex >= 0 || includePositive && tabIndex < 0);
+    }
+    return false;
+  }
+  function getFocusNodeList(node2, includePositive = false) {
+    const res = [...node2.querySelectorAll("*")].filter((child) => {
+      return focusable(child, includePositive);
+    });
+    if (focusable(node2, includePositive)) {
+      res.unshift(node2);
+    }
+    return res;
+  }
+  function triggerFocus(element, option) {
+    if (!element) return;
+    element.focus(option);
+    const {
+      cursor
+    } = option || {};
+    if (cursor && (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
+      const len = element.value.length;
+      switch (cursor) {
+        case "start":
+          element.setSelectionRange(0, 0);
+          break;
+        case "end":
+          element.setSelectionRange(len, len);
+          break;
+        default:
+          element.setSelectionRange(0, len);
+      }
+    }
+  }
+  let lastFocusElement = null;
+  let focusElements = [];
+  const idToElementMap = /* @__PURE__ */ new Map();
+  const ignoredElementMap = /* @__PURE__ */ new Map();
+  function getLastElement() {
+    return focusElements[focusElements.length - 1];
+  }
+  function isIgnoredElement(element) {
+    const lastElement = getLastElement();
+    if (element && lastElement) {
+      let lockId;
+      for (const [id, ele] of idToElementMap.entries()) {
+        if (ele === lastElement) {
+          lockId = id;
+          break;
+        }
+      }
+      const ignoredEle = ignoredElementMap.get(lockId);
+      return !!ignoredEle && (ignoredEle === element || ignoredEle.contains(element));
+    }
+    return false;
+  }
+  function hasFocus(element) {
+    const {
+      activeElement
+    } = document;
+    return element === activeElement || element.contains(activeElement);
+  }
+  function syncFocus() {
+    const lastElement = getLastElement();
+    const {
+      activeElement
+    } = document;
+    if (isIgnoredElement(activeElement)) {
+      return;
+    }
+    if (lastElement && !hasFocus(lastElement)) {
+      const focusableList = getFocusNodeList(lastElement);
+      const matchElement = focusableList.includes(lastFocusElement) ? lastFocusElement : focusableList[0];
+      matchElement == null ? void 0 : matchElement.focus({
+        preventScroll: true
+      });
+    } else {
+      lastFocusElement = activeElement;
+    }
+  }
+  function onWindowKeyDown(e2) {
+    if (e2.key === "Tab") {
+      const {
+        activeElement
+      } = document;
+      const lastElement = getLastElement();
+      const focusableList = getFocusNodeList(lastElement);
+      const last = focusableList[focusableList.length - 1];
+      if (e2.shiftKey && activeElement === focusableList[0]) {
+        lastFocusElement = last;
+      } else if (!e2.shiftKey && activeElement === last) {
+        lastFocusElement = focusableList[0];
+      }
+    }
+  }
+  function lockFocus(element, id) {
+    if (element) {
+      idToElementMap.set(id, element);
+      focusElements = focusElements.filter((ele) => ele !== element);
+      focusElements.push(element);
+      window.addEventListener("focusin", syncFocus);
+      window.addEventListener("keydown", onWindowKeyDown, true);
+      syncFocus();
+    }
+    return () => {
+      lastFocusElement = null;
+      focusElements = focusElements.filter((ele) => ele !== element);
+      idToElementMap.delete(id);
+      ignoredElementMap.delete(id);
+      if (focusElements.length === 0) {
+        window.removeEventListener("focusin", syncFocus);
+        window.removeEventListener("keydown", onWindowKeyDown, true);
+      }
+    };
+  }
+  function useRetryEffect(func, deps) {
+    const retryTimesRef = reactExports.useRef(0);
+    const [retryMark, setRetryMark] = reactExports.useState(0);
+    reactExports.useEffect(() => {
+      retryTimesRef.current = 0;
+    }, deps);
+    reactExports.useEffect(() => {
+      const [clearFn, ready] = func(retryTimesRef.current);
+      if (!ready) {
+        retryTimesRef.current += 1;
+        setRetryMark((count) => count + 1);
+      }
+      return clearFn;
+    }, [...deps, retryMark]);
+  }
+  function useLockFocus(lock, getElement) {
+    const id = useId();
+    const getElementRef = reactExports.useRef(getElement);
+    getElementRef.current = getElement;
+    const lockEffect = (retryTimes) => {
+      if (!lock) {
+        return [void 0, true];
+      }
+      const element = getElementRef.current();
+      if (element) {
+        return [lockFocus(element, id), true];
+      }
+      return [void 0, retryTimes >= 1];
+    };
+    useRetryEffect(lockEffect, [id, lock]);
+    const ignoreElement = (ele) => {
+      if (ele) {
+        ignoredElementMap.set(id, ele);
+      }
+    };
+    return [ignoreElement];
+  }
+  function getRoot(ele) {
+    var _a2;
+    return (_a2 = ele == null ? void 0 : ele.getRootNode) == null ? void 0 : _a2.call(ele);
+  }
+  function inShadow(ele) {
+    return getRoot(ele) instanceof ShadowRoot;
+  }
+  function getShadowRoot(ele) {
+    return inShadow(ele) ? getRoot(ele) : null;
+  }
+  const KeyCode = {
+    /**
+     * BACKSPACE
+     */
+    BACKSPACE: 8,
+    /**
+     * TAB
+     */
+    TAB: 9,
+    // NUMLOCK on FF/Safari Mac
+    /**
+     * ENTER
+     */
+    ENTER: 13,
+    /**
+     * SHIFT
+     */
+    SHIFT: 16,
+    /**
+     * CTRL
+     */
+    CTRL: 17,
+    /**
+     * ALT
+     */
+    ALT: 18,
+    /**
+     * CAPS_LOCK
+     */
+    CAPS_LOCK: 20,
+    /**
+     * ESC
+     */
+    ESC: 27,
+    // also NUM_SOUTH_EAST
+    /**
+     * END
+     */
+    END: 35,
+    // also NUM_SOUTH_WEST
+    /**
+     * HOME
+     */
+    HOME: 36,
+    // also NUM_NORTH_WEST
+    /**
+     * LEFT
+     */
+    LEFT: 37,
+    // also NUM_WEST
+    /**
+     * UP
+     */
+    UP: 38,
+    // also NUM_NORTH
+    /**
+     * RIGHT
+     */
+    RIGHT: 39,
+    // also NUM_EAST
+    /**
+     * DOWN
+     */
+    DOWN: 40,
+    /**
+     * N
+     */
+    N: 78,
+    /**
+     * P
+     */
+    P: 80,
+    /**
+     * META
+     */
+    META: 91,
+    // WIN_KEY_LEFT
+    /**
+     * WIN_KEY_RIGHT
+     */
+    WIN_KEY_RIGHT: 92,
+    /**
+     * CONTEXT_MENU
+     */
+    CONTEXT_MENU: 93,
+    /**
+     * F1
+     */
+    F1: 112,
+    /**
+     * F2
+     */
+    F2: 113,
+    /**
+     * F3
+     */
+    F3: 114,
+    /**
+     * F4
+     */
+    F4: 115,
+    /**
+     * F5
+     */
+    F5: 116,
+    /**
+     * F6
+     */
+    F6: 117,
+    /**
+     * F7
+     */
+    F7: 118,
+    /**
+     * F8
+     */
+    F8: 119,
+    /**
+     * F9
+     */
+    F9: 120,
+    /**
+     * F10
+     */
+    F10: 121,
+    /**
+     * F11
+     */
+    F11: 122,
+    /**
+     * F12
+     */
+    F12: 123,
+    /**
+     * SEMICOLON
+     */
+    SEMICOLON: 186,
+    // needs localization
+    /**
+     * EQUALS
+     */
+    EQUALS: 187,
+    // needs localization
+    /**
+     * WIN_KEY
+     */
+    WIN_KEY: 224
+  };
+  let cached;
+  function measureScrollbarSize(ele) {
+    const randomId = `rc-scrollbar-measure-${Math.random().toString(36).substring(7)}`;
+    const measureEle = document.createElement("div");
+    measureEle.id = randomId;
+    const measureStyle = measureEle.style;
+    measureStyle.position = "absolute";
+    measureStyle.left = "0";
+    measureStyle.top = "0";
+    measureStyle.width = "100px";
+    measureStyle.height = "100px";
+    measureStyle.overflow = "scroll";
+    let fallbackWidth;
+    let fallbackHeight;
+    if (ele) {
+      const targetStyle = getComputedStyle(ele);
+      measureStyle.scrollbarColor = targetStyle.scrollbarColor;
+      measureStyle.scrollbarWidth = targetStyle.scrollbarWidth;
+      const webkitScrollbarStyle = getComputedStyle(ele, "::-webkit-scrollbar");
+      const width = parseInt(webkitScrollbarStyle.width, 10);
+      const height = parseInt(webkitScrollbarStyle.height, 10);
+      try {
+        const widthStyle = width ? `width: ${webkitScrollbarStyle.width};` : "";
+        const heightStyle = height ? `height: ${webkitScrollbarStyle.height};` : "";
+        updateCSS(`
+#${randomId}::-webkit-scrollbar {
+${widthStyle}
+${heightStyle}
+}`, randomId);
+      } catch (e2) {
+        console.error(e2);
+        fallbackWidth = width;
+        fallbackHeight = height;
+      }
+    }
+    document.body.appendChild(measureEle);
+    const scrollWidth = ele && fallbackWidth && !Number.isNaN(fallbackWidth) ? fallbackWidth : measureEle.offsetWidth - measureEle.clientWidth;
+    const scrollHeight = ele && fallbackHeight && !Number.isNaN(fallbackHeight) ? fallbackHeight : measureEle.offsetHeight - measureEle.clientHeight;
+    document.body.removeChild(measureEle);
+    removeCSS(randomId);
+    return {
+      width: scrollWidth,
+      height: scrollHeight
+    };
+  }
+  function getScrollBarSize(fresh) {
+    if (typeof document === "undefined") {
+      return 0;
+    }
+    if (cached === void 0) {
+      cached = measureScrollbarSize();
+    }
+    return cached.width;
+  }
+  function getTargetScrollBarSize(target) {
+    if (typeof document === "undefined" || !target || !(target instanceof Element)) {
+      return {
+        width: 0,
+        height: 0
+      };
+    }
+    return measureScrollbarSize(target);
+  }
+  let warned = {};
+  const preMessage = (fn) => {
+  };
+  function warning$2(valid, message2) {
+  }
+  function note(valid, message2) {
+  }
+  function resetWarned() {
+    warned = {};
+  }
+  function call(method2, valid, message2) {
+    if (!valid && !warned[message2]) {
+      method2(false, message2);
+      warned[message2] = true;
+    }
+  }
+  function warningOnce(valid, message2) {
+    call(warning$2, valid, message2);
+  }
+  function noteOnce(valid, message2) {
+    call(note, valid, message2);
+  }
+  warningOnce.preMessage = preMessage;
+  warningOnce.resetWarned = resetWarned;
+  warningOnce.noteOnce = noteOnce;
+  function isEqual(obj1, obj2, shallow = false) {
+    const refSet = /* @__PURE__ */ new Set();
+    function deepEqual(a, b2, level = 1) {
+      const circular = refSet.has(a);
+      warningOnce(!circular, "Warning: There may be circular references");
+      if (circular) {
+        return false;
+      }
+      if (a === b2) {
+        return true;
+      }
+      if (shallow && level > 1) {
+        return false;
+      }
+      refSet.add(a);
+      const newLevel = level + 1;
+      if (Array.isArray(a)) {
+        if (!Array.isArray(b2) || a.length !== b2.length) {
+          return false;
+        }
+        for (let i = 0; i < a.length; i++) {
+          if (!deepEqual(a[i], b2[i], newLevel)) {
+            return false;
+          }
+        }
+        return true;
+      }
+      if (a && b2 && typeof a === "object" && typeof b2 === "object") {
+        const keys2 = Object.keys(a);
+        if (keys2.length !== Object.keys(b2).length) {
+          return false;
+        }
+        return keys2.every((key2) => deepEqual(a[key2], b2[key2], newLevel));
+      }
+      return false;
+    }
+    return deepEqual(obj1, obj2);
+  }
+  var isMobile = { exports: {} };
+  var hasRequiredIsMobile;
+  function requireIsMobile() {
+    if (hasRequiredIsMobile) return isMobile.exports;
+    hasRequiredIsMobile = 1;
+    isMobile.exports = isMobile$1;
+    isMobile.exports.isMobile = isMobile$1;
+    isMobile.exports.default = isMobile$1;
+    const mobileRE = /(android|bb\d+|meego).+mobile|armv7l|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|redmi|series[46]0|samsungbrowser.*mobile|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i;
+    const notMobileRE = /CrOS/;
+    const tabletRE = /android|ipad|playbook|silk/i;
+    function isMobile$1(opts) {
+      if (!opts) opts = {};
+      let ua = opts.ua;
+      if (!ua && typeof navigator !== "undefined") ua = navigator.userAgent;
+      if (ua && ua.headers && typeof ua.headers["user-agent"] === "string") {
+        ua = ua.headers["user-agent"];
+      }
+      if (typeof ua !== "string") return false;
+      let result2 = mobileRE.test(ua) && !notMobileRE.test(ua) || !!opts.tablet && tabletRE.test(ua);
+      if (!result2 && opts.tablet && opts.featureDetect && navigator && navigator.maxTouchPoints > 1 && ua.indexOf("Macintosh") !== -1 && ua.indexOf("Safari") !== -1) {
+        result2 = true;
+      }
+      return result2;
+    }
+    return isMobile.exports;
+  }
+  requireIsMobile();
+  function omit(obj, fields) {
+    const clone2 = Object.assign({}, obj);
+    if (Array.isArray(fields)) {
+      fields.forEach((key2) => {
+        delete clone2[key2];
+      });
+    }
+    return clone2;
+  }
+  const attributes = `accept acceptCharset accessKey action allowFullScreen allowTransparency
+    alt async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+    charSet checked classID className colSpan cols content contentEditable contextMenu
+    controls coords crossOrigin data dateTime default defer dir disabled download draggable
+    encType form formAction formEncType formMethod formNoValidate formTarget frameBorder
+    headers height hidden high href hrefLang htmlFor httpEquiv icon id inputMode integrity
+    is keyParams keyType kind label lang list loop low manifest marginHeight marginWidth max maxLength media
+    mediaGroup method min minLength multiple muted name noValidate nonce open
+    optimum pattern placeholder poster preload radioGroup readOnly rel required
+    reversed role rowSpan rows sandbox scope scoped scrolling seamless selected
+    shape size sizes span spellCheck src srcDoc srcLang srcSet start step style
+    summary tabIndex target title type useMap value width wmode wrap`;
+  const eventsName = `onCopy onCut onPaste onCompositionEnd onCompositionStart onCompositionUpdate onKeyDown
+    onKeyPress onKeyUp onFocus onBlur onChange onInput onSubmit onClick onContextMenu onDoubleClick
+    onDrag onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop onMouseDown
+    onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp onSelect onTouchCancel
+    onTouchEnd onTouchMove onTouchStart onScroll onWheel onAbort onCanPlay onCanPlayThrough
+    onDurationChange onEmptied onEncrypted onEnded onError onLoadedData onLoadedMetadata
+    onLoadStart onPause onPlay onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend onTimeUpdate onVolumeChange onWaiting onLoad onError`;
+  const propList = `${attributes} ${eventsName}`.split(/[\s\n]+/);
+  const ariaPrefix = "aria-";
+  const dataPrefix = "data-";
+  function match$1(key2, prefix2) {
+    return key2.indexOf(prefix2) === 0;
+  }
+  function pickAttrs(props, ariaOnly = false) {
+    let mergedConfig;
+    if (ariaOnly === false) {
+      mergedConfig = {
+        aria: true,
+        data: true,
+        attr: true
+      };
+    } else if (ariaOnly === true) {
+      mergedConfig = {
+        aria: true
+      };
+    } else {
+      mergedConfig = {
+        ...ariaOnly
+      };
+    }
+    const attrs = {};
+    Object.keys(props).forEach((key2) => {
+      if (
+        // Aria
+        mergedConfig.aria && (key2 === "role" || match$1(key2, ariaPrefix)) || // Data
+        mergedConfig.data && match$1(key2, dataPrefix) || // Attr
+        mergedConfig.attr && propList.includes(key2)
+      ) {
+        attrs[key2] = props[key2];
+      }
+    });
+    return attrs;
+  }
+  let raf = (callback) => +setTimeout(callback, 16);
+  let caf = (num) => clearTimeout(num);
+  if (typeof window !== "undefined" && "requestAnimationFrame" in window) {
+    raf = (callback) => window.requestAnimationFrame(callback);
+    caf = (handle) => window.cancelAnimationFrame(handle);
+  }
+  let rafUUID = 0;
+  const rafIds = /* @__PURE__ */ new Map();
+  function cleanup(id) {
+    rafIds.delete(id);
+  }
+  const wrapperRaf = (callback, times = 1) => {
+    rafUUID += 1;
+    const id = rafUUID;
+    function callRef(leftTimes) {
+      if (leftTimes === 0) {
+        cleanup(id);
+        callback();
+      } else {
+        const realId = raf(() => {
+          callRef(leftTimes - 1);
+        });
+        rafIds.set(id, realId);
+      }
+    }
+    callRef(times);
+    return id;
+  };
+  wrapperRaf.cancel = (id) => {
+    const realId = rafIds.get(id);
+    cleanup(id);
+    return caf(realId);
+  };
+  function toArray$6(children, option = {}) {
+    let ret = [];
+    React.Children.forEach(children, (child) => {
+      if ((child === void 0 || child === null) && !option.keepEmpty) {
+        return;
+      }
+      if (Array.isArray(child)) {
+        ret = ret.concat(toArray$6(child));
+      } else if (isFragment$1(child) && child.props) {
+        ret = ret.concat(toArray$6(child.props.children, option));
+      } else {
+        ret.push(child);
+      }
+    });
+    return ret;
+  }
+  function mergeProps$1(...items) {
+    const ret = {};
+    for (const item of items) {
+      if (item) {
+        for (const key2 of Object.keys(item)) {
+          if (item[key2] !== void 0) {
+            ret[key2] = item[key2];
+          }
+        }
+      }
+    }
+    return ret;
+  }
+  function get(entity, path) {
+    let current = entity;
+    for (let i = 0; i < path.length; i += 1) {
+      if (current === null || current === void 0) {
+        return void 0;
+      }
+      current = current[path[i]];
+    }
+    return current;
+  }
+  function internalSet(entity, paths, value, removeIfUndefined) {
+    if (!paths.length) {
+      return value;
+    }
+    const [path, ...restPath] = paths;
+    let clone2;
+    if (!entity && typeof path === "number") {
+      clone2 = [];
+    } else if (Array.isArray(entity)) {
+      clone2 = [...entity];
+    } else {
+      clone2 = {
+        ...entity
+      };
+    }
+    if (removeIfUndefined && value === void 0 && restPath.length === 1) {
+      delete clone2[path][restPath[0]];
+    } else {
+      clone2[path] = internalSet(clone2[path], restPath, value, removeIfUndefined);
+    }
+    return clone2;
+  }
+  function set(entity, paths, value, removeIfUndefined = false) {
+    if (paths.length && removeIfUndefined && value === void 0 && !get(entity, paths.slice(0, -1))) {
+      return entity;
+    }
+    return internalSet(entity, paths, value, removeIfUndefined);
+  }
+  function isObject$2(obj) {
+    return typeof obj === "object" && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
+  }
+  function createEmpty(source) {
+    return Array.isArray(source) ? [] : {};
+  }
+  const keys = typeof Reflect === "undefined" ? Object.keys : Reflect.ownKeys;
+  function mergeWith(sources, config2 = {}) {
+    const {
+      prepareArray
+    } = config2;
+    const finalPrepareArray = prepareArray || (() => []);
+    let clone2 = createEmpty(sources[0]);
+    sources.forEach((src) => {
+      function internalMerge(path, parentLoopSet) {
+        const loopSet = new Set(parentLoopSet);
+        const value = get(src, path);
+        const isArr = Array.isArray(value);
+        if (isArr || isObject$2(value)) {
+          if (!loopSet.has(value)) {
+            loopSet.add(value);
+            const originValue = get(clone2, path);
+            if (isArr) {
+              clone2 = set(clone2, path, finalPrepareArray(originValue, value));
+            } else if (!originValue || typeof originValue !== "object") {
+              clone2 = set(clone2, path, createEmpty(value));
+            }
+            keys(value).forEach((key2) => {
+              if (Object.getOwnPropertyDescriptor(value, key2).enumerable) {
+                internalMerge([...path, key2], loopSet);
+              }
+            });
+          }
+        } else {
+          clone2 = set(clone2, path, value);
+        }
+      }
+      internalMerge([]);
+    });
+    return clone2;
+  }
+  function merge$2(...sources) {
+    return mergeWith(sources);
+  }
   const MARK = "__rc_react_root__";
   function render(node2, container) {
     const root2 = container[MARK] || clientExports.createRoot(container);
@@ -13334,22 +13791,22 @@ ${heightStyle}
   var reactDomExports = requireReactDom();
   function noop$5() {
   }
-  const WarningContext = /* @__PURE__ */ React__namespace.createContext({});
+  const WarningContext = /* @__PURE__ */ reactExports.createContext({});
   const devUseWarning = () => {
     const noopWarning = () => {
     };
     noopWarning.deprecated = noop$5;
     return noopWarning;
   };
-  const CollectionContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const CollectionContext = /* @__PURE__ */ reactExports.createContext(null);
   function Collection({
     children,
     onBatchResize
   }) {
-    const resizeIdRef = React__namespace.useRef(0);
-    const resizeInfosRef = React__namespace.useRef([]);
-    const onCollectionResize = React__namespace.useContext(CollectionContext);
-    const onResize2 = React__namespace.useCallback((size, element, data) => {
+    const resizeIdRef = reactExports.useRef(0);
+    const resizeInfosRef = reactExports.useRef([]);
+    const onCollectionResize = reactExports.useContext(CollectionContext);
+    const onResize2 = reactExports.useCallback((size, element, data) => {
       resizeIdRef.current += 1;
       const currentId = resizeIdRef.current;
       resizeInfosRef.current.push({
@@ -13365,7 +13822,7 @@ ${heightStyle}
       });
       onCollectionResize == null ? void 0 : onCollectionResize(size, element, data);
     }, [onBatchResize, onCollectionResize]);
-    return /* @__PURE__ */ React__namespace.createElement(CollectionContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(CollectionContext.Provider, {
       value: onResize2
     }, children);
   }
@@ -13403,7 +13860,7 @@ ${heightStyle}
     }
   }
   function useResizeObserver(enabled, getTarget, onDelayResize, onSyncResize) {
-    const sizeRef = React__namespace.useRef({
+    const sizeRef = reactExports.useRef({
       width: -1,
       height: -1,
       offsetWidth: -1,
@@ -13442,8 +13899,8 @@ ${heightStyle}
       }
     });
     const isFuncTarget = typeof getTarget === "function";
-    const funcTargetIdRef = React__namespace.useRef(0);
-    React__namespace.useEffect(() => {
+    const funcTargetIdRef = reactExports.useRef(0);
+    reactExports.useEffect(() => {
       const target = isFuncTarget ? getTarget() : getTarget;
       if (target && enabled) {
         observe(target, onInternalResize);
@@ -13469,25 +13926,25 @@ ${heightStyle}
       onResize: onResize2,
       data
     } = props;
-    const elementRef = React__namespace.useRef(null);
-    const onCollectionResize = React__namespace.useContext(CollectionContext);
+    const elementRef = reactExports.useRef(null);
+    const onCollectionResize = reactExports.useContext(CollectionContext);
     const isRenderProps = typeof children === "function";
     const mergedChildren = isRenderProps ? children(elementRef) : children;
-    const canRef = !isRenderProps && /* @__PURE__ */ React__namespace.isValidElement(mergedChildren) && supportRef(mergedChildren);
+    const canRef = !isRenderProps && /* @__PURE__ */ reactExports.isValidElement(mergedChildren) && supportRef(mergedChildren);
     const originRef = canRef ? getNodeRef(mergedChildren) : null;
     const mergedRef = useComposeRef(originRef, elementRef);
     const getDomElement = () => {
       return getDOM(elementRef.current);
     };
-    React__namespace.useImperativeHandle(ref, () => getDomElement());
+    reactExports.useImperativeHandle(ref, () => getDomElement());
     useResizeObserver(!disabled, getDomElement, onResize2, (sizeInfo, target) => {
       onCollectionResize == null ? void 0 : onCollectionResize(sizeInfo, target, data);
     });
-    return canRef ? /* @__PURE__ */ React__namespace.cloneElement(mergedChildren, {
+    return canRef ? /* @__PURE__ */ reactExports.cloneElement(mergedChildren, {
       ref: mergedRef
     }) : mergedChildren;
   }
-  const RefSingleObserver = /* @__PURE__ */ React__namespace.forwardRef(SingleObserver);
+  const RefSingleObserver = /* @__PURE__ */ reactExports.forwardRef(SingleObserver);
   function _extends$1p() {
     _extends$1p = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -13510,13 +13967,13 @@ ${heightStyle}
     const childNodes = typeof children === "function" ? [children] : toArray$6(children);
     return childNodes.map((child, index2) => {
       const key2 = (child == null ? void 0 : child.key) || `${INTERNAL_PREFIX_KEY}-${index2}`;
-      return /* @__PURE__ */ React__namespace.createElement(RefSingleObserver, _extends$1p({}, props, {
+      return /* @__PURE__ */ reactExports.createElement(RefSingleObserver, _extends$1p({}, props, {
         key: key2,
         ref: index2 === 0 ? ref : void 0
       }), child);
     });
   }
-  const RefResizeObserver = /* @__PURE__ */ React__namespace.forwardRef(ResizeObserver$1);
+  const RefResizeObserver = /* @__PURE__ */ reactExports.forwardRef(ResizeObserver$1);
   RefResizeObserver.Collection = Collection;
   function r$1(e2) {
     var t2, f, n2 = "";
@@ -13564,7 +14021,7 @@ ${heightStyle}
     }
     return suffixCls ? `${defaultPrefixCls}-${suffixCls}` : defaultPrefixCls;
   };
-  const ConfigContext = /* @__PURE__ */ React__namespace.createContext({
+  const ConfigContext = /* @__PURE__ */ reactExports.createContext({
     // We provide a default function for Context without provider
     getPrefixCls: defaultGetPrefixCls,
     iconPrefixCls: defaultIconPrefixCls
@@ -13574,7 +14031,7 @@ ${heightStyle}
   } = ConfigContext;
   const EMPTY_OBJECT = {};
   function useComponentConfig(propName) {
-    const context = React__namespace.useContext(ConfigContext);
+    const context = reactExports.useContext(ConfigContext);
     const {
       getPrefixCls,
       direction,
@@ -13690,7 +14147,7 @@ ${heightStyle}
     }
     return new Entity(cssinjsInstanceId);
   }
-  const StyleContext = /* @__PURE__ */ React__namespace.createContext({
+  const StyleContext = /* @__PURE__ */ reactExports.createContext({
     hashPriority: "low",
     cache: createCache(),
     defaultCache: true,
@@ -13953,7 +14410,7 @@ ${heightStyle}
   function useGlobalCache(prefix2, keyPath, cacheFn, onCacheRemove, onCacheEffect) {
     const {
       cache: globalCache
-    } = React__namespace.useContext(StyleContext);
+    } = reactExports.useContext(StyleContext);
     const fullPath = [prefix2, ...keyPath];
     const fullPathStr = pathKey(fullPath);
     const buildCache = (updater) => {
@@ -13965,7 +14422,7 @@ ${heightStyle}
         return updater ? updater(data) : data;
       });
     };
-    React__namespace.useMemo(
+    reactExports.useMemo(
       () => {
         buildCache();
       },
@@ -13975,7 +14432,7 @@ ${heightStyle}
     );
     let cacheEntity = globalCache.opGet(fullPathStr);
     const cacheContent = cacheEntity[1];
-    React.useInsertionEffect(() => {
+    reactExports.useInsertionEffect(() => {
       buildCache(([times, cache2]) => [times + 1, cache2]);
       if (!effectMap.has(fullPathStr)) {
         onCacheEffect == null ? void 0 : onCacheEffect(cacheContent);
@@ -14049,7 +14506,7 @@ ${heightStyle}
       },
       container,
       hashPriority
-    } = React.useContext(StyleContext);
+    } = reactExports.useContext(StyleContext);
     const {
       salt = "",
       override = EMPTY_OVERRIDE,
@@ -14976,7 +15433,7 @@ ${heightStyle}
       cache: cache2,
       layer: enableLayer,
       autoPrefix
-    } = React__namespace.useContext(StyleContext);
+    } = reactExports.useContext(StyleContext);
     const fullPath = [hashId || ""];
     if (enableLayer) {
       fullPath.push("layer");
@@ -15071,7 +15528,7 @@ ${heightStyle}
       },
       container,
       hashPriority
-    } = React.useContext(StyleContext);
+    } = reactExports.useContext(StyleContext);
     const {
       _tokenKey: tokenKey
     } = token2;
@@ -15668,7 +16125,7 @@ ${heightStyle}
       return function(prefixCls) {
         var rootCls = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : prefixCls;
         var _useToken2 = useToken2(), theme = _useToken2.theme, realToken = _useToken2.realToken, hashId = _useToken2.hashId, token2 = _useToken2.token, cssVar = _useToken2.cssVar, zeroRuntime = _useToken2.zeroRuntime;
-        var memoizedZeroRuntime = React.useMemo(function() {
+        var memoizedZeroRuntime = reactExports.useMemo(function() {
           return zeroRuntime;
         }, []);
         if (memoizedZeroRuntime) {
@@ -17489,7 +17946,7 @@ ${heightStyle}
       const {
         getPrefixCls,
         iconPrefixCls
-      } = React.useContext(ConfigContext);
+      } = reactExports.useContext(ConfigContext);
       const rootPrefixCls = getPrefixCls();
       return {
         rootPrefixCls,
@@ -17510,7 +17967,7 @@ ${heightStyle}
     useCSP: () => {
       const {
         csp
-      } = React.useContext(ConfigContext);
+      } = reactExports.useContext(ConfigContext);
       return csp ?? {};
     },
     getResetStyles: (token2, config2) => {
@@ -17561,7 +18018,7 @@ ${heightStyle}
     }, () => genIconStyle(iconPrefixCls));
   };
   var CheckCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z" } }] }, "name": "check-circle", "theme": "filled" };
-  const IconContext = /* @__PURE__ */ React.createContext({});
+  const IconContext = /* @__PURE__ */ reactExports.createContext({});
   function camelCase$1(input) {
     return input.replace(/-(.)/g, (match2, g2) => g2.toUpperCase());
   }
@@ -17668,7 +18125,7 @@ ${heightStyle}
       csp,
       prefixCls,
       layer
-    } = React.useContext(IconContext);
+    } = reactExports.useContext(IconContext);
     let mergedStyleStr = iconStyles;
     if (prefixCls) {
       mergedStyleStr = mergedStyleStr.replace(/anticon/g, prefixCls);
@@ -17678,7 +18135,7 @@ ${heightStyle}
 ${mergedStyleStr}
 }`;
     }
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       const ele = eleRef.current;
       const shadowRoot = getShadowRoot(ele);
       updateCSS(mergedStyleStr, "@ant-design-icons", {
@@ -17716,7 +18173,7 @@ ${mergedStyleStr}
       secondaryColor,
       ...restProps
     } = props;
-    const svgRef = React__namespace.useRef(null);
+    const svgRef = reactExports.useRef(null);
     let colors = twoToneColorPalette;
     if (primaryColor) {
       colors = {
@@ -17781,7 +18238,7 @@ ${mergedStyleStr}
     return _extends$1o.apply(this, arguments);
   }
   setTwoToneColor(blue.primary);
-  const Icon$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Icon$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       // affect outter <i>...</i>
       className,
@@ -17798,7 +18255,7 @@ ${mergedStyleStr}
     const {
       prefixCls = "anticon",
       rootClassName
-    } = React__namespace.useContext(IconContext);
+    } = reactExports.useContext(IconContext);
     const classString = clsx(rootClassName, prefixCls, {
       [`${prefixCls}-${icon.name}`]: !!icon.name,
       [`${prefixCls}-spin`]: !!spin || icon.name === "loading"
@@ -17812,7 +18269,7 @@ ${mergedStyleStr}
       transform: `rotate(${rotate}deg)`
     } : void 0;
     const [primaryColor, secondaryColor] = normalizeTwoToneColors(twoToneColor);
-    return /* @__PURE__ */ React__namespace.createElement("span", _extends$1o({
+    return /* @__PURE__ */ reactExports.createElement("span", _extends$1o({
       role: "img",
       "aria-label": icon.name
     }, restProps, {
@@ -17820,7 +18277,7 @@ ${mergedStyleStr}
       tabIndex: iconTabIndex,
       onClick,
       className: classString
-    }), /* @__PURE__ */ React__namespace.createElement(IconBase, {
+    }), /* @__PURE__ */ reactExports.createElement(IconBase, {
       icon,
       primaryColor,
       secondaryColor,
@@ -17843,11 +18300,11 @@ ${mergedStyleStr}
     };
     return _extends$1n.apply(this, arguments);
   }
-  const CheckCircleFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1n({}, props, {
+  const CheckCircleFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1n({}, props, {
     ref,
     icon: CheckCircleFilled$1
   }));
-  const RefIcon$x = /* @__PURE__ */ React__namespace.forwardRef(CheckCircleFilled);
+  const RefIcon$x = /* @__PURE__ */ reactExports.forwardRef(CheckCircleFilled);
   var CloseCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm127.98 274.82h-.04l-.08.06L512 466.75 384.14 338.88c-.04-.05-.06-.06-.08-.06a.12.12 0 00-.07 0c-.03 0-.05.01-.09.05l-45.02 45.02a.2.2 0 00-.05.09.12.12 0 000 .07v.02a.27.27 0 00.06.06L466.75 512 338.88 639.86c-.05.04-.06.06-.06.08a.12.12 0 000 .07c0 .03.01.05.05.09l45.02 45.02a.2.2 0 00.09.05.12.12 0 00.07 0c.02 0 .04-.01.08-.05L512 557.25l127.86 127.87c.04.04.06.05.08.05a.12.12 0 00.07 0c.03 0 .05-.01.09-.05l45.02-45.02a.2.2 0 00.05-.09.12.12 0 000-.07v-.02a.27.27 0 00-.05-.06L557.25 512l127.87-127.86c.04-.04.05-.06.05-.08a.12.12 0 000-.07c0-.03-.01-.05-.05-.09l-45.02-45.02a.2.2 0 00-.09-.05.12.12 0 00-.07 0z" } }] }, "name": "close-circle", "theme": "filled" };
   function _extends$1m() {
     _extends$1m = Object.assign ? Object.assign.bind() : function(target) {
@@ -17863,11 +18320,11 @@ ${mergedStyleStr}
     };
     return _extends$1m.apply(this, arguments);
   }
-  const CloseCircleFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1m({}, props, {
+  const CloseCircleFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1m({}, props, {
     ref,
     icon: CloseCircleFilled$1
   }));
-  const RefIcon$w = /* @__PURE__ */ React__namespace.forwardRef(CloseCircleFilled);
+  const RefIcon$w = /* @__PURE__ */ reactExports.forwardRef(CloseCircleFilled);
   var CloseOutlined$1 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z" } }] }, "name": "close", "theme": "outlined" };
   function _extends$1l() {
     _extends$1l = Object.assign ? Object.assign.bind() : function(target) {
@@ -17883,11 +18340,11 @@ ${mergedStyleStr}
     };
     return _extends$1l.apply(this, arguments);
   }
-  const CloseOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1l({}, props, {
+  const CloseOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1l({}, props, {
     ref,
     icon: CloseOutlined$1
   }));
-  const RefIcon$v = /* @__PURE__ */ React__namespace.forwardRef(CloseOutlined);
+  const RefIcon$v = /* @__PURE__ */ reactExports.forwardRef(CloseOutlined);
   var ExclamationCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "exclamation-circle", "theme": "filled" };
   function _extends$1k() {
     _extends$1k = Object.assign ? Object.assign.bind() : function(target) {
@@ -17903,11 +18360,11 @@ ${mergedStyleStr}
     };
     return _extends$1k.apply(this, arguments);
   }
-  const ExclamationCircleFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1k({}, props, {
+  const ExclamationCircleFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1k({}, props, {
     ref,
     icon: ExclamationCircleFilled$1
   }));
-  const RefIcon$u = /* @__PURE__ */ React__namespace.forwardRef(ExclamationCircleFilled);
+  const RefIcon$u = /* @__PURE__ */ reactExports.forwardRef(ExclamationCircleFilled);
   var InfoCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "info-circle", "theme": "filled" };
   function _extends$1j() {
     _extends$1j = Object.assign ? Object.assign.bind() : function(target) {
@@ -17923,23 +18380,23 @@ ${mergedStyleStr}
     };
     return _extends$1j.apply(this, arguments);
   }
-  const InfoCircleFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1j({}, props, {
+  const InfoCircleFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1j({}, props, {
     ref,
     icon: InfoCircleFilled$1
   }));
-  const RefIcon$t = /* @__PURE__ */ React__namespace.forwardRef(InfoCircleFilled);
-  const Context$1 = /* @__PURE__ */ React__namespace.createContext({});
+  const RefIcon$t = /* @__PURE__ */ reactExports.forwardRef(InfoCircleFilled);
+  const Context$1 = /* @__PURE__ */ reactExports.createContext({});
   const MotionProvider = (props) => {
     const {
       children,
       ...rest
     } = props;
-    const memoizedValue = React__namespace.useMemo(() => {
+    const memoizedValue = reactExports.useMemo(() => {
       return {
         motion: rest.motion
       };
     }, [rest.motion]);
-    return /* @__PURE__ */ React__namespace.createElement(Context$1.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(Context$1.Provider, {
       value: memoizedValue
     }, children);
   };
@@ -18017,7 +18474,7 @@ ${mergedStyleStr}
     return `${transitionName}-${transitionType}`;
   }
   const useDomMotionEvents = ((onInternalMotionEnd) => {
-    const cacheElementRef = React.useRef();
+    const cacheElementRef = reactExports.useRef();
     function removeMotionEvents(element) {
       if (element) {
         element.removeEventListener(transitionEndName, onInternalMotionEnd);
@@ -18034,15 +18491,15 @@ ${mergedStyleStr}
         cacheElementRef.current = element;
       }
     }
-    React__namespace.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       removeMotionEvents(cacheElementRef.current);
       cacheElementRef.current = null;
     }, []);
     return [patchMotionEvents, removeMotionEvents];
   });
-  const useIsomorphicLayoutEffect = canUseDom() ? React.useLayoutEffect : React.useEffect;
+  const useIsomorphicLayoutEffect = canUseDom() ? reactExports.useLayoutEffect : reactExports.useEffect;
   const useNextFrame = (() => {
-    const nextFrameRef = React__namespace.useRef(null);
+    const nextFrameRef = reactExports.useRef(null);
     function cancelNextFrame() {
       wrapperRaf.cancel(nextFrameRef.current);
     }
@@ -18059,7 +18516,7 @@ ${mergedStyleStr}
       });
       nextFrameRef.current = nextFrameId;
     }
-    React__namespace.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       cancelNextFrame();
     }, []);
     return [nextFrame, cancelNextFrame];
@@ -18100,7 +18557,7 @@ ${mergedStyleStr}
         }
       }
     }, [status, step]);
-    React__namespace.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       cancelNextFrame();
     }, []);
     return [startQueue, step];
@@ -18125,16 +18582,16 @@ ${mergedStyleStr}
     onLeaveEnd,
     onVisibleChanged
   }) {
-    const [asyncVisible, setAsyncVisible] = React__namespace.useState();
+    const [asyncVisible, setAsyncVisible] = reactExports.useState();
     const [getStatus2, setStatus] = useSyncState$1(STATUS_NONE);
-    const [style2, setStyle] = React__namespace.useState([null, null]);
+    const [style2, setStyle] = reactExports.useState([null, null]);
     const currentStatus = getStatus2();
-    const mountedRef = React.useRef(false);
-    const deadlineRef = React.useRef(null);
+    const mountedRef = reactExports.useRef(false);
+    const deadlineRef = reactExports.useRef(null);
     function getDomElement() {
       return getElement();
     }
-    const activeRef = React.useRef(false);
+    const activeRef = reactExports.useRef(false);
     function updateMotionEndStatus() {
       setStatus(STATUS_NONE);
       setStyle([null, null]);
@@ -18186,7 +18643,7 @@ ${mergedStyleStr}
           return {};
       }
     };
-    const eventHandlers = React__namespace.useMemo(() => getEventHandlers(currentStatus), [currentStatus]);
+    const eventHandlers = reactExports.useMemo(() => getEventHandlers(currentStatus), [currentStatus]);
     const [startStep, step] = useStepQueue(currentStatus, !supportMotion, (newStep) => {
       var _a2;
       if (newStep === STEP_PREPARE) {
@@ -18217,7 +18674,7 @@ ${mergedStyleStr}
     });
     const active = isActive(step);
     activeRef.current = active;
-    const visibleRef = React.useRef(null);
+    const visibleRef = reactExports.useRef(null);
     useIsomorphicLayoutEffect(() => {
       if (mountedRef.current && visibleRef.current === visible) {
         return;
@@ -18244,7 +18701,7 @@ ${mergedStyleStr}
       }
       visibleRef.current = visible;
     }, [visible]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (
         // Cancel appear
         currentStatus === STATUS_APPEAR && !motionAppear || // Cancel enter
@@ -18254,12 +18711,12 @@ ${mergedStyleStr}
         setStatus(STATUS_NONE);
       }
     }, [motionAppear, motionEnter, motionLeave]);
-    React.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       mountedRef.current = false;
       clearTimeout(deadlineRef.current);
     }, []);
-    const firstMountChangeRef = React__namespace.useRef(false);
-    React.useEffect(() => {
+    const firstMountChangeRef = reactExports.useRef(false);
+    reactExports.useEffect(() => {
       if (asyncVisible) {
         firstMountChangeRef.current = true;
       }
@@ -18303,7 +18760,7 @@ ${mergedStyleStr}
     function isSupportTransition(props, contextMotion) {
       return !!(props.motionName && transitionSupport && contextMotion !== false);
     }
-    const CSSMotion2 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+    const CSSMotion2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
       const {
         // Default config
         visible = true,
@@ -18316,19 +18773,19 @@ ${mergedStyleStr}
       } = props;
       const {
         motion: contextMotion
-      } = React__namespace.useContext(Context$1);
+      } = reactExports.useContext(Context$1);
       const supportMotion = isSupportTransition(props, contextMotion);
-      const nodeRef = React.useRef();
+      const nodeRef = reactExports.useRef();
       function getDomElement() {
         return getDOM(nodeRef.current);
       }
       const [getStatus2, statusStep, statusStyle, mergedVisible, styleReady] = useStatus(supportMotion, visible, getDomElement, props);
       const status = getStatus2();
-      const renderedRef = React__namespace.useRef(mergedVisible);
+      const renderedRef = reactExports.useRef(mergedVisible);
       if (mergedVisible) {
         renderedRef.current = true;
       }
-      const refObj = React__namespace.useMemo(() => {
+      const refObj = reactExports.useMemo(() => {
         const obj = {};
         Object.defineProperties(obj, {
           nativeElement: {
@@ -18346,12 +18803,12 @@ ${mergedStyleStr}
         });
         return obj;
       }, []);
-      React__namespace.useImperativeHandle(ref, () => refObj, []);
-      const idRef = React__namespace.useRef(0);
+      reactExports.useImperativeHandle(ref, () => refObj, []);
+      const idRef = reactExports.useRef(0);
       if (styleReady) {
         idRef.current += 1;
       }
-      const returnNode = React__namespace.useMemo(() => {
+      const returnNode = reactExports.useMemo(() => {
         if (styleReady === "NONE") {
           return null;
         }
@@ -18406,7 +18863,7 @@ ${mergedStyleStr}
       if (isRefNotConsumed(children) && supportNodeRef(returnNode)) {
         const originNodeRef = getNodeRef(returnNode);
         if (originNodeRef !== nodeRef) {
-          return /* @__PURE__ */ React__namespace.cloneElement(returnNode, {
+          return /* @__PURE__ */ reactExports.cloneElement(returnNode, {
             ref: composeRef(originNodeRef, nodeRef)
           });
         }
@@ -18514,7 +18971,7 @@ ${mergedStyleStr}
   }
   const MOTION_PROP_NAMES = ["eventProps", "visible", "children", "motionName", "motionAppear", "motionEnter", "motionLeave", "motionLeaveImmediately", "motionDeadline", "removeOnLeave", "leavedClassName", "onAppearPrepare", "onAppearStart", "onAppearActive", "onAppearEnd", "onEnterStart", "onEnterActive", "onEnterEnd", "onLeaveStart", "onLeaveActive", "onLeaveEnd"];
   function genCSSMotionList(transitionSupport, CSSMotion$1 = CSSMotion) {
-    class CSSMotionList2 extends React__namespace.Component {
+    class CSSMotionList2 extends reactExports.Component {
       constructor() {
         super(...arguments);
         __publicField(this, "state", {
@@ -18576,19 +19033,19 @@ ${mergedStyleStr}
           onAllRemoved,
           ...restProps
         } = this.props;
-        const Component = component || React__namespace.Fragment;
+        const Component = component || reactExports.Fragment;
         const motionProps = {};
         MOTION_PROP_NAMES.forEach((prop) => {
           motionProps[prop] = restProps[prop];
           delete restProps[prop];
         });
         delete restProps.keys;
-        return /* @__PURE__ */ React__namespace.createElement(Component, restProps, keyEntities.map(({
+        return /* @__PURE__ */ reactExports.createElement(Component, restProps, keyEntities.map(({
           status,
           ...eventProps
         }, index2) => {
           const visible = status === STATUS_ADD || status === STATUS_KEEP;
-          return /* @__PURE__ */ React__namespace.createElement(CSSMotion$1, _extends$1i({}, motionProps, {
+          return /* @__PURE__ */ reactExports.createElement(CSSMotion$1, _extends$1i({}, motionProps, {
             key: eventProps.key,
             visible,
             eventProps,
@@ -18678,7 +19135,7 @@ ${mergedStyleStr}
     }, {});
   };
   const useSemanticClassNames = (schema, ...classNames) => {
-    return React__namespace.useMemo(() => mergeClassNames.apply(void 0, [schema].concat(classNames)), [schema].concat(classNames));
+    return reactExports.useMemo(() => mergeClassNames.apply(void 0, [schema].concat(classNames)), [schema].concat(classNames));
   };
   const mergeStyles = (...styles2) => {
     return styles2.filter((item) => Boolean(item)).reduce((acc, cur = {}) => {
@@ -18692,7 +19149,7 @@ ${mergedStyleStr}
     }, {});
   };
   const useSemanticStyles = (...styles2) => {
-    return React__namespace.useMemo(() => mergeStyles.apply(void 0, styles2), [].concat(styles2));
+    return reactExports.useMemo(() => mergeStyles.apply(void 0, styles2), [].concat(styles2));
   };
   const resolveStyleOrClass = (value, info) => {
     return isFunction$2(value) ? value(info) : value;
@@ -18702,7 +19159,7 @@ ${mergedStyleStr}
     const resolvedStylesList = stylesList.map((styles2) => styles2 ? resolveStyleOrClass(styles2, info) : void 0);
     const mergedClassNames = useSemanticClassNames.apply(void 0, [schema].concat(_toConsumableArray(resolvedClassNamesList)));
     const mergedStyles = useSemanticStyles.apply(void 0, _toConsumableArray(resolvedStylesList));
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       if (!schema) {
         return [mergedClassNames, mergedStyles];
       }
@@ -18913,12 +19370,12 @@ ${mergedStyleStr}
       errorIcon
     } = props;
     const iconMapFilled = {
-      success: successIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null),
-      info: infoIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null),
-      error: errorIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null),
-      warning: warningIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null)
+      success: successIcon ?? /* @__PURE__ */ reactExports.createElement(RefIcon$x, null),
+      info: infoIcon ?? /* @__PURE__ */ reactExports.createElement(RefIcon$t, null),
+      error: errorIcon ?? /* @__PURE__ */ reactExports.createElement(RefIcon$w, null),
+      warning: warningIcon ?? /* @__PURE__ */ reactExports.createElement(RefIcon$u, null)
     };
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className,
       style: style2
     }, icon ?? iconMapFilled[type2]);
@@ -18933,8 +19390,8 @@ ${mergedStyleStr}
       className,
       style: style2
     } = props;
-    const mergedCloseIcon = closeIcon === true || closeIcon === void 0 ? /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null) : closeIcon;
-    return isClosable ? /* @__PURE__ */ React__namespace.createElement("button", {
+    const mergedCloseIcon = closeIcon === true || closeIcon === void 0 ? /* @__PURE__ */ reactExports.createElement(RefIcon$v, null) : closeIcon;
+    return isClosable ? /* @__PURE__ */ reactExports.createElement("button", {
       type: "button",
       onClick: handleClose,
       className: clsx(`${prefixCls}-close-icon`, className),
@@ -18943,7 +19400,7 @@ ${mergedStyleStr}
       ...ariaProps
     }, mergedCloseIcon) : null;
   };
-  const Alert$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Alert$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       description,
       prefixCls: customizePrefixCls,
@@ -18968,9 +19425,9 @@ ${mergedStyleStr}
       ...otherProps
     } = props;
     const mergedTitle = title ?? message2;
-    const [closed, setClosed] = React__namespace.useState(false);
-    const internalRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => ({
+    const [closed, setClosed] = reactExports.useState(false);
+    const internalRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => ({
       nativeElement: internalRef.current
     }));
     const {
@@ -18999,14 +19456,14 @@ ${mergedStyleStr}
       setClosed(true);
       (_a2 = closableOnClose ?? props.onClose) == null ? void 0 : _a2(e2);
     };
-    const type2 = React__namespace.useMemo(() => {
+    const type2 = reactExports.useMemo(() => {
       if (props.type !== void 0) {
         return props.type;
       }
       return banner ? "warning" : "info";
     }, [props.type, banner]);
     const mergedVariant = props.variant ?? contextVariant ?? "outlined";
-    const isClosable = React__namespace.useMemo(() => {
+    const isClosable = reactExports.useMemo(() => {
       if (isPlainObject$1(closable) && closable.closeIcon) {
         return true;
       }
@@ -19043,7 +19500,7 @@ ${mergedStyleStr}
       aria: true,
       data: true
     });
-    const mergedCloseIcon = React__namespace.useMemo(() => {
+    const mergedCloseIcon = reactExports.useMemo(() => {
       if (isPlainObject$1(closable) && closable.closeIcon) {
         return closable.closeIcon;
       }
@@ -19058,7 +19515,7 @@ ${mergedStyleStr}
       }
       return contextCloseIcon;
     }, [closeIcon, closable, contextClosable, closeText, contextCloseIcon]);
-    const mergedAriaProps = React__namespace.useMemo(() => {
+    const mergedAriaProps = reactExports.useMemo(() => {
       const merged = closable ?? contextClosable;
       if (isPlainObject$1(merged)) {
         return pickAttrs(merged, {
@@ -19068,7 +19525,7 @@ ${mergedStyleStr}
       }
       return {};
     }, [closable, contextClosable]);
-    return /* @__PURE__ */ React__namespace.createElement(CSSMotion, {
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
       visible: !closed,
       motionName: `${prefixCls}-motion`,
       motionAppear: false,
@@ -19080,7 +19537,7 @@ ${mergedStyleStr}
     }, ({
       className: motionClassName,
       style: motionStyle
-    }, setRef) => /* @__PURE__ */ React__namespace.createElement("div", {
+    }, setRef) => /* @__PURE__ */ reactExports.createElement("div", {
       id,
       ref: composeRef(internalRef, setRef),
       "data-show": !closed,
@@ -19096,7 +19553,7 @@ ${mergedStyleStr}
       onClick,
       role: "alert",
       ...restProps
-    }, isShowIcon ? /* @__PURE__ */ React__namespace.createElement(IconNode, {
+    }, isShowIcon ? /* @__PURE__ */ reactExports.createElement(IconNode, {
       className: clsx(`${prefixCls}-icon`, mergedClassNames.icon),
       style: mergedStyles.icon,
       description,
@@ -19107,19 +19564,19 @@ ${mergedStyleStr}
       infoIcon,
       warningIcon,
       errorIcon
-    }) : null, /* @__PURE__ */ React__namespace.createElement("div", {
+    }) : null, /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-section`, mergedClassNames.section),
       style: mergedStyles.section
-    }, mergedTitle ? /* @__PURE__ */ React__namespace.createElement("div", {
+    }, mergedTitle ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-title`, mergedClassNames.title),
       style: mergedStyles.title
-    }, mergedTitle) : null, description ? /* @__PURE__ */ React__namespace.createElement("div", {
+    }, mergedTitle) : null, description ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-description`, mergedClassNames.description),
       style: mergedStyles.description
-    }, description) : null), action ? /* @__PURE__ */ React__namespace.createElement("div", {
+    }, description) : null), action ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-actions`, mergedClassNames.actions),
       style: mergedStyles.actions
-    }, action) : null, /* @__PURE__ */ React__namespace.createElement(CloseIconNode, {
+    }, action) : null, /* @__PURE__ */ reactExports.createElement(CloseIconNode, {
       className: mergedClassNames.close,
       style: mergedStyles.close,
       isClosable,
@@ -19171,11 +19628,11 @@ ${mergedStyleStr}
         const errorMessage = isNonNullable(mergedTitle) ? mergedTitle : error == null ? void 0 : error.toString();
         const errorDescription = isNonNullable(description) ? description : componentStack;
         if (error) {
-          return /* @__PURE__ */ React__namespace.createElement(Alert$1, {
+          return /* @__PURE__ */ reactExports.createElement(Alert$1, {
             id,
             type: "error",
             title: errorMessage,
-            description: /* @__PURE__ */ React__namespace.createElement("pre", {
+            description: /* @__PURE__ */ reactExports.createElement("pre", {
               style: {
                 fontSize: "0.9em",
                 overflowX: "auto"
@@ -19186,7 +19643,7 @@ ${mergedStyleStr}
         return children;
       }
     }]);
-  })(React__namespace.PureComponent);
+  })(reactExports.PureComponent);
   const Alert = Alert$1;
   Alert.ErrorBoundary = ErrorBoundary;
   const t = (t2) => "object" == typeof t2 && null != t2 && 1 === t2.nodeType, e$1 = (t2, e2) => (!e2 || "hidden" !== t2) && ("visible" !== t2 && "clip" !== t2), n = (t2, n2) => {
@@ -19329,7 +19786,7 @@ ${mergedStyleStr}
     };
   }
   const useCSSVarCls = (prefixCls) => `${prefixCls}-css-var`;
-  const ValidateMessagesContext = /* @__PURE__ */ React.createContext(void 0);
+  const ValidateMessagesContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const locale$4 = {
     // Options
     items_per_page: "/ page",
@@ -19619,10 +20076,10 @@ ${mergedStyleStr}
   function getConfirmLocale() {
     return runtimeLocale;
   }
-  const LocaleContext = /* @__PURE__ */ React.createContext(void 0);
+  const LocaleContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const useLocale = (componentName, defaultLocale) => {
-    const fullLocale = React__namespace.useContext(LocaleContext);
-    const getLocale = React__namespace.useMemo(() => {
+    const fullLocale = reactExports.useContext(LocaleContext);
+    const getLocale = reactExports.useMemo(() => {
       const locale2 = defaultLocale || localeValues[componentName];
       const localeFromContext = (fullLocale == null ? void 0 : fullLocale[componentName]) ?? {};
       return {
@@ -19630,7 +20087,7 @@ ${mergedStyleStr}
         ...localeFromContext || {}
       };
     }, [componentName, defaultLocale, fullLocale]);
-    const getLocaleCode = React__namespace.useMemo(() => {
+    const getLocaleCode = reactExports.useMemo(() => {
       const localeCode = fullLocale == null ? void 0 : fullLocale.locale;
       if ((fullLocale == null ? void 0 : fullLocale.exist) && !localeCode) {
         return localeValues.locale;
@@ -19646,35 +20103,35 @@ ${mergedStyleStr}
       children,
       _ANT_MARK__
     } = props;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       const clearLocale = changeConfirmLocale(locale2 == null ? void 0 : locale2.Modal);
       return clearLocale;
     }, [locale2]);
-    const getMemoizedContextValue = React__namespace.useMemo(() => ({
+    const getMemoizedContextValue = reactExports.useMemo(() => ({
       ...locale2,
       exist: true
     }), [locale2]);
-    return /* @__PURE__ */ React__namespace.createElement(LocaleContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(LocaleContext.Provider, {
       value: getMemoizedContextValue
     }, children);
   };
-  const OrderContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const OrderContext = /* @__PURE__ */ reactExports.createContext(null);
   let inline = false;
   function inlineMock(nextInline) {
     return inline;
   }
   const EMPTY_LIST$4 = [];
   function useDom(render2, debug) {
-    const [ele] = React__namespace.useState(() => {
+    const [ele] = reactExports.useState(() => {
       if (!canUseDom()) {
         return null;
       }
       const defaultEle = document.createElement("div");
       return defaultEle;
     });
-    const appendedRef = React__namespace.useRef(false);
-    const queueCreate = React__namespace.useContext(OrderContext);
-    const [queue, setQueue] = React__namespace.useState(EMPTY_LIST$4);
+    const appendedRef = reactExports.useRef(false);
+    const queueCreate = reactExports.useContext(OrderContext);
+    const [queue, setQueue] = reactExports.useState(EMPTY_LIST$4);
     const mergedQueueCreate = queueCreate || (appendedRef.current ? void 0 : (appendFn) => {
       setQueue((origin2) => {
         const newQueue = [appendFn, ...origin2];
@@ -19719,7 +20176,7 @@ ${mergedStyleStr}
   let uuid$1 = 0;
   function useScrollLocker(lock) {
     const mergedLock = !!lock;
-    const [id] = React__namespace.useState(() => {
+    const [id] = reactExports.useState(() => {
       uuid$1 += 1;
       return `${UNIQUE_ID}_${uuid$1}`;
     });
@@ -19785,14 +20242,14 @@ html body {
     const clear = () => {
       stack = stack.filter((item) => item.id !== id);
     };
-    React.useMemo(() => {
+    reactExports.useMemo(() => {
       if (open2) {
         ensure();
       } else if (!open2) {
         clear();
       }
     }, [open2]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (open2) {
         ensure();
         attachGlobalEventListeners();
@@ -19818,7 +20275,7 @@ html body {
     }
     return getContainer2;
   };
-  const Portal = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Portal = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       open: open2,
       autoLock,
@@ -19828,15 +20285,15 @@ html body {
       children,
       onEsc
     } = props;
-    const [shouldRender, setShouldRender] = React__namespace.useState(open2);
+    const [shouldRender, setShouldRender] = reactExports.useState(open2);
     const mergedRender = shouldRender || open2;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (autoDestroy || open2) {
         setShouldRender(open2);
       }
     }, [open2, autoDestroy]);
-    const [innerContainer, setInnerContainer] = React__namespace.useState(() => getPortalContainer(getContainer2));
-    React__namespace.useEffect(() => {
+    const [innerContainer, setInnerContainer] = reactExports.useState(() => getPortalContainer(getContainer2));
+    reactExports.useEffect(() => {
       const customizeContainer = getPortalContainer(getContainer2);
       setInnerContainer(() => (
         // React do the state update even the value is the same,
@@ -19859,11 +20316,11 @@ html body {
     const renderInline = mergedContainer === false || inlineMock();
     let reffedChildren = children;
     if (ref) {
-      reffedChildren = /* @__PURE__ */ React__namespace.cloneElement(children, {
+      reffedChildren = /* @__PURE__ */ reactExports.cloneElement(children, {
         ref: mergedRef
       });
     }
-    return /* @__PURE__ */ React__namespace.createElement(OrderContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(OrderContext.Provider, {
       value: queueCreate
     }, renderInline ? reffedChildren : /* @__PURE__ */ reactDomExports.createPortal(reffedChildren, mergedContainer));
   });
@@ -19883,7 +20340,7 @@ html body {
       x: x2 = 0,
       y: y2 = 0
     } = arrowPos;
-    const arrowRef = React__namespace.useRef(null);
+    const arrowRef = reactExports.useRef(null);
     if (!align || !align.points) {
       return null;
     }
@@ -19912,7 +20369,7 @@ html body {
         alignStyle.right = 0;
       }
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ref: arrowRef,
       className: clsx(`${prefixCls}-arrow`, className),
       style: {
@@ -19947,20 +20404,20 @@ html body {
     if (!mask2) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement(CSSMotion, _extends$1h({}, motion, {
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, _extends$1h({}, motion, {
       motionAppear: true,
       visible: open2,
       removeOnLeave: true
     }), ({
       className
-    }) => /* @__PURE__ */ React__namespace.createElement("div", {
+    }) => /* @__PURE__ */ reactExports.createElement("div", {
       style: {
         zIndex
       },
       className: clsx(`${prefixCls}-mask`, mobile && `${prefixCls}-mobile-mask`, className)
     }));
   }
-  const PopupContent = /* @__PURE__ */ React__namespace.memo(({
+  const PopupContent = /* @__PURE__ */ reactExports.memo(({
     children
   }) => children, (_2, next2) => next2.cache);
   function useOffsetStyle(isMobile2, ready, open2, align, offsetR, offsetB, offsetX, offsetY) {
@@ -20010,7 +20467,7 @@ html body {
     };
     return _extends$1g.apply(this, arguments);
   }
-  const Popup$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Popup$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       onEsc,
       popup,
@@ -20063,14 +20520,14 @@ html body {
     const popupContent = typeof popup === "function" ? popup() : popup;
     const isNodeVisible = open2 || keepDom;
     const isMobile2 = !!mobile;
-    const [mergedMask, mergedMaskMotion, mergedPopupMotion] = React__namespace.useMemo(() => {
+    const [mergedMask, mergedMaskMotion, mergedPopupMotion] = reactExports.useMemo(() => {
       if (mobile) {
         return [mobile.mask, mobile.maskMotion, mobile.motion];
       }
       return [mask2, maskMotion, motion];
     }, [mobile, mask2, maskMotion, motion]);
     const getPopupContainerNeedParams = (getPopupContainer == null ? void 0 : getPopupContainer.length) > 0;
-    const [show, setShow] = React__namespace.useState(!getPopupContainer || !getPopupContainerNeedParams);
+    const [show, setShow] = reactExports.useState(!getPopupContainer || !getPopupContainerNeedParams);
     useLayoutEffect(() => {
       if (!show && getPopupContainerNeedParams && target) {
         setShow(true);
@@ -20100,23 +20557,23 @@ html body {
     if (!open2) {
       miscStyle.pointerEvents = "none";
     }
-    return /* @__PURE__ */ React__namespace.createElement(Portal2, {
+    return /* @__PURE__ */ reactExports.createElement(Portal2, {
       open: forceRender || isNodeVisible,
       getContainer: getPopupContainer && (() => getPopupContainer(target)),
       autoDestroy,
       onEsc
-    }, /* @__PURE__ */ React__namespace.createElement(Mask$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Mask$1, {
       prefixCls,
       open: open2,
       zIndex,
       mask: mergedMask,
       motion: mergedMaskMotion,
       mobile: isMobile2
-    }), /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+    }), /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
       onResize: onInternalResize,
       disabled: !open2
     }, (resizeObserverRef) => {
-      return /* @__PURE__ */ React__namespace.createElement(CSSMotion, _extends$1g({
+      return /* @__PURE__ */ reactExports.createElement(CSSMotion, _extends$1g({
         motionAppear: true,
         motionEnter: true,
         motionLeave: true,
@@ -20139,7 +20596,7 @@ html body {
         const cls = clsx(prefixCls, motionClassName, className, {
           [`${prefixCls}-mobile`]: isMobile2
         });
-        return /* @__PURE__ */ React__namespace.createElement("div", {
+        return /* @__PURE__ */ reactExports.createElement("div", {
           ref: composeRef(resizeObserverRef, ref, motionRef),
           className: cls,
           style: {
@@ -20157,24 +20614,24 @@ html body {
           onPointerEnter,
           onClick,
           onPointerDownCapture
-        }, arrow && /* @__PURE__ */ React__namespace.createElement(Arrow, {
+        }, arrow && /* @__PURE__ */ reactExports.createElement(Arrow, {
           prefixCls,
           arrow,
           arrowPos,
           align
-        }), /* @__PURE__ */ React__namespace.createElement(PopupContent, {
+        }), /* @__PURE__ */ reactExports.createElement(PopupContent, {
           cache: !open2 && !fresh
         }, popupContent));
       });
     }), children);
   });
-  const TriggerContext = /* @__PURE__ */ React__namespace.createContext(null);
-  const UniqueContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const TriggerContext = /* @__PURE__ */ reactExports.createContext(null);
+  const UniqueContext = /* @__PURE__ */ reactExports.createContext(null);
   function toArray$5(val) {
     return val ? Array.isArray(val) ? val : [val] : [];
   }
   function useAction(action, showAction, hideAction) {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       const mergedShowAction = toArray$5(showAction ?? action);
       const mergedHideAction = toArray$5(hideAction ?? action);
       const showActionSet = new Set(mergedShowAction);
@@ -20342,7 +20799,7 @@ html body {
     return points.join("");
   }
   function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAlign, onPopupAlign, mobile) {
-    const [offsetInfo, setOffsetInfo] = React__namespace.useState({
+    const [offsetInfo, setOffsetInfo] = reactExports.useState({
       ready: false,
       offsetX: 0,
       offsetY: 0,
@@ -20354,14 +20811,14 @@ html body {
       scaleY: 1,
       align: builtinPlacements[placement] || {}
     });
-    const alignCountRef = React__namespace.useRef(0);
-    const scrollerList = React__namespace.useMemo(() => {
+    const alignCountRef = reactExports.useRef(0);
+    const scrollerList = reactExports.useMemo(() => {
       if (!popupEle || mobile) {
         return [];
       }
       return collectScroller(popupEle);
     }, [popupEle]);
-    const prevFlipRef = React__namespace.useRef({});
+    const prevFlipRef = reactExports.useRef({});
     const resetFlipCache = () => {
       prevFlipRef.current = {};
     };
@@ -20726,7 +21183,7 @@ html body {
     return [offsetInfo.ready, offsetInfo.offsetX, offsetInfo.offsetY, offsetInfo.offsetR, offsetInfo.offsetB, offsetInfo.arrowX, offsetInfo.arrowY, offsetInfo.scaleX, offsetInfo.scaleY, offsetInfo.align, triggerAlign];
   }
   function useDelay() {
-    const delayRef = React__namespace.useRef(null);
+    const delayRef = reactExports.useRef(null);
     const clearDelay = () => {
       if (delayRef.current) {
         clearTimeout(delayRef.current);
@@ -20743,7 +21200,7 @@ html body {
         }, delay * 1e3);
       }
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       return () => {
         clearDelay();
       };
@@ -20782,10 +21239,10 @@ html body {
     }, [open2, target, popup]);
   }
   function useWinClick(open2, clickToHide, targetEle, popupEle, mask2, maskClosable, inPopupOrChild, triggerOpen) {
-    const openRef = React__namespace.useRef(open2);
+    const openRef = reactExports.useRef(open2);
     openRef.current = open2;
-    const popupPointerDownRef = React__namespace.useRef(false);
-    React__namespace.useEffect(() => {
+    const popupPointerDownRef = reactExports.useRef(false);
+    reactExports.useEffect(() => {
       if (clickToHide && popupEle && (!mask2 || maskClosable)) {
         const onPointerDown = () => {
           popupPointerDownRef.current = false;
@@ -20936,22 +21393,22 @@ html body {
     postTriggerProps
   }) => {
     const [trigger, open2, options, onTargetVisibleChanged] = useTargetState();
-    const mergedOptions = React__namespace.useMemo(() => {
+    const mergedOptions = reactExports.useMemo(() => {
       if (!options || !postTriggerProps) {
         return options;
       }
       return postTriggerProps(options);
     }, [options, postTriggerProps]);
-    const [popupEle, setPopupEle] = React__namespace.useState(null);
-    const [popupSize, setPopupSize] = React__namespace.useState(null);
-    const externalPopupRef = React__namespace.useRef(null);
+    const [popupEle, setPopupEle] = reactExports.useState(null);
+    const [popupSize, setPopupSize] = reactExports.useState(null);
+    const externalPopupRef = reactExports.useRef(null);
     const setPopupRef = useEvent((node2) => {
       externalPopupRef.current = node2;
       if (isDOM(node2) && popupEle !== node2) {
         setPopupEle(node2);
       }
     });
-    const isOpenRef = React__namespace.useRef(null);
+    const isOpenRef = reactExports.useRef(null);
     const delayInvoke = useDelay();
     const show = useEvent((showOptions, isOpen) => {
       isOpenRef.current = isOpen;
@@ -20997,7 +21454,7 @@ html body {
       false
       // isMobile
     );
-    const alignedClassName = React__namespace.useMemo(() => {
+    const alignedClassName = reactExports.useMemo(() => {
       var _a2;
       if (!mergedOptions) {
         return "";
@@ -21011,31 +21468,31 @@ html body {
       );
       return clsx(baseClassName, (_a2 = mergedOptions.getPopupClassNameFromAlign) == null ? void 0 : _a2.call(mergedOptions, alignInfo));
     }, [alignInfo, mergedOptions == null ? void 0 : mergedOptions.getPopupClassNameFromAlign, mergedOptions == null ? void 0 : mergedOptions.builtinPlacements, mergedOptions == null ? void 0 : mergedOptions.prefixCls]);
-    const contextValue = React__namespace.useMemo(() => ({
+    const contextValue = reactExports.useMemo(() => ({
       show,
       hide
     }), []);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       onAlign();
     }, [mergedOptions == null ? void 0 : mergedOptions.target]);
     const onPrepare = useEvent(() => {
       onAlign();
       return Promise.resolve();
     });
-    const subPopupElements = React__namespace.useRef({});
-    const parentContext = React__namespace.useContext(TriggerContext);
-    const triggerContextValue = React__namespace.useMemo(() => ({
+    const subPopupElements = reactExports.useRef({});
+    const parentContext = reactExports.useContext(TriggerContext);
+    const triggerContextValue = reactExports.useMemo(() => ({
       registerSubPopup: (id, subPopupEle) => {
         subPopupElements.current[id] = subPopupEle;
         parentContext == null ? void 0 : parentContext.registerSubPopup(id, subPopupEle);
       }
     }), [parentContext]);
     const prefixCls = mergedOptions == null ? void 0 : mergedOptions.prefixCls;
-    return /* @__PURE__ */ React__namespace.createElement(UniqueContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(UniqueContext.Provider, {
       value: contextValue
-    }, children, mergedOptions && /* @__PURE__ */ React__namespace.createElement(TriggerContext.Provider, {
+    }, children, mergedOptions && /* @__PURE__ */ reactExports.createElement(TriggerContext.Provider, {
       value: triggerContextValue
-    }, /* @__PURE__ */ React__namespace.createElement(Popup$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Popup$1, {
       ref: setPopupRef,
       portal: Portal,
       onEsc: mergedOptions.onEsc,
@@ -21071,7 +21528,7 @@ html body {
       motion: mergedOptions.popupMotion,
       maskMotion: mergedOptions.maskMotion,
       getPopupContainer: mergedOptions.getPopupContainer
-    }, /* @__PURE__ */ React__namespace.createElement(UniqueContainer, {
+    }, /* @__PURE__ */ reactExports.createElement(UniqueContainer, {
       prefixCls,
       isMobile: false,
       ready,
@@ -21092,7 +21549,7 @@ html body {
     }))));
   };
   function generateTrigger(PortalComponent = Portal) {
-    const Trigger2 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+    const Trigger2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
       const {
         prefixCls = "rc-trigger-popup",
         children,
@@ -21148,9 +21605,9 @@ html body {
       const mergedAutoDestroy = autoDestroy || false;
       const openUncontrolled = popupVisible === void 0;
       const isMobile2 = !!mobile;
-      const subPopupElements = React__namespace.useRef({});
-      const parentContext = React__namespace.useContext(TriggerContext);
-      const context = React__namespace.useMemo(() => {
+      const subPopupElements = reactExports.useRef({});
+      const parentContext = reactExports.useContext(TriggerContext);
+      const context = reactExports.useMemo(() => {
         return {
           registerSubPopup: (id2, subPopupEle) => {
             subPopupElements.current[id2] = subPopupEle;
@@ -21158,10 +21615,10 @@ html body {
           }
         };
       }, [parentContext]);
-      const uniqueContext = React__namespace.useContext(UniqueContext);
+      const uniqueContext = reactExports.useContext(UniqueContext);
       const id = useId();
-      const [popupEle, setPopupEle] = React__namespace.useState(null);
-      const externalPopupRef = React__namespace.useRef(null);
+      const [popupEle, setPopupEle] = reactExports.useState(null);
+      const externalPopupRef = reactExports.useRef(null);
       const setPopupRef = useEvent((node2) => {
         externalPopupRef.current = node2;
         if (isDOM(node2) && popupEle !== node2) {
@@ -21169,8 +21626,8 @@ html body {
         }
         parentContext == null ? void 0 : parentContext.registerSubPopup(id, node2);
       });
-      const [targetEle, setTargetEle] = React__namespace.useState(null);
-      const externalForwardRef = React__namespace.useRef(null);
+      const [targetEle, setTargetEle] = reactExports.useState(null);
+      const externalForwardRef = reactExports.useRef(null);
       const setTargetRef = useEvent((node2) => {
         const domNode = getDOM(node2);
         if (isDOM(domNode) && targetEle !== domNode) {
@@ -21190,11 +21647,11 @@ html body {
       } : null;
       const [internalOpen, setInternalOpen] = useControlledState(defaultPopupVisible || false, popupVisible);
       const mergedOpen = internalOpen || false;
-      const child = React__namespace.useMemo(() => {
+      const child = reactExports.useMemo(() => {
         const nextChild = typeof children === "function" ? children({
           open: mergedOpen
         }) : children;
-        return React__namespace.Children.only(nextChild);
+        return reactExports.Children.only(nextChild);
       }, [children, mergedOpen]);
       const originChildProps = (child == null ? void 0 : child.props) || {};
       const isOpen = useEvent(() => mergedOpen);
@@ -21230,7 +21687,7 @@ html body {
           }
         }
       }, [mergedOpen, targetEle]);
-      const openRef = React__namespace.useRef(mergedOpen);
+      const openRef = reactExports.useRef(mergedOpen);
       openRef.current = mergedOpen;
       const internalTriggerOpen = useEvent((nextOpen) => {
         reactDomExports.flushSync(() => {
@@ -21268,14 +21725,14 @@ html body {
           triggerOpen(false);
         }
       }
-      const [inMotion, setInMotion] = React__namespace.useState(false);
+      const [inMotion, setInMotion] = reactExports.useState(false);
       useLayoutEffect((firstMount) => {
         if (!firstMount || mergedOpen) {
           setInMotion(true);
         }
       }, [mergedOpen]);
-      const [motionPrepareResolve, setMotionPrepareResolve] = React__namespace.useState(null);
-      const [mousePos, setMousePos] = React__namespace.useState(null);
+      const [motionPrepareResolve, setMotionPrepareResolve] = reactExports.useState(null);
+      const [mousePos, setMousePos] = reactExports.useState(null);
       const setMousePosByEvent = (event) => {
         setMousePos([event.clientX, event.clientY]);
       };
@@ -21302,17 +21759,17 @@ html body {
           triggerAlign();
         }
       }, [JSON.stringify(popupAlign)]);
-      const alignedClassName = React__namespace.useMemo(() => {
+      const alignedClassName = reactExports.useMemo(() => {
         const baseClassName = getAlignPopupClassName(builtinPlacements, prefixCls, alignInfo, alignPoint);
         return clsx(baseClassName, getPopupClassNameFromAlign == null ? void 0 : getPopupClassNameFromAlign(alignInfo));
       }, [alignInfo, getPopupClassNameFromAlign, builtinPlacements, prefixCls, alignPoint]);
-      React__namespace.useImperativeHandle(ref, () => ({
+      reactExports.useImperativeHandle(ref, () => ({
         nativeElement: externalForwardRef.current,
         popupElement: externalPopupRef.current,
         forceAlign: triggerAlign
       }));
-      const [targetWidth, setTargetWidth] = React__namespace.useState(0);
-      const [targetHeight, setTargetHeight] = React__namespace.useState(0);
+      const [targetWidth, setTargetWidth] = reactExports.useState(0);
+      const [targetHeight, setTargetHeight] = reactExports.useState(0);
       const syncTargetSize = () => {
         if (stretch && targetEle) {
           const rect = targetEle.getBoundingClientRect();
@@ -21353,7 +21810,7 @@ html body {
       }
       const touchToShow = showActions.has("touch");
       const touchToHide = hideActions.has("touch");
-      const touchedRef = React__namespace.useRef(false);
+      const touchedRef = reactExports.useRef(false);
       if (touchToShow || touchToHide) {
         cloneProps.onTouchStart = (...args) => {
           var _a2;
@@ -21431,7 +21888,7 @@ html body {
           (_a2 = originChildProps.onContextMenu) == null ? void 0 : _a2.call(originChildProps, event, ...args);
         };
       }
-      const rendedRef = React__namespace.useRef(false);
+      const rendedRef = reactExports.useRef(false);
       rendedRef.current || (rendedRef.current = forceRender || mergedOpen || inMotion);
       const mergedChildrenProps = {
         ...originChildProps,
@@ -21454,14 +21911,14 @@ html body {
       };
       useResizeObserver(mergedOpen, targetEle, onTargetResize);
       const mergedRef = useComposeRef(setTargetRef, getNodeRef(child));
-      const triggerNode = /* @__PURE__ */ React__namespace.cloneElement(child, {
+      const triggerNode = /* @__PURE__ */ reactExports.cloneElement(child, {
         ...mergedChildrenProps,
         ...passedProps,
         ref: mergedRef
       });
-      return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, triggerNode, rendedRef.current && (!uniqueContext || !unique) && /* @__PURE__ */ React__namespace.createElement(TriggerContext.Provider, {
+      return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, triggerNode, rendedRef.current && (!uniqueContext || !unique) && /* @__PURE__ */ reactExports.createElement(TriggerContext.Provider, {
         value: context
-      }, /* @__PURE__ */ React__namespace.createElement(Popup$1, {
+      }, /* @__PURE__ */ reactExports.createElement(Popup$1, {
         portal: PortalComponent,
         ref: setPopupRef,
         prefixCls,
@@ -21587,29 +22044,29 @@ html body {
       postTriggerProps: renderPopup
     }, children);
   };
-  const DisabledContext = /* @__PURE__ */ React__namespace.createContext(false);
+  const DisabledContext = /* @__PURE__ */ reactExports.createContext(false);
   const DisabledContextProvider = ({
     children,
     disabled
   }) => {
-    const originDisabled = React__namespace.useContext(DisabledContext);
-    return /* @__PURE__ */ React__namespace.createElement(DisabledContext.Provider, {
+    const originDisabled = reactExports.useContext(DisabledContext);
+    return /* @__PURE__ */ reactExports.createElement(DisabledContext.Provider, {
       value: disabled ?? originDisabled
     }, children);
   };
-  const SizeContext = /* @__PURE__ */ React__namespace.createContext(void 0);
+  const SizeContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const SizeContextProvider = ({
     children,
     size
   }) => {
-    const originSize = React__namespace.useContext(SizeContext);
-    return /* @__PURE__ */ React__namespace.createElement(SizeContext.Provider, {
+    const originSize = reactExports.useContext(SizeContext);
+    return /* @__PURE__ */ reactExports.createElement(SizeContext.Provider, {
       value: size || originSize
     }, children);
   };
   function useConfig() {
-    const componentDisabled = React.useContext(DisabledContext);
-    const componentSize = React.useContext(SizeContext);
+    const componentDisabled = reactExports.useContext(DisabledContext);
+    const componentSize = reactExports.useContext(SizeContext);
     return {
       componentDisabled,
       componentSize
@@ -21623,7 +22080,7 @@ html body {
       hashed: (parentTheme == null ? void 0 : parentTheme.hashed) ?? defaultConfig.hashed,
       cssVar: parentTheme == null ? void 0 : parentTheme.cssVar
     } : parentTheme;
-    const themeKey = React.useId();
+    const themeKey = reactExports.useId();
     return useMemo(() => {
       var _a2;
       if (!theme) {
@@ -21661,9 +22118,9 @@ html body {
       return !isEqual(prevTheme, nextTheme, true);
     }));
   }
-  const MotionCacheContext = /* @__PURE__ */ React__namespace.createContext(true);
+  const MotionCacheContext = /* @__PURE__ */ reactExports.createContext(true);
   function MotionWrapper(props) {
-    const parentMotion = React__namespace.useContext(MotionCacheContext);
+    const parentMotion = reactExports.useContext(MotionCacheContext);
     const {
       children
     } = props;
@@ -21671,12 +22128,12 @@ html body {
     const {
       motion
     } = token2;
-    const needWrapMotionProviderRef = React__namespace.useRef(false);
+    const needWrapMotionProviderRef = reactExports.useRef(false);
     needWrapMotionProviderRef.current || (needWrapMotionProviderRef.current = parentMotion !== motion);
     if (needWrapMotionProviderRef.current) {
-      return /* @__PURE__ */ React__namespace.createElement(MotionCacheContext.Provider, {
+      return /* @__PURE__ */ reactExports.createElement(MotionCacheContext.Provider, {
         value: motion
-      }, /* @__PURE__ */ React__namespace.createElement(MotionProvider, {
+      }, /* @__PURE__ */ reactExports.createElement(MotionProvider, {
         motion
       }, children));
     }
@@ -21832,14 +22289,14 @@ html body {
       treeSelect,
       watermark
     } = props;
-    const locale2 = React__namespace.useMemo(() => {
+    const locale2 = reactExports.useMemo(() => {
       var _a2;
       if (isPlainObject$1(rawLocale) && Object.prototype.hasOwnProperty.call(rawLocale, "default") && ((_a2 = rawLocale.default) == null ? void 0 : _a2.locale)) {
         return rawLocale.default;
       }
       return rawLocale;
     }, [rawLocale]);
-    const getPrefixCls = React__namespace.useCallback((suffixCls, customizePrefixCls) => {
+    const getPrefixCls = reactExports.useCallback((suffixCls, customizePrefixCls) => {
       const {
         prefixCls
       } = props;
@@ -21968,48 +22425,48 @@ html body {
     });
     const {
       layer
-    } = React__namespace.useContext(StyleContext);
-    const memoIconContextValue = React__namespace.useMemo(() => ({
+    } = reactExports.useContext(StyleContext);
+    const memoIconContextValue = reactExports.useMemo(() => ({
       prefixCls: iconPrefixCls,
       csp,
       layer: layer ? "antd" : void 0
     }), [iconPrefixCls, csp, layer]);
-    let childNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(IconStyle, {
+    let childNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(IconStyle, {
       iconPrefixCls,
       csp
-    }), /* @__PURE__ */ React__namespace.createElement(PropWarning, {
+    }), /* @__PURE__ */ reactExports.createElement(PropWarning, {
       dropdownMatchSelectWidth
     }), children);
-    const validateMessages = React__namespace.useMemo(() => {
+    const validateMessages = reactExports.useMemo(() => {
       var _a2, _b2, _c, _d;
       return merge$2(((_a2 = localeValues.Form) == null ? void 0 : _a2.defaultValidateMessages) || {}, ((_c = (_b2 = memoedConfig.locale) == null ? void 0 : _b2.Form) == null ? void 0 : _c.defaultValidateMessages) || {}, ((_d = memoedConfig.form) == null ? void 0 : _d.validateMessages) || {}, (form == null ? void 0 : form.validateMessages) || {});
     }, [memoedConfig, form == null ? void 0 : form.validateMessages]);
     if (Object.keys(validateMessages).length > 0) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(ValidateMessagesContext.Provider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(ValidateMessagesContext.Provider, {
         value: validateMessages
       }, childNode);
     }
     if (locale2) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(LocaleProvider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(LocaleProvider, {
         locale: locale2,
         _ANT_MARK__: ANT_MARK
       }, childNode);
     }
     {
-      childNode = /* @__PURE__ */ React__namespace.createElement(IconContext.Provider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(IconContext.Provider, {
         value: memoIconContextValue
       }, childNode);
     }
     if (componentSize) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(SizeContextProvider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(SizeContextProvider, {
         size: componentSize
       }, childNode);
     }
-    childNode = /* @__PURE__ */ React__namespace.createElement(MotionWrapper, null, childNode);
+    childNode = /* @__PURE__ */ reactExports.createElement(MotionWrapper, null, childNode);
     if (tooltip == null ? void 0 : tooltip.unique) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(UniqueProvider, null, childNode);
+      childNode = /* @__PURE__ */ reactExports.createElement(UniqueProvider, null, childNode);
     }
-    const memoTheme = React__namespace.useMemo(() => {
+    const memoTheme = reactExports.useMemo(() => {
       const {
         algorithm,
         token: token2,
@@ -22050,28 +22507,28 @@ html body {
       };
     }, [mergedTheme]);
     if (theme) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(DesignTokenContext.Provider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(DesignTokenContext.Provider, {
         value: memoTheme
       }, childNode);
     }
     if (memoedConfig.warning) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(WarningContext.Provider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(WarningContext.Provider, {
         value: memoedConfig.warning
       }, childNode);
     }
     if (componentDisabled !== void 0) {
-      childNode = /* @__PURE__ */ React__namespace.createElement(DisabledContextProvider, {
+      childNode = /* @__PURE__ */ reactExports.createElement(DisabledContextProvider, {
         disabled: componentDisabled
       }, childNode);
     }
-    return /* @__PURE__ */ React__namespace.createElement(ConfigContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(ConfigContext.Provider, {
       value: memoedConfig
     }, childNode);
   };
   const ConfigProvider = (props) => {
-    const context = React__namespace.useContext(ConfigContext);
-    const antLocale = React__namespace.useContext(LocaleContext);
-    return /* @__PURE__ */ React__namespace.createElement(ProviderChildren, {
+    const context = reactExports.useContext(ConfigContext);
+    const antLocale = reactExports.useContext(LocaleContext);
+    return /* @__PURE__ */ reactExports.createElement(ProviderChildren, {
       parentContext: context,
       legacyLocale: antLocale,
       ...props
@@ -22087,8 +22544,8 @@ html body {
     }
   });
   function useSizes() {
-    const [sizeMap, setSizeMap] = React__namespace.useState({});
-    const setNodeSize = React__namespace.useCallback((key2, node2) => {
+    const [sizeMap, setSizeMap] = reactExports.useState({});
+    const setNodeSize = reactExports.useCallback((key2, node2) => {
       if (!node2) {
         setSizeMap((prevSizeMap) => {
           if (!(key2 in prevSizeMap)) {
@@ -22121,7 +22578,7 @@ html body {
   }
   function useListPosition(configList, stack2, gap = 0) {
     const [sizeMap, setNodeSize] = useSizes();
-    const [notificationPosition, totalHeight, topNoticeHeight, topNoticeWidth] = React__namespace.useMemo(() => {
+    const [notificationPosition, totalHeight, topNoticeHeight, topNoticeWidth] = reactExports.useMemo(() => {
       let offsetY = 0;
       let nextTotalHeight = 0;
       const stackThreshold = (stack2 == null ? void 0 : stack2.threshold) ?? 0;
@@ -22169,9 +22626,9 @@ html body {
     const durationMs = Math.max(mergedDuration, 0) * 1e3;
     const onEventClose = useEvent(onClose);
     const onEventUpdate = useEvent(onUpdate);
-    const [walking, setWalking] = React__namespace.useState(durationMs > 0);
-    const passTimeRef = React__namespace.useRef(0);
-    const lastRafTimeRef = React__namespace.useRef(null);
+    const [walking, setWalking] = reactExports.useState(durationMs > 0);
+    const passTimeRef = reactExports.useRef(0);
+    const lastRafTimeRef = reactExports.useRef(null);
     function syncPassTime() {
       const now2 = Date.now();
       const lastRafTime = lastRafTimeRef.current;
@@ -22180,11 +22637,11 @@ html body {
       }
       lastRafTimeRef.current = now2;
     }
-    const onPause = React__namespace.useCallback(() => {
+    const onPause = reactExports.useCallback(() => {
       syncPassTime();
       setWalking(false);
     }, []);
-    const onResume = React__namespace.useCallback(() => {
+    const onResume = reactExports.useCallback(() => {
       if (durationMs > 0) {
         lastRafTimeRef.current = Date.now();
         setWalking(true);
@@ -22192,11 +22649,11 @@ html body {
         onEventUpdate(0);
       }
     }, [durationMs]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       passTimeRef.current = 0;
       setWalking(durationMs > 0);
     }, [durationMs]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!walking) {
         return;
       }
@@ -22219,7 +22676,7 @@ html body {
     return [onResume, onPause];
   }
   function useClosable$1(closable) {
-    const closableObj = React__namespace.useMemo(() => {
+    const closableObj = reactExports.useMemo(() => {
       if (closable === false) {
         return {
           closeIcon: null,
@@ -22231,19 +22688,19 @@ html body {
       }
       return {};
     }, [closable]);
-    const closableConfig = React__namespace.useMemo(() => ({
+    const closableConfig = reactExports.useMemo(() => ({
       ...closableObj,
       closeIcon: "closeIcon" in closableObj ? closableObj.closeIcon : "×",
       disabled: closableObj.disabled ?? false
     }), [closableObj]);
-    const closableAriaProps = React__namespace.useMemo(() => pickAttrs(closableConfig, true), [closableConfig]);
+    const closableAriaProps = reactExports.useMemo(() => pickAttrs(closableConfig, true), [closableConfig]);
     return [!!closable, closableConfig, closableAriaProps];
   }
   const Progress$1 = ({
     className,
     style: style2,
     percent: percent2
-  }) => /* @__PURE__ */ React__namespace.createElement("progress", {
+  }) => /* @__PURE__ */ reactExports.createElement("progress", {
     className,
     max: "100",
     value: percent2,
@@ -22263,7 +22720,7 @@ html body {
     };
     return _extends$1e.apply(this, arguments);
   }
-  const Notification = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Notification = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       // Style
       prefixCls,
@@ -22294,7 +22751,7 @@ html body {
       onMouseLeave,
       onClose
     } = props;
-    const [percent2, setPercent] = React__namespace.useState(0);
+    const [percent2, setPercent] = reactExports.useState(0);
     const noticePrefixCls = `${prefixCls}-notice`;
     const [mergedClosable, closableConfig, closeBtnAriaProps] = useClosable$1(closable);
     const onInternalClose = useEvent(() => {
@@ -22302,11 +22759,11 @@ html body {
       (_a2 = closableConfig.onClose) == null ? void 0 : _a2.call(closableConfig);
       onClose == null ? void 0 : onClose();
     });
-    const [hovering, setHovering] = React__namespace.useState(false);
+    const [hovering, setHovering] = reactExports.useState(false);
     const [onResume, onPause] = useNoticeTimer(duration, onInternalClose, setPercent);
     const validPercent = 100 - Math.min(Math.max(percent2 * 100, 0), 100);
     const Progress2 = (components2 == null ? void 0 : components2.progress) || Progress$1;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!pauseOnHover) {
         return;
       }
@@ -22335,21 +22792,21 @@ html body {
       event.stopPropagation();
       onInternalClose();
     }
-    const offsetRef = React__namespace.useRef(offset2);
+    const offsetRef = reactExports.useRef(offset2);
     if (offset2 !== void 0) {
       offsetRef.current = offset2;
     }
-    const notificationIndexRef = React__namespace.useRef(notificationIndex);
+    const notificationIndexRef = reactExports.useRef(notificationIndex);
     if (notificationIndex !== void 0) {
       notificationIndexRef.current = notificationIndex;
     }
     const mergedOffset = offset2 ?? offsetRef.current;
     const mergedNotificationIndex = notificationIndex ?? notificationIndexRef.current ?? 0;
-    const titleNode = title !== void 0 && title !== null ? /* @__PURE__ */ React__namespace.createElement("div", {
+    const titleNode = title !== void 0 && title !== null ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${noticePrefixCls}-title`, classNames == null ? void 0 : classNames.title),
       style: styles2 == null ? void 0 : styles2.title
     }, title) : null;
-    const descNode = description !== void 0 && description !== null ? /* @__PURE__ */ React__namespace.createElement("div", {
+    const descNode = description !== void 0 && description !== null ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${noticePrefixCls}-description`, classNames == null ? void 0 : classNames.description),
       style: styles2 == null ? void 0 : styles2.description
     }, description) : null;
@@ -22357,7 +22814,7 @@ html body {
     const hasDescription = descNode !== null;
     let contentNode = null;
     if (hasTitle && hasDescription) {
-      contentNode = /* @__PURE__ */ React__namespace.createElement("div", {
+      contentNode = /* @__PURE__ */ reactExports.createElement("div", {
         className: clsx(`${noticePrefixCls}-section`, classNames == null ? void 0 : classNames.section),
         style: styles2 == null ? void 0 : styles2.section
       }, titleNode, descNode);
@@ -22365,15 +22822,15 @@ html body {
       contentNode = titleNode || descNode;
     }
     if (icon !== void 0 && icon !== null) {
-      contentNode = /* @__PURE__ */ React__namespace.createElement("div", {
+      contentNode = /* @__PURE__ */ reactExports.createElement("div", {
         className: clsx(`${noticePrefixCls}-wrapper`, classNames == null ? void 0 : classNames.wrapper),
         style: styles2 == null ? void 0 : styles2.wrapper
-      }, /* @__PURE__ */ React__namespace.createElement("div", {
+      }, /* @__PURE__ */ reactExports.createElement("div", {
         className: clsx(`${noticePrefixCls}-icon`, classNames == null ? void 0 : classNames.icon),
         style: styles2 == null ? void 0 : styles2.icon
       }, icon), contentNode);
     }
-    const actionsNode = actions ? /* @__PURE__ */ React__namespace.createElement("div", {
+    const actionsNode = actions ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${noticePrefixCls}-actions`, classNames == null ? void 0 : classNames.actions),
       style: styles2 == null ? void 0 : styles2.actions
     }, actions) : null;
@@ -22386,7 +22843,7 @@ html body {
       mergedStyle["--notification-y"] = `${mergedOffset}px`;
     }
     const mergedRole = role ?? (rootProps == null ? void 0 : rootProps.role) ?? "alert";
-    return /* @__PURE__ */ React__namespace.createElement("div", _extends$1e({}, rootProps, {
+    return /* @__PURE__ */ reactExports.createElement("div", _extends$1e({}, rootProps, {
       ref,
       role: mergedRole,
       "data-notification-index": mergedNotificationIndex,
@@ -22398,27 +22855,27 @@ html body {
       onClick,
       onMouseEnter: onInternalMouseEnter,
       onMouseLeave: onInternalMouseLeave
-    }), contentNode, actionsNode, mergedClosable && /* @__PURE__ */ React__namespace.createElement("button", _extends$1e({
+    }), contentNode, actionsNode, mergedClosable && /* @__PURE__ */ reactExports.createElement("button", _extends$1e({
       className: clsx(`${noticePrefixCls}-close`, classNames == null ? void 0 : classNames.close),
       "aria-label": "Close"
     }, closeBtnAriaProps, {
       style: styles2 == null ? void 0 : styles2.close,
       onClick: onInternalCloseClick
-    }), closableConfig.closeIcon), showProgress && typeof duration === "number" && duration > 0 && /* @__PURE__ */ React__namespace.createElement(Progress2, {
+    }), closableConfig.closeIcon), showProgress && typeof duration === "number" && duration > 0 && /* @__PURE__ */ reactExports.createElement(Progress2, {
       className: clsx(`${noticePrefixCls}-progress`, classNames == null ? void 0 : classNames.progress),
       percent: validPercent,
       style: styles2 == null ? void 0 : styles2.progress
     }));
   });
-  const NotificationContext = /* @__PURE__ */ React__namespace.createContext({});
+  const NotificationContext = /* @__PURE__ */ reactExports.createContext({});
   const NotificationProvider = ({
     children,
     classNames
   }) => {
-    const context = React__namespace.useMemo(() => ({
+    const context = reactExports.useMemo(() => ({
       classNames
     }), [classNames]);
-    return /* @__PURE__ */ React__namespace.createElement(NotificationContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(NotificationContext.Provider, {
       value: context
     }, children);
   };
@@ -22436,7 +22893,7 @@ html body {
     };
     return _extends$1d.apply(this, arguments);
   }
-  const Content$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Content$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       listPrefixCls,
       height,
@@ -22447,7 +22904,7 @@ html body {
       ...restProps
     } = props;
     const contentPrefixCls = `${listPrefixCls}-content`;
-    const prevHeightRef = React__namespace.useRef(height);
+    const prevHeightRef = reactExports.useRef(height);
     const prevHeight = prevHeightRef.current;
     const heightStatus = height < prevHeight ? "decrease" : "increase";
     prevHeightRef.current = height;
@@ -22457,7 +22914,7 @@ html body {
       "--top-notificiation-height": `${topNoticeHeight}px`,
       "--top-notificiation-width": `${topNoticeWidth}px`
     };
-    return /* @__PURE__ */ React__namespace.createElement("div", _extends$1d({}, restProps, {
+    return /* @__PURE__ */ reactExports.createElement("div", _extends$1d({}, restProps, {
       className: clsx(contentPrefixCls, `${contentPrefixCls}-${heightStatus}`, className),
       style: contentStyle,
       ref
@@ -22521,11 +22978,11 @@ html body {
       ...notificationConfig
     } = config2;
     const strKey = String(key2);
-    const setItemRef = React__namespace.useCallback((node2) => {
+    const setItemRef = reactExports.useCallback((node2) => {
       setNodeSize(strKey, node2);
     }, [setNodeSize, strKey]);
     const ref = useComposeRef(nodeRef, setItemRef);
-    return /* @__PURE__ */ React__namespace.createElement(Notification, _extends$1c({}, notificationConfig, restProps, {
+    return /* @__PURE__ */ reactExports.createElement(Notification, _extends$1c({}, notificationConfig, restProps, {
       ref,
       className: clsx(contextClassNames == null ? void 0 : contextClassNames.notice, config2.className, className),
       style: {
@@ -22565,8 +23022,8 @@ html body {
     } = props;
     const {
       classNames: contextClassNames
-    } = React__namespace.useContext(NotificationContext);
-    const keys2 = React__namespace.useMemo(() => configList.map((config2) => ({
+    } = reactExports.useContext(NotificationContext);
+    const keys2 = reactExports.useMemo(() => configList.map((config2) => ({
       config: config2,
       key: String(config2.key)
     })), [configList]);
@@ -22575,9 +23032,9 @@ html body {
       offset: offset2,
       threshold
     }] = useStack(stackConfig);
-    const [listHovering, setListHovering] = React__namespace.useState(false);
+    const [listHovering, setListHovering] = reactExports.useState(false);
     const expanded = stackEnabled && (listHovering || keys2.length <= threshold);
-    const stackPosition = React__namespace.useMemo(() => {
+    const stackPosition = reactExports.useMemo(() => {
       if (!stackEnabled || expanded) {
         return void 0;
       }
@@ -22586,11 +23043,11 @@ html body {
         threshold
       };
     }, [expanded, offset2, stackEnabled, threshold]);
-    const [gap, setGap] = React__namespace.useState(0);
-    const contentRef = React__namespace.useRef(null);
+    const [gap, setGap] = reactExports.useState(0);
+    const contentRef = reactExports.useRef(null);
     const [notificationPosition, setNodeSize, totalHeight, topNoticeHeight, topNoticeWidth] = useListPosition(configList, stackPosition, gap);
     const hasConfigList = !!configList.length;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       const listNode = contentRef.current;
       if (!listNode) {
         return;
@@ -22603,7 +23060,7 @@ html body {
       setGap((prevGap) => prevGap === nextGap ? prevGap : nextGap);
     }, [hasConfigList]);
     const listPrefixCls = `${prefixCls}-list`;
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(prefixCls, listPrefixCls, `${prefixCls}-${placement}`, contextClassNames == null ? void 0 : contextClassNames.list, className, classNames == null ? void 0 : classNames.list, {
         [`${prefixCls}-stack`]: stackEnabled,
         [`${prefixCls}-stack-expanded`]: expanded,
@@ -22619,7 +23076,7 @@ html body {
         ...styles2 == null ? void 0 : styles2.list,
         ...style2
       }
-    }, /* @__PURE__ */ React__namespace.createElement(Content$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Content$1, {
       listPrefixCls,
       height: totalHeight,
       topNoticeHeight,
@@ -22627,7 +23084,7 @@ html body {
       className: classNames == null ? void 0 : classNames.listContent,
       style: styles2 == null ? void 0 : styles2.listContent,
       ref: contentRef
-    }, /* @__PURE__ */ React__namespace.createElement(CSSMotionList, _extends$1c({
+    }, /* @__PURE__ */ reactExports.createElement(CSSMotionList, _extends$1c({
       component: false,
       keys: keys2,
       motionAppear: true
@@ -22648,7 +23105,7 @@ html body {
       const strKey = String(key2);
       const notificationIndex = getIndex(keys2, key2);
       const stackInThreshold = stackEnabled && notificationIndex !== void 0 && notificationIndex < threshold;
-      return /* @__PURE__ */ React__namespace.createElement(NotificationListItem, {
+      return /* @__PURE__ */ reactExports.createElement(NotificationListItem, {
         key: key2,
         config: config2,
         components: components2,
@@ -22670,7 +23127,7 @@ html body {
       });
     })));
   };
-  const Notifications = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Notifications = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls = "rc-notification",
       container,
@@ -22686,10 +23143,10 @@ html body {
       stack: stack2,
       renderNotifications: renderNotifications2
     } = props;
-    const [configList, setConfigList] = React__namespace.useState([]);
-    const [placements2, setPlacements] = React__namespace.useState({});
-    const emptyRef = React__namespace.useRef(false);
-    React__namespace.useImperativeHandle(ref, () => ({
+    const [configList, setConfigList] = reactExports.useState([]);
+    const [placements2, setPlacements] = reactExports.useState({});
+    const emptyRef = reactExports.useRef(false);
+    reactExports.useImperativeHandle(ref, () => ({
       open: (config2) => {
         setConfigList((list) => {
           var _a2;
@@ -22718,7 +23175,7 @@ html body {
         setConfigList([]);
       }
     }));
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       const nextPlacements = {};
       configList.forEach((config2) => {
         const placement = config2.placement ?? "topRight";
@@ -22741,7 +23198,7 @@ html body {
         return clone2;
       });
     });
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (Object.keys(placements2).length > 0) {
         emptyRef.current = true;
       } else if (emptyRef.current) {
@@ -22753,8 +23210,8 @@ html body {
       return null;
     }
     const placementList = Object.keys(placements2);
-    return /* @__PURE__ */ reactDomExports.createPortal(/* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, placementList.map((placement) => {
-      const list = /* @__PURE__ */ React__namespace.createElement(NotificationList, {
+    return /* @__PURE__ */ reactDomExports.createPortal(/* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, placementList.map((placement) => {
+      const list = /* @__PURE__ */ reactExports.createElement(NotificationList, {
         key: placement,
         configList: placements2[placement],
         placement,
@@ -22772,7 +23229,7 @@ html body {
         },
         onAllRemoved: onAllNoticeRemoved
       });
-      return renderNotifications2 ? /* @__PURE__ */ React__namespace.cloneElement(renderNotifications2(list, {
+      return renderNotifications2 ? /* @__PURE__ */ reactExports.cloneElement(renderNotifications2(list, {
         prefixCls,
         key: placement
       }), {
@@ -22822,10 +23279,10 @@ html body {
       duration,
       showProgress
     };
-    const [container, setContainer] = React__namespace.useState();
-    const notificationsRef = React__namespace.useRef(null);
-    const [taskQueue2, setTaskQueue] = React__namespace.useState([]);
-    const contextHolder = /* @__PURE__ */ React__namespace.createElement(Notifications, {
+    const [container, setContainer] = reactExports.useState();
+    const notificationsRef = reactExports.useRef(null);
+    const [taskQueue2, setTaskQueue] = reactExports.useState([]);
+    const contextHolder = /* @__PURE__ */ reactExports.createElement(Notifications, {
       container,
       ref: notificationsRef,
       prefixCls,
@@ -22852,7 +23309,7 @@ html body {
         config: mergedConfig
       }]);
     });
-    const api = React__namespace.useMemo(() => ({
+    const api = reactExports.useMemo(() => ({
       open: open2,
       close: (key2) => {
         setTaskQueue((queue) => [...queue, {
@@ -22866,10 +23323,10 @@ html body {
         }]);
       }
     }), []);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       setContainer(getContainer2());
     });
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (notificationsRef.current && taskQueue2.length) {
         taskQueue2.forEach((task) => {
           var _a2, _b2, _c;
@@ -22893,7 +23350,7 @@ html body {
     }, [taskQueue2]);
     return [api, contextHolder];
   }
-  const useStackConfig = (stackConfig, defaultStackConfig) => React__namespace.useMemo(() => {
+  const useStackConfig = (stackConfig, defaultStackConfig) => reactExports.useMemo(() => {
     const mergedStackConfig = stackConfig ?? defaultStackConfig;
     if (!mergedStackConfig) {
       return false;
@@ -22928,11 +23385,11 @@ html body {
     };
     return _extends$1b.apply(this, arguments);
   }
-  const LoadingOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1b({}, props, {
+  const LoadingOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1b({}, props, {
     ref,
     icon: LoadingOutlined$1
   }));
-  const RefIcon$s = /* @__PURE__ */ React__namespace.forwardRef(LoadingOutlined);
+  const RefIcon$s = /* @__PURE__ */ reactExports.forwardRef(LoadingOutlined);
   function fallbackProp(...args) {
     return args.find((arg) => arg !== void 0);
   }
@@ -22945,7 +23402,7 @@ html body {
       defaultAllowClear,
       componentName
     } = options;
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       const mergedAllowClear = allowClear ?? contextAllowClear ?? defaultAllowClear;
       if (!mergedAllowClear) {
         return false;
@@ -23071,7 +23528,7 @@ html body {
     return maskConfig;
   };
   const useMergedMask = (mask2, contextMask, prefixCls, maskClosable) => {
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       const maskConfig = normalizeMaskConfig(mask2, maskClosable);
       const contextMaskConfig = normalizeMaskConfig(contextMask);
       const mergedConfig = {
@@ -23087,8 +23544,8 @@ html body {
     }, [mask2, contextMask, prefixCls, maskClosable]);
   };
   const useMultipleSelect = (getKey2) => {
-    const [prevSelectedIndex, setPrevSelectedIndex] = React.useState(null);
-    const multipleSelect = React.useCallback((currentSelectedIndex, data, selectedKeys) => {
+    const [prevSelectedIndex, setPrevSelectedIndex] = reactExports.useState(null);
+    const multipleSelect = reactExports.useCallback((currentSelectedIndex, data, selectedKeys) => {
       const configPrevSelectedIndex = prevSelectedIndex ?? currentSelectedIndex;
       const startIndex = Math.min(configPrevSelectedIndex || 0, currentSelectedIndex);
       const endIndex = Math.max(configPrevSelectedIndex || 0, currentSelectedIndex);
@@ -23115,7 +23572,7 @@ html body {
     return orientation === "horizontal" || orientation === "vertical";
   };
   const useOrientation = (orientation, vertical, legacyDirection) => {
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       const validOrientation = isValidOrientation(orientation);
       let mergedOrientation;
       if (validOrientation) {
@@ -23130,8 +23587,8 @@ html body {
     }, [legacyDirection, orientation, vertical]);
   };
   const usePatchElement = () => {
-    const [elements, setElements] = React__namespace.useState([]);
-    const patchElement = React__namespace.useCallback((element) => {
+    const [elements, setElements] = reactExports.useState([]);
+    const patchElement = reactExports.useCallback((element) => {
       setElements((originElements) => [].concat(_toConsumableArray(originElements), [element]));
       return () => {
         setElements((originElements) => originElements.filter((ele) => ele !== element));
@@ -23151,7 +23608,7 @@ html body {
     return element;
   };
   const useProxyImperativeHandle = (ref, init2) => {
-    return React.useImperativeHandle(ref, () => {
+    return reactExports.useImperativeHandle(ref, () => {
       const refObj = init2();
       const {
         nativeElement
@@ -23170,7 +23627,7 @@ html body {
     });
   };
   const useSyncState = (initialValue) => {
-    const ref = React__namespace.useRef(initialValue);
+    const ref = reactExports.useRef(initialValue);
     const [, forceUpdate] = useForceUpdate();
     return [() => ref.current, (newValue) => {
       ref.current = newValue;
@@ -23896,11 +24353,11 @@ html body {
     }), generateMessageStackStyle(messageToken)];
   }, prepareComponentToken$i);
   const TypeIcon = {
-    info: /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null),
-    success: /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null),
-    error: /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null),
-    warning: /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null),
-    loading: /* @__PURE__ */ React__namespace.createElement(RefIcon$s, null)
+    info: /* @__PURE__ */ reactExports.createElement(RefIcon$t, null),
+    success: /* @__PURE__ */ reactExports.createElement(RefIcon$x, null),
+    error: /* @__PURE__ */ reactExports.createElement(RefIcon$w, null),
+    warning: /* @__PURE__ */ reactExports.createElement(RefIcon$u, null),
+    loading: /* @__PURE__ */ reactExports.createElement(RefIcon$s, null)
   };
   const getMessageIcon = (type2, icon) => icon || type2 && TypeIcon[type2] || null;
   const PurePanel$7 = (props) => {
@@ -23941,12 +24398,12 @@ html body {
       icon: mergedStyles.icon,
       title: mergedStyles.title
     };
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${noticePrefixCls}-pure-panel`, hashId, className, cssVarCls, rootCls, mergedClassNames.root),
       style: mergedStyles.root
-    }, /* @__PURE__ */ React__namespace.createElement(PurePanelStyle, {
+    }, /* @__PURE__ */ reactExports.createElement(PurePanelStyle, {
       prefixCls
-    }), /* @__PURE__ */ React__namespace.createElement(Notification, {
+    }), /* @__PURE__ */ reactExports.createElement(Notification, {
       ...restProps,
       prefixCls,
       className: contextClassName,
@@ -23989,7 +24446,7 @@ html body {
   }) => {
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
-    return /* @__PURE__ */ React__namespace.createElement(NotificationProvider, {
+    return /* @__PURE__ */ reactExports.createElement(NotificationProvider, {
       classNames: {
         list: clsx(hashId, cssVarCls, rootCls)
       }
@@ -23998,11 +24455,11 @@ html body {
   const renderNotifications = (node2, {
     prefixCls,
     key: key2
-  }) => /* @__PURE__ */ React__namespace.createElement(Wrapper, {
+  }) => /* @__PURE__ */ reactExports.createElement(Wrapper, {
     prefixCls,
     key: key2
   }, node2);
-  const Holder = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Holder = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       // Placement
       top,
@@ -24030,7 +24487,7 @@ html body {
     } = useComponentConfig("message");
     const {
       message: message2
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = staticPrefixCls || getPrefixCls("message");
     const [mergedClassNames, mergedStyles] = useMergeSemantic([message2 == null ? void 0 : message2.classNames, classNames], [message2 == null ? void 0 : message2.styles, styles2], {
       props
@@ -24058,7 +24515,7 @@ html body {
       pauseOnHover,
       stack: stackConfig
     });
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       ...api,
       prefixCls,
       message: message2
@@ -24067,9 +24524,9 @@ html body {
   });
   let keyIndex = 0;
   function useInternalMessage(messageConfig) {
-    const holderRef = React__namespace.useRef(null);
+    const holderRef = reactExports.useRef(null);
     devUseWarning();
-    const wrapAPI = React__namespace.useMemo(() => {
+    const wrapAPI = reactExports.useMemo(() => {
       const close = (key2) => {
         var _a2;
         (_a2 = holderRef.current) == null ? void 0 : _a2.close(key2);
@@ -24192,7 +24649,7 @@ html body {
       });
       return clone2;
     }, []);
-    return [wrapAPI, /* @__PURE__ */ React__namespace.createElement(Holder, {
+    return [wrapAPI, /* @__PURE__ */ reactExports.createElement(Holder, {
       key: "message-holder",
       ...messageConfig,
       ref: holderRef
@@ -24299,19 +24756,19 @@ html body {
       component,
       colorSource
     } = props;
-    const divRef = React__namespace.useRef(null);
+    const divRef = reactExports.useRef(null);
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const rootPrefixCls = getPrefixCls();
     const [varName] = genCssVar(rootPrefixCls, "wave");
-    const [waveColor, setWaveColor] = React__namespace.useState(null);
-    const [borderRadius, setBorderRadius] = React__namespace.useState([]);
-    const [left, setLeft] = React__namespace.useState(0);
-    const [top, setTop] = React__namespace.useState(0);
-    const [width, setWidth] = React__namespace.useState(0);
-    const [height, setHeight] = React__namespace.useState(0);
-    const [enabled, setEnabled] = React__namespace.useState(false);
+    const [waveColor, setWaveColor] = reactExports.useState(null);
+    const [borderRadius, setBorderRadius] = reactExports.useState([]);
+    const [left, setLeft] = reactExports.useState(0);
+    const [top, setTop] = reactExports.useState(0);
+    const [width, setWidth] = reactExports.useState(0);
+    const [height, setHeight] = reactExports.useState(0);
+    const [enabled, setEnabled] = reactExports.useState(false);
     const waveStyle = {
       left,
       top,
@@ -24342,7 +24799,7 @@ html body {
       } = nodeStyle;
       setBorderRadius([borderTopLeftRadius, borderTopRightRadius, borderBottomRightRadius, borderBottomLeftRadius].map((radius2) => validateNum(Number.parseFloat(radius2))));
     }
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (target) {
         const id = wrapperRaf(() => {
           syncPos();
@@ -24363,7 +24820,7 @@ html body {
       return null;
     }
     const isSmallComponent = (component === "Checkbox" || component === "Radio") && (target == null ? void 0 : target.classList.contains(TARGET_CLS));
-    return /* @__PURE__ */ React__namespace.createElement(CSSMotion, {
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
       visible: true,
       motionAppear: true,
       motionName: "wave-motion",
@@ -24380,7 +24837,7 @@ html body {
       }
     }, ({
       className: motionClassName
-    }, ref) => /* @__PURE__ */ React__namespace.createElement("div", {
+    }, ref) => /* @__PURE__ */ reactExports.createElement("div", {
       ref: composeRef(divRef, ref),
       className: clsx(className, motionClassName, {
         "wave-quick": isSmallComponent
@@ -24401,7 +24858,7 @@ html body {
     holder.style.left = "0px";
     holder.style.top = "0px";
     target == null ? void 0 : target.insertBefore(holder, target == null ? void 0 : target.firstChild);
-    render(/* @__PURE__ */ React__namespace.createElement(WaveEffect, {
+    render(/* @__PURE__ */ reactExports.createElement(WaveEffect, {
       ...info,
       target
     }), holder);
@@ -24409,7 +24866,7 @@ html body {
   const useWave = (nodeRef, className, component, colorSource) => {
     const {
       wave
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const [, token2, hashId] = useToken();
     const showWave = useEvent((event) => {
       const node2 = nodeRef.current;
@@ -24429,8 +24886,8 @@ html body {
         colorSource
       });
     });
-    const rafIdRef = React__namespace.useRef(null);
-    React__namespace.useEffect(() => () => {
+    const rafIdRef = reactExports.useRef(null);
+    reactExports.useEffect(() => () => {
       wrapperRaf.cancel(rafIdRef.current);
     }, []);
     const showDebounceWave = (event) => {
@@ -24458,8 +24915,8 @@ html body {
     const {
       getPrefixCls,
       wave
-    } = React.useContext(ConfigContext);
-    const containerRef = React.useRef(null);
+    } = reactExports.useContext(ConfigContext);
+    const containerRef = reactExports.useRef(null);
     const prefixCls = getPrefixCls("wave");
     const hashId = useStyle$q(prefixCls);
     const showWave = useWave(containerRef, clsx(prefixCls, hashId), component, colorSource);
@@ -24530,10 +24987,10 @@ html body {
     // https://github.com/ant-design/ant-design/issues/40315
     resetStyle: false
   });
-  const SpaceCompactItemContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const SpaceCompactItemContext = /* @__PURE__ */ reactExports.createContext(null);
   const useCompactItemContext = (prefixCls, direction) => {
-    const compactItemContext = React__namespace.useContext(SpaceCompactItemContext);
-    const compactItemClassnames = React__namespace.useMemo(() => {
+    const compactItemContext = reactExports.useContext(SpaceCompactItemContext);
+    const compactItemClassnames = reactExports.useMemo(() => {
       if (!compactItemContext) {
         return "";
       }
@@ -24559,7 +25016,7 @@ html body {
     const {
       children
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement(SpaceCompactItemContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(SpaceCompactItemContext.Provider, {
       value: null
     }, children);
   };
@@ -24568,15 +25025,15 @@ html body {
       children,
       ...others
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement(SpaceCompactItemContext.Provider, {
-      value: React__namespace.useMemo(() => others, [others])
+    return /* @__PURE__ */ reactExports.createElement(SpaceCompactItemContext.Provider, {
+      value: reactExports.useMemo(() => others, [others])
     }, children);
   };
   const Compact$1 = (props) => {
     const {
       getPrefixCls,
       direction: directionConfig
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       size,
       direction,
@@ -24598,11 +25055,11 @@ html body {
       [`${prefixCls}-block`]: block,
       [`${prefixCls}-vertical`]: mergedVertical
     }, className, rootClassName);
-    const compactItemContext = React__namespace.useContext(SpaceCompactItemContext);
+    const compactItemContext = reactExports.useContext(SpaceCompactItemContext);
     const childNodes = toArray$6(children);
-    const nodes = React__namespace.useMemo(() => childNodes.map((child, i) => {
+    const nodes = reactExports.useMemo(() => childNodes.map((child, i) => {
       const key2 = (child == null ? void 0 : child.key) || `${prefixCls}-item-${i}`;
-      return /* @__PURE__ */ React__namespace.createElement(CompactItem, {
+      return /* @__PURE__ */ reactExports.createElement(CompactItem, {
         key: key2,
         compactSize: mergedSize,
         compactDirection: mergedOrientation,
@@ -24613,17 +25070,17 @@ html body {
     if (childNodes.length === 0) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clx,
       ...restProps
     }, nodes);
   };
-  const GroupSizeContext = /* @__PURE__ */ React__namespace.createContext(void 0);
+  const GroupSizeContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const ButtonGroup = (props) => {
     const {
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       prefixCls: customizePrefixCls,
       size,
@@ -24632,7 +25089,7 @@ html body {
     } = props;
     const prefixCls = getPrefixCls("btn-group", customizePrefixCls);
     const [, , hashId] = useToken();
-    const sizeCls = React__namespace.useMemo(() => {
+    const sizeCls = reactExports.useMemo(() => {
       switch (size) {
         case "large":
           return "lg";
@@ -24646,9 +25103,9 @@ html body {
       [`${prefixCls}-${sizeCls}`]: sizeCls,
       [`${prefixCls}-rtl`]: direction === "rtl"
     }, className, hashId);
-    return /* @__PURE__ */ React__namespace.createElement(GroupSizeContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(GroupSizeContext.Provider, {
       value: size
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       ...others,
       className: classes
     }));
@@ -24726,7 +25183,7 @@ html body {
     return React.Children.map(childList, (child) => splitCNCharsBySpace(child, needInserted, style2, className));
   }
   ["default", "primary", "danger"].concat(_toConsumableArray(PresetColors));
-  const IconWrapper = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const IconWrapper = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       className,
       style: style2,
@@ -24740,7 +25197,7 @@ html body {
       style: style2
     }, children);
   });
-  const InnerLoadingIcon = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const InnerLoadingIcon = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls,
       className,
@@ -25612,11 +26069,11 @@ html body {
     };
     return _extends$1a.apply(this, arguments);
   }
-  const RightOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1a({}, props, {
+  const RightOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1a({}, props, {
     ref,
     icon: RightOutlined$1
   }));
-  const RefIcon$r = /* @__PURE__ */ React__namespace.forwardRef(RightOutlined);
+  const RefIcon$r = /* @__PURE__ */ reactExports.forwardRef(RightOutlined);
   function _extends$19() {
     return _extends$19 = Object.assign ? Object.assign.bind() : function(n2) {
       for (var e2 = 1; e2 < arguments.length; e2++) {
@@ -26449,7 +26906,7 @@ html body {
       variant: contextVariant
     } = useComponentConfig("button");
     const mergedShape = customizeShape || contextShape || "default";
-    const [parsedColor, parsedVariant] = React.useMemo(() => {
+    const [parsedColor, parsedVariant] = reactExports.useMemo(() => {
       if (color && variant) {
         return [color, variant];
       }
@@ -26471,7 +26928,7 @@ html body {
       }
       return ["default", "outlined"];
     }, [color, variant, type2, danger, contextColor, contextVariant, mergedType]);
-    const [mergedColor, mergedVariant] = React.useMemo(() => {
+    const [mergedColor, mergedVariant] = reactExports.useMemo(() => {
       if (ghost && parsedVariant === "solid") {
         return [parsedColor, "outlined"];
       }
@@ -26482,16 +26939,16 @@ html body {
     const mergedInsertSpace = autoInsertSpace ?? contextAutoInsertSpace ?? true;
     const prefixCls = getPrefixCls("btn", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$o(prefixCls);
-    const disabled = React.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
-    const groupSize = React.useContext(GroupSizeContext);
-    const loadingOrDelay = React.useMemo(() => getLoadingConfig(loading), [loading]);
-    const [innerLoading, setInnerLoading] = React.useState(loadingOrDelay.loading);
-    const [hasTwoCNChar, setHasTwoCNChar] = React.useState(false);
-    const buttonRef = React.useRef(null);
+    const groupSize = reactExports.useContext(GroupSizeContext);
+    const loadingOrDelay = reactExports.useMemo(() => getLoadingConfig(loading), [loading]);
+    const [innerLoading, setInnerLoading] = reactExports.useState(loadingOrDelay.loading);
+    const [hasTwoCNChar, setHasTwoCNChar] = reactExports.useState(false);
+    const buttonRef = reactExports.useRef(null);
     const mergedRef = useComposeRef(ref, buttonRef);
     const needInserted = childNodes.length === 1 && !icon && !isUnBorderedButtonVariant(mergedVariant);
-    const isMountRef = React.useRef(true);
+    const isMountRef = reactExports.useRef(true);
     React.useEffect(() => {
       isMountRef.current = false;
       return () => {
@@ -26516,7 +26973,7 @@ html body {
       }
       return cleanupTimer;
     }, [loadingOrDelay.delay, loadingOrDelay.loading]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!buttonRef.current || !mergedInsertSpace) {
         return;
       }
@@ -26529,7 +26986,7 @@ html body {
         setHasTwoCNChar(false);
       }
     });
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (autoFocus && buttonRef.current) {
         buttonRef.current.focus();
       }
@@ -26661,13 +27118,13 @@ html body {
       quitOnNullishReturnValue,
       actionFn
     } = props;
-    const clickedRef = React__namespace.useRef(false);
-    const buttonRef = React__namespace.useRef(null);
+    const clickedRef = reactExports.useRef(false);
+    const buttonRef = reactExports.useRef(null);
     const [loading, setLoading] = useSafeState(false);
     const onInternalClose = (...args) => {
       close == null ? void 0 : close(...args);
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       let timeoutId = null;
       if (autoFocus) {
         timeoutId = setTimeout(() => {
@@ -26730,7 +27187,7 @@ html body {
       }
       handlePromiseOnOk(returnValueOfOnOk);
     };
-    return /* @__PURE__ */ React__namespace.createElement(Button$1, {
+    return /* @__PURE__ */ reactExports.createElement(Button$1, {
       ...convertLegacyProps(type2),
       onClick,
       loading,
@@ -26755,7 +27212,7 @@ html body {
       onCancel,
       onConfirm,
       onClose
-    } = React.useContext(ModalContext);
+    } = reactExports.useContext(ModalContext);
     return mergedOkCancel ? /* @__PURE__ */ React.createElement(ActionButton, {
       isSilent,
       actionFn: onCancel,
@@ -26781,7 +27238,7 @@ html body {
       onConfirm,
       onOk,
       onClose
-    } = React.useContext(ModalContext);
+    } = reactExports.useContext(ModalContext);
     return /* @__PURE__ */ React.createElement(ActionButton, {
       isSilent,
       type: okType || "primary",
@@ -26796,7 +27253,7 @@ html body {
       prefixCls: `${rootPrefixCls}-btn`
     }, okTextLocale);
   };
-  const RefContext = /* @__PURE__ */ React__namespace.createContext({});
+  const RefContext = /* @__PURE__ */ reactExports.createContext({});
   function getMotionName(prefixCls, transitionName, animationName) {
     let motionName = transitionName;
     if (!motionName && animationName) {
@@ -26828,7 +27285,7 @@ html body {
     pos.top += getScroll$1(w2, true);
     return pos;
   }
-  const MemoChildren = /* @__PURE__ */ React__namespace.memo(({
+  const MemoChildren = /* @__PURE__ */ reactExports.memo(({
     children
   }) => children, (_2, {
     shouldUpdate
@@ -26877,7 +27334,7 @@ html body {
     const {
       panel: panelRef
     } = React.useContext(RefContext);
-    const internalRef = React.useRef(null);
+    const internalRef = reactExports.useRef(null);
     const mergedRef = useComposeRef(holderRef, panelRef, internalRef);
     const [ignoreElement] = useLockFocus(visible && isFixedPos && focusTrap !== false, () => internalRef.current);
     React.useImperativeHandle(ref, () => ({
@@ -26913,7 +27370,7 @@ html body {
         ...modalStyles == null ? void 0 : modalStyles.title
       }
     }, title)) : null;
-    const closableObj = React.useMemo(() => {
+    const closableObj = reactExports.useMemo(() => {
       if (typeof closable === "object" && closable !== null) {
         return closable;
       }
@@ -26982,7 +27439,7 @@ html body {
     };
     return _extends$17.apply(this, arguments);
   }
-  const Content = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Content = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls,
       title,
@@ -26996,14 +27453,14 @@ html body {
       onVisibleChanged,
       mousePosition: mousePosition2
     } = props;
-    const dialogRef = React.useRef(null);
-    const panelRef = React.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => ({
+    const dialogRef = reactExports.useRef(null);
+    const panelRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => ({
       ...panelRef.current,
       inMotion: dialogRef.current.inMotion,
       enableMotion: dialogRef.current.enableMotion
     }));
-    const [transformOrigin, setTransformOrigin] = React__namespace.useState();
+    const [transformOrigin, setTransformOrigin] = reactExports.useState();
     const contentStyle = {};
     if (transformOrigin) {
       contentStyle.transformOrigin = transformOrigin;
@@ -27016,7 +27473,7 @@ html body {
       const elementOffset = offset$1(dialogRef.current.nativeElement);
       setTransformOrigin(mousePosition2 && (mousePosition2.x || mousePosition2.y) ? `${mousePosition2.x - elementOffset.left}px ${mousePosition2.y - elementOffset.top}px` : "");
     }
-    return /* @__PURE__ */ React__namespace.createElement(CSSMotion, {
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
       visible,
       onVisibleChanged,
       onAppearPrepare: onPrepare,
@@ -27028,7 +27485,7 @@ html body {
     }, ({
       className: motionClassName,
       style: motionStyle
-    }, motionRef) => /* @__PURE__ */ React__namespace.createElement(Panel$1, _extends$17({}, props, {
+    }, motionRef) => /* @__PURE__ */ reactExports.createElement(Panel$1, _extends$17({}, props, {
       ref: panelRef,
       title,
       ariaId,
@@ -27065,7 +27522,7 @@ html body {
       motionName,
       className
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement(CSSMotion, {
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
       key: "mask",
       visible,
       motionName,
@@ -27073,7 +27530,7 @@ html body {
     }, ({
       className: motionClassName,
       style: motionStyle
-    }, ref) => /* @__PURE__ */ React__namespace.createElement("div", _extends$16({
+    }, ref) => /* @__PURE__ */ reactExports.createElement("div", _extends$16({
       ref,
       style: {
         ...motionStyle,
@@ -27124,11 +27581,11 @@ html body {
       classNames: modalClassNames,
       styles: modalStyles
     } = props;
-    const lastOutSideActiveElementRef = React.useRef(null);
-    const wrapperRef = React.useRef(null);
-    const contentRef = React.useRef(null);
-    const [animatedVisible, setAnimatedVisible] = React__namespace.useState(visible);
-    const [isFixedPos, setIsFixedPos] = React__namespace.useState(false);
+    const lastOutSideActiveElementRef = reactExports.useRef(null);
+    const wrapperRef = reactExports.useRef(null);
+    const contentRef = reactExports.useRef(null);
+    const [animatedVisible, setAnimatedVisible] = reactExports.useState(visible);
+    const [isFixedPos, setIsFixedPos] = reactExports.useState(false);
     const ariaId = useId();
     function saveLastOutSideActiveElementRef() {
       if (!contains(wrapperRef.current, document.activeElement)) {
@@ -27167,7 +27624,7 @@ html body {
     function onInternalClose(e2) {
       onClose == null ? void 0 : onClose(e2);
     }
-    const mouseDownOnMaskRef = React.useRef(false);
+    const mouseDownOnMaskRef = reactExports.useRef(false);
     let onWrapperClick = null;
     if (maskClosable) {
       onWrapperClick = (e2) => {
@@ -27179,7 +27636,7 @@ html body {
     function onWrapperMouseDown(e2) {
       mouseDownOnMaskRef.current = e2.target === wrapperRef.current;
     }
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (visible) {
         mouseDownOnMaskRef.current = false;
         setAnimatedVisible(true);
@@ -27198,12 +27655,12 @@ html body {
       ...modalStyles == null ? void 0 : modalStyles.wrapper,
       display: !animatedVisible ? "none" : null
     };
-    return /* @__PURE__ */ React__namespace.createElement("div", _extends$15({
+    return /* @__PURE__ */ reactExports.createElement("div", _extends$15({
       className: clsx(`${prefixCls}-root`, rootClassName),
       style: rootStyle
     }, pickAttrs(props, {
       data: true
-    })), /* @__PURE__ */ React__namespace.createElement(Mask, {
+    })), /* @__PURE__ */ reactExports.createElement(Mask, {
       prefixCls,
       visible: mask2 && visible,
       motionName: getMotionName(prefixCls, maskTransitionName, maskAnimation),
@@ -27214,13 +27671,13 @@ html body {
       },
       maskProps,
       className: modalClassNames == null ? void 0 : modalClassNames.mask
-    }), /* @__PURE__ */ React__namespace.createElement("div", _extends$15({
+    }), /* @__PURE__ */ reactExports.createElement("div", _extends$15({
       className: clsx(`${prefixCls}-wrap`, wrapClassName, modalClassNames == null ? void 0 : modalClassNames.wrapper),
       ref: wrapperRef,
       onClick: onWrapperClick,
       onMouseDown: onWrapperMouseDown,
       style: mergedStyle
-    }, wrapProps), /* @__PURE__ */ React__namespace.createElement(Content, _extends$15({}, props, {
+    }, wrapProps), /* @__PURE__ */ reactExports.createElement(Content, _extends$15({}, props, {
       isFixedPos,
       ref: contentRef,
       closable,
@@ -27258,8 +27715,8 @@ html body {
       keyboard = true,
       onClose
     } = props;
-    const [animatedVisible, setAnimatedVisible] = React__namespace.useState(visible);
-    const refContext = React__namespace.useMemo(() => ({
+    const [animatedVisible, setAnimatedVisible] = reactExports.useState(visible);
+    const refContext = reactExports.useMemo(() => ({
       panel: panelRef
     }), [panelRef]);
     const onEsc = ({
@@ -27272,7 +27729,7 @@ html body {
         return;
       }
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (visible) {
         setAnimatedVisible(true);
       }
@@ -27280,15 +27737,15 @@ html body {
     if (!forceRender && destroyOnHidden && !animatedVisible) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement(RefContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(RefContext.Provider, {
       value: refContext
-    }, /* @__PURE__ */ React__namespace.createElement(Portal, {
+    }, /* @__PURE__ */ reactExports.createElement(Portal, {
       open: visible || forceRender || animatedVisible,
       onEsc,
       autoDestroy: false,
       getContainer: getContainer2,
       autoLock: visible || animatedVisible
-    }, /* @__PURE__ */ React__namespace.createElement(Dialog, _extends$14({}, props, {
+    }, /* @__PURE__ */ reactExports.createElement(Dialog, _extends$14({}, props, {
       destroyOnHidden,
       afterClose: () => {
         const closableObj = closable && typeof closable === "object" ? closable : {};
@@ -27305,7 +27762,7 @@ html body {
   const warningFunc = () => {
     warningOnce(false, "Can not find FormContext. Please make sure you wrap Field under Form.");
   };
-  const Context = /* @__PURE__ */ React__namespace.createContext({
+  const Context = /* @__PURE__ */ reactExports.createContext({
     getFieldValue: warningFunc,
     getFieldsValue: warningFunc,
     getFieldError: warningFunc,
@@ -27339,7 +27796,7 @@ html body {
       };
     }
   });
-  const ListContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const ListContext = /* @__PURE__ */ reactExports.createContext(null);
   function toArray$4(value) {
     if (value === void 0 || value === null) {
       return [];
@@ -28477,9 +28934,9 @@ html body {
           message: message2
         }, index2) => {
           const mergedMessage = message2 === CODE_LOGIC_ERROR ? messages2.default : message2;
-          return /* @__PURE__ */ React__namespace.isValidElement(mergedMessage) ? (
+          return /* @__PURE__ */ reactExports.isValidElement(mergedMessage) ? (
             // Wrap ReactNode with `key`
-            /* @__PURE__ */ React__namespace.cloneElement(mergedMessage, {
+            /* @__PURE__ */ reactExports.cloneElement(mergedMessage, {
               key: `error_${index2}`
             })
           ) : mergedMessage;
@@ -28746,7 +29203,7 @@ html body {
     }
     return prevValue !== nextValue;
   }
-  class Field extends React__namespace.Component {
+  class Field extends reactExports.Component {
     // ============================== Subscriptions ==============================
     constructor(props) {
       super(props);
@@ -29055,7 +29512,7 @@ html body {
           };
         }
         const childList = toArray$6(children);
-        if (childList.length !== 1 || !/* @__PURE__ */ React__namespace.isValidElement(childList[0])) {
+        if (childList.length !== 1 || !/* @__PURE__ */ reactExports.isValidElement(childList[0])) {
           return {
             child: childList,
             isFunction: false
@@ -29201,13 +29658,13 @@ html body {
       let returnChildNode;
       if (isFunction2) {
         returnChildNode = child;
-      } else if (/* @__PURE__ */ React__namespace.isValidElement(child)) {
-        returnChildNode = /* @__PURE__ */ React__namespace.cloneElement(child, this.getControlled(child.props));
+      } else if (/* @__PURE__ */ reactExports.isValidElement(child)) {
+        returnChildNode = /* @__PURE__ */ reactExports.cloneElement(child, this.getControlled(child.props));
       } else {
         warningOnce(!child, "`children` of Field is not validate ReactElement.");
         returnChildNode = child;
       }
-      return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, {
+      return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, {
         key: resetCount
       }, returnChildNode);
     }
@@ -29217,15 +29674,15 @@ html body {
     name,
     ...restProps
   }) {
-    const fieldContext = React__namespace.useContext(Context);
-    const listContext = React__namespace.useContext(ListContext);
+    const fieldContext = reactExports.useContext(Context);
+    const listContext = reactExports.useContext(ListContext);
     const namePath = name !== void 0 ? getNamePath(name) : void 0;
     const isMergedListField = restProps.isListField ?? !!listContext;
     let key2 = "keep";
     if (!isMergedListField) {
       key2 = `_${(namePath || []).join("_")}`;
     }
-    return /* @__PURE__ */ React__namespace.createElement(Field, _extends$13({
+    return /* @__PURE__ */ reactExports.createElement(Field, _extends$13({
       key: key2,
       name: namePath,
       isListField: isMergedListField
@@ -29241,22 +29698,22 @@ html body {
     validateTrigger,
     isListField
   }) {
-    const context = React__namespace.useContext(Context);
-    const wrapperListContext = React__namespace.useContext(ListContext);
-    const keyRef = React__namespace.useRef({
+    const context = reactExports.useContext(Context);
+    const wrapperListContext = reactExports.useContext(ListContext);
+    const keyRef = reactExports.useRef({
       keys: [],
       id: 0
     });
     const keyManager = keyRef.current;
-    const prefixName = React__namespace.useMemo(() => {
+    const prefixName = reactExports.useMemo(() => {
       const parentPrefixName = getNamePath(context.prefixName) || [];
       return [...parentPrefixName, ...getNamePath(name)];
     }, [context.prefixName, name]);
-    const fieldContext = React__namespace.useMemo(() => ({
+    const fieldContext = reactExports.useMemo(() => ({
       ...context,
       prefixName
     }), [context, prefixName]);
-    const listContext = React__namespace.useMemo(() => ({
+    const listContext = reactExports.useMemo(() => ({
       getKey: (namePath) => {
         const len = prefixName.length;
         const pathName = namePath[len];
@@ -29275,11 +29732,11 @@ html body {
       }
       return prevValue !== nextValue;
     };
-    return /* @__PURE__ */ React__namespace.createElement(ListContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(ListContext.Provider, {
       value: listContext
-    }, /* @__PURE__ */ React__namespace.createElement(Context.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(Context.Provider, {
       value: fieldContext
-    }, /* @__PURE__ */ React__namespace.createElement(WrapperField, {
+    }, /* @__PURE__ */ reactExports.createElement(WrapperField, {
       name: [],
       shouldUpdate,
       rules: rules2,
@@ -30230,8 +30687,8 @@ html body {
     }
   }
   function useForm$1(form) {
-    const formRef = React__namespace.useRef(null);
-    const [, forceUpdate] = React__namespace.useState({});
+    const formRef = reactExports.useRef(null);
+    const [, forceUpdate] = reactExports.useState({});
     if (!formRef.current) {
       if (form) {
         formRef.current = form;
@@ -30245,7 +30702,7 @@ html body {
     }
     return [formRef.current];
   }
-  const FormContext$1 = /* @__PURE__ */ React__namespace.createContext({
+  const FormContext$1 = /* @__PURE__ */ reactExports.createContext({
     triggerFormChange: () => {
     },
     triggerFormFinish: () => {
@@ -30261,9 +30718,9 @@ html body {
     onFormFinish,
     children
   }) => {
-    const formContext = React__namespace.useContext(FormContext$1);
-    const formsRef = React__namespace.useRef({});
-    return /* @__PURE__ */ React__namespace.createElement(FormContext$1.Provider, {
+    const formContext = reactExports.useContext(FormContext$1);
+    const formsRef = reactExports.useRef({});
+    return /* @__PURE__ */ reactExports.createElement(FormContext$1.Provider, {
       value: {
         ...formContext,
         validateMessages: {
@@ -30342,8 +30799,8 @@ html body {
     clearOnDestroy,
     ...restProps
   }, ref) => {
-    const nativeElementRef = React__namespace.useRef(null);
-    const formContext = React__namespace.useContext(FormContext$1);
+    const nativeElementRef = reactExports.useRef(null);
+    const formContext = reactExports.useContext(FormContext$1);
     const [formInstance] = useForm$1(form);
     const {
       useSubscribe,
@@ -30353,11 +30810,11 @@ html body {
       setPreserve,
       destroyForm
     } = formInstance.getInternalHooks(HOOK_MARK);
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       ...formInstance,
       nativeElement: nativeElementRef.current
     }));
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       formContext.registerForm(name, formInstance);
       return () => {
         formContext.unregisterForm(name);
@@ -30384,12 +30841,12 @@ html body {
       onFinishFailed
     });
     setPreserve(preserve2);
-    const mountRef = React__namespace.useRef(null);
+    const mountRef = reactExports.useRef(null);
     setInitialValues(initialValues, !mountRef.current);
     if (!mountRef.current) {
       mountRef.current = true;
     }
-    React__namespace.useEffect(
+    reactExports.useEffect(
       () => () => destroyForm(clearOnDestroy),
       // eslint-disable-next-line react-hooks/exhaustive-deps
       []
@@ -30403,26 +30860,26 @@ html body {
       childrenNode = children;
     }
     useSubscribe(!childrenRenderProps);
-    const prevFieldsRef = React__namespace.useRef(null);
-    React__namespace.useEffect(() => {
+    const prevFieldsRef = reactExports.useRef(null);
+    reactExports.useEffect(() => {
       if (!isSimilar(prevFieldsRef.current || [], fields || [])) {
         formInstance.setFields(fields || []);
       }
       prevFieldsRef.current = fields;
     }, [fields, formInstance]);
-    const formContextValue = React__namespace.useMemo(() => ({
+    const formContextValue = reactExports.useMemo(() => ({
       ...formInstance,
       validateTrigger
     }), [formInstance, validateTrigger]);
-    const wrapperNode = /* @__PURE__ */ React__namespace.createElement(ListContext.Provider, {
+    const wrapperNode = /* @__PURE__ */ reactExports.createElement(ListContext.Provider, {
       value: null
-    }, /* @__PURE__ */ React__namespace.createElement(Context.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(Context.Provider, {
       value: formContextValue
     }, childrenNode));
     if (Component === false) {
       return wrapperNode;
     }
-    return /* @__PURE__ */ React__namespace.createElement(Component, _extends$12({}, restProps, {
+    return /* @__PURE__ */ reactExports.createElement(Component, _extends$12({}, restProps, {
       ref: nativeElementRef,
       onSubmit: (event) => {
         event.preventDefault();
@@ -30450,11 +30907,11 @@ html body {
       form: _form
     } : _form;
     const form = options.form;
-    const [value, setValue] = React.useState(() => typeof dependencies === "function" ? dependencies({}) : void 0);
-    const valueStr = React.useMemo(() => stringify$1(value), [value]);
-    const valueStrRef = React.useRef(valueStr);
+    const [value, setValue] = reactExports.useState(() => typeof dependencies === "function" ? dependencies({}) : void 0);
+    const valueStr = reactExports.useMemo(() => stringify$1(value), [value]);
+    const valueStrRef = reactExports.useRef(valueStr);
     valueStrRef.current = valueStr;
-    const fieldContext = React.useContext(Context);
+    const fieldContext = reactExports.useContext(Context);
     const formInstance = form || fieldContext;
     const isValidForm = formInstance && formInstance._init;
     const {
@@ -30472,13 +30929,13 @@ html body {
       }
     });
     const flattenDeps = typeof dependencies === "function" ? dependencies : JSON.stringify(dependencies);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!isValidForm) {
         return;
       }
       triggerUpdate();
     }, [isValidForm, flattenDeps]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!isValidForm) {
         return;
       }
@@ -30489,37 +30946,37 @@ html body {
     }, [isValidForm]);
     return value;
   }
-  const InternalForm$1 = /* @__PURE__ */ React__namespace.forwardRef(Form$2);
+  const InternalForm$1 = /* @__PURE__ */ reactExports.forwardRef(Form$2);
   const RefForm = InternalForm$1;
   RefForm.FormProvider = FormProvider$1;
   RefForm.Field = WrapperField;
   RefForm.List = List$2;
   RefForm.useForm = useForm$1;
   RefForm.useWatch = useWatch;
-  const FormContext = /* @__PURE__ */ React__namespace.createContext({
+  const FormContext = /* @__PURE__ */ reactExports.createContext({
     labelAlign: "right",
     layout: "horizontal",
     itemRef: () => {
     }
   });
-  const NoStyleItemContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const NoStyleItemContext = /* @__PURE__ */ reactExports.createContext(null);
   const FormProvider = (props) => {
     const providerProps = omit(props, ["prefixCls"]);
-    return /* @__PURE__ */ React__namespace.createElement(FormProvider$1, {
+    return /* @__PURE__ */ reactExports.createElement(FormProvider$1, {
       ...providerProps
     });
   };
-  const FormItemPrefixContext = /* @__PURE__ */ React__namespace.createContext({
+  const FormItemPrefixContext = /* @__PURE__ */ reactExports.createContext({
     prefixCls: ""
   });
-  const FormItemInputContext = /* @__PURE__ */ React__namespace.createContext({});
+  const FormItemInputContext = /* @__PURE__ */ reactExports.createContext({});
   const NoFormStyle = ({
     children,
     status,
     override
   }) => {
-    const formItemInputContext = React__namespace.useContext(FormItemInputContext);
-    const newFormItemInputContext = React__namespace.useMemo(() => {
+    const formItemInputContext = reactExports.useContext(FormItemInputContext);
+    const newFormItemInputContext = reactExports.useMemo(() => {
       const newContext = {
         ...formItemInputContext
       };
@@ -30533,11 +30990,11 @@ html body {
       }
       return newContext;
     }, [status, override, formItemInputContext]);
-    return /* @__PURE__ */ React__namespace.createElement(FormItemInputContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(FormItemInputContext.Provider, {
       value: newFormItemInputContext
     }, children);
   };
-  const VariantContext = /* @__PURE__ */ React__namespace.createContext(void 0);
+  const VariantContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const ContextIsolator = (props) => {
     const {
       space,
@@ -30561,7 +31018,7 @@ html body {
   };
   const canUseDocElement = () => canUseDom() && window.document.documentElement;
   function useFocusable(focusable2, defaultTrap, legacyFocusTriggerAfterClose) {
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       const ret = {
         trap: defaultTrap ?? true,
         focusTriggerAfterClose: legacyFocusTriggerAfterClose ?? true
@@ -30589,12 +31046,12 @@ html body {
       [`${prefixCls}-square`]: shape === "square",
       [`${prefixCls}-round`]: shape === "round"
     });
-    const sizeStyle = React__namespace.useMemo(() => isNumber$1(size) ? {
+    const sizeStyle = reactExports.useMemo(() => isNumber$1(size) ? {
       width: size,
       height: size,
       lineHeight: `${size}px`
     } : {}, [size]);
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(prefixCls, sizeCls, shapeCls, className),
       style: {
         ...sizeStyle,
@@ -30971,17 +31428,17 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active
     }, classNames == null ? void 0 : classNames.root, className, rootClassName, hashId, cssVarCls);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: cls,
       style: styles2 == null ? void 0 : styles2.root
-    }, /* @__PURE__ */ React__namespace.createElement(Element$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Element$1, {
       prefixCls: `${prefixCls}-avatar`,
       className: classNames == null ? void 0 : classNames.content,
       style: {
@@ -31008,7 +31465,7 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
@@ -31016,10 +31473,10 @@ html body {
       [`${prefixCls}-active`]: active,
       [`${prefixCls}-block`]: block
     }, classNames == null ? void 0 : classNames.root, className, rootClassName, hashId, cssVarCls);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: cls,
       style: styles2 == null ? void 0 : styles2.root
-    }, /* @__PURE__ */ React__namespace.createElement(Element$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Element$1, {
       prefixCls: `${prefixCls}-button`,
       className: classNames == null ? void 0 : classNames.content,
       style: {
@@ -31044,16 +31501,16 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active
     }, hashId, classNames == null ? void 0 : classNames.root, className, rootClassName, cssVarCls);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: cls,
       style: styles2 == null ? void 0 : styles2.root
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(classNames == null ? void 0 : classNames.content, internalClassName || `${prefixCls}-node`),
       style: {
         ...styles2 == null ? void 0 : styles2.content,
@@ -31064,16 +31521,16 @@ html body {
   const SkeletonImage = (props) => {
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", props.prefixCls);
-    return /* @__PURE__ */ React__namespace.createElement(SkeletonNode, {
+    return /* @__PURE__ */ reactExports.createElement(SkeletonNode, {
       ...props,
       internalClassName: `${prefixCls}-image`
-    }, /* @__PURE__ */ React__namespace.createElement("svg", {
+    }, /* @__PURE__ */ reactExports.createElement("svg", {
       viewBox: "0 0 1098 1024",
       xmlns: "http://www.w3.org/2000/svg",
       className: `${prefixCls}-image-svg`
-    }, /* @__PURE__ */ React__namespace.createElement("title", null, "Image placeholder"), /* @__PURE__ */ React__namespace.createElement("path", {
+    }, /* @__PURE__ */ reactExports.createElement("title", null, "Image placeholder"), /* @__PURE__ */ reactExports.createElement("path", {
       d: "M365.7 329.1q0 45.8-32 77.7t-77.7 32-77.7-32-32-77.7 32-77.6 77.7-32 77.7 32 32 77.6M951 548.6v256H146.3V694.9L329 512l91.5 91.4L713 311zm54.8-402.3H91.4q-7.4 0-12.8 5.4T73 164.6v694.8q0 7.5 5.5 12.9t12.8 5.4h914.3q7.5 0 12.9-5.4t5.4-12.9V164.6q0-7.5-5.4-12.9t-12.9-5.4m91.4 18.3v694.8q0 37.8-26.8 64.6t-64.6 26.9H91.4q-37.7 0-64.6-26.9T0 859.4V164.6q0-37.8 26.8-64.6T91.4 73h914.3q37.8 0 64.6 26.9t26.8 64.6",
       className: `${prefixCls}-image-path`
     })));
@@ -31093,7 +31550,7 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
@@ -31101,10 +31558,10 @@ html body {
       [`${prefixCls}-active`]: active,
       [`${prefixCls}-block`]: block
     }, classNames == null ? void 0 : classNames.root, className, rootClassName, hashId, cssVarCls);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: cls,
       style: styles2 == null ? void 0 : styles2.root
-    }, /* @__PURE__ */ React__namespace.createElement(Element$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Element$1, {
       prefixCls: `${prefixCls}-input`,
       className: classNames == null ? void 0 : classNames.content,
       style: {
@@ -31137,13 +31594,13 @@ html body {
     } = props;
     const rowList = Array.from({
       length: rows
-    }).map((_2, index2) => /* @__PURE__ */ React__namespace.createElement("li", {
+    }).map((_2, index2) => /* @__PURE__ */ reactExports.createElement("li", {
       key: index2,
       style: {
         width: getWidth(index2, props)
       }
     }));
-    return /* @__PURE__ */ React__namespace.createElement("ul", {
+    return /* @__PURE__ */ reactExports.createElement("ul", {
       className: clsx(prefixCls, className),
       style: style2
     }, rowList);
@@ -31153,7 +31610,7 @@ html body {
     className,
     width,
     style: style2
-  }) => /* @__PURE__ */ React__namespace.createElement("h3", {
+  }) => /* @__PURE__ */ reactExports.createElement("h3", {
     className: clsx(prefixCls, className),
     style: {
       width,
@@ -31251,10 +31708,10 @@ html body {
           ...getComponentProps(avatar),
           style: mergedStyles.avatar
         };
-        avatarNode = /* @__PURE__ */ React__namespace.createElement("div", {
+        avatarNode = /* @__PURE__ */ reactExports.createElement("div", {
           className: clsx(mergedClassNames.header, `${prefixCls}-header`),
           style: mergedStyles.header
-        }, /* @__PURE__ */ React__namespace.createElement(Element$1, {
+        }, /* @__PURE__ */ reactExports.createElement(Element$1, {
           ...avatarProps
         }));
       }
@@ -31269,7 +31726,7 @@ html body {
             ...getComponentProps(title),
             style: mergedStyles.title
           };
-          $title = /* @__PURE__ */ React__namespace.createElement(Title, {
+          $title = /* @__PURE__ */ reactExports.createElement(Title, {
             ...titleProps
           });
         }
@@ -31282,11 +31739,11 @@ html body {
             ...getComponentProps(paragraph),
             style: mergedStyles.paragraph
           };
-          paragraphNode = /* @__PURE__ */ React__namespace.createElement(Paragraph, {
+          paragraphNode = /* @__PURE__ */ reactExports.createElement(Paragraph, {
             ...paragraphProps
           });
         }
-        contentNode = /* @__PURE__ */ React__namespace.createElement("div", {
+        contentNode = /* @__PURE__ */ reactExports.createElement("div", {
           className: clsx(mergedClassNames.section, `${prefixCls}-section`),
           style: mergedStyles.section
         }, $title, paragraphNode);
@@ -31297,7 +31754,7 @@ html body {
         [`${prefixCls}-rtl`]: direction === "rtl",
         [`${prefixCls}-round`]: round2
       }, mergedClassNames.root, contextClassName, className, rootClassName, hashId, cssVarCls);
-      return /* @__PURE__ */ React__namespace.createElement("div", {
+      return /* @__PURE__ */ reactExports.createElement("div", {
         className: cls,
         style: {
           ...mergedStyles.root,
@@ -31315,13 +31772,13 @@ html body {
   Skeleton.Node = SkeletonNode;
   function voidFunc() {
   }
-  const WatermarkContext = /* @__PURE__ */ React__namespace.createContext({
+  const WatermarkContext = /* @__PURE__ */ reactExports.createContext({
     add: voidFunc,
     remove: voidFunc
   });
   function usePanelRef(panelSelector) {
-    const watermark = React__namespace.useContext(WatermarkContext);
-    const panelEleRef = React__namespace.useRef(null);
+    const watermark = reactExports.useContext(WatermarkContext);
+    const panelEleRef = reactExports.useRef(null);
     const panelRef = useEvent((ele) => {
       if (ele) {
         const innerContentEle = panelSelector ? ele.querySelector(panelSelector) : ele;
@@ -31340,7 +31797,7 @@ html body {
       cancelButtonProps,
       cancelTextLocale,
       onCancel
-    } = React.useContext(ModalContext);
+    } = reactExports.useContext(ModalContext);
     return /* @__PURE__ */ React.createElement(Button$1, {
       onClick: onCancel,
       ...cancelButtonProps
@@ -31353,7 +31810,7 @@ html body {
       okType,
       okTextLocale,
       onOk
-    } = React.useContext(ModalContext);
+    } = reactExports.useContext(ModalContext);
     return /* @__PURE__ */ React.createElement(Button$1, {
       ...convertLegacyProps(okType),
       loading: confirmLoading,
@@ -31957,8 +32414,8 @@ html body {
     } = useComponentConfig("modal");
     const {
       modal: modalContext
-    } = React__namespace.useContext(ConfigContext);
-    const [closableAfterClose, onClose] = React__namespace.useMemo(() => {
+    } = reactExports.useContext(ConfigContext);
+    const [closableAfterClose, onClose] = reactExports.useMemo(() => {
       if (typeof closable === "boolean") {
         return [void 0, void 0];
       }
@@ -31988,7 +32445,7 @@ html body {
       [`${prefixCls}-centered`]: centered ?? contextCentered,
       [`${prefixCls}-wrap-rtl`]: direction === "rtl"
     });
-    const dialogFooter = footer !== null && !loading ? /* @__PURE__ */ React__namespace.createElement(Footer$2, {
+    const dialogFooter = footer !== null && !loading ? /* @__PURE__ */ reactExports.createElement(Footer$2, {
       ...props,
       okButtonProps: {
         ...contextOkButtonProps,
@@ -32003,7 +32460,7 @@ html body {
     }) : null;
     const [rawClosable, mergedCloseIcon, closeBtnIsDisabled, ariaProps] = useClosable(pickClosable(props), pickClosable(modalContext), {
       closable: true,
-      closeIcon: /* @__PURE__ */ React__namespace.createElement(RefIcon$v, {
+      closeIcon: /* @__PURE__ */ reactExports.createElement(RefIcon$v, {
         className: `${prefixCls}-close-icon`
       }),
       closeIconRender: (icon) => renderCloseIcon(prefixCls, icon)
@@ -32014,7 +32471,7 @@ html body {
       afterClose: closableAfterClose,
       ...ariaProps
     } : false;
-    const mergedModalRender = modalRender ? (node2) => /* @__PURE__ */ React__namespace.createElement("div", {
+    const mergedModalRender = modalRender ? (node2) => /* @__PURE__ */ reactExports.createElement("div", {
       className: `${prefixCls}-render`
     }, modalRender(node2)) : void 0;
     const panelClassName = `.${prefixCls}-${modalRender ? "render" : "container"}`;
@@ -32034,13 +32491,13 @@ html body {
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames, maskBlurClassName], [contextStyles, styles2], {
       props: mergedProps
     });
-    const [numWidth, responsiveWidth] = React__namespace.useMemo(() => {
+    const [numWidth, responsiveWidth] = reactExports.useMemo(() => {
       if (isPlainObject$1(width)) {
         return [void 0, width];
       }
       return [width, void 0];
     }, [width]);
-    const responsiveWidthVars = React__namespace.useMemo(() => {
+    const responsiveWidthVars = reactExports.useMemo(() => {
       const vars = {};
       if (responsiveWidth) {
         Object.keys(responsiveWidth).forEach((breakpoint) => {
@@ -32052,12 +32509,12 @@ html body {
       }
       return vars;
     }, [prefixCls, responsiveWidth]);
-    return /* @__PURE__ */ React__namespace.createElement(ContextIsolator, {
+    return /* @__PURE__ */ reactExports.createElement(ContextIsolator, {
       form: true,
       space: true
-    }, /* @__PURE__ */ React__namespace.createElement(ZIndexContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(ZIndexContext.Provider, {
       value: contextZIndex
-    }, /* @__PURE__ */ React__namespace.createElement(DialogWrap, {
+    }, /* @__PURE__ */ reactExports.createElement(DialogWrap, {
       width: numWidth,
       ...restProps,
       zIndex,
@@ -32092,7 +32549,7 @@ html body {
       // Focusable
       focusTriggerAfterClose: mergedFocusable.focusTriggerAfterClose,
       focusTrap: mergedFocusable.trap
-    }, loading ? /* @__PURE__ */ React__namespace.createElement(Skeleton, {
+    }, loading ? /* @__PURE__ */ reactExports.createElement(Skeleton, {
       active: true,
       title: false,
       paragraph: {
@@ -32227,20 +32684,20 @@ html body {
     if (icon === void 0) {
       switch (type2) {
         case "info":
-          mergedIcon = fallbackProp(infoIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null));
+          mergedIcon = fallbackProp(infoIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$t, null));
           break;
         case "success":
-          mergedIcon = fallbackProp(successIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null));
+          mergedIcon = fallbackProp(successIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$x, null));
           break;
         case "error":
-          mergedIcon = fallbackProp(errorIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null));
+          mergedIcon = fallbackProp(errorIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$w, null));
           break;
         default:
-          mergedIcon = fallbackProp(warningIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null));
+          mergedIcon = fallbackProp(warningIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$u, null));
       }
     }
     const mergedOkCancel = okCancel ?? type2 === "confirm";
-    const mergedAutoFocusButton = React__namespace.useMemo(() => {
+    const mergedAutoFocusButton = reactExports.useMemo(() => {
       const base = (focusable2 == null ? void 0 : focusable2.autoFocusButton) || autoFocusButton;
       return base || base === null ? base : "ok";
     }, [autoFocusButton, focusable2 == null ? void 0 : focusable2.autoFocusButton]);
@@ -32254,7 +32711,7 @@ html body {
     const {
       onClose
     } = isPlainObject$1(closable) ? closable : {};
-    const memoizedValue = React__namespace.useMemo(() => {
+    const memoizedValue = reactExports.useMemo(() => {
       return {
         autoFocusButton: mergedAutoFocusButton,
         cancelTextLocale,
@@ -32264,31 +32721,31 @@ html body {
         ...restProps
       };
     }, [mergedAutoFocusButton, cancelTextLocale, okTextLocale, mergedOkCancel, onClose, restProps]);
-    const footerOriginNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(ConfirmCancelBtn, null), /* @__PURE__ */ React__namespace.createElement(ConfirmOkBtn, null));
+    const footerOriginNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(ConfirmCancelBtn, null), /* @__PURE__ */ reactExports.createElement(ConfirmOkBtn, null));
     const hasTitle = isNonNullable(props.title) && props.title !== "";
     const hasIcon = isNonNullable(mergedIcon);
     const bodyCls = `${confirmPrefixCls}-body`;
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: `${confirmPrefixCls}-body-wrapper`
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(bodyCls, {
         [`${bodyCls}-has-title`]: hasTitle,
         [`${bodyCls}-no-icon`]: !hasIcon
       })
-    }, mergedIcon, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, mergedIcon, /* @__PURE__ */ reactExports.createElement("div", {
       className: `${confirmPrefixCls}-paragraph`
-    }, hasTitle && /* @__PURE__ */ React__namespace.createElement("span", {
+    }, hasTitle && /* @__PURE__ */ reactExports.createElement("span", {
       className: `${confirmPrefixCls}-title`
-    }, props.title), /* @__PURE__ */ React__namespace.createElement("div", {
+    }, props.title), /* @__PURE__ */ reactExports.createElement("div", {
       className: `${confirmPrefixCls}-content`
-    }, props.content))), footer === void 0 || isFunction$2(footer) ? /* @__PURE__ */ React__namespace.createElement(ModalContextProvider, {
+    }, props.content))), footer === void 0 || isFunction$2(footer) ? /* @__PURE__ */ reactExports.createElement(ModalContextProvider, {
       value: memoizedValue
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: `${confirmPrefixCls}-btns`
     }, isFunction$2(footer) ? footer(footerOriginNode, {
       OkBtn: ConfirmOkBtn,
       CancelBtn: ConfirmCancelBtn
-    }) : footerOriginNode)) : footer, /* @__PURE__ */ React__namespace.createElement(Confirm, {
+    }) : footerOriginNode)) : footer, /* @__PURE__ */ reactExports.createElement(Confirm, {
       prefixCls
     }));
   };
@@ -32321,19 +32778,19 @@ html body {
     const classString = clsx(confirmPrefixCls, `${confirmPrefixCls}-${props.type}`, {
       [`${confirmPrefixCls}-rtl`]: direction === "rtl"
     }, props.className);
-    const mergedMask = React__namespace.useMemo(() => {
+    const mergedMask = reactExports.useMemo(() => {
       const nextMaskConfig = normalizeMaskConfig(mask2, maskClosable);
       nextMaskConfig.closable ?? (nextMaskConfig.closable = false);
       return nextMaskConfig;
     }, [mask2, maskClosable]);
     const [, token2] = useToken();
-    const mergedZIndex = React__namespace.useMemo(() => {
+    const mergedZIndex = reactExports.useMemo(() => {
       if (zIndex !== void 0) {
         return zIndex;
       }
       return token2.zIndexPopupBase + CONTAINER_MAX_OFFSET;
     }, [zIndex, token2]);
-    return /* @__PURE__ */ React__namespace.createElement(Modal$1, {
+    return /* @__PURE__ */ reactExports.createElement(Modal$1, {
       ...props,
       className: classString,
       wrapClassName: clsx({
@@ -32359,7 +32816,7 @@ html body {
       width,
       zIndex: mergedZIndex,
       closable
-    }, /* @__PURE__ */ React__namespace.createElement(ConfirmContent, {
+    }, /* @__PURE__ */ reactExports.createElement(ConfirmContent, {
       ...props,
       confirmPrefixCls,
       okButtonProps: {
@@ -32379,12 +32836,12 @@ html body {
       direction,
       theme
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement(ConfigProvider, {
+    return /* @__PURE__ */ reactExports.createElement(ConfigProvider, {
       prefixCls: rootPrefixCls,
       iconPrefixCls,
       direction,
       theme
-    }, /* @__PURE__ */ React__namespace.createElement(ConfirmDialog, {
+    }, /* @__PURE__ */ reactExports.createElement(ConfirmDialog, {
       ...props
     }));
   };
@@ -32401,7 +32858,7 @@ html body {
       direction
     } = props;
     const runtimeLocale2 = getConfirmLocale();
-    const config2 = React.useContext(ConfigContext);
+    const config2 = reactExports.useContext(ConfigContext);
     const rootPrefixCls = getRootPrefixCls() || config2.getPrefixCls();
     const prefixCls = customizePrefixCls || `${rootPrefixCls}-modal`;
     let mergedGetContainer = getContainer2;
@@ -32527,18 +32984,18 @@ html body {
   }) {
     defaultRootPrefixCls = rootPrefixCls;
   }
-  const HookModal = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const HookModal = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       afterClose: hookAfterClose,
       config: config2,
       ...restProps
     } = props;
-    const [open2, setOpen] = React__namespace.useState(true);
-    const [innerConfig, setInnerConfig] = React__namespace.useState(config2);
+    const [open2, setOpen] = reactExports.useState(true);
+    const [innerConfig, setInnerConfig] = reactExports.useState(config2);
     const {
       direction,
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("modal");
     const rootPrefixCls = getPrefixCls();
     const afterClose = () => {
@@ -32555,7 +33012,7 @@ html body {
         }, ...args.slice(1));
       }
     };
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       destroy: close,
       update: (newConfig) => {
         setInnerConfig((originConfig) => {
@@ -32569,7 +33026,7 @@ html body {
     }));
     const mergedOkCancel = innerConfig.okCancel ?? innerConfig.type === "confirm";
     const [contextLocale] = useLocale("Modal", localeValues.Modal);
-    return /* @__PURE__ */ React__namespace.createElement(ConfirmDialogWrapper$1, {
+    return /* @__PURE__ */ reactExports.createElement(ConfirmDialogWrapper$1, {
       prefixCls,
       rootPrefixCls,
       ...innerConfig,
@@ -32583,17 +33040,17 @@ html body {
     });
   });
   let uuid = 0;
-  const ElementsHolder = /* @__PURE__ */ React__namespace.memo(/* @__PURE__ */ React__namespace.forwardRef((_props, ref) => {
+  const ElementsHolder = /* @__PURE__ */ reactExports.memo(/* @__PURE__ */ reactExports.forwardRef((_props, ref) => {
     const [elements, patchElement] = usePatchElement();
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       patchElement
     }), [patchElement]);
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, elements);
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, elements);
   }));
   function useModal() {
-    const holderRef = React__namespace.useRef(null);
-    const [actionQueue, setActionQueue] = React__namespace.useState([]);
-    React__namespace.useEffect(() => {
+    const holderRef = reactExports.useRef(null);
+    const [actionQueue, setActionQueue] = reactExports.useState([]);
+    reactExports.useEffect(() => {
       if (actionQueue.length) {
         const cloneQueue = _toConsumableArray(actionQueue);
         cloneQueue.forEach((action) => {
@@ -32602,17 +33059,17 @@ html body {
         setActionQueue([]);
       }
     }, [actionQueue]);
-    const getConfirmFunc = React__namespace.useCallback((withFunc) => function hookConfirm(config2) {
+    const getConfirmFunc = reactExports.useCallback((withFunc) => function hookConfirm(config2) {
       var _a2;
       uuid += 1;
-      const modalRef = /* @__PURE__ */ React__namespace.createRef();
+      const modalRef = /* @__PURE__ */ reactExports.createRef();
       let resolvePromise;
       const promise = new Promise((resolve) => {
         resolvePromise = resolve;
       });
       let silent = false;
       let closeFunc;
-      const modal = /* @__PURE__ */ React__namespace.createElement(HookModal, {
+      const modal = /* @__PURE__ */ reactExports.createElement(HookModal, {
         key: `modal-${uuid}`,
         config: withFunc(config2),
         ref: modalRef,
@@ -32658,28 +33115,28 @@ html body {
       };
       return instance;
     }, []);
-    const fns = React__namespace.useMemo(() => ({
+    const fns = reactExports.useMemo(() => ({
       info: getConfirmFunc(withInfo),
       success: getConfirmFunc(withSuccess),
       error: getConfirmFunc(withError),
       warning: getConfirmFunc(withWarn),
       confirm: getConfirmFunc(withConfirm)
     }), [getConfirmFunc]);
-    return [fns, /* @__PURE__ */ React__namespace.createElement(ElementsHolder, {
+    return [fns, /* @__PURE__ */ reactExports.createElement(ElementsHolder, {
       key: "modal-holder",
       ref: holderRef
     })];
   }
   const AppConfigContext = /* @__PURE__ */ React.createContext({});
   function withPureRenderTheme(Component) {
-    return (props) => /* @__PURE__ */ React__namespace.createElement(ConfigProvider, {
+    return (props) => /* @__PURE__ */ reactExports.createElement(ConfigProvider, {
       theme: {
         token: {
           motion: false,
           zIndexPopupBase: 0
         }
       }
-    }, /* @__PURE__ */ React__namespace.createElement(Component, {
+    }, /* @__PURE__ */ reactExports.createElement(Component, {
       ...props
     }));
   }
@@ -32689,15 +33146,15 @@ html body {
         prefixCls: customizePrefixCls,
         style: style2
       } = props;
-      const holderRef = React__namespace.useRef(null);
-      const [popupHeight, setPopupHeight] = React__namespace.useState(0);
-      const [popupWidth, setPopupWidth] = React__namespace.useState(0);
+      const holderRef = reactExports.useRef(null);
+      const [popupHeight, setPopupHeight] = reactExports.useState(0);
+      const [popupWidth, setPopupWidth] = reactExports.useState(0);
       const [open2, setOpen] = useControlledState(false, props.open);
       const {
         getPrefixCls
-      } = React__namespace.useContext(ConfigContext);
+      } = reactExports.useContext(ConfigContext);
       const prefixCls = getPrefixCls(defaultPrefixCls2 || "select", customizePrefixCls);
-      React__namespace.useEffect(() => {
+      reactExports.useEffect(() => {
         setOpen(true);
         if (typeof ResizeObserver !== "undefined") {
           const resizeObserver = new ResizeObserver((entries2) => {
@@ -32748,17 +33205,17 @@ html body {
         position: "relative",
         minWidth: popupWidth
       };
-      return /* @__PURE__ */ React__namespace.createElement("div", {
+      return /* @__PURE__ */ reactExports.createElement("div", {
         ref: holderRef,
         style: mergedStyle
-      }, /* @__PURE__ */ React__namespace.createElement(Component, {
+      }, /* @__PURE__ */ reactExports.createElement(Component, {
         ...mergedProps
       }));
     };
     return withPureRenderTheme(PurePanel2);
   };
   const useAllowClear = (prefixCls, displayValues, allowClear, clearIcon, disabled = false, mergedSearchValue, mode) => {
-    const allowClearConfig = React.useMemo(() => {
+    const allowClearConfig = reactExports.useMemo(() => {
       if (typeof allowClear === "boolean") {
         return {
           allowClear
@@ -32771,7 +33228,7 @@ html body {
         allowClear: false
       };
     }, [allowClear]);
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       const mergedAllowClear = !disabled && allowClearConfig.allowClear !== false && (displayValues.length || mergedSearchValue) && !(mode === "combobox" && mergedSearchValue === "");
       return {
         allowClear: mergedAllowClear,
@@ -32779,14 +33236,14 @@ html body {
       };
     }, [allowClearConfig, clearIcon, disabled, displayValues.length, mergedSearchValue, mode]);
   };
-  const BaseSelectContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const BaseSelectContext = /* @__PURE__ */ reactExports.createContext(null);
   function useBaseProps() {
-    return React__namespace.useContext(BaseSelectContext);
+    return reactExports.useContext(BaseSelectContext);
   }
   function useLock(duration = 250) {
-    const lockRef = React__namespace.useRef(null);
-    const timeoutRef = React__namespace.useRef(null);
-    React__namespace.useEffect(() => () => {
+    const lockRef = reactExports.useRef(null);
+    const timeoutRef = reactExports.useRef(null);
+    reactExports.useEffect(() => () => {
       window.clearTimeout(timeoutRef.current);
     }, []);
     function doLock(locked) {
@@ -32820,7 +33277,7 @@ html body {
         triggerOpen(false);
       }
     });
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       window.addEventListener("mousedown", onGlobalMouseDown);
       return () => window.removeEventListener("mousedown", onGlobalMouseDown);
     }, [onGlobalMouseDown]);
@@ -32910,10 +33367,10 @@ html body {
     if (popupRender) {
       popupNode = popupRender(popupElement);
     }
-    const mergedBuiltinPlacements2 = React__namespace.useMemo(() => builtinPlacements || getBuiltInPlacements$1(popupMatchSelectWidth), [builtinPlacements, popupMatchSelectWidth]);
+    const mergedBuiltinPlacements2 = reactExports.useMemo(() => builtinPlacements || getBuiltInPlacements$1(popupMatchSelectWidth), [builtinPlacements, popupMatchSelectWidth]);
     const mergedTransitionName = animation ? `${popupPrefixCls}-${animation}` : transitionName;
     const isNumberPopupWidth = typeof popupMatchSelectWidth === "number";
-    const stretch = React__namespace.useMemo(() => {
+    const stretch = reactExports.useMemo(() => {
       if (isNumberPopupWidth) {
         return null;
       }
@@ -32926,14 +33383,14 @@ html body {
         width: popupMatchSelectWidth
       };
     }
-    const triggerPopupRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => ({
+    const triggerPopupRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => ({
       getPopupElement: () => {
         var _a2;
         return (_a2 = triggerPopupRef.current) == null ? void 0 : _a2.popupElement;
       }
     }));
-    return /* @__PURE__ */ React__namespace.createElement(Trigger, _extends$11({}, restProps, {
+    return /* @__PURE__ */ reactExports.createElement(Trigger, _extends$11({}, restProps, {
       showAction: onPopupVisibleChange ? ["click"] : [],
       hideAction: onPopupVisibleChange ? ["click"] : [],
       popupPlacement: placement || (direction === "rtl" ? "bottomRight" : "bottomLeft"),
@@ -32942,7 +33399,7 @@ html body {
       popupMotion: {
         motionName: mergedTransitionName
       },
-      popup: /* @__PURE__ */ React__namespace.createElement("div", {
+      popup: /* @__PURE__ */ reactExports.createElement("div", {
         onMouseEnter: onPopupMouseEnter,
         onMouseDown: onPopupMouseDown,
         onBlur: onPopupBlur
@@ -32959,7 +33416,7 @@ html body {
       onPopupVisibleChange
     }), children);
   };
-  const RefSelectTrigger = /* @__PURE__ */ React__namespace.forwardRef(SelectTrigger);
+  const RefSelectTrigger = /* @__PURE__ */ reactExports.forwardRef(SelectTrigger);
   function getKey$1(data, index2) {
     const {
       key: key2
@@ -33082,7 +33539,7 @@ html body {
       return null;
     }
     const MAX_COUNT = 50;
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       "aria-live": "polite",
       style: {
         width: 0,
@@ -33111,15 +33568,15 @@ html body {
     });
   };
   function useOpen(defaultOpen, propOpen, onOpen, postOpen) {
-    const [rendered, setRendered] = React.useState(false);
-    React.useEffect(() => {
+    const [rendered, setRendered] = reactExports.useState(false);
+    reactExports.useEffect(() => {
       setRendered(true);
     }, []);
     const [stateOpen, internalSetOpen] = useControlledState(defaultOpen, propOpen);
-    const [lock, setLock] = React.useState(false);
+    const [lock, setLock] = reactExports.useState(false);
     const ssrSafeOpen = rendered ? stateOpen : false;
     const mergedOpen = postOpen(ssrSafeOpen);
-    const taskIdRef = React.useRef(0);
+    const taskIdRef = reactExports.useRef(0);
     const triggerEvent = useEvent((nextOpen) => {
       if (onOpen && mergedOpen !== nextOpen) {
         onOpen(nextOpen);
@@ -33162,13 +33619,13 @@ html body {
     if (!children) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", restProps, children);
+    return /* @__PURE__ */ reactExports.createElement("div", restProps, children);
   }
-  const SelectInputContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const SelectInputContext = /* @__PURE__ */ reactExports.createContext(null);
   function useSelectInputContext() {
-    return React__namespace.useContext(SelectInputContext);
+    return reactExports.useContext(SelectInputContext);
   }
-  const Input$3 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Input$3 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       onChange,
       onKeyDown: onKeyDown2,
@@ -33203,10 +33660,10 @@ html body {
       disabled
     } = useBaseProps() || {};
     const inputCls = clsx(`${prefixCls}-input`, classNames == null ? void 0 : classNames.input, className);
-    const compositionStatusRef = React__namespace.useRef(false);
-    const pastedTextRef = React__namespace.useRef(null);
-    const inputRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => inputRef.current);
+    const compositionStatusRef = reactExports.useRef(false);
+    const pastedTextRef = reactExports.useRef(null);
+    const inputRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => inputRef.current);
     const handleChange = (event) => {
       let {
         value: nextVal
@@ -33256,7 +33713,7 @@ html body {
       const pastedValue = clipboardData == null ? void 0 : clipboardData.getData("text");
       pastedTextRef.current = pastedValue || "";
     };
-    const [widthCssVar, setWidthCssVar] = React__namespace.useState(void 0);
+    const [widthCssVar, setWidthCssVar] = reactExports.useState(void 0);
     useLayoutEffect(() => {
       const input = inputRef.current;
       if (syncWidth && input) {
@@ -33296,7 +33753,7 @@ html body {
       "aria-controls": open2 ? `${id}_list` : void 0,
       "aria-activedescendant": open2 ? activeDescendantId : void 0
     };
-    if (/* @__PURE__ */ React__namespace.isValidElement(InputComponent)) {
+    if (/* @__PURE__ */ reactExports.isValidElement(InputComponent)) {
       const existingProps = InputComponent.props || {};
       const mergedProps = {
         placeholder: props.placeholder || placeholder,
@@ -33314,10 +33771,10 @@ html body {
         }
       });
       mergedProps.ref = composeRef(InputComponent.ref, sharedInputProps.ref);
-      return /* @__PURE__ */ React__namespace.cloneElement(InputComponent, mergedProps);
+      return /* @__PURE__ */ reactExports.cloneElement(InputComponent, mergedProps);
     }
     const Component = InputComponent;
-    return /* @__PURE__ */ React__namespace.createElement(Component, sharedInputProps);
+    return /* @__PURE__ */ reactExports.createElement(Component, sharedInputProps);
   });
   function Placeholder(props) {
     const {
@@ -33335,7 +33792,7 @@ html body {
     if (displayValues.length) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-placeholder`, classNames == null ? void 0 : classNames.placeholder),
       style: {
         visibility: show ? "visible" : "hidden",
@@ -33343,7 +33800,7 @@ html body {
       }
     }, placeholder);
   }
-  const SelectContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const SelectContext = /* @__PURE__ */ reactExports.createContext(null);
   function toArray$3(value) {
     if (Array.isArray(value)) {
       return value;
@@ -33384,7 +33841,7 @@ html body {
     };
     return _extends$10.apply(this, arguments);
   }
-  const SingleContent = /* @__PURE__ */ React__namespace.forwardRef(({
+  const SingleContent = /* @__PURE__ */ reactExports.forwardRef(({
     inputProps
   }, ref) => {
     const {
@@ -33403,17 +33860,17 @@ html body {
       classNames,
       styles: styles2
     } = useBaseProps();
-    const selectContext = React__namespace.useContext(SelectContext);
-    const [inputChanged, setInputChanged] = React__namespace.useState(false);
+    const selectContext = reactExports.useContext(SelectContext);
+    const [inputChanged, setInputChanged] = reactExports.useState(false);
     const combobox = mode === "combobox";
     const displayValue = displayValues[0];
-    const mergedSearchValue = React__namespace.useMemo(() => {
+    const mergedSearchValue = reactExports.useMemo(() => {
       if (combobox && activeValue && !inputChanged && triggerOpen) {
         return activeValue;
       }
       return showSearch ? searchValue : "";
     }, [combobox, activeValue, inputChanged, triggerOpen, searchValue, showSearch]);
-    const [optionClassName, optionStyle, optionTitle, hasOptionStyle] = React__namespace.useMemo(() => {
+    const [optionClassName, optionStyle, optionTitle, hasOptionStyle] = reactExports.useMemo(() => {
       let className;
       let style2;
       let titleValue;
@@ -33434,14 +33891,14 @@ html body {
       const nextHasStyle = !!className || !!style2;
       return [className, style2, titleValue, nextHasStyle];
     }, [displayValue, selectContext == null ? void 0 : selectContext.flattenOptions, rootTitle]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (combobox) {
         setInputChanged(false);
       }
     }, [combobox, activeValue]);
     const showHasValueCls = displayValue && displayValue.label !== null && displayValue.label !== void 0 && String(displayValue.label).trim() !== "";
     const shouldRenderValue = !(combobox && (components2 == null ? void 0 : components2.input));
-    const renderValue = shouldRenderValue ? displayValue ? hasOptionStyle ? /* @__PURE__ */ React__namespace.createElement("div", {
+    const renderValue = shouldRenderValue ? displayValue ? hasOptionStyle ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-content-value`, optionClassName),
       style: {
         ...mergedSearchValue ? {
@@ -33450,14 +33907,14 @@ html body {
         ...optionStyle
       },
       title: optionTitle
-    }, displayValue.label) : displayValue.label : /* @__PURE__ */ React__namespace.createElement(Placeholder, {
+    }, displayValue.label) : displayValue.label : /* @__PURE__ */ reactExports.createElement(Placeholder, {
       show: !mergedSearchValue
     }) : null;
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-content`, showHasValueCls && `${prefixCls}-content-has-value`, mergedSearchValue && `${prefixCls}-content-has-search-value`, hasOptionStyle && `${prefixCls}-content-has-option-style`, classNames == null ? void 0 : classNames.content),
       style: styles2 == null ? void 0 : styles2.content,
       title: hasOptionStyle ? void 0 : optionTitle
-    }, renderValue, /* @__PURE__ */ React__namespace.createElement(Input$3, _extends$10({
+    }, renderValue, /* @__PURE__ */ reactExports.createElement(Input$3, _extends$10({
       ref
     }, inputProps, {
       value: mergedSearchValue,
@@ -33492,7 +33949,7 @@ html body {
     function internalRegisterSize(width) {
       registerSize(itemKey2, width);
     }
-    React__namespace.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       internalRegisterSize(null);
     }, []);
     const childNode = renderItem && item !== UNDEFINED ? renderItem(item, {
@@ -33513,7 +33970,7 @@ html body {
     if (mergedHidden) {
       overflowProps["aria-hidden"] = true;
     }
-    let itemNode = /* @__PURE__ */ React__namespace.createElement(Component, _extends$19({
+    let itemNode = /* @__PURE__ */ reactExports.createElement(Component, _extends$19({
       className: clsx(!invalidate && prefixCls, className),
       style: {
         ...overflowStyle,
@@ -33523,7 +33980,7 @@ html body {
       ref
     }), childNode);
     if (responsive) {
-      itemNode = /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+      itemNode = /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
         onResize: ({
           offsetWidth
         }) => {
@@ -33534,7 +33991,7 @@ html body {
     }
     return itemNode;
   }
-  const Item$2 = /* @__PURE__ */ React__namespace.forwardRef(InternalItem);
+  const Item$2 = /* @__PURE__ */ reactExports.forwardRef(InternalItem);
   function channelUpdate(callback) {
     if (typeof MessageChannel === "undefined") {
       wrapperRaf(callback);
@@ -33545,7 +34002,7 @@ html body {
     }
   }
   function useBatcher() {
-    const updateFuncRef = React__namespace.useRef(null);
+    const updateFuncRef = reactExports.useRef(null);
     const notifyEffectUpdate = (callback) => {
       if (!updateFuncRef.current) {
         updateFuncRef.current = [];
@@ -33563,7 +34020,7 @@ html body {
     return notifyEffectUpdate;
   }
   function useEffectState(notifyEffectUpdate, defaultValue) {
-    const [stateValue, setStateValue] = React__namespace.useState(defaultValue);
+    const [stateValue, setStateValue] = reactExports.useState(defaultValue);
     const setEffectVal = useEvent((nextValue) => {
       notifyEffectUpdate(() => {
         setStateValue(nextValue);
@@ -33573,13 +34030,13 @@ html body {
   }
   const OverflowContext = /* @__PURE__ */ React.createContext(null);
   const InternalRawItem = (props, ref) => {
-    const context = React__namespace.useContext(OverflowContext);
+    const context = reactExports.useContext(OverflowContext);
     if (!context) {
       const {
         component: Component = "div",
         ...restProps2
       } = props;
-      return /* @__PURE__ */ React__namespace.createElement(Component, _extends$19({}, restProps2, {
+      return /* @__PURE__ */ reactExports.createElement(Component, _extends$19({}, restProps2, {
         ref
       }));
     }
@@ -33591,14 +34048,14 @@ html body {
       className,
       ...restProps
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement(OverflowContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(OverflowContext.Provider, {
       value: null
-    }, /* @__PURE__ */ React__namespace.createElement(Item$2, _extends$19({
+    }, /* @__PURE__ */ reactExports.createElement(Item$2, _extends$19({
       ref,
       className: clsx(contextClassName, className)
     }, restContext, restProps)));
   };
-  const RawItem = /* @__PURE__ */ React__namespace.forwardRef(InternalRawItem);
+  const RawItem = /* @__PURE__ */ reactExports.forwardRef(InternalRawItem);
   const RESPONSIVE = "responsive";
   const INVALIDATE = "invalidate";
   function defaultRenderRest(omittedItems) {
@@ -33634,22 +34091,22 @@ html body {
     const [restWidth, setRestWidth] = useEffectState(notifyEffectUpdate, 0);
     const [prefixWidth, setPrefixWidth] = useEffectState(notifyEffectUpdate, 0);
     const [suffixWidth, setSuffixWidth] = useEffectState(notifyEffectUpdate, 0);
-    const [suffixFixedStart, setSuffixFixedStart] = React.useState(null);
-    const [displayCount, setDisplayCount] = React.useState(null);
-    const mergedDisplayCount = React__namespace.useMemo(() => {
+    const [suffixFixedStart, setSuffixFixedStart] = reactExports.useState(null);
+    const [displayCount, setDisplayCount] = reactExports.useState(null);
+    const mergedDisplayCount = reactExports.useMemo(() => {
       if (displayCount === null && fullySSR) {
         return Number.MAX_SAFE_INTEGER;
       }
       return displayCount || 0;
     }, [displayCount, containerWidth]);
-    const [restReady, setRestReady] = React.useState(false);
+    const [restReady, setRestReady] = reactExports.useState(false);
     const itemPrefixCls = `${prefixCls}-item`;
     const mergedRestWidth = Math.max(prevRestWidth, restWidth);
     const isResponsive = maxCount === RESPONSIVE;
     const shouldResponsive = data.length && isResponsive;
     const invalidate = maxCount === INVALIDATE;
     const showRest = shouldResponsive || typeof maxCount === "number" && data.length > maxCount;
-    const mergedData = React.useMemo(() => {
+    const mergedData = reactExports.useMemo(() => {
       let items = data;
       if (shouldResponsive) {
         if (containerWidth === null && fullySSR) {
@@ -33662,19 +34119,19 @@ html body {
       }
       return items;
     }, [data, itemWidth, containerWidth, maxCount, shouldResponsive]);
-    const omittedItems = React.useMemo(() => {
+    const omittedItems = reactExports.useMemo(() => {
       if (shouldResponsive) {
         return data.slice(mergedDisplayCount + 1);
       }
       return data.slice(mergedData.length);
     }, [data, mergedData, shouldResponsive, mergedDisplayCount]);
-    const getKey2 = React.useCallback((item, index2) => {
+    const getKey2 = reactExports.useCallback((item, index2) => {
       if (typeof itemKey2 === "function") {
         return itemKey2(item);
       }
       return (itemKey2 && (item == null ? void 0 : item[itemKey2])) ?? index2;
     }, [itemKey2]);
-    const mergedRenderItem = React.useCallback(renderItem || ((item) => item), [renderItem]);
+    const mergedRenderItem = reactExports.useCallback(renderItem || ((item) => item), [renderItem]);
     function updateDisplayCount(count, suffixFixedStartVal, notReady) {
       if (displayCount === count && (suffixFixedStartVal === void 0 || suffixFixedStartVal === suffixFixedStart)) {
         return;
@@ -33768,7 +34225,7 @@ html body {
     };
     const internalRenderItemNode = renderRawItem ? (item, index2) => {
       const key2 = getKey2(item, index2);
-      return /* @__PURE__ */ React__namespace.createElement(OverflowContext.Provider, {
+      return /* @__PURE__ */ reactExports.createElement(OverflowContext.Provider, {
         key: key2,
         value: {
           ...itemSharedProps,
@@ -33781,7 +34238,7 @@ html body {
       }, renderRawItem(item, index2));
     } : (item, index2) => {
       const key2 = getKey2(item, index2);
-      return /* @__PURE__ */ React__namespace.createElement(Item$2, _extends$19({}, itemSharedProps, {
+      return /* @__PURE__ */ reactExports.createElement(Item$2, _extends$19({}, itemSharedProps, {
         order: index2,
         key: key2,
         item,
@@ -33798,24 +34255,24 @@ html body {
       display: displayRest
     };
     const mergedRenderRest = renderRest || defaultRenderRest;
-    const restNode = renderRawRest ? /* @__PURE__ */ React__namespace.createElement(OverflowContext.Provider, {
+    const restNode = renderRawRest ? /* @__PURE__ */ reactExports.createElement(OverflowContext.Provider, {
       value: {
         ...itemSharedProps,
         ...restContextProps
       }
-    }, renderRawRest(omittedItems)) : /* @__PURE__ */ React__namespace.createElement(Item$2, _extends$19({}, itemSharedProps, restContextProps), typeof mergedRenderRest === "function" ? mergedRenderRest(omittedItems) : mergedRenderRest);
-    const overflowNode = /* @__PURE__ */ React__namespace.createElement(Component, _extends$19({
+    }, renderRawRest(omittedItems)) : /* @__PURE__ */ reactExports.createElement(Item$2, _extends$19({}, itemSharedProps, restContextProps), typeof mergedRenderRest === "function" ? mergedRenderRest(omittedItems) : mergedRenderRest);
+    const overflowNode = /* @__PURE__ */ reactExports.createElement(Component, _extends$19({
       className: clsx(!invalidate && prefixCls, className),
       style: style2,
       ref
-    }, restProps), prefix2 && /* @__PURE__ */ React__namespace.createElement(Item$2, _extends$19({}, itemSharedProps, {
+    }, restProps), prefix2 && /* @__PURE__ */ reactExports.createElement(Item$2, _extends$19({}, itemSharedProps, {
       responsive: isResponsive,
       responsiveDisabled: !shouldResponsive,
       order: -1,
       className: `${itemPrefixCls}-prefix`,
       registerSize: registerPrefixSize,
       display: true
-    }), prefix2), mergedData.map(internalRenderItemNode), showRest ? restNode : null, suffix && /* @__PURE__ */ React__namespace.createElement(Item$2, _extends$19({}, itemSharedProps, {
+    }), prefix2), mergedData.map(internalRenderItemNode), showRest ? restNode : null, suffix && /* @__PURE__ */ reactExports.createElement(Item$2, _extends$19({}, itemSharedProps, {
       responsive: isResponsive,
       responsiveDisabled: !shouldResponsive,
       order: mergedDisplayCount,
@@ -33824,12 +34281,12 @@ html body {
       display: true,
       style: suffixStyle
     }), suffix));
-    return isResponsive ? /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+    return isResponsive ? /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
       onResize: onOverflowResize,
       disabled: !shouldResponsive
     }, overflowNode) : overflowNode;
   }
-  const ForwardOverflow = /* @__PURE__ */ React__namespace.forwardRef(Overflow);
+  const ForwardOverflow = /* @__PURE__ */ reactExports.forwardRef(Overflow);
   ForwardOverflow.Item = RawItem;
   ForwardOverflow.RESPONSIVE = RESPONSIVE;
   ForwardOverflow.INVALIDATE = INVALIDATE;
@@ -33844,7 +34301,7 @@ html body {
       onClick
     } = props;
     const icon = typeof customizeIcon === "function" ? customizeIcon(customizeIconProps) : customizeIcon;
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className,
       onMouseDown: (event) => {
         event.preventDefault();
@@ -33858,7 +34315,7 @@ html body {
       unselectable: "on",
       onClick,
       "aria-hidden": true
-    }, icon !== void 0 ? icon : /* @__PURE__ */ React__namespace.createElement("span", {
+    }, icon !== void 0 ? icon : /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(className.split(/\s+/).map((cls) => `${cls}-icon`))
     }, children));
   };
@@ -33883,7 +34340,7 @@ html body {
     event.preventDefault();
     event.stopPropagation();
   };
-  const MultipleContent = /* @__PURE__ */ React__namespace.forwardRef(function MultipleContent2({
+  const MultipleContent = /* @__PURE__ */ reactExports.forwardRef(function MultipleContent2({
     inputProps
   }, ref) {
     const {
@@ -33924,16 +34381,16 @@ html body {
     const onRemove = (value) => {
       onSelectorRemove == null ? void 0 : onSelectorRemove(value);
     };
-    const defaultRenderSelector = (item, content, itemDisabled, closable, onClose) => /* @__PURE__ */ React__namespace.createElement("span", {
+    const defaultRenderSelector = (item, content, itemDisabled, closable, onClose) => /* @__PURE__ */ reactExports.createElement("span", {
       title: getTitle(item),
       className: clsx(selectionItemPrefixCls, {
         [`${selectionItemPrefixCls}-disabled`]: itemDisabled
       }, classNames == null ? void 0 : classNames.item),
       style: styles2 == null ? void 0 : styles2.item
-    }, /* @__PURE__ */ React__namespace.createElement("span", {
+    }, /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${selectionItemPrefixCls}-content`, classNames == null ? void 0 : classNames.itemContent),
       style: styles2 == null ? void 0 : styles2.itemContent
-    }, content), closable && /* @__PURE__ */ React__namespace.createElement(TransBtn, {
+    }, content), closable && /* @__PURE__ */ reactExports.createElement(TransBtn, {
       className: clsx(`${selectionItemPrefixCls}-remove`, classNames == null ? void 0 : classNames.itemRemove),
       style: styles2 == null ? void 0 : styles2.itemRemove,
       onMouseDown: onPreventMouseDown,
@@ -33945,7 +34402,7 @@ html body {
         onPreventMouseDown(e2);
         onToggleOpen(!triggerOpen);
       };
-      return /* @__PURE__ */ React__namespace.createElement("span", {
+      return /* @__PURE__ */ reactExports.createElement("span", {
         onMouseDown
       }, tagRender({
         label: content,
@@ -33990,15 +34447,15 @@ html body {
         title: content
       }, content, false);
     };
-    return /* @__PURE__ */ React__namespace.createElement(ForwardOverflow, {
+    return /* @__PURE__ */ reactExports.createElement(ForwardOverflow, {
       prefixCls: `${prefixCls}-content`,
       className: classNames == null ? void 0 : classNames.content,
       style: styles2 == null ? void 0 : styles2.content,
-      prefix: !displayValues.length && !inputValue && /* @__PURE__ */ React__namespace.createElement(Placeholder, null),
+      prefix: !displayValues.length && !inputValue && /* @__PURE__ */ reactExports.createElement(Placeholder, null),
       data: displayValues,
       renderItem,
       renderRest,
-      suffix: /* @__PURE__ */ React__namespace.createElement(Input$3, _extends$$({
+      suffix: /* @__PURE__ */ reactExports.createElement(Input$3, _extends$$({
         ref,
         disabled,
         readOnly: !inputEditable
@@ -34010,7 +34467,7 @@ html body {
       maxCount: maxTagCount
     });
   });
-  const SelectContent = /* @__PURE__ */ React__namespace.forwardRef(function SelectContent2(_2, ref) {
+  const SelectContent = /* @__PURE__ */ reactExports.forwardRef(function SelectContent2(_2, ref) {
     const {
       multiple,
       onInputKeyDown,
@@ -34030,12 +34487,12 @@ html body {
       tabIndex
     };
     if (multiple) {
-      return /* @__PURE__ */ React__namespace.createElement(MultipleContent, {
+      return /* @__PURE__ */ reactExports.createElement(MultipleContent, {
         ref,
         inputProps: sharedInputProps
       });
     }
-    return /* @__PURE__ */ React__namespace.createElement(SingleContent, {
+    return /* @__PURE__ */ reactExports.createElement(SingleContent, {
       ref,
       inputProps: sharedInputProps
     });
@@ -34096,7 +34553,7 @@ html body {
     return _extends$_.apply(this, arguments);
   }
   const DEFAULT_OMIT_PROPS = ["value", "onChange", "removeIcon", "placeholder", "maxTagCount", "maxTagTextLength", "maxTagPlaceholder", "choiceTransitionName", "onInputKeyDown", "onPopupScroll", "tabIndex", "activeValue", "onSelectorRemove", "focused"];
-  const SelectInput = /* @__PURE__ */ React__namespace.forwardRef(function SelectInput2(props, ref) {
+  const SelectInput = /* @__PURE__ */ reactExports.forwardRef(function SelectInput2(props, ref) {
     const {
       // Style
       prefixCls,
@@ -34140,8 +34597,8 @@ html body {
       classNames,
       styles: styles2
     } = useBaseProps();
-    const rootRef = React__namespace.useRef(null);
-    const inputRef = React__namespace.useRef(null);
+    const rootRef = reactExports.useRef(null);
+    const inputRef = reactExports.useRef(null);
     const onInternalInputKeyDown = useEvent((event) => {
       const {
         which
@@ -34161,7 +34618,7 @@ html body {
         toggleOpen(true);
       }
     });
-    React__namespace.useImperativeHandle(ref, () => {
+    reactExports.useImperativeHandle(ref, () => {
       return {
         focus: (options) => {
           var _a2, _b2;
@@ -34226,35 +34683,35 @@ html body {
           };
         }
       });
-      if (/* @__PURE__ */ React__namespace.isValidElement(RootComponent)) {
-        return /* @__PURE__ */ React__namespace.cloneElement(RootComponent, {
+      if (/* @__PURE__ */ reactExports.isValidElement(RootComponent)) {
+        return /* @__PURE__ */ reactExports.cloneElement(RootComponent, {
           ...mergedProps,
           ref: composeRef(RootComponent.ref, rootRef)
         });
       }
-      return /* @__PURE__ */ React__namespace.createElement(RootComponent, _extends$_({}, mergedProps, {
+      return /* @__PURE__ */ reactExports.createElement(RootComponent, _extends$_({}, mergedProps, {
         ref: rootRef
       }));
     }
-    return /* @__PURE__ */ React__namespace.createElement(SelectInputContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(SelectInputContext.Provider, {
       value: contextValue
-    }, /* @__PURE__ */ React__namespace.createElement("div", _extends$_({}, omit(domProps, ariaKeys), {
+    }, /* @__PURE__ */ reactExports.createElement("div", _extends$_({}, omit(domProps, ariaKeys), {
       // Style
       ref: rootRef,
       className,
       style: style2,
       onMouseDown: onInternalMouseDown
-    }), /* @__PURE__ */ React__namespace.createElement(Affix, {
+    }), /* @__PURE__ */ reactExports.createElement(Affix, {
       className: clsx(`${prefixCls}-prefix`, classNames == null ? void 0 : classNames.prefix),
       style: styles2 == null ? void 0 : styles2.prefix
-    }, prefix2), /* @__PURE__ */ React__namespace.createElement(SelectContent, {
+    }, prefix2), /* @__PURE__ */ reactExports.createElement(SelectContent, {
       ref: inputRef
-    }), /* @__PURE__ */ React__namespace.createElement(Affix, {
+    }), /* @__PURE__ */ reactExports.createElement(Affix, {
       className: clsx(`${prefixCls}-suffix`, {
         [`${prefixCls}-suffix-loading`]: loading
       }, classNames == null ? void 0 : classNames.suffix),
       style: styles2 == null ? void 0 : styles2.suffix
-    }, suffix), clearIcon && /* @__PURE__ */ React__namespace.createElement(Affix, {
+    }, suffix), clearIcon && /* @__PURE__ */ reactExports.createElement(Affix, {
       className: clsx(`${prefixCls}-clear`, classNames == null ? void 0 : classNames.clear),
       style: styles2 == null ? void 0 : styles2.clear,
       onMouseDown: (e2) => {
@@ -34264,7 +34721,7 @@ html body {
     }, clearIcon), children));
   });
   function useComponents(components2, getInputElement, getRawInputElement) {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       let {
         root: root2,
         input
@@ -34296,7 +34753,7 @@ html body {
     return _extends$Z.apply(this, arguments);
   }
   const isMultiple = (mode) => mode === "tags" || mode === "multiple";
-  const BaseSelect = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const BaseSelect = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       id,
       prefixCls,
@@ -34370,11 +34827,11 @@ html body {
       ...restProps
     } = props;
     const multiple = isMultiple(mode);
-    const containerRef = React__namespace.useRef(null);
-    const triggerRef = React__namespace.useRef(null);
-    const listRef = React__namespace.useRef(null);
-    const [focused, setFocused] = React__namespace.useState(false);
-    React__namespace.useImperativeHandle(ref, () => {
+    const containerRef = reactExports.useRef(null);
+    const triggerRef = reactExports.useRef(null);
+    const listRef = reactExports.useRef(null);
+    const [focused, setFocused] = reactExports.useState(false);
+    reactExports.useImperativeHandle(ref, () => {
       var _a2, _b2;
       return {
         focus: (_a2 = containerRef.current) == null ? void 0 : _a2.focus,
@@ -34387,7 +34844,7 @@ html body {
       };
     });
     const mergedComponents = useComponents(components2, getInputElement, getRawInputElement);
-    const mergedSearchValue = React__namespace.useMemo(() => {
+    const mergedSearchValue = reactExports.useMemo(() => {
       var _a2;
       if (mode !== "combobox") {
         return searchValue;
@@ -34398,7 +34855,7 @@ html body {
     const customizeInputElement = mode === "combobox" && typeof getInputElement === "function" && getInputElement() || null;
     const emptyListContent = !notFoundContent && emptyOptions;
     const [rawOpen, mergedOpen, triggerOpen, lockOptions] = useOpen(defaultOpen || false, open2, onPopupVisibleChange, (nextOpen) => disabled || emptyListContent ? false : nextOpen);
-    const tokenWithEnter = React__namespace.useMemo(() => (tokenSeparators || []).some((tokenSeparator) => ["\n", "\r\n"].includes(tokenSeparator)), [tokenSeparators]);
+    const tokenWithEnter = reactExports.useMemo(() => (tokenSeparators || []).some((tokenSeparator) => ["\n", "\r\n"].includes(tokenSeparator)), [tokenSeparators]);
     const onInternalSearch = (searchText, fromTyping, isCompositing) => {
       if (multiple && isValidCount(maxCount) && displayValues.length >= maxCount) {
         return;
@@ -34432,19 +34889,19 @@ html body {
         source: "submit"
       });
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!rawOpen && !multiple && mode !== "combobox") {
         onInternalSearch("", false, false);
       }
     }, [rawOpen]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (disabled) {
         triggerOpen(false);
         setFocused(false);
       }
     }, [disabled, mergedOpen]);
     const [getClearLock, setClearLock] = useLock();
-    const keyLockRef = React__namespace.useRef(false);
+    const keyLockRef = reactExports.useRef(false);
     const onInternalKeyDown = (event) => {
       var _a2;
       const clearLock = getClearLock();
@@ -34515,7 +34972,7 @@ html body {
       return [getDOM(containerRef.current), (_a2 = triggerRef.current) == null ? void 0 : _a2.getPopupElement()];
     };
     useSelectTriggerControl(getSelectElements, mergedOpen, triggerOpen, !!mergedComponents.root);
-    const internalMouseDownRef = React__namespace.useRef(false);
+    const internalMouseDownRef = reactExports.useRef(false);
     const onInternalFocus = (event) => {
       setFocused(true);
       if (!disabled) {
@@ -34565,7 +35022,7 @@ html body {
         internalMouseDownRef.current = false;
       });
     };
-    const [, forceUpdate] = React__namespace.useState({});
+    const [, forceUpdate] = reactExports.useState({});
     function onPopupMouseEnter() {
       forceUpdate({});
     }
@@ -34575,7 +35032,7 @@ html body {
         triggerOpen(newOpen);
       };
     }
-    const baseSelectContext = React__namespace.useMemo(() => ({
+    const baseSelectContext = reactExports.useMemo(() => ({
       ...props,
       notFoundContent,
       open: mergedOpen,
@@ -34590,7 +35047,7 @@ html body {
       classNames,
       lockOptions
     }), [props, notFoundContent, triggerOpen, id, showSearch, multiple, mergedOpen, rawOpen, showScrollBar, styles2, classNames, lockOptions]);
-    const mergedSuffixIcon = React__namespace.useMemo(() => {
+    const mergedSuffixIcon = reactExports.useMemo(() => {
       const nextSuffix = suffix ?? suffixIcon;
       if (typeof nextSuffix === "function") {
         return nextSuffix({
@@ -34617,7 +35074,7 @@ html body {
       allowClear: mergedAllowClear,
       clearIcon: clearNode
     } = useAllowClear(prefixCls, displayValues, allowClear, clearIcon, disabled, mergedSearchValue, mode);
-    const optionList = /* @__PURE__ */ React__namespace.createElement(OptionList2, {
+    const optionList = /* @__PURE__ */ reactExports.createElement(OptionList2, {
       ref: listRef
     });
     const mergedClassName = clsx(prefixCls, className, {
@@ -34632,7 +35089,7 @@ html body {
       [`${prefixCls}-customize-input`]: customizeInputElement,
       [`${prefixCls}-show-search`]: showSearch
     });
-    let renderNode = /* @__PURE__ */ React__namespace.createElement(SelectInput, _extends$Z({}, restProps, {
+    let renderNode = /* @__PURE__ */ reactExports.createElement(SelectInput, _extends$Z({}, restProps, {
       // Ref
       ref: containerRef,
       prefixCls,
@@ -34660,7 +35117,7 @@ html body {
       onMouseDown: onRootMouseDown,
       components: mergedComponents
     }));
-    renderNode = /* @__PURE__ */ React__namespace.createElement(RefSelectTrigger, {
+    renderNode = /* @__PURE__ */ reactExports.createElement(RefSelectTrigger, {
       ref: triggerRef,
       disabled,
       prefixCls,
@@ -34683,9 +35140,9 @@ html body {
       onPopupMouseDown: onRootMouseDown,
       onPopupBlur: onRootBlur
     }, renderNode);
-    return /* @__PURE__ */ React__namespace.createElement(BaseSelectContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(BaseSelectContext.Provider, {
       value: baseSelectContext
-    }, /* @__PURE__ */ React__namespace.createElement(Polite, {
+    }, /* @__PURE__ */ reactExports.createElement(Polite, {
       visible: focused && !mergedOpen,
       values: displayValues
     }), renderNode);
@@ -34694,7 +35151,7 @@ html body {
   OptGroup.isSelectOptGroup = true;
   const Option$3 = () => null;
   Option$3.isSelectOption = true;
-  const Filler = /* @__PURE__ */ React__namespace.forwardRef(({
+  const Filler = /* @__PURE__ */ reactExports.forwardRef(({
     height,
     offsetY,
     offsetX,
@@ -34726,9 +35183,9 @@ html body {
         top: 0
       };
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       style: outerStyle
-    }, /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+    }, /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
       onResize: ({
         offsetHeight
       }) => {
@@ -34736,7 +35193,7 @@ html body {
           onInnerResize();
         }
       }
-    }, /* @__PURE__ */ React__namespace.createElement("div", _extends$19({
+    }, /* @__PURE__ */ reactExports.createElement("div", _extends$19({
       style: innerStyle,
       className: clsx({
         [`${prefixCls}-holder-inner`]: prefixCls
@@ -34749,10 +35206,10 @@ html body {
     children,
     setRef
   }) {
-    const refFunc = React__namespace.useCallback((node2) => {
+    const refFunc = reactExports.useCallback((node2) => {
       setRef(node2);
     }, []);
-    return /* @__PURE__ */ React__namespace.cloneElement(children, {
+    return /* @__PURE__ */ reactExports.cloneElement(children, {
       ref: refFunc
     });
   }
@@ -34768,7 +35225,7 @@ html body {
         offsetX
       });
       const key2 = getKey2(item);
-      return /* @__PURE__ */ React__namespace.createElement(Item$1, {
+      return /* @__PURE__ */ reactExports.createElement(Item$1, {
         key: key2,
         setRef: (ele) => setNodeRef(item, ele)
       }, node2);
@@ -34815,9 +35272,9 @@ html body {
     };
   }
   function useDiffItem(data, getKey2, onDiff) {
-    const [prevData, setPrevData] = React__namespace.useState(data);
-    const [diffItem, setDiffItem] = React__namespace.useState(null);
-    React__namespace.useEffect(() => {
+    const [prevData, setPrevData] = reactExports.useState(data);
+    const [diffItem, setDiffItem] = reactExports.useState(null);
+    reactExports.useEffect(() => {
       const diff = findListDiffIndex(prevData || [], data || [], getKey2);
       if ((diff == null ? void 0 : diff.index) !== void 0) {
         setDiffItem(data[diff.index]);
@@ -34828,8 +35285,8 @@ html body {
   }
   const isFF = typeof navigator === "object" && /Firefox/i.test(navigator.userAgent);
   const useOriginScroll = ((isScrollAtTop, isScrollAtBottom, isScrollAtLeft, isScrollAtRight) => {
-    const lockRef = React.useRef(false);
-    const lockTimeoutRef = React.useRef(null);
+    const lockRef = reactExports.useRef(false);
+    const lockTimeoutRef = reactExports.useRef(null);
     function lockScroll() {
       clearTimeout(lockTimeoutRef.current);
       lockRef.current = true;
@@ -34837,7 +35294,7 @@ html body {
         lockRef.current = false;
       }, 50);
     }
-    const scrollPingRef = React.useRef({
+    const scrollPingRef = reactExports.useRef({
       top: isScrollAtTop,
       bottom: isScrollAtBottom,
       left: isScrollAtLeft,
@@ -34864,10 +35321,10 @@ html body {
     };
   });
   function useFrameWheel(inVirtual, isScrollAtTop, isScrollAtBottom, isScrollAtLeft, isScrollAtRight, horizontalScroll, onWheelDelta) {
-    const offsetRef = React.useRef(0);
-    const nextFrameRef = React.useRef(null);
-    const wheelValueRef = React.useRef(null);
-    const isMouseScrollRef = React.useRef(false);
+    const offsetRef = reactExports.useRef(0);
+    const nextFrameRef = reactExports.useRef(null);
+    const wheelValueRef = reactExports.useRef(null);
+    const isMouseScrollRef = reactExports.useRef(false);
     const originScroll = useOriginScroll(isScrollAtTop, isScrollAtBottom, isScrollAtLeft, isScrollAtRight);
     function onWheelY(e2, deltaY) {
       wrapperRaf.cancel(nextFrameRef.current);
@@ -34895,8 +35352,8 @@ html body {
         event.preventDefault();
       }
     }
-    const wheelDirectionRef = React.useRef(null);
-    const wheelDirectionCleanRef = React.useRef(null);
+    const wheelDirectionRef = reactExports.useRef(null);
+    const wheelDirectionCleanRef = reactExports.useRef(null);
     function onWheel(event) {
       if (!inVirtual) return;
       wrapperRaf.cancel(wheelDirectionCleanRef.current);
@@ -34933,7 +35390,7 @@ html body {
     return [onWheel, onFireFoxScroll];
   }
   function useGetSize(mergedData, getKey2, heights, itemHeight) {
-    const [key2Index, bottomList] = React__namespace.useMemo(() => [/* @__PURE__ */ new Map(), []], [mergedData, heights.id, itemHeight]);
+    const [key2Index, bottomList] = reactExports.useMemo(() => [/* @__PURE__ */ new Map(), []], [mergedData, heights.id, itemHeight]);
     const getSize = (startKey, endKey = startKey) => {
       let startIndex = key2Index.get(startKey);
       let endIndex = key2Index.get(endKey);
@@ -34996,10 +35453,10 @@ html body {
     return isNaN(num) ? 0 : num;
   }
   function useHeights(getKey2, onItemAdd, onItemRemove) {
-    const [updatedMark, setUpdatedMark] = React__namespace.useState(0);
-    const instanceRef = React.useRef(/* @__PURE__ */ new Map());
-    const heightsRef = React.useRef(new CacheMap());
-    const promiseIdRef = React.useRef(0);
+    const [updatedMark, setUpdatedMark] = reactExports.useState(0);
+    const instanceRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const heightsRef = reactExports.useRef(new CacheMap());
+    const promiseIdRef = reactExports.useRef(0);
     function cancelRaf() {
       promiseIdRef.current += 1;
     }
@@ -35051,18 +35508,18 @@ html body {
         instanceRef.current.delete(key2);
       }
     }
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       return cancelRaf;
     }, []);
     return [setInstanceRef, collectHeight, heightsRef.current, updatedMark];
   }
   const SMOOTH_PTG = 14 / 15;
   function useMobileTouchMove(inVirtual, listRef, callback) {
-    const touchedRef = React.useRef(false);
-    const touchXRef = React.useRef(0);
-    const touchYRef = React.useRef(0);
-    const elementRef = React.useRef(null);
-    const intervalRef = React.useRef(null);
+    const touchedRef = reactExports.useRef(false);
+    const touchXRef = reactExports.useRef(0);
+    const touchYRef = reactExports.useRef(0);
+    const elementRef = reactExports.useRef(null);
+    const intervalRef = reactExports.useRef(null);
     let cleanUpEvents;
     const onTouchMove = (e2) => {
       if (touchedRef.current) {
@@ -35143,7 +35600,7 @@ html body {
     return obj[horizontal ? "pageX" : "pageY"] - window[horizontal ? "scrollX" : "scrollY"];
   }
   function useScrollDrag(inVirtual, componentRef, onScrollOffset) {
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       const ele = componentRef.current;
       if (inVirtual && ele) {
         let mouseDownLock = false;
@@ -35213,8 +35670,8 @@ html body {
     return Number.isFinite(resolvedOffset) ? resolvedOffset : 0;
   }
   function useScrollTo(containerRef, data, heights, itemHeight, getKey2, getSize, collectHeight, syncScrollTop, triggerFlash) {
-    const scrollRef = React__namespace.useRef();
-    const [syncState, setSyncState] = React__namespace.useState(null);
+    const scrollRef = reactExports.useRef();
+    const [syncState, setSyncState] = reactExports.useState(null);
     useLayoutEffect(() => {
       if (syncState && syncState.times < MAX_TIMES) {
         if (!containerRef.current) {
@@ -35331,7 +35788,7 @@ html body {
       }
     };
   }
-  const ScrollBar = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const ScrollBar = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls,
       rtl,
@@ -35347,14 +35804,14 @@ html body {
       thumbStyle: propsThumbStyle,
       showScrollBar
     } = props;
-    const [dragging, setDragging] = React__namespace.useState(false);
-    const [pageXY, setPageXY] = React__namespace.useState(null);
-    const [startTop, setStartTop] = React__namespace.useState(null);
+    const [dragging, setDragging] = reactExports.useState(false);
+    const [pageXY, setPageXY] = reactExports.useState(null);
+    const [startTop, setStartTop] = reactExports.useState(null);
     const isLTR = !rtl;
-    const scrollbarRef = React__namespace.useRef();
-    const thumbRef = React__namespace.useRef();
-    const [visible, setVisible] = React__namespace.useState(showScrollBar);
-    const visibleTimeoutRef = React__namespace.useRef();
+    const scrollbarRef = reactExports.useRef();
+    const thumbRef = reactExports.useRef();
+    const [visible, setVisible] = reactExports.useState(showScrollBar);
+    const visibleTimeoutRef = reactExports.useRef();
     const delayHidden = () => {
       if (showScrollBar === true || showScrollBar === false) return;
       clearTimeout(visibleTimeoutRef.current);
@@ -35365,7 +35822,7 @@ html body {
     };
     const enableScrollRange = scrollRange - containerSize || 0;
     const enableOffsetRange = containerSize - spinSize || 0;
-    const top = React__namespace.useMemo(() => {
+    const top = reactExports.useMemo(() => {
       if (scrollOffset === 0 || enableScrollRange === 0) {
         return 0;
       }
@@ -35376,7 +35833,7 @@ html body {
       e2.stopPropagation();
       e2.preventDefault();
     };
-    const stateRef = React__namespace.useRef({
+    const stateRef = reactExports.useRef({
       top,
       dragging,
       pageY: pageXY,
@@ -35396,7 +35853,7 @@ html body {
       e2.stopPropagation();
       e2.preventDefault();
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       const onScrollbarTouchStart = (e2) => {
         e2.preventDefault();
       };
@@ -35413,11 +35870,11 @@ html body {
         thumbEle.removeEventListener("touchstart", onThumbMouseDown);
       };
     }, []);
-    const enableScrollRangeRef = React__namespace.useRef();
+    const enableScrollRangeRef = reactExports.useRef();
     enableScrollRangeRef.current = enableScrollRange;
-    const enableOffsetRangeRef = React__namespace.useRef();
+    const enableOffsetRangeRef = reactExports.useRef();
     enableOffsetRangeRef.current = enableOffsetRange;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (dragging) {
         let moveRafId;
         const onMouseMove = (e2) => {
@@ -35473,13 +35930,13 @@ html body {
         };
       }
     }, [dragging]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       delayHidden();
       return () => {
         clearTimeout(visibleTimeoutRef.current);
       };
     }, [scrollOffset]);
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       delayHidden
     }));
     const scrollbarPrefixCls = `${prefixCls}-scrollbar`;
@@ -35519,7 +35976,7 @@ html body {
         top
       });
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ref: scrollbarRef,
       className: clsx(scrollbarPrefixCls, {
         [`${scrollbarPrefixCls}-horizontal`]: horizontal,
@@ -35532,7 +35989,7 @@ html body {
       },
       onMouseDown: onContainerMouseDown,
       onMouseMove: delayHidden
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       ref: thumbRef,
       className: clsx(`${scrollbarPrefixCls}-thumb`, {
         [`${scrollbarPrefixCls}-thumb-moving`]: dragging
@@ -35582,7 +36039,7 @@ html body {
       showScrollBar = "optional",
       ...restProps
     } = props;
-    const getKey2 = React__namespace.useCallback((item) => {
+    const getKey2 = reactExports.useCallback((item) => {
       if (typeof itemKey2 === "function") {
         return itemKey2(item);
       }
@@ -35590,19 +36047,19 @@ html body {
     }, [itemKey2]);
     const [setInstanceRef, collectHeight, heights, heightUpdatedMark] = useHeights(getKey2);
     const useVirtual = !!(virtual !== false && height && itemHeight);
-    const containerHeight = React__namespace.useMemo(() => Object.values(heights.maps).reduce((total, curr) => total + curr, 0), [heights.id, heights.maps]);
+    const containerHeight = reactExports.useMemo(() => Object.values(heights.maps).reduce((total, curr) => total + curr, 0), [heights.id, heights.maps]);
     const inVirtual = useVirtual && data && (Math.max(itemHeight * data.length, containerHeight) > height || !!scrollWidth);
     const isRTL = direction === "rtl";
     const mergedClassName = clsx(prefixCls, {
       [`${prefixCls}-rtl`]: isRTL
     }, className);
     const mergedData = data || EMPTY_DATA$1;
-    const componentRef = React.useRef();
-    const fillerInnerRef = React.useRef();
-    const containerRef = React.useRef();
-    const [offsetTop, setOffsetTop] = React.useState(0);
-    const [offsetLeft, setOffsetLeft] = React.useState(0);
-    const [scrollMoving, setScrollMoving] = React.useState(false);
+    const componentRef = reactExports.useRef();
+    const fillerInnerRef = reactExports.useRef();
+    const containerRef = reactExports.useRef();
+    const [offsetTop, setOffsetTop] = reactExports.useState(0);
+    const [offsetLeft, setOffsetLeft] = reactExports.useState(0);
+    const [scrollMoving, setScrollMoving] = reactExports.useState(false);
     const onScrollbarStartMove = () => {
       setScrollMoving(true);
     };
@@ -35625,11 +36082,11 @@ html body {
         return alignedTop;
       });
     }
-    const rangeRef = React.useRef({
+    const rangeRef = reactExports.useRef({
       start: 0,
       end: mergedData.length
     });
-    const diffItemRef = React.useRef();
+    const diffItemRef = reactExports.useRef();
     const [diffItem] = useDiffItem(mergedData, getKey2);
     diffItemRef.current = diffItem;
     const {
@@ -35637,7 +36094,7 @@ html body {
       start,
       end,
       offset: fillerOffset
-    } = React__namespace.useMemo(() => {
+    } = reactExports.useMemo(() => {
       var _a2;
       if (!useVirtual) {
         return {
@@ -35692,7 +36149,7 @@ html body {
     }, [inVirtual, useVirtual, offsetTop, mergedData, heightUpdatedMark, height]);
     rangeRef.current.start = start;
     rangeRef.current.end = end;
-    React__namespace.useLayoutEffect(() => {
+    reactExports.useLayoutEffect(() => {
       const changedRecord = heights.getRecord();
       if (changedRecord.size === 1) {
         const recordKey = Array.from(changedRecord.keys())[0];
@@ -35711,7 +36168,7 @@ html body {
       }
       heights.resetRecord();
     }, [scrollHeight]);
-    const [size, setSize] = React__namespace.useState({
+    const [size, setSize] = reactExports.useState({
       width: 0,
       height
     });
@@ -35721,12 +36178,12 @@ html body {
         height: sizeInfo.offsetHeight
       });
     };
-    const verticalScrollBarRef = React.useRef();
-    const horizontalScrollBarRef = React.useRef();
-    const horizontalScrollBarSpinSize = React__namespace.useMemo(() => getSpinSize(size.width, scrollWidth), [size.width, scrollWidth]);
-    const verticalScrollBarSpinSize = React__namespace.useMemo(() => getSpinSize(size.height, scrollHeight), [size.height, scrollHeight]);
+    const verticalScrollBarRef = reactExports.useRef();
+    const horizontalScrollBarRef = reactExports.useRef();
+    const horizontalScrollBarSpinSize = reactExports.useMemo(() => getSpinSize(size.width, scrollWidth), [size.width, scrollWidth]);
+    const verticalScrollBarSpinSize = reactExports.useMemo(() => getSpinSize(size.height, scrollHeight), [size.height, scrollHeight]);
     const maxScrollHeight = scrollHeight - height;
-    const maxScrollHeightRef = React.useRef(maxScrollHeight);
+    const maxScrollHeightRef = reactExports.useRef(maxScrollHeight);
     maxScrollHeightRef.current = maxScrollHeight;
     function keepInRange(newScrollTop) {
       let newTop = newScrollTop;
@@ -35745,7 +36202,7 @@ html body {
       x: isRTL ? -offsetLeft : offsetLeft,
       y: offsetTop
     });
-    const lastVirtualScrollInfoRef = React.useRef(getVirtualScrollInfo());
+    const lastVirtualScrollInfoRef = reactExports.useRef(getVirtualScrollInfo());
     const triggerScroll = useEvent((params) => {
       if (onVirtualScroll) {
         const nextInfo = {
@@ -35865,7 +36322,7 @@ html body {
     };
     const getSize = useGetSize(mergedData, getKey2, heights, itemHeight);
     const scrollTo2 = useScrollTo(componentRef, mergedData, heights, itemHeight, getKey2, getSize, () => collectHeight(true), syncScrollTop, delayHideScrollBar);
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       nativeElement: containerRef.current,
       getScrollInfo: getVirtualScrollInfo,
       scrollTo: (config2) => {
@@ -35919,22 +36376,22 @@ html body {
     if (isRTL) {
       containerProps.dir = "rtl";
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", _extends$19({
+    return /* @__PURE__ */ reactExports.createElement("div", _extends$19({
       ref: containerRef,
       style: {
         ...style2,
         position: "relative"
       },
       className: mergedClassName
-    }, containerProps, restProps), /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+    }, containerProps, restProps), /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
       onResize: onHolderResize
-    }, /* @__PURE__ */ React__namespace.createElement(Component, {
+    }, /* @__PURE__ */ reactExports.createElement(Component, {
       className: `${prefixCls}-holder`,
       style: componentStyle,
       ref: componentRef,
       onScroll: onFallbackScroll,
       onMouseEnter: delayHideScrollBar
-    }, /* @__PURE__ */ React__namespace.createElement(Filler, {
+    }, /* @__PURE__ */ reactExports.createElement(Filler, {
       prefixCls,
       height: scrollHeight,
       offsetX: offsetLeft,
@@ -35945,7 +36402,7 @@ html body {
       innerProps,
       rtl: isRTL,
       extra: extraContent
-    }, listChildren))), inVirtual && scrollHeight > height && /* @__PURE__ */ React__namespace.createElement(ScrollBar, {
+    }, listChildren))), inVirtual && scrollHeight > height && /* @__PURE__ */ reactExports.createElement(ScrollBar, {
       ref: verticalScrollBarRef,
       prefixCls,
       scrollOffset: offsetTop,
@@ -35959,7 +36416,7 @@ html body {
       style: styles2 == null ? void 0 : styles2.verticalScrollBar,
       thumbStyle: styles2 == null ? void 0 : styles2.verticalScrollBarThumb,
       showScrollBar
-    }), inVirtual && scrollWidth > size.width && /* @__PURE__ */ React__namespace.createElement(ScrollBar, {
+    }), inVirtual && scrollWidth > size.width && /* @__PURE__ */ reactExports.createElement(ScrollBar, {
       ref: horizontalScrollBarRef,
       prefixCls,
       scrollOffset: offsetLeft,
@@ -35976,9 +36433,9 @@ html body {
       showScrollBar
     }));
   }
-  const List$1 = /* @__PURE__ */ React__namespace.forwardRef(RawList);
+  const List$1 = /* @__PURE__ */ reactExports.forwardRef(RawList);
   List$1.displayName = "List";
-  const List = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => RawList({
+  const List = /* @__PURE__ */ reactExports.forwardRef((props, ref) => RawList({
     ...props,
     virtual: false
   }, ref));
@@ -36034,11 +36491,11 @@ html body {
       optionRender,
       classNames: contextClassNames,
       styles: contextStyles
-    } = React__namespace.useContext(SelectContext);
+    } = reactExports.useContext(SelectContext);
     const itemPrefixCls = `${prefixCls}-item`;
     const memoFlattenOptions = useMemo(() => flattenOptions2, [open2, lockOptions], (prev2, next2) => next2[0] && !next2[1]);
-    const listRef = React__namespace.useRef(null);
-    const overMaxCount = React__namespace.useMemo(() => multiple && isValidCount(maxCount) && (rawValues == null ? void 0 : rawValues.size) >= maxCount, [multiple, maxCount, rawValues == null ? void 0 : rawValues.size]);
+    const listRef = reactExports.useRef(null);
+    const overMaxCount = reactExports.useMemo(() => multiple && isValidCount(maxCount) && (rawValues == null ? void 0 : rawValues.size) >= maxCount, [multiple, maxCount, rawValues == null ? void 0 : rawValues.size]);
     const onListMouseDown = (event) => {
       event.preventDefault();
     };
@@ -36048,7 +36505,7 @@ html body {
         index: args
       } : args);
     };
-    const isSelected = React__namespace.useCallback((value) => {
+    const isSelected = reactExports.useCallback((value) => {
       if (mode === "combobox") {
         return false;
       }
@@ -36068,7 +36525,7 @@ html body {
       }
       return -1;
     };
-    const [activeIndex, setActiveIndex] = React__namespace.useState(() => getEnabledActiveIndex(0));
+    const [activeIndex, setActiveIndex] = reactExports.useState(() => getEnabledActiveIndex(0));
     const setActive = (index2, fromKeyboard = false) => {
       setActiveIndex(index2);
       const info = {
@@ -36081,16 +36538,16 @@ html body {
       }
       onActiveValue(flattenItem.value, index2, info);
     };
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       setActive(defaultActiveFirstOption !== false ? getEnabledActiveIndex(0) : -1);
     }, [memoFlattenOptions.length, searchValue]);
-    const isAriaSelected = React__namespace.useCallback((value) => {
+    const isAriaSelected = reactExports.useCallback((value) => {
       if (mode === "combobox") {
         return String(value).toLowerCase() === searchValue.toLowerCase();
       }
       return rawValues.has(value);
     }, [mode, searchValue, [...rawValues].toString(), rawValues.size]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       var _a3;
       let timeoutId;
       if (!multiple && open2 && rawValues.size === 1) {
@@ -36120,7 +36577,7 @@ html body {
         toggleOpen(false);
       }
     };
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       onKeyDown: (event) => {
         const {
           which,
@@ -36184,7 +36641,7 @@ html body {
       }
     }));
     if (memoFlattenOptions.length === 0) {
-      return /* @__PURE__ */ React__namespace.createElement("div", {
+      return /* @__PURE__ */ reactExports.createElement("div", {
         role: "listbox",
         id: `${id}_list`,
         className: `${itemPrefixCls}-empty`,
@@ -36217,7 +36674,7 @@ html body {
       } = item;
       const attrs = pickAttrs(itemData, true);
       const mergedLabel = getLabel2(item);
-      return item ? /* @__PURE__ */ React__namespace.createElement("div", _extends$Y({
+      return item ? /* @__PURE__ */ reactExports.createElement("div", _extends$Y({
         "aria-label": typeof mergedLabel === "string" && !group ? mergedLabel : null
       }, attrs, {
         key: index2
@@ -36230,13 +36687,13 @@ html body {
       role: "listbox",
       id: `${id}_list`
     };
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, virtual && /* @__PURE__ */ React__namespace.createElement("div", _extends$Y({}, a11yProps, {
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, virtual && /* @__PURE__ */ reactExports.createElement("div", _extends$Y({}, a11yProps, {
       style: {
         height: 0,
         width: 0,
         overflow: "hidden"
       }
-    }), renderItem(activeIndex - 1), renderItem(activeIndex), renderItem(activeIndex + 1)), /* @__PURE__ */ React__namespace.createElement(List$1, {
+    }), renderItem(activeIndex - 1), renderItem(activeIndex), renderItem(activeIndex + 1)), /* @__PURE__ */ reactExports.createElement(List$1, {
       itemKey: "key",
       ref: listRef,
       data: memoFlattenOptions,
@@ -36265,7 +36722,7 @@ html body {
       } = data;
       if (group) {
         const groupTitle = data.title ?? (isTitleType(label) ? label.toString() : void 0);
-        return /* @__PURE__ */ React__namespace.createElement("div", {
+        return /* @__PURE__ */ reactExports.createElement("div", {
           className: clsx(itemPrefixCls, `${itemPrefixCls}-group`, data.className),
           title: groupTitle
         }, label !== void 0 ? label : key2);
@@ -36295,7 +36752,7 @@ html body {
       if (title !== void 0) {
         optionTitle = title;
       }
-      return /* @__PURE__ */ React__namespace.createElement("div", _extends$Y({}, pickAttrs(passedProps), !virtual ? getItemAriaProps(item, itemIndex) : {}, {
+      return /* @__PURE__ */ reactExports.createElement("div", _extends$Y({}, pickAttrs(passedProps), !virtual ? getItemAriaProps(item, itemIndex) : {}, {
         "aria-selected": virtual ? void 0 : isAriaSelected(value),
         "aria-disabled": mergedDisabled,
         className: optionClassName,
@@ -36315,11 +36772,11 @@ html body {
           ...(_b3 = contextStyles == null ? void 0 : contextStyles.popup) == null ? void 0 : _b3.listItem,
           ...style2
         }
-      }), /* @__PURE__ */ React__namespace.createElement("div", {
+      }), /* @__PURE__ */ reactExports.createElement("div", {
         className: `${optionPrefixCls}-content`
       }, typeof optionRender === "function" ? optionRender(item, {
         index: itemIndex
-      }) : content), /* @__PURE__ */ React__namespace.isValidElement(menuItemSelectedIcon) || selected, iconVisible && /* @__PURE__ */ React__namespace.createElement(TransBtn, {
+      }) : content), /* @__PURE__ */ reactExports.isValidElement(menuItemSelectedIcon) || selected, iconVisible && /* @__PURE__ */ reactExports.createElement(TransBtn, {
         className: `${itemPrefixCls}-option-state`,
         customizeIcon: menuItemSelectedIcon,
         customizeIconProps: {
@@ -36330,13 +36787,13 @@ html body {
       }, selected ? "✓" : null));
     }));
   };
-  const RefOptionList = /* @__PURE__ */ React__namespace.forwardRef(OptionList);
+  const RefOptionList = /* @__PURE__ */ reactExports.forwardRef(OptionList);
   const useCache = ((labeledValues, valueOptions) => {
-    const cacheRef = React__namespace.useRef({
+    const cacheRef = reactExports.useRef({
       values: /* @__PURE__ */ new Map(),
       options: /* @__PURE__ */ new Map()
     });
-    const filledLabeledValues = React__namespace.useMemo(() => {
+    const filledLabeledValues = reactExports.useMemo(() => {
       const {
         values: prevValueCache,
         options: prevOptionCache
@@ -36361,14 +36818,14 @@ html body {
       cacheRef.current.options = optionCache;
       return patchedValues;
     }, [labeledValues, valueOptions]);
-    const getOption = React__namespace.useCallback((val) => valueOptions.get(val) || cacheRef.current.options.get(val), [valueOptions]);
+    const getOption = reactExports.useCallback((val) => valueOptions.get(val) || cacheRef.current.options.get(val), [valueOptions]);
     return [filledLabeledValues, getOption];
   });
   function includes(test2, search) {
     return toArray$3(test2).join("").toUpperCase().includes(search);
   }
   const useFilterOptions = ((options, fieldNames, searchValue, filterOption, optionFilterProp) => {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       if (!searchValue || filterOption === false) {
         return options;
       }
@@ -36431,7 +36888,7 @@ html body {
   }
   function convertChildrenToData(nodes, optionOnly = false) {
     return toArray$6(nodes).map((node2, index2) => {
-      if (!/* @__PURE__ */ React__namespace.isValidElement(node2) || !node2.type) {
+      if (!/* @__PURE__ */ reactExports.isValidElement(node2) || !node2.type) {
         return null;
       }
       const {
@@ -36456,7 +36913,7 @@ html body {
     }).filter((data) => data);
   }
   const useOptions = (options, children, fieldNames, optionFilterProp, optionLabelProp) => {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       let mergedOptions = options;
       const childrenAsData = !options;
       if (childrenAsData) {
@@ -36493,9 +36950,9 @@ html body {
     }, [options, children, fieldNames, optionFilterProp, optionLabelProp]);
   };
   function useRefFunc(callback) {
-    const funcRef = React__namespace.useRef();
+    const funcRef = reactExports.useRef();
     funcRef.current = callback;
-    const cacheFn = React__namespace.useCallback((...args) => {
+    const cacheFn = reactExports.useCallback((...args) => {
       return funcRef.current(...args);
     }, []);
     return cacheFn;
@@ -36509,7 +36966,7 @@ html body {
       onSearch,
       autoClearSearchValue
     } = props;
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       const isObject2 = typeof showSearch === "object";
       const searchConfig = {
         filterOption,
@@ -36541,7 +36998,7 @@ html body {
   function isRawValue(value) {
     return !value || typeof value !== "object";
   }
-  const Select$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Select$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       id,
       mode,
@@ -36599,20 +37056,20 @@ html body {
       onSearch,
       autoClearSearchValue = true
     } = searchConfig;
-    const normalizedOptionFilterProp = React__namespace.useMemo(() => {
+    const normalizedOptionFilterProp = reactExports.useMemo(() => {
       if (!optionFilterProp) return [];
       return Array.isArray(optionFilterProp) ? optionFilterProp : [optionFilterProp];
     }, [optionFilterProp]);
     const mergedId = useId(id);
     const multiple = isMultiple(mode);
     const childrenAsData = !!(!options && children);
-    const mergedFilterOption = React__namespace.useMemo(() => {
+    const mergedFilterOption = reactExports.useMemo(() => {
       if (filterOption === void 0 && mode === "combobox") {
         return false;
       }
       return filterOption;
     }, [filterOption, mode]);
-    const mergedFieldNames = React__namespace.useMemo(
+    const mergedFieldNames = reactExports.useMemo(
       () => fillFieldNames$1(fieldNames, childrenAsData),
       /* eslint-disable react-hooks/exhaustive-deps */
       [
@@ -36630,7 +37087,7 @@ html body {
       labelOptions,
       options: mergedOptions
     } = parsedOptions;
-    const convert2LabelValues = React__namespace.useCallback((draftValues) => {
+    const convert2LabelValues = reactExports.useCallback((draftValues) => {
       const valueList = toArray$3(draftValues);
       return valueList.map((val) => {
         let rawValue;
@@ -36659,7 +37116,7 @@ html body {
       });
     }, [mergedFieldNames, optionLabelProp, valueOptions]);
     const [internalValue, setInternalValue] = useControlledState(defaultValue, value);
-    const rawLabeledValues = React__namespace.useMemo(() => {
+    const rawLabeledValues = reactExports.useMemo(() => {
       var _a2;
       const newInternalValue = multiple && internalValue === null ? [] : internalValue;
       const values = convert2LabelValues(newInternalValue);
@@ -36669,7 +37126,7 @@ html body {
       return values;
     }, [internalValue, convert2LabelValues, mode, multiple]);
     const [mergedValues, getMixedOption] = useCache(rawLabeledValues, valueOptions);
-    const displayValues = React__namespace.useMemo(() => {
+    const displayValues = reactExports.useMemo(() => {
       if (!mode && mergedValues.length === 1) {
         const firstValue = mergedValues[0];
         if (firstValue.value === null && (firstValue.label === null || firstValue.label === void 0)) {
@@ -36681,8 +37138,8 @@ html body {
         label: (typeof labelRender === "function" ? labelRender(item) : item.label) ?? item.value
       }));
     }, [mode, mergedValues, labelRender]);
-    const rawValues = React__namespace.useMemo(() => new Set(mergedValues.map((val) => val.value)), [mergedValues]);
-    React__namespace.useEffect(() => {
+    const rawValues = reactExports.useMemo(() => new Set(mergedValues.map((val) => val.value)), [mergedValues]);
+    reactExports.useEffect(() => {
       var _a2;
       if (mode === "combobox") {
         const strValue = (_a2 = mergedValues[0]) == null ? void 0 : _a2.value;
@@ -36696,7 +37153,7 @@ html body {
         [mergedFieldNames.label]: mergedLabel
       };
     });
-    const filledTagOptions = React__namespace.useMemo(() => {
+    const filledTagOptions = reactExports.useMemo(() => {
       if (mode !== "tags") {
         return mergedOptions;
       }
@@ -36711,7 +37168,7 @@ html body {
       return cloneOptions;
     }, [createTagOption, mergedOptions, valueOptions, mergedValues, mode]);
     const filteredOptions = useFilterOptions(filledTagOptions, mergedFieldNames, mergedSearchValue, mergedFilterOption, normalizedOptionFilterProp);
-    const filledSearchOptions = React__namespace.useMemo(() => {
+    const filledSearchOptions = reactExports.useMemo(() => {
       const hasItemMatchingSearch = (item) => {
         if (normalizedOptionFilterProp.length) {
           return normalizedOptionFilterProp.some((prop) => (item == null ? void 0 : item[prop]) === mergedSearchValue);
@@ -36740,13 +37197,13 @@ html body {
         return item;
       });
     };
-    const orderedFilteredOptions = React__namespace.useMemo(() => {
+    const orderedFilteredOptions = reactExports.useMemo(() => {
       if (!filterSort) {
         return filledSearchOptions;
       }
       return sorter(filledSearchOptions);
     }, [filledSearchOptions, filterSort, mergedSearchValue]);
-    const displayOptions = React__namespace.useMemo(() => flattenOptions(orderedFilteredOptions, {
+    const displayOptions = reactExports.useMemo(() => flattenOptions(orderedFilteredOptions, {
       fieldNames: mergedFieldNames,
       childrenAsData
     }), [orderedFilteredOptions, mergedFieldNames, childrenAsData]);
@@ -36774,11 +37231,11 @@ html body {
         );
       }
     };
-    const [activeValue, setActiveValue] = React__namespace.useState(null);
-    const [accessibilityIndex, setAccessibilityIndex] = React__namespace.useState(0);
+    const [activeValue, setActiveValue] = reactExports.useState(null);
+    const [accessibilityIndex, setAccessibilityIndex] = reactExports.useState(0);
     const mergedDefaultActiveFirstOption = defaultActiveFirstOption !== void 0 ? defaultActiveFirstOption : mode !== "combobox";
-    const activeEventRef = React__namespace.useRef();
-    const onActiveValue = React__namespace.useCallback((active, index2, {
+    const activeEventRef = reactExports.useRef();
+    const onActiveValue = reactExports.useCallback((active, index2, {
       source = "keyboard"
     } = {}) => {
       setAccessibilityIndex(index2);
@@ -36871,7 +37328,7 @@ html body {
         triggerSelect(newRawValue, true);
       });
     };
-    const selectContext = React__namespace.useMemo(() => {
+    const selectContext = reactExports.useMemo(() => {
       const realVirtual = virtual !== false && popupMatchSelectWidth !== false;
       return {
         ...parsedOptions,
@@ -36893,9 +37350,9 @@ html body {
         styles: styles2
       };
     }, [maxCount, parsedOptions, displayOptions, onActiveValue, mergedDefaultActiveFirstOption, onInternalSelect, menuItemSelectedIcon, rawValues, mergedFieldNames, virtual, popupMatchSelectWidth, direction, listHeight, listItemHeight, childrenAsData, optionRender, classNames, styles2]);
-    return /* @__PURE__ */ React__namespace.createElement(SelectContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(SelectContext.Provider, {
       value: selectContext
-    }, /* @__PURE__ */ React__namespace.createElement(BaseSelect, _extends$X({}, restProps, {
+    }, /* @__PURE__ */ reactExports.createElement(BaseSelect, _extends$X({}, restProps, {
       // >>> MISC
       id: mergedId,
       prefixCls,
@@ -36948,44 +37405,44 @@ html body {
     const themeStyle = bgColor.toHsl().l < 0.5 ? {
       opacity: 0.65
     } : {};
-    return /* @__PURE__ */ React__namespace.createElement("svg", {
+    return /* @__PURE__ */ reactExports.createElement("svg", {
       style: themeStyle,
       width: "184",
       height: "152",
       viewBox: "0 0 184 152",
       xmlns: "http://www.w3.org/2000/svg"
-    }, /* @__PURE__ */ React__namespace.createElement("title", null, (locale2 == null ? void 0 : locale2.description) || "Empty"), /* @__PURE__ */ React__namespace.createElement("g", {
+    }, /* @__PURE__ */ reactExports.createElement("title", null, (locale2 == null ? void 0 : locale2.description) || "Empty"), /* @__PURE__ */ reactExports.createElement("g", {
       fill: "none",
       fillRule: "evenodd"
-    }, /* @__PURE__ */ React__namespace.createElement("g", {
+    }, /* @__PURE__ */ reactExports.createElement("g", {
       transform: "translate(24 31.7)"
-    }, /* @__PURE__ */ React__namespace.createElement("ellipse", {
+    }, /* @__PURE__ */ reactExports.createElement("ellipse", {
       fillOpacity: ".8",
       fill: "#F5F5F7",
       cx: "67.8",
       cy: "106.9",
       rx: "67.8",
       ry: "12.7"
-    }), /* @__PURE__ */ React__namespace.createElement("path", {
+    }), /* @__PURE__ */ reactExports.createElement("path", {
       fill: "#aeb8c2",
       d: "M122 69.7 98.1 40.2a6 6 0 0 0-4.6-2.2H42.1a6 6 0 0 0-4.6 2.2l-24 29.5V85H122z"
-    }), /* @__PURE__ */ React__namespace.createElement("path", {
+    }), /* @__PURE__ */ reactExports.createElement("path", {
       fill: "#f5f5f7",
       d: "M33.8 0h68a4 4 0 0 1 4 4v93.3a4 4 0 0 1-4 4h-68a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4"
-    }), /* @__PURE__ */ React__namespace.createElement("path", {
+    }), /* @__PURE__ */ reactExports.createElement("path", {
       fill: "#dce0e6",
       d: "M42.7 10h50.2a2 2 0 0 1 2 2v25a2 2 0 0 1-2 2H42.7a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2m.2 39.8h49.8a2.3 2.3 0 1 1 0 4.5H42.9a2.3 2.3 0 0 1 0-4.5m0 11.7h49.8a2.3 2.3 0 1 1 0 4.6H42.9a2.3 2.3 0 0 1 0-4.6m79 43.5a7 7 0 0 1-6.8 5.4H20.5a7 7 0 0 1-6.7-5.4l-.2-1.8V69.7h26.3c2.9 0 5.2 2.4 5.2 5.4s2.4 5.4 5.3 5.4h34.8c2.9 0 5.3-2.4 5.3-5.4s2.3-5.4 5.2-5.4H122v33.5q0 1-.2 1.8"
-    })), /* @__PURE__ */ React__namespace.createElement("path", {
+    })), /* @__PURE__ */ reactExports.createElement("path", {
       fill: "#dce0e6",
       d: "m149.1 33.3-6.8 2.6a1 1 0 0 1-1.3-1.2l2-6.2q-4.1-4.5-4.2-10.4c0-10 10.1-18.1 22.6-18.1S184 8.1 184 18.1s-10.1 18-22.6 18q-6.8 0-12.3-2.8"
-    }), /* @__PURE__ */ React__namespace.createElement("g", {
+    }), /* @__PURE__ */ reactExports.createElement("g", {
       fill: "#fff",
       transform: "translate(149.7 15.4)"
-    }, /* @__PURE__ */ React__namespace.createElement("circle", {
+    }, /* @__PURE__ */ reactExports.createElement("circle", {
       cx: "20.7",
       cy: "3.2",
       r: "2.8"
-    }), /* @__PURE__ */ React__namespace.createElement("path", {
+    }), /* @__PURE__ */ reactExports.createElement("path", {
       d: "M5.7 5.6H0L2.9.7zM9.3.7h5v5h-5z"
     }))));
   };
@@ -37002,32 +37459,32 @@ html body {
       borderColor,
       shadowColor,
       contentColor
-    } = React.useMemo(() => ({
+    } = reactExports.useMemo(() => ({
       borderColor: new FastColor(colorFill).onBackground(colorBgContainer).toHexString(),
       shadowColor: new FastColor(colorFillTertiary).onBackground(colorBgContainer).toHexString(),
       contentColor: new FastColor(colorFillQuaternary).onBackground(colorBgContainer).toHexString()
     }), [colorFill, colorFillTertiary, colorFillQuaternary, colorBgContainer]);
-    return /* @__PURE__ */ React__namespace.createElement("svg", {
+    return /* @__PURE__ */ reactExports.createElement("svg", {
       width: "64",
       height: "41",
       viewBox: "0 0 64 41",
       xmlns: "http://www.w3.org/2000/svg"
-    }, /* @__PURE__ */ React__namespace.createElement("title", null, (locale2 == null ? void 0 : locale2.description) || "Empty"), /* @__PURE__ */ React__namespace.createElement("g", {
+    }, /* @__PURE__ */ reactExports.createElement("title", null, (locale2 == null ? void 0 : locale2.description) || "Empty"), /* @__PURE__ */ reactExports.createElement("g", {
       transform: "translate(0 1)",
       fill: "none",
       fillRule: "evenodd"
-    }, /* @__PURE__ */ React__namespace.createElement("ellipse", {
+    }, /* @__PURE__ */ reactExports.createElement("ellipse", {
       fill: shadowColor,
       cx: "32",
       cy: "33",
       rx: "32",
       ry: "7"
-    }), /* @__PURE__ */ React__namespace.createElement("g", {
+    }), /* @__PURE__ */ reactExports.createElement("g", {
       fillRule: "nonzero",
       stroke: borderColor
-    }, /* @__PURE__ */ React__namespace.createElement("path", {
+    }, /* @__PURE__ */ reactExports.createElement("path", {
       d: "M55 12.8 44.9 1.3Q44 0 42.9 0H21.1q-1.2 0-2 1.3L9 12.8V22h46z"
-    }), /* @__PURE__ */ React__namespace.createElement("path", {
+    }), /* @__PURE__ */ reactExports.createElement("path", {
       d: "M41.6 16c0-1.7 1-3 2.2-3H55v18.1c0 2.2-1.3 3.9-3 3.9H12c-1.7 0-3-1.7-3-3.9V13h11.2c1.2 0 2.2 1.3 2.2 3s1 2.9 2.2 2.9h14.8c1.2 0 2.2-1.4 2.2-3",
       fill: contentColor
     }))));
@@ -37102,8 +37559,8 @@ html body {
     });
     return genSharedEmptyStyle(emptyToken);
   });
-  const defaultEmptyImg = /* @__PURE__ */ React__namespace.createElement(Empty$1, null);
-  const simpleEmptyImg = /* @__PURE__ */ React__namespace.createElement(Simple, null);
+  const defaultEmptyImg = /* @__PURE__ */ reactExports.createElement(Empty$1, null);
+  const simpleEmptyImg = /* @__PURE__ */ reactExports.createElement(Simple, null);
   const Empty = (props) => {
     const {
       className,
@@ -37138,7 +37595,7 @@ html body {
     const mergedImage = image ?? contextImage ?? defaultEmptyImg;
     let imageNode = null;
     if (typeof mergedImage === "string") {
-      imageNode = /* @__PURE__ */ React__namespace.createElement("img", {
+      imageNode = /* @__PURE__ */ reactExports.createElement("img", {
         draggable: false,
         alt,
         src: mergedImage
@@ -37146,7 +37603,7 @@ html body {
     } else {
       imageNode = mergedImage;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(hashId, cssVarCls, prefixCls, contextClassName, {
         [`${prefixCls}-normal`]: mergedImage === simpleEmptyImg,
         [`${prefixCls}-rtl`]: direction === "rtl"
@@ -37157,16 +37614,16 @@ html body {
         ...style2
       },
       ...restProps
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-image`, mergedClassNames.image),
       style: {
         ...imageStyle,
         ...mergedStyles.image
       }
-    }, imageNode), des && /* @__PURE__ */ React__namespace.createElement("div", {
+    }, imageNode), des && /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-description`, mergedClassNames.description),
       style: mergedStyles.description
-    }, des), children && /* @__PURE__ */ React__namespace.createElement("div", {
+    }, des), children && /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-footer`, mergedClassNames.footer),
       style: mergedStyles.footer
     }, children));
@@ -37179,7 +37636,7 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefix2 = getPrefixCls("empty");
     switch (componentName) {
       case "Table":
@@ -37211,8 +37668,8 @@ html body {
     const {
       variant: configVariant,
       [component]: componentConfig
-    } = React__namespace.useContext(ConfigContext);
-    const ctxVariant = React__namespace.useContext(VariantContext);
+    } = reactExports.useContext(ConfigContext);
+    const ctxVariant = reactExports.useContext(VariantContext);
     const configComponentVariant = componentConfig == null ? void 0 : componentConfig.variant;
     let mergedVariant;
     if (typeof variant !== "undefined") {
@@ -38136,11 +38593,11 @@ html body {
     };
     return _extends$W.apply(this, arguments);
   }
-  const CheckOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$W({}, props, {
+  const CheckOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$W({}, props, {
     ref,
     icon: CheckOutlined$1
   }));
-  const RefIcon$q = /* @__PURE__ */ React__namespace.forwardRef(CheckOutlined);
+  const RefIcon$q = /* @__PURE__ */ reactExports.forwardRef(CheckOutlined);
   var DownOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" } }] }, "name": "down", "theme": "outlined" };
   function _extends$V() {
     _extends$V = Object.assign ? Object.assign.bind() : function(target) {
@@ -38156,11 +38613,11 @@ html body {
     };
     return _extends$V.apply(this, arguments);
   }
-  const DownOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$V({}, props, {
+  const DownOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$V({}, props, {
     ref,
     icon: DownOutlined$1
   }));
-  const RefIcon$p = /* @__PURE__ */ React__namespace.forwardRef(DownOutlined);
+  const RefIcon$p = /* @__PURE__ */ reactExports.forwardRef(DownOutlined);
   var SearchOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" } }] }, "name": "search", "theme": "outlined" };
   function _extends$U() {
     _extends$U = Object.assign ? Object.assign.bind() : function(target) {
@@ -38176,11 +38633,11 @@ html body {
     };
     return _extends$U.apply(this, arguments);
   }
-  const SearchOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$U({}, props, {
+  const SearchOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$U({}, props, {
     ref,
     icon: SearchOutlined$1
   }));
-  const RefIcon$o = /* @__PURE__ */ React__namespace.forwardRef(SearchOutlined);
+  const RefIcon$o = /* @__PURE__ */ reactExports.forwardRef(SearchOutlined);
   function useIcons({
     suffixIcon,
     contextSuffixIcon,
@@ -38202,19 +38659,19 @@ html body {
     showArrow,
     componentName
   }) {
-    return React__namespace.useMemo(() => {
-      const mergedClearIcon = fallbackProp(clearIcon, contextClearIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null));
+    return reactExports.useMemo(() => {
+      const mergedClearIcon = fallbackProp(clearIcon, contextClearIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$w, null));
       const getSuffixIconNode = (arrowIcon) => {
         if (suffixIcon === null && !hasFeedback && !showArrow) {
           return null;
         }
-        return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, showSuffixIcon !== false && arrowIcon, hasFeedback && feedbackIcon);
+        return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, showSuffixIcon !== false && arrowIcon, hasFeedback && feedbackIcon);
       };
       let mergedSuffixIcon = null;
       if (suffixIcon !== void 0) {
         mergedSuffixIcon = getSuffixIconNode(suffixIcon);
       } else if (loading) {
-        mergedSuffixIcon = getSuffixIconNode(fallbackProp(loadingIcon, contextLoadingIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
+        mergedSuffixIcon = getSuffixIconNode(fallbackProp(loadingIcon, contextLoadingIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$s, {
           spin: true
         })));
       } else {
@@ -38223,13 +38680,13 @@ html body {
           showSearch
         }) => {
           if (open2 && showSearch) {
-            return getSuffixIconNode(fallbackProp(searchIcon, contextSearchIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null)));
+            return getSuffixIconNode(fallbackProp(searchIcon, contextSearchIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$o, null)));
           }
-          return getSuffixIconNode(fallbackProp(contextSuffixIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null)));
+          return getSuffixIconNode(fallbackProp(contextSuffixIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$p, null)));
         };
       }
-      const mergedItemIcon = fallbackProp(menuItemSelectedIcon, contextMenuItemSelectedIcon, multiple ? /* @__PURE__ */ React__namespace.createElement(RefIcon$q, null) : null);
-      const mergedRemoveIcon = fallbackProp(removeIcon, contextRemoveIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null));
+      const mergedItemIcon = fallbackProp(menuItemSelectedIcon, contextMenuItemSelectedIcon, multiple ? /* @__PURE__ */ reactExports.createElement(RefIcon$q, null) : null);
+      const mergedRemoveIcon = fallbackProp(removeIcon, contextRemoveIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$v, null));
       return {
         clearIcon: mergedClearIcon,
         suffixIcon: mergedSuffixIcon,
@@ -38303,7 +38760,7 @@ html body {
       virtual,
       popupMatchSelectWidth: contextPopupMatchSelectWidth,
       popupOverflow
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       showSearch: contextShowSearch,
       allowClear: contextAllowClear,
@@ -38329,7 +38786,7 @@ html body {
     const [variant, enableVariantCls] = useVariant("select", customizeVariant, bordered);
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useSelectStyle(prefixCls, rootCls);
-    const mode = React__namespace.useMemo(() => {
+    const mode = reactExports.useMemo(() => {
       const {
         mode: m2
       } = props;
@@ -38351,7 +38808,7 @@ html body {
       hasFeedback,
       isFormItemInput,
       feedbackIcon
-    } = React__namespace.useContext(FormItemInputContext);
+    } = reactExports.useContext(FormItemInputContext);
     const mergedStatus = getMergedStatus(contextStatus, customStatus);
     let mergedNotFound;
     if (notFoundContent !== void 0) {
@@ -38359,7 +38816,7 @@ html body {
     } else if (mode === "combobox") {
       mergedNotFound = null;
     } else {
-      mergedNotFound = (renderEmpty == null ? void 0 : renderEmpty("Select")) || /* @__PURE__ */ React__namespace.createElement(DefaultRenderEmpty, {
+      mergedNotFound = (renderEmpty == null ? void 0 : renderEmpty("Select")) || /* @__PURE__ */ reactExports.createElement(DefaultRenderEmpty, {
         componentName: "Select"
       });
     }
@@ -38391,7 +38848,7 @@ html body {
     const mergedShowSearch = showSearch ?? contextShowSearch;
     const selectProps = omit(rest, ["suffixIcon", "itemIcon"]);
     const mergedSize = useSize((ctx) => customizeSize ?? compactSize ?? ctx);
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const mergedProps = {
       ...props,
@@ -38421,14 +38878,14 @@ html body {
       [`${prefixCls}-${variant}`]: enableVariantCls,
       [`${prefixCls}-in-form-item`]: isFormItemInput
     }, getStatusClassNames(prefixCls, mergedStatus, hasFeedback), compactItemClassnames, contextClassName, className, mergedClassNames.root, rootClassName, cssVarCls, rootCls, hashId);
-    const memoPlacement = React__namespace.useMemo(() => {
+    const memoPlacement = reactExports.useMemo(() => {
       if (placement !== void 0) {
         return placement;
       }
       return direction === "rtl" ? "bottomRight" : "bottomLeft";
     }, [placement, direction]);
     const [zIndex] = useZIndex("SelectLike", ((_b2 = mergedStyles.popup.root) == null ? void 0 : _b2.zIndex) ?? mergedPopupStyle.zIndex);
-    return /* @__PURE__ */ React__namespace.createElement(TypedSelect, {
+    return /* @__PURE__ */ reactExports.createElement(TypedSelect, {
       ref,
       virtual,
       classNames: mergedClassNames,
@@ -38470,7 +38927,7 @@ html body {
       onPopupVisibleChange: mergedOnOpenChange
     });
   };
-  const Select = /* @__PURE__ */ React__namespace.forwardRef(InternalSelect);
+  const Select = /* @__PURE__ */ reactExports.forwardRef(InternalSelect);
   const PurePanel$6 = genPurePanel(Select, "popupAlign");
   Select.SECRET_COMBOBOX_MODE_DO_NOT_USE = SECRET_COMBOBOX_MODE_DO_NOT_USE;
   Select.Option = Option$3;
@@ -38507,7 +38964,7 @@ html body {
     const mergedOnOpenChange = onOpenChange || onDropdownVisibleChange;
     const mergedPopupMatchSelectWidth = popupMatchSelectWidth ?? dropdownMatchSelectWidth;
     let customizeInput;
-    if (childNodes.length === 1 && /* @__PURE__ */ React__namespace.isValidElement(childNodes[0]) && !isSelectOptionOrSelectOptGroup(childNodes[0])) {
+    if (childNodes.length === 1 && /* @__PURE__ */ reactExports.isValidElement(childNodes[0]) && !isSelectOptionOrSelectOptGroup(childNodes[0])) {
       [customizeInput] = childNodes;
     }
     const getInputElement = customizeInput ? () => customizeInput : void 0;
@@ -38516,12 +38973,12 @@ html body {
       optionChildren = children;
     } else {
       optionChildren = dataSource ? dataSource.map((item) => {
-        if (/* @__PURE__ */ React__namespace.isValidElement(item)) {
+        if (/* @__PURE__ */ reactExports.isValidElement(item)) {
           return item;
         }
         switch (typeof item) {
           case "string":
-            return /* @__PURE__ */ React__namespace.createElement(Option$2, {
+            return /* @__PURE__ */ reactExports.createElement(Option$2, {
               key: item,
               value: item
             }, item);
@@ -38529,7 +38986,7 @@ html body {
             const {
               value: optionValue
             } = item;
-            return /* @__PURE__ */ React__namespace.createElement(Option$2, {
+            return /* @__PURE__ */ reactExports.createElement(Option$2, {
               key: optionValue,
               value: optionValue
             }, item.text);
@@ -38541,7 +38998,7 @@ html body {
     }
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("select", customizePrefixCls);
     const mergedProps = {
       ...props,
@@ -38556,7 +39013,7 @@ html body {
         _default: "root"
       }
     });
-    const finalClassNames = React__namespace.useMemo(() => ({
+    const finalClassNames = reactExports.useMemo(() => ({
       root: clsx(`${prefixCls}-auto-complete`, className, rootClassName, mergedClassNames.root, {
         [`${prefixCls}-customize`]: customizeInput
       }),
@@ -38570,7 +39027,7 @@ html body {
         listItem: mergedClassNames.popup.listItem
       }
     }), [prefixCls, className, rootClassName, mergedClassNames, popupClassName, dropdownClassName]);
-    const finalStyles = React__namespace.useMemo(() => ({
+    const finalStyles = reactExports.useMemo(() => ({
       root: {
         ...mergedStyles.root,
         ...style2
@@ -38588,7 +39045,7 @@ html body {
         listItem: mergedStyles.popup.listItem
       }
     }), [mergedStyles, style2, dropdownStyle]);
-    return /* @__PURE__ */ React__namespace.createElement(Select, {
+    return /* @__PURE__ */ reactExports.createElement(Select, {
       ref,
       suffixIcon: null,
       ...omit(props, ["dataSource", "dropdownClassName", "popupClassName"]),
@@ -38603,7 +39060,7 @@ html body {
       getInputElement
     }, optionChildren);
   };
-  const RefAutoComplete = /* @__PURE__ */ React__namespace.forwardRef(AutoComplete$1);
+  const RefAutoComplete = /* @__PURE__ */ reactExports.forwardRef(AutoComplete$1);
   const {
     Option: Option$1
   } = Select;
@@ -38712,7 +39169,7 @@ html body {
     }, [responsiveMap]);
   };
   function useBreakpoint(refreshOnChange = true, defaultScreens = {}) {
-    const screensRef = React.useRef(defaultScreens);
+    const screensRef = reactExports.useRef(defaultScreens);
     const [, forceUpdate] = useForceUpdate();
     const responsiveObserver = useResponsiveObserver();
     useLayoutEffect(() => {
@@ -38742,7 +39199,7 @@ html body {
       className,
       style: style2
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       id,
       className: clsx(`${prefixCls}-container`, classNames == null ? void 0 : classNames.container, className),
       style: {
@@ -38849,7 +39306,7 @@ html body {
     };
     return _extends$T.apply(this, arguments);
   }
-  const Tooltip$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Tooltip$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       trigger = ["hover"],
       mouseEnterDelay = 0,
@@ -38873,15 +39330,15 @@ html body {
       ...restProps
     } = props;
     const mergedId = useId(id);
-    const triggerRef = React.useRef(null);
-    React.useImperativeHandle(ref, () => triggerRef.current);
+    const triggerRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => triggerRef.current);
     const extraProps = {
       ...restProps
     };
     if ("visible" in props) {
       extraProps.popupVisible = props.visible;
     }
-    const mergedArrow = React__namespace.useMemo(() => {
+    const mergedArrow = reactExports.useMemo(() => {
       if (!showArrow) {
         return false;
       }
@@ -38899,16 +39356,16 @@ html body {
     const getChildren = ({
       open: open2
     }) => {
-      const child = React__namespace.Children.only(children);
+      const child = reactExports.Children.only(children);
       const ariaProps = {
         "aria-describedby": overlay && open2 ? mergedId : void 0
       };
-      return /* @__PURE__ */ React__namespace.cloneElement(child, ariaProps);
+      return /* @__PURE__ */ reactExports.cloneElement(child, ariaProps);
     };
-    return /* @__PURE__ */ React__namespace.createElement(Trigger, _extends$T({
+    return /* @__PURE__ */ reactExports.createElement(Trigger, _extends$T({
       popupClassName: classNames == null ? void 0 : classNames.root,
       prefixCls,
-      popup: /* @__PURE__ */ React__namespace.createElement(Popup, {
+      popup: /* @__PURE__ */ reactExports.createElement(Popup, {
         key: "content",
         prefixCls,
         id: mergedId,
@@ -39567,14 +40024,14 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
     const rootPrefixCls = getPrefixCls();
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls);
     const colorInfo = parseColor(rootPrefixCls, prefixCls, color);
     const arrowContentStyle = colorInfo.arrowStyle;
-    const innerStyles = React__namespace.useMemo(() => {
+    const innerStyles = reactExports.useMemo(() => {
       const mergedStyle = {
         ...overlayInnerStyle,
         ...colorInfo.overlayStyle
@@ -39591,12 +40048,12 @@ html body {
       props: mergedProps
     });
     const rootClassName = clsx(rootCls, hashId, cssVarCls, prefixCls, `${prefixCls}-pure`, `${prefixCls}-placement-${placement}`, className, colorInfo.className);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: rootClassName,
       style: arrowContentStyle
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: `${prefixCls}-arrow`
-    }), /* @__PURE__ */ React__namespace.createElement(Popup, {
+    }), /* @__PURE__ */ reactExports.createElement(Popup, {
       ...props,
       className: hashId,
       prefixCls,
@@ -39604,7 +40061,7 @@ html body {
       styles: mergedStyles
     }, title));
   };
-  const InternalTooltip = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalTooltip = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       openClassName,
@@ -39656,14 +40113,14 @@ html body {
     const mergedTrigger = trigger || contextTrigger || "hover";
     const mergedGetPopupContainer = getPopupContainer || getContextPopupContainer;
     const mergedDestroyOnHidden = destroyOnHidden ?? !!destroyTooltipOnHide;
-    const inTableMeasureRow = React__namespace.useContext(TableMeasureRowContext);
+    const inTableMeasureRow = reactExports.useContext(TableMeasureRowContext);
     devUseWarning();
-    const tooltipRef = React__namespace.useRef(null);
+    const tooltipRef = reactExports.useRef(null);
     const forceAlign = () => {
       var _a2;
       (_a2 = tooltipRef.current) == null ? void 0 : _a2.forceAlign();
     };
-    React__namespace.useImperativeHandle(ref, () => {
+    reactExports.useImperativeHandle(ref, () => {
       var _a2, _b2;
       return {
         forceAlign,
@@ -39679,7 +40136,7 @@ html body {
         onOpenChange(vis);
       }
     };
-    const tooltipPlacements = React__namespace.useMemo(() => {
+    const tooltipPlacements = reactExports.useMemo(() => {
       return builtinPlacements || getPlacements({
         arrowPointAtCenter: (mergedArrow == null ? void 0 : mergedArrow.pointAtCenter) ?? false,
         autoAdjustOverflow: autoAdjustOverflow2,
@@ -39689,13 +40146,13 @@ html body {
         visibleFirst: true
       });
     }, [mergedArrow, builtinPlacements, token2, mergedShowArrow, autoAdjustOverflow2]);
-    const memoOverlay = React__namespace.useMemo(() => {
+    const memoOverlay = reactExports.useMemo(() => {
       if (title === 0) {
         return title;
       }
       return overlay || title || "";
     }, [overlay, title]);
-    const memoOverlayWrapper = /* @__PURE__ */ React__namespace.createElement(ContextIsolator, {
+    const memoOverlayWrapper = /* @__PURE__ */ reactExports.createElement(ContextIsolator, {
       space: true,
       form: true
     }, isFunction$2(memoOverlay) ? memoOverlay() : memoOverlay);
@@ -39715,7 +40172,7 @@ html body {
     if (!("open" in props) && noTitle || inTableMeasureRow) {
       tempOpen = false;
     }
-    const child = /* @__PURE__ */ React__namespace.isValidElement(children) && !isFragment(children) ? children : /* @__PURE__ */ React__namespace.createElement("span", null, children);
+    const child = /* @__PURE__ */ reactExports.isValidElement(children) && !isFragment(children) ? children : /* @__PURE__ */ reactExports.createElement("span", null, children);
     const childProps = child.props;
     const childCls = !childProps.className || typeof childProps.className === "string" ? clsx(childProps.className, openClassName || `${prefixCls}-open`) : childProps.className;
     const rootCls = useCSSVarCls(prefixCls);
@@ -39732,7 +40189,7 @@ html body {
       ...overlayInnerStyle,
       ...colorInfo.overlayStyle
     };
-    const content = /* @__PURE__ */ React__namespace.createElement(Tooltip$1, {
+    const content = /* @__PURE__ */ reactExports.createElement(Tooltip$1, {
       unique: true,
       ...restProps,
       zIndex,
@@ -39763,7 +40220,7 @@ html body {
       visible: tempOpen,
       onVisibleChange: onInternalOpenChange,
       afterVisibleChange: afterOpenChange,
-      arrowContent: /* @__PURE__ */ React__namespace.createElement("span", {
+      arrowContent: /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-arrow-content`
       }),
       motion: {
@@ -39777,7 +40234,7 @@ html body {
     }, tempOpen ? cloneElement(child, {
       className: childCls
     }) : child);
-    return /* @__PURE__ */ React__namespace.createElement(ZIndexContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(ZIndexContext.Provider, {
       value: contextZIndex
     }, content);
   });
@@ -39953,10 +40410,10 @@ html body {
     if (!title && !content) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, title && /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, title && /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-title`, classNames == null ? void 0 : classNames.title),
       style: styles2 == null ? void 0 : styles2.title
-    }, title), content && /* @__PURE__ */ React__namespace.createElement("div", {
+    }, title), content && /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-content`, classNames == null ? void 0 : classNames.content),
       style: styles2 == null ? void 0 : styles2.content
     }, content));
@@ -39984,18 +40441,18 @@ html body {
       props: mergedProps
     });
     const rootClassName = clsx(hashId, prefixCls, `${prefixCls}-pure`, `${prefixCls}-placement-${placement}`, className);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: rootClassName,
       style: style2
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: `${prefixCls}-arrow`
-    }), /* @__PURE__ */ React__namespace.createElement(Popup, {
+    }), /* @__PURE__ */ reactExports.createElement(Popup, {
       ...props,
       className: hashId,
       prefixCls,
       classNames: mergedClassNames,
       styles: mergedStyles
-    }, children || /* @__PURE__ */ React__namespace.createElement(Overlay$1, {
+    }, children || /* @__PURE__ */ reactExports.createElement(Overlay$1, {
       prefixCls,
       title: titleNode,
       content: contentNode,
@@ -40011,17 +40468,17 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("popover", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$j(prefixCls);
-    return /* @__PURE__ */ React__namespace.createElement(RawPurePanel, {
+    return /* @__PURE__ */ reactExports.createElement(RawPurePanel, {
       ...restProps,
       prefixCls,
       hashId,
       className: clsx(className, cssVarCls)
     });
   };
-  const InternalPopover = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalPopover = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       title,
@@ -40075,7 +40532,7 @@ html body {
     };
     const titleNode = getRenderPropValue(title);
     const contentNode = getRenderPropValue(content);
-    return /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+    return /* @__PURE__ */ reactExports.createElement(Tooltip, {
       unique: false,
       arrow: mergedArrow,
       placement,
@@ -40101,7 +40558,7 @@ html body {
       ref,
       open: open2,
       onOpenChange: settingOpen,
-      overlay: titleNode || contentNode ? /* @__PURE__ */ React__namespace.createElement(Overlay$1, {
+      overlay: titleNode || contentNode ? /* @__PURE__ */ reactExports.createElement(Overlay$1, {
         prefixCls,
         title: titleNode,
         content: contentNode,
@@ -40131,11 +40588,11 @@ html body {
     };
     return _extends$S.apply(this, arguments);
   }
-  const LeftOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$S({}, props, {
+  const LeftOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$S({}, props, {
     ref,
     icon: LeftOutlined$1
   }));
-  const RefIcon$n = /* @__PURE__ */ React__namespace.forwardRef(LeftOutlined);
+  const RefIcon$n = /* @__PURE__ */ reactExports.forwardRef(LeftOutlined);
   const {
     ESC: ESC$1,
     TAB
@@ -40147,7 +40604,7 @@ html body {
     autoFocus,
     overlayRef
   }) {
-    const focusMenuRef = React__namespace.useRef(false);
+    const focusMenuRef = reactExports.useRef(false);
     const handleCloseMenuAndReturnFocus = () => {
       var _a2, _b2;
       if (visible) {
@@ -40183,7 +40640,7 @@ html body {
         }
       }
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (visible) {
         window.addEventListener("keydown", handleKeyDown);
         if (autoFocus) {
@@ -40199,13 +40656,13 @@ html body {
       };
     }, [visible]);
   }
-  const Overlay = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const Overlay = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       overlay,
       arrow,
       prefixCls
     } = props;
-    const overlayNode = React.useMemo(() => {
+    const overlayNode = reactExports.useMemo(() => {
       let overlayElement;
       if (typeof overlay === "function") {
         overlayElement = overlay();
@@ -40392,15 +40849,15 @@ html body {
       getPopupContainer
     }), childrenNode);
   });
-  const IdContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const IdContext = /* @__PURE__ */ reactExports.createContext(null);
   function getMenuId(uuid2, eventKey) {
     return `${uuid2}-${eventKey}`;
   }
   function useMenuId(eventKey) {
-    const id = React__namespace.useContext(IdContext);
+    const id = reactExports.useContext(IdContext);
     return getMenuId(id, eventKey);
   }
-  const MenuContext$1 = /* @__PURE__ */ React__namespace.createContext(null);
+  const MenuContext$1 = /* @__PURE__ */ reactExports.createContext(null);
   function mergeProps(origin2, target) {
     const clone2 = {
       ...origin2
@@ -40418,24 +40875,24 @@ html body {
     locked,
     ...restProps
   }) {
-    const context = React__namespace.useContext(MenuContext$1);
+    const context = reactExports.useContext(MenuContext$1);
     const inheritableContext = useMemo(() => mergeProps(context, restProps), [context, restProps], (prev2, next2) => !locked && (prev2[0] !== next2[0] || !isEqual(prev2[1], next2[1], true)));
-    return /* @__PURE__ */ React__namespace.createElement(MenuContext$1.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(MenuContext$1.Provider, {
       value: inheritableContext
     }, children);
   }
   const EmptyList = [];
-  const PathRegisterContext = /* @__PURE__ */ React__namespace.createContext(null);
+  const PathRegisterContext = /* @__PURE__ */ reactExports.createContext(null);
   function useMeasure() {
-    return React__namespace.useContext(PathRegisterContext);
+    return reactExports.useContext(PathRegisterContext);
   }
-  const PathTrackerContext = /* @__PURE__ */ React__namespace.createContext(EmptyList);
+  const PathTrackerContext = /* @__PURE__ */ reactExports.createContext(EmptyList);
   function useFullPath(eventKey) {
-    const parentKeyPath = React__namespace.useContext(PathTrackerContext);
-    return React__namespace.useMemo(() => eventKey !== void 0 ? [...parentKeyPath, eventKey] : parentKeyPath, [parentKeyPath, eventKey]);
+    const parentKeyPath = reactExports.useContext(PathTrackerContext);
+    return reactExports.useMemo(() => eventKey !== void 0 ? [...parentKeyPath, eventKey] : parentKeyPath, [parentKeyPath, eventKey]);
   }
-  const PathUserContext = /* @__PURE__ */ React__namespace.createContext(null);
-  const PrivateContext = /* @__PURE__ */ React__namespace.createContext({});
+  const PathUserContext = /* @__PURE__ */ reactExports.createContext(null);
+  const PrivateContext = /* @__PURE__ */ reactExports.createContext({});
   const {
     LEFT,
     RIGHT,
@@ -40572,13 +41029,13 @@ html body {
     };
   };
   function useAccessibility(mode, activeKey, isRtl, id, containerRef, getKeys, getKeyPath, triggerActiveKey, triggerAccessibilityOpen, originOnKeyDown) {
-    const rafRef = React__namespace.useRef();
-    const activeRef = React__namespace.useRef();
+    const rafRef = reactExports.useRef();
+    const activeRef = reactExports.useRef();
     activeRef.current = activeKey;
     const cleanRaf = () => {
       wrapperRaf.cancel(rafRef.current);
     };
-    React__namespace.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       cleanRaf();
     }, []);
     return (e2) => {
@@ -40668,18 +41125,18 @@ html body {
   const getPathKeys = (keyPathStr) => keyPathStr.split(PATH_SPLIT);
   const OVERFLOW_KEY = "rc-menu-more";
   function useKeyRecords() {
-    const [, internalForceUpdate] = React__namespace.useState({});
-    const key2pathRef = React.useRef(/* @__PURE__ */ new Map());
-    const path2keyRef = React.useRef(/* @__PURE__ */ new Map());
-    const [overflowKeys, setOverflowKeys] = React__namespace.useState([]);
-    const updateRef = React.useRef(0);
-    const destroyRef = React.useRef(false);
+    const [, internalForceUpdate] = reactExports.useState({});
+    const key2pathRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const path2keyRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const [overflowKeys, setOverflowKeys] = reactExports.useState([]);
+    const updateRef = reactExports.useRef(0);
+    const destroyRef = reactExports.useRef(false);
     const forceUpdate = () => {
       if (!destroyRef.current) {
         internalForceUpdate({});
       }
     };
-    const registerPath = React.useCallback((key2, keyPath) => {
+    const registerPath = reactExports.useCallback((key2, keyPath) => {
       const connectedPath = getPathStr(keyPath);
       path2keyRef.current.set(connectedPath, key2);
       key2pathRef.current.set(key2, connectedPath);
@@ -40691,15 +41148,15 @@ html body {
         }
       });
     }, []);
-    const unregisterPath = React.useCallback((key2, keyPath) => {
+    const unregisterPath = reactExports.useCallback((key2, keyPath) => {
       const connectedPath = getPathStr(keyPath);
       path2keyRef.current.delete(connectedPath);
       key2pathRef.current.delete(key2);
     }, []);
-    const refreshOverflowKeys = React.useCallback((keys2) => {
+    const refreshOverflowKeys = reactExports.useCallback((keys2) => {
       setOverflowKeys(keys2);
     }, []);
-    const getKeyPath = React.useCallback((eventKey, includeOverflow) => {
+    const getKeyPath = reactExports.useCallback((eventKey, includeOverflow) => {
       const fullPath = key2pathRef.current.get(eventKey) || "";
       const keys2 = getPathKeys(fullPath);
       if (includeOverflow && overflowKeys.includes(keys2[0])) {
@@ -40707,7 +41164,7 @@ html body {
       }
       return keys2;
     }, [overflowKeys]);
-    const isSubPathKey = React.useCallback((pathKeys, eventKey) => pathKeys.filter((item) => item !== void 0).some((pathKey2) => {
+    const isSubPathKey = reactExports.useCallback((pathKeys, eventKey) => pathKeys.filter((item) => item !== void 0).some((pathKey2) => {
       const pathKeyList = getKeyPath(pathKey2, true);
       return pathKeyList.includes(eventKey);
     }), [getKeyPath]);
@@ -40718,7 +41175,7 @@ html body {
       }
       return keys2;
     };
-    const getSubPathKeys = React.useCallback((key2) => {
+    const getSubPathKeys = reactExports.useCallback((key2) => {
       const connectedPath = `${key2pathRef.current.get(key2)}${PATH_SPLIT}`;
       const pathKeys = /* @__PURE__ */ new Set();
       [...path2keyRef.current.keys()].forEach((pathKey2) => {
@@ -40728,7 +41185,7 @@ html body {
       });
       return pathKeys;
     }, []);
-    React__namespace.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       destroyRef.current = true;
     }, []);
     return {
@@ -40744,9 +41201,9 @@ html body {
     };
   }
   function useMemoCallback(func) {
-    const funRef = React__namespace.useRef(func);
+    const funRef = reactExports.useRef(func);
     funRef.current = func;
-    const callback = React__namespace.useCallback((...args) => {
+    const callback = reactExports.useCallback((...args) => {
       var _a2;
       return (_a2 = funRef.current) == null ? void 0 : _a2.call(funRef, ...args);
     }, []);
@@ -40758,7 +41215,7 @@ html body {
       activeKey,
       onActive,
       onInactive
-    } = React__namespace.useContext(MenuContext$1);
+    } = reactExports.useContext(MenuContext$1);
     const ret = {
       active: activeKey === eventKey
     };
@@ -40785,7 +41242,7 @@ html body {
       mode,
       rtl,
       inlineIndent
-    } = React__namespace.useContext(MenuContext$1);
+    } = reactExports.useContext(MenuContext$1);
     if (mode !== "inline") {
       return null;
     }
@@ -40806,7 +41263,7 @@ html body {
       return null;
     }
     if (typeof icon === "function") {
-      iconNode = /* @__PURE__ */ React__namespace.createElement(icon, {
+      iconNode = /* @__PURE__ */ reactExports.createElement(icon, {
         ...props
       });
     } else if (typeof icon !== "boolean") {
@@ -40840,7 +41297,7 @@ html body {
     };
     return _extends$Q.apply(this, arguments);
   }
-  class LegacyMenuItem extends React__namespace.Component {
+  class LegacyMenuItem extends reactExports.Component {
     render() {
       const {
         title,
@@ -40850,14 +41307,14 @@ html body {
       } = this.props;
       const passedProps = omit(restProps, ["eventKey", "popupClassName", "popupOffset", "onTitleClick"]);
       warningOnce(!attribute, "`attribute` of Menu.Item is deprecated. Please pass attribute directly.");
-      return /* @__PURE__ */ React__namespace.createElement(ForwardOverflow.Item, _extends$Q({}, attribute, {
+      return /* @__PURE__ */ reactExports.createElement(ForwardOverflow.Item, _extends$Q({}, attribute, {
         title: typeof title === "string" ? title : void 0
       }, passedProps, {
         ref: elementRef
       }));
     }
   }
-  const InternalMenuItem = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalMenuItem = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       style: style2,
       className,
@@ -40888,13 +41345,13 @@ html body {
       selectedKeys,
       // Active
       onActive
-    } = React__namespace.useContext(MenuContext$1);
+    } = reactExports.useContext(MenuContext$1);
     const {
       _internalRenderMenuItem
-    } = React__namespace.useContext(PrivateContext);
+    } = reactExports.useContext(PrivateContext);
     const itemCls = `${prefixCls}-item`;
-    const legacyMenuItemRef = React__namespace.useRef();
-    const elementRef = React__namespace.useRef();
+    const legacyMenuItemRef = reactExports.useRef();
+    const elementRef = reactExports.useRef();
     const mergedDisabled = contextDisabled || disabled;
     const mergedEleRef = useComposeRef(ref, elementRef);
     const connectedKeys = useFullPath(eventKey);
@@ -40938,7 +41395,7 @@ html body {
     if (props.role === "option") {
       optionRoleProps["aria-selected"] = selected;
     }
-    let renderNode = /* @__PURE__ */ React__namespace.createElement(LegacyMenuItem, _extends$Q({
+    let renderNode = /* @__PURE__ */ reactExports.createElement(LegacyMenuItem, _extends$Q({
       ref: legacyMenuItemRef,
       elementRef: mergedEleRef,
       role: role === null ? "none" : role || "menuitem",
@@ -40959,7 +41416,7 @@ html body {
       onClick: onInternalClick,
       onKeyDown: onInternalKeyDown,
       onFocus: onInternalFocus
-    }), children, /* @__PURE__ */ React__namespace.createElement(Icon, {
+    }), children, /* @__PURE__ */ reactExports.createElement(Icon, {
       props: {
         ...props,
         isSelected: selected
@@ -40979,7 +41436,7 @@ html body {
     } = props;
     const measure = useMeasure();
     const connectedKeyPath = useFullPath(eventKey);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (measure) {
         measure.registerPath(eventKey, connectedKeyPath);
         return () => {
@@ -40990,11 +41447,11 @@ html body {
     if (measure) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement(InternalMenuItem, _extends$Q({}, props, {
+    return /* @__PURE__ */ reactExports.createElement(InternalMenuItem, _extends$Q({}, props, {
       ref
     }));
   }
-  const MenuItem$2 = /* @__PURE__ */ React__namespace.forwardRef(MenuItem$1);
+  const MenuItem$2 = /* @__PURE__ */ reactExports.forwardRef(MenuItem$1);
   function _extends$P() {
     _extends$P = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -41018,8 +41475,8 @@ html body {
       prefixCls,
       mode,
       rtl
-    } = React__namespace.useContext(MenuContext$1);
-    return /* @__PURE__ */ React__namespace.createElement("ul", _extends$P({
+    } = reactExports.useContext(MenuContext$1);
+    return /* @__PURE__ */ reactExports.createElement("ul", _extends$P({
       className: clsx(prefixCls, rtl && `${prefixCls}-rtl`, `${prefixCls}-sub`, `${prefixCls}-${mode === "inline" ? "inline" : "vertical"}`, className),
       role: "menu"
     }, restProps, {
@@ -41027,11 +41484,11 @@ html body {
       ref
     }), children);
   };
-  const SubMenuList = /* @__PURE__ */ React__namespace.forwardRef(InternalSubMenuList);
+  const SubMenuList = /* @__PURE__ */ reactExports.forwardRef(InternalSubMenuList);
   function parseChildren(children, keyPath) {
     return toArray$6(children).map((child, index2) => {
       var _a2;
-      if (/* @__PURE__ */ React__namespace.isValidElement(child)) {
+      if (/* @__PURE__ */ reactExports.isValidElement(child)) {
         const {
           key: key2
         } = child;
@@ -41044,7 +41501,7 @@ html body {
           key: eventKey,
           eventKey
         };
-        return /* @__PURE__ */ React__namespace.cloneElement(child, cloneProps);
+        return /* @__PURE__ */ reactExports.cloneElement(child, cloneProps);
       }
       return child;
     });
@@ -41160,8 +41617,8 @@ html body {
       // Motion
       motion,
       defaultMotions
-    } = React__namespace.useContext(MenuContext$1);
-    const [innerVisible, setInnerVisible] = React__namespace.useState(false);
+    } = reactExports.useContext(MenuContext$1);
+    const [innerVisible, setInnerVisible] = reactExports.useState(false);
     const placement = rtl ? {
       ...placementsRtl,
       ...builtinPlacements
@@ -41171,7 +41628,7 @@ html body {
     };
     const popupPlacement = popupPlacementMap[mode];
     const targetMotion = getMotion(mode, motion, defaultMotions);
-    const targetMotionRef = React__namespace.useRef(targetMotion);
+    const targetMotionRef = reactExports.useRef(targetMotion);
     if (mode !== "inline") {
       targetMotionRef.current = targetMotion;
     }
@@ -41181,8 +41638,8 @@ html body {
       removeOnLeave: false,
       motionAppear: true
     };
-    const visibleRef = React__namespace.useRef();
-    React__namespace.useEffect(() => {
+    const visibleRef = reactExports.useRef();
+    reactExports.useEffect(() => {
       visibleRef.current = wrapperRaf(() => {
         setInnerVisible(visible);
       });
@@ -41190,7 +41647,7 @@ html body {
         wrapperRaf.cancel(visibleRef.current);
       };
     }, [visible]);
-    return /* @__PURE__ */ React__namespace.createElement(Trigger, {
+    return /* @__PURE__ */ reactExports.createElement(Trigger, {
       prefixCls,
       popupClassName: clsx(`${prefixCls}-popup`, {
         [`${prefixCls}-rtl`]: rtl
@@ -41241,12 +41698,12 @@ html body {
       motion,
       defaultMotions,
       mode
-    } = React__namespace.useContext(MenuContext$1);
-    const sameModeRef = React__namespace.useRef(false);
+    } = reactExports.useContext(MenuContext$1);
+    const sameModeRef = reactExports.useRef(false);
     sameModeRef.current = mode === fixedMode;
-    const [destroy2, setDestroy] = React__namespace.useState(!sameModeRef.current);
+    const [destroy2, setDestroy] = reactExports.useState(!sameModeRef.current);
     const mergedOpen = sameModeRef.current ? open2 : false;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (sameModeRef.current) {
         setDestroy(false);
       }
@@ -41267,10 +41724,10 @@ html body {
     if (destroy2) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement(InheritableContextProvider, {
+    return /* @__PURE__ */ reactExports.createElement(InheritableContextProvider, {
       mode: fixedMode,
       locked: !sameModeRef.current
-    }, /* @__PURE__ */ React__namespace.createElement(CSSMotion, _extends$O({
+    }, /* @__PURE__ */ reactExports.createElement(CSSMotion, _extends$O({
       visible: mergedOpen
     }, mergedMotion, {
       forceRender: forceSubMenuRender,
@@ -41280,7 +41737,7 @@ html body {
       className: motionClassName,
       style: motionStyle
     }) => {
-      return /* @__PURE__ */ React__namespace.createElement(SubMenuList, {
+      return /* @__PURE__ */ reactExports.createElement(SubMenuList, {
         id,
         className: motionClassName,
         style: motionStyle
@@ -41301,7 +41758,7 @@ html body {
     };
     return _extends$N.apply(this, arguments);
   }
-  const InternalSubMenu = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalSubMenu = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       style: style2,
       className,
@@ -41350,18 +41807,18 @@ html body {
       onOpenChange,
       onActive,
       popupRender: contextPopupRender
-    } = React__namespace.useContext(MenuContext$1);
+    } = reactExports.useContext(MenuContext$1);
     const {
       _internalRenderSubMenuItem
-    } = React__namespace.useContext(PrivateContext);
+    } = reactExports.useContext(PrivateContext);
     const {
       isSubPathKey
-    } = React__namespace.useContext(PathUserContext);
+    } = reactExports.useContext(PathUserContext);
     const connectedPath = useFullPath();
     const subMenuPrefixCls = `${prefixCls}-submenu`;
     const mergedDisabled = contextDisabled || disabled;
-    const elementRef = React__namespace.useRef();
-    const popupRef = React__namespace.useRef();
+    const elementRef = reactExports.useRef();
+    const popupRef = reactExports.useRef();
     const mergedItemIcon = itemIcon ?? contextItemIcon;
     const mergedExpandIcon = expandIcon ?? contextExpandIcon;
     const originOpen = openKeys.includes(eventKey);
@@ -41371,7 +41828,7 @@ html body {
       active,
       ...activeProps
     } = useActive(eventKey, mergedDisabled, onTitleMouseEnter, onTitleMouseLeave);
-    const [childrenActive, setChildrenActive] = React__namespace.useState(false);
+    const [childrenActive, setChildrenActive] = reactExports.useState(false);
     const triggerChildrenActive = (newActive) => {
       if (!mergedDisabled) {
         setChildrenActive(newActive);
@@ -41391,7 +41848,7 @@ html body {
         domEvent
       });
     };
-    const mergedActive = React__namespace.useMemo(() => {
+    const mergedActive = reactExports.useMemo(() => {
       if (active) {
         return active;
       }
@@ -41426,7 +41883,7 @@ html body {
       onActive(eventKey);
     };
     const popupId = domDataId && `${domDataId}-popup`;
-    const expandIconNode = React__namespace.useMemo(() => /* @__PURE__ */ React__namespace.createElement(Icon, {
+    const expandIconNode = reactExports.useMemo(() => /* @__PURE__ */ reactExports.createElement(Icon, {
       icon: mode !== "horizontal" ? mergedExpandIcon : void 0,
       props: {
         ...props,
@@ -41434,10 +41891,10 @@ html body {
         // [Legacy] Not sure why need this mark
         isSubMenu: true
       }
-    }, /* @__PURE__ */ React__namespace.createElement("i", {
+    }, /* @__PURE__ */ reactExports.createElement("i", {
       className: `${subMenuPrefixCls}-arrow`
     })), [mode, mergedExpandIcon, props, open2, subMenuPrefixCls]);
-    let titleNode = /* @__PURE__ */ React__namespace.createElement("div", _extends$N({
+    let titleNode = /* @__PURE__ */ reactExports.createElement("div", _extends$N({
       role: "menuitem",
       style: directionStyle,
       className: `${subMenuPrefixCls}-title`,
@@ -41452,19 +41909,19 @@ html body {
       onClick: onInternalTitleClick,
       onFocus: onInternalFocus
     }, activeProps), title, expandIconNode);
-    const triggerModeRef = React__namespace.useRef(mode);
+    const triggerModeRef = reactExports.useRef(mode);
     if (mode !== "inline" && connectedPath.length > 1) {
       triggerModeRef.current = "vertical";
     } else {
       triggerModeRef.current = mode;
     }
     const popupContentTriggerMode = triggerModeRef.current;
-    const renderPopupContent = React__namespace.useMemo(() => {
-      const originNode = /* @__PURE__ */ React__namespace.createElement(InheritableContextProvider, {
+    const renderPopupContent = reactExports.useMemo(() => {
+      const originNode = /* @__PURE__ */ reactExports.createElement(InheritableContextProvider, {
         classNames: menuClassNames,
         styles: styles2,
         mode: popupContentTriggerMode === "horizontal" ? "vertical" : popupContentTriggerMode
-      }, /* @__PURE__ */ React__namespace.createElement(SubMenuList, {
+      }, /* @__PURE__ */ reactExports.createElement(SubMenuList, {
         id: popupId,
         ref: popupRef
       }, children));
@@ -41480,7 +41937,7 @@ html body {
     }, [propsPopupRender, contextPopupRender, connectedPath, popupId, children, props, popupContentTriggerMode]);
     if (!overflowDisabled) {
       const triggerMode = triggerModeRef.current;
-      titleNode = /* @__PURE__ */ React__namespace.createElement(PopupTrigger, {
+      titleNode = /* @__PURE__ */ reactExports.createElement(PopupTrigger, {
         mode: triggerMode,
         prefixCls: subMenuPrefixCls,
         visible: !internalPopupClose && open2 && mode !== "inline",
@@ -41492,7 +41949,7 @@ html body {
         onVisibleChange: onPopupVisibleChange
       }, titleNode);
     }
-    let listNode = /* @__PURE__ */ React__namespace.createElement(ForwardOverflow.Item, _extends$N({
+    let listNode = /* @__PURE__ */ reactExports.createElement(ForwardOverflow.Item, _extends$N({
       ref,
       role: "none"
     }, restProps, {
@@ -41506,7 +41963,7 @@ html body {
       }),
       onMouseEnter: onInternalMouseEnter,
       onMouseLeave: onInternalMouseLeave
-    }), titleNode, !overflowDisabled && /* @__PURE__ */ React__namespace.createElement(InlineSubMenuList, {
+    }), titleNode, !overflowDisabled && /* @__PURE__ */ reactExports.createElement(InlineSubMenuList, {
       id: popupId,
       open: open2,
       keyPath: connectedPath
@@ -41519,7 +41976,7 @@ html body {
         disabled: mergedDisabled
       });
     }
-    return /* @__PURE__ */ React__namespace.createElement(InheritableContextProvider, {
+    return /* @__PURE__ */ reactExports.createElement(InheritableContextProvider, {
       classNames: menuClassNames,
       styles: styles2,
       onItemClick: onMergedItemClick,
@@ -41528,7 +41985,7 @@ html body {
       expandIcon: mergedExpandIcon
     }, listNode);
   });
-  const SubMenu$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const SubMenu$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       eventKey,
       children
@@ -41536,7 +41993,7 @@ html body {
     const connectedKeyPath = useFullPath(eventKey);
     const childList = parseChildren(children, connectedKeyPath);
     const measure = useMeasure();
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (measure) {
         measure.registerPath(eventKey, connectedKeyPath);
         return () => {
@@ -41548,11 +42005,11 @@ html body {
     if (measure) {
       renderNode = childList;
     } else {
-      renderNode = /* @__PURE__ */ React__namespace.createElement(InternalSubMenu, _extends$N({
+      renderNode = /* @__PURE__ */ reactExports.createElement(InternalSubMenu, _extends$N({
         ref
       }, props), childList);
     }
-    return /* @__PURE__ */ React__namespace.createElement(PathTrackerContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(PathTrackerContext.Provider, {
       value: connectedKeyPath
     }, renderNode);
   });
@@ -41562,12 +42019,12 @@ html body {
   }) {
     const {
       prefixCls
-    } = React__namespace.useContext(MenuContext$1);
+    } = reactExports.useContext(MenuContext$1);
     const measure = useMeasure();
     if (measure) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("li", {
+    return /* @__PURE__ */ reactExports.createElement("li", {
       role: "separator",
       className: clsx(`${prefixCls}-item-divider`, className),
       style: style2
@@ -41587,7 +42044,7 @@ html body {
     };
     return _extends$M.apply(this, arguments);
   }
-  const InternalMenuItemGroup = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalMenuItemGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       className,
       title,
@@ -41599,26 +42056,26 @@ html body {
       prefixCls,
       classNames: menuClassNames,
       styles: styles2
-    } = React__namespace.useContext(MenuContext$1);
+    } = reactExports.useContext(MenuContext$1);
     const groupPrefixCls = `${prefixCls}-item-group`;
-    return /* @__PURE__ */ React__namespace.createElement("li", _extends$M({
+    return /* @__PURE__ */ reactExports.createElement("li", _extends$M({
       ref,
       role: "presentation"
     }, restProps, {
       onClick: (e2) => e2.stopPropagation(),
       className: clsx(groupPrefixCls, className)
-    }), /* @__PURE__ */ React__namespace.createElement("div", {
+    }), /* @__PURE__ */ reactExports.createElement("div", {
       role: "presentation",
       className: clsx(`${groupPrefixCls}-title`, menuClassNames == null ? void 0 : menuClassNames.listTitle),
       style: styles2 == null ? void 0 : styles2.listTitle,
       title: typeof title === "string" ? title : void 0
-    }, title), /* @__PURE__ */ React__namespace.createElement("ul", {
+    }, title), /* @__PURE__ */ reactExports.createElement("ul", {
       role: "group",
       className: clsx(`${groupPrefixCls}-list`, menuClassNames == null ? void 0 : menuClassNames.list),
       style: styles2 == null ? void 0 : styles2.list
     }, children));
   });
-  const MenuItemGroup = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const MenuItemGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       eventKey,
       children
@@ -41629,7 +42086,7 @@ html body {
     if (measure) {
       return childList;
     }
-    return /* @__PURE__ */ React__namespace.createElement(InternalMenuItemGroup, _extends$M({
+    return /* @__PURE__ */ reactExports.createElement(InternalMenuItemGroup, _extends$M({
       ref
     }, omit(props, ["warnKey"])), childList);
   });
@@ -41667,31 +42124,31 @@ html body {
         const mergedKey = key2 ?? `tmp-${index2}`;
         if (children || type2 === "group") {
           if (type2 === "group") {
-            return /* @__PURE__ */ React__namespace.createElement(MergedMenuItemGroup, _extends$L({
+            return /* @__PURE__ */ reactExports.createElement(MergedMenuItemGroup, _extends$L({
               key: mergedKey
             }, restProps, {
               title: label
             }), convertItemsToNodes(children, components2, prefixCls));
           }
-          return /* @__PURE__ */ React__namespace.createElement(MergedSubMenu, _extends$L({
+          return /* @__PURE__ */ reactExports.createElement(MergedSubMenu, _extends$L({
             key: mergedKey
           }, restProps, {
             title: label
           }), convertItemsToNodes(children, components2, prefixCls));
         }
         if (type2 === "divider") {
-          return /* @__PURE__ */ React__namespace.createElement(MergedDivider, _extends$L({
+          return /* @__PURE__ */ reactExports.createElement(MergedDivider, _extends$L({
             key: mergedKey
           }, restProps));
         }
         const hasExtra = !!extra || extra === 0;
-        return /* @__PURE__ */ React__namespace.createElement(MergedMenuItem, _extends$L({
+        return /* @__PURE__ */ reactExports.createElement(MergedMenuItem, _extends$L({
           key: mergedKey
         }, restProps, {
           extra
-        }), hasExtra ? /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("span", {
+        }), hasExtra ? /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("span", {
           className: `${prefixCls}-item-label`
-        }, label), /* @__PURE__ */ React__namespace.createElement("span", {
+        }, label), /* @__PURE__ */ reactExports.createElement("span", {
           className: `${prefixCls}-item-extra`
         }, extra)) : label);
       }
@@ -41727,7 +42184,7 @@ html body {
     return _extends$K.apply(this, arguments);
   }
   const EMPTY_LIST$3 = [];
-  const Menu$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Menu$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     var _a2;
     const {
       prefixCls = "rc-menu",
@@ -41792,9 +42249,9 @@ html body {
       popupRender,
       ...restProps
     } = props;
-    const [childList, measureChildList] = React__namespace.useMemo(() => [parseItems(children, items, EMPTY_LIST$3, _internalComponents, prefixCls), parseItems(children, items, EMPTY_LIST$3, {}, prefixCls)], [children, items, _internalComponents]);
-    const [mounted, setMounted] = React__namespace.useState(false);
-    const containerRef = React__namespace.useRef();
+    const [childList, measureChildList] = reactExports.useMemo(() => [parseItems(children, items, EMPTY_LIST$3, _internalComponents, prefixCls), parseItems(children, items, EMPTY_LIST$3, {}, prefixCls)], [children, items, _internalComponents]);
+    const [mounted, setMounted] = reactExports.useState(false);
+    const containerRef = reactExports.useRef();
     const uuid2 = useId(id ? `rc-menu-uuid-${id}` : "rc-menu-uuid");
     const isRtl = direction === "rtl";
     const [innerOpenKeys, setMergedOpenKeys] = useControlledState(defaultOpenKeys, openKeys);
@@ -41810,18 +42267,18 @@ html body {
         doUpdate();
       }
     };
-    const [inlineCacheOpenKeys, setInlineCacheOpenKeys] = React__namespace.useState(mergedOpenKeys);
-    const mountRef = React__namespace.useRef(false);
-    const [mergedMode, mergedInlineCollapsed] = React__namespace.useMemo(() => {
+    const [inlineCacheOpenKeys, setInlineCacheOpenKeys] = reactExports.useState(mergedOpenKeys);
+    const mountRef = reactExports.useRef(false);
+    const [mergedMode, mergedInlineCollapsed] = reactExports.useMemo(() => {
       if ((mode === "inline" || mode === "vertical") && inlineCollapsed) {
         return ["vertical", inlineCollapsed];
       }
       return [mode, false];
     }, [mode, inlineCollapsed]);
     const isInlineMode = mergedMode === "inline";
-    const [internalMode, setInternalMode] = React__namespace.useState(mergedMode);
-    const [internalInlineCollapsed, setInternalInlineCollapsed] = React__namespace.useState(mergedInlineCollapsed);
-    React__namespace.useEffect(() => {
+    const [internalMode, setInternalMode] = reactExports.useState(mergedMode);
+    const [internalInlineCollapsed, setInternalInlineCollapsed] = reactExports.useState(mergedInlineCollapsed);
+    reactExports.useEffect(() => {
       setInternalMode(mergedMode);
       setInternalInlineCollapsed(mergedInlineCollapsed);
       if (!mountRef.current) {
@@ -41833,14 +42290,14 @@ html body {
         triggerOpenKeys(EMPTY_LIST$3);
       }
     }, [mergedMode, mergedInlineCollapsed]);
-    const [lastVisibleIndex, setLastVisibleIndex] = React__namespace.useState(0);
+    const [lastVisibleIndex, setLastVisibleIndex] = reactExports.useState(0);
     const allVisible = lastVisibleIndex >= childList.length - 1 || internalMode !== "horizontal" || disabledOverflow;
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (isInlineMode) {
         setInlineCacheOpenKeys(mergedOpenKeys);
       }
     }, [mergedOpenKeys]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       mountRef.current = true;
       return () => {
         mountRef.current = false;
@@ -41855,14 +42312,14 @@ html body {
       getKeys,
       getSubPathKeys
     } = useKeyRecords();
-    const registerPathContext = React__namespace.useMemo(() => ({
+    const registerPathContext = reactExports.useMemo(() => ({
       registerPath,
       unregisterPath
     }), [registerPath, unregisterPath]);
-    const pathUserContext = React__namespace.useMemo(() => ({
+    const pathUserContext = reactExports.useMemo(() => ({
       isSubPathKey
     }), [isSubPathKey]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       refreshOverflowKeys(allVisible ? EMPTY_LIST$3 : childList.slice(lastVisibleIndex + 1).map((child) => child.key));
     }, [lastVisibleIndex, allVisible]);
     const [mergedActiveKey, setMergedActiveKey] = useControlledState(activeKey || defaultActiveFirst && ((_a2 = childList[0]) == null ? void 0 : _a2.key), activeKey);
@@ -41872,7 +42329,7 @@ html body {
     const onInactive = useMemoCallback(() => {
       setMergedActiveKey(void 0);
     });
-    React.useImperativeHandle(ref, () => {
+    reactExports.useImperativeHandle(ref, () => {
       return {
         list: containerRef.current,
         focus: (options) => {
@@ -41907,7 +42364,7 @@ html body {
       };
     });
     const [internalSelectKeys, setMergedSelectKeys] = useControlledState(defaultSelectedKeys || [], selectedKeys);
-    const mergedSelectKeys = React__namespace.useMemo(() => {
+    const mergedSelectKeys = reactExports.useMemo(() => {
       if (Array.isArray(internalSelectKeys)) {
         return internalSelectKeys;
       }
@@ -41968,10 +42425,10 @@ html body {
       onInternalOpenChange(key2, nextOpen);
     };
     const onInternalKeyDown = useAccessibility(internalMode, mergedActiveKey, isRtl, uuid2, containerRef, getKeys, getKeyPath, setMergedActiveKey, triggerAccessibilityOpen, onKeyDown2);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       setMounted(true);
     }, []);
-    const privateContext = React__namespace.useMemo(() => ({
+    const privateContext = reactExports.useMemo(() => ({
       _internalRenderMenuItem,
       _internalRenderSubMenuItem
     }), [_internalRenderMenuItem, _internalRenderSubMenuItem]);
@@ -41979,7 +42436,7 @@ html body {
       // Need wrap for overflow dropdown that do not response for open
       childList.map((child, index2) => (
         // Always wrap provider to avoid sub node re-mount
-        /* @__PURE__ */ React__namespace.createElement(InheritableContextProvider, {
+        /* @__PURE__ */ reactExports.createElement(InheritableContextProvider, {
           key: child.key,
           overflowDisabled: index2 > lastVisibleIndex,
           classNames: menuClassNames,
@@ -41987,7 +42444,7 @@ html body {
         }, child)
       ))
     );
-    const container = /* @__PURE__ */ React__namespace.createElement(ForwardOverflow, _extends$K({
+    const container = /* @__PURE__ */ reactExports.createElement(ForwardOverflow, _extends$K({
       id,
       ref: containerRef,
       prefixCls: `${prefixCls}-overflow`,
@@ -42006,7 +42463,7 @@ html body {
       renderRawRest: (omitItems) => {
         const len = omitItems.length;
         const originOmitItems = len ? childList.slice(-len) : null;
-        return /* @__PURE__ */ React__namespace.createElement(SubMenu$1, {
+        return /* @__PURE__ */ reactExports.createElement(SubMenu$1, {
           eventKey: OVERFLOW_KEY,
           title: overflowedIndicator,
           disabled: allVisible,
@@ -42022,11 +42479,11 @@ html body {
       },
       onKeyDown: onInternalKeyDown
     }, restProps));
-    return /* @__PURE__ */ React__namespace.createElement(PrivateContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(PrivateContext.Provider, {
       value: privateContext
-    }, /* @__PURE__ */ React__namespace.createElement(IdContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(IdContext.Provider, {
       value: uuid2
-    }, /* @__PURE__ */ React__namespace.createElement(InheritableContextProvider, {
+    }, /* @__PURE__ */ reactExports.createElement(InheritableContextProvider, {
       prefixCls,
       rootClassName,
       classNames: menuClassNames,
@@ -42053,14 +42510,14 @@ html body {
       onItemClick: onInternalClick,
       onOpenChange: onInternalOpenChange,
       popupRender
-    }, /* @__PURE__ */ React__namespace.createElement(PathUserContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(PathUserContext.Provider, {
       value: pathUserContext
-    }, container), /* @__PURE__ */ React__namespace.createElement("div", {
+    }, container), /* @__PURE__ */ reactExports.createElement("div", {
       style: {
         display: "none"
       },
       "aria-hidden": true
-    }, /* @__PURE__ */ React__namespace.createElement(PathRegisterContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(PathRegisterContext.Provider, {
       value: registerPathContext
     }, measureChildList)))));
   });
@@ -42069,7 +42526,7 @@ html body {
   ExportMenu.SubMenu = SubMenu$1;
   ExportMenu.ItemGroup = MenuItemGroup;
   ExportMenu.Divider = Divider$1;
-  const SiderContext = /* @__PURE__ */ React__namespace.createContext({});
+  const SiderContext = /* @__PURE__ */ reactExports.createContext({});
   var EllipsisOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "ellipsis", "theme": "outlined" };
   function _extends$J() {
     _extends$J = Object.assign ? Object.assign.bind() : function(target) {
@@ -42085,12 +42542,12 @@ html body {
     };
     return _extends$J.apply(this, arguments);
   }
-  const EllipsisOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$J({}, props, {
+  const EllipsisOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$J({}, props, {
     ref,
     icon: EllipsisOutlined$1
   }));
-  const RefIcon$m = /* @__PURE__ */ React__namespace.forwardRef(EllipsisOutlined);
-  const MenuContext = /* @__PURE__ */ React.createContext({
+  const RefIcon$m = /* @__PURE__ */ reactExports.forwardRef(EllipsisOutlined);
+  const MenuContext = /* @__PURE__ */ reactExports.createContext({
     prefixCls: "",
     firstLevel: true,
     inlineCollapsed: false,
@@ -42106,12 +42563,12 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("menu", customizePrefixCls);
     const classString = clsx({
       [`${prefixCls}-item-divider-dashed`]: !!dashed
     }, className);
-    return /* @__PURE__ */ React__namespace.createElement(Divider$1, {
+    return /* @__PURE__ */ reactExports.createElement(Divider$1, {
       className: classString,
       ...restProps
     });
@@ -42135,19 +42592,19 @@ html body {
       inlineCollapsed: isInlineCollapsed,
       styles: styles2,
       classNames
-    } = React__namespace.useContext(MenuContext);
+    } = reactExports.useContext(MenuContext);
     const renderItemChildren = (inlineCollapsed) => {
       var _a3, _b3;
       const label = children == null ? void 0 : children[0];
-      const wrapNode = /* @__PURE__ */ React__namespace.createElement("span", {
+      const wrapNode = /* @__PURE__ */ reactExports.createElement("span", {
         className: clsx(`${prefixCls}-title-content`, firstLevel ? classNames == null ? void 0 : classNames.itemContent : (_a3 = classNames == null ? void 0 : classNames.subMenu) == null ? void 0 : _a3.itemContent, {
           [`${prefixCls}-title-content-with-extra`]: !!extra || extra === 0
         }),
         style: firstLevel ? styles2 == null ? void 0 : styles2.itemContent : (_b3 = styles2 == null ? void 0 : styles2.subMenu) == null ? void 0 : _b3.itemContent
       }, children);
-      if (!icon || /* @__PURE__ */ React__namespace.isValidElement(children) && children.type === "span") {
+      if (!icon || /* @__PURE__ */ reactExports.isValidElement(children) && children.type === "span") {
         if (children && inlineCollapsed && firstLevel && typeof label === "string") {
-          return /* @__PURE__ */ React__namespace.createElement("div", {
+          return /* @__PURE__ */ reactExports.createElement("div", {
             className: `${prefixCls}-inline-collapsed-noicon`
           }, label.charAt(0));
         }
@@ -42156,7 +42613,7 @@ html body {
     };
     const {
       siderCollapsed
-    } = React__namespace.useContext(SiderContext);
+    } = reactExports.useContext(SiderContext);
     let tooltipTitle = title;
     if (typeof title === "undefined") {
       tooltipTitle = firstLevel ? children : "";
@@ -42174,7 +42631,7 @@ html body {
       tooltipProps.open = false;
     }
     const childrenLength = toArray$6(children).length;
-    let returnNode = /* @__PURE__ */ React__namespace.createElement(MenuItem$2, {
+    let returnNode = /* @__PURE__ */ reactExports.createElement(MenuItem$2, {
       ...omit(props, ["title", "icon", "danger"]),
       className: clsx(firstLevel ? classNames == null ? void 0 : classNames.item : (_a2 = classNames == null ? void 0 : classNames.subMenu) == null ? void 0 : _a2.item, {
         [`${prefixCls}-item-danger`]: danger,
@@ -42206,7 +42663,7 @@ html body {
         const resolvedClassNames = tooltipConfig.classNames(info);
         return mergeTooltipRootClassName(resolvedClassNames);
       } : mergeTooltipRootClassName(tooltipConfig == null ? void 0 : tooltipConfig.classNames);
-      returnNode = /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+      returnNode = /* @__PURE__ */ reactExports.createElement(Tooltip, {
         ...tooltipProps,
         placement: mergedTooltipPlacement,
         classNames: mergedTooltipClassNames
@@ -42214,14 +42671,14 @@ html body {
     }
     return returnNode;
   };
-  const OverrideContext = /* @__PURE__ */ React__namespace.createContext(null);
-  const OverrideProvider = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const OverrideContext = /* @__PURE__ */ reactExports.createContext(null);
+  const OverrideProvider = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       children,
       ...restProps
     } = props;
-    const override = React__namespace.useContext(OverrideContext);
-    const context = React__namespace.useMemo(() => ({
+    const override = reactExports.useContext(OverrideContext);
+    const context = reactExports.useMemo(() => ({
       ...override,
       ...restProps
     }), [
@@ -42235,11 +42692,11 @@ html body {
     ]);
     const canRef = supportNodeRef(children);
     const mergedRef = useComposeRef(ref, canRef ? getNodeRef(children) : null);
-    return /* @__PURE__ */ React__namespace.createElement(OverrideContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(OverrideContext.Provider, {
       value: context
-    }, /* @__PURE__ */ React__namespace.createElement(ContextIsolator, {
+    }, /* @__PURE__ */ reactExports.createElement(ContextIsolator, {
       space: true
-    }, canRef ? /* @__PURE__ */ React__namespace.cloneElement(children, {
+    }, canRef ? /* @__PURE__ */ reactExports.cloneElement(children, {
       ref: mergedRef
     }) : children));
   });
@@ -43289,7 +43746,7 @@ html body {
       title,
       theme: customTheme
     } = props;
-    const context = React__namespace.useContext(MenuContext);
+    const context = reactExports.useContext(MenuContext);
     const {
       prefixCls,
       inlineCollapsed,
@@ -43300,31 +43757,31 @@ html body {
     const parentPath = useFullPath();
     let titleNode;
     if (!icon) {
-      titleNode = inlineCollapsed && !parentPath.length && title && typeof title === "string" ? /* @__PURE__ */ React__namespace.createElement("div", {
+      titleNode = inlineCollapsed && !parentPath.length && title && typeof title === "string" ? /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-inline-collapsed-noicon`
-      }, title.charAt(0)) : /* @__PURE__ */ React__namespace.createElement("span", {
+      }, title.charAt(0)) : /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-title-content`
       }, title);
     } else {
-      const titleIsSpan = /* @__PURE__ */ React__namespace.isValidElement(title) && title.type === "span";
-      titleNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, cloneElement(icon, (oriProps) => ({
+      const titleIsSpan = /* @__PURE__ */ reactExports.isValidElement(title) && title.type === "span";
+      titleNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, cloneElement(icon, (oriProps) => ({
         className: clsx(oriProps.className, `${prefixCls}-item-icon`, classNames == null ? void 0 : classNames.itemIcon),
         style: {
           ...oriProps.style,
           ...styles2 == null ? void 0 : styles2.itemIcon
         }
-      })), titleIsSpan ? title : /* @__PURE__ */ React__namespace.createElement("span", {
+      })), titleIsSpan ? title : /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-title-content`
       }, title));
     }
-    const contextValue = React__namespace.useMemo(() => ({
+    const contextValue = reactExports.useMemo(() => ({
       ...context,
       firstLevel: false
     }), [context]);
     const [zIndex] = useZIndex("Menu");
-    return /* @__PURE__ */ React__namespace.createElement(MenuContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(MenuContext.Provider, {
       value: contextValue
-    }, /* @__PURE__ */ React__namespace.createElement(SubMenu$1, {
+    }, /* @__PURE__ */ reactExports.createElement(SubMenu$1, {
       ...omit(props, ["icon"]),
       title: titleNode,
       classNames: {
@@ -43352,9 +43809,9 @@ html body {
     submenu: SubMenu,
     divider: MenuDivider
   };
-  const InternalMenu = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const InternalMenu = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     var _a2;
-    const override = React__namespace.useContext(OverrideContext);
+    const override = reactExports.useContext(OverrideContext);
     const overrideObj = override || {};
     const {
       prefixCls: customizePrefixCls,
@@ -43377,7 +43834,7 @@ html body {
     } = props;
     const {
       menu
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       getPrefixCls,
       getPopupContainer,
@@ -43430,7 +43887,7 @@ html body {
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$i(prefixCls, rootCls, !override);
     const menuClassName = clsx(`${prefixCls}-${theme}`, contextClassName, className);
-    const mergedExpandIcon = React__namespace.useMemo(() => {
+    const mergedExpandIcon = reactExports.useMemo(() => {
       var _a3;
       if (isFunction$2(expandIcon) || isEmptyIcon(expandIcon)) {
         return expandIcon || null;
@@ -43443,10 +43900,10 @@ html body {
       }
       const mergedIcon = expandIcon ?? (overrideObj == null ? void 0 : overrideObj.expandIcon) ?? (menu == null ? void 0 : menu.expandIcon);
       return cloneElement(mergedIcon, {
-        className: clsx(`${prefixCls}-submenu-expand-icon`, /* @__PURE__ */ React__namespace.isValidElement(mergedIcon) ? (_a3 = mergedIcon.props) == null ? void 0 : _a3.className : void 0)
+        className: clsx(`${prefixCls}-submenu-expand-icon`, /* @__PURE__ */ reactExports.isValidElement(mergedIcon) ? (_a3 = mergedIcon.props) == null ? void 0 : _a3.className : void 0)
       });
     }, [expandIcon, overrideObj == null ? void 0 : overrideObj.expandIcon, menu == null ? void 0 : menu.expandIcon, prefixCls]);
-    const contextValue = React__namespace.useMemo(() => ({
+    const contextValue = reactExports.useMemo(() => ({
       prefixCls,
       inlineCollapsed: mergedInlineCollapsed || false,
       direction,
@@ -43458,13 +43915,13 @@ html body {
       classNames: mergedClassNames,
       styles: mergedStyles
     }), [prefixCls, mergedInlineCollapsed, direction, _internalDisableMenuItemTitleTooltip, theme, mergedMode, mergedClassNames, mergedStyles, tooltip]);
-    return /* @__PURE__ */ React__namespace.createElement(OverrideContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(OverrideContext.Provider, {
       value: null
-    }, /* @__PURE__ */ React__namespace.createElement(MenuContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(MenuContext.Provider, {
       value: contextValue
-    }, /* @__PURE__ */ React__namespace.createElement(ExportMenu, {
+    }, /* @__PURE__ */ reactExports.createElement(ExportMenu, {
       getPopupContainer,
-      overflowedIndicator: /* @__PURE__ */ React__namespace.createElement(RefIcon$m, null),
+      overflowedIndicator: /* @__PURE__ */ reactExports.createElement(RefIcon$m, null),
       overflowedIndicatorPopupClassName: clsx(prefixCls, `${prefixCls}-${theme}`, overflowedIndicatorPopupClassName),
       classNames: {
         list: mergedClassNames.list,
@@ -43494,17 +43951,17 @@ html body {
       _internalComponents: MENU_COMPONENTS
     })));
   });
-  const Menu = /* @__PURE__ */ React.forwardRef((props, ref) => {
-    const menuRef = React.useRef(null);
-    const context = React__namespace.useContext(SiderContext);
-    React.useImperativeHandle(ref, () => ({
+  const Menu = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+    const menuRef = reactExports.useRef(null);
+    const context = reactExports.useContext(SiderContext);
+    reactExports.useImperativeHandle(ref, () => ({
       menu: menuRef.current,
       focus: (options) => {
         var _a2;
         (_a2 = menuRef.current) == null ? void 0 : _a2.focus(options);
       }
     }));
-    return /* @__PURE__ */ React__namespace.createElement(InternalMenu, {
+    return /* @__PURE__ */ reactExports.createElement(InternalMenu, {
       ref: menuRef,
       ...props,
       ...context
@@ -43827,7 +44284,7 @@ html body {
   }, prepareComponentToken$a, {
     resetStyle: false
   });
-  const Dropdown$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Dropdown$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       menu,
       arrow,
@@ -43878,7 +44335,7 @@ html body {
     };
     const mergedPopupRender = popupRender || dropdownRender;
     devUseWarning();
-    const memoTransitionName = React__namespace.useMemo(() => {
+    const memoTransitionName = reactExports.useMemo(() => {
       const rootPrefixCls = getPrefixCls();
       if (transitionName !== void 0) {
         return transitionName;
@@ -43888,7 +44345,7 @@ html body {
       }
       return `${rootPrefixCls}-slide-up`;
     }, [getPrefixCls, placement, transitionName]);
-    const memoPlacement = React__namespace.useMemo(() => {
+    const memoPlacement = reactExports.useMemo(() => {
       if (!placement) {
         return direction === "rtl" ? "bottomRight" : "bottomLeft";
       }
@@ -43901,7 +44358,7 @@ html body {
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$h(prefixCls, rootCls);
     const [, token2] = useToken();
-    const child = React__namespace.Children.only(isPrimitive(children) ? /* @__PURE__ */ React__namespace.createElement("span", null, children) : children);
+    const child = reactExports.Children.only(isPrimitive(children) ? /* @__PURE__ */ reactExports.createElement("span", null, children) : children);
     const composedRef = useComposeRef(ref, child.ref);
     const popupTrigger = cloneElement(child, {
       className: clsx(`${prefixCls}-trigger`, {
@@ -43943,7 +44400,7 @@ html body {
       const menuStyles = omit(mergedStyles, ["root"]);
       let overlayNode;
       if (menu == null ? void 0 : menu.items) {
-        overlayNode = /* @__PURE__ */ React__namespace.createElement(Menu, {
+        overlayNode = /* @__PURE__ */ reactExports.createElement(Menu, {
           ...menu,
           classNames: {
             ...menuClassNames,
@@ -43962,15 +44419,15 @@ html body {
       if (mergedPopupRender) {
         overlayNode = mergedPopupRender(overlayNode);
       }
-      overlayNode = React__namespace.Children.only(typeof overlayNode === "string" ? /* @__PURE__ */ React__namespace.createElement("span", null, overlayNode) : overlayNode);
-      return /* @__PURE__ */ React__namespace.createElement(OverrideProvider, {
+      overlayNode = reactExports.Children.only(typeof overlayNode === "string" ? /* @__PURE__ */ reactExports.createElement("span", null, overlayNode) : overlayNode);
+      return /* @__PURE__ */ reactExports.createElement(OverrideProvider, {
         prefixCls: `${prefixCls}-menu`,
         rootClassName: clsx(cssVarCls, rootCls),
-        expandIcon: /* @__PURE__ */ React__namespace.createElement("span", {
+        expandIcon: /* @__PURE__ */ reactExports.createElement("span", {
           className: `${prefixCls}-menu-submenu-arrow`
-        }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$n, {
+        }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RefIcon$n, {
           className: `${prefixCls}-menu-submenu-arrow-icon`
-        }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$r, {
+        }) : /* @__PURE__ */ reactExports.createElement(RefIcon$r, {
           className: `${prefixCls}-menu-submenu-arrow-icon`
         })),
         mode: "vertical",
@@ -43983,7 +44440,7 @@ html body {
       }, overlayNode);
     };
     const [zIndex, contextZIndex] = useZIndex("Dropdown", mergedRootStyles.zIndex);
-    let renderNode = /* @__PURE__ */ React__namespace.createElement(Dropdown$2, {
+    let renderNode = /* @__PURE__ */ reactExports.createElement(Dropdown$2, {
       alignPoint,
       ...omit(props, ["rootClassName", "onOpenChange"]),
       mouseEnterDelay,
@@ -44006,16 +44463,16 @@ html body {
       autoDestroy: destroyOnHidden ?? destroyPopupOnHide
     }, popupTrigger);
     if (zIndex) {
-      renderNode = /* @__PURE__ */ React__namespace.createElement(ZIndexContext.Provider, {
+      renderNode = /* @__PURE__ */ reactExports.createElement(ZIndexContext.Provider, {
         value: contextZIndex
       }, renderNode);
     }
     return renderNode;
   });
   const PurePanel$2 = genPurePanel(Dropdown$1, "align", void 0, "dropdown", (prefixCls) => prefixCls);
-  const WrapPurePanel = (props) => /* @__PURE__ */ React__namespace.createElement(PurePanel$2, {
+  const WrapPurePanel = (props) => /* @__PURE__ */ reactExports.createElement(PurePanel$2, {
     ...props
-  }, /* @__PURE__ */ React__namespace.createElement("span", null));
+  }, /* @__PURE__ */ reactExports.createElement("span", null));
   Dropdown$1._InternalPanelDoNotUseOrYouWillBeFired = WrapPurePanel;
   var dayjs_min$1 = { exports: {} };
   var dayjs_min = dayjs_min$1.exports;
@@ -44353,8 +44810,8 @@ html body {
   }
   function useForm(form) {
     const [rcForm] = useForm$1();
-    const itemsRef = React__namespace.useRef({});
-    const wrapForm = React__namespace.useMemo(() => form ?? {
+    const itemsRef = reactExports.useRef({});
+    const wrapForm = reactExports.useMemo(() => form ?? {
       ...rcForm,
       __INTERNAL__: {
         itemRef: (name) => (node2) => {
@@ -44399,9 +44856,9 @@ html body {
     }, [form, rcForm]);
     return [wrapForm];
   }
-  const RadioGroupContext = /* @__PURE__ */ React__namespace.createContext(void 0);
+  const RadioGroupContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const RadioGroupContextProvider = RadioGroupContext.Provider;
-  const RadioOptionTypeContext = /* @__PURE__ */ React__namespace.createContext(void 0);
+  const RadioOptionTypeContext = /* @__PURE__ */ reactExports.createContext(void 0);
   const RadioOptionTypeContextProvider = RadioOptionTypeContext.Provider;
   function _extends$I() {
     _extends$I = Object.assign ? Object.assign.bind() : function(target) {
@@ -44417,7 +44874,7 @@ html body {
     };
     return _extends$I.apply(this, arguments);
   }
-  const Checkbox$2 = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const Checkbox$2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls = "rc-checkbox",
       className,
@@ -44430,10 +44887,10 @@ html body {
       onChange,
       ...inputProps
     } = props;
-    const inputRef = React.useRef(null);
-    const holderRef = React.useRef(null);
+    const inputRef = reactExports.useRef(null);
+    const holderRef = reactExports.useRef(null);
     const [rawValue, setRawValue] = useControlledState(defaultChecked, checked);
-    React.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       focus: (options) => {
         var _a2;
         (_a2 = inputRef.current) == null ? void 0 : _a2.focus(options);
@@ -44471,12 +44928,12 @@ html body {
         nativeEvent: e2.nativeEvent
       });
     };
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className: classString,
       title,
       style: style2,
       ref: holderRef
-    }, /* @__PURE__ */ React__namespace.createElement("input", _extends$I({}, inputProps, {
+    }, /* @__PURE__ */ reactExports.createElement("input", _extends$I({}, inputProps, {
       className: `${prefixCls}-input`,
       ref: inputRef,
       onChange: handleChange,
@@ -44922,8 +45379,8 @@ html body {
     }
   });
   const InternalRadio = (props, ref) => {
-    const groupContext = React__namespace.useContext(RadioGroupContext);
-    const radioOptionTypeContext = React__namespace.useContext(RadioOptionTypeContext);
+    const groupContext = reactExports.useContext(RadioGroupContext);
+    const radioOptionTypeContext = reactExports.useContext(RadioOptionTypeContext);
     const {
       getPrefixCls,
       direction,
@@ -44932,11 +45389,11 @@ html body {
       classNames: contextClassNames,
       styles: contextStyles
     } = useComponentConfig("radio");
-    const innerRef = React__namespace.useRef(null);
+    const innerRef = reactExports.useRef(null);
     const mergedRef = composeRef(ref, innerRef);
     const {
       isFormItemInput
-    } = React__namespace.useContext(FormItemInputContext);
+    } = reactExports.useContext(FormItemInputContext);
     const onChange = (e2) => {
       var _a2, _b2;
       (_a2 = props.onChange) == null ? void 0 : _a2.call(props, e2);
@@ -44961,7 +45418,7 @@ html body {
     const radioProps = {
       ...restProps
     };
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     let mergedChecked = radioProps.checked;
     if (groupContext) {
       radioProps.name = groupContext.name;
@@ -44986,10 +45443,10 @@ html body {
       [`${prefixCls}-wrapper-block`]: !!(groupContext == null ? void 0 : groupContext.block)
     }, contextClassName, className, rootClassName, mergedClassNames.root, hashId, cssVarCls, rootCls);
     const [onLabelClick, onInputClick] = useBubbleLock(radioProps.onClick);
-    return /* @__PURE__ */ React__namespace.createElement(Wave, {
+    return /* @__PURE__ */ reactExports.createElement(Wave, {
       component: "Radio",
       disabled: radioProps.disabled
-    }, /* @__PURE__ */ React__namespace.createElement("label", {
+    }, /* @__PURE__ */ reactExports.createElement("label", {
       className: wrapperClassString,
       style: {
         ...mergedStyles.root,
@@ -45000,7 +45457,7 @@ html body {
       onMouseLeave: props.onMouseLeave,
       title,
       onClick: onLabelClick
-    }, /* @__PURE__ */ React__namespace.createElement(Checkbox$2, {
+    }, /* @__PURE__ */ reactExports.createElement(Checkbox$2, {
       ...radioProps,
       checked: mergedChecked,
       className: clsx(mergedClassNames.icon, {
@@ -45011,20 +45468,20 @@ html body {
       prefixCls,
       ref: mergedRef,
       onClick: onInputClick
-    }), children !== void 0 ? /* @__PURE__ */ React__namespace.createElement("span", {
+    }), children !== void 0 ? /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefixCls}-label`, mergedClassNames.label),
       style: mergedStyles.label
     }, children) : null));
   };
-  const Radio$1 = /* @__PURE__ */ React__namespace.forwardRef(InternalRadio);
-  const RadioGroup$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Radio$1 = /* @__PURE__ */ reactExports.forwardRef(InternalRadio);
+  const RadioGroup$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       name: formItemName
-    } = React__namespace.useContext(FormItemInputContext);
+    } = reactExports.useContext(FormItemInputContext);
     const defaultName = useId(toNamePathStr(formItemName));
     const {
       prefixCls: customizePrefixCls,
@@ -45052,7 +45509,7 @@ html body {
       role = "radiogroup"
     } = props;
     const [value, setValue] = useControlledState(defaultValue, customizedValue);
-    const onRadioChange = React__namespace.useCallback((event) => {
+    const onRadioChange = reactExports.useCallback((event) => {
       const lastValue = value;
       const val = event.target.value;
       if (!("value" in props)) {
@@ -45070,7 +45527,7 @@ html body {
     if (options && options.length > 0) {
       childrenToRender = options.map((option) => {
         if (typeof option === "string" || isNumber$1(option)) {
-          return /* @__PURE__ */ React__namespace.createElement(Radio$1, {
+          return /* @__PURE__ */ reactExports.createElement(Radio$1, {
             key: option.toString(),
             prefixCls,
             disabled,
@@ -45078,7 +45535,7 @@ html body {
             checked: value === option
           }, option);
         }
-        return /* @__PURE__ */ React__namespace.createElement(Radio$1, {
+        return /* @__PURE__ */ reactExports.createElement(Radio$1, {
           key: `radio-group-value-options-${option.value}`,
           prefixCls,
           disabled: option.disabled || disabled,
@@ -45100,7 +45557,7 @@ html body {
       [`${groupPrefixCls}-rtl`]: direction === "rtl",
       [`${groupPrefixCls}-block`]: block
     }, className, rootClassName, hashId, cssVarCls, rootCls);
-    const memoizedValue = React__namespace.useMemo(() => ({
+    const memoizedValue = reactExports.useMemo(() => ({
       onChange: onRadioChange,
       value,
       disabled,
@@ -45108,7 +45565,7 @@ html body {
       optionType,
       block
     }), [onRadioChange, value, disabled, name, optionType, block]);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ...pickAttrs(props, {
         aria: true,
         data: true
@@ -45124,30 +45581,30 @@ html body {
       onBlur,
       id,
       ref
-    }, /* @__PURE__ */ React__namespace.createElement(RadioGroupContextProvider, {
+    }, /* @__PURE__ */ reactExports.createElement(RadioGroupContextProvider, {
       value: memoizedValue
     }, childrenToRender));
   });
-  const Group$1 = /* @__PURE__ */ React__namespace.memo(RadioGroup$1);
+  const Group$1 = /* @__PURE__ */ reactExports.memo(RadioGroup$1);
   const RadioButton = (props, ref) => {
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       prefixCls: customizePrefixCls,
       ...radioProps
     } = props;
     const prefixCls = getPrefixCls("radio", customizePrefixCls);
-    return /* @__PURE__ */ React__namespace.createElement(RadioOptionTypeContextProvider, {
+    return /* @__PURE__ */ reactExports.createElement(RadioOptionTypeContextProvider, {
       value: "button"
-    }, /* @__PURE__ */ React__namespace.createElement(Radio$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Radio$1, {
       prefixCls,
       ...radioProps,
       type: "radio",
       ref
     }));
   };
-  const Button = /* @__PURE__ */ React__namespace.forwardRef(RadioButton);
+  const Button = /* @__PURE__ */ reactExports.forwardRef(RadioButton);
   const Radio = Radio$1;
   Radio.Button = Button;
   Radio.Group = Group$1;
@@ -46869,11 +47326,11 @@ html body {
       classNames: contextClassNames,
       styles: contextStyles
     } = useComponentConfig("checkbox");
-    const checkboxGroup = React__namespace.useContext(GroupContext);
+    const checkboxGroup = reactExports.useContext(GroupContext);
     const {
       isFormItemInput
-    } = React__namespace.useContext(FormItemInputContext);
-    const contextDisabled = React__namespace.useContext(DisabledContext);
+    } = reactExports.useContext(FormItemInputContext);
+    const contextDisabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = ((checkboxGroup == null ? void 0 : checkboxGroup.disabled) || disabled) ?? contextDisabled;
     const [innerChecked, setInnerChecked] = useControlledState(defaultChecked, checked);
     let mergedChecked = innerChecked;
@@ -46890,9 +47347,9 @@ html body {
     if (checkboxGroup && !skipGroup) {
       mergedChecked = checkboxGroup.value.includes(value);
     }
-    const checkboxRef = React__namespace.useRef(null);
+    const checkboxRef = reactExports.useRef(null);
     const mergedRef = useComposeRef(ref, checkboxRef);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (skipGroup || !checkboxGroup) {
         return;
       }
@@ -46901,7 +47358,7 @@ html body {
         checkboxGroup.cancelValue(value);
       };
     }, [value, skipGroup]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       var _a2;
       if ((_a2 = checkboxRef.current) == null ? void 0 : _a2.input) {
         checkboxRef.current.input.indeterminate = indeterminate;
@@ -46932,10 +47389,10 @@ html body {
       [`${prefixCls}-indeterminate`]: indeterminate
     }, TARGET_CLS, hashId);
     const [onLabelClick, onInputClick] = useBubbleLock(checkboxProps.onClick);
-    return /* @__PURE__ */ React__namespace.createElement(Wave, {
+    return /* @__PURE__ */ reactExports.createElement(Wave, {
       component: "Checkbox",
       disabled: mergedDisabled
-    }, /* @__PURE__ */ React__namespace.createElement("label", {
+    }, /* @__PURE__ */ reactExports.createElement("label", {
       className: classString,
       style: {
         ...mergedStyles.root,
@@ -46945,7 +47402,7 @@ html body {
       onMouseEnter,
       onMouseLeave,
       onClick: onLabelClick
-    }, /* @__PURE__ */ React__namespace.createElement(Checkbox$2, {
+    }, /* @__PURE__ */ reactExports.createElement(Checkbox$2, {
       ...checkboxProps,
       name: !skipGroup && checkboxGroup ? checkboxGroup.name : name,
       checked: mergedChecked,
@@ -46957,13 +47414,13 @@ html body {
       disabled: mergedDisabled,
       ref: mergedRef,
       value
-    }), isNonNullable(children) && /* @__PURE__ */ React__namespace.createElement("span", {
+    }), isNonNullable(children) && /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefixCls}-label`, mergedClassNames.label),
       style: mergedStyles.label
     }, children)));
   };
-  const Checkbox$1 = /* @__PURE__ */ React__namespace.forwardRef(InternalCheckbox);
-  const CheckboxGroup = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Checkbox$1 = /* @__PURE__ */ reactExports.forwardRef(InternalCheckbox);
+  const CheckboxGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       defaultValue,
       children,
@@ -46979,15 +47436,15 @@ html body {
     const {
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
-    const [value, setValue] = React__namespace.useState(restProps.value || defaultValue || []);
-    const [registeredValues, setRegisteredValues] = React__namespace.useState([]);
-    React__namespace.useEffect(() => {
+    } = reactExports.useContext(ConfigContext);
+    const [value, setValue] = reactExports.useState(restProps.value || defaultValue || []);
+    const [registeredValues, setRegisteredValues] = reactExports.useState([]);
+    reactExports.useEffect(() => {
       if ("value" in restProps) {
         setValue(restProps.value || []);
       }
     }, [restProps.value]);
-    const memoizedOptions = React__namespace.useMemo(() => options.map((option) => {
+    const memoizedOptions = reactExports.useMemo(() => options.map((option) => {
       if (typeof option === "string" || isNumber$1(option)) {
         return {
           label: option,
@@ -47024,7 +47481,7 @@ html body {
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$e(prefixCls, rootCls);
     const domProps = omit(restProps, ["value", "disabled"]);
-    const childrenNode = options.length ? memoizedOptions.map((option) => /* @__PURE__ */ React__namespace.createElement(Checkbox$1, {
+    const childrenNode = options.length ? memoizedOptions.map((option) => /* @__PURE__ */ reactExports.createElement(Checkbox$1, {
       prefixCls,
       key: option.value.toString(),
       disabled: "disabled" in option ? option.disabled : restProps.disabled,
@@ -47037,7 +47494,7 @@ html body {
       id: option.id,
       required: option.required
     }, option.label)) : children;
-    const memoizedContext = React__namespace.useMemo(() => ({
+    const memoizedContext = reactExports.useMemo(() => ({
       toggleOption,
       value,
       disabled: restProps.disabled,
@@ -47049,20 +47506,20 @@ html body {
     const classString = clsx(groupPrefixCls, {
       [`${groupPrefixCls}-rtl`]: direction === "rtl"
     }, className, rootClassName, cssVarCls, rootCls, hashId);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: classString,
       style: style2,
       role,
       ...domProps,
       ref
-    }, /* @__PURE__ */ React__namespace.createElement(GroupContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(GroupContext.Provider, {
       value: memoizedContext
     }, childrenNode));
   });
   const Checkbox = Checkbox$1;
   Checkbox.Group = CheckboxGroup;
   Checkbox.__ANT_CHECKBOX = true;
-  const RowContext = /* @__PURE__ */ React.createContext({});
+  const RowContext = /* @__PURE__ */ reactExports.createContext({});
   function parseFlex(flex) {
     if (flex === "auto") {
       return "1 1 auto";
@@ -47075,15 +47532,15 @@ html body {
     }
     return flex;
   }
-  const Col = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Col = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       gutter,
       wrap
-    } = React__namespace.useContext(RowContext);
+    } = reactExports.useContext(RowContext);
     const {
       prefixCls: customizePrefixCls,
       span,
@@ -47144,7 +47601,7 @@ html body {
         mergedStyle.minWidth = 0;
       }
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ...others,
       style: {
         ...mergedStyle,
@@ -47183,7 +47640,7 @@ html body {
     return results;
   }
   const useMergedPropByScreen = (oriProp, screen) => {
-    const [prop, setProp] = React__namespace.useState(() => isString$1(oriProp) ? oriProp : "");
+    const [prop, setProp] = reactExports.useState(() => isString$1(oriProp) ? oriProp : "");
     const calcMergedAlignOrJustify = () => {
       if (isString$1(oriProp)) {
         setProp(oriProp);
@@ -47203,12 +47660,12 @@ html body {
         }
       }
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       calcMergedAlignOrJustify();
     }, [JSON.stringify(oriProp), screen]);
     return prop;
   };
-  const Row = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Row = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       justify,
@@ -47223,7 +47680,7 @@ html body {
     const {
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const screens = useBreakpoint(true, null);
     const mergedAlign = useMergedPropByScreen(align, screens);
     const mergedJustify = useMergedPropByScreen(justify, screens);
@@ -47243,13 +47700,13 @@ html body {
     }
     const [gutterH, gutterV] = gutters;
     rowStyle2.rowGap = gutterV;
-    const rowContext = React__namespace.useMemo(() => ({
+    const rowContext = reactExports.useMemo(() => ({
       gutter: [gutterH, gutterV],
       wrap
     }), [gutterH, gutterV, wrap]);
-    return /* @__PURE__ */ React__namespace.createElement(RowContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(RowContext.Provider, {
       value: rowContext
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       ...others,
       className: classes,
       style: {
@@ -47476,7 +47933,7 @@ html body {
     const sizeFullName = useSize(customSize);
     const hasChildren = !!children;
     const validTitlePlacement = titlePlacementList.includes(orientation || "");
-    const mergedTitlePlacement = React__namespace.useMemo(() => {
+    const mergedTitlePlacement = reactExports.useMemo(() => {
       const placement = titlePlacement ?? (validTitlePlacement ? orientation : "center");
       if (placement === "left") {
         return direction === "rtl" ? "end" : "start";
@@ -47512,7 +47969,7 @@ html body {
       [railCls]: !children,
       [mergedClassNames.rail]: mergedClassNames.rail && !children
     }, className, rootClassName, mergedClassNames.root);
-    const memoizedPlacementMargin = React__namespace.useMemo(() => {
+    const memoizedPlacementMargin = reactExports.useMemo(() => {
       if (isNumber$1(orientationMargin)) {
         return orientationMargin;
       }
@@ -47525,7 +47982,7 @@ html body {
       marginInlineStart: hasMarginStart ? memoizedPlacementMargin : void 0,
       marginInlineEnd: hasMarginEnd ? memoizedPlacementMargin : void 0
     };
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: classString,
       style: {
         ...contextStyle,
@@ -47535,16 +47992,16 @@ html body {
       },
       ...restProps,
       role: "separator"
-    }, children && !mergedVertical && /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, children && !mergedVertical && /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(railCls, `${railCls}-start`, mergedClassNames.rail),
       style: mergedStyles.rail
-    }), /* @__PURE__ */ React__namespace.createElement("span", {
+    }), /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefixCls}-inner-text`, mergedClassNames.content),
       style: {
         ...innerStyle,
         ...mergedStyles.content
       }
-    }, children), /* @__PURE__ */ React__namespace.createElement("div", {
+    }, children), /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(railCls, `${railCls}-end`, mergedClassNames.rail),
       style: mergedStyles.rail
     })));
@@ -47564,11 +48021,11 @@ html body {
     };
     return _extends$H.apply(this, arguments);
   }
-  const UpOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$H({}, props, {
+  const UpOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$H({}, props, {
     ref,
     icon: UpOutlined$1
   }));
-  const RefIcon$l = /* @__PURE__ */ React__namespace.forwardRef(UpOutlined);
+  const RefIcon$l = /* @__PURE__ */ reactExports.forwardRef(UpOutlined);
   const genSpaceAddonStyle = (token2) => {
     const {
       componentCls,
@@ -47813,7 +48270,7 @@ html body {
     const GroupWrapperComponent = (components2 == null ? void 0 : components2.groupWrapper) || "span";
     const WrapperComponent = (components2 == null ? void 0 : components2.wrapper) || "span";
     const GroupAddonComponent = (components2 == null ? void 0 : components2.groupAddon) || "span";
-    const containerRef = React.useRef(null);
+    const containerRef = reactExports.useRef(null);
     const onInputClick = (e2) => {
       var _a3;
       if ((_a3 = containerRef.current) == null ? void 0 : _a3.contains(e2.target)) {
@@ -47821,11 +48278,11 @@ html body {
       }
     };
     const hasAffix = hasPrefixSuffix$1(props);
-    let element = /* @__PURE__ */ React.cloneElement(inputElement, {
+    let element = /* @__PURE__ */ reactExports.cloneElement(inputElement, {
       value,
       className: clsx((_a2 = inputElement.props) == null ? void 0 : _a2.className, !hasAffix && (classNames == null ? void 0 : classNames.variant)) || null
     });
-    const groupRef = React.useRef(null);
+    const groupRef = reactExports.useRef(null);
     React.useImperativeHandle(ref, () => ({
       nativeElement: groupRef.current || containerRef.current
     }));
@@ -47903,7 +48360,7 @@ html body {
     });
   });
   function useCount(count, showCount) {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       let mergedConfig = {};
       if (showCount) {
         mergedConfig.show = typeof showCount === "object" && showCount.formatter ? showCount.formatter : !!showCount;
@@ -47929,7 +48386,7 @@ html body {
     value,
     maxLength
   }) {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       const mergedMax = countConfig.max ?? maxLength;
       const valueLength = countConfig.strategy(value);
       const isOutOfRange = !!mergedMax && valueLength > mergedMax;
@@ -47950,19 +48407,19 @@ html body {
     countConfig,
     getTarget
   }) {
-    const [selection, setSelection] = React__namespace.useState(null);
-    const getTargetRef = React__namespace.useRef(getTarget);
-    React__namespace.useEffect(() => {
+    const [selection, setSelection] = reactExports.useState(null);
+    const getTargetRef = reactExports.useRef(getTarget);
+    reactExports.useEffect(() => {
       getTargetRef.current = getTarget;
     }, [getTarget]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       var _a2;
       if (selection) {
         (_a2 = getTargetRef.current()) == null ? void 0 : _a2.setSelectionRange(...selection);
         setSelection(null);
       }
     }, [selection]);
-    const getExceedValue = React__namespace.useCallback((currentValue, isComposing) => {
+    const getExceedValue = reactExports.useCallback((currentValue, isComposing) => {
       var _a2, _b2;
       let nextValue = currentValue;
       if (!isComposing && countConfig.exceedFormatter && countConfig.max && countConfig.strategy(currentValue) > countConfig.max) {
@@ -48000,7 +48457,7 @@ html body {
     };
     return _extends$F.apply(this, arguments);
   }
-  const Input$2 = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const Input$2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       autoComplete,
       onChange,
@@ -48025,11 +48482,11 @@ html body {
       onCompositionEnd,
       ...rest
     } = props;
-    const [focused, setFocused] = React.useState(false);
-    const compositionRef = React.useRef(false);
-    const keyLockRef = React.useRef(false);
-    const inputRef = React.useRef(null);
-    const holderRef = React.useRef(null);
+    const [focused, setFocused] = reactExports.useState(false);
+    const compositionRef = reactExports.useRef(false);
+    const keyLockRef = reactExports.useRef(false);
+    const inputRef = reactExports.useRef(null);
+    const holderRef = reactExports.useRef(null);
     const focus = (option) => {
       if (inputRef.current) {
         triggerFocus(inputRef.current, option);
@@ -48052,7 +48509,7 @@ html body {
       countConfig,
       getTarget: () => inputRef.current
     });
-    React.useImperativeHandle(ref, () => {
+    reactExports.useImperativeHandle(ref, () => {
       var _a2;
       return {
         focus,
@@ -48072,7 +48529,7 @@ html body {
         nativeElement: ((_a2 = holderRef.current) == null ? void 0 : _a2.nativeElement) || inputRef.current
       };
     });
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (keyLockRef.current) {
         keyLockRef.current = false;
       }
@@ -48317,7 +48774,7 @@ html body {
   const RESIZE_START = 0;
   const RESIZE_MEASURING = 1;
   const RESIZE_STABLE = 2;
-  const ResizableTextArea = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const ResizableTextArea = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls,
       defaultValue,
@@ -48338,19 +48795,19 @@ html body {
       setMergedValue(event.target.value);
       onChange == null ? void 0 : onChange(event);
     };
-    const textareaRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => ({
+    const textareaRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => ({
       textArea: textareaRef.current
     }));
-    const [minRows, maxRows] = React__namespace.useMemo(() => {
+    const [minRows, maxRows] = reactExports.useMemo(() => {
       if (autoSize && typeof autoSize === "object") {
         return [autoSize.minRows, autoSize.maxRows];
       }
       return [];
     }, [autoSize]);
     const needAutoSize = !!autoSize;
-    const [resizeState, setResizeState] = React__namespace.useState(RESIZE_STABLE);
-    const [autoSizeStyle, setAutoSizeStyle] = React__namespace.useState();
+    const [resizeState, setResizeState] = reactExports.useState(RESIZE_STABLE);
+    const [autoSizeStyle, setAutoSizeStyle] = reactExports.useState();
     const startResize = () => {
       setResizeState(RESIZE_START);
     };
@@ -48368,7 +48825,7 @@ html body {
         setAutoSizeStyle(textareaStyles);
       } else ;
     }, [resizeState]);
-    const resizeRafRef = React__namespace.useRef(void 0);
+    const resizeRafRef = reactExports.useRef(void 0);
     const cleanRaf = () => {
       if (resizeRafRef.current !== void 0) {
         wrapperRaf.cancel(resizeRafRef.current);
@@ -48385,7 +48842,7 @@ html body {
         }
       }
     };
-    React__namespace.useEffect(() => cleanRaf, []);
+    reactExports.useEffect(() => cleanRaf, []);
     const mergedAutoSizeStyle = needAutoSize ? autoSizeStyle : null;
     const mergedStyle = {
       ...style2,
@@ -48395,10 +48852,10 @@ html body {
       mergedStyle.overflowY = "hidden";
       mergedStyle.overflowX = "hidden";
     }
-    return /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+    return /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
       onResize: onInternalResize,
       disabled: !(autoSize || onResize2)
-    }, /* @__PURE__ */ React__namespace.createElement("textarea", _extends$E({}, restProps, {
+    }, /* @__PURE__ */ reactExports.createElement("textarea", _extends$E({}, restProps, {
       ref: textareaRef,
       style: mergedStyle,
       className: clsx(prefixCls, className, {
@@ -48454,8 +48911,8 @@ html body {
     const [focused, setFocused] = React.useState(false);
     const compositionRef = React.useRef(false);
     const [textareaResized, setTextareaResized] = React.useState(null);
-    const holderRef = React.useRef(null);
-    const resizableTextAreaRef = React.useRef(null);
+    const holderRef = reactExports.useRef(null);
+    const resizableTextAreaRef = reactExports.useRef(null);
     const getTextArea = () => {
       var _a2;
       return ((_a2 = resizableTextAreaRef.current) == null ? void 0 : _a2.textArea) || null;
@@ -48484,7 +48941,7 @@ html body {
       var _a2;
       (_a2 = getTextArea()) == null ? void 0 : _a2.focus();
     };
-    React.useImperativeHandle(ref, () => {
+    reactExports.useImperativeHandle(ref, () => {
       var _a2;
       return {
         resizableTextArea: resizableTextAreaRef.current,
@@ -48496,7 +48953,7 @@ html body {
         nativeElement: ((_a2 = holderRef.current) == null ? void 0 : _a2.nativeElement) || getTextArea()
       };
     });
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       setFocused((prev2) => !disabled && prev2);
     }, [disabled]);
     const triggerChange = (e2, currentValue) => {
@@ -48607,7 +49064,7 @@ html body {
     })));
   });
   function useRemovePasswordTimeout(inputRef, triggerOnMount) {
-    const removePasswordTimeoutRef = React.useRef([]);
+    const removePasswordTimeoutRef = reactExports.useRef([]);
     const removePasswordTimeout = () => {
       removePasswordTimeoutRef.current.push(setTimeout(() => {
         var _a2, _b2, _c, _d;
@@ -48616,7 +49073,7 @@ html body {
         }
       }));
     };
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (triggerOnMount) {
         removePasswordTimeout();
       }
@@ -48631,7 +49088,7 @@ html body {
   function hasPrefixSuffix(props) {
     return !!(props.prefix || props.suffix || props.allowClear || props.showCount);
   }
-  const Input$1 = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const Input$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       bordered = true,
@@ -48664,7 +49121,7 @@ html body {
       styles: contextStyles
     } = useComponentConfig("input");
     const prefixCls = getPrefixCls("input", customizePrefixCls);
-    const inputRef = React.useRef(null);
+    const inputRef = reactExports.useRef(null);
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useSharedStyle(prefixCls, rootClassName);
     useStyle$f(prefixCls, rootCls);
@@ -48687,10 +49144,10 @@ html body {
       status: contextStatus,
       hasFeedback,
       feedbackIcon
-    } = React.useContext(FormItemInputContext);
+    } = reactExports.useContext(FormItemInputContext);
     const mergedStatus = getMergedStatus(contextStatus, customStatus);
     const inputHasPrefixSuffix = hasPrefixSuffix(props) || !!hasFeedback;
-    React.useRef(inputHasPrefixSuffix);
+    reactExports.useRef(inputHasPrefixSuffix);
     const removePasswordTimeout = useRemovePasswordTimeout(inputRef, true);
     const handleBlur = (e2) => {
       removePasswordTimeout();
@@ -48790,14 +49247,14 @@ html body {
     } = props;
     const {
       latestIndex
-    } = React__namespace.useContext(SpaceContext);
+    } = reactExports.useContext(SpaceContext);
     if (!isNonNullable(children)) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("div", {
       className,
       style: style2
-    }, children), index2 < latestIndex && separator && /* @__PURE__ */ React__namespace.createElement("span", {
+    }, children), index2 < latestIndex && separator && /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefix2}-item-separator`, classNames == null ? void 0 : classNames.separator),
       style: styles2 == null ? void 0 : styles2.separator
     }, separator));
@@ -48880,7 +49337,7 @@ html body {
     // https://github.com/ant-design/ant-design/issues/40315
     resetStyle: false
   });
-  const InternalSpace = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalSpace = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       getPrefixCls,
       direction: directionConfig,
@@ -48939,7 +49396,7 @@ html body {
     const itemClassName = clsx(`${prefixCls}-item`, mergedClassNames.item);
     const renderedItems = childNodes.map((child, i) => {
       const key2 = (child == null ? void 0 : child.key) || `${itemClassName}-${i}`;
-      return /* @__PURE__ */ React__namespace.createElement(Item, {
+      return /* @__PURE__ */ reactExports.createElement(Item, {
         prefix: prefixCls,
         classNames: mergedClassNames,
         styles: mergedStyles,
@@ -48950,7 +49407,7 @@ html body {
         style: mergedStyles.item
       }, child);
     });
-    const memoizedSpaceContext = React__namespace.useMemo(() => {
+    const memoizedSpaceContext = reactExports.useMemo(() => {
       const calcLatestIndex = childNodes.reduce((latest, child, i) => isNonNullable(child) ? i : latest, 0);
       return {
         latestIndex: calcLatestIndex
@@ -48969,7 +49426,7 @@ html body {
     if (!isPresetVerticalSize && isValidVerticalSize) {
       gapStyle.rowGap = verticalSize;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ref,
       className: rootClassNames,
       style: {
@@ -48979,7 +49436,7 @@ html body {
         ...style2
       },
       ...restProps
-    }, /* @__PURE__ */ React__namespace.createElement(SpaceContextProvider, {
+    }, /* @__PURE__ */ reactExports.createElement(SpaceContextProvider, {
       value: memoizedSpaceContext
     }, renderedItems));
   });
@@ -48991,7 +49448,7 @@ html body {
       getPopupContainer: getContextPopupContainer,
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       prefixCls: customizePrefixCls,
       type: type2 = "default",
@@ -49012,7 +49469,7 @@ html body {
       placement,
       getPopupContainer,
       href,
-      icon = /* @__PURE__ */ React__namespace.createElement(RefIcon$m, null),
+      icon = /* @__PURE__ */ reactExports.createElement(RefIcon$m, null),
       title,
       buttonsRender = (buttons) => buttons,
       mouseEnterDelay,
@@ -49064,7 +49521,7 @@ html body {
     } else {
       dropdownProps.placement = direction === "rtl" ? "bottomLeft" : "bottomRight";
     }
-    const leftButton = /* @__PURE__ */ React__namespace.createElement(Button$1, {
+    const leftButton = /* @__PURE__ */ reactExports.createElement(Button$1, {
       type: type2,
       danger,
       disabled,
@@ -49074,18 +49531,18 @@ html body {
       href,
       title
     }, children);
-    const rightButton = /* @__PURE__ */ React__namespace.createElement(Button$1, {
+    const rightButton = /* @__PURE__ */ reactExports.createElement(Button$1, {
       type: type2,
       danger,
       icon
     });
     const [leftButtonToRender, rightButtonToRender] = buttonsRender([leftButton, rightButton]);
-    return /* @__PURE__ */ React__namespace.createElement(Space.Compact, {
+    return /* @__PURE__ */ reactExports.createElement(Space.Compact, {
       className: classes,
       size: compactSize,
       block: true,
       ...restProps
-    }, leftButtonToRender, /* @__PURE__ */ React__namespace.createElement(Dropdown$1, {
+    }, leftButtonToRender, /* @__PURE__ */ reactExports.createElement(Dropdown$1, {
       ...dropdownProps
     }, rightButtonToRender));
   };
@@ -49096,7 +49553,7 @@ html body {
     if (!isNonNullable(tooltip)) {
       return null;
     }
-    if (isPlainObject$1(tooltip) && !/* @__PURE__ */ React.isValidElement(tooltip)) {
+    if (isPlainObject$1(tooltip) && !/* @__PURE__ */ reactExports.isValidElement(tooltip)) {
       return {
         ...context,
         ...tooltip
@@ -49108,8 +49565,8 @@ html body {
     };
   };
   function useDebounce(value) {
-    const [cacheValue, setCacheValue] = React__namespace.useState(value);
-    React__namespace.useEffect(() => {
+    const [cacheValue, setCacheValue] = reactExports.useState(value);
+    reactExports.useEffect(() => {
       const timeout = setTimeout(() => {
         setCacheValue(value);
       }, value.length ? 0 : 10);
@@ -49652,24 +50109,24 @@ html body {
   }) => {
     const {
       prefixCls
-    } = React__namespace.useContext(FormItemPrefixContext);
+    } = reactExports.useContext(FormItemPrefixContext);
     const {
       classNames: contextClassNames,
       styles: contextStyles
-    } = React__namespace.useContext(FormContext);
+    } = reactExports.useContext(FormContext);
     const baseClassName = `${prefixCls}-item-explain`;
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$a(prefixCls, rootCls);
-    const collapseMotion = React__namespace.useMemo(() => initCollapseMotion(prefixCls), [prefixCls]);
+    const collapseMotion = reactExports.useMemo(() => initCollapseMotion(prefixCls), [prefixCls]);
     const debounceErrors = useDebounce(errors);
     const debounceWarnings = useDebounce(warnings);
-    const fullKeyList = React__namespace.useMemo(() => {
+    const fullKeyList = reactExports.useMemo(() => {
       if (isNonNullable(help)) {
         return [toErrorEntity(help, "help", helpStatus)];
       }
       return [].concat(_toConsumableArray(debounceErrors.map((error, index2) => toErrorEntity(error, "error", "error", index2))), _toConsumableArray(debounceWarnings.map((warning2, index2) => toErrorEntity(warning2, "warning", "warning", index2))));
     }, [help, helpStatus, debounceErrors, debounceWarnings]);
-    const filledKeyFullKeyList = React__namespace.useMemo(() => {
+    const filledKeyFullKeyList = reactExports.useMemo(() => {
       const keysCount = {};
       fullKeyList.forEach(({
         key: key2
@@ -49685,7 +50142,7 @@ html body {
     if (fieldId) {
       helpProps.id = `${fieldId}_help`;
     }
-    return /* @__PURE__ */ React__namespace.createElement(CSSMotion, {
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
       motionDeadline: collapseMotion.motionDeadline,
       motionName: `${prefixCls}-show-help`,
       visible: !!filledKeyFullKeyList.length,
@@ -49695,14 +50152,14 @@ html body {
         className: holderClassName,
         style: holderStyle
       } = holderProps;
-      return /* @__PURE__ */ React__namespace.createElement("div", {
+      return /* @__PURE__ */ reactExports.createElement("div", {
         ...helpProps,
         className: clsx(baseClassName, holderClassName, contextClassNames == null ? void 0 : contextClassNames.help, cssVarCls, rootCls, rootClassName, hashId),
         style: {
           ...contextStyles == null ? void 0 : contextStyles.help,
           ...holderStyle
         }
-      }, /* @__PURE__ */ React__namespace.createElement(CSSMotionList, {
+      }, /* @__PURE__ */ reactExports.createElement(CSSMotionList, {
         keys: filledKeyFullKeyList,
         ...initCollapseMotion(prefixCls),
         motionName: `${prefixCls}-show-help-item`,
@@ -49715,7 +50172,7 @@ html body {
           className: itemClassName,
           style: itemStyle
         } = itemProps;
-        return /* @__PURE__ */ React__namespace.createElement("div", {
+        return /* @__PURE__ */ reactExports.createElement("div", {
           key: key2,
           className: clsx(itemClassName, contextClassNames == null ? void 0 : contextClassNames.helpItem, {
             [`${baseClassName}-${errorStatus}`]: errorStatus
@@ -49729,7 +50186,7 @@ html body {
     });
   };
   const InternalForm = (props, ref) => {
-    const contextDisabled = React__namespace.useContext(DisabledContext);
+    const contextDisabled = reactExports.useContext(DisabledContext);
     const {
       getPrefixCls,
       direction,
@@ -49769,8 +50226,8 @@ html body {
       ...restFormProps
     } = props;
     const mergedSize = useSize(size);
-    const contextValidateMessages = React__namespace.useContext(ValidateMessagesContext);
-    const mergedRequiredMark = React__namespace.useMemo(() => {
+    const contextValidateMessages = reactExports.useContext(ValidateMessagesContext);
+    const mergedRequiredMark = reactExports.useMemo(() => {
       if (requiredMark !== void 0) {
         return requiredMark;
       }
@@ -49811,7 +50268,7 @@ html body {
       __INTERNAL__
     } = wrapForm;
     __INTERNAL__.name = name;
-    const formContextValue = React__namespace.useMemo(() => ({
+    const formContextValue = reactExports.useMemo(() => ({
       name,
       labelAlign: mergedLabelAlign,
       labelCol,
@@ -49827,8 +50284,8 @@ html body {
       classNames: mergedClassNames,
       styles: mergedStyles
     }), [name, mergedLabelAlign, labelCol, wrapperCol, layout, mergedColon, mergedRequiredMark, wrapForm, feedbackIcons, mergedClassNames, mergedStyles, mergedTooltip]);
-    const nativeElementRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => {
+    const nativeElementRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => {
       var _a2;
       return {
         ...wrapForm,
@@ -49862,20 +50319,20 @@ html body {
         }
       }
     };
-    return /* @__PURE__ */ React__namespace.createElement(VariantContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(VariantContext.Provider, {
       value: variant
-    }, /* @__PURE__ */ React__namespace.createElement(DisabledContextProvider, {
+    }, /* @__PURE__ */ reactExports.createElement(DisabledContextProvider, {
       disabled
-    }, /* @__PURE__ */ React__namespace.createElement(SizeContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(SizeContext.Provider, {
       value: mergedSize
-    }, /* @__PURE__ */ React__namespace.createElement(FormProvider, {
+    }, /* @__PURE__ */ reactExports.createElement(FormProvider, {
       // This is not list in API, we pass with spread
       validateMessages: contextValidateMessages
-    }, /* @__PURE__ */ React__namespace.createElement(FormContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(FormContext.Provider, {
       value: formContextValue
-    }, /* @__PURE__ */ React__namespace.createElement(NoFormStyle, {
+    }, /* @__PURE__ */ reactExports.createElement(NoFormStyle, {
       status: true
-    }, /* @__PURE__ */ React__namespace.createElement(RefForm, {
+    }, /* @__PURE__ */ reactExports.createElement(RefForm, {
       id: name,
       ...restFormProps,
       name,
@@ -49890,7 +50347,7 @@ html body {
       className: formClassName
     })))))));
   };
-  const Form$1 = /* @__PURE__ */ React__namespace.forwardRef(InternalForm);
+  const Form$1 = /* @__PURE__ */ reactExports.forwardRef(InternalForm);
   const useChildren = (children) => {
     if (isFunction$2(children)) {
       return children;
@@ -49903,7 +50360,7 @@ html body {
       status,
       errors = [],
       warnings = []
-    } = React__namespace.useContext(FormItemInputContext);
+    } = reactExports.useContext(FormItemInputContext);
     return {
       status,
       errors,
@@ -49912,11 +50369,11 @@ html body {
   };
   useFormItemStatus.Context = FormItemInputContext;
   function useFrameState(defaultValue) {
-    const [value, setValue] = React__namespace.useState(defaultValue);
-    const frameRef = React__namespace.useRef(null);
-    const batchRef = React__namespace.useRef([]);
-    const destroyRef = React__namespace.useRef(false);
-    React__namespace.useEffect(() => {
+    const [value, setValue] = reactExports.useState(defaultValue);
+    const frameRef = reactExports.useRef(null);
+    const batchRef = reactExports.useRef([]);
+    const destroyRef = reactExports.useRef(false);
+    reactExports.useEffect(() => {
       destroyRef.current = false;
       return () => {
         destroyRef.current = true;
@@ -49948,8 +50405,8 @@ html body {
   const useItemRef = () => {
     const {
       itemRef
-    } = React__namespace.useContext(FormContext);
-    const cacheRef = React__namespace.useRef({});
+    } = reactExports.useContext(FormContext);
+    const cacheRef = reactExports.useRef({});
     const getRef = (name, children) => {
       const childrenRef = children && isPlainObject$1(children) && getNodeRef(children);
       const nameStr = name.join("_");
@@ -50000,12 +50457,12 @@ html body {
       label
     } = props;
     const baseClassName = `${prefixCls}-item`;
-    const formContext = React__namespace.useContext(FormContext);
+    const formContext = reactExports.useContext(FormContext);
     const {
       classNames: contextClassNames,
       styles: contextStyles
     } = formContext;
-    const mergedWrapperCol = React__namespace.useMemo(() => {
+    const mergedWrapperCol = reactExports.useMemo(() => {
       let mergedWrapper = {
         ...wrapperCol || formContext.wrapperCol || {}
       };
@@ -50025,7 +50482,7 @@ html body {
       return mergedWrapper;
     }, [wrapperCol, formContext.wrapperCol, formContext.labelCol, label, labelCol]);
     const className = clsx(`${baseClassName}-control`, mergedWrapperCol.className);
-    const subFormContext = React__namespace.useMemo(() => {
+    const subFormContext = reactExports.useMemo(() => {
       const {
         labelCol: _labelCol,
         wrapperCol: _wrapperCol,
@@ -50033,8 +50490,8 @@ html body {
       } = formContext;
       return rest;
     }, [formContext]);
-    const extraRef = React__namespace.useRef(null);
-    const [extraHeight, setExtraHeight] = React__namespace.useState(0);
+    const extraRef = reactExports.useRef(null);
+    const [extraHeight, setExtraHeight] = reactExports.useState(0);
     useLayoutEffect(() => {
       if (extra && extraRef.current) {
         setExtraHeight(extraRef.current.clientHeight);
@@ -50042,19 +50499,19 @@ html body {
         setExtraHeight(0);
       }
     }, [extra]);
-    const inputDom = /* @__PURE__ */ React__namespace.createElement("div", {
+    const inputDom = /* @__PURE__ */ reactExports.createElement("div", {
       className: `${baseClassName}-control-input`
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${baseClassName}-control-input-content`, contextClassNames == null ? void 0 : contextClassNames.content),
       style: contextStyles == null ? void 0 : contextStyles.content
     }, children));
-    const formItemContext = React__namespace.useMemo(() => ({
+    const formItemContext = reactExports.useMemo(() => ({
       prefixCls,
       status
     }), [prefixCls, status]);
-    const errorListDom = marginBottom !== null || errors.length || warnings.length ? /* @__PURE__ */ React__namespace.createElement(FormItemPrefixContext.Provider, {
+    const errorListDom = marginBottom !== null || errors.length || warnings.length ? /* @__PURE__ */ reactExports.createElement(FormItemPrefixContext.Provider, {
       value: formItemContext
-    }, /* @__PURE__ */ React__namespace.createElement(ErrorList, {
+    }, /* @__PURE__ */ reactExports.createElement(ErrorList, {
       fieldId,
       errors,
       warnings,
@@ -50067,13 +50524,13 @@ html body {
     if (fieldId) {
       extraProps.id = `${fieldId}_extra`;
     }
-    const extraDom = extra ? /* @__PURE__ */ React__namespace.createElement("div", {
+    const extraDom = extra ? /* @__PURE__ */ reactExports.createElement("div", {
       ...extraProps,
       className: clsx(`${baseClassName}-extra`, contextClassNames == null ? void 0 : contextClassNames.extra),
       style: contextStyles == null ? void 0 : contextStyles.extra,
       ref: extraRef
     }, extra) : null;
-    const additionalDom = errorListDom || extraDom ? /* @__PURE__ */ React__namespace.createElement("div", {
+    const additionalDom = errorListDom || extraDom ? /* @__PURE__ */ reactExports.createElement("div", {
       className: `${baseClassName}-additional`,
       style: marginBottom ? {
         minHeight: marginBottom + extraHeight
@@ -50083,13 +50540,13 @@ html body {
       input: inputDom,
       errorList: errorListDom,
       extra: extraDom
-    }) : /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, inputDom, additionalDom);
-    return /* @__PURE__ */ React__namespace.createElement(FormContext.Provider, {
+    }) : /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, inputDom, additionalDom);
+    return /* @__PURE__ */ reactExports.createElement(FormContext.Provider, {
       value: subFormContext
-    }, /* @__PURE__ */ React__namespace.createElement(Col, {
+    }, /* @__PURE__ */ reactExports.createElement(Col, {
       ...mergedWrapperCol,
       className
-    }, dom), /* @__PURE__ */ React__namespace.createElement(FallbackCmp, {
+    }, dom), /* @__PURE__ */ reactExports.createElement(FallbackCmp, {
       prefixCls
     }));
   };
@@ -50108,11 +50565,11 @@ html body {
     };
     return _extends$C.apply(this, arguments);
   }
-  const QuestionCircleOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$C({}, props, {
+  const QuestionCircleOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$C({}, props, {
     ref,
     icon: QuestionCircleOutlined$1
   }));
-  const RefIcon$k = /* @__PURE__ */ React__namespace.forwardRef(QuestionCircleOutlined);
+  const RefIcon$k = /* @__PURE__ */ reactExports.forwardRef(QuestionCircleOutlined);
   const FormItemLabel = ({
     prefixCls,
     label,
@@ -50135,7 +50592,7 @@ html body {
       classNames: contextClassNames,
       styles: contextStyles,
       tooltip: contextTooltip
-    } = React__namespace.useContext(FormContext);
+    } = reactExports.useContext(FormContext);
     if (!label) {
       return null;
     }
@@ -50153,16 +50610,16 @@ html body {
     }
     const tooltipProps = convertToTooltipProps(tooltip, contextTooltip);
     if (tooltipProps) {
-      const tooltipNode = /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+      const tooltipNode = /* @__PURE__ */ reactExports.createElement(Tooltip, {
         ...tooltipProps
-      }, /* @__PURE__ */ React__namespace.createElement("span", {
+      }, /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-item-tooltip`,
         onClick: (e2) => {
           e2.preventDefault();
         },
         tabIndex: -1
-      }, tooltipProps.icon || tooltipProps.children || /* @__PURE__ */ React__namespace.createElement(RefIcon$k, null)));
-      labelChildren = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, labelChildren, tooltipNode);
+      }, tooltipProps.icon || tooltipProps.children || /* @__PURE__ */ reactExports.createElement(RefIcon$k, null)));
+      labelChildren = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, labelChildren, tooltipNode);
     }
     const isOptionalMark = requiredMark === "optional";
     const isRenderMark = isFunction$2(requiredMark);
@@ -50172,7 +50629,7 @@ html body {
         required: !!required2
       });
     } else if (isOptionalMark && !required2) {
-      labelChildren = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, labelChildren, /* @__PURE__ */ React__namespace.createElement("span", {
+      labelChildren = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, labelChildren, /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-item-optional`,
         title: ""
       }, (formLocale == null ? void 0 : formLocale.optional) || ((_a2 = localeValues.Form) == null ? void 0 : _a2.optional)));
@@ -50188,10 +50645,10 @@ html body {
       [`${prefixCls}-item-required-mark-${markType}`]: markType,
       [`${prefixCls}-item-no-colon`]: !computedColon
     });
-    return /* @__PURE__ */ React__namespace.createElement(Col, {
+    return /* @__PURE__ */ reactExports.createElement(Col, {
       ...mergedLabelCol,
       className: labelColClassName
-    }, /* @__PURE__ */ React__namespace.createElement("label", {
+    }, /* @__PURE__ */ reactExports.createElement("label", {
       htmlFor,
       className: labelClassName,
       style: contextStyles == null ? void 0 : contextStyles.label,
@@ -50218,7 +50675,7 @@ html body {
     const itemPrefixCls = `${prefixCls}-item`;
     const {
       feedbackIcons
-    } = React__namespace.useContext(FormContext);
+    } = reactExports.useContext(FormContext);
     const mergedValidateStatus = getStatus(errors, warnings, meta, null, !!hasFeedback, validateStatus);
     const {
       isFormItemInput: parentIsFormItemInput,
@@ -50226,8 +50683,8 @@ html body {
       hasFeedback: parentHasFeedback,
       feedbackIcon: parentFeedbackIcon,
       name: parentName
-    } = React__namespace.useContext(FormItemInputContext);
-    const formItemStatusContext = React__namespace.useMemo(() => {
+    } = reactExports.useContext(FormItemInputContext);
+    const formItemStatusContext = reactExports.useMemo(() => {
       var _a2;
       let feedbackIcon;
       if (hasFeedback) {
@@ -50238,9 +50695,9 @@ html body {
           warnings
         })) == null ? void 0 : _a2[mergedValidateStatus]);
         const IconNode2 = mergedValidateStatus ? iconMap[mergedValidateStatus] : null;
-        feedbackIcon = customIconNode !== false && IconNode2 ? /* @__PURE__ */ React__namespace.createElement("span", {
+        feedbackIcon = customIconNode !== false && IconNode2 ? /* @__PURE__ */ reactExports.createElement("span", {
           className: clsx(`${itemPrefixCls}-feedback-icon`, `${itemPrefixCls}-feedback-icon-${mergedValidateStatus}`)
-        }, customIconNode || /* @__PURE__ */ React__namespace.createElement(IconNode2, null)) : null;
+        }, customIconNode || /* @__PURE__ */ reactExports.createElement(IconNode2, null)) : null;
       }
       const context = {
         status: mergedValidateStatus || "",
@@ -50260,7 +50717,7 @@ html body {
       }
       return context;
     }, [mergedValidateStatus, hasFeedback, noStyle, parentIsFormItemInput, parentStatus]);
-    return /* @__PURE__ */ React__namespace.createElement(FormItemInputContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(FormItemInputContext.Provider, {
       value: formItemStatusContext
     }, children);
   }
@@ -50290,16 +50747,16 @@ html body {
     const {
       requiredMark,
       layout: formLayout
-    } = React__namespace.useContext(FormContext);
+    } = reactExports.useContext(FormContext);
     const layout = propsLayout || formLayout;
     const vertical = layout === "vertical";
-    const itemRef = React__namespace.useRef(null);
+    const itemRef = reactExports.useRef(null);
     const debounceErrors = useDebounce(errors);
     const debounceWarnings = useDebounce(warnings);
     const hasHelp = isNonNullable(help);
     const hasError = !!(hasHelp || errors.length || warnings.length);
     const isOnScreen = !!itemRef.current && isVisible(itemRef.current);
-    const [marginBottom, setMarginBottom] = React__namespace.useState(null);
+    const [marginBottom, setMarginBottom] = reactExports.useState(null);
     useLayoutEffect(() => {
       if (hasError && itemRef.current) {
         const itemStyle = getComputedStyle(itemRef.current);
@@ -50329,11 +50786,11 @@ html body {
       // Layout
       [`${itemPrefixCls}-${layout}`]: layout
     });
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: itemClassName,
       style: style2,
       ref: itemRef
-    }, /* @__PURE__ */ React__namespace.createElement(Row, {
+    }, /* @__PURE__ */ reactExports.createElement(Row, {
       className: `${itemPrefixCls}-row`,
       ...omit(restProps, [
         "_internalItemRender",
@@ -50368,14 +50825,14 @@ html body {
         "wrapperCol",
         "validateDebounce"
       ])
-    }, /* @__PURE__ */ React__namespace.createElement(FormItemLabel, {
+    }, /* @__PURE__ */ reactExports.createElement(FormItemLabel, {
       htmlFor: fieldId,
       ...props,
       requiredMark,
       required: required2 ?? isRequired,
       prefixCls,
       vertical
-    }), /* @__PURE__ */ React__namespace.createElement(FormItemInput, {
+    }), /* @__PURE__ */ reactExports.createElement(FormItemInput, {
       ...props,
       ...meta,
       errors: debounceErrors,
@@ -50385,9 +50842,9 @@ html body {
       help,
       marginBottom,
       onErrorVisibleChanged
-    }, /* @__PURE__ */ React__namespace.createElement(NoStyleItemContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(NoStyleItemContext.Provider, {
       value: onSubItemMetaChange
-    }, /* @__PURE__ */ React__namespace.createElement(StatusProvider, {
+    }, /* @__PURE__ */ reactExports.createElement(StatusProvider, {
       prefixCls,
       meta,
       errors: meta.errors,
@@ -50396,7 +50853,7 @@ html body {
       // Already calculated
       validateStatus: mergedValidateStatus,
       name
-    }, children)))), !!marginBottom && /* @__PURE__ */ React__namespace.createElement("div", {
+    }, children)))), !!marginBottom && /* @__PURE__ */ reactExports.createElement("div", {
       className: `${itemPrefixCls}-margin-offset`,
       style: {
         marginBottom: -marginBottom
@@ -50413,7 +50870,7 @@ html body {
       return propValueA === propValueB || isFunction$2(propValueA) || isFunction$2(propValueB);
     });
   }
-  const MemoInput = /* @__PURE__ */ React__namespace.memo((props) => props.children, (prev2, next2) => isSimilarControl(prev2.control, next2.control) && prev2.update === next2.update && prev2.childProps.length === next2.childProps.length && prev2.childProps.every((value, index2) => value === next2.childProps[index2]));
+  const MemoInput = /* @__PURE__ */ reactExports.memo((props) => props.children, (prev2, next2) => isSimilarControl(prev2.control, next2.control) && prev2.update === next2.update && prev2.childProps.length === next2.childProps.length && prev2.childProps.every((value, index2) => value === next2.childProps[index2]));
   function genEmptyMeta() {
     return {
       errors: [],
@@ -50445,24 +50902,24 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       name: formName
-    } = React__namespace.useContext(FormContext);
+    } = reactExports.useContext(FormContext);
     const mergedChildren = useChildren(children);
     const isRenderProps = isFunction$2(mergedChildren);
-    const notifyParentMetaChange = React__namespace.useContext(NoStyleItemContext);
+    const notifyParentMetaChange = reactExports.useContext(NoStyleItemContext);
     const {
       validateTrigger: contextValidateTrigger
-    } = React__namespace.useContext(Context);
+    } = reactExports.useContext(Context);
     const mergedValidateTrigger = isNonNullable(validateTrigger) ? validateTrigger : contextValidateTrigger;
     const hasName = isNonNullable(name);
     const prefixCls = getPrefixCls("form", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useStyle$a(prefixCls, rootCls);
     devUseWarning();
-    const listContext = React__namespace.useContext(ListContext);
-    const fieldKeyPathRef = React__namespace.useRef(null);
+    const listContext = reactExports.useContext(ListContext);
+    const fieldKeyPathRef = reactExports.useRef(null);
     const [subFieldErrors, setSubFieldErrors] = useFrameState({});
     const [meta, setMeta] = useSafeState(() => genEmptyMeta());
     const onMetaChange = (nextMeta) => {
@@ -50497,7 +50954,7 @@ html body {
         return clone2;
       });
     };
-    const [mergedErrors, mergedWarnings] = React__namespace.useMemo(() => {
+    const [mergedErrors, mergedWarnings] = reactExports.useMemo(() => {
       const errorList = _toConsumableArray(meta.errors);
       const warningList = _toConsumableArray(meta.warnings);
       Object.values(subFieldErrors).forEach((subFieldError) => {
@@ -50509,7 +50966,7 @@ html body {
     const getItemRef = useItemRef();
     function renderLayout(baseChildren, fieldId, isRequired) {
       if (noStyle && !hidden) {
-        return /* @__PURE__ */ React__namespace.createElement(StatusProvider, {
+        return /* @__PURE__ */ reactExports.createElement(StatusProvider, {
           prefixCls,
           hasFeedback: props.hasFeedback,
           validateStatus: props.validateStatus,
@@ -50520,7 +50977,7 @@ html body {
           name
         }, baseChildren);
       }
-      return /* @__PURE__ */ React__namespace.createElement(ItemHolder, {
+      return /* @__PURE__ */ reactExports.createElement(ItemHolder, {
         key: "row",
         ...props,
         className: clsx(className, cssVarCls, rootCls, hashId),
@@ -50550,7 +51007,7 @@ html body {
         ...messageVariables
       };
     }
-    return /* @__PURE__ */ React__namespace.createElement(WrapperField, {
+    return /* @__PURE__ */ reactExports.createElement(WrapperField, {
       ...props,
       messageVariables: variables,
       trigger,
@@ -50577,7 +51034,7 @@ html body {
         childNode = mergedChildren;
       } else if (isRenderProps && (!(shouldUpdate || dependencies) || hasName)) ;
       else if (dependencies && !isRenderProps && !hasName) ;
-      else if (/* @__PURE__ */ React__namespace.isValidElement(mergedChildren)) {
+      else if (/* @__PURE__ */ reactExports.isValidElement(mergedChildren)) {
         const childProps = {
           ...mergedChildren.props,
           ...mergedControl
@@ -50613,7 +51070,7 @@ html body {
           };
         });
         const watchingChildProps = [childProps["aria-required"], childProps["aria-invalid"], childProps["aria-describedby"]];
-        childNode = /* @__PURE__ */ React__namespace.createElement(MemoInput, {
+        childNode = /* @__PURE__ */ reactExports.createElement(MemoInput, {
           control: mergedControl,
           update: mergedChildren,
           childProps: watchingChildProps
@@ -50635,15 +51092,15 @@ html body {
   }) => {
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("form", customizePrefixCls);
-    const contextValue = React__namespace.useMemo(() => ({
+    const contextValue = reactExports.useMemo(() => ({
       prefixCls,
       status: "error"
     }), [prefixCls]);
-    return /* @__PURE__ */ React__namespace.createElement(List$2, {
+    return /* @__PURE__ */ reactExports.createElement(List$2, {
       ...props
-    }, (fields, operation, meta) => /* @__PURE__ */ React__namespace.createElement(FormItemPrefixContext.Provider, {
+    }, (fields, operation, meta) => /* @__PURE__ */ reactExports.createElement(FormItemPrefixContext.Provider, {
       value: contextValue
     }, children(fields.map((field) => ({
       ...field,
@@ -50656,7 +51113,7 @@ html body {
   function useFormInstance() {
     const {
       form
-    } = React__namespace.useContext(FormContext);
+    } = reactExports.useContext(FormContext);
     return form;
   }
   const Form = Form$1;
@@ -50671,7 +51128,7 @@ html body {
     const {
       getPrefixCls,
       direction
-    } = React.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       prefixCls: customizePrefixCls,
       className
@@ -50685,14 +51142,14 @@ html body {
       [`${prefixCls}-compact`]: props.compact,
       [`${prefixCls}-rtl`]: direction === "rtl"
     }, hashId, className);
-    const formItemContext = React.useContext(FormItemInputContext);
-    const groupFormItemContext = React.useMemo(() => ({
+    const formItemContext = reactExports.useContext(FormItemInputContext);
+    const groupFormItemContext = reactExports.useMemo(() => ({
       ...formItemContext,
       isFormItemInput: false
     }), [formItemContext]);
-    return /* @__PURE__ */ React__namespace.createElement(FormItemInputContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(FormItemInputContext.Provider, {
       value: groupFormItemContext
-    }, /* @__PURE__ */ React__namespace.createElement(Space.Compact, {
+    }, /* @__PURE__ */ reactExports.createElement(Space.Compact, {
       className: cls,
       style: props.style,
       onMouseEnter: props.onMouseEnter,
@@ -50758,7 +51215,7 @@ html body {
     const inputToken = merge$1(token2, initInputToken(token2));
     return genOTPStyle(inputToken);
   }, initComponentToken$1);
-  const OTPInput = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const OTPInput = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       className,
       value,
@@ -50771,11 +51228,11 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("otp");
     const maskValue = typeof mask2 === "string" ? mask2 : value;
-    const inputRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => inputRef.current);
+    const inputRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => inputRef.current);
     const onInternalChange = (e2) => {
       onChange(index2, e2.target.value);
     };
@@ -50809,13 +51266,13 @@ html body {
       }
       syncSelection();
     };
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className: `${prefixCls}-input-wrapper`,
       role: "presentation"
-    }, mask2 && value !== "" && value !== void 0 && /* @__PURE__ */ React__namespace.createElement("span", {
+    }, mask2 && value !== "" && value !== void 0 && /* @__PURE__ */ reactExports.createElement("span", {
       className: `${prefixCls}-mask-icon`,
       "aria-hidden": "true"
-    }, maskValue), /* @__PURE__ */ React__namespace.createElement(Input$1, {
+    }, maskValue), /* @__PURE__ */ reactExports.createElement(Input$1, {
       "aria-label": `OTP Input ${index2 + 1}`,
       type: mask2 === true ? "password" : "text",
       ...restProps,
@@ -50846,12 +51303,12 @@ html body {
     if (!separatorNode) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefixCls}-separator`, semanticClassName),
       style: semanticStyle
     }, separatorNode);
   };
-  const OTP = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const OTP = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       length: length2 = 6,
@@ -50900,17 +51357,17 @@ html body {
     });
     const [hashId, cssVarCls] = useStyle$9(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
-    const formContext = React__namespace.useContext(FormItemInputContext);
+    const formContext = reactExports.useContext(FormItemInputContext);
     const mergedStatus = getMergedStatus(formContext.status, customStatus);
-    const proxyFormContext = React__namespace.useMemo(() => ({
+    const proxyFormContext = reactExports.useMemo(() => ({
       ...formContext,
       status: mergedStatus,
       hasFeedback: false,
       feedbackIcon: null
     }), [formContext, mergedStatus]);
-    const containerRef = React__namespace.useRef(null);
-    const inputsRef = React__namespace.useRef({});
-    React__namespace.useImperativeHandle(ref, () => ({
+    const containerRef = reactExports.useRef(null);
+    const inputsRef = reactExports.useRef({});
+    reactExports.useImperativeHandle(ref, () => ({
       focus: () => {
         var _a2;
         (_a2 = inputsRef.current[0]) == null ? void 0 : _a2.focus();
@@ -50924,8 +51381,8 @@ html body {
       nativeElement: containerRef.current
     }));
     const internalFormatter = (txt) => formatter ? formatter(txt) : txt;
-    const [valueCells, setValueCells] = React__namespace.useState(() => strToArr(internalFormatter(defaultValue || "")));
-    React__namespace.useEffect(() => {
+    const [valueCells, setValueCells] = reactExports.useState(() => strToArr(internalFormatter(defaultValue || "")));
+    reactExports.useEffect(() => {
       if (value !== void 0) {
         setValueCells(strToArr(value));
       }
@@ -50999,7 +51456,7 @@ html body {
       inputMode,
       autoComplete
     };
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ...domAttrs,
       ref: containerRef,
       className: clsx(className, prefixCls, {
@@ -51013,16 +51470,16 @@ html body {
         ...style2
       },
       role: "group"
-    }, /* @__PURE__ */ React__namespace.createElement(FormItemInputContext.Provider, {
+    }, /* @__PURE__ */ reactExports.createElement(FormItemInputContext.Provider, {
       value: proxyFormContext
     }, Array.from({
       length: length2
     }).map((_2, index2) => {
       const key2 = `otp-${index2}`;
       const singleValue = valueCells[index2] || "";
-      return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, {
+      return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, {
         key: key2
-      }, /* @__PURE__ */ React__namespace.createElement(OTPInput, {
+      }, /* @__PURE__ */ reactExports.createElement(OTPInput, {
         ref: (inputEle) => {
           inputsRef.current[index2] = inputEle;
         },
@@ -51037,7 +51494,7 @@ html body {
         autoFocus: index2 === 0 && autoFocus,
         onFocus: (event) => onInputFocus(event, index2),
         ...inputSharedProps
-      }), index2 < length2 - 1 && /* @__PURE__ */ React__namespace.createElement(Separator, {
+      }), index2 < length2 - 1 && /* @__PURE__ */ reactExports.createElement(Separator, {
         separator,
         index: index2,
         prefixCls,
@@ -51061,11 +51518,11 @@ html body {
     };
     return _extends$B.apply(this, arguments);
   }
-  const EyeInvisibleOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$B({}, props, {
+  const EyeInvisibleOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$B({}, props, {
     ref,
     icon: EyeInvisibleOutlined$1
   }));
-  const RefIcon$j = /* @__PURE__ */ React__namespace.forwardRef(EyeInvisibleOutlined);
+  const RefIcon$j = /* @__PURE__ */ reactExports.forwardRef(EyeInvisibleOutlined);
   var EyeOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" } }] }, "name": "eye", "theme": "outlined" };
   function _extends$A() {
     _extends$A = Object.assign ? Object.assign.bind() : function(target) {
@@ -51081,17 +51538,17 @@ html body {
     };
     return _extends$A.apply(this, arguments);
   }
-  const EyeOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$A({}, props, {
+  const EyeOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$A({}, props, {
     ref,
     icon: EyeOutlined$1
   }));
-  const RefIcon$i = /* @__PURE__ */ React__namespace.forwardRef(EyeOutlined);
-  const defaultIconRender = (visible) => visible ? /* @__PURE__ */ React__namespace.createElement(RefIcon$i, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$j, null);
+  const RefIcon$i = /* @__PURE__ */ reactExports.forwardRef(EyeOutlined);
+  const defaultIconRender = (visible) => visible ? /* @__PURE__ */ reactExports.createElement(RefIcon$i, null) : /* @__PURE__ */ reactExports.createElement(RefIcon$j, null);
   const actionMap = {
     click: "onClick",
     hover: "onMouseOver"
   };
-  const Password = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Password = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       disabled: customDisabled,
       action = "click",
@@ -51115,7 +51572,7 @@ html body {
       iconRender: contextIconRender
     } = useComponentConfig("inputPassword");
     const [locale2] = useLocale("global");
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const mergedProps = {
       ...props,
@@ -51125,9 +51582,9 @@ html body {
       props: mergedProps
     });
     const visibilityControlled = isPlainObject$1(visibilityToggle) && visibilityToggle.visible !== void 0;
-    const [visible, setVisible] = React.useState(() => visibilityControlled ? visibilityToggle.visible : false);
-    const inputRef = React.useRef(null);
-    React__namespace.useEffect(() => {
+    const [visible, setVisible] = reactExports.useState(() => visibilityControlled ? visibilityToggle.visible : false);
+    const inputRef = reactExports.useRef(null);
+    reactExports.useEffect(() => {
       if (visibilityControlled) {
         setVisible(visibilityToggle.visible);
       }
@@ -51151,7 +51608,7 @@ html body {
       const iconTrigger = actionMap[action] || "";
       const iconRenderer = iconRender || contextIconRender || defaultIconRender;
       const icon = iconRenderer(visible);
-      return /* @__PURE__ */ React__namespace.createElement("span", {
+      return /* @__PURE__ */ reactExports.createElement("span", {
         key: "passwordIcon",
         role: "button",
         tabIndex: mergedDisabled ? -1 : 0,
@@ -51184,7 +51641,7 @@ html body {
       ...restProps,
       type: visible ? "text" : "password",
       prefixCls: inputPrefixCls,
-      suffix: /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, suffixIcon, suffix),
+      suffix: /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, suffixIcon, suffix),
       disabled: mergedDisabled,
       className: inputClassName,
       style: {
@@ -51194,7 +51651,7 @@ html body {
       classNames: mergedClassNames,
       styles: mergedStyles
     };
-    return /* @__PURE__ */ React__namespace.createElement(Input$1, {
+    return /* @__PURE__ */ reactExports.createElement(Input$1, {
       ref: composeRef(ref, inputRef),
       ...inputProps
     });
@@ -51225,7 +51682,7 @@ html body {
     };
   };
   const useStyle$8 = genStyleHooks(["Input", "Search"], genSearchStyle);
-  const Search$3 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Search$3 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       inputPrefixCls: customizeInputPrefixCls,
@@ -51266,7 +51723,7 @@ html body {
         _default: "root"
       }
     });
-    const composedRef = React__namespace.useRef(false);
+    const composedRef = reactExports.useRef(false);
     const prefixCls = getPrefixCls("input-search", customizePrefixCls);
     const inputPrefixCls = getPrefixCls("input", customizeInputPrefixCls);
     const [hashId, cssVarCls] = useStyle$8(prefixCls);
@@ -51274,7 +51731,7 @@ html body {
       compactSize
     } = useCompactItemContext(prefixCls, direction);
     const size = useSize((ctx) => customizeSize ?? compactSize ?? ctx);
-    const inputRef = React__namespace.useRef(null);
+    const inputRef = reactExports.useRef(null);
     const onChange = (e2) => {
       if ((e2 == null ? void 0 : e2.target) && e2.type === "click" && customOnSearch) {
         customOnSearch(e2.target.value, e2, {
@@ -51304,7 +51761,7 @@ html body {
       customOnPressEnter == null ? void 0 : customOnPressEnter(e2);
       onSearch(e2);
     };
-    const searchIcon = typeof enterButton === "boolean" ? fallbackProp(customizeSearchIcon, contextSearchIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null)) : null;
+    const searchIcon = typeof enterButton === "boolean" ? fallbackProp(customizeSearchIcon, contextSearchIcon, /* @__PURE__ */ reactExports.createElement(RefIcon$o, null)) : null;
     const btnPrefixCls = `${prefixCls}-btn`;
     const btnClassName = clsx(btnPrefixCls, {
       [`${btnPrefixCls}-${variant}`]: variant
@@ -51327,7 +51784,7 @@ html body {
         } : {}
       });
     } else {
-      button = /* @__PURE__ */ React__namespace.createElement(Button$1, {
+      button = /* @__PURE__ */ reactExports.createElement(Button$1, {
         classNames: mergedClassNames.button,
         styles: mergedStyles.button,
         className: btnClassName,
@@ -51377,7 +51834,7 @@ html body {
       onChange,
       disabled
     }, Object.keys(rootProps));
-    return /* @__PURE__ */ React__namespace.createElement(Compact$1, {
+    return /* @__PURE__ */ reactExports.createElement(Compact$1, {
       className: mergedClassName,
       style: {
         ...style2,
@@ -51385,7 +51842,7 @@ html body {
       },
       ...rootProps,
       hidden
-    }, /* @__PURE__ */ React__namespace.createElement(Input$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Input$1, {
       ref: composeRef(inputRef, ref),
       ...inputProps
     }), button);
@@ -51494,7 +51951,7 @@ html body {
   }, initComponentToken$1, {
     resetFont: false
   });
-  const TextArea = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const TextArea = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     var _a2;
     const {
       prefixCls: customizePrefixCls,
@@ -51524,19 +51981,19 @@ html body {
       classNames: contextClassNames,
       styles: contextStyles
     } = useComponentConfig("textArea");
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const {
       status: contextStatus,
       hasFeedback,
       feedbackIcon
-    } = React__namespace.useContext(FormItemInputContext);
+    } = reactExports.useContext(FormItemInputContext);
     const mergedStatus = getMergedStatus(contextStatus, customStatus);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props
     });
-    const innerRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => {
+    const innerRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => {
       var _a3, _b2;
       return {
         resizableTextArea: (_a3 = innerRef.current) == null ? void 0 : _a3.resizableTextArea,
@@ -51566,8 +52023,8 @@ html body {
       contextAllowClear,
       componentName: "TextArea"
     });
-    const [isMouseDown, setIsMouseDown] = React__namespace.useState(false);
-    const [resizeDirty, setResizeDirty] = React__namespace.useState(false);
+    const [isMouseDown, setIsMouseDown] = reactExports.useState(false);
+    const [resizeDirty, setResizeDirty] = reactExports.useState(false);
     const onInternalMouseDown = (e2) => {
       setIsMouseDown(true);
       onMouseDown == null ? void 0 : onMouseDown(e2);
@@ -51587,7 +52044,7 @@ html body {
         }
       }
     };
-    return /* @__PURE__ */ React__namespace.createElement(TextArea$1, {
+    return /* @__PURE__ */ reactExports.createElement(TextArea$1, {
       autoComplete: contextAutoComplete,
       ...rest,
       style: {
@@ -51628,7 +52085,7 @@ html body {
         }, hashId)
       },
       prefixCls,
-      suffix: hasFeedback && /* @__PURE__ */ React__namespace.createElement("span", {
+      suffix: hasFeedback && /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-textarea-suffix`
       }, feedbackIcon),
       showCount,
@@ -51658,11 +52115,11 @@ html body {
     };
     return _extends$z.apply(this, arguments);
   }
-  const DoubleLeftOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$z({}, props, {
+  const DoubleLeftOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$z({}, props, {
     ref,
     icon: DoubleLeftOutlined$1
   }));
-  const RefIcon$h = /* @__PURE__ */ React__namespace.forwardRef(DoubleLeftOutlined);
+  const RefIcon$h = /* @__PURE__ */ reactExports.forwardRef(DoubleLeftOutlined);
   var DoubleRightOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M533.2 492.3L277.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H188c-6.7 0-10.4 7.7-6.3 12.9L447.1 512 181.7 851.1A7.98 7.98 0 00188 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5zm304 0L581.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H492c-6.7 0-10.4 7.7-6.3 12.9L751.1 512 485.7 851.1A7.98 7.98 0 00492 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5z" } }] }, "name": "double-right", "theme": "outlined" };
   function _extends$y() {
     _extends$y = Object.assign ? Object.assign.bind() : function(target) {
@@ -51678,11 +52135,11 @@ html body {
     };
     return _extends$y.apply(this, arguments);
   }
-  const DoubleRightOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$y({}, props, {
+  const DoubleRightOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$y({}, props, {
     ref,
     icon: DoubleRightOutlined$1
   }));
-  const RefIcon$g = /* @__PURE__ */ React__namespace.forwardRef(DoubleRightOutlined);
+  const RefIcon$g = /* @__PURE__ */ reactExports.forwardRef(DoubleRightOutlined);
   const locale = {
     // Options
     items_per_page: "条/页",
@@ -51908,7 +52365,7 @@ html body {
     const [internalCurrent, setCurrent] = useControlledState(defaultCurrent, currentProp);
     const current = Math.max(1, Math.min(internalCurrent, calculatePage(void 0, pageSize, total)));
     const [internalInputVal, setInternalInputVal] = React.useState(current);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       setInternalInputVal(current);
     }, [current]);
     const jumpPrevPage = Math.max(1, current - (showLessItems ? 3 : 5));
@@ -52865,7 +53322,7 @@ html body {
     return genBorderedStyle$1(paginationToken);
   }, prepareComponentToken$6);
   function useShowSizeChanger(showSizeChanger) {
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       if (typeof showSizeChanger === "boolean") {
         return [showSizeChanger, {}];
       }
@@ -52928,7 +53385,7 @@ html body {
     const mergedShowSizeChanger = propShowSizeChanger ?? contextShowSizeChanger;
     const mergedShowSizeChangerSelectProps = propSizeChangerSelectProps ?? contextSizeChangerSelectProps;
     const SizeChanger = selectComponentClass || Select;
-    const mergedPageSizeOptions = React__namespace.useMemo(() => {
+    const mergedPageSizeOptions = reactExports.useMemo(() => {
       return pageSizeOptions ? pageSizeOptions.map(Number) : void 0;
     }, [pageSizeOptions]);
     const sizeChangerRender = (info) => {
@@ -52946,7 +53403,7 @@ html body {
         onChange: propSizeChangerOnChange
       } = mergedShowSizeChangerSelectProps || {};
       const selectedValue = (_a2 = options.find((option) => String(option.value) === String(pageSize))) == null ? void 0 : _a2.value;
-      return /* @__PURE__ */ React__namespace.createElement(SizeChanger, {
+      return /* @__PURE__ */ reactExports.createElement(SizeChanger, {
         disabled,
         showSearch: true,
         popupMatchSelectWidth: false,
@@ -52963,36 +53420,36 @@ html body {
         className: clsx(sizeChangerClassName, propSizeChangerClassName)
       });
     };
-    const iconsProps = React__namespace.useMemo(() => {
-      const ellipsis = /* @__PURE__ */ React__namespace.createElement("span", {
+    const iconsProps = reactExports.useMemo(() => {
+      const ellipsis = /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-item-ellipsis`
       }, "•••");
-      const prevIcon = /* @__PURE__ */ React__namespace.createElement("button", {
+      const prevIcon = /* @__PURE__ */ reactExports.createElement("button", {
         className: `${prefixCls}-item-link`,
         type: "button",
         tabIndex: -1
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$r, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$n, null));
-      const nextIcon = /* @__PURE__ */ React__namespace.createElement("button", {
+      }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RefIcon$r, null) : /* @__PURE__ */ reactExports.createElement(RefIcon$n, null));
+      const nextIcon = /* @__PURE__ */ reactExports.createElement("button", {
         className: `${prefixCls}-item-link`,
         type: "button",
         tabIndex: -1
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$n, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$r, null));
-      const jumpPrevIcon = /* @__PURE__ */ React__namespace.createElement("a", {
+      }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RefIcon$n, null) : /* @__PURE__ */ reactExports.createElement(RefIcon$r, null));
+      const jumpPrevIcon = /* @__PURE__ */ reactExports.createElement("a", {
         className: `${prefixCls}-item-link`
-      }, /* @__PURE__ */ React__namespace.createElement("div", {
+      }, /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-item-container`
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$g, {
+      }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RefIcon$g, {
         className: `${prefixCls}-item-link-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$h, {
+      }) : /* @__PURE__ */ reactExports.createElement(RefIcon$h, {
         className: `${prefixCls}-item-link-icon`
       }), ellipsis));
-      const jumpNextIcon = /* @__PURE__ */ React__namespace.createElement("a", {
+      const jumpNextIcon = /* @__PURE__ */ reactExports.createElement("a", {
         className: `${prefixCls}-item-link`
-      }, /* @__PURE__ */ React__namespace.createElement("div", {
+      }, /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-item-container`
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$h, {
+      }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RefIcon$h, {
         className: `${prefixCls}-item-link-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$g, {
+      }) : /* @__PURE__ */ reactExports.createElement(RefIcon$g, {
         className: `${prefixCls}-item-link-icon`
       }), ellipsis));
       return {
@@ -53016,9 +53473,9 @@ html body {
       ...contextStyle,
       ...style2
     };
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, token2.wireframe && /* @__PURE__ */ React__namespace.createElement(BorderedStyle, {
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, token2.wireframe && /* @__PURE__ */ reactExports.createElement(BorderedStyle, {
       prefixCls
-    }), /* @__PURE__ */ React__namespace.createElement(Pagination$1, {
+    }), /* @__PURE__ */ reactExports.createElement(Pagination$1, {
       ...iconsProps,
       ...restProps,
       styles: mergedStyles,
@@ -53045,7 +53502,7 @@ html body {
       style: style2,
       hasCircleCls
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement("circle", {
+    return /* @__PURE__ */ reactExports.createElement("circle", {
       className: clsx(`${dotClassName}-circle`, {
         [`${dotClassName}-circle-bg`]: hasCircleCls
       }),
@@ -53063,7 +53520,7 @@ html body {
     const dotClassName = `${prefixCls}-dot`;
     const holderClassName = `${dotClassName}-holder`;
     const hideClassName = `${holderClassName}-hidden`;
-    const [render2, setRender] = React__namespace.useState(false);
+    const [render2, setRender] = reactExports.useState(false);
     useLayoutEffect(() => {
       if (percent2 !== 0) {
         setRender(true);
@@ -53077,20 +53534,20 @@ html body {
       strokeDashoffset: `${circumference / 4}`,
       strokeDasharray: `${circumference * safePtg / 100} ${circumference * (100 - safePtg) / 100}`
     };
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(holderClassName, `${dotClassName}-progress`, {
         [hideClassName]: safePtg <= 0
       })
-    }, /* @__PURE__ */ React__namespace.createElement("svg", {
+    }, /* @__PURE__ */ reactExports.createElement("svg", {
       viewBox: `0 0 ${viewSize} ${viewSize}`,
       role: "progressbar",
       "aria-valuemin": 0,
       "aria-valuemax": 100,
       "aria-valuenow": safePtg
-    }, /* @__PURE__ */ React__namespace.createElement(CustomCircle, {
+    }, /* @__PURE__ */ reactExports.createElement(CustomCircle, {
       dotClassName,
       hasCircleCls: true
-    }), /* @__PURE__ */ React__namespace.createElement(CustomCircle, {
+    }), /* @__PURE__ */ reactExports.createElement(CustomCircle, {
       dotClassName,
       style: circleStyle
     })));
@@ -53105,15 +53562,15 @@ html body {
     const dotClassName = `${prefixCls}-dot`;
     const holderClassName = `${dotClassName}-holder`;
     const hideClassName = `${holderClassName}-hidden`;
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(holderClassName, className, percent2 > 0 && hideClassName),
       style: style2
-    }, /* @__PURE__ */ React__namespace.createElement("span", {
+    }, /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(dotClassName, `${prefixCls}-dot-spin`)
-    }, [1, 2, 3, 4].map((i) => /* @__PURE__ */ React__namespace.createElement("i", {
+    }, [1, 2, 3, 4].map((i) => /* @__PURE__ */ reactExports.createElement("i", {
       className: `${prefixCls}-dot-item`,
       key: i
-    })))), /* @__PURE__ */ React__namespace.createElement(Progress, {
+    })))), /* @__PURE__ */ reactExports.createElement(Progress, {
       prefixCls,
       percent: percent2
     }));
@@ -53127,7 +53584,7 @@ html body {
       style: style2
     } = props;
     const dotClassName = `${prefixCls}-dot`;
-    if (indicator && /* @__PURE__ */ React__namespace.isValidElement(indicator)) {
+    if (indicator && /* @__PURE__ */ reactExports.isValidElement(indicator)) {
       return cloneElement(indicator, (currentProps) => ({
         className: clsx(currentProps.className, dotClassName, className),
         style: {
@@ -53137,7 +53594,7 @@ html body {
         percent: percent2
       }));
     }
-    return /* @__PURE__ */ React__namespace.createElement(Looper, {
+    return /* @__PURE__ */ reactExports.createElement(Looper, {
       prefixCls,
       percent: percent2,
       className,
@@ -53383,10 +53840,10 @@ html body {
   const AUTO_INTERVAL = 200;
   const STEP_BUCKETS = [[30, 0.05], [70, 0.03], [96, 0.01]];
   function usePercent(spinning, percent2) {
-    const [mockPercent, setMockPercent] = React__namespace.useState(0);
-    const mockIntervalRef = React__namespace.useRef(null);
+    const [mockPercent, setMockPercent] = reactExports.useState(0);
+    const mockIntervalRef = reactExports.useRef(null);
     const isAuto = percent2 === "auto";
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (isAuto && spinning) {
         setMockPercent(0);
         mockIntervalRef.current = setInterval(() => {
@@ -53446,9 +53903,9 @@ html body {
     } = useComponentConfig("spin");
     const prefixCls = getPrefixCls("spin", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$5(prefixCls);
-    const [spinning, setSpinning] = React__namespace.useState(() => customSpinning && !shouldDelay(customSpinning, delay));
+    const [spinning, setSpinning] = reactExports.useState(() => customSpinning && !shouldDelay(customSpinning, delay));
     const mergedPercent = usePercent(spinning, percent2);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (customSpinning) {
         const showSpinning = debounce(delay, () => {
           setSpinning(true);
@@ -53479,20 +53936,20 @@ html body {
     const mergedIndicator = indicator ?? contextIndicator ?? defaultIndicator;
     const hasChildren = typeof children !== "undefined";
     const isNested = hasChildren || fullscreen;
-    const indicatorNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(Indicator, {
+    const indicatorNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Indicator, {
       className: clsx(mergedClassNames.indicator),
       style: mergedStyles.indicator,
       prefixCls,
       indicator: mergedIndicator,
       percent: mergedPercent
-    }), mergedDescription && /* @__PURE__ */ React__namespace.createElement("div", {
+    }), mergedDescription && /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-description`, mergedClassNames.tip, mergedClassNames.description),
       style: {
         ...mergedStyles.tip,
         ...mergedStyles.description
       }
     }, mergedDescription));
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(prefixCls, {
         [`${prefixCls}-sm`]: mergedSize === "small",
         [`${prefixCls}-lg`]: mergedSize === "large",
@@ -53510,10 +53967,10 @@ html body {
       "aria-live": "polite",
       "aria-busy": spinning,
       ...restProps
-    }, spinning && (isNested ? /* @__PURE__ */ React__namespace.createElement("div", {
+    }, spinning && (isNested ? /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-section`, mergedClassNames.section),
       style: mergedStyles.section
-    }, indicatorNode) : indicatorNode), hasChildren && /* @__PURE__ */ React__namespace.createElement("div", {
+    }, indicatorNode) : indicatorNode), hasChildren && /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-container`, mergedClassNames.container),
       style: mergedStyles.container
     }, children));
@@ -53554,7 +54011,7 @@ html body {
         }
       };
     });
-    return /* @__PURE__ */ React__namespace.createElement(NotificationList, {
+    return /* @__PURE__ */ reactExports.createElement(NotificationList, {
       prefixCls,
       placement: "top",
       configList,
@@ -53598,9 +54055,9 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const prefixCls = defaultGlobalConfig.prefixCls || getPrefixCls("message");
-    const appConfig = React.useContext(AppConfigContext);
+    const appConfig = reactExports.useContext(AppConfigContext);
     const [api, holder] = useInternalMessage({
       ...messageConfig,
       prefixCls,
@@ -53806,7 +54263,7 @@ html body {
     } = props;
     const {
       getPrefixCls
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       className: contextClassName,
       style: contextStyle,
@@ -53827,7 +54284,7 @@ html body {
         closable: closable ?? false,
         title: "",
         footer: "",
-        children: /* @__PURE__ */ React__namespace.createElement(ConfirmContent, {
+        children: /* @__PURE__ */ reactExports.createElement(ConfirmContent, {
           ...props,
           prefixCls,
           confirmPrefixCls,
@@ -53839,13 +54296,13 @@ html body {
       additionalProps = {
         closable: closable ?? true,
         title,
-        footer: footer !== null && /* @__PURE__ */ React__namespace.createElement(Footer$2, {
+        footer: footer !== null && /* @__PURE__ */ reactExports.createElement(Footer$2, {
           ...props
         }),
         children
       };
     }
-    return /* @__PURE__ */ React__namespace.createElement(Panel$1, {
+    return /* @__PURE__ */ reactExports.createElement(Panel$1, {
       prefixCls,
       className: clsx(hashId, `${prefixCls}-pure-panel`, type2 && confirmPrefixCls, type2 && `${confirmPrefixCls}-${type2}`, className, contextClassName, cssVarCls, rootCls, mergedClassNames.root),
       style: {
@@ -53905,11 +54362,11 @@ html body {
     };
     return _extends$w.apply(this, arguments);
   }
-  const StarFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$w({}, props, {
+  const StarFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$w({}, props, {
     ref,
     icon: StarFilled$1
   }));
-  const RefIcon$f = /* @__PURE__ */ React__namespace.forwardRef(StarFilled);
+  const RefIcon$f = /* @__PURE__ */ reactExports.forwardRef(StarFilled);
   function Star(props, ref) {
     const {
       disabled,
@@ -53980,7 +54437,7 @@ html body {
   }
   const Star$1 = /* @__PURE__ */ React.forwardRef(Star);
   function useRefs() {
-    const nodeRef = React__namespace.useRef({});
+    const nodeRef = reactExports.useRef({});
     function getRef(index2) {
       return nodeRef.current[index2];
     }
@@ -54310,14 +54767,14 @@ html body {
     const rateToken = merge$1(token2, {});
     return genRateStyle(rateToken);
   }, prepareComponentToken$4);
-  const Rate = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Rate = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls,
       className,
       rootClassName,
       style: style2,
       tooltips,
-      character: character2 = /* @__PURE__ */ React__namespace.createElement(RefIcon$f, null),
+      character: character2 = /* @__PURE__ */ reactExports.createElement(RefIcon$f, null),
       disabled: customDisabled,
       size,
       ...rest
@@ -54330,11 +54787,11 @@ html body {
       }
       const tooltipsItem = tooltips[index2];
       if (isPlainObject$1(tooltipsItem)) {
-        return /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+        return /* @__PURE__ */ reactExports.createElement(Tooltip, {
           ...tooltipsItem
         }, node2);
       }
-      return /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+      return /* @__PURE__ */ reactExports.createElement(Tooltip, {
         title: tooltipsItem
       }, node2);
     };
@@ -54350,10 +54807,10 @@ html body {
       ...contextStyle,
       ...style2
     };
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const mergedSize = useSize((ctx) => size ?? ctx);
-    return /* @__PURE__ */ React__namespace.createElement(Rate$2, {
+    return /* @__PURE__ */ reactExports.createElement(Rate$2, {
       ref,
       character: character2,
       characterRender,
@@ -54382,7 +54839,7 @@ html body {
     };
     return _extends$u.apply(this, arguments);
   }
-  const Switch$1 = /* @__PURE__ */ React__namespace.forwardRef(({
+  const Switch$1 = /* @__PURE__ */ reactExports.forwardRef(({
     prefixCls = "rc-switch",
     className,
     checked,
@@ -54424,7 +54881,7 @@ html body {
       [`${prefixCls}-checked`]: innerChecked,
       [`${prefixCls}-disabled`]: disabled
     });
-    return /* @__PURE__ */ React__namespace.createElement("button", _extends$u({}, restProps, {
+    return /* @__PURE__ */ reactExports.createElement("button", _extends$u({}, restProps, {
       type: "button",
       role: "switch",
       "aria-checked": innerChecked,
@@ -54433,12 +54890,12 @@ html body {
       ref,
       onKeyDown: onInternalKeyDown,
       onClick: onInternalClick
-    }), loadingIcon, /* @__PURE__ */ React__namespace.createElement("span", {
+    }), loadingIcon, /* @__PURE__ */ reactExports.createElement("span", {
       className: `${prefixCls}-inner`
-    }, /* @__PURE__ */ React__namespace.createElement("span", {
+    }, /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefixCls}-inner-checked`, switchClassNames == null ? void 0 : switchClassNames.content),
       style: styles2 == null ? void 0 : styles2.content
-    }, checkedChildren), /* @__PURE__ */ React__namespace.createElement("span", {
+    }, checkedChildren), /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(`${prefixCls}-inner-unchecked`, switchClassNames == null ? void 0 : switchClassNames.content),
       style: styles2 == null ? void 0 : styles2.content
     }, unCheckedChildren)));
@@ -54764,7 +55221,7 @@ html body {
       genSwitchSmallStyle(switchToken)
     ];
   }, prepareComponentToken$3);
-  const InternalSwitch = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalSwitch = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       size: customizeSize,
@@ -54791,7 +55248,7 @@ html body {
       classNames: contextClassNames,
       styles: contextStyles
     } = useComponentConfig("switch");
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = (customDisabled ?? disabled) || loading;
     const prefixCls = getPrefixCls("switch", customizePrefixCls);
     const [hashId, cssVarCls] = useStyle$3(prefixCls);
@@ -54804,10 +55261,10 @@ html body {
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props: mergedProps
     });
-    const loadingIcon = /* @__PURE__ */ React__namespace.createElement("div", {
+    const loadingIcon = /* @__PURE__ */ reactExports.createElement("div", {
       className: clsx(`${prefixCls}-handle`, mergedClassNames.indicator),
       style: mergedStyles.indicator
-    }, loading && /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
+    }, loading && /* @__PURE__ */ reactExports.createElement(RefIcon$s, {
       className: `${prefixCls}-loading-icon`
     }));
     const classes = clsx(contextClassName, {
@@ -54824,10 +55281,10 @@ html body {
       setChecked(args[0]);
       onChange == null ? void 0 : onChange(...args);
     };
-    return /* @__PURE__ */ React__namespace.createElement(Wave, {
+    return /* @__PURE__ */ reactExports.createElement(Wave, {
       component: "Switch",
       disabled: mergedDisabled
-    }, /* @__PURE__ */ React__namespace.createElement(Switch$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Switch$1, {
       ...restProps,
       classNames: mergedClassNames,
       styles: mergedStyles,
@@ -54846,14 +55303,14 @@ html body {
   const EXPAND_COLUMN = {};
   const INTERNAL_HOOKS = "rc-table-internal-hook";
   function createContext(defaultValue) {
-    const Context2 = /* @__PURE__ */ React__namespace.createContext(void 0);
+    const Context2 = /* @__PURE__ */ reactExports.createContext(void 0);
     const Provider = ({
       value,
       children
     }) => {
-      const valueRef = React__namespace.useRef(value);
+      const valueRef = reactExports.useRef(value);
       valueRef.current = value;
-      const [context] = React__namespace.useState(() => ({
+      const [context] = reactExports.useState(() => ({
         getValue: () => valueRef.current,
         listeners: /* @__PURE__ */ new Set()
       }));
@@ -54864,7 +55321,7 @@ html body {
           });
         });
       }, [value]);
-      return /* @__PURE__ */ React__namespace.createElement(Context2.Provider, {
+      return /* @__PURE__ */ reactExports.createElement(Context2.Provider, {
         value: context
       }, children);
     };
@@ -54888,14 +55345,14 @@ html body {
       });
       return obj;
     });
-    const context = React__namespace.useContext(holder == null ? void 0 : holder.Context);
+    const context = reactExports.useContext(holder == null ? void 0 : holder.Context);
     const {
       listeners,
       getValue: getValue2
     } = context || {};
-    const valueRef = React__namespace.useRef();
+    const valueRef = reactExports.useRef();
     valueRef.current = eventSelector(context ? getValue2() : holder == null ? void 0 : holder.defaultValue);
-    const [, forceUpdate] = React__namespace.useState({});
+    const [, forceUpdate] = reactExports.useState({});
     useLayoutEffect(() => {
       if (!context) {
         return;
@@ -54928,9 +55385,9 @@ html body {
     return _extends$t.apply(this, arguments);
   }
   function createImmutable() {
-    const ImmutableContext = /* @__PURE__ */ React__namespace.createContext(null);
+    const ImmutableContext = /* @__PURE__ */ reactExports.createContext(null);
     function useImmutableMark2() {
-      return React__namespace.useContext(ImmutableContext);
+      return reactExports.useContext(ImmutableContext);
     }
     function makeImmutable2(Component, shouldTriggerRender) {
       const refAble = supportRef(Component);
@@ -54938,11 +55395,11 @@ html body {
         const refProps = refAble ? {
           ref
         } : {};
-        const renderTimesRef = React__namespace.useRef(0);
-        const prevProps = React__namespace.useRef(props);
+        const renderTimesRef = reactExports.useRef(0);
+        const prevProps = reactExports.useRef(props);
         const mark = useImmutableMark2();
         if (mark !== null) {
-          return /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, props, refProps));
+          return /* @__PURE__ */ reactExports.createElement(Component, _extends$t({}, props, refProps));
         }
         if (
           // Always trigger re-render if `shouldTriggerRender` is not provided
@@ -54951,11 +55408,11 @@ html body {
           renderTimesRef.current += 1;
         }
         prevProps.current = props;
-        return /* @__PURE__ */ React__namespace.createElement(ImmutableContext.Provider, {
+        return /* @__PURE__ */ reactExports.createElement(ImmutableContext.Provider, {
           value: renderTimesRef.current
-        }, /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, props, refProps)));
+        }, /* @__PURE__ */ reactExports.createElement(Component, _extends$t({}, props, refProps)));
       };
-      return refAble ? /* @__PURE__ */ React__namespace.forwardRef(ImmutableComponent) : ImmutableComponent;
+      return refAble ? /* @__PURE__ */ reactExports.forwardRef(ImmutableComponent) : ImmutableComponent;
     }
     function responseImmutable2(Component, propsAreEqual) {
       const refAble = supportRef(Component);
@@ -54964,9 +55421,9 @@ html body {
           ref
         } : {};
         useImmutableMark2();
-        return /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, props, refProps));
+        return /* @__PURE__ */ reactExports.createElement(Component, _extends$t({}, props, refProps));
       };
-      return /* @__PURE__ */ React__namespace.memo(refAble ? /* @__PURE__ */ React__namespace.forwardRef(ImmutableComponent) : ImmutableComponent, propsAreEqual);
+      return /* @__PURE__ */ reactExports.memo(refAble ? /* @__PURE__ */ reactExports.forwardRef(ImmutableComponent) : ImmutableComponent, propsAreEqual);
     }
     return {
       makeImmutable: makeImmutable2,
@@ -54980,7 +55437,7 @@ html body {
     useImmutableMark
   } = createImmutable();
   const TableContext = createContext();
-  const PerfContext = /* @__PURE__ */ React__namespace.createContext({
+  const PerfContext = /* @__PURE__ */ reactExports.createContext({
     renderWithProps: false
   });
   const INTERNAL_KEY_PREFIX = "RC_TABLE_KEY";
@@ -55014,10 +55471,10 @@ html body {
     return typeof value === "number" && !Number.isNaN(value);
   }
   function isRenderCell(data) {
-    return data && typeof data === "object" && !Array.isArray(data) && !/* @__PURE__ */ React__namespace.isValidElement(data);
+    return data && typeof data === "object" && !Array.isArray(data) && !/* @__PURE__ */ reactExports.isValidElement(data);
   }
   function useCellRender(record, dataIndex, renderIndex, children, render2, shouldCellUpdate) {
-    const perfRecord = React__namespace.useContext(PerfContext);
+    const perfRecord = reactExports.useContext(PerfContext);
     const mark = useImmutableMark();
     const retData = useMemo(() => {
       if (validateValue(children)) {
@@ -55097,7 +55554,7 @@ html body {
     if (ellipsisConfig && (ellipsisConfig.showTitle || rowType === "header")) {
       if (typeof children === "string" || typeof children === "number") {
         title = children.toString();
-      } else if (/* @__PURE__ */ React__namespace.isValidElement(children) && typeof ((_a2 = children.props) == null ? void 0 : _a2.children) === "string") {
+      } else if (/* @__PURE__ */ reactExports.isValidElement(children) && typeof ((_a2 = children.props) == null ? void 0 : _a2.children) === "string") {
         title = (_b2 = children.props) == null ? void 0 : _b2.children;
       }
     }
@@ -55224,15 +55681,15 @@ html body {
       ...style2
     };
     let mergedChildNode = childNode;
-    if (typeof mergedChildNode === "object" && !Array.isArray(mergedChildNode) && !/* @__PURE__ */ React__namespace.isValidElement(mergedChildNode)) {
+    if (typeof mergedChildNode === "object" && !Array.isArray(mergedChildNode) && !/* @__PURE__ */ reactExports.isValidElement(mergedChildNode)) {
       mergedChildNode = null;
     }
     if (ellipsis && (fixedStartShadow || fixedEndShadow)) {
-      mergedChildNode = /* @__PURE__ */ React__namespace.createElement("span", {
+      mergedChildNode = /* @__PURE__ */ reactExports.createElement("span", {
         className: `${cellPrefixCls}-content`
       }, mergedChildNode);
     }
-    return /* @__PURE__ */ React__namespace.createElement(Component, _extends$s({}, legacyCellProps, additionalProps, {
+    return /* @__PURE__ */ reactExports.createElement(Component, _extends$s({}, legacyCellProps, additionalProps, {
       className: mergedClassName,
       style: mergedStyle,
       title,
@@ -55243,7 +55700,7 @@ html body {
       rowSpan: mergedRowSpan !== 1 ? mergedRowSpan : null
     }), appendNode, mergedChildNode);
   };
-  const Cell$1 = /* @__PURE__ */ React__namespace.memo(Cell);
+  const Cell$1 = /* @__PURE__ */ reactExports.memo(Cell);
   function isFixedStart(column2) {
     return column2.fixed === "start";
   }
@@ -55302,7 +55759,7 @@ html body {
       zIndexReverse
     };
   }
-  const SummaryContext = /* @__PURE__ */ React__namespace.createContext({});
+  const SummaryContext = /* @__PURE__ */ reactExports.createContext({});
   function _extends$r() {
     _extends$r = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -55333,11 +55790,11 @@ html body {
       scrollColumnIndex,
       stickyOffsets,
       flattenColumns
-    } = React__namespace.useContext(SummaryContext);
+    } = reactExports.useContext(SummaryContext);
     const lastIndex = index2 + colSpan - 1;
     const mergedColSpan = lastIndex + 1 === scrollColumnIndex ? colSpan + 1 : colSpan;
-    const fixedInfo = React__namespace.useMemo(() => getCellFixedInfo(index2, index2 + mergedColSpan - 1, flattenColumns, stickyOffsets), [index2, mergedColSpan, flattenColumns, stickyOffsets]);
-    return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$r({
+    const fixedInfo = reactExports.useMemo(() => getCellFixedInfo(index2, index2 + mergedColSpan - 1, flattenColumns, stickyOffsets), [index2, mergedColSpan, flattenColumns, stickyOffsets]);
+    return /* @__PURE__ */ reactExports.createElement(Cell$1, _extends$r({
       className,
       index: index2,
       component: "td",
@@ -55355,7 +55812,7 @@ html body {
       children,
       ...restProps
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement("tr", restProps, children);
+    return /* @__PURE__ */ reactExports.createElement("tr", restProps, children);
   };
   const Summary = (props) => {
     const {
@@ -55374,14 +55831,14 @@ html body {
     const prefixCls = useContext(TableContext, "prefixCls");
     const lastColumnIndex = flattenColumns.length - 1;
     const scrollColumn = flattenColumns[lastColumnIndex];
-    const summaryContext = React__namespace.useMemo(() => ({
+    const summaryContext = reactExports.useMemo(() => ({
       stickyOffsets,
       flattenColumns,
       scrollColumnIndex: (scrollColumn == null ? void 0 : scrollColumn.scrollbar) ? lastColumnIndex : null
     }), [scrollColumn, flattenColumns, lastColumnIndex, stickyOffsets]);
-    return /* @__PURE__ */ React__namespace.createElement(SummaryContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(SummaryContext.Provider, {
       value: summaryContext
-    }, /* @__PURE__ */ React__namespace.createElement("tfoot", {
+    }, /* @__PURE__ */ reactExports.createElement("tfoot", {
       className: `${prefixCls}-summary`
     }, children));
   };
@@ -55409,7 +55866,7 @@ html body {
     }
   }
   function useFlattenRecords(data, childrenColumnName, expandedKeys, getRowKey) {
-    const arr = React__namespace.useMemo(() => {
+    const arr = reactExports.useMemo(() => {
       if (expandedKeys == null ? void 0 : expandedKeys.size) {
         const list = [];
         for (let i = 0; i < (data == null ? void 0 : data.length); i += 1) {
@@ -55501,7 +55958,7 @@ html body {
     } = useContext(TableContext, ["scrollbarSize", "fixHeader", "fixColumn", "componentWidth", "horizonScroll"]);
     let contentNode = children;
     if (isEmpty ? horizonScroll && componentWidth : fixColumn) {
-      contentNode = /* @__PURE__ */ React__namespace.createElement("div", {
+      contentNode = /* @__PURE__ */ reactExports.createElement("div", {
         style: {
           width: componentWidth - stickyOffset - (fixHeader && !isEmpty ? scrollbarSize : 0),
           position: "sticky",
@@ -55511,12 +55968,12 @@ html body {
         className: `${prefixCls}-expanded-row-fixed`
       }, contentNode);
     }
-    return /* @__PURE__ */ React__namespace.createElement(Component, {
+    return /* @__PURE__ */ reactExports.createElement(Component, {
       className,
       style: {
         display: expanded ? null : "none"
       }
-    }, /* @__PURE__ */ React__namespace.createElement(Cell$1, {
+    }, /* @__PURE__ */ reactExports.createElement(Cell$1, {
       component: cellComponent,
       prefixCls,
       colSpan
@@ -55531,7 +55988,7 @@ html body {
   }) {
     const expandClassName = `${prefixCls}-row-expand-icon`;
     if (!expandable) {
-      return /* @__PURE__ */ React__namespace.createElement("span", {
+      return /* @__PURE__ */ reactExports.createElement("span", {
         className: clsx(expandClassName, `${prefixCls}-row-spaced`)
       });
     }
@@ -55539,7 +55996,7 @@ html body {
       onExpand(record, event);
       event.stopPropagation();
     };
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       className: clsx(expandClassName, {
         [`${prefixCls}-row-expanded`]: expanded,
         [`${prefixCls}-row-collapsed`]: !expanded
@@ -55602,7 +56059,7 @@ html body {
     const fixedInfo = fixedInfoList[colIndex];
     let appendCellNode;
     if (colIndex === (expandIconColumnIndex || 0) && nestExpandable) {
-      appendCellNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("span", {
+      appendCellNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("span", {
         style: {
           paddingLeft: `${indentSize * indent}px`
         },
@@ -55666,10 +56123,10 @@ html body {
       expanded,
       rowSupportExpand
     } = rowInfo;
-    const expandedRef = React__namespace.useRef(false);
+    const expandedRef = reactExports.useRef(false);
     expandedRef.current || (expandedRef.current = expanded);
     const expandedClsName = computedExpandedClassName(expandedRowClassName, record, index2, indent);
-    const baseRowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$q({}, rowProps, {
+    const baseRowNode = /* @__PURE__ */ reactExports.createElement(RowComponent, _extends$q({}, rowProps, {
       "data-row-key": rowKey,
       className: clsx(className, `${prefixCls}-row`, `${prefixCls}-row-level-${indent}`, rowProps == null ? void 0 : rowProps.className, classNames.row, {
         [expandedClsName]: indent >= 1
@@ -55691,7 +56148,7 @@ html body {
         appendCellNode,
         additionalCellProps
       } = getCellProps(rowInfo, column2, colIndex, indent, index2, rowKeys, expandedRowInfo == null ? void 0 : expandedRowInfo.offset);
-      return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$q({
+      return /* @__PURE__ */ reactExports.createElement(Cell$1, _extends$q({
         className: clsx(columnClassName, classNames.cell),
         style: styles2.cell,
         ellipsis: column2.ellipsis,
@@ -55714,7 +56171,7 @@ html body {
     let expandRowNode;
     if (rowSupportExpand && (expandedRef.current || expanded)) {
       const expandContent = expandedRowRender(record, index2, indent + 1, expanded);
-      expandRowNode = /* @__PURE__ */ React__namespace.createElement(ExpandedRow, {
+      expandRowNode = /* @__PURE__ */ reactExports.createElement(ExpandedRow, {
         expanded,
         className: clsx(`${prefixCls}-expanded-row`, `${prefixCls}-expanded-row-level-${indent + 1}`, expandedClsName),
         prefixCls,
@@ -55725,7 +56182,7 @@ html body {
         stickyOffset: expandedRowInfo == null ? void 0 : expandedRowInfo.sticky
       }, expandContent);
     }
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, baseRowNode, expandRowNode);
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, baseRowNode, expandRowNode);
   };
   const BodyRow$1 = responseImmutable(BodyRow);
   const MeasureCell = (props) => {
@@ -55734,15 +56191,15 @@ html body {
       onColumnResize,
       title
     } = props;
-    const cellRef = React__namespace.useRef(null);
+    const cellRef = reactExports.useRef(null);
     useLayoutEffect(() => {
       if (cellRef.current) {
         onColumnResize(columnKey, cellRef.current.offsetWidth);
       }
     }, []);
-    return /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+    return /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
       data: columnKey
-    }, /* @__PURE__ */ React__namespace.createElement("td", {
+    }, /* @__PURE__ */ reactExports.createElement("td", {
       ref: cellRef,
       style: {
         paddingTop: 0,
@@ -55751,7 +56208,7 @@ html body {
         borderBottom: 0,
         height: 0
       }
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       style: {
         height: 0,
         overflow: "hidden",
@@ -55765,18 +56222,18 @@ html body {
     onColumnResize,
     columns
   }) => {
-    const ref = React__namespace.useRef(null);
+    const ref = reactExports.useRef(null);
     const {
       measureRowRender
     } = useContext(TableContext, ["measureRowRender"]);
-    const measureRow = /* @__PURE__ */ React__namespace.createElement("tr", {
+    const measureRow = /* @__PURE__ */ reactExports.createElement("tr", {
       "aria-hidden": "true",
       className: `${prefixCls}-measure-row`,
       style: {
         height: 0
       },
       ref
-    }, /* @__PURE__ */ React__namespace.createElement(RefResizeObserver.Collection, {
+    }, /* @__PURE__ */ reactExports.createElement(RefResizeObserver.Collection, {
       onBatchResize: (infoList) => {
         if (isVisible(ref.current)) {
           infoList.forEach(({
@@ -55790,10 +56247,10 @@ html body {
     }, columnsKey.map((columnKey) => {
       const column2 = columns.find((col) => col.key === columnKey);
       const rawTitle = column2 == null ? void 0 : column2.title;
-      const titleForMeasure = /* @__PURE__ */ React__namespace.isValidElement(rawTitle) ? /* @__PURE__ */ React__namespace.cloneElement(rawTitle, {
+      const titleForMeasure = /* @__PURE__ */ reactExports.isValidElement(rawTitle) ? /* @__PURE__ */ reactExports.cloneElement(rawTitle, {
         ref: null
       }) : rawTitle;
-      return /* @__PURE__ */ React__namespace.createElement(MeasureCell, {
+      return /* @__PURE__ */ reactExports.createElement(MeasureCell, {
         key: columnKey,
         columnKey,
         onColumnResize,
@@ -55828,11 +56285,11 @@ html body {
       body: bodyStyles = {}
     } = styles2 || {};
     const flattenData2 = useFlattenRecords(data, childrenColumnName, expandedKeys, getRowKey);
-    const rowKeys = React__namespace.useMemo(() => flattenData2.map((item) => item.rowKey), [flattenData2]);
-    const perfRef = React__namespace.useRef({
+    const rowKeys = reactExports.useMemo(() => flattenData2.map((item) => item.rowKey), [flattenData2]);
+    const perfRef = reactExports.useRef({
       renderWithProps: false
     });
-    const expandedRowInfo = React__namespace.useMemo(() => {
+    const expandedRowInfo = reactExports.useMemo(() => {
       const expandedColSpan = flattenColumns.length - expandedRowOffset;
       let expandedStickyStart = 0;
       for (let i = 0; i < expandedRowOffset; i += 1) {
@@ -55857,7 +56314,7 @@ html body {
           index: renderIndex,
           rowKey
         } = item;
-        return /* @__PURE__ */ React__namespace.createElement(BodyRow$1, {
+        return /* @__PURE__ */ reactExports.createElement(BodyRow$1, {
           classNames: bodyCls,
           styles: bodyStyles,
           key: rowKey,
@@ -55874,7 +56331,7 @@ html body {
         });
       });
     } else {
-      rows = /* @__PURE__ */ React__namespace.createElement(ExpandedRow, {
+      rows = /* @__PURE__ */ reactExports.createElement(ExpandedRow, {
         expanded: true,
         className: `${prefixCls}-placeholder`,
         prefixCls,
@@ -55885,12 +56342,12 @@ html body {
       }, emptyNode);
     }
     const columnsKey = getColumnsKey(flattenColumns);
-    return /* @__PURE__ */ React__namespace.createElement(PerfContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(PerfContext.Provider, {
       value: perfRef.current
-    }, /* @__PURE__ */ React__namespace.createElement(WrapperComponent, {
+    }, /* @__PURE__ */ reactExports.createElement(WrapperComponent, {
       style: bodyStyles.wrapper,
       className: clsx(`${prefixCls}-tbody`, bodyCls.wrapper)
-    }, measureColumnWidth && /* @__PURE__ */ React__namespace.createElement(MeasureRow, {
+    }, measureColumnWidth && /* @__PURE__ */ reactExports.createElement(MeasureRow, {
       prefixCls,
       columnsKey,
       onColumnResize,
@@ -55960,7 +56417,7 @@ html body {
           columnType,
           ...restAdditionalProps
         } = additionalProps || {};
-        cols.unshift(/* @__PURE__ */ React__namespace.createElement("col", _extends$p({
+        cols.unshift(/* @__PURE__ */ reactExports.createElement("col", _extends$p({
           key: i,
           style: {
             width,
@@ -55970,10 +56427,10 @@ html body {
         mustInsert = true;
       }
     }
-    return cols.length > 0 ? /* @__PURE__ */ React__namespace.createElement("colgroup", null, cols) : null;
+    return cols.length > 0 ? /* @__PURE__ */ reactExports.createElement("colgroup", null, cols) : null;
   };
   function useColumnWidth(colWidths, columCount) {
-    return React.useMemo(() => {
+    return reactExports.useMemo(() => {
       const cloneColumns = [];
       for (let i = 0; i < columCount; i += 1) {
         const val = colWidths[i];
@@ -55986,7 +56443,7 @@ html body {
       return cloneColumns;
     }, [colWidths.join("_"), columCount]);
   }
-  const FixedHolder = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const FixedHolder = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       className,
       style: style2,
@@ -56017,12 +56474,12 @@ html body {
     } = useContext(TableContext, ["prefixCls", "scrollbarSize", "isSticky", "getComponent"]);
     const TableComponent = getComponent(["header", "table"], "table");
     const combinationScrollBarSize = isSticky && !fixHeader ? 0 : scrollbarSize;
-    const scrollRef = React__namespace.useRef(null);
-    const setScrollRef = React__namespace.useCallback((element) => {
+    const scrollRef = reactExports.useRef(null);
+    const setScrollRef = reactExports.useCallback((element) => {
       fillRef(ref, element);
       fillRef(scrollRef, element);
     }, []);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       function onWheel(e2) {
         const {
           currentTarget,
@@ -56066,9 +56523,9 @@ html body {
         className: `${prefixCls}-cell-scrollbar`
       })
     };
-    const columnsWithScrollbar = React.useMemo(() => combinationScrollBarSize ? [...columns, ScrollBarColumn] : columns, [combinationScrollBarSize, columns]);
-    const flattenColumnsWithScrollbar = React.useMemo(() => combinationScrollBarSize ? [...flattenColumns, ScrollBarColumn] : flattenColumns, [combinationScrollBarSize, flattenColumns]);
-    const headerStickyOffsets = React.useMemo(() => {
+    const columnsWithScrollbar = reactExports.useMemo(() => combinationScrollBarSize ? [...columns, ScrollBarColumn] : columns, [combinationScrollBarSize, columns]);
+    const flattenColumnsWithScrollbar = reactExports.useMemo(() => combinationScrollBarSize ? [...flattenColumns, ScrollBarColumn] : flattenColumns, [combinationScrollBarSize, flattenColumns]);
+    const headerStickyOffsets = reactExports.useMemo(() => {
       const {
         start,
         end
@@ -56085,11 +56542,11 @@ html body {
       };
     }, [combinationScrollBarSize, stickyOffsets, isSticky]);
     const mergedColumnWidth = useColumnWidth(colWidths, columCount);
-    const isColGroupEmpty = React.useMemo(() => {
+    const isColGroupEmpty = reactExports.useMemo(() => {
       const noWidth = !mergedColumnWidth || !mergedColumnWidth.length || mergedColumnWidth.every((w2) => !w2);
       return noData || noWidth;
     }, [noData, mergedColumnWidth]);
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       style: {
         overflow: "hidden",
         ...isSticky ? {
@@ -56102,14 +56559,14 @@ html body {
       className: clsx(className, {
         [stickyClassName]: !!stickyClassName
       })
-    }, /* @__PURE__ */ React__namespace.createElement(TableComponent, {
+    }, /* @__PURE__ */ reactExports.createElement(TableComponent, {
       style: {
         tableLayout,
         minWidth: "100%",
         // https://github.com/ant-design/ant-design/issues/54894
         width: scrollX
       }
-    }, isColGroupEmpty ? colGroup : /* @__PURE__ */ React__namespace.createElement(ColGroup, {
+    }, isColGroupEmpty ? colGroup : /* @__PURE__ */ reactExports.createElement(ColGroup, {
       colWidths: [...mergedColumnWidth, combinationScrollBarSize],
       columCount: columCount + 1,
       columns: flattenColumnsWithScrollbar
@@ -56120,7 +56577,7 @@ html body {
       flattenColumns: flattenColumnsWithScrollbar
     })));
   });
-  const FixedHolder$1 = /* @__PURE__ */ React__namespace.memo(FixedHolder);
+  const FixedHolder$1 = /* @__PURE__ */ reactExports.memo(FixedHolder);
   function _extends$o() {
     _extends$o = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -56155,7 +56612,7 @@ html body {
       rowProps = onHeaderRow(cells.map((cell) => cell.column), index2);
     }
     const columnsKey = getColumnsKey(cells.map((cell) => cell.column));
-    return /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$o({}, rowProps, {
+    return /* @__PURE__ */ reactExports.createElement(RowComponent, _extends$o({}, rowProps, {
       className: classNames.row,
       style: styles2.row
     }), cells.map((cell, cellIndex) => {
@@ -56168,7 +56625,7 @@ html body {
       } = cell;
       const fixedInfo = getCellFixedInfo(colStart, colEnd, flattenColumns, stickyOffsets);
       const additionalProps = ((_a2 = column2 == null ? void 0 : column2.onHeaderCell) == null ? void 0 : _a2.call(column2, column2)) || {};
-      return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$o({}, cell, {
+      return /* @__PURE__ */ reactExports.createElement(Cell$1, _extends$o({}, cell, {
         scope: column2.title ? colSpan > 1 ? "colgroup" : "col" : null,
         ellipsis: column2.ellipsis,
         align: column2.align,
@@ -56247,15 +56704,15 @@ html body {
     const {
       header: headerStyles = {}
     } = styles2 || {};
-    const rows = React__namespace.useMemo(() => parseHeaderRows(columns, headerCls, headerStyles), [columns, headerCls, headerStyles]);
+    const rows = reactExports.useMemo(() => parseHeaderRows(columns, headerCls, headerStyles), [columns, headerCls, headerStyles]);
     const WrapperComponent = getComponent(["header", "wrapper"], "thead");
     const trComponent = getComponent(["header", "row"], "tr");
     const thComponent = getComponent(["header", "cell"], "th");
-    return /* @__PURE__ */ React__namespace.createElement(WrapperComponent, {
+    return /* @__PURE__ */ reactExports.createElement(WrapperComponent, {
       className: clsx(`${prefixCls}-thead`, headerCls.wrapper),
       style: headerStyles.wrapper
     }, rows.map((row, rowIndex) => {
-      const rowNode = /* @__PURE__ */ React__namespace.createElement(HeaderRow, {
+      const rowNode = /* @__PURE__ */ reactExports.createElement(HeaderRow, {
         classNames: headerCls,
         styles: headerStyles,
         key: rowIndex,
@@ -56281,7 +56738,7 @@ html body {
     return null;
   }
   function useWidthColumns(flattenColumns, scrollWidth, clientWidth) {
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       if (scrollWidth && scrollWidth > 0) {
         let totalWidth = 0;
         let missWidthCount = 0;
@@ -56329,7 +56786,7 @@ html body {
     }, [flattenColumns, scrollWidth, clientWidth]);
   }
   function convertChildrenToColumns(children) {
-    return toArray$6(children).filter((node2) => /* @__PURE__ */ React__namespace.isValidElement(node2)).map((node2) => {
+    return toArray$6(children).filter((node2) => /* @__PURE__ */ reactExports.isValidElement(node2)).map((node2) => {
       const {
         key: key2,
         props
@@ -56401,11 +56858,11 @@ html body {
     scrollWidth,
     clientWidth
   }, transformColumns) {
-    const baseColumns = React__namespace.useMemo(() => {
+    const baseColumns = reactExports.useMemo(() => {
       const newColumns = columns || convertChildrenToColumns(children) || [];
       return filterHiddenColumns(newColumns.slice());
     }, [columns, children]);
-    const withExpandColumns = React__namespace.useMemo(() => {
+    const withExpandColumns = reactExports.useMemo(() => {
       if (expandable) {
         let cloneColumns = baseColumns.slice();
         if (!cloneColumns.includes(EXPAND_COLUMN)) {
@@ -56445,7 +56902,7 @@ html body {
               onExpand: onTriggerExpand
             });
             if (expandRowByClick) {
-              return /* @__PURE__ */ React__namespace.createElement("span", {
+              return /* @__PURE__ */ reactExports.createElement("span", {
                 onClick: (e2) => e2.stopPropagation()
               }, icon);
             }
@@ -56465,7 +56922,7 @@ html body {
       }
       return baseColumns.filter((col) => col !== EXPAND_COLUMN);
     }, [expandable, baseColumns, getRowKey, expandedKeys, expandIcon, direction, expandedRowOffset]);
-    const mergedColumns = React__namespace.useMemo(() => {
+    const mergedColumns = reactExports.useMemo(() => {
       let finalColumns = withExpandColumns;
       if (transformColumns) {
         finalColumns = transformColumns(finalColumns);
@@ -56477,7 +56934,7 @@ html body {
       }
       return finalColumns;
     }, [transformColumns, withExpandColumns, direction]);
-    const flattenColumns = React__namespace.useMemo(
+    const flattenColumns = reactExports.useMemo(
       () => flatColumns(mergedColumns),
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [mergedColumns, direction, scrollWidth]
@@ -56499,7 +56956,7 @@ html body {
     } = expandableConfig;
     const mergedExpandIcon = expandIcon || renderExpandIcon$1;
     const mergedChildrenColumnName = childrenColumnName || "children";
-    const expandableType = React__namespace.useMemo(() => {
+    const expandableType = reactExports.useMemo(() => {
       if (expandedRowRender) {
         return "row";
       }
@@ -56508,7 +56965,7 @@ html body {
       }
       return false;
     }, [!!expandedRowRender, mergedData]);
-    const [innerExpandedKeys, setInnerExpandedKeys] = React__namespace.useState(() => {
+    const [innerExpandedKeys, setInnerExpandedKeys] = reactExports.useState(() => {
       if (defaultExpandedRowKeys) {
         return defaultExpandedRowKeys;
       }
@@ -56517,8 +56974,8 @@ html body {
       }
       return [];
     });
-    const mergedExpandedKeys = React__namespace.useMemo(() => new Set(expandedRowKeys || innerExpandedKeys || []), [expandedRowKeys, innerExpandedKeys]);
-    const onTriggerExpand = React__namespace.useCallback((record) => {
+    const mergedExpandedKeys = reactExports.useMemo(() => new Set(expandedRowKeys || innerExpandedKeys || []), [expandedRowKeys, innerExpandedKeys]);
+    const onTriggerExpand = reactExports.useCallback((record) => {
       const key2 = getRowKey(record, mergedData.indexOf(record));
       let newExpandedKeys;
       const hasKey = mergedExpandedKeys.has(key2);
@@ -56539,14 +56996,14 @@ html body {
     return [expandableConfig, expandableType, mergedExpandedKeys, mergedExpandIcon, mergedChildrenColumnName, onTriggerExpand];
   }
   function useFixedInfo(flattenColumns, stickyOffsets) {
-    const fixedInfoList = React__namespace.useMemo(() => flattenColumns.map((_2, colIndex) => getCellFixedInfo(colIndex, colIndex, flattenColumns, stickyOffsets)), [flattenColumns, stickyOffsets]);
+    const fixedInfoList = reactExports.useMemo(() => flattenColumns.map((_2, colIndex) => getCellFixedInfo(colIndex, colIndex, flattenColumns, stickyOffsets)), [flattenColumns, stickyOffsets]);
     return useMemo(() => fixedInfoList, [fixedInfoList], (prev2, next2) => !isEqual(prev2, next2));
   }
   function useLayoutState(defaultState) {
-    const stateRef = React.useRef(defaultState);
-    const [, forceUpdate] = React.useState({});
-    const lastPromiseRef = React.useRef(null);
-    const updateBatchRef = React.useRef([]);
+    const stateRef = reactExports.useRef(defaultState);
+    const [, forceUpdate] = reactExports.useState({});
+    const lastPromiseRef = reactExports.useRef(null);
+    const updateBatchRef = reactExports.useRef([]);
     function setFrameState(updater) {
       updateBatchRef.current.push(updater);
       const promise = Promise.resolve();
@@ -56566,14 +57023,14 @@ html body {
         }
       });
     }
-    React.useEffect(() => () => {
+    reactExports.useEffect(() => () => {
       lastPromiseRef.current = null;
     }, []);
     return [stateRef.current, setFrameState];
   }
   function useTimeoutLock(defaultState) {
-    const frameRef = React.useRef(null);
-    const timeoutRef = React.useRef(null);
+    const frameRef = reactExports.useRef(null);
+    const timeoutRef = reactExports.useRef(null);
     function cleanUp() {
       clearTimeout(timeoutRef.current);
     }
@@ -56588,13 +57045,13 @@ html body {
     function getState() {
       return frameRef.current;
     }
-    React.useEffect(() => cleanUp, []);
+    reactExports.useEffect(() => cleanUp, []);
     return [setState, getState];
   }
   function useHover() {
-    const [startRow, setStartRow] = React__namespace.useState(-1);
-    const [endRow, setEndRow] = React__namespace.useState(-1);
-    const onHover = React__namespace.useCallback((start, end) => {
+    const [startRow, setStartRow] = reactExports.useState(-1);
+    const [endRow, setEndRow] = reactExports.useState(-1);
+    const onHover = reactExports.useCallback((start, end) => {
       setStartRow(start);
       setEndRow(end);
     }, []);
@@ -56610,7 +57067,7 @@ html body {
     } = typeof sticky === "object" ? sticky : {};
     const container = getContainer2() || defaultContainer;
     const isSticky = !!sticky;
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       return {
         isSticky,
         stickyClassName: isSticky ? `${prefixCls}-sticky-holder` : "",
@@ -56622,7 +57079,7 @@ html body {
     }, [isSticky, offsetScroll, offsetHeader, offsetSummary, prefixCls, container]);
   }
   function useStickyOffsets(colWidths, flattenColumns) {
-    const stickyOffsets = React.useMemo(() => {
+    const stickyOffsets = reactExports.useMemo(() => {
       const columnCount = flattenColumns.length;
       const getOffsets = (startIndex, endIndex, offset2) => {
         const offsets = [];
@@ -56651,7 +57108,7 @@ html body {
       className,
       style: style2
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className,
       style: style2
     }, children);
@@ -56682,18 +57139,18 @@ html body {
     const bodyScrollWidth = ((_a2 = scrollBodyRef.current) == null ? void 0 : _a2.scrollWidth) || 0;
     const bodyWidth = ((_b2 = scrollBodyRef.current) == null ? void 0 : _b2.clientWidth) || 0;
     const scrollBarWidth = bodyScrollWidth && bodyWidth * (bodyWidth / bodyScrollWidth);
-    const scrollBarRef = React__namespace.useRef(null);
+    const scrollBarRef = reactExports.useRef(null);
     const [scrollState, setScrollState] = useLayoutState({
       scrollLeft: 0,
       isHiddenScrollBar: true
     });
-    const refState = React__namespace.useRef({
+    const refState = reactExports.useRef({
       delta: 0,
       x: 0
     });
-    const [isActive2, setActive] = React__namespace.useState(false);
-    const rafRef = React__namespace.useRef(null);
-    React__namespace.useEffect(() => () => {
+    const [isActive2, setActive] = reactExports.useState(false);
+    const rafRef = reactExports.useRef(null);
+    reactExports.useEffect(() => () => {
       wrapperRaf.cancel(rafRef.current);
     }, []);
     const onMouseUp = () => {
@@ -56757,11 +57214,11 @@ html body {
         };
       });
     };
-    React__namespace.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       setScrollLeft,
       checkScrollBarVisible
     }));
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       document.body.addEventListener(MOUSEUP_EVENT, onMouseUp, false);
       document.body.addEventListener(MOUSEMOVE_EVENT, onMouseMove, false);
       checkScrollBarVisible();
@@ -56770,7 +57227,7 @@ html body {
         document.body.removeEventListener(MOUSEMOVE_EVENT, onMouseMove);
       };
     }, [scrollBarWidth, isActive2]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (scrollBodyRef.current) {
         const scrollParents = [];
         let parent = getDOM(scrollBodyRef.current);
@@ -56794,7 +57251,7 @@ html body {
         };
       }
     }, [container]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!scrollState.isHiddenScrollBar) {
         setScrollState((state) => {
           const bodyNode = scrollBodyRef.current;
@@ -56811,14 +57268,14 @@ html body {
     if (bodyScrollWidth <= bodyWidth || !scrollBarWidth || scrollState.isHiddenScrollBar) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       style: {
         height: getScrollBarSize(),
         width: bodyWidth,
         bottom: offsetScroll
       },
       className: `${prefixCls}-sticky-scroll`
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       onMouseDown,
       ref: scrollBarRef,
       className: clsx(`${prefixCls}-sticky-scroll-bar`, {
@@ -56830,7 +57287,7 @@ html body {
       }
     }));
   };
-  const StickyScrollBar$1 = /* @__PURE__ */ React__namespace.forwardRef(StickyScrollBar);
+  const StickyScrollBar$1 = /* @__PURE__ */ reactExports.forwardRef(StickyScrollBar);
   function _extends$n() {
     _extends$n = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -56899,8 +57356,8 @@ html body {
     const mergedData = data || EMPTY_DATA;
     const hasData = !!mergedData.length;
     const useInternalHooks = internalHooks === INTERNAL_HOOKS;
-    const getComponent = React__namespace.useCallback((path, defaultComponent) => get(components2, path) || defaultComponent, [components2]);
-    const getRowKey = React__namespace.useMemo(() => {
+    const getComponent = reactExports.useCallback((path, defaultComponent) => get(components2, path) || defaultComponent, [components2]);
+    const getRowKey = reactExports.useMemo(() => {
       if (typeof rowKey === "function") {
         return rowKey;
       }
@@ -56913,7 +57370,7 @@ html body {
     const [startRow, endRow, onHover] = useHover();
     const [expandableConfig, expandableType, mergedExpandedKeys, mergedExpandIcon, mergedChildrenColumnName, onTriggerExpand] = useExpand(props, mergedData, getRowKey);
     const scrollX = scroll == null ? void 0 : scroll.x;
-    const [componentWidth, setComponentWidth] = React__namespace.useState(0);
+    const [componentWidth, setComponentWidth] = reactExports.useState(0);
     const [columns, flattenColumns, flattenScrollX] = useColumns({
       ...props,
       ...expandableConfig,
@@ -56930,15 +57387,15 @@ html body {
       clientWidth: componentWidth
     }, useInternalHooks ? transformColumns : null);
     const mergedScrollX = flattenScrollX ?? scrollX;
-    const columnContext = React__namespace.useMemo(() => ({
+    const columnContext = reactExports.useMemo(() => ({
       columns,
       flattenColumns
     }), [columns, flattenColumns]);
-    const fullTableRef = React__namespace.useRef(null);
-    const scrollHeaderRef = React__namespace.useRef(null);
-    const scrollBodyRef = React__namespace.useRef(null);
-    const scrollBodyContainerRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => {
+    const fullTableRef = reactExports.useRef(null);
+    const scrollHeaderRef = reactExports.useRef(null);
+    const scrollBodyRef = reactExports.useRef(null);
+    const scrollBodyContainerRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => {
       return {
         nativeElement: fullTableRef.current,
         scrollTo: (config2) => {
@@ -56976,20 +57433,20 @@ html body {
         }
       };
     });
-    const scrollSummaryRef = React__namespace.useRef(null);
-    const [shadowStart, setShadowStart] = React__namespace.useState(false);
-    const [shadowEnd, setShadowEnd] = React__namespace.useState(false);
-    const [colsWidths, updateColsWidths] = React__namespace.useState(/* @__PURE__ */ new Map());
+    const scrollSummaryRef = reactExports.useRef(null);
+    const [shadowStart, setShadowStart] = reactExports.useState(false);
+    const [shadowEnd, setShadowEnd] = reactExports.useState(false);
+    const [colsWidths, updateColsWidths] = reactExports.useState(/* @__PURE__ */ new Map());
     const colsKeys = getColumnsKey(flattenColumns);
     const pureColWidths = colsKeys.map((columnKey) => colsWidths.get(columnKey));
-    const colWidths = React__namespace.useMemo(() => pureColWidths, [pureColWidths.join("_")]);
+    const colWidths = reactExports.useMemo(() => pureColWidths, [pureColWidths.join("_")]);
     const stickyOffsets = useStickyOffsets(colWidths, flattenColumns);
     const fixHeader = scroll && validateValue(scroll.y);
     const horizonScroll = scroll && validateValue(mergedScrollX) || Boolean(expandableConfig.fixed);
     const fixColumn = horizonScroll && flattenColumns.some(({
       fixed
     }) => fixed);
-    const stickyRef = React__namespace.useRef(null);
+    const stickyRef = reactExports.useRef(null);
     const {
       isSticky,
       offsetHeader,
@@ -56998,8 +57455,8 @@ html body {
       stickyClassName,
       container
     } = useSticky(sticky, prefixCls);
-    const summaryNode = React__namespace.useMemo(() => summary == null ? void 0 : summary(mergedData), [summary, mergedData]);
-    const fixFooter = (fixHeader || isSticky) && /* @__PURE__ */ React__namespace.isValidElement(summaryNode) && summaryNode.type === Summary && summaryNode.props.fixed;
+    const summaryNode = reactExports.useMemo(() => summary == null ? void 0 : summary(mergedData), [summary, mergedData]);
+    const fixFooter = (fixHeader || isSticky) && /* @__PURE__ */ reactExports.isValidElement(summaryNode) && summaryNode.type === Summary && summaryNode.props.fixed;
     let scrollXStyle;
     let scrollYStyle;
     let scrollTableStyle;
@@ -57023,7 +57480,7 @@ html body {
         minWidth: "100%"
       };
     }
-    const onColumnResize = React__namespace.useCallback((columnKey, width) => {
+    const onColumnResize = reactExports.useCallback((columnKey, width) => {
       updateColsWidths((widths) => {
         if (widths.get(columnKey) !== width) {
           const newWidths = new Map(widths);
@@ -57049,7 +57506,7 @@ html body {
         }
       }
     }
-    const [scrollInfo, setScrollInfo] = React__namespace.useState([0, 0]);
+    const [scrollInfo, setScrollInfo] = reactExports.useState([0, 0]);
     const onInternalScroll = useEvent(({
       currentTarget,
       scrollLeft
@@ -57118,16 +57575,16 @@ html body {
         onFullTableResize();
       }
     }, [horizonScroll]);
-    const mounted = React__namespace.useRef(false);
-    React__namespace.useEffect(() => {
+    const mounted = reactExports.useRef(false);
+    reactExports.useEffect(() => {
       if (mounted.current) {
         triggerOnScroll();
       }
     }, [horizonScroll, data, columns.length]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       mounted.current = true;
     }, []);
-    const [scrollbarSize, setScrollbarSize] = React__namespace.useState(0);
+    const [scrollbarSize, setScrollbarSize] = reactExports.useState(0);
     useLayoutEffect(() => {
       if (!tailor || !useInternalHooks) {
         if (scrollBodyRef.current instanceof Element) {
@@ -57137,15 +57594,15 @@ html body {
         }
       }
     }, []);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (useInternalHooks && internalRefs) {
         internalRefs.body.current = scrollBodyRef.current;
       }
     });
-    const renderFixedHeaderTable = React__namespace.useCallback((fixedHolderPassProps) => /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(Header$1, fixedHolderPassProps), fixFooter === "top" && /* @__PURE__ */ React__namespace.createElement(Footer$1, fixedHolderPassProps, summaryNode)), [fixFooter, summaryNode]);
-    const renderFixedFooterTable = React__namespace.useCallback((fixedHolderPassProps) => /* @__PURE__ */ React__namespace.createElement(Footer$1, fixedHolderPassProps, summaryNode), [summaryNode]);
+    const renderFixedHeaderTable = reactExports.useCallback((fixedHolderPassProps) => /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Header$1, fixedHolderPassProps), fixFooter === "top" && /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode)), [fixFooter, summaryNode]);
+    const renderFixedFooterTable = reactExports.useCallback((fixedHolderPassProps) => /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode), [summaryNode]);
     const TableComponent = getComponent(["table"], "table");
-    const mergedTableLayout = React__namespace.useMemo(() => {
+    const mergedTableLayout = reactExports.useMemo(() => {
       if (tableLayout) {
         return tableLayout;
       }
@@ -57168,7 +57625,7 @@ html body {
       fixHeader,
       scroll
     };
-    const emptyNode = React__namespace.useMemo(() => {
+    const emptyNode = reactExports.useMemo(() => {
       if (hasData) {
         return null;
       }
@@ -57177,17 +57634,17 @@ html body {
       }
       return emptyText;
     }, [hasData, emptyText]);
-    const bodyTable = /* @__PURE__ */ React__namespace.createElement(Body$1, {
+    const bodyTable = /* @__PURE__ */ reactExports.createElement(Body$1, {
       data: mergedData,
       measureColumnWidth: fixHeader || horizonScroll || isSticky
     });
-    const bodyColGroup = /* @__PURE__ */ React__namespace.createElement(ColGroup, {
+    const bodyColGroup = /* @__PURE__ */ reactExports.createElement(ColGroup, {
       colWidths: flattenColumns.map(({
         width
       }) => width),
       columns: flattenColumns
     });
-    const captionElement = caption !== null && caption !== void 0 ? /* @__PURE__ */ React__namespace.createElement("caption", {
+    const captionElement = caption !== null && caption !== void 0 ? /* @__PURE__ */ reactExports.createElement("caption", {
       className: `${prefixCls}-caption`
     }, caption) : void 0;
     const dataProps = pickAttrs(props, {
@@ -57214,7 +57671,7 @@ html body {
           return 0;
         });
       } else {
-        bodyContent = /* @__PURE__ */ React__namespace.createElement("div", {
+        bodyContent = /* @__PURE__ */ reactExports.createElement("div", {
           style: {
             ...scrollXStyle,
             ...scrollYStyle
@@ -57222,12 +57679,12 @@ html body {
           onScroll: onBodyScroll,
           ref: scrollBodyRef,
           className: `${prefixCls}-body`
-        }, /* @__PURE__ */ React__namespace.createElement(TableComponent, _extends$n({
+        }, /* @__PURE__ */ reactExports.createElement(TableComponent, _extends$n({
           style: {
             ...scrollTableStyle,
             tableLayout: mergedTableLayout
           }
-        }, ariaProps), captionElement, bodyColGroup, bodyTable, !fixFooter && summaryNode && /* @__PURE__ */ React__namespace.createElement(Footer$1, {
+        }, ariaProps), captionElement, bodyColGroup, bodyTable, !fixFooter && summaryNode && /* @__PURE__ */ reactExports.createElement(Footer$1, {
           stickyOffsets,
           flattenColumns
         }, summaryNode)));
@@ -57243,17 +57700,17 @@ html body {
         tableLayout: mergedTableLayout,
         onScroll: onInternalScroll
       };
-      groupTableNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, showHeader !== false && /* @__PURE__ */ React__namespace.createElement(FixedHolder$1, _extends$n({}, fixedHolderProps, {
+      groupTableNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, showHeader !== false && /* @__PURE__ */ reactExports.createElement(FixedHolder$1, _extends$n({}, fixedHolderProps, {
         stickyTopOffset: offsetHeader,
         className: `${prefixCls}-header`,
         ref: scrollHeaderRef,
         colGroup: bodyColGroup
-      }), renderFixedHeaderTable), bodyContent, fixFooter && fixFooter !== "top" && /* @__PURE__ */ React__namespace.createElement(FixedHolder$1, _extends$n({}, fixedHolderProps, {
+      }), renderFixedHeaderTable), bodyContent, fixFooter && fixFooter !== "top" && /* @__PURE__ */ reactExports.createElement(FixedHolder$1, _extends$n({}, fixedHolderProps, {
         stickyBottomOffset: offsetSummary,
         className: `${prefixCls}-summary`,
         ref: scrollSummaryRef,
         colGroup: bodyColGroup
-      }), renderFixedFooterTable), isSticky && scrollBodyRef.current && scrollBodyRef.current instanceof Element && /* @__PURE__ */ React__namespace.createElement(StickyScrollBar$1, {
+      }), renderFixedFooterTable), isSticky && scrollBodyRef.current && scrollBodyRef.current instanceof Element && /* @__PURE__ */ reactExports.createElement(StickyScrollBar$1, {
         ref: stickyRef,
         offsetScroll,
         scrollBodyRef,
@@ -57262,7 +57719,7 @@ html body {
         direction
       }));
     } else {
-      groupTableNode = /* @__PURE__ */ React__namespace.createElement("div", {
+      groupTableNode = /* @__PURE__ */ reactExports.createElement("div", {
         style: {
           ...scrollXStyle,
           ...scrollYStyle,
@@ -57271,12 +57728,12 @@ html body {
         className: clsx(`${prefixCls}-content`, classNames == null ? void 0 : classNames.content),
         onScroll: onInternalScroll,
         ref: scrollBodyRef
-      }, /* @__PURE__ */ React__namespace.createElement(TableComponent, _extends$n({
+      }, /* @__PURE__ */ reactExports.createElement(TableComponent, _extends$n({
         style: {
           ...scrollTableStyle,
           tableLayout: mergedTableLayout
         }
-      }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ React__namespace.createElement(Header$1, _extends$n({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ React__namespace.createElement(Footer$1, {
+      }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ reactExports.createElement(Header$1, _extends$n({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ reactExports.createElement(Footer$1, {
         stickyOffsets,
         flattenColumns
       }, summaryNode)));
@@ -57287,7 +57744,7 @@ html body {
     if (isSticky) {
       tableStyle["--columns-count"] = flattenColumns.length;
     }
-    let fullTable = /* @__PURE__ */ React__namespace.createElement("div", _extends$n({
+    let fullTable = /* @__PURE__ */ reactExports.createElement("div", _extends$n({
       className: clsx(prefixCls, className, {
         [`${prefixCls}-rtl`]: direction === "rtl",
         [`${prefixCls}-fix-start-shadow`]: horizonScroll,
@@ -57305,26 +57762,26 @@ html body {
       style: tableStyle,
       id,
       ref: fullTableRef
-    }, dataProps), title && /* @__PURE__ */ React__namespace.createElement(Panel, {
+    }, dataProps), title && /* @__PURE__ */ reactExports.createElement(Panel, {
       className: clsx(`${prefixCls}-title`, classNames == null ? void 0 : classNames.title),
       style: styles2 == null ? void 0 : styles2.title
-    }, title(mergedData)), /* @__PURE__ */ React__namespace.createElement("div", {
+    }, title(mergedData)), /* @__PURE__ */ reactExports.createElement("div", {
       ref: scrollBodyContainerRef,
       className: clsx(`${prefixCls}-container`, classNames == null ? void 0 : classNames.section),
       style: styles2 == null ? void 0 : styles2.section
-    }, groupTableNode), footer && /* @__PURE__ */ React__namespace.createElement(Panel, {
+    }, groupTableNode), footer && /* @__PURE__ */ reactExports.createElement(Panel, {
       className: clsx(`${prefixCls}-footer`, classNames == null ? void 0 : classNames.footer),
       style: styles2 == null ? void 0 : styles2.footer
     }, footer(mergedData)));
     if (horizonScroll) {
-      fullTable = /* @__PURE__ */ React__namespace.createElement(RefResizeObserver, {
+      fullTable = /* @__PURE__ */ reactExports.createElement(RefResizeObserver, {
         onResize: ({
           offsetWidth
         }) => onFullTableResize(offsetWidth)
       }, fullTable);
     }
     const fixedInfoList = useFixedInfo(flattenColumns, stickyOffsets);
-    const TableContextValue = React__namespace.useMemo(() => ({
+    const TableContextValue = reactExports.useMemo(() => ({
       // Scroll
       scrollX: mergedScrollX,
       scrollInfo,
@@ -57419,11 +57876,11 @@ html body {
       rowHoverable,
       measureRowRender
     ]);
-    return /* @__PURE__ */ React__namespace.createElement(TableContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(TableContext.Provider, {
       value: TableContextValue
     }, fullTable);
   };
-  const RefTable = /* @__PURE__ */ React__namespace.forwardRef(Table$1);
+  const RefTable = /* @__PURE__ */ reactExports.forwardRef(Table$1);
   const genTable = (shouldTriggerRender) => {
     return makeImmutable(RefTable, shouldTriggerRender);
   };
@@ -57499,7 +57956,7 @@ html body {
       marginRight: marginOffset,
       pointerEvents: "auto"
     };
-    const needHide = React__namespace.useMemo(() => {
+    const needHide = reactExports.useMemo(() => {
       if (inverse) {
         return rowSpan <= 1;
       } else {
@@ -57517,7 +57974,7 @@ html body {
       cellSpan.rowSpan = 1;
       cellSpan.colSpan = 1;
     }
-    return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$m({
+    return /* @__PURE__ */ reactExports.createElement(Cell$1, _extends$m({
       className: clsx(columnClassName, className),
       ellipsis: column2.ellipsis,
       align: column2.align,
@@ -57554,7 +58011,7 @@ html body {
     };
     return _extends$l.apply(this, arguments);
   }
-  const BodyLine = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const BodyLine = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     var _a2, _b2;
     const {
       data,
@@ -57606,9 +58063,9 @@ html body {
         };
       }
       const rowCellCls = `${prefixCls}-expanded-row-cell`;
-      expandRowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, {
+      expandRowNode = /* @__PURE__ */ reactExports.createElement(RowComponent, {
         className: clsx(`${prefixCls}-expanded-row`, `${prefixCls}-expanded-row-level-${indent + 1}`, expandedClsName)
-      }, /* @__PURE__ */ React__namespace.createElement(Cell$1, {
+      }, /* @__PURE__ */ reactExports.createElement(Cell$1, {
         component: cellComponent,
         prefixCls,
         className: clsx(rowCellCls, {
@@ -57625,7 +58082,7 @@ html body {
       rowStyle2.position = "absolute";
       rowStyle2.pointerEvents = "none";
     }
-    const rowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$l({}, rowProps, restProps, {
+    const rowNode = /* @__PURE__ */ reactExports.createElement(RowComponent, _extends$l({}, rowProps, restProps, {
       "data-row-key": rowKey,
       ref: rowSupportExpand ? null : ref,
       className: clsx(className, `${prefixCls}-row`, rowProps == null ? void 0 : rowProps.className, (_a2 = classNames == null ? void 0 : classNames.body) == null ? void 0 : _a2.row, {
@@ -57639,7 +58096,7 @@ html body {
       }
     }), flattenColumns.map((column2, colIndex) => {
       var _a3, _b3;
-      return /* @__PURE__ */ React__namespace.createElement(VirtualCell, {
+      return /* @__PURE__ */ reactExports.createElement(VirtualCell, {
         key: colIndex,
         className: (_a3 = classNames == null ? void 0 : classNames.body) == null ? void 0 : _a3.cell,
         style: (_b3 = styles2 == null ? void 0 : styles2.body) == null ? void 0 : _b3.cell,
@@ -57656,7 +58113,7 @@ html body {
       });
     }));
     if (rowSupportExpand) {
-      return /* @__PURE__ */ React__namespace.createElement("div", {
+      return /* @__PURE__ */ reactExports.createElement("div", {
         ref
       }, rowNode, expandRowNode);
     }
@@ -57668,7 +58125,7 @@ html body {
     end: "bottom",
     nearest: "auto"
   };
-  const Grid = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const Grid = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       data,
       onScroll
@@ -57690,9 +58147,9 @@ html body {
       getComponent,
       onScroll: onTablePropScroll
     } = useContext(StaticContext);
-    const listRef = React__namespace.useRef(null);
+    const listRef = reactExports.useRef(null);
     const flattenData2 = useFlattenRecords(data, childrenColumnName, expandedKeys, getRowKey);
-    const columnsWidth = React__namespace.useMemo(() => {
+    const columnsWidth = reactExports.useMemo(() => {
       let total = 0;
       return flattenColumns.map(({
         width,
@@ -57704,13 +58161,13 @@ html body {
         return [key2, finalWidth, total];
       });
     }, [flattenColumns]);
-    const columnsOffset = React__namespace.useMemo(() => columnsWidth.map((colWidth) => colWidth[2]), [columnsWidth]);
-    React__namespace.useEffect(() => {
+    const columnsOffset = reactExports.useMemo(() => columnsWidth.map((colWidth) => colWidth[2]), [columnsWidth]);
+    reactExports.useEffect(() => {
       columnsWidth.forEach(([key2, width]) => {
         onColumnResize(key2, width);
       });
     }, [columnsWidth]);
-    React__namespace.useImperativeHandle(ref, () => {
+    reactExports.useImperativeHandle(ref, () => {
       var _a2;
       const obj = {
         scrollTo: (config2) => {
@@ -57829,7 +58286,7 @@ html body {
           return sizeInfo2.bottom - sizeInfo2.top;
         };
         const sizeInfo = getSize(rowKey);
-        return /* @__PURE__ */ React__namespace.createElement(ResponseBodyLine, {
+        return /* @__PURE__ */ reactExports.createElement(ResponseBodyLine, {
           key: index2,
           data: item,
           rowKey,
@@ -57843,7 +58300,7 @@ html body {
       });
       return nodes;
     };
-    const gridContext = React__namespace.useMemo(() => ({
+    const gridContext = reactExports.useMemo(() => ({
       columnsOffset
     }), [columnsOffset]);
     const tblPrefixCls = `${prefixCls}-tbody`;
@@ -57856,9 +58313,9 @@ html body {
         horizontalScrollBarStyle.bottom = sticky.offsetScroll;
       }
     }
-    return /* @__PURE__ */ React__namespace.createElement(GridContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(GridContext.Provider, {
       value: gridContext
-    }, /* @__PURE__ */ React__namespace.createElement(List$1, {
+    }, /* @__PURE__ */ reactExports.createElement(List$1, {
       fullHeight: false,
       ref: listRef,
       prefixCls: `${tblPrefixCls}-virtual`,
@@ -57886,7 +58343,7 @@ html body {
       extraRender
     }, (item, index2, itemProps) => {
       const rowKey = getRowKey(item.record, index2);
-      return /* @__PURE__ */ React__namespace.createElement(ResponseBodyLine, {
+      return /* @__PURE__ */ reactExports.createElement(ResponseBodyLine, {
         data: item,
         rowKey,
         index: index2,
@@ -57914,7 +58371,7 @@ html body {
       ref,
       onScroll
     } = props;
-    return /* @__PURE__ */ React__namespace.createElement(ResponseGrid, {
+    return /* @__PURE__ */ reactExports.createElement(ResponseGrid, {
       ref,
       data: rawData,
       onScroll
@@ -57944,16 +58401,16 @@ html body {
     }
     const getComponent = useEvent((path, defaultComponent) => get(components2, path) || defaultComponent);
     const onInternalScroll = useEvent(onScroll);
-    const context = React__namespace.useMemo(() => ({
+    const context = reactExports.useMemo(() => ({
       sticky,
       scrollY,
       listItemHeight,
       getComponent,
       onScroll: onInternalScroll
     }), [sticky, scrollY, listItemHeight, getComponent, onInternalScroll]);
-    return /* @__PURE__ */ React__namespace.createElement(StaticContext.Provider, {
+    return /* @__PURE__ */ reactExports.createElement(StaticContext.Provider, {
       value: context
-    }, /* @__PURE__ */ React__namespace.createElement(ImmutableTable, _extends$k({}, props, {
+    }, /* @__PURE__ */ reactExports.createElement(ImmutableTable, _extends$k({}, props, {
       className: clsx(className, `${prefixCls}-virtual`),
       scroll: {
         ...scroll,
@@ -57970,15 +58427,15 @@ html body {
       ref
     })));
   };
-  const RefVirtualTable = /* @__PURE__ */ React__namespace.forwardRef(VirtualTable);
+  const RefVirtualTable = /* @__PURE__ */ reactExports.forwardRef(VirtualTable);
   const genVirtualTable = (shouldTriggerRender) => {
     return makeImmutable(RefVirtualTable, shouldTriggerRender);
   };
   genVirtualTable();
   const Column = (_2) => null;
   const ColumnGroup = (_2) => null;
-  const TreeContext = /* @__PURE__ */ React__namespace.createContext(null);
-  const UnstableContext = /* @__PURE__ */ React__namespace.createContext({});
+  const TreeContext = /* @__PURE__ */ reactExports.createContext(null);
+  const UnstableContext = /* @__PURE__ */ reactExports.createContext({});
   const Indent = ({
     prefixCls,
     level,
@@ -57988,7 +58445,7 @@ html body {
     const baseClassName = `${prefixCls}-indent-unit`;
     const list = [];
     for (let i = 0; i < level; i += 1) {
-      list.push(/* @__PURE__ */ React__namespace.createElement("span", {
+      list.push(/* @__PURE__ */ reactExports.createElement("span", {
         key: i,
         className: clsx(baseClassName, {
           [`${baseClassName}-start`]: isStart[i],
@@ -57996,12 +58453,12 @@ html body {
         })
       }));
     }
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       "aria-hidden": "true",
       className: `${prefixCls}-indent`
     }, list);
   };
-  const Indent$1 = /* @__PURE__ */ React__namespace.memo(Indent);
+  const Indent$1 = /* @__PURE__ */ reactExports.memo(Indent);
   function _extends$j() {
     _extends$j = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -58593,8 +59050,8 @@ html body {
     const [multipleSelect, updatePrevSelectedIndex] = useMultipleSelect((item) => item);
     const [mergedSelectedKeys, setMergedSelectedKeys] = useControlledState(defaultSelectedRowKeys || EMPTY_LIST$1, selectedRowKeys);
     const mergedSelectedKeyList = mergedSelectedKeys ?? EMPTY_LIST$1;
-    const preserveRecordsRef = React__namespace.useRef(/* @__PURE__ */ new Map());
-    const updatePreserveRecordsCache = React.useCallback((keys2) => {
+    const preserveRecordsRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const updatePreserveRecordsCache = reactExports.useCallback((keys2) => {
       if (preserveSelectedRowKeys) {
         const newCache = /* @__PURE__ */ new Map();
         keys2.forEach((key2) => {
@@ -58607,13 +59064,13 @@ html body {
         preserveRecordsRef.current = newCache;
       }
     }, [getRecordByKey, preserveSelectedRowKeys]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       updatePreserveRecordsCache(mergedSelectedKeyList);
     }, [mergedSelectedKeyList, updatePreserveRecordsCache]);
-    const flattedData = React.useMemo(() => flattenData(childrenColumnName, pageData), [childrenColumnName, pageData]);
+    const flattedData = reactExports.useMemo(() => flattenData(childrenColumnName, pageData), [childrenColumnName, pageData]);
     const {
       keyEntities
-    } = React.useMemo(() => {
+    } = reactExports.useMemo(() => {
       if (checkStrictly) {
         return {
           keyEntities: null
@@ -58630,7 +59087,7 @@ html body {
         childrenPropName: childrenColumnName
       });
     }, [data, getRowKey, checkStrictly, childrenColumnName, preserveSelectedRowKeys, flattedData]);
-    const checkboxPropsMap = React.useMemo(() => {
+    const checkboxPropsMap = reactExports.useMemo(() => {
       const map = /* @__PURE__ */ new Map();
       flattedData.forEach((record, index2) => {
         const key2 = getRowKey(record, index2);
@@ -58639,7 +59096,7 @@ html body {
       });
       return map;
     }, [flattedData, getRowKey, getCheckboxProps]);
-    const isCheckboxDisabled = React.useCallback((r2) => {
+    const isCheckboxDisabled = reactExports.useCallback((r2) => {
       const rowKey = getRowKey(r2);
       let checkboxProps;
       if (checkboxPropsMap.has(rowKey)) {
@@ -58649,7 +59106,7 @@ html body {
       }
       return !!(checkboxProps == null ? void 0 : checkboxProps.disabled);
     }, [checkboxPropsMap, getRowKey]);
-    const [derivedSelectedKeys, derivedHalfSelectedKeys] = React.useMemo(() => {
+    const [derivedSelectedKeys, derivedHalfSelectedKeys] = reactExports.useMemo(() => {
       if (checkStrictly) {
         return [mergedSelectedKeyList, []];
       }
@@ -58659,17 +59116,17 @@ html body {
       } = conductCheck(mergedSelectedKeyList, true, keyEntities, isCheckboxDisabled);
       return [checkedKeys || [], halfCheckedKeys];
     }, [mergedSelectedKeyList, checkStrictly, keyEntities, isCheckboxDisabled]);
-    const derivedSelectedKeySet = React.useMemo(() => {
+    const derivedSelectedKeySet = reactExports.useMemo(() => {
       const keys2 = selectionType === "radio" ? derivedSelectedKeys.slice(0, 1) : derivedSelectedKeys;
       return new Set(keys2);
     }, [derivedSelectedKeys, selectionType]);
-    const derivedHalfSelectedKeySet = React.useMemo(() => selectionType === "radio" ? /* @__PURE__ */ new Set() : new Set(derivedHalfSelectedKeys), [derivedHalfSelectedKeys, selectionType]);
-    React__namespace.useEffect(() => {
+    const derivedHalfSelectedKeySet = reactExports.useMemo(() => selectionType === "radio" ? /* @__PURE__ */ new Set() : new Set(derivedHalfSelectedKeys), [derivedHalfSelectedKeys, selectionType]);
+    reactExports.useEffect(() => {
       if (!rowSelection) {
         setMergedSelectedKeys(EMPTY_LIST$1);
       }
     }, [!!rowSelection]);
-    const setSelectedKeys = React.useCallback((keys2, method2) => {
+    const setSelectedKeys = reactExports.useCallback((keys2, method2) => {
       let availableKeys;
       let records;
       updatePreserveRecordsCache(keys2);
@@ -58692,14 +59149,14 @@ html body {
         type: method2
       });
     }, [setMergedSelectedKeys, getRecordByKey, onSelectionChange, preserveSelectedRowKeys]);
-    const triggerSingleSelection = React.useCallback((key2, selected, keys2, event) => {
+    const triggerSingleSelection = reactExports.useCallback((key2, selected, keys2, event) => {
       if (onSelect) {
         const rows = keys2.map(getRecordByKey);
         onSelect(getRecordByKey(key2), selected, rows, event);
       }
       setSelectedKeys(keys2, "single");
     }, [onSelect, getRecordByKey, setSelectedKeys]);
-    const mergedSelections = React.useMemo(() => {
+    const mergedSelections = reactExports.useMemo(() => {
       if (!selections || hideSelectAll) {
         return null;
       }
@@ -58771,7 +59228,7 @@ html body {
         };
       });
     }, [selections, hideSelectAll, tableLocale.selectionAll, tableLocale.selectInvert, tableLocale.selectNone, checkboxPropsMap, derivedSelectedKeySet, data, pageData, getRowKey, onSelectInvert, setSelectedKeys]);
-    const transformColumns = React.useCallback((columns) => {
+    const transformColumns = reactExports.useCallback((columns) => {
       var _a2;
       if (!rowSelection) {
         return columns.filter((col) => col !== SELECTION_COLUMN);
@@ -58829,12 +59286,12 @@ html body {
               };
             })
           };
-          customizeSelections = /* @__PURE__ */ React__namespace.createElement("div", {
+          customizeSelections = /* @__PURE__ */ reactExports.createElement("div", {
             className: `${prefixCls}-selection-extra`
-          }, /* @__PURE__ */ React__namespace.createElement(Dropdown, {
+          }, /* @__PURE__ */ reactExports.createElement(Dropdown, {
             menu,
             getPopupContainer
-          }, /* @__PURE__ */ React__namespace.createElement("span", null, /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null))));
+          }, /* @__PURE__ */ reactExports.createElement("span", null, /* @__PURE__ */ reactExports.createElement(RefIcon$p, null))));
         }
         const allDisabledData = flattedData.reduce((list, record, index2) => {
           const key2 = getRowKey(record, index2);
@@ -58860,7 +59317,7 @@ html body {
           onChange,
           disabled
         } = customCheckboxProps;
-        columnTitleCheckbox = /* @__PURE__ */ React__namespace.createElement(Checkbox, {
+        columnTitleCheckbox = /* @__PURE__ */ reactExports.createElement(Checkbox, {
           "aria-label": customizeSelections ? "Custom selection" : "Select all",
           ...customCheckboxProps,
           checked: !allDisabled ? !!flattedData.length && checkedCurrentAll : allDisabledAndChecked,
@@ -58872,7 +59329,7 @@ html body {
           disabled: disabled ?? (flattedData.length === 0 || allDisabled),
           skipGroup: true
         });
-        title = !hideSelectAll && /* @__PURE__ */ React__namespace.createElement("div", {
+        title = !hideSelectAll && /* @__PURE__ */ reactExports.createElement("div", {
           className: `${prefixCls}-selection`
         }, columnTitleCheckbox, customizeSelections);
       }
@@ -58883,7 +59340,7 @@ html body {
           const checked = keySet.has(key2);
           const checkboxProps = checkboxPropsMap.get(key2);
           return {
-            node: /* @__PURE__ */ React__namespace.createElement(Radio, {
+            node: /* @__PURE__ */ reactExports.createElement(Radio, {
               ...checkboxProps,
               checked,
               onClick: (e2) => {
@@ -58915,7 +59372,7 @@ html body {
             mergedIndeterminate = (checkboxProps == null ? void 0 : checkboxProps.indeterminate) ?? indeterminate;
           }
           return {
-            node: /* @__PURE__ */ React__namespace.createElement(Checkbox, {
+            node: /* @__PURE__ */ reactExports.createElement(Checkbox, {
               ...checkboxProps,
               indeterminate: mergedIndeterminate,
               checked,
@@ -59048,7 +59505,7 @@ html body {
         expandable
       } = props;
       const iconPrefix = `${prefixCls}-row-expand-icon`;
-      return /* @__PURE__ */ React__namespace.createElement("button", {
+      return /* @__PURE__ */ reactExports.createElement("button", {
         type: "button",
         onClick: (e2) => {
           onExpand(record, e2);
@@ -59078,7 +59535,7 @@ html body {
     };
     return getContainerWidth;
   }
-  const useFilledColumns = (columns, column2) => React__namespace.useMemo(() => {
+  const useFilledColumns = (columns, column2) => reactExports.useMemo(() => {
     if (!column2) {
       return columns;
     }
@@ -59138,11 +59595,11 @@ html body {
     };
     return _extends$i.apply(this, arguments);
   }
-  const FilterFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$i({}, props, {
+  const FilterFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$i({}, props, {
     ref,
     icon: FilterFilled$1
   }));
-  const RefIcon$e = /* @__PURE__ */ React__namespace.forwardRef(FilterFilled);
+  const RefIcon$e = /* @__PURE__ */ reactExports.forwardRef(FilterFilled);
   const DropIndicator = (props) => {
     const {
       dropPosition,
@@ -59175,7 +59632,7 @@ html body {
     });
   };
   function useUnmount(triggerStart, triggerEnd) {
-    const [firstMount, setFirstMount] = React__namespace.useState(false);
+    const [firstMount, setFirstMount] = reactExports.useState(false);
     useLayoutEffect(() => {
       if (firstMount) {
         triggerStart();
@@ -59205,7 +59662,7 @@ html body {
     };
     return _extends$h.apply(this, arguments);
   }
-  const MotionTreeNode = /* @__PURE__ */ React__namespace.forwardRef((oriProps, ref) => {
+  const MotionTreeNode = /* @__PURE__ */ reactExports.forwardRef((oriProps, ref) => {
     const {
       className,
       style: style2,
@@ -59218,10 +59675,10 @@ html body {
       treeNodeRequiredProps,
       ...props
     } = oriProps;
-    const [visible, setVisible] = React__namespace.useState(true);
+    const [visible, setVisible] = reactExports.useState(true);
     const {
       prefixCls
-    } = React__namespace.useContext(TreeContext);
+    } = reactExports.useContext(TreeContext);
     const targetVisible = motionNodes && motionType !== "hide";
     useLayoutEffect(() => {
       if (motionNodes) {
@@ -59235,7 +59692,7 @@ html body {
         onOriginMotionStart();
       }
     };
-    const triggerMotionEndRef = React__namespace.useRef(false);
+    const triggerMotionEndRef = reactExports.useRef(false);
     const triggerMotionEnd = () => {
       if (motionNodes && !triggerMotionEndRef.current) {
         triggerMotionEndRef.current = true;
@@ -59249,7 +59706,7 @@ html body {
       }
     };
     if (motionNodes) {
-      return /* @__PURE__ */ React__namespace.createElement(CSSMotion, _extends$h({
+      return /* @__PURE__ */ reactExports.createElement(CSSMotion, _extends$h({
         ref,
         visible
       }, motion, {
@@ -59258,7 +59715,7 @@ html body {
       }), ({
         className: motionClassName,
         style: motionStyle
-      }, motionRef) => /* @__PURE__ */ React__namespace.createElement("div", {
+      }, motionRef) => /* @__PURE__ */ reactExports.createElement("div", {
         ref: motionRef,
         className: clsx(`${prefixCls}-treenode-motion`, motionClassName),
         style: motionStyle
@@ -59274,7 +59731,7 @@ html body {
         } = treeNode;
         delete restProps.children;
         const treeNodeProps = getTreeNodeProps(key2, treeNodeRequiredProps);
-        return /* @__PURE__ */ React__namespace.createElement(TreeNode, _extends$h({}, restProps, treeNodeProps, {
+        return /* @__PURE__ */ reactExports.createElement(TreeNode, _extends$h({}, restProps, treeNodeProps, {
           title,
           active,
           data: treeNode.data,
@@ -59284,7 +59741,7 @@ html body {
         }));
       })));
     }
-    return /* @__PURE__ */ React__namespace.createElement(TreeNode, _extends$h({
+    return /* @__PURE__ */ reactExports.createElement(TreeNode, _extends$h({
       domRef: ref,
       className,
       style: style2
@@ -59380,7 +59837,7 @@ html body {
     } = item;
     return getKey(key2, pos);
   }
-  const NodeList = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const NodeList = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls,
       data,
@@ -59415,20 +59872,20 @@ html body {
       ...domProps
     } = props;
     const treeId = useId();
-    const listRef = React__namespace.useRef(null);
-    const indentMeasurerRef = React__namespace.useRef(null);
-    React__namespace.useImperativeHandle(ref, () => ({
+    const listRef = reactExports.useRef(null);
+    const indentMeasurerRef = reactExports.useRef(null);
+    reactExports.useImperativeHandle(ref, () => ({
       scrollTo: (scroll) => {
         listRef.current.scrollTo(scroll);
       },
       getIndentWidth: () => indentMeasurerRef.current.offsetWidth
     }));
-    const [prevExpandedKeys, setPrevExpandedKeys] = React__namespace.useState(expandedKeys);
-    const [prevData, setPrevData] = React__namespace.useState(data);
-    const [transitionData, setTransitionData] = React__namespace.useState(data);
-    const [transitionRange, setTransitionRange] = React__namespace.useState([]);
-    const [motionType, setMotionType] = React__namespace.useState(null);
-    const dataRef = React__namespace.useRef(data);
+    const [prevExpandedKeys, setPrevExpandedKeys] = reactExports.useState(expandedKeys);
+    const [prevData, setPrevData] = reactExports.useState(data);
+    const [transitionData, setTransitionData] = reactExports.useState(data);
+    const [transitionRange, setTransitionRange] = reactExports.useState([]);
+    const [motionType, setMotionType] = reactExports.useState(null);
+    const dataRef = reactExports.useRef(data);
     dataRef.current = data;
     function onMotionEnd() {
       const latestData = dataRef.current;
@@ -59468,7 +59925,7 @@ html body {
         setTransitionData(data);
       }
     }, [expandedKeys, data]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!dragging) {
         onMotionEnd();
       }
@@ -59485,7 +59942,7 @@ html body {
       dropPosition,
       keyEntities
     };
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("div", {
       className: `${prefixCls}-treenode`,
       "aria-hidden": true,
       style: {
@@ -59497,12 +59954,12 @@ html body {
         border: 0,
         padding: 0
       }
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       className: `${prefixCls}-indent`
-    }, /* @__PURE__ */ React__namespace.createElement("div", {
+    }, /* @__PURE__ */ reactExports.createElement("div", {
       ref: indentMeasurerRef,
       className: `${prefixCls}-indent-unit`
-    }))), /* @__PURE__ */ React__namespace.createElement(List$1, _extends$g({}, domProps, {
+    }))), /* @__PURE__ */ reactExports.createElement(List$1, _extends$g({}, domProps, {
       data: mergedData,
       itemKey,
       height,
@@ -59539,7 +59996,7 @@ html body {
       delete restProps.key;
       delete restProps.children;
       const treeNodeProps = getTreeNodeProps(mergedKey, treeNodeRequiredProps);
-      return /* @__PURE__ */ React__namespace.createElement(MotionTreeNode, _extends$g({}, restProps, treeNodeProps, {
+      return /* @__PURE__ */ reactExports.createElement(MotionTreeNode, _extends$g({}, restProps, treeNodeProps, {
         title,
         active: !!activeItem && key2 === activeItem.key,
         pos,
@@ -59574,7 +60031,7 @@ html body {
     return _extends$f.apply(this, arguments);
   }
   const MAX_RETRY_TIMES = 10;
-  let Tree$4 = (_a = class extends React__namespace.Component {
+  let Tree$4 = (_a = class extends reactExports.Component {
     constructor() {
       super(...arguments);
       __publicField(this, "destroyed", false);
@@ -59620,7 +60077,7 @@ html body {
       __publicField(this, "dragNodeProps", null);
       __publicField(this, "currentMouseOverDroppableNodeKey", null);
       __publicField(this, "focusedByMouse", false);
-      __publicField(this, "listRef", /* @__PURE__ */ React__namespace.createRef());
+      __publicField(this, "listRef", /* @__PURE__ */ reactExports.createRef());
       __publicField(this, "onNodeDragStart", (event, nodeProps) => {
         const {
           expandedKeys,
@@ -60703,14 +61160,14 @@ html body {
         onNodeDragEnd: this.onNodeDragEnd,
         onNodeDrop: this.onNodeDrop
       };
-      return /* @__PURE__ */ React__namespace.createElement(TreeContext.Provider, {
+      return /* @__PURE__ */ reactExports.createElement(TreeContext.Provider, {
         value: contextValue
-      }, /* @__PURE__ */ React__namespace.createElement("div", {
+      }, /* @__PURE__ */ reactExports.createElement("div", {
         className: clsx(prefixCls, className, rootClassName, {
           [`${prefixCls}-show-line`]: showLine
         }),
         style: rootStyle
-      }, /* @__PURE__ */ React__namespace.createElement(NodeList, _extends$f({
+      }, /* @__PURE__ */ reactExports.createElement(NodeList, _extends$f({
         ref: this.listRef,
         prefixCls,
         style: style2,
@@ -60773,11 +61230,11 @@ html body {
     };
     return _extends$e.apply(this, arguments);
   }
-  const FileOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$e({}, props, {
+  const FileOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$e({}, props, {
     ref,
     icon: FileOutlined$1
   }));
-  const RefIcon$d = /* @__PURE__ */ React__namespace.forwardRef(FileOutlined);
+  const RefIcon$d = /* @__PURE__ */ reactExports.forwardRef(FileOutlined);
   var FolderOpenOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z" } }] }, "name": "folder-open", "theme": "outlined" };
   function _extends$d() {
     _extends$d = Object.assign ? Object.assign.bind() : function(target) {
@@ -60793,11 +61250,11 @@ html body {
     };
     return _extends$d.apply(this, arguments);
   }
-  const FolderOpenOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$d({}, props, {
+  const FolderOpenOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$d({}, props, {
     ref,
     icon: FolderOpenOutlined$1
   }));
-  const RefIcon$c = /* @__PURE__ */ React__namespace.forwardRef(FolderOpenOutlined);
+  const RefIcon$c = /* @__PURE__ */ reactExports.forwardRef(FolderOpenOutlined);
   var FolderOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880 298.4H521L403.7 186.2a8.15 8.15 0 00-5.5-2.2H144c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V330.4c0-17.7-14.3-32-32-32zM840 768H184V256h188.5l119.6 114.4H840V768z" } }] }, "name": "folder", "theme": "outlined" };
   function _extends$c() {
     _extends$c = Object.assign ? Object.assign.bind() : function(target) {
@@ -60813,11 +61270,11 @@ html body {
     };
     return _extends$c.apply(this, arguments);
   }
-  const FolderOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$c({}, props, {
+  const FolderOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$c({}, props, {
     ref,
     icon: FolderOutlined$1
   }));
-  const RefIcon$b = /* @__PURE__ */ React__namespace.forwardRef(FolderOutlined);
+  const RefIcon$b = /* @__PURE__ */ reactExports.forwardRef(FolderOutlined);
   var HolderOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M300 276.5a56 56 0 1056-97 56 56 0 00-56 97zm0 284a56 56 0 1056-97 56 56 0 00-56 97zM640 228a56 56 0 10112 0 56 56 0 00-112 0zm0 284a56 56 0 10112 0 56 56 0 00-112 0zM300 844.5a56 56 0 1056-97 56 56 0 00-56 97zM640 796a56 56 0 10112 0 56 56 0 00-112 0z" } }] }, "name": "holder", "theme": "outlined" };
   function _extends$b() {
     _extends$b = Object.assign ? Object.assign.bind() : function(target) {
@@ -60833,11 +61290,11 @@ html body {
     };
     return _extends$b.apply(this, arguments);
   }
-  const HolderOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$b({}, props, {
+  const HolderOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$b({}, props, {
     ref,
     icon: HolderOutlined$1
   }));
-  const RefIcon$a = /* @__PURE__ */ React__namespace.forwardRef(HolderOutlined);
+  const RefIcon$a = /* @__PURE__ */ reactExports.forwardRef(HolderOutlined);
   const genDirectoryStyle = ({
     treeCls,
     treeNodeCls,
@@ -61323,11 +61780,11 @@ html body {
     };
     return _extends$a.apply(this, arguments);
   }
-  const CaretDownFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$a({}, props, {
+  const CaretDownFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$a({}, props, {
     ref,
     icon: CaretDownFilled$1
   }));
-  const RefIcon$9 = /* @__PURE__ */ React__namespace.forwardRef(CaretDownFilled);
+  const RefIcon$9 = /* @__PURE__ */ reactExports.forwardRef(CaretDownFilled);
   var MinusSquareOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "minus-square", "theme": "outlined" };
   function _extends$9() {
     _extends$9 = Object.assign ? Object.assign.bind() : function(target) {
@@ -61343,11 +61800,11 @@ html body {
     };
     return _extends$9.apply(this, arguments);
   }
-  const MinusSquareOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$9({}, props, {
+  const MinusSquareOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$9({}, props, {
     ref,
     icon: MinusSquareOutlined$1
   }));
-  const RefIcon$8 = /* @__PURE__ */ React__namespace.forwardRef(MinusSquareOutlined);
+  const RefIcon$8 = /* @__PURE__ */ reactExports.forwardRef(MinusSquareOutlined);
   var PlusSquareOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "plus-square", "theme": "outlined" };
   function _extends$8() {
     _extends$8 = Object.assign ? Object.assign.bind() : function(target) {
@@ -61363,11 +61820,11 @@ html body {
     };
     return _extends$8.apply(this, arguments);
   }
-  const PlusSquareOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$8({}, props, {
+  const PlusSquareOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$8({}, props, {
     ref,
     icon: PlusSquareOutlined$1
   }));
-  const RefIcon$7 = /* @__PURE__ */ React__namespace.forwardRef(PlusSquareOutlined);
+  const RefIcon$7 = /* @__PURE__ */ reactExports.forwardRef(PlusSquareOutlined);
   const SwitcherIconCom = (props) => {
     var _a2, _b2;
     const {
@@ -61383,10 +61840,10 @@ html body {
       loading
     } = treeNodeProps;
     if (loading) {
-      if (/* @__PURE__ */ React__namespace.isValidElement(switcherLoadingIcon)) {
+      if (/* @__PURE__ */ reactExports.isValidElement(switcherLoadingIcon)) {
         return switcherLoadingIcon;
       }
-      return /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
+      return /* @__PURE__ */ reactExports.createElement(RefIcon$s, {
         className: `${prefixCls}-switcher-loading-icon`
       });
     }
@@ -61401,22 +61858,22 @@ html body {
       if (typeof showLeafIcon !== "boolean" && showLeafIcon) {
         const leafIcon = isFunction$2(showLeafIcon) ? showLeafIcon(treeNodeProps) : showLeafIcon;
         const leafCls = `${prefixCls}-switcher-line-custom-icon`;
-        if (/* @__PURE__ */ React__namespace.isValidElement(leafIcon)) {
+        if (/* @__PURE__ */ reactExports.isValidElement(leafIcon)) {
           return cloneElement(leafIcon, {
             className: clsx((_a2 = leafIcon.props) == null ? void 0 : _a2.className, leafCls)
           });
         }
         return leafIcon;
       }
-      return showLeafIcon ? /* @__PURE__ */ React__namespace.createElement(RefIcon$d, {
+      return showLeafIcon ? /* @__PURE__ */ reactExports.createElement(RefIcon$d, {
         className: `${prefixCls}-switcher-line-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement("span", {
+      }) : /* @__PURE__ */ reactExports.createElement("span", {
         className: `${prefixCls}-switcher-leaf-line`
       });
     }
     const switcherCls = `${prefixCls}-switcher-icon`;
     const switcher = isFunction$2(switcherIcon) ? switcherIcon(treeNodeProps) : switcherIcon;
-    if (/* @__PURE__ */ React__namespace.isValidElement(switcher)) {
+    if (/* @__PURE__ */ reactExports.isValidElement(switcher)) {
       return cloneElement(switcher, {
         className: clsx((_b2 = switcher.props) == null ? void 0 : _b2.className, showLine ? `${prefixCls}-switcher-line-icon` : switcherCls)
       });
@@ -61425,13 +61882,13 @@ html body {
       return switcher;
     }
     if (showLine) {
-      return expanded ? /* @__PURE__ */ React__namespace.createElement(RefIcon$8, {
+      return expanded ? /* @__PURE__ */ reactExports.createElement(RefIcon$8, {
         className: `${prefixCls}-switcher-line-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$7, {
+      }) : /* @__PURE__ */ reactExports.createElement(RefIcon$7, {
         className: `${prefixCls}-switcher-line-icon`
       });
     }
-    return /* @__PURE__ */ React__namespace.createElement(RefIcon$9, {
+    return /* @__PURE__ */ reactExports.createElement(RefIcon$9, {
       className: switcherCls
     });
   };
@@ -61628,9 +62085,9 @@ html body {
       expanded
     } = props;
     if (isLeaf) {
-      return /* @__PURE__ */ React__namespace.createElement(RefIcon$d, null);
+      return /* @__PURE__ */ reactExports.createElement(RefIcon$d, null);
     }
-    return expanded ? /* @__PURE__ */ React__namespace.createElement(RefIcon$c, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$b, null);
+    return expanded ? /* @__PURE__ */ reactExports.createElement(RefIcon$c, null) : /* @__PURE__ */ reactExports.createElement(RefIcon$b, null);
   }
   function getTreeData({
     treeData,
@@ -61638,15 +62095,15 @@ html body {
   }) {
     return treeData || convertTreeToData(children);
   }
-  const DirectoryTree = /* @__PURE__ */ React__namespace.forwardRef((oriProps, ref) => {
+  const DirectoryTree = /* @__PURE__ */ reactExports.forwardRef((oriProps, ref) => {
     const {
       defaultExpandAll,
       defaultExpandParent,
       defaultExpandedKeys,
       ...props
     } = oriProps;
-    const lastSelectedKeyRef = React__namespace.useRef(null);
-    const cachedSelectedKeysRef = React__namespace.useRef(null);
+    const lastSelectedKeyRef = reactExports.useRef(null);
+    const cachedSelectedKeysRef = reactExports.useRef(null);
     const getInitExpandedKeys = () => {
       const {
         keyEntities
@@ -61664,14 +62121,14 @@ html body {
       }
       return initExpandedKeys;
     };
-    const [selectedKeys, setSelectedKeys] = React__namespace.useState(props.selectedKeys || props.defaultSelectedKeys || []);
-    const [expandedKeys, setExpandedKeys] = React__namespace.useState(() => getInitExpandedKeys());
-    React__namespace.useEffect(() => {
+    const [selectedKeys, setSelectedKeys] = reactExports.useState(props.selectedKeys || props.defaultSelectedKeys || []);
+    const [expandedKeys, setExpandedKeys] = reactExports.useState(() => getInitExpandedKeys());
+    reactExports.useEffect(() => {
       if ("selectedKeys" in props) {
         setSelectedKeys(props.selectedKeys);
       }
     }, [props.selectedKeys]);
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if ("expandedKeys" in props) {
         setExpandedKeys(props.expandedKeys);
       }
@@ -61733,7 +62190,7 @@ html body {
     const {
       getPrefixCls,
       direction
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       prefixCls: customizePrefixCls,
       className,
@@ -61745,7 +62202,7 @@ html body {
     const connectClassName = clsx(`${prefixCls}-directory`, {
       [`${prefixCls}-directory-rtl`]: direction === "rtl"
     }, className);
-    return /* @__PURE__ */ React__namespace.createElement(Tree$3, {
+    return /* @__PURE__ */ reactExports.createElement(Tree$3, {
       icon: getIcon,
       ref,
       blockNode: true,
@@ -61774,10 +62231,10 @@ html body {
     if (!filterSearch) {
       return null;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: `${tablePrefixCls}-filter-dropdown-search`
-    }, /* @__PURE__ */ React__namespace.createElement(Input$1, {
-      prefix: /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null),
+    }, /* @__PURE__ */ reactExports.createElement(Input$1, {
+      prefix: /* @__PURE__ */ reactExports.createElement(RefIcon$o, null),
       placeholder: locale2.filterSearchPlaceholder,
       onChange,
       value,
@@ -61794,7 +62251,7 @@ html body {
       event.stopPropagation();
     }
   };
-  const FilterDropdownMenuWrapper = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => /* @__PURE__ */ React__namespace.createElement("div", {
+  const FilterDropdownMenuWrapper = /* @__PURE__ */ reactExports.forwardRef((props, ref) => /* @__PURE__ */ reactExports.createElement("div", {
     className: props.className,
     onClick: (e2) => e2.stopPropagation(),
     onKeyDown,
@@ -61855,9 +62312,9 @@ html body {
       const Component = filterMultiple ? Checkbox : Radio;
       const item = {
         key: filter2.value !== void 0 ? key2 : index2,
-        label: /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(Component, {
+        label: /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Component, {
           checked: filteredKeys.includes(key2)
-        }), /* @__PURE__ */ React__namespace.createElement("span", null, filter2.text))
+        }), /* @__PURE__ */ reactExports.createElement("span", null, filter2.text))
       };
       if (normalizedSearchValue) {
         if (isFunction$2(filterSearch)) {
@@ -61898,8 +62355,8 @@ html body {
       filterDropdownOpen,
       onFilterDropdownOpenChange
     } = column2;
-    const [visible, setVisible] = React__namespace.useState(false);
-    const inMeasureRow = React__namespace.useContext(TableMeasureRowContext);
+    const [visible, setVisible] = reactExports.useState(false);
+    const inMeasureRow = reactExports.useContext(TableMeasureRowContext);
     const filtered = !!(filterState && (((_a2 = filterState.filteredKeys) == null ? void 0 : _a2.length) || filterState.forceFiltered));
     const triggerVisible = (newVisible) => {
       var _a3;
@@ -61930,7 +62387,7 @@ html body {
         });
       }
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!visible) {
         return;
       }
@@ -61938,19 +62395,19 @@ html body {
         selectedKeys: wrapStringListType(propFilteredKeys)
       });
     }, [propFilteredKeys]);
-    const [openKeys, setOpenKeys] = React__namespace.useState([]);
+    const [openKeys, setOpenKeys] = reactExports.useState([]);
     const onOpenChange = (keys2) => {
       setOpenKeys(keys2);
     };
-    const [searchValue, setSearchValue] = React__namespace.useState("");
-    const normalizedSearchValue = React__namespace.useMemo(() => searchValue.trim().toLowerCase(), [searchValue]);
+    const [searchValue, setSearchValue] = reactExports.useState("");
+    const normalizedSearchValue = reactExports.useMemo(() => searchValue.trim().toLowerCase(), [searchValue]);
     const onSearch = (e2) => {
       const {
         value
       } = e2.target;
       setSearchValue(value);
     };
-    React__namespace.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!visible) {
         setSearchValue("");
       }
@@ -62053,7 +62510,7 @@ html body {
     const {
       direction,
       renderEmpty
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     if (isFunction$2(column2.filterDropdown)) {
       dropdownContent = column2.filterDropdown({
         prefixCls: `${dropdownPrefixCls}-custom`,
@@ -62074,7 +62531,7 @@ html body {
     } else {
       const selectedKeys = getFilteredKeysSync() || [];
       const getFilterComponent = () => {
-        const empty = (renderEmpty == null ? void 0 : renderEmpty("Table.filter")) ?? /* @__PURE__ */ React__namespace.createElement(Empty, {
+        const empty = (renderEmpty == null ? void 0 : renderEmpty("Table.filter")) ?? /* @__PURE__ */ reactExports.createElement(Empty, {
           image: Empty.PRESENTED_IMAGE_SIMPLE,
           description: locale2.filterEmptyText,
           styles: {
@@ -62091,20 +62548,20 @@ html body {
           return empty;
         }
         if (filterMode === "tree") {
-          return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(FilterSearch, {
+          return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(FilterSearch, {
             filterSearch,
             value: searchValue,
             onChange: onSearch,
             tablePrefixCls,
             locale: locale2
-          }), /* @__PURE__ */ React__namespace.createElement("div", {
+          }), /* @__PURE__ */ reactExports.createElement("div", {
             className: `${tablePrefixCls}-filter-dropdown-tree`
-          }, filterMultiple ? /* @__PURE__ */ React__namespace.createElement(Checkbox, {
+          }, filterMultiple ? /* @__PURE__ */ reactExports.createElement(Checkbox, {
             checked: selectedKeys.length === flattenKeys(column2.filters).length,
             indeterminate: selectedKeys.length > 0 && selectedKeys.length < flattenKeys(column2.filters).length,
             className: `${tablePrefixCls}-filter-dropdown-checkall`,
             onChange: onCheckAll
-          }, (locale2 == null ? void 0 : locale2.filterCheckall) ?? (locale2 == null ? void 0 : locale2.filterCheckAll)) : null, /* @__PURE__ */ React__namespace.createElement(Tree$2, {
+          }, (locale2 == null ? void 0 : locale2.filterCheckall) ?? (locale2 == null ? void 0 : locale2.filterCheckAll)) : null, /* @__PURE__ */ reactExports.createElement(Tree$2, {
             checkable: true,
             selectable: false,
             blockNode: true,
@@ -62138,13 +62595,13 @@ html body {
           normalizedSearchValue
         });
         const isEmpty = items.every((item) => item === null);
-        return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(FilterSearch, {
+        return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(FilterSearch, {
           filterSearch,
           value: searchValue,
           onChange: onSearch,
           tablePrefixCls,
           locale: locale2
-        }), isEmpty ? empty : /* @__PURE__ */ React__namespace.createElement(Menu, {
+        }), isEmpty ? empty : /* @__PURE__ */ reactExports.createElement(Menu, {
           selectable: true,
           multiple: filterMultiple,
           prefixCls: `${dropdownPrefixCls}-menu`,
@@ -62164,25 +62621,25 @@ html body {
         }
         return selectedKeys.length === 0;
       };
-      dropdownContent = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, getFilterComponent(), /* @__PURE__ */ React__namespace.createElement("div", {
+      dropdownContent = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, getFilterComponent(), /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-dropdown-btns`
-      }, /* @__PURE__ */ React__namespace.createElement(Button$1, {
+      }, /* @__PURE__ */ reactExports.createElement(Button$1, {
         type: "link",
         size: "small",
         disabled: getResetDisabled(),
         onClick: () => onReset()
-      }, locale2.filterReset), /* @__PURE__ */ React__namespace.createElement(Button$1, {
+      }, locale2.filterReset), /* @__PURE__ */ reactExports.createElement(Button$1, {
         type: "primary",
         size: "small",
         onClick: onConfirm
       }, locale2.filterConfirm)));
     }
     if (column2.filterDropdown) {
-      dropdownContent = /* @__PURE__ */ React__namespace.createElement(OverrideProvider, {
+      dropdownContent = /* @__PURE__ */ reactExports.createElement(OverrideProvider, {
         selectable: void 0
       }, dropdownContent);
     }
-    dropdownContent = /* @__PURE__ */ React__namespace.createElement(FilterDropdownMenuWrapper, {
+    dropdownContent = /* @__PURE__ */ reactExports.createElement(FilterDropdownMenuWrapper, {
       className: `${prefixCls}-dropdown`
     }, dropdownContent);
     const getDropdownTrigger = () => {
@@ -62192,9 +62649,9 @@ html body {
       } else if (column2.filterIcon) {
         filterIcon = column2.filterIcon;
       } else {
-        filterIcon = /* @__PURE__ */ React__namespace.createElement(RefIcon$e, null);
+        filterIcon = /* @__PURE__ */ reactExports.createElement(RefIcon$e, null);
       }
-      return /* @__PURE__ */ React__namespace.createElement("span", {
+      return /* @__PURE__ */ reactExports.createElement("span", {
         role: "button",
         tabIndex: -1,
         className: clsx(`${prefixCls}-trigger`, {
@@ -62207,9 +62664,9 @@ html body {
     };
     const triggerNode = getDropdownTrigger();
     if (inMeasureRow) {
-      return /* @__PURE__ */ React__namespace.createElement("div", {
+      return /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-column`
-      }, /* @__PURE__ */ React__namespace.createElement("span", {
+      }, /* @__PURE__ */ reactExports.createElement("span", {
         className: `${tablePrefixCls}-column-title`
       }, children), triggerNode);
     }
@@ -62230,11 +62687,11 @@ html body {
         return dropdownContent;
       }
     });
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       className: `${prefixCls}-column`
-    }, /* @__PURE__ */ React__namespace.createElement("span", {
+    }, /* @__PURE__ */ reactExports.createElement("span", {
       className: `${tablePrefixCls}-column-title`
-    }, children), /* @__PURE__ */ React__namespace.createElement(Dropdown, {
+    }, children), /* @__PURE__ */ reactExports.createElement(Dropdown, {
       ...mergedDropdownProps
     }));
   };
@@ -62287,7 +62744,7 @@ html body {
         }) => columnKey === key2);
         newColumn = {
           ...newColumn,
-          title: (renderProps) => /* @__PURE__ */ React__namespace.createElement(FilterDropdown, {
+          title: (renderProps) => /* @__PURE__ */ reactExports.createElement(FilterDropdown, {
             tablePrefixCls: prefixCls,
             prefixCls: `${prefixCls}-filter`,
             dropdownPrefixCls,
@@ -62394,9 +62851,9 @@ html body {
       rootClassName
     } = props;
     devUseWarning();
-    const mergedColumns = React__namespace.useMemo(() => getMergedColumns(rawMergedColumns || []), [rawMergedColumns]);
-    const [filterStates, setFilterStates] = React__namespace.useState(() => collectFilterStates(mergedColumns, true));
-    const mergedFilterStates = React__namespace.useMemo(() => {
+    const mergedColumns = reactExports.useMemo(() => getMergedColumns(rawMergedColumns || []), [rawMergedColumns]);
+    const [filterStates, setFilterStates] = reactExports.useState(() => collectFilterStates(mergedColumns, true));
+    const mergedFilterStates = reactExports.useMemo(() => {
       const collectedStates = collectFilterStates(mergedColumns, false);
       if (collectedStates.length === 0) {
         return collectedStates;
@@ -62429,7 +62886,7 @@ html body {
       }
       return collectedStates;
     }, [mergedColumns, filterStates]);
-    const filters = React__namespace.useMemo(() => generateFilterInfo(mergedFilterStates), [mergedFilterStates]);
+    const filters = reactExports.useMemo(() => generateFilterInfo(mergedFilterStates), [mergedFilterStates]);
     const triggerFilter = (filterState) => {
       const newFilterStates = mergedFilterStates.filter(({
         key: key2
@@ -62442,7 +62899,7 @@ html body {
     return [transformColumns, mergedFilterStates, filters];
   };
   const useLazyKVMap = (data, childrenColumnName, getRowKey) => {
-    const mapCacheRef = React__namespace.useRef({});
+    const mapCacheRef = reactExports.useRef({});
     function getRecordByKey(key2) {
       var _a2;
       if (!mapCacheRef.current || mapCacheRef.current.data !== data || mapCacheRef.current.childrenColumnName !== childrenColumnName || mapCacheRef.current.getRowKey !== getRowKey) {
@@ -62488,7 +62945,7 @@ html body {
       total: paginationTotal = 0,
       ...paginationObj
     } = isPlainObject$1(pagination) ? pagination : {};
-    const [innerPagination, setInnerPagination] = React.useState(() => ({
+    const [innerPagination, setInnerPagination] = reactExports.useState(() => ({
       current: "defaultCurrent" in paginationObj ? paginationObj.defaultCurrent : 1,
       pageSize: "defaultPageSize" in paginationObj ? paginationObj.defaultPageSize : DEFAULT_PAGE_SIZE
     }));
@@ -62537,11 +62994,11 @@ html body {
     };
     return _extends$7.apply(this, arguments);
   }
-  const CaretDownOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$7({}, props, {
+  const CaretDownOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$7({}, props, {
     ref,
     icon: CaretDownOutlined$1
   }));
-  const RefIcon$6 = /* @__PURE__ */ React__namespace.forwardRef(CaretDownOutlined);
+  const RefIcon$6 = /* @__PURE__ */ reactExports.forwardRef(CaretDownOutlined);
   var CaretUpOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z" } }] }, "name": "caret-up", "theme": "outlined" };
   function _extends$6() {
     _extends$6 = Object.assign ? Object.assign.bind() : function(target) {
@@ -62557,11 +63014,11 @@ html body {
     };
     return _extends$6.apply(this, arguments);
   }
-  const CaretUpOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$6({}, props, {
+  const CaretUpOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$6({}, props, {
     ref,
     icon: CaretUpOutlined$1
   }));
-  const RefIcon$5 = /* @__PURE__ */ React__namespace.forwardRef(CaretUpOutlined);
+  const RefIcon$5 = /* @__PURE__ */ reactExports.forwardRef(CaretUpOutlined);
   const ASCEND = "ascend";
   const DESCEND = "descend";
   const getMultiplePriority = (column2) => {
@@ -62636,21 +63093,21 @@ html body {
             sortOrder
           });
         } else {
-          const upNode = sortDirections.includes(ASCEND) && /* @__PURE__ */ React__namespace.createElement(RefIcon$5, {
+          const upNode = sortDirections.includes(ASCEND) && /* @__PURE__ */ reactExports.createElement(RefIcon$5, {
             className: clsx(`${prefixCls}-column-sorter-up`, {
               active: sortOrder === ASCEND
             })
           });
-          const downNode = sortDirections.includes(DESCEND) && /* @__PURE__ */ React__namespace.createElement(RefIcon$6, {
+          const downNode = sortDirections.includes(DESCEND) && /* @__PURE__ */ reactExports.createElement(RefIcon$6, {
             className: clsx(`${prefixCls}-column-sorter-down`, {
               active: sortOrder === DESCEND
             })
           });
-          sorter = /* @__PURE__ */ React__namespace.createElement("span", {
+          sorter = /* @__PURE__ */ reactExports.createElement("span", {
             className: clsx(`${prefixCls}-column-sorter`, {
               [`${prefixCls}-column-sorter-full`]: !!(upNode && downNode)
             })
-          }, /* @__PURE__ */ React__namespace.createElement("span", {
+          }, /* @__PURE__ */ reactExports.createElement("span", {
             className: `${prefixCls}-column-sorter-inner`,
             "aria-hidden": "true"
           }, upNode, downNode));
@@ -62679,21 +63136,21 @@ html body {
           }),
           title: (renderProps) => {
             const columnSortersClass = `${prefixCls}-column-sorters`;
-            const renderColumnTitleWrapper = /* @__PURE__ */ React__namespace.createElement("span", {
+            const renderColumnTitleWrapper = /* @__PURE__ */ reactExports.createElement("span", {
               className: `${prefixCls}-column-title`
             }, renderColumnTitle(column2.title, renderProps));
-            const renderSortTitle = /* @__PURE__ */ React__namespace.createElement("div", {
+            const renderSortTitle = /* @__PURE__ */ reactExports.createElement("div", {
               className: columnSortersClass
             }, renderColumnTitleWrapper, sorter);
             if (showSorterTooltip) {
               if (typeof showSorterTooltip !== "boolean" && (showSorterTooltip == null ? void 0 : showSorterTooltip.target) === "sorter-icon") {
-                return /* @__PURE__ */ React__namespace.createElement("div", {
+                return /* @__PURE__ */ reactExports.createElement("div", {
                   className: clsx(columnSortersClass, `${columnSortersClass}-tooltip-target-sorter`)
-                }, renderColumnTitleWrapper, /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+                }, renderColumnTitleWrapper, /* @__PURE__ */ reactExports.createElement(Tooltip, {
                   ...tooltipProps
                 }, sorter));
               }
-              return /* @__PURE__ */ React__namespace.createElement(Tooltip, {
+              return /* @__PURE__ */ reactExports.createElement(Tooltip, {
                 ...tooltipProps
               }, renderSortTitle);
             }
@@ -62835,7 +63292,7 @@ html body {
       onSorterChange,
       globalLocale
     } = props;
-    const [sortStates, setSortStates] = React__namespace.useState(() => collectSortStates(mergedColumns, true));
+    const [sortStates, setSortStates] = reactExports.useState(() => collectSortStates(mergedColumns, true));
     const getColumnKeys = (columns, pos) => {
       const newKeys = [];
       columns.forEach((item, index2) => {
@@ -62848,7 +63305,7 @@ html body {
       });
       return newKeys;
     };
-    const mergedSorterStates = React__namespace.useMemo(() => {
+    const mergedSorterStates = reactExports.useMemo(() => {
       let validate = true;
       const collectedStates = collectSortStates(mergedColumns, false);
       if (!collectedStates.length) {
@@ -62888,7 +63345,7 @@ html body {
       });
       return validateStates;
     }, [mergedColumns, sortStates]);
-    const columnTitleSorterProps = React__namespace.useMemo(() => {
+    const columnTitleSorterProps = reactExports.useMemo(() => {
       var _a2, _b2;
       const sortColumns = mergedSorterStates.map(({
         column: column2,
@@ -62934,7 +63391,7 @@ html body {
     return finalColumns;
   };
   const useTitleColumns = (columnTitleProps) => {
-    const filledColumns = React__namespace.useCallback((columns) => fillTitle(columns, columnTitleProps), [columnTitleProps]);
+    const filledColumns = reactExports.useCallback((columns) => fillTitle(columns, columnTitleProps), [columnTitleProps]);
     return [filledColumns];
   };
   const RcTable = genTable((prev2, next2) => {
@@ -64318,11 +64775,11 @@ html body {
       virtual
     } = props;
     devUseWarning();
-    const rawColumns = React__namespace.useMemo(() => columns || convertChildrenToColumns(children), [columns, children]);
+    const rawColumns = reactExports.useMemo(() => columns || convertChildrenToColumns(children), [columns, children]);
     const baseColumns = useFilledColumns(rawColumns, column2);
-    const needResponsive = React__namespace.useMemo(() => baseColumns.some((col) => col.responsive), [baseColumns]);
+    const needResponsive = reactExports.useMemo(() => baseColumns.some((col) => col.responsive), [baseColumns]);
     const screens = useBreakpoint(needResponsive);
-    const mergedColumns = React__namespace.useMemo(() => {
+    const mergedColumns = reactExports.useMemo(() => {
       const matched = new Set(Object.keys(screens).filter((m2) => screens[m2]));
       return baseColumns.filter((c) => !c.responsive || c.responsive.some((r2) => matched.has(r2)));
     }, [baseColumns, screens]);
@@ -64330,7 +64787,7 @@ html body {
     const {
       locale: contextLocale = localeValues,
       table
-    } = React__namespace.useContext(ConfigContext);
+    } = reactExports.useContext(ConfigContext);
     const {
       getPrefixCls,
       direction,
@@ -64369,7 +64826,7 @@ html body {
     const prefixCls = getPrefixCls("table", customizePrefixCls);
     const dropdownPrefixCls = getPrefixCls("dropdown", customizeDropdownPrefixCls);
     const [, token2] = useToken();
-    const mergedRowSelection = React__namespace.useMemo(() => {
+    const mergedRowSelection = reactExports.useMemo(() => {
       var _a3;
       return isPlainObject$1(customizeRowSelection) ? {
         columnWidth: (_a3 = token2.Table) == null ? void 0 : _a3.selectionColumnWidth,
@@ -64387,7 +64844,7 @@ html body {
     const {
       childrenColumnName = "children"
     } = mergedExpandable;
-    const expandType = React__namespace.useMemo(() => {
+    const expandType = reactExports.useMemo(() => {
       if (rawData.some((item) => item == null ? void 0 : item[childrenColumnName])) {
         return "nest";
       }
@@ -64397,18 +64854,18 @@ html body {
       return null;
     }, [childrenColumnName, rawData]);
     const internalRef = {
-      body: React__namespace.useRef(null)
+      body: reactExports.useRef(null)
     };
     const getContainerWidth = useContainerWidth(prefixCls);
-    const rootRef = React__namespace.useRef(null);
-    const tblRef = React__namespace.useRef(null);
+    const rootRef = reactExports.useRef(null);
+    const tblRef = reactExports.useRef(null);
     useProxyImperativeHandle(ref, () => ({
       ...tblRef.current,
       nativeElement: rootRef.current
     }));
     const rowKey = customizeRowKey || (table == null ? void 0 : table.rowKey) || "key";
     const mergedScroll = scroll ?? (table == null ? void 0 : table.scroll);
-    const getRowKey = React__namespace.useMemo(() => {
+    const getRowKey = reactExports.useMemo(() => {
       if (isFunction$2(rowKey)) {
         return rowKey;
       }
@@ -64456,7 +64913,7 @@ html body {
       showSorterTooltip,
       globalLocale
     });
-    const sortedData = React__namespace.useMemo(() => getSortData(rawData, sortStates, childrenColumnName), [childrenColumnName, rawData, sortStates]);
+    const sortedData = reactExports.useMemo(() => getSortData(rawData, sortStates, childrenColumnName), [childrenColumnName, rawData, sortStates]);
     changeEventInfo.sorter = getSorters();
     changeEventInfo.sorterStates = sortStates;
     const onFilterChange = (filters2, filterStates2) => {
@@ -64477,7 +64934,7 @@ html body {
     const mergedData = getFilterData(sortedData, filterStates, childrenColumnName);
     changeEventInfo.filters = filters;
     changeEventInfo.filterStates = filterStates;
-    const columnTitleProps = React__namespace.useMemo(() => {
+    const columnTitleProps = reactExports.useMemo(() => {
       const mergedFilters = {};
       Object.keys(filters).forEach((filterKey) => {
         if (filters[filterKey] !== null) {
@@ -64502,7 +64959,7 @@ html body {
     const [mergedPagination, resetPagination] = usePagination(mergedData.length, onPaginationChange, pagination);
     changeEventInfo.pagination = pagination === false ? {} : getPaginationParam(mergedPagination, pagination);
     changeEventInfo.resetPagination = resetPagination;
-    const pageData = React__namespace.useMemo(() => {
+    const pageData = reactExports.useMemo(() => {
       if (pagination === false || !mergedPagination.pageSize) {
         return mergedData;
       }
@@ -64545,7 +65002,7 @@ html body {
     if (!isNumber$1(mergedExpandable.indentSize)) {
       mergedExpandable.indentSize = isNumber$1(indentSize) ? indentSize : 15;
     }
-    const transformColumns = React__namespace.useCallback((innerColumns) => transformTitleColumns(transformSelectionColumns(transformFilterColumns(transformSorterColumns(innerColumns)))), [transformSorterColumns, transformFilterColumns, transformSelectionColumns]);
+    const transformColumns = reactExports.useCallback((innerColumns) => transformTitleColumns(transformSelectionColumns(transformFilterColumns(transformSorterColumns(innerColumns)))), [transformSorterColumns, transformFilterColumns, transformSelectionColumns]);
     let topPaginationNode;
     let bottomPaginationNode;
     if (pagination !== false && (mergedPagination == null ? void 0 : mergedPagination.total)) {
@@ -64555,7 +65012,7 @@ html body {
       } else {
         paginationSize = mergedSize === "small" || mergedSize === "medium" ? "small" : void 0;
       }
-      const renderPagination = (placement2 = "end") => /* @__PURE__ */ React__namespace.createElement(Pagination, {
+      const renderPagination = (placement2 = "end") => /* @__PURE__ */ reactExports.createElement(Pagination, {
         ...mergedPagination,
         classNames: mergedClassNames.pagination,
         styles: mergedStyles.pagination,
@@ -64590,7 +65047,7 @@ html body {
         bottomPaginationNode = renderPagination();
       }
     }
-    const spinProps = React__namespace.useMemo(() => {
+    const spinProps = reactExports.useMemo(() => {
       if (typeof loading === "boolean") {
         return {
           spinning: loading
@@ -64612,20 +65069,20 @@ html body {
       ...contextStyle,
       ...style2
     };
-    const mergedEmptyNode = React__namespace.useMemo(() => {
+    const mergedEmptyNode = reactExports.useMemo(() => {
       if ((spinProps == null ? void 0 : spinProps.spinning) && rawData === EMPTY_LIST) {
         return null;
       }
       if (typeof (locale2 == null ? void 0 : locale2.emptyText) !== "undefined") {
         return locale2.emptyText;
       }
-      return (renderEmpty == null ? void 0 : renderEmpty("Table")) || /* @__PURE__ */ React__namespace.createElement(DefaultRenderEmpty, {
+      return (renderEmpty == null ? void 0 : renderEmpty("Table")) || /* @__PURE__ */ reactExports.createElement(DefaultRenderEmpty, {
         componentName: "Table"
       });
     }, [spinProps == null ? void 0 : spinProps.spinning, rawData, locale2 == null ? void 0 : locale2.emptyText, renderEmpty]);
     const TableComponent = virtual ? RcVirtualTable : RcTable;
     const virtualProps = {};
-    const listItemHeight = React__namespace.useMemo(() => {
+    const listItemHeight = reactExports.useMemo(() => {
       const {
         fontSize,
         lineHeight,
@@ -64647,14 +65104,14 @@ html body {
     if (virtual) {
       virtualProps.listItemHeight = listItemHeight;
     }
-    return /* @__PURE__ */ React__namespace.createElement("div", {
+    return /* @__PURE__ */ reactExports.createElement("div", {
       ref: rootRef,
       className: wrappercls,
       style: mergedStyle
-    }, /* @__PURE__ */ React__namespace.createElement(Spin, {
+    }, /* @__PURE__ */ reactExports.createElement(Spin, {
       spinning: false,
       ...spinProps
-    }, topPaginationNode, /* @__PURE__ */ React__namespace.createElement(TableComponent, {
+    }, topPaginationNode, /* @__PURE__ */ reactExports.createElement(TableComponent, {
       ...virtualProps,
       ...tableProps,
       scroll: mergedScroll,
@@ -64680,24 +65137,24 @@ html body {
       internalRefs: internalRef,
       transformColumns,
       getContainerWidth,
-      measureRowRender: (measureRow) => /* @__PURE__ */ React__namespace.createElement(TableMeasureRowContext.Provider, {
+      measureRowRender: (measureRow) => /* @__PURE__ */ reactExports.createElement(TableMeasureRowContext.Provider, {
         value: true
-      }, /* @__PURE__ */ React__namespace.createElement(ConfigProvider, {
+      }, /* @__PURE__ */ reactExports.createElement(ConfigProvider, {
         getPopupContainer: (node2) => node2
       }, measureRow))
     }), bottomPaginationNode));
   };
-  const InternalTable$1 = /* @__PURE__ */ React__namespace.forwardRef(InternalTable);
+  const InternalTable$1 = /* @__PURE__ */ reactExports.forwardRef(InternalTable);
   const Table = (props, ref) => {
-    const renderTimesRef = React__namespace.useRef(0);
+    const renderTimesRef = reactExports.useRef(0);
     renderTimesRef.current += 1;
-    return /* @__PURE__ */ React__namespace.createElement(InternalTable$1, {
+    return /* @__PURE__ */ reactExports.createElement(InternalTable$1, {
       ...props,
       ref,
       _renderTimes: renderTimesRef.current
     });
   };
-  const ForwardTable = /* @__PURE__ */ React__namespace.forwardRef(Table);
+  const ForwardTable = /* @__PURE__ */ reactExports.forwardRef(Table);
   ForwardTable.SELECTION_COLUMN = SELECTION_COLUMN;
   ForwardTable.EXPAND_COLUMN = EXPAND_COLUMN;
   ForwardTable.SELECTION_ALL = SELECTION_ALL;
@@ -64882,7 +65339,7 @@ html body {
     const tagToken = prepareToken(token2);
     return genBaseStyle(tagToken);
   }, prepareComponentToken);
-  const CheckableTag = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const CheckableTag = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       style: style2,
@@ -64898,8 +65355,8 @@ html body {
     const {
       getPrefixCls,
       tag
-    } = React__namespace.useContext(ConfigContext);
-    const disabled = React__namespace.useContext(DisabledContext);
+    } = reactExports.useContext(ConfigContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const handleClick = (e2) => {
       if (mergedDisabled) {
@@ -64914,7 +65371,7 @@ html body {
       [`${prefixCls}-checkable-checked`]: checked,
       [`${prefixCls}-checkable-disabled`]: mergedDisabled
     }, tag == null ? void 0 : tag.className, className, hashId, cssVarCls);
-    return /* @__PURE__ */ React__namespace.createElement("span", {
+    return /* @__PURE__ */ reactExports.createElement("span", {
       ...restProps,
       ref,
       style: {
@@ -64923,7 +65380,7 @@ html body {
       },
       className: cls,
       onClick: handleClick
-    }, icon, /* @__PURE__ */ React__namespace.createElement("span", null, children));
+    }, icon, /* @__PURE__ */ reactExports.createElement("span", null, children));
   });
   const CheckableTagGroup = /* @__PURE__ */ React.forwardRef((props, ref) => {
     const {
@@ -64957,7 +65414,7 @@ html body {
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props
     });
-    const parsedOptions = React.useMemo(() => {
+    const parsedOptions = reactExports.useMemo(() => {
       if (!Array.isArray(options)) {
         return [];
       }
@@ -64984,7 +65441,7 @@ html body {
       onChange == null ? void 0 : onChange(newValue);
     };
     const divRef = React.useRef(null);
-    React.useImperativeHandle(ref, () => ({
+    reactExports.useImperativeHandle(ref, () => ({
       nativeElement: divRef.current
     }));
     const ariaProps = pickAttrs(restProps, {
@@ -65022,7 +65479,7 @@ html body {
       variant,
       bordered
     } = props;
-    return React__namespace.useMemo(() => {
+    return reactExports.useMemo(() => {
       const isInverseColor = color == null ? void 0 : color.endsWith("-inverse");
       let nextVariant;
       if (variant) {
@@ -65115,7 +65572,7 @@ html body {
     const tagToken = prepareToken(token2);
     return [genTagStatusStyle(tagToken, "success", "Success"), genTagStatusStyle(tagToken, "processing", "Info"), genTagStatusStyle(tagToken, "error", "Error"), genTagStatusStyle(tagToken, "warning", "Warning")];
   }, prepareComponentToken);
-  const InternalTag = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const InternalTag = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     var _a2;
     const {
       prefixCls: customizePrefixCls,
@@ -65146,12 +65603,12 @@ html body {
     } = useComponentConfig("tag");
     const [mergedVariant, mergedColor, isPreset, isStatus, customTagStyle] = useColor(props, contextVariant);
     const isInternalColor = isPreset || isStatus;
-    const disabled = React__namespace.useContext(DisabledContext);
+    const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const {
       tag: tagContext
-    } = React__namespace.useContext(ConfigContext);
-    const [visible, setVisible] = React__namespace.useState(true);
+    } = reactExports.useContext(ConfigContext);
+    const [visible, setVisible] = reactExports.useState(true);
     const domProps = omit(restProps, ["closeIcon", "closable"]);
     const mergedProps = {
       ...props,
@@ -65162,7 +65619,7 @@ html body {
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props: mergedProps
     });
-    const tagStyle = React__namespace.useMemo(() => {
+    const tagStyle = reactExports.useMemo(() => {
       let nextTagStyle = {
         ...mergedStyles.root,
         ...contextStyle,
@@ -65198,7 +65655,7 @@ html body {
     const [, mergedCloseIcon] = useClosable(pickClosable(props), pickClosable(tagContext), {
       closable: false,
       closeIconRender: (iconNode2) => {
-        const replacement = /* @__PURE__ */ React__namespace.createElement("span", {
+        const replacement = /* @__PURE__ */ reactExports.createElement("span", {
           className: clsx(`${prefixCls}-close-icon`, mergedClassNames.close),
           onClick: handleCloseClick,
           style: mergedStyles.close
@@ -65219,15 +65676,15 @@ html body {
     });
     const isNeedWave = isFunction$2(restProps.onClick) || children && children.type === "a";
     const iconNode = cloneElement(icon, {
-      className: clsx(/* @__PURE__ */ React__namespace.isValidElement(icon) ? (_a2 = icon.props) == null ? void 0 : _a2.className : void 0, mergedClassNames.icon),
+      className: clsx(/* @__PURE__ */ reactExports.isValidElement(icon) ? (_a2 = icon.props) == null ? void 0 : _a2.className : void 0, mergedClassNames.icon),
       style: mergedStyles.icon
     });
-    const child = iconNode ? /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, iconNode, children && /* @__PURE__ */ React__namespace.createElement("span", {
+    const child = iconNode ? /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, iconNode, children && /* @__PURE__ */ reactExports.createElement("span", {
       className: mergedClassNames.content,
       style: mergedStyles.content
     }, children)) : children;
     const TagWrapper = href ? "a" : "span";
-    const tagNode = /* @__PURE__ */ React__namespace.createElement(TagWrapper, {
+    const tagNode = /* @__PURE__ */ reactExports.createElement(TagWrapper, {
       ...domProps,
       ref,
       className: tagClassName,
@@ -65238,14 +65695,14 @@ html body {
       ...href && mergedDisabled ? {
         "aria-disabled": true
       } : {}
-    }, child, mergedCloseIcon, isPreset && /* @__PURE__ */ React__namespace.createElement(PresetCmp, {
+    }, child, mergedCloseIcon, isPreset && /* @__PURE__ */ reactExports.createElement(PresetCmp, {
       key: "preset",
       prefixCls
-    }), isStatus && /* @__PURE__ */ React__namespace.createElement(StatusCmp, {
+    }), isStatus && /* @__PURE__ */ reactExports.createElement(StatusCmp, {
       key: "status",
       prefixCls
     }));
-    return isNeedWave ? /* @__PURE__ */ React__namespace.createElement(Wave, {
+    return isNeedWave ? /* @__PURE__ */ reactExports.createElement(Wave, {
       component: "Tag"
     }, tagNode) : tagNode;
   });
@@ -65369,11 +65826,11 @@ html body {
     };
     return _extends$5.apply(this, arguments);
   }
-  const DownloadOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$5({}, props, {
+  const DownloadOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$5({}, props, {
     ref,
     icon: DownloadOutlined$1
   }));
-  const RefIcon$4 = /* @__PURE__ */ React__namespace.forwardRef(DownloadOutlined);
+  const RefIcon$4 = /* @__PURE__ */ reactExports.forwardRef(DownloadOutlined);
   function withTheme(Component) {
     const Wrapped = (props) => {
       const { theme, darkMode, ...rest } = props;
@@ -74126,8 +74583,8 @@ html body {
     search: { onNavigate: null, hrefFor: null },
     source: { onNavigate: null, hrefFor: null }
   };
-  const RouterContext = React.createContext(defaultRouter);
-  const useRouter = () => React.useContext(RouterContext);
+  const RouterContext = reactExports.createContext(defaultRouter);
+  const useRouter = () => reactExports.useContext(RouterContext);
   const buildRouter = (props) => ({
     taxon: {
       onNavigate: props.onNavigateToTaxon || null,
@@ -74210,7 +74667,7 @@ html body {
   };
   const getDataset = (datasetKey) => axios(`${config.dataApi}dataset/${datasetKey}`);
   const getDatasetSimple = (datasetKey) => axios(`${config.dataApi}dataset/${datasetKey}`);
-  const TreeCacheContext = React.createContext({
+  const TreeCacheContext = reactExports.createContext({
     datasetLoader: null,
     publisherLoader: null
   });
@@ -74417,14 +74874,14 @@ html body {
     sectorKey,
     createdBy
   }) => {
-    const [sourceDataset, setSourceDataset] = React.useState(null);
-    const [sourceDatasetLoading, setSourceDatasetLoading] = React.useState(false);
-    const [sourceTaxon, setSourceTaxon] = React.useState(null);
-    const [sourceTaxonLoading, setSourceTaxonLoading] = React.useState(null);
-    const [verbatimRecord, setVerbatimRecord] = React.useState(null);
-    const [verbatimRecordLoading, setVerbatimRecordLoading] = React.useState(false);
-    const [open2, setOpen] = React.useState(false);
-    React.useEffect(() => {
+    const [sourceDataset, setSourceDataset] = reactExports.useState(null);
+    const [sourceDatasetLoading, setSourceDatasetLoading] = reactExports.useState(false);
+    const [sourceTaxon, setSourceTaxon] = reactExports.useState(null);
+    const [sourceTaxonLoading, setSourceTaxonLoading] = reactExports.useState(null);
+    const [verbatimRecord, setVerbatimRecord] = reactExports.useState(null);
+    const [verbatimRecordLoading, setVerbatimRecordLoading] = reactExports.useState(false);
+    const [open2, setOpen] = reactExports.useState(false);
+    reactExports.useEffect(() => {
       if (open2 && sourceDatasetKey && sourceId) {
         getSourceTaxon();
       }
@@ -74471,7 +74928,7 @@ html body {
         setVerbatimRecord(null);
       });
     };
-    const idRef = React.useRef(Math.random().toString(36).substring(2, 15));
+    const idRef = reactExports.useRef(Math.random().toString(36).substring(2, 15));
     return !!sourceDatasetKey || !!verbatimSourceKey ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, id: idRef.current, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Popover,
       {
@@ -75534,7 +75991,7 @@ html body {
         /* 4 */
         /***/
         (function(module3, exports2) {
-          module3.exports = React;
+          module3.exports = requireReact();
         }),
         /* 5 */
         /***/
@@ -75870,11 +76327,11 @@ html body {
     };
     return _extends$4.apply(this, arguments);
   }
-  const BookOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$4({}, props, {
+  const BookOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$4({}, props, {
     ref,
     icon: BookOutlined$1
   }));
-  const RefIcon$3 = /* @__PURE__ */ React__namespace.forwardRef(BookOutlined);
+  const RefIcon$3 = /* @__PURE__ */ reactExports.forwardRef(BookOutlined);
   var LinkOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
   function _extends$3() {
     _extends$3 = Object.assign ? Object.assign.bind() : function(target) {
@@ -75890,11 +76347,11 @@ html body {
     };
     return _extends$3.apply(this, arguments);
   }
-  const LinkOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$3({}, props, {
+  const LinkOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$3({}, props, {
     ref,
     icon: LinkOutlined$1
   }));
-  const RefIcon$2 = /* @__PURE__ */ React__namespace.forwardRef(LinkOutlined);
+  const RefIcon$2 = /* @__PURE__ */ reactExports.forwardRef(LinkOutlined);
   var MessageFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M924.3 338.4a447.57 447.57 0 00-96.1-143.3 443.09 443.09 0 00-143-96.3A443.91 443.91 0 00512 64h-2c-60.5.3-119 12.3-174.1 35.9a444.08 444.08 0 00-141.7 96.5 445 445 0 00-95 142.8A449.89 449.89 0 0065 514.1c.3 69.4 16.9 138.3 47.9 199.9v152c0 25.4 20.6 46 45.9 46h151.8a447.72 447.72 0 00199.5 48h2.1c59.8 0 117.7-11.6 172.3-34.3A443.2 443.2 0 00827 830.5c41.2-40.9 73.6-88.7 96.3-142 23.5-55.2 35.5-113.9 35.8-174.5.2-60.9-11.6-120-34.8-175.6zM312.4 560c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.4 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48z" } }] }, "name": "message", "theme": "filled" };
   function _extends$2() {
     _extends$2 = Object.assign ? Object.assign.bind() : function(target) {
@@ -75910,11 +76367,11 @@ html body {
     };
     return _extends$2.apply(this, arguments);
   }
-  const MessageFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$2({}, props, {
+  const MessageFilled = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$2({}, props, {
     ref,
     icon: MessageFilled$1
   }));
-  const RefIcon$1 = /* @__PURE__ */ React__namespace.forwardRef(MessageFilled);
+  const RefIcon$1 = /* @__PURE__ */ reactExports.forwardRef(MessageFilled);
   var TagOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M938 458.8l-29.6-312.6c-1.5-16.2-14.4-29-30.6-30.6L565.2 86h-.4c-3.2 0-5.7 1-7.6 2.9L88.9 557.2a9.96 9.96 0 000 14.1l363.8 363.8c1.9 1.9 4.4 2.9 7.1 2.9s5.2-1 7.1-2.9l468.3-468.3c2-2.1 3-5 2.8-8zM459.7 834.7L189.3 564.3 589 164.6 836 188l23.4 247-399.7 399.7zM680 256c-48.5 0-88 39.5-88 88s39.5 88 88 88 88-39.5 88-88-39.5-88-88-88zm0 120c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z" } }] }, "name": "tag", "theme": "outlined" };
   function _extends$1() {
     _extends$1 = Object.assign ? Object.assign.bind() : function(target) {
@@ -75930,11 +76387,11 @@ html body {
     };
     return _extends$1.apply(this, arguments);
   }
-  const TagOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1({}, props, {
+  const TagOutlined = (props, ref) => /* @__PURE__ */ reactExports.createElement(Icon$1, _extends$1({}, props, {
     ref,
     icon: TagOutlined$1
   }));
-  const RefIcon = /* @__PURE__ */ React__namespace.forwardRef(TagOutlined);
+  const RefIcon = /* @__PURE__ */ reactExports.forwardRef(TagOutlined);
   var reactIs = { exports: {} };
   var reactIs_production_min = {};
   /** @license React v16.13.1
@@ -76341,7 +76798,7 @@ html body {
       ThemeProvider: createThemeProvider(context)
     };
   }
-  var ThemeContext = React.createContext();
+  var ThemeContext = reactExports.createContext();
   createTheming(ThemeContext);
   var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
     return typeof obj;
@@ -79259,7 +79716,7 @@ html body {
   var getSheetIndex = function getSheetIndex2() {
     return index++;
   };
-  var JssContext = React.createContext({
+  var JssContext = reactExports.createContext({
     classNamePrefix: "",
     disableStylesGeneration: false,
     isSSR: !isBrowser
@@ -79398,8 +79855,8 @@ html body {
     return classes;
   };
   function getUseInsertionEffect(isSSR) {
-    return isSSR ? React.useEffect : React.useInsertionEffect || // React 18+ (https://github.com/reactwg/react-18/discussions/110)
-    React.useLayoutEffect;
+    return isSSR ? reactExports.useEffect : React.useInsertionEffect || // React 18+ (https://github.com/reactwg/react-18/discussions/110)
+    reactExports.useLayoutEffect;
   }
   var noTheme = {};
   var createUseStyles = function createUseStyles2(styles2, options) {
@@ -79410,16 +79867,16 @@ html body {
     var ThemeContext$1 = theming && theming.context || ThemeContext;
     var useTheme2 = function useTheme3(theme) {
       if (typeof styles2 === "function") {
-        return theme || React.useContext(ThemeContext$1) || noTheme;
+        return theme || reactExports.useContext(ThemeContext$1) || noTheme;
       }
       return noTheme;
     };
     var emptyObject = {};
     return function useStyles(data) {
-      var isFirstMount = React.useRef(true);
-      var context = React.useContext(JssContext);
+      var isFirstMount = reactExports.useRef(true);
+      var context = reactExports.useContext(JssContext);
       var theme = useTheme2(data && data.theme);
-      var _useMemo = React.useMemo(function() {
+      var _useMemo = reactExports.useMemo(function() {
         var newSheet = createStyleSheet({
           context,
           styles: styles2,
@@ -79466,12 +79923,12 @@ html body {
           }
         };
       }, [sheet]);
-      var classes = React.useMemo(function() {
+      var classes = reactExports.useMemo(function() {
         return sheet && dynamicRules ? getSheetClasses(sheet, dynamicRules) : emptyObject;
       }, [sheet, dynamicRules]);
-      React.useDebugValue(classes);
-      React.useDebugValue(theme === noTheme ? "No theme" : theme);
-      React.useEffect(function() {
+      reactExports.useDebugValue(classes);
+      reactExports.useDebugValue(theme === noTheme ? "No theme" : theme);
+      reactExports.useEffect(function() {
         isFirstMount.current = false;
       });
       return classes;
@@ -79500,15 +79957,15 @@ html body {
         name: displayName
       });
       var useStyles = createUseStyles(styles2, hookOptions);
-      var WithStyles = React.forwardRef(function(props, ref) {
-        var theme = React.useContext(ThemeContext$1);
+      var WithStyles = reactExports.forwardRef(function(props, ref) {
+        var theme = reactExports.useContext(ThemeContext$1);
         var newProps = _extends$19({}, props);
         if (injectTheme && newProps.theme == null) {
           newProps.theme = theme;
         }
         var sheetClasses = useStyles(newProps);
         var classes = mergeClassesProp(sheetClasses, props.classes);
-        return React.createElement(InnerComponent, _extends$19({}, newProps, {
+        return reactExports.createElement(InnerComponent, _extends$19({}, newProps, {
           classes,
           ref
         }));
@@ -79694,7 +80151,7 @@ html body {
     }
   }
   const DecisionBadge = ({ style: style2 = {}, decision, popoverPlacement }) => {
-    const idRef = React.useRef(Math.random().toString(36).substring(2, 15));
+    const idRef = reactExports.useRef(Math.random().toString(36).substring(2, 15));
     const {
       subject,
       originalSubjectId,
@@ -82202,7 +82659,7 @@ html body {
     referenceIndexMap,
     primarySource
   }) => {
-    const [showAll, setShowAll] = React.useState(false);
+    const [showAll, setShowAll] = reactExports.useState(false);
     const getNomStatus = (taxon) => !nomStatus ? _$1.get(taxon, "name.nomStatus") : nomStatus[_$1.get(taxon, "name.nomStatus")][_$1.get(taxon, "name.code"), "zoological"];
     const sorter = (a, b2) => {
       if (_$1.get(a, "name.combinationAuthorship.year") && _$1.get(b2, "name.combinationAuthorship.year")) {
@@ -82640,7 +83097,7 @@ html body {
     /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
   ] });
   const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups, showGbif }) => {
-    const [showUnmappable, setShowUnmappable] = React.useState(false);
+    const [showUnmappable, setShowUnmappable] = reactExports.useState(false);
     const visibleCount = totalCount(visibleGroups);
     const unmappableCount = totalCount(unmappableGroups);
     if (visibleCount === 0 && unmappableCount === 0 && !showGbif) return null;
@@ -82850,30 +83307,30 @@ html body {
     gbifAvailable = true
   }) => {
     var _a2;
-    const containerRef = React.useRef(null);
-    const mapRef = React.useRef(null);
-    const popupRef = React.useRef(null);
-    const recordMapRef = React.useRef(/* @__PURE__ */ new Map());
-    const descendantTaxonMapRef = React.useRef(/* @__PURE__ */ new Map());
-    const descendantRecordMapRef = React.useRef(/* @__PURE__ */ new Map());
-    const focalAttachedRef = React.useRef(false);
-    const gbifAttachedRef = React.useRef(false);
-    const descendantLayersRef = React.useRef(/* @__PURE__ */ new Set());
-    const [styleReady, setStyleReady] = React.useState(false);
-    const [focalReady, setFocalReady] = React.useState(false);
-    const [descendantState, setDescendantState] = React.useState({
+    const containerRef = reactExports.useRef(null);
+    const mapRef = reactExports.useRef(null);
+    const popupRef = reactExports.useRef(null);
+    const recordMapRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const descendantTaxonMapRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const descendantRecordMapRef = reactExports.useRef(/* @__PURE__ */ new Map());
+    const focalAttachedRef = reactExports.useRef(false);
+    const gbifAttachedRef = reactExports.useRef(false);
+    const descendantLayersRef = reactExports.useRef(/* @__PURE__ */ new Set());
+    const [styleReady, setStyleReady] = reactExports.useState(false);
+    const [focalReady, setFocalReady] = reactExports.useState(false);
+    const [descendantState, setDescendantState] = reactExports.useState({
       status: "idle",
       // idle | loading | ready | empty | error
       taxa: []
     });
-    const [focalVisible, setFocalVisible] = React.useState(true);
+    const [focalVisible, setFocalVisible] = reactExports.useState(true);
     const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
-    const [gbifVisible, setGbifVisible] = React.useState(
+    const [gbifVisible, setGbifVisible] = reactExports.useState(
       () => isGbifOnly ? true : readStoredGbifVisible(true)
     );
-    const [visibleTaxonIds, setVisibleTaxonIds] = React.useState(/* @__PURE__ */ new Set());
-    const [controlOpen, setControlOpen] = React.useState(false);
-    const fetchTriggeredRef = React.useRef(false);
+    const [visibleTaxonIds, setVisibleTaxonIds] = reactExports.useState(/* @__PURE__ */ new Set());
+    const [controlOpen, setControlOpen] = reactExports.useState(false);
+    const fetchTriggeredRef = reactExports.useRef(false);
     const handleToggleGbif = () => {
       setGbifVisible((v2) => {
         const next2 = !v2;
@@ -82881,7 +83338,7 @@ html body {
         return next2;
       });
     };
-    const presentMeans = React.useMemo(() => {
+    const presentMeans = reactExports.useMemo(() => {
       if (!(records == null ? void 0 : records.length)) return [];
       const seen = /* @__PURE__ */ new Set();
       records.forEach((r2) => {
@@ -82890,14 +83347,14 @@ html body {
       });
       return ESTABLISHMENT_MEANS.filter((m2) => seen.has(m2.key));
     }, [records]);
-    const descendantColors = React.useMemo(() => {
+    const descendantColors = reactExports.useMemo(() => {
       if (descendantState.status !== "ready") return {};
       return assignColors(
         descendantState.taxa.filter((t2) => t2.mappable.length > 0),
         rankOrder || []
       );
     }, [descendantState, rankOrder]);
-    const descendantLegend = React.useMemo(() => {
+    const descendantLegend = reactExports.useMemo(() => {
       if (descendantState.status !== "ready") {
         return { visibleGroups: [], unmappableGroups: [] };
       }
@@ -82928,7 +83385,7 @@ html body {
       return { visibleGroups, unmappableGroups };
     }, [descendantState, descendantColors, visibleTaxonIds]);
     const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!containerRef.current || mapRef.current) return;
       if (!supported()) return;
       const map = new maplibregl.Map({
@@ -82969,7 +83426,7 @@ html body {
         descendantLayersRef.current = /* @__PURE__ */ new Set();
       };
     }, []);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!styleReady || !(records == null ? void 0 : records.length)) return;
       const map = mapRef.current;
       if (!map) return;
@@ -83073,14 +83530,14 @@ html body {
       const map = mapRef.current;
       if (map) map.getCanvas().style.cursor = "";
     };
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       const map = mapRef.current;
       if (!map || !focalAttachedRef.current) return;
       const v2 = focalVisible ? "visible" : "none";
       if (map.getLayer(FOCAL_FILL)) map.setLayoutProperty(FOCAL_FILL, "visibility", v2);
       if (map.getLayer(FOCAL_LINE)) map.setLayoutProperty(FOCAL_LINE, "visibility", v2);
     }, [focalVisible, focalReady]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!styleReady) return;
       const map = mapRef.current;
       if (!map) return;
@@ -83109,13 +83566,13 @@ html body {
       });
       gbifAttachedRef.current = true;
     }, [styleReady, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id, gbifAvailable]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       const map = mapRef.current;
       if (!map || !gbifAttachedRef.current) return;
       const v2 = gbifVisible ? "visible" : "none";
       if (map.getLayer(GBIF_LAYER)) map.setLayoutProperty(GBIF_LAYER, "visibility", v2);
     }, [gbifVisible]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if (!styleReady) return;
       const map = mapRef.current;
       if (!map) return;
@@ -83206,7 +83663,7 @@ html body {
       if (popupRef.current) popupRef.current.remove();
       popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "320px" }).setLngLat(e2.lngLat).setHTML(descendantPopupHtml(data.taxon, data.record)).addTo(map);
     };
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       const map = mapRef.current;
       if (!map) return;
       descendantLayersRef.current.forEach((id) => {
@@ -83248,7 +83705,7 @@ html body {
       setControlOpen(true);
       triggerDescendantFetch();
     };
-    const descendantsByRank = React.useMemo(() => {
+    const descendantsByRank = reactExports.useMemo(() => {
       if (descendantState.status !== "ready") return [];
       const byRank = {};
       descendantState.taxa.filter((t2) => t2.mappable.length > 0).forEach((t2) => {
@@ -83571,8 +84028,8 @@ html body {
     return ((_a2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _a2.gazetteer) !== "text" && !!((_b2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _b2.globalId);
   };
   const ListView = ({ datasetKey, data }) => {
-    const [iso3Map, setIso3Map] = React.useState({});
-    React.useEffect(() => {
+    const [iso3Map, setIso3Map] = reactExports.useState({});
+    reactExports.useEffect(() => {
       let isIso = false;
       for (let i = 0; i < data.length; i++) {
         if (data[i].gazetteer === "iso") {
@@ -83623,10 +84080,10 @@ html body {
     const baseUnmappable = data.length - mappable.length;
     const hasGbifConfigured = !!gbifChecklistKey;
     const hasAnyRecords = data.length > 0;
-    const [view, setView] = React.useState("map");
-    const [fetchFailures, setFetchFailures] = React.useState(0);
-    const [gbifCount, setGbifCount] = React.useState(null);
-    React.useEffect(() => {
+    const [view, setView] = reactExports.useState("map");
+    const [fetchFailures, setFetchFailures] = reactExports.useState(0);
+    const [gbifCount, setGbifCount] = reactExports.useState(null);
+    reactExports.useEffect(() => {
       if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) {
         setGbifCount(null);
         return void 0;
@@ -85039,7 +85496,7 @@ html body {
     style: style2,
     primarySourceDatasetKey
   }) => {
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
     }, [referenceIndexMap]);
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, className: "col-reference-link-container", children: _$1.values(data).map((s) => {
       var _a2, _b2;
@@ -91140,7 +91597,7 @@ html body {
     hasRequiredHighchartsReact_min = 1;
     (function(module2, exports2) {
       !(function(t2, e2) {
-        module2.exports = e2(React);
+        module2.exports = e2(requireReact());
       })("undefined" != typeof self ? self : highchartsReact_min, function(t2) {
         return (function(t3) {
           function e2(n2) {
@@ -91279,14 +91736,14 @@ html body {
     darkMode
   }) => {
     const navigateToTaxon = useNavigateTo("taxon");
-    const [options, setOptions] = React.useState(null);
-    const [loading, setLoading] = React.useState(false);
-    const [invalid, setInvalid] = React.useState(false);
-    const [activeLevel, setActiveLevel] = React.useState(level);
-    React.useEffect(() => {
+    const [options, setOptions] = reactExports.useState(null);
+    const [loading, setLoading] = reactExports.useState(false);
+    const [invalid, setInvalid] = reactExports.useState(false);
+    const [activeLevel, setActiveLevel] = reactExports.useState(level);
+    reactExports.useEffect(() => {
       setActiveLevel(level);
     }, [level]);
-    React.useEffect(() => {
+    reactExports.useEffect(() => {
       if ((taxon == null ? void 0 : taxon.id) && datasetKey) {
         getData();
       }
@@ -91487,8 +91944,8 @@ html body {
   };
   const SecondarySources = ({ info, datasetKey }) => {
     var _a2, _b2;
-    const [datasets, setDatasets] = React.useState({});
-    React.useEffect(() => {
+    const [datasets, setDatasets] = reactExports.useState({});
+    reactExports.useEffect(() => {
       var _a3;
       if ((_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) getDatasets();
     }, [info]);
@@ -91547,10 +92004,10 @@ html body {
   };
   const Feedback = ({ datasetKey, taxonKey }) => {
     const [form] = Form.useForm();
-    const [loading, setLoading] = React.useState(false);
-    const [visible, setVisible] = React.useState(false);
-    const [error, setError] = React.useState(null);
-    const [issueUrl, setIssueUrl] = React.useState(null);
+    const [loading, setLoading] = reactExports.useState(false);
+    const [visible, setVisible] = reactExports.useState(false);
+    const [error, setError] = reactExports.useState(null);
+    const [issueUrl, setIssueUrl] = reactExports.useState(null);
     const onFinishFailed = ({ errorFields }) => {
       form.scrollToField(errorFields[0].name);
     };
@@ -95806,10 +96263,10 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     darkMode,
     ...routerProps
   }) => {
-    const [taxon, setTaxon] = React.useState(null);
-    const [dataset, setDataset] = React.useState(null);
-    const [rank, setRank] = React.useState([]);
-    React.useEffect(() => {
+    const [taxon, setTaxon] = reactExports.useState(null);
+    const [dataset, setDataset] = reactExports.useState(null);
+    const [rank, setRank] = reactExports.useState([]);
+    reactExports.useEffect(() => {
       if (taxonId && datasetKey) getTaxon();
       if (datasetKey) {
         getDataset2();
@@ -95845,10 +96302,10 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     style: style2,
     ...routerProps
   }) => {
-    const [taxon, setTaxon] = React.useState(null);
-    const [distributions, setDistributions] = React.useState(null);
-    const [rank, setRank] = React.useState([]);
-    React.useEffect(() => {
+    const [taxon, setTaxon] = reactExports.useState(null);
+    const [distributions, setDistributions] = reactExports.useState(null);
+    const [rank, setRank] = reactExports.useState([]);
+    reactExports.useEffect(() => {
       let cancelled = false;
       setTaxon(null);
       setDistributions(null);
@@ -95956,10 +96413,10 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
   function withRouting(Component, options) {
     const { kind, mode = "path", paths = {} } = options;
     const Wrapped = (props) => {
-      const [tick, setTick] = React.useState(0);
-      React.useEffect(() => subscribe(mode, () => setTick((t2) => t2 + 1)), []);
+      const [tick, setTick] = reactExports.useState(0);
+      reactExports.useEffect(() => subscribe(mode, () => setTick((t2) => t2 + 1)), []);
       const { path, search } = readLocationKind(mode);
-      const navProps = React.useMemo(() => buildNavProps(mode, paths), []);
+      const navProps = reactExports.useMemo(() => buildNavProps(mode, paths), []);
       let extra = {};
       if (kind === "taxon") {
         extra.taxonKey = lastSegmentAfter(path, paths.taxon);
@@ -95974,7 +96431,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       } else if (kind === "tree") {
         const parsed = queryString.parse(search);
         extra.expandedTaxonKey = parsed.taxonKey || void 0;
-        extra.onExpandedTaxonKeyChange = React.useCallback((id) => {
+        extra.onExpandedTaxonKeyChange = reactExports.useCallback((id) => {
           const cur = readLocationKind(mode);
           const next2 = queryString.parse(cur.search);
           if (id) next2.taxonKey = id;
@@ -95984,7 +96441,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       } else if (kind === "search") {
         const parsed = queryString.parse(search, { arrayFormat: "none" });
         extra.filters = parsed;
-        extra.onFiltersChange = React.useCallback((filters) => {
+        extra.onFiltersChange = reactExports.useCallback((filters) => {
           const cur = readLocationKind(mode);
           writeLocation(mode, cur.path || paths.search || "/", filters);
         }, []);
@@ -96014,6 +96471,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     Tree,
     withRouting
   }, Symbol.toStringTag, { value: "Module" }));
-  return components;
+  const umd = { ...components, React: React$1, ReactDOM: ReactDOMClient };
+  return umd;
 }));
 //# sourceMappingURL=col-browser.js.map

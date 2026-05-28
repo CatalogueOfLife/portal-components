@@ -38,20 +38,30 @@ All components are in use on the [main Catalogue of Life portal](https://www.cat
 
 > The documentation below describes the **2.x** version. For the 1.x version (React 16 / antd 4 era), see the [README on the `v1` branch](https://github.com/CatalogueOfLife/portal-components/blob/v1/README.md). If you're moving from 1.x to 2.x, jump to [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20) first.
 
-These components can be included in any html page.
-Include dependencies, React and React Dom:
+These components can be included in any html page. React 19 no longer ships a UMD build of its own, so the UMD bundle of `col-browser` includes React and `react-dom/client` and re-exposes them as `ColBrowser.React` and `ColBrowser.ReactDOM`. No separate React `<script>` tag is needed.
 
-```html
-<script src="https://unpkg.com/react@19/umd/react.production.min.js" ></script>
-<script src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js" ></script>
-```
-
-Include the Library — pin to a major so you don't get migrated unexpectedly:
+Include the library — pin to a major so you don't get migrated unexpectedly:
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@2/umd/col-browser.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@2/umd/main.css">
 ```
+
+Then mount any component using `ColBrowser.React` and `ColBrowser.ReactDOM`:
+
+```html
+<div id="tree"></div>
+<script>
+  ColBrowser.ReactDOM.createRoot(document.querySelector('#tree')).render(
+    ColBrowser.React.createElement(ColBrowser.Tree, {
+      datasetKey: '3LR',
+      hrefForTaxon: (id) => `/taxon/${id}`,
+    })
+  );
+</script>
+```
+
+(`ColBrowser.Taxon` and `ColBrowser.TaxonDistribution` additionally need MapLibre GL JS loaded separately — see those components below.)
 
 The full version list is on the [releases page](https://github.com/CatalogueOfLife/portal-components/releases).
 
@@ -93,8 +103,8 @@ The 2.x components are fully controlled: they take their identifier (e.g. `taxon
     },
   });
 
-  ReactDOM.createRoot(document.querySelector('#taxon'))
-          .render(React.createElement(URLTaxon, { datasetKey: '3LR' }));
+  ColBrowser.ReactDOM.createRoot(document.querySelector('#taxon'))
+          .render(ColBrowser.React.createElement(URLTaxon, { datasetKey: '3LR' }));
 </script>
 ```
 
@@ -151,8 +161,8 @@ import { Search } from 'col-browser';
 ```html
 <!-- UMD -->
 <script>
-  ReactDOM.createRoot(document.querySelector('#search')).render(
-    React.createElement(ColBrowser.Search, {
+  ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
+    ColBrowser.React.createElement(ColBrowser.Search, {
       datasetKey: '3LR',
       darkMode: true,
       theme: { token: { colorPrimary: '#d97706' } },
@@ -184,10 +194,8 @@ A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse). Compo
 <div id="tree"></div> <!-- Dom element for the tree to attach to -->
 <script>
 'use strict';
-const e = React.createElement;
-
-ReactDOM.createRoot(document.querySelector('#tree')).render(
-  e(ColBrowser.Tree, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#tree')).render(
+  ColBrowser.React.createElement(ColBrowser.Tree, {
     datasetKey: 9999,
     hrefForTaxon: (id) => `/taxon/${id}`,
     hrefForSource: (id) => `/source/${id}`,
@@ -211,8 +219,8 @@ const URLTree = ColBrowser.withRouting(ColBrowser.Tree, {
 });
 
 // /tree?taxonKey=…  is read into `expandedTaxonKey`; changes write back.
-ReactDOM.createRoot(document.querySelector('#tree')).render(
-  React.createElement(URLTree, { datasetKey: '3LR' })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#tree')).render(
+  ColBrowser.React.createElement(URLTree, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -232,8 +240,8 @@ ReactDOM.createRoot(document.querySelector('#tree')).render(
 <div id="search"></div>
 <script>
 'use strict';
-ReactDOM.createRoot(document.querySelector('#search')).render(
-  React.createElement(ColBrowser.Search, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
+  ColBrowser.React.createElement(ColBrowser.Search, {
     datasetKey: 9999,
     hrefForTaxon: (id) => `/taxon/${id}`,
   })
@@ -254,8 +262,8 @@ const URLSearch = ColBrowser.withRouting(ColBrowser.Search, {
 });
 
 // /search?q=…&rank=…  is read into `filters`; user changes write back.
-ReactDOM.createRoot(document.querySelector('#search')).render(
-  React.createElement(URLSearch, { datasetKey: '3LR' })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
+  ColBrowser.React.createElement(URLSearch, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -294,8 +302,8 @@ ES module consumers: `npm install maplibre-gl` and `import "maplibre-gl/dist/map
 // segment works:
 const taxonKey = location.pathname.split('/').pop();
 
-ReactDOM.createRoot(document.querySelector('#taxon')).render(
-  React.createElement(ColBrowser.Taxon, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#taxon')).render(
+  ColBrowser.React.createElement(ColBrowser.Taxon, {
     datasetKey: 9999,
     taxonKey: taxonKey,
     pageTitleTemplate: 'COL | __taxon__',
@@ -323,8 +331,8 @@ const URLTaxon = ColBrowser.withRouting(ColBrowser.Taxon, {
 });
 
 // On a route like /taxon/6W3C4, the adapter reads `taxonKey` itself.
-ReactDOM.createRoot(document.querySelector('#taxon')).render(
-  React.createElement(URLTaxon, { datasetKey: '3LR', showDistributionMap: true })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#taxon')).render(
+  ColBrowser.React.createElement(URLTaxon, { datasetKey: '3LR', showDistributionMap: true })
 );
 </script>
 ```
@@ -344,8 +352,8 @@ A Highcharts pie chart breaking the accepted children of a taxon down by rank, w
 <div id="breakdown"></div>
 <script>
 'use strict';
-ReactDOM.createRoot(document.querySelector('#breakdown')).render(
-  React.createElement(ColBrowser.TaxonBreakdown, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#breakdown')).render(
+  ColBrowser.React.createElement(ColBrowser.TaxonBreakdown, {
     datasetKey: '3LR',
     taxonId: 'ST',
     showLevelSwitch: true,
@@ -368,8 +376,8 @@ const URLBreakdown = ColBrowser.withRouting(ColBrowser.TaxonBreakdown, {
 });
 
 // On a route like /breakdown/ST, the adapter reads `taxonId` itself.
-ReactDOM.createRoot(document.querySelector('#breakdown')).render(
-  React.createElement(URLBreakdown, { datasetKey: '3LR', showLevelSwitch: true })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#breakdown')).render(
+  ColBrowser.React.createElement(URLBreakdown, { datasetKey: '3LR', showLevelSwitch: true })
 );
 </script>
 ```
@@ -395,8 +403,8 @@ The Taxon page's distribution block — a MapLibre GL vector map of the taxon's 
 <div id="distribution"></div>
 <script>
 'use strict';
-ReactDOM.createRoot(document.querySelector('#distribution')).render(
-  React.createElement(ColBrowser.TaxonDistribution, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#distribution')).render(
+  ColBrowser.React.createElement(ColBrowser.TaxonDistribution, {
     datasetKey: '3LR',
     taxonId: '6W3C4',
     gbifChecklistKey: '7ddf754f-d193-4cc9-b351-99906754a03b',
@@ -419,8 +427,8 @@ const URLDistribution = ColBrowser.withRouting(ColBrowser.TaxonDistribution, {
 });
 
 // On a route like /distribution/6W3C4, the adapter reads `taxonId` itself.
-ReactDOM.createRoot(document.querySelector('#distribution')).render(
-  React.createElement(URLDistribution, { datasetKey: '3LR' })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#distribution')).render(
+  ColBrowser.React.createElement(URLDistribution, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -438,8 +446,8 @@ Per-row links into the source-dataset and search pages are built from the four n
 <div id="contributors"></div>
 <script>
 'use strict';
-ReactDOM.createRoot(document.querySelector('#contributors')).render(
-  React.createElement(ColBrowser.SourceDatasetList, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#contributors')).render(
+  ColBrowser.React.createElement(ColBrowser.SourceDatasetList, {
     datasetKey: 9999,
     hrefForSource: (id) => `/source/${id}`,
     hrefForSearch: (filters) => `/search?${new URLSearchParams(filters)}`,
@@ -460,8 +468,8 @@ const URLSourceList = ColBrowser.withRouting(ColBrowser.SourceDatasetList, {
   paths: { search: '/search', source: '/source/' },
 });
 
-ReactDOM.createRoot(document.querySelector('#contributors')).render(
-  React.createElement(URLSourceList, { datasetKey: '3LR' })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#contributors')).render(
+  ColBrowser.React.createElement(URLSourceList, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -479,8 +487,8 @@ ReactDOM.createRoot(document.querySelector('#contributors')).render(
 <div id="dataset"></div>
 <script>
 'use strict';
-ReactDOM.createRoot(document.querySelector('#dataset')).render(
-  React.createElement(ColBrowser.SourceDataset, {
+ColBrowser.ReactDOM.createRoot(document.querySelector('#dataset')).render(
+  ColBrowser.React.createElement(ColBrowser.SourceDataset, {
     datasetKey: 9999,
     sourceDatasetKey: 2073,
     pageTitleTemplate: 'COL | __dataset__',
@@ -504,8 +512,8 @@ const URLSourceDataset = ColBrowser.withRouting(ColBrowser.SourceDataset, {
 });
 
 // On a route like /source/2073, the adapter reads `sourceDatasetKey` itself.
-ReactDOM.createRoot(document.querySelector('#dataset')).render(
-  React.createElement(URLSourceDataset, { datasetKey: '3LR' })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#dataset')).render(
+  ColBrowser.React.createElement(URLSourceDataset, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -524,12 +532,12 @@ A small icon that links to the BibTex citation for a dataset on [ChecklistBank](
 <script>
 'use strict';
 // Cite a standalone dataset
-ReactDOM.createRoot(document.querySelector('#bibtex')).render(
-  React.createElement(ColBrowser.BibTex, { datasetKey: 9999 })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#bibtex')).render(
+  ColBrowser.React.createElement(ColBrowser.BibTex, { datasetKey: 9999 })
 );
 
 // Or cite a source within a catalogue:
-// React.createElement(ColBrowser.BibTex, { datasetKey: 9837, sourceDatasetKey: 1010 })
+// ColBrowser.React.createElement(ColBrowser.BibTex, { datasetKey: 9837, sourceDatasetKey: 1010 })
 </script>
 ```
 
@@ -546,8 +554,8 @@ const URLBibTex = ColBrowser.withRouting(ColBrowser.BibTex, {
 });
 
 // On a route like /bibtex/1010, the adapter reads `sourceDatasetKey` itself.
-ReactDOM.createRoot(document.querySelector('#bibtex')).render(
-  React.createElement(URLBibTex, { datasetKey: '3LR' })
+ColBrowser.ReactDOM.createRoot(document.querySelector('#bibtex')).render(
+  ColBrowser.React.createElement(URLBibTex, { datasetKey: '3LR' })
 );
 </script>
 ```
@@ -557,35 +565,38 @@ ReactDOM.createRoot(document.querySelector('#bibtex')).render(
 
 v2.0 brings the React / Ant Design / React Router stack up to current versions, and turns every top-level component into a fully controlled component — the library no longer reads or writes the URL. Embedders need to update their host page in a few places (peer dependencies, root API, and the routing wiring), and then either drop in the built-in URL adapter or pass identifiers and navigation callbacks as props.
 
-### 1. Load React 19 (was React 16)
+### 1. Drop the React / ReactDOM `<script>` tags
+
+React 19 dropped UMD builds entirely, so the v2 col-browser UMD bundle now bundles React 19 and `react-dom/client` and re-exposes them as `ColBrowser.React` and `ColBrowser.ReactDOM`. Remove the separate React `<script>` tags from your page:
 
 ```html
-<!-- old (v1.x): React 16 -->
+<!-- old (v1.x) -->
 <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@1/umd/col-browser.min.js"></script>
 
-<!-- new (v2.x): React 19 -->
-<script src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
+<!-- new (v2.x): just col-browser -->
+<script src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@2/umd/col-browser.min.js"></script>
 ```
 
-### 2. Mount with `createRoot` (was `ReactDOM.render`)
+### 2. Mount via `ColBrowser.ReactDOM.createRoot` (was bare `ReactDOM.render`)
 
-React 19 removed the legacy `ReactDOM.render` API.
+Use the React + ReactDOM exposed on the `ColBrowser` global:
 
 ```js
-// old (v1.x)
-ReactDOM.render(e(Tree), document.querySelector('#tree'));
+// old (v1.x): bare React / ReactDOM globals + ReactDOM.render
+ReactDOM.render(React.createElement(Tree), document.querySelector('#tree'));
 
-// new (v2.x)
-ReactDOM.createRoot(document.querySelector('#tree')).render(e(Tree));
+// new (v2.x): ColBrowser-scoped React / ReactDOM + createRoot
+ColBrowser.ReactDOM.createRoot(document.querySelector('#tree'))
+  .render(ColBrowser.React.createElement(ColBrowser.Tree));
 ```
 
 ### 3. Keep loading the JS bundle alongside the CSS
 
 Ant Design 5+ injects component styles via cssinjs at runtime when components mount. `umd/main.css` is now ~87 KB (was ~557 KB) — it only contains the library's custom overrides. The antd component styling now travels inside `col-browser.min.js`, so do **not** load just the CSS without the JS.
 
-Net wire size for a typical embedder (`col-browser.min.js` + `main.css`) is roughly unchanged: ~532 KB → ~577 KB gzipped (+8 %).
+Net wire size for a typical embedder (`col-browser.min.js` + `main.css`) — including the bundled React 19 + `react-dom/client`: ~836 KB gzipped (v1 was ~532 KB gzipped split across three CDN files for React + ReactDOM + col-browser). The single-file load is friendlier to static-portal embedders even if the byte count is higher.
 
 ### 4. Components are now fully controlled
 
