@@ -34,6 +34,11 @@ const hasDatasetSectors =
 (sourceDatasetKeys || []).filter((d) => sector?.subjectDatasetKey !== d)
   .length > 0;
     const estimate = taxon.estimate && taxon.estimates ? taxon.estimates.find(e => e.estimate === taxon.estimate) : null;
+    // Virtual "Not assigned" placeholders inserted by the API
+    // (insertPlaceholder=true) aren't real taxa, so they can't be linked
+    // to a taxon page.
+    const isPlaceholder =
+      typeof taxon.id === "string" && taxon.id.indexOf("incertae-sedis") > -1;
 
     return (
       <ColTreeContext.Consumer>
@@ -41,9 +46,13 @@ const hasDatasetSectors =
                         <div id={taxon.id}>
                         <span>
                           <span className="tree-node-rank">{taxon.rank}: </span>
-                          <LinkTo to="taxon" args={taxon.id}>
+                          {isPlaceholder ? (
                             <span dangerouslySetInnerHTML={{ __html: taxon.labelHtml }} />
-                          </LinkTo>
+                          ) : (
+                            <LinkTo to="taxon" args={taxon.id}>
+                              <span dangerouslySetInnerHTML={{ __html: taxon.labelHtml }} />
+                            </LinkTo>
+                          )}
                           {taxon?.merged && (
                           <MergedDataBadge style={{ marginLeft: "4px" }} datasetKey={taxon?.datasetKey} verbatimSourceKey={taxon?.verbatimSourceKey}/>
                         )}
