@@ -117,7 +117,6 @@ class TaxonSources extends React.Component {
     return (
       <div style={{ display: "inline" }} id={`taxon_sources_${taxon.id}`}>
         <Popover
-          arrow={false}
           getPopupContainer={() =>
             document.getElementById(`taxon_sources_${taxon.id}`)
           }
