@@ -1020,7 +1020,7 @@ ${heightStyle}
   let warned = {};
   const preMessage = (fn) => {
   };
-  function warning$3(valid, message2) {
+  function warning$2(valid, message2) {
   }
   function note(valid, message2) {
   }
@@ -1033,20 +1033,20 @@ ${heightStyle}
       warned[message2] = true;
     }
   }
-  function warningOnce$1(valid, message2) {
-    call(warning$3, valid, message2);
+  function warningOnce(valid, message2) {
+    call(warning$2, valid, message2);
   }
   function noteOnce(valid, message2) {
     call(note, valid, message2);
   }
-  warningOnce$1.preMessage = preMessage;
-  warningOnce$1.resetWarned = resetWarned;
-  warningOnce$1.noteOnce = noteOnce;
+  warningOnce.preMessage = preMessage;
+  warningOnce.resetWarned = resetWarned;
+  warningOnce.noteOnce = noteOnce;
   function isEqual(obj1, obj2, shallow = false) {
     const refSet = /* @__PURE__ */ new Set();
     function deepEqual(a, b2, level = 1) {
       const circular = refSet.has(a);
-      warningOnce$1(!circular, "Warning: There may be circular references");
+      warningOnce(!circular, "Warning: There may be circular references");
       if (circular) {
         return false;
       }
@@ -13332,13 +13332,13 @@ ${heightStyle}
     });
   }
   var reactDomExports = requireReactDom();
-  function noop$4() {
+  function noop$5() {
   }
   const WarningContext = /* @__PURE__ */ React__namespace.createContext({});
   const devUseWarning = () => {
     const noopWarning = () => {
     };
-    noopWarning.deprecated = noop$4;
+    noopWarning.deprecated = noop$5;
     return noopWarning;
   };
   const CollectionContext = /* @__PURE__ */ React__namespace.createContext(null);
@@ -13814,7 +13814,7 @@ ${heightStyle}
       this.derivatives = Array.isArray(derivatives) ? derivatives : [derivatives];
       this.id = uuid$2;
       if (derivatives.length === 0) {
-        warning$3(derivatives.length > 0);
+        warning$2(derivatives.length > 0);
       }
       uuid$2 += 1;
     }
@@ -14174,8 +14174,8 @@ ${heightStyle}
   function replace(value, pattern2, replacement) {
     return value.replace(pattern2, replacement);
   }
-  function indexof(value, search2) {
-    return value.indexOf(search2);
+  function indexof(value, search) {
+    return value.indexOf(search);
   }
   function charat(value, index2) {
     return value.charCodeAt(index2) | 0;
@@ -15453,12 +15453,12 @@ ${heightStyle}
     return ret;
   }
   var statistic = {};
-  function noop$3() {
+  function noop$4() {
   }
   var statisticToken = function statisticToken2(token2) {
     var tokenKeys2;
     var proxy = token2;
-    var flush = noop$3;
+    var flush = noop$4;
     if (enableStatistic && typeof Proxy !== "undefined") {
       tokenKeys2 = /* @__PURE__ */ new Set();
       proxy = new Proxy(token2, {
@@ -16918,12 +16918,12 @@ ${heightStyle}
       // 4
     };
   }
-  const getAlphaColor$1 = (baseColor, alpha2) => new FastColor(baseColor).setA(alpha2).toRgbString();
-  const getSolidColor = (baseColor, brightness) => {
+  const getAlphaColor$2 = (baseColor, alpha2) => new FastColor(baseColor).setA(alpha2).toRgbString();
+  const getSolidColor$1 = (baseColor, brightness) => {
     const instance = new FastColor(baseColor);
     return instance.darken(brightness).toHexString();
   };
-  const generateColorPalettes = (baseColor) => {
+  const generateColorPalettes$1 = (baseColor) => {
     const colors = generate$1(baseColor);
     return {
       1: colors[0],
@@ -16938,7 +16938,7 @@ ${heightStyle}
       10: colors[6]
     };
   };
-  const generateNeutralColorPalettes = (bgBaseColor, textBaseColor, shadowColor) => {
+  const generateNeutralColorPalettes$1 = (bgBaseColor, textBaseColor, shadowColor) => {
     const colorBgBase = bgBaseColor || "#fff";
     const colorTextBase = textBaseColor || "#000";
     const colorShadow = shadowColor || "#000";
@@ -16946,28 +16946,28 @@ ${heightStyle}
       colorBgBase,
       colorTextBase,
       colorShadow,
-      colorText: getAlphaColor$1(colorTextBase, 0.88),
-      colorTextSecondary: getAlphaColor$1(colorTextBase, 0.65),
-      colorTextTertiary: getAlphaColor$1(colorTextBase, 0.45),
-      colorTextQuaternary: getAlphaColor$1(colorTextBase, 0.25),
-      colorFill: getAlphaColor$1(colorTextBase, 0.15),
-      colorFillSecondary: getAlphaColor$1(colorTextBase, 0.06),
-      colorFillTertiary: getAlphaColor$1(colorTextBase, 0.04),
-      colorFillQuaternary: getAlphaColor$1(colorTextBase, 0.02),
-      colorBgSolid: getAlphaColor$1(colorTextBase, 1),
-      colorBgSolidHover: getAlphaColor$1(colorTextBase, 0.75),
-      colorBgSolidActive: getAlphaColor$1(colorTextBase, 0.95),
-      colorBgLayout: getSolidColor(colorBgBase, 4),
-      colorBgContainer: getSolidColor(colorBgBase, 0),
-      colorBgElevated: getSolidColor(colorBgBase, 0),
-      colorBgSpotlight: getAlphaColor$1(colorTextBase, 0.85),
+      colorText: getAlphaColor$2(colorTextBase, 0.88),
+      colorTextSecondary: getAlphaColor$2(colorTextBase, 0.65),
+      colorTextTertiary: getAlphaColor$2(colorTextBase, 0.45),
+      colorTextQuaternary: getAlphaColor$2(colorTextBase, 0.25),
+      colorFill: getAlphaColor$2(colorTextBase, 0.15),
+      colorFillSecondary: getAlphaColor$2(colorTextBase, 0.06),
+      colorFillTertiary: getAlphaColor$2(colorTextBase, 0.04),
+      colorFillQuaternary: getAlphaColor$2(colorTextBase, 0.02),
+      colorBgSolid: getAlphaColor$2(colorTextBase, 1),
+      colorBgSolidHover: getAlphaColor$2(colorTextBase, 0.75),
+      colorBgSolidActive: getAlphaColor$2(colorTextBase, 0.95),
+      colorBgLayout: getSolidColor$1(colorBgBase, 4),
+      colorBgContainer: getSolidColor$1(colorBgBase, 0),
+      colorBgElevated: getSolidColor$1(colorBgBase, 0),
+      colorBgSpotlight: getAlphaColor$2(colorTextBase, 0.85),
       colorBgBlur: "transparent",
-      colorBorder: getSolidColor(colorBgBase, 15),
-      colorBorderDisabled: getSolidColor(colorBgBase, 15),
-      colorBorderSecondary: getSolidColor(colorBgBase, 6)
+      colorBorder: getSolidColor$1(colorBgBase, 15),
+      colorBorderDisabled: getSolidColor$1(colorBgBase, 15),
+      colorBorderSecondary: getSolidColor$1(colorBgBase, 6)
     };
   };
-  function derivative(token2) {
+  function derivative$1(token2) {
     presetPrimaryColors.pink = presetPrimaryColors.magenta;
     presetPalettes.pink = presetPalettes.magenta;
     const colorPalettes = Object.keys(defaultPresetColors).map((colorKey) => {
@@ -16991,8 +16991,8 @@ ${heightStyle}
       ...colorPalettes,
       // Colors
       ...genColorMapToken(token2, {
-        generateColorPalettes,
-        generateNeutralColorPalettes
+        generateColorPalettes: generateColorPalettes$1,
+        generateNeutralColorPalettes: generateNeutralColorPalettes$1
       }),
       // Font
       ...genFontMapToken(token2.fontSize),
@@ -17004,7 +17004,7 @@ ${heightStyle}
       ...genCommonMapToken(token2)
     };
   }
-  const defaultTheme = createTheme(derivative);
+  const defaultTheme = createTheme(derivative$1);
   const defaultConfig = {
     token: seedToken,
     override: {
@@ -17016,7 +17016,7 @@ ${heightStyle}
   function isStableColor(color) {
     return color >= 0 && color <= 255;
   }
-  function getAlphaColor(frontColor, backgroundColor) {
+  function getAlphaColor$1(frontColor, backgroundColor) {
     const {
       r: fR,
       g: fG,
@@ -17091,7 +17091,7 @@ ${heightStyle}
       colorBgContainerDisabled: mergedToken.colorFillTertiary,
       // ============== Split ============== //
       colorBorderBg: mergedToken.colorBgContainer,
-      colorSplit: getAlphaColor(mergedToken.colorBorderSecondary, mergedToken.colorBgContainer),
+      colorSplit: getAlphaColor$1(mergedToken.colorBorderSecondary, mergedToken.colorBgContainer),
       // ============== Text ============== //
       colorTextPlaceholder: mergedToken.colorTextQuaternary,
       colorTextDisabled: mergedToken.colorTextQuaternary,
@@ -17104,8 +17104,8 @@ ${heightStyle}
       colorBgTextActive: mergedToken.colorFill,
       colorIcon: mergedToken.colorTextTertiary,
       colorIconHover: mergedToken.colorText,
-      colorErrorOutline: getAlphaColor(mergedToken.colorErrorBg, mergedToken.colorBgContainer),
-      colorWarningOutline: getAlphaColor(mergedToken.colorWarningBg, mergedToken.colorBgContainer),
+      colorErrorOutline: getAlphaColor$1(mergedToken.colorErrorBg, mergedToken.colorBgContainer),
+      colorWarningOutline: getAlphaColor$1(mergedToken.colorWarningBg, mergedToken.colorBgContainer),
       colorErrorAffix: mergedToken.colorError,
       colorWarningAffix: mergedToken.colorWarning,
       // Font
@@ -17122,7 +17122,7 @@ ${heightStyle}
       controlItemBgActiveHover: mergedToken.colorPrimaryBgHover,
       controlItemBgActiveDisabled: mergedToken.colorFill,
       controlTmpOutline: mergedToken.colorFillQuaternary,
-      controlOutline: getAlphaColor(mergedToken.colorPrimaryBg, mergedToken.colorBgContainer),
+      controlOutline: getAlphaColor$1(mergedToken.colorPrimaryBg, mergedToken.colorBgContainer),
       lineType: mergedToken.lineType,
       borderRadius: mergedToken.borderRadius,
       borderRadiusXS: mergedToken.borderRadiusXS,
@@ -17565,8 +17565,8 @@ ${heightStyle}
   function camelCase$1(input) {
     return input.replace(/-(.)/g, (match2, g2) => g2.toUpperCase());
   }
-  function warning$2(valid, message2) {
-    warningOnce$1(valid, `[@ant-design/icons] ${message2}`);
+  function warning$1(valid, message2) {
+    warningOnce(valid, `[@ant-design/icons] ${message2}`);
   }
   function isIconDefinition(target) {
     return typeof target === "object" && typeof target.name === "string" && typeof target.theme === "string" && (typeof target.icon === "object" || typeof target.icon === "function");
@@ -17725,7 +17725,7 @@ ${mergedStyleStr}
       };
     }
     useInsertStyles(svgRef);
-    warning$2(isIconDefinition(icon), `icon should be icon definiton, but got ${icon}`);
+    warning$1(isIconDefinition(icon), `icon should be icon definiton, but got ${icon}`);
     if (!isIconDefinition(icon)) {
       return null;
     }
@@ -17847,7 +17847,7 @@ ${mergedStyleStr}
     ref,
     icon: CheckCircleFilled$1
   }));
-  const RefIcon$y = /* @__PURE__ */ React__namespace.forwardRef(CheckCircleFilled);
+  const RefIcon$x = /* @__PURE__ */ React__namespace.forwardRef(CheckCircleFilled);
   var CloseCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm127.98 274.82h-.04l-.08.06L512 466.75 384.14 338.88c-.04-.05-.06-.06-.08-.06a.12.12 0 00-.07 0c-.03 0-.05.01-.09.05l-45.02 45.02a.2.2 0 00-.05.09.12.12 0 000 .07v.02a.27.27 0 00.06.06L466.75 512 338.88 639.86c-.05.04-.06.06-.06.08a.12.12 0 000 .07c0 .03.01.05.05.09l45.02 45.02a.2.2 0 00.09.05.12.12 0 00.07 0c.02 0 .04-.01.08-.05L512 557.25l127.86 127.87c.04.04.06.05.08.05a.12.12 0 00.07 0c.03 0 .05-.01.09-.05l45.02-45.02a.2.2 0 00.05-.09.12.12 0 000-.07v-.02a.27.27 0 00-.05-.06L557.25 512l127.87-127.86c.04-.04.05-.06.05-.08a.12.12 0 000-.07c0-.03-.01-.05-.05-.09l-45.02-45.02a.2.2 0 00-.09-.05.12.12 0 00-.07 0z" } }] }, "name": "close-circle", "theme": "filled" };
   function _extends$1m() {
     _extends$1m = Object.assign ? Object.assign.bind() : function(target) {
@@ -17867,7 +17867,7 @@ ${mergedStyleStr}
     ref,
     icon: CloseCircleFilled$1
   }));
-  const RefIcon$x = /* @__PURE__ */ React__namespace.forwardRef(CloseCircleFilled);
+  const RefIcon$w = /* @__PURE__ */ React__namespace.forwardRef(CloseCircleFilled);
   var CloseOutlined$1 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z" } }] }, "name": "close", "theme": "outlined" };
   function _extends$1l() {
     _extends$1l = Object.assign ? Object.assign.bind() : function(target) {
@@ -17887,7 +17887,7 @@ ${mergedStyleStr}
     ref,
     icon: CloseOutlined$1
   }));
-  const RefIcon$w = /* @__PURE__ */ React__namespace.forwardRef(CloseOutlined);
+  const RefIcon$v = /* @__PURE__ */ React__namespace.forwardRef(CloseOutlined);
   var ExclamationCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "exclamation-circle", "theme": "filled" };
   function _extends$1k() {
     _extends$1k = Object.assign ? Object.assign.bind() : function(target) {
@@ -17907,7 +17907,7 @@ ${mergedStyleStr}
     ref,
     icon: ExclamationCircleFilled$1
   }));
-  const RefIcon$v = /* @__PURE__ */ React__namespace.forwardRef(ExclamationCircleFilled);
+  const RefIcon$u = /* @__PURE__ */ React__namespace.forwardRef(ExclamationCircleFilled);
   var InfoCircleFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z" } }] }, "name": "info-circle", "theme": "filled" };
   function _extends$1j() {
     _extends$1j = Object.assign ? Object.assign.bind() : function(target) {
@@ -17927,7 +17927,7 @@ ${mergedStyleStr}
     ref,
     icon: InfoCircleFilled$1
   }));
-  const RefIcon$u = /* @__PURE__ */ React__namespace.forwardRef(InfoCircleFilled);
+  const RefIcon$t = /* @__PURE__ */ React__namespace.forwardRef(InfoCircleFilled);
   const Context$1 = /* @__PURE__ */ React__namespace.createContext({});
   const MotionProvider = (props) => {
     const {
@@ -18040,7 +18040,7 @@ ${mergedStyleStr}
     }, []);
     return [patchMotionEvents, removeMotionEvents];
   });
-  const useIsomorphicLayoutEffect$1 = canUseDom() ? React.useLayoutEffect : React.useEffect;
+  const useIsomorphicLayoutEffect = canUseDom() ? React.useLayoutEffect : React.useEffect;
   const useNextFrame = (() => {
     const nextFrameRef = React__namespace.useRef(null);
     function cancelNextFrame() {
@@ -18078,7 +18078,7 @@ ${mergedStyleStr}
       setStep(STEP_PREPARE, true);
     }
     const STEP_QUEUE = prepareOnly ? SIMPLE_STEP_QUEUE : FULL_STEP_QUEUE;
-    useIsomorphicLayoutEffect$1(() => {
+    useIsomorphicLayoutEffect(() => {
       if (step !== STEP_NONE && step !== STEP_ACTIVATED) {
         const index2 = STEP_QUEUE.indexOf(step);
         const nextStep = STEP_QUEUE[index2 + 1];
@@ -18218,7 +18218,7 @@ ${mergedStyleStr}
     const active = isActive(step);
     activeRef.current = active;
     const visibleRef = React.useRef(null);
-    useIsomorphicLayoutEffect$1(() => {
+    useIsomorphicLayoutEffect(() => {
       if (mountedRef.current && visibleRef.current === visible) {
         return;
       }
@@ -18892,7 +18892,7 @@ ${mergedStyleStr}
       }
     };
   };
-  const prepareComponentToken$i = (token2) => {
+  const prepareComponentToken$k = (token2) => {
     const paddingHorizontal = 12;
     return {
       withDescriptionIconSize: token2.fontSizeHeading3,
@@ -18900,7 +18900,7 @@ ${mergedStyleStr}
       withDescriptionPadding: `${token2.paddingMD}px ${token2.paddingContentHorizontalLG}px`
     };
   };
-  const useStyle$q = genStyleHooks("Alert", (token2) => [genBaseStyle$6(token2), genTypeStyle(token2), genActionStyle(token2)], prepareComponentToken$i);
+  const useStyle$s = genStyleHooks("Alert", (token2) => [genBaseStyle$6(token2), genTypeStyle(token2), genActionStyle(token2)], prepareComponentToken$k);
   const IconNode = (props) => {
     const {
       icon,
@@ -18913,10 +18913,10 @@ ${mergedStyleStr}
       errorIcon
     } = props;
     const iconMapFilled = {
-      success: successIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$y, null),
-      info: infoIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null),
-      error: errorIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null),
-      warning: warningIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null)
+      success: successIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null),
+      info: infoIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null),
+      error: errorIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null),
+      warning: warningIcon ?? /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null)
     };
     return /* @__PURE__ */ React__namespace.createElement("span", {
       className,
@@ -18933,7 +18933,7 @@ ${mergedStyleStr}
       className,
       style: style2
     } = props;
-    const mergedCloseIcon = closeIcon === true || closeIcon === void 0 ? /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null) : closeIcon;
+    const mergedCloseIcon = closeIcon === true || closeIcon === void 0 ? /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null) : closeIcon;
     return isClosable ? /* @__PURE__ */ React__namespace.createElement("button", {
       type: "button",
       onClick: handleClose,
@@ -18989,7 +18989,7 @@ ${mergedStyleStr}
       errorIcon
     } = useComponentConfig("alert");
     const prefixCls = getPrefixCls("alert", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$q(prefixCls);
+    const [hashId, cssVarCls] = useStyle$s(prefixCls);
     const {
       onClose: closableOnClose,
       afterClose: closableAfterClose
@@ -22932,7 +22932,7 @@ html body {
     ref,
     icon: LoadingOutlined$1
   }));
-  const RefIcon$t = /* @__PURE__ */ React__namespace.forwardRef(LoadingOutlined);
+  const RefIcon$s = /* @__PURE__ */ React__namespace.forwardRef(LoadingOutlined);
   function fallbackProp(...args) {
     return args.find((arg) => arg !== void 0);
   }
@@ -22951,7 +22951,7 @@ html body {
         return false;
       }
       return {
-        clearIcon: fallbackProp(isPlainObject$1(allowClear) ? allowClear == null ? void 0 : allowClear.clearIcon : clearIcon, isPlainObject$1(contextAllowClear) ? contextAllowClear == null ? void 0 : contextAllowClear.clearIcon : contextClearIcon, /* @__PURE__ */ React.createElement(RefIcon$x, null)),
+        clearIcon: fallbackProp(isPlainObject$1(allowClear) ? allowClear == null ? void 0 : allowClear.clearIcon : clearIcon, isPlainObject$1(contextAllowClear) ? contextAllowClear == null ? void 0 : contextAllowClear.clearIcon : contextClearIcon, /* @__PURE__ */ React.createElement(RefIcon$w, null)),
         disabled: (isPlainObject$1(allowClear) ? allowClear == null ? void 0 : allowClear.disabled : void 0) ?? (isPlainObject$1(contextAllowClear) ? contextAllowClear == null ? void 0 : contextAllowClear.disabled : void 0)
       };
     }, [allowClear, clearIcon, contextAllowClear, contextClearIcon, defaultAllowClear]);
@@ -23032,7 +23032,7 @@ html body {
     const propConfig = computeClosableConfig(propCloseCollection == null ? void 0 : propCloseCollection.closable, propCloseCollection == null ? void 0 : propCloseCollection.closeIcon);
     const contextConfig = computeClosableConfig(contextCloseCollection == null ? void 0 : contextCloseCollection.closable, contextCloseCollection == null ? void 0 : contextCloseCollection.closeIcon);
     const mergedFallback = {
-      closeIcon: /* @__PURE__ */ React.createElement(RefIcon$w, null),
+      closeIcon: /* @__PURE__ */ React.createElement(RefIcon$v, null),
       ...fallbackCloseCollection
     };
     const mergedConfig = mergeClosableConfigs(propConfig, contextConfig, mergedFallback);
@@ -23047,7 +23047,7 @@ html body {
     const [contextLocale] = useLocale("global", localeValues.global);
     return React.useMemo(() => {
       return computeClosable(propCloseCollection, contextCloseCollection, {
-        closeIcon: /* @__PURE__ */ React.createElement(RefIcon$w, null),
+        closeIcon: /* @__PURE__ */ React.createElement(RefIcon$v, null),
         ...fallbackCloseCollection
       }, contextLocale.close);
     }, [propCloseCollection, contextCloseCollection, fallbackCloseCollection, contextLocale.close]);
@@ -23628,7 +23628,7 @@ html body {
     };
   };
   const DEFAULT_COLLAPSED_STACK_VISIBLE_COUNT = 3;
-  const prepareComponentToken$h = (token2) => ({
+  const prepareComponentToken$j = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + CONTAINER_MAX_OFFSET + 50,
     width: 384,
     progressBg: `linear-gradient(90deg, ${token2.colorPrimaryBorderHover}, ${token2.colorPrimary})`,
@@ -23762,7 +23762,7 @@ html body {
       }
     };
   };
-  genSubStyleComponent(["Notification", "PurePanel"], (token2) => genPurePanelStyle(prepareNotificationToken(token2)), prepareComponentToken$h);
+  genSubStyleComponent(["Notification", "PurePanel"], (token2) => genPurePanelStyle(prepareNotificationToken(token2)), prepareComponentToken$j);
   const sharedGenerateStyle = (token2, config2) => {
     const itemStyle = config2.itemStyle ?? genNotificationStyle;
     return [genNotificationListStyle(token2, config2), itemStyle(token2), genNotificationPlacementStyle(token2)];
@@ -23772,7 +23772,7 @@ html body {
     return sharedGenerateStyle(notificationToken, {
       listWidthKey: "width"
     });
-  }, prepareComponentToken$h);
+  }, prepareComponentToken$j);
   const prepareMessageToken = (token2) => {
     const messagePaddingVertical = token2.calc(token2.controlHeightLG).sub(token2.calc(token2.fontSize).mul(token2.lineHeight)).div(2).equal();
     const messagePaddingHorizontal = token2.paddingSM;
@@ -23783,7 +23783,7 @@ html body {
       notificationPaddingHorizontal: messagePaddingHorizontal
     });
   };
-  const prepareComponentToken$g = (token2) => ({
+  const prepareComponentToken$i = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + CONTAINER_MAX_OFFSET + 10,
     contentBg: token2.colorBgElevated,
     contentPadding: `${(token2.controlHeightLG - token2.fontSize * token2.lineHeight) / 2}px ${token2.paddingSM}px`
@@ -23884,23 +23884,23 @@ html body {
       }
     };
   };
-  const PurePanelStyle = genSubStyleComponent(["Message", "PurePanel"], (token2) => generateMessagePurePanelStyle(prepareMessageToken(token2)), prepareComponentToken$g);
+  const PurePanelStyle = genSubStyleComponent(["Message", "PurePanel"], (token2) => generateMessagePurePanelStyle(prepareMessageToken(token2)), prepareComponentToken$i);
   const generateMessageStyle = (token2) => ({
     [token2.componentCls]: genMessageItemStyle(token2)
   });
-  const useStyle$p = genStyleHooks("Message", (token2) => {
+  const useStyle$r = genStyleHooks("Message", (token2) => {
     const messageToken = prepareMessageToken(token2);
     return [sharedGenerateStyle(messageToken, {
       stackVisibleCount: 1,
       itemStyle: generateMessageStyle
     }), generateMessageStackStyle(messageToken)];
-  }, prepareComponentToken$g);
+  }, prepareComponentToken$i);
   const TypeIcon = {
-    info: /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null),
-    success: /* @__PURE__ */ React__namespace.createElement(RefIcon$y, null),
-    error: /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null),
-    warning: /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null),
-    loading: /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null)
+    info: /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null),
+    success: /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null),
+    error: /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null),
+    warning: /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null),
+    loading: /* @__PURE__ */ React__namespace.createElement(RefIcon$s, null)
   };
   const getMessageIcon = (type2, icon) => icon || type2 && TypeIcon[type2] || null;
   const PurePanel$7 = (props) => {
@@ -23925,7 +23925,7 @@ html body {
     const prefixCls = staticPrefixCls || getPrefixCls("message");
     const noticePrefixCls = `${prefixCls}-notice`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$p(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, messageClassNames], [contextStyles, styles2], {
       props
     });
@@ -23988,7 +23988,7 @@ html body {
     prefixCls
   }) => {
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$p(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
     return /* @__PURE__ */ React__namespace.createElement(NotificationProvider, {
       classNames: {
         list: clsx(hashId, cssVarCls, rootCls)
@@ -24267,7 +24267,7 @@ html body {
       }
     };
   };
-  const useStyle$o = genComponentStyleHook("Wave", genWaveStyle);
+  const useStyle$q = genComponentStyleHook("Wave", genWaveStyle);
   const TARGET_CLS = `${defaultPrefixCls}-wave-target`;
   const isValidWaveColor = (color) => {
     if (!color) {
@@ -24461,7 +24461,7 @@ html body {
     } = React.useContext(ConfigContext);
     const containerRef = React.useRef(null);
     const prefixCls = getPrefixCls("wave");
-    const hashId = useStyle$o(prefixCls);
+    const hashId = useStyle$q(prefixCls);
     const showWave = useWave(containerRef, clsx(prefixCls, hashId), component, colorSource);
     React.useEffect(() => {
       const node2 = containerRef.current;
@@ -24525,7 +24525,7 @@ html body {
       }
     };
   };
-  const useStyle$n = genStyleHooks(["Space", "Compact"], genSpaceCompactStyle, () => ({}), {
+  const useStyle$p = genStyleHooks(["Space", "Compact"], genSpaceCompactStyle, () => ({}), {
     // Space component don't apply extra font style
     // https://github.com/ant-design/ant-design/issues/40315
     resetStyle: false
@@ -24592,7 +24592,7 @@ html body {
     const [mergedOrientation, mergedVertical] = useOrientation(orientation, vertical, direction);
     const mergedSize = useSize((ctx) => size ?? ctx);
     const prefixCls = getPrefixCls("space-compact", customizePrefixCls);
-    const [hashId] = useStyle$n(prefixCls);
+    const [hashId] = useStyle$p(prefixCls);
     const clx = clsx(prefixCls, hashId, {
       [`${prefixCls}-rtl`]: directionConfig === "rtl",
       [`${prefixCls}-block`]: block,
@@ -24753,7 +24753,7 @@ html body {
       className: mergedIconCls,
       style: style2,
       ref
-    }, /* @__PURE__ */ React.createElement(RefIcon$t, {
+    }, /* @__PURE__ */ React.createElement(RefIcon$s, {
       className: iconClassName
     }));
   });
@@ -25616,7 +25616,7 @@ html body {
     ref,
     icon: RightOutlined$1
   }));
-  const RefIcon$s = /* @__PURE__ */ React__namespace.forwardRef(RightOutlined);
+  const RefIcon$r = /* @__PURE__ */ React__namespace.forwardRef(RightOutlined);
   function _extends$19() {
     return _extends$19 = Object.assign ? Object.assign.bind() : function(n2) {
       for (var e2 = 1; e2 < arguments.length; e2++) {
@@ -25659,7 +25659,7 @@ html body {
     });
     return buttonToken;
   };
-  const prepareComponentToken$f = (token2) => {
+  const prepareComponentToken$h = (token2) => {
     const contentFontSize = token2.contentFontSize ?? token2.fontSize;
     const contentFontSizeSM = token2.contentFontSizeSM ?? token2.fontSize;
     const contentFontSizeLG = token2.contentFontSizeLG ?? token2.fontSizeLG;
@@ -25669,7 +25669,7 @@ html body {
     const solidTextColor = isBright(new AggregationColor(token2.colorBgSolid), "#fff") ? "#000" : "#fff";
     const shadowColorTokens = PresetColors.reduce((prev2, colorKey) => ({
       ...prev2,
-      [`${colorKey}ShadowColor`]: `0 ${unit$1(token2.controlOutlineWidth)} 0 ${getAlphaColor(token2[`${colorKey}1`], token2.colorBgContainer)}`
+      [`${colorKey}ShadowColor`]: `0 ${unit$1(token2.controlOutlineWidth)} 0 ${getAlphaColor$1(token2[`${colorKey}1`], token2.colorBgContainer)}`
     }), {});
     const defaultBgDisabled = token2.colorBgContainerDisabled;
     const dashedBgDisabled = token2.colorBgContainerDisabled;
@@ -26177,7 +26177,7 @@ html body {
       }
     };
   };
-  const useStyle$m = genStyleHooks("Button", (token2) => {
+  const useStyle$o = genStyleHooks("Button", (token2) => {
     const buttonToken = prepareToken$4(token2);
     return [
       // Shared
@@ -26193,7 +26193,7 @@ html body {
       // Button Group
       genGroupStyle$1(buttonToken)
     ];
-  }, prepareComponentToken$f, {
+  }, prepareComponentToken$h, {
     unitless: {
       fontWeight: true,
       contentLineHeight: true,
@@ -26381,7 +26381,7 @@ html body {
       genCompactItemVerticalStyle(buttonToken),
       genButtonCompactStyle(buttonToken)
     ];
-  }, prepareComponentToken$f);
+  }, prepareComponentToken$h);
   function getLoadingConfig(loading) {
     if (isPlainObject$1(loading)) {
       let delay = loading == null ? void 0 : loading.delay;
@@ -26481,7 +26481,7 @@ html body {
     const mergedColorText = isDanger ? "dangerous" : mergedColor;
     const mergedInsertSpace = autoInsertSpace ?? contextAutoInsertSpace ?? true;
     const prefixCls = getPrefixCls("btn", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$m(prefixCls);
+    const [hashId, cssVarCls] = useStyle$o(prefixCls);
     const disabled = React.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const groupSize = React.useContext(GroupSizeContext);
@@ -27303,7 +27303,7 @@ html body {
   };
   const HOOK_MARK = "RC_FORM_INTERNAL_HOOKS";
   const warningFunc = () => {
-    warningOnce$1(false, "Can not find FormContext. Please make sure you wrap Field under Form.");
+    warningOnce(false, "Can not find FormContext. Please make sure you wrap Field under Form.");
   };
   const Context = /* @__PURE__ */ React__namespace.createContext({
     getFieldValue: warningFunc,
@@ -27442,7 +27442,7 @@ html body {
     }, _wrapNativeSuper(t2);
   }
   var formatRegExp = /%[sdj%]/g;
-  var warning$1 = function warning2() {
+  var warning = function warning2() {
   };
   if (typeof process !== "undefined" && process.env && false) ;
   function convertFieldsError(errors) {
@@ -28374,7 +28374,7 @@ html body {
     }
     validators$2[type2] = validator2;
   });
-  _defineProperty$2(Schema, "warning", warning$1);
+  _defineProperty$2(Schema, "warning", warning);
   _defineProperty$2(Schema, "messages", messages);
   _defineProperty$2(Schema, "validators", validators$2);
   const typeTemplate = "'${name}' is not a valid ${type}";
@@ -28517,7 +28517,7 @@ html body {
           let hasPromise = false;
           const wrappedCallback = (...args) => {
             Promise.resolve().then(() => {
-              warningOnce$1(!hasPromise, "Your validator function has already return a promise. `callback` will be ignored.");
+              warningOnce(!hasPromise, "Your validator function has already return a promise. `callback` will be ignored.");
               if (!hasPromise) {
                 callback(...args);
               }
@@ -28525,7 +28525,7 @@ html body {
           };
           const promise = originValidatorFunc(rule, val, wrappedCallback);
           hasPromise = promise && typeof promise.then === "function" && typeof promise.catch === "function";
-          warningOnce$1(hasPromise, "`callback` is deprecated. Please return a promise instead.");
+          warningOnce(hasPromise, "`callback` is deprecated. Please return a promise instead.");
           if (hasPromise) {
             promise.then(() => {
               callback();
@@ -29204,7 +29204,7 @@ html body {
       } else if (/* @__PURE__ */ React__namespace.isValidElement(child)) {
         returnChildNode = /* @__PURE__ */ React__namespace.cloneElement(child, this.getControlled(child.props));
       } else {
-        warningOnce$1(!child, "`children` of Field is not validate ReactElement.");
+        warningOnce(!child, "`children` of Field is not validate ReactElement.");
         returnChildNode = child;
       }
       return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, {
@@ -29264,7 +29264,7 @@ html body {
       }
     }), [keyManager, prefixName]);
     if (typeof children !== "function") {
-      warningOnce$1(false, "Form.List only accepts function as children.");
+      warningOnce(false, "Form.List only accepts function as children.");
       return null;
     }
     const shouldUpdate = (prevValue, nextValue, {
@@ -29493,7 +29493,7 @@ html body {
             registerWatch: this.registerWatch
           };
         }
-        warningOnce$1(false, "`getInternalHooks` is internal usage. Should not call directly.");
+        warningOnce(false, "`getInternalHooks` is internal usage. Should not call directly.");
         return null;
       });
       __publicField(this, "useSubscribe", (subscribable) => {
@@ -29782,11 +29782,11 @@ html body {
               const namePath = field.getNamePath();
               const formInitialValue = this.getInitialValue(namePath);
               if (formInitialValue !== void 0) {
-                warningOnce$1(false, `Form already set 'initialValues' with path '${namePath.join(".")}'. Field can not overwrite it.`);
+                warningOnce(false, `Form already set 'initialValues' with path '${namePath.join(".")}'. Field can not overwrite it.`);
               } else {
                 const records = cache2.get(namePath);
                 if (records && records.size > 1) {
-                  warningOnce$1(false, `Multiple Field with path '${namePath.join(".")}' set 'initialValue'. Can not decide which one to pick.`);
+                  warningOnce(false, `Multiple Field with path '${namePath.join(".")}' set 'initialValue'. Can not decide which one to pick.`);
                 } else if (records) {
                   const originValue = this.getFieldValue(namePath);
                   const isListField = field.isListField();
@@ -30325,7 +30325,7 @@ html body {
     };
     return _extends$12.apply(this, arguments);
   }
-  const Form$3 = ({
+  const Form$2 = ({
     name,
     initialValues,
     fields,
@@ -30489,7 +30489,7 @@ html body {
     }, [isValidForm]);
     return value;
   }
-  const InternalForm$1 = /* @__PURE__ */ React__namespace.forwardRef(Form$3);
+  const InternalForm$1 = /* @__PURE__ */ React__namespace.forwardRef(Form$2);
   const RefForm = InternalForm$1;
   RefForm.FormProvider = FormProvider$1;
   RefForm.Field = WrapperField;
@@ -30915,7 +30915,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$e = (token2) => {
+  const prepareComponentToken$g = (token2) => {
     const {
       colorFillContent,
       colorFill
@@ -30933,7 +30933,7 @@ html body {
       paragraphLiHeight: token2.controlHeight / 2
     };
   };
-  const useStyle$l = genStyleHooks("Skeleton", (token2) => {
+  const useStyle$n = genStyleHooks("Skeleton", (token2) => {
     const {
       componentCls,
       calc
@@ -30953,7 +30953,7 @@ html body {
       skeletonLoadingMotionDuration: "1.4s"
     });
     return genBaseStyle$5(skeletonToken);
-  }, prepareComponentToken$e, {
+  }, prepareComponentToken$g, {
     deprecatedTokens: [["color", "gradientFromColor"], ["colorGradientEnd", "gradientToColor"]]
   });
   const SkeletonAvatar = (props) => {
@@ -30973,7 +30973,7 @@ html body {
       getPrefixCls
     } = React__namespace.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$l(prefixCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active
@@ -31010,7 +31010,7 @@ html body {
       getPrefixCls
     } = React__namespace.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$l(prefixCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active,
@@ -31046,7 +31046,7 @@ html body {
       getPrefixCls
     } = React__namespace.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$l(prefixCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active
     }, hashId, classNames == null ? void 0 : classNames.root, className, rootClassName, cssVarCls);
@@ -31095,7 +31095,7 @@ html body {
       getPrefixCls
     } = React__namespace.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$l(prefixCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active,
@@ -31228,7 +31228,7 @@ html body {
       styles: contextStyles
     } = useComponentConfig("skeleton");
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$l(prefixCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls);
     const mergedProps = {
       ...props,
       avatar,
@@ -31364,7 +31364,7 @@ html body {
   function renderCloseIcon(prefixCls, closeIcon) {
     return /* @__PURE__ */ React.createElement("span", {
       className: `${prefixCls}-close-x`
-    }, closeIcon || /* @__PURE__ */ React.createElement(RefIcon$w, {
+    }, closeIcon || /* @__PURE__ */ React.createElement(RefIcon$v, {
       className: `${prefixCls}-close-icon`
     }));
   }
@@ -31863,7 +31863,7 @@ html body {
     });
     return modalToken;
   };
-  const prepareComponentToken$d = (token2) => ({
+  const prepareComponentToken$f = (token2) => ({
     footerBg: "transparent",
     headerBg: "transparent",
     titleLineHeight: token2.lineHeightHeading5,
@@ -31885,10 +31885,10 @@ html body {
     confirmBtnsMarginTop: token2.wireframe ? token2.marginLG : token2.marginSM,
     mask: true
   });
-  const useStyle$k = genStyleHooks("Modal", (token2) => {
+  const useStyle$m = genStyleHooks("Modal", (token2) => {
     const modalToken = prepareToken$3(token2);
     return [genModalStyle(modalToken), genRTLStyle(modalToken), genModalMaskStyle(modalToken), initZoomMotion(modalToken, "zoom"), genResponsiveWidthStyle(modalToken)];
-  }, prepareComponentToken$d, {
+  }, prepareComponentToken$f, {
     unitless: {
       titleLineHeight: true
     }
@@ -31983,7 +31983,7 @@ html body {
       onClose == null ? void 0 : onClose();
     };
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$m(prefixCls, rootCls);
     const wrapClassNameExtended = clsx(wrapClassName, {
       [`${prefixCls}-centered`]: centered ?? contextCentered,
       [`${prefixCls}-wrap-rtl`]: direction === "rtl"
@@ -32003,7 +32003,7 @@ html body {
     }) : null;
     const [rawClosable, mergedCloseIcon, closeBtnIsDisabled, ariaProps] = useClosable(pickClosable(props), pickClosable(modalContext), {
       closable: true,
-      closeIcon: /* @__PURE__ */ React__namespace.createElement(RefIcon$w, {
+      closeIcon: /* @__PURE__ */ React__namespace.createElement(RefIcon$v, {
         className: `${prefixCls}-close-icon`
       }),
       closeIconRender: (icon) => renderCloseIcon(prefixCls, icon)
@@ -32197,7 +32197,7 @@ html body {
   const Confirm = genSubStyleComponent(["Modal", "confirm"], (token2) => {
     const modalToken = prepareToken$3(token2);
     return genModalConfirmStyle(modalToken);
-  }, prepareComponentToken$d, {
+  }, prepareComponentToken$f, {
     // confirm is weak than modal since no conflict here
     order: -1e3
   });
@@ -32227,16 +32227,16 @@ html body {
     if (icon === void 0) {
       switch (type2) {
         case "info":
-          mergedIcon = fallbackProp(infoIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null));
+          mergedIcon = fallbackProp(infoIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$t, null));
           break;
         case "success":
-          mergedIcon = fallbackProp(successIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$y, null));
+          mergedIcon = fallbackProp(successIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null));
           break;
         case "error":
-          mergedIcon = fallbackProp(errorIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null));
+          mergedIcon = fallbackProp(errorIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null));
           break;
         default:
-          mergedIcon = fallbackProp(warningIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null));
+          mergedIcon = fallbackProp(warningIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$u, null));
       }
     }
     const mergedOkCancel = okCancel ?? type2 === "confirm";
@@ -33046,7 +33046,7 @@ html body {
     if (!("props" in newOption)) {
       Object.defineProperty(newOption, "props", {
         get() {
-          warningOnce$1(false, "Return type is option instead of Option instance. Please read value directly instead of reading from `props`.");
+          warningOnce(false, "Return type is option instead of Option instance. Please read value directly instead of reading from `props`.");
           return newOption;
         }
       });
@@ -36364,8 +36364,8 @@ html body {
     const getOption = React__namespace.useCallback((val) => valueOptions.get(val) || cacheRef.current.options.get(val), [valueOptions]);
     return [filledLabeledValues, getOption];
   });
-  function includes(test2, search2) {
-    return toArray$3(test2).join("").toUpperCase().includes(search2);
+  function includes(test2, search) {
+    return toArray$3(test2).join("").toUpperCase().includes(search);
   }
   const useFilterOptions = ((options, fieldNames, searchValue, filterOption, optionFilterProp) => {
     return React__namespace.useMemo(() => {
@@ -37088,7 +37088,7 @@ html body {
       }
     };
   };
-  const useStyle$j = genStyleHooks("Empty", (token2) => {
+  const useStyle$l = genStyleHooks("Empty", (token2) => {
     const {
       componentCls,
       controlHeightLG,
@@ -37128,7 +37128,7 @@ html body {
       image: contextImage
     } = useComponentConfig("empty");
     const prefixCls = getPrefixCls("empty", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$j(prefixCls);
+    const [hashId, cssVarCls] = useStyle$l(prefixCls);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props
     });
@@ -37931,7 +37931,7 @@ html body {
       ]
     };
   };
-  const prepareComponentToken$c = (token2) => {
+  const prepareComponentToken$e = (token2) => {
     const {
       fontSize,
       lineHeight,
@@ -38115,7 +38115,7 @@ html body {
       selectHeight: token2.controlHeight
     });
     return [genSelectStyle(selectToken), genSelectInputStyle(selectToken)];
-  }, prepareComponentToken$c, {
+  }, prepareComponentToken$e, {
     unitless: {
       optionLineHeight: true,
       optionSelectedFontWeight: true
@@ -38140,7 +38140,7 @@ html body {
     ref,
     icon: CheckOutlined$1
   }));
-  const RefIcon$r = /* @__PURE__ */ React__namespace.forwardRef(CheckOutlined);
+  const RefIcon$q = /* @__PURE__ */ React__namespace.forwardRef(CheckOutlined);
   var DownOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" } }] }, "name": "down", "theme": "outlined" };
   function _extends$V() {
     _extends$V = Object.assign ? Object.assign.bind() : function(target) {
@@ -38160,7 +38160,7 @@ html body {
     ref,
     icon: DownOutlined$1
   }));
-  const RefIcon$q = /* @__PURE__ */ React__namespace.forwardRef(DownOutlined);
+  const RefIcon$p = /* @__PURE__ */ React__namespace.forwardRef(DownOutlined);
   var SearchOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" } }] }, "name": "search", "theme": "outlined" };
   function _extends$U() {
     _extends$U = Object.assign ? Object.assign.bind() : function(target) {
@@ -38180,7 +38180,7 @@ html body {
     ref,
     icon: SearchOutlined$1
   }));
-  const RefIcon$p = /* @__PURE__ */ React__namespace.forwardRef(SearchOutlined);
+  const RefIcon$o = /* @__PURE__ */ React__namespace.forwardRef(SearchOutlined);
   function useIcons({
     suffixIcon,
     contextSuffixIcon,
@@ -38203,7 +38203,7 @@ html body {
     componentName
   }) {
     return React__namespace.useMemo(() => {
-      const mergedClearIcon = fallbackProp(clearIcon, contextClearIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$x, null));
+      const mergedClearIcon = fallbackProp(clearIcon, contextClearIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null));
       const getSuffixIconNode = (arrowIcon) => {
         if (suffixIcon === null && !hasFeedback && !showArrow) {
           return null;
@@ -38214,7 +38214,7 @@ html body {
       if (suffixIcon !== void 0) {
         mergedSuffixIcon = getSuffixIconNode(suffixIcon);
       } else if (loading) {
-        mergedSuffixIcon = getSuffixIconNode(fallbackProp(loadingIcon, contextLoadingIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$t, {
+        mergedSuffixIcon = getSuffixIconNode(fallbackProp(loadingIcon, contextLoadingIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
           spin: true
         })));
       } else {
@@ -38223,13 +38223,13 @@ html body {
           showSearch
         }) => {
           if (open2 && showSearch) {
-            return getSuffixIconNode(fallbackProp(searchIcon, contextSearchIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null)));
+            return getSuffixIconNode(fallbackProp(searchIcon, contextSearchIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null)));
           }
-          return getSuffixIconNode(fallbackProp(contextSuffixIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$q, null)));
+          return getSuffixIconNode(fallbackProp(contextSuffixIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null)));
         };
       }
-      const mergedItemIcon = fallbackProp(menuItemSelectedIcon, contextMenuItemSelectedIcon, multiple ? /* @__PURE__ */ React__namespace.createElement(RefIcon$r, null) : null);
-      const mergedRemoveIcon = fallbackProp(removeIcon, contextRemoveIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$w, null));
+      const mergedItemIcon = fallbackProp(menuItemSelectedIcon, contextMenuItemSelectedIcon, multiple ? /* @__PURE__ */ React__namespace.createElement(RefIcon$q, null) : null);
+      const mergedRemoveIcon = fallbackProp(removeIcon, contextRemoveIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$v, null));
       return {
         clearIcon: mergedClearIcon,
         suffixIcon: mergedSuffixIcon,
@@ -39487,7 +39487,7 @@ html body {
       }
     ];
   };
-  const prepareComponentToken$b = (token2) => ({
+  const prepareComponentToken$d = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + 70,
     maxWidth: 250,
     ...getArrowOffsetToken({
@@ -39498,7 +39498,7 @@ html body {
       borderRadiusOuter: Math.min(token2.borderRadiusOuter, 4)
     }))
   });
-  const useStyle$i = (prefixCls, rootCls, injectStyle = true) => {
+  const useStyle$k = (prefixCls, rootCls, injectStyle = true) => {
     const useStyle2 = genStyleHooks("Tooltip", (token2) => {
       const {
         borderRadius,
@@ -39514,7 +39514,7 @@ html body {
         tooltipBg: colorBgSpotlight
       });
       return [genTooltipStyle(TooltipToken), initZoomMotion(token2, "zoom-big-fast")];
-    }, prepareComponentToken$b, {
+    }, prepareComponentToken$d, {
       resetStyle: false,
       // Popover use Tooltip as internal component. We do not need to handle this.
       injectStyle
@@ -39571,7 +39571,7 @@ html body {
     const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
     const rootPrefixCls = getPrefixCls();
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$i(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls);
     const colorInfo = parseColor(rootPrefixCls, prefixCls, color);
     const arrowContentStyle = colorInfo.arrowStyle;
     const innerStyles = React__namespace.useMemo(() => {
@@ -39719,7 +39719,7 @@ html body {
     const childProps = child.props;
     const childCls = !childProps.className || typeof childProps.className === "string" ? clsx(childProps.className, openClassName || `${prefixCls}-open`) : childProps.className;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$i(prefixCls, rootCls, !injectFromPopover);
+    const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls, !injectFromPopover);
     const colorInfo = parseColor(rootPrefixCls, prefixCls, color);
     const arrowContentStyle = colorInfo.arrowStyle;
     const themeCls = clsx(rootCls, hashId, cssVarCls);
@@ -39894,7 +39894,7 @@ html body {
       })
     };
   };
-  const prepareComponentToken$a = (token2) => {
+  const prepareComponentToken$c = (token2) => {
     const {
       lineWidth,
       controlHeight,
@@ -39928,7 +39928,7 @@ html body {
       innerContentPadding: wireframe ? `${paddingSM}px ${popoverPaddingHorizontal}px` : 0
     };
   };
-  const useStyle$h = genStyleHooks("Popover", (token2) => {
+  const useStyle$j = genStyleHooks("Popover", (token2) => {
     const {
       colorBgElevated,
       colorText
@@ -39938,7 +39938,7 @@ html body {
       popoverColor: colorText
     });
     return [genBaseStyle$3(popoverToken), genColorStyle(popoverToken), initZoomMotion(popoverToken, "zoom-big")];
-  }, prepareComponentToken$a, {
+  }, prepareComponentToken$c, {
     resetStyle: false,
     deprecatedTokens: [["width", "titleMinWidth"], ["minWidth", "titleMinWidth"]]
   });
@@ -40013,7 +40013,7 @@ html body {
       getPrefixCls
     } = React__namespace.useContext(ConfigContext);
     const prefixCls = getPrefixCls("popover", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$h(prefixCls);
+    const [hashId, cssVarCls] = useStyle$j(prefixCls);
     return /* @__PURE__ */ React__namespace.createElement(RawPurePanel, {
       ...restProps,
       prefixCls,
@@ -40050,7 +40050,7 @@ html body {
       trigger: contextTrigger
     } = useComponentConfig("popover");
     const prefixCls = getPrefixCls("popover", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$h(prefixCls);
+    const [hashId, cssVarCls] = useStyle$j(prefixCls);
     const rootPrefixCls = getPrefixCls();
     const mergedArrow = useMergedArrow(popoverArrow, contextArrow);
     const mergedTrigger = trigger || contextTrigger || "hover";
@@ -40135,7 +40135,7 @@ html body {
     ref,
     icon: LeftOutlined$1
   }));
-  const RefIcon$o = /* @__PURE__ */ React__namespace.forwardRef(LeftOutlined);
+  const RefIcon$n = /* @__PURE__ */ React__namespace.forwardRef(LeftOutlined);
   const {
     ESC: ESC$1,
     TAB
@@ -40820,7 +40820,7 @@ html body {
   }) {
     Object.defineProperty(restInfo, "item", {
       get: () => {
-        warningOnce$1(false, "`info.item` is deprecated since we will move to function component that not provides React Node instance in future.");
+        warningOnce(false, "`info.item` is deprecated since we will move to function component that not provides React Node instance in future.");
         return item;
       }
     });
@@ -40849,7 +40849,7 @@ html body {
         ...restProps
       } = this.props;
       const passedProps = omit(restProps, ["eventKey", "popupClassName", "popupOffset", "onTitleClick"]);
-      warningOnce$1(!attribute, "`attribute` of Menu.Item is deprecated. Please pass attribute directly.");
+      warningOnce(!attribute, "`attribute` of Menu.Item is deprecated. Please pass attribute directly.");
       return /* @__PURE__ */ React__namespace.createElement(ForwardOverflow.Item, _extends$Q({}, attribute, {
         title: typeof title === "string" ? title : void 0
       }, passedProps, {
@@ -41556,7 +41556,7 @@ html body {
       value: connectedKeyPath
     }, renderNode);
   });
-  function Divider({
+  function Divider$1({
     className,
     style: style2
   }) {
@@ -41701,7 +41701,7 @@ html body {
   function parseItems(children, items, keyPath, components2, prefixCls) {
     let childNodes = children;
     const mergedComponents = {
-      divider: Divider,
+      divider: Divider$1,
       item: MenuItem$2,
       group: MenuItemGroup,
       submenu: SubMenu$1,
@@ -42068,7 +42068,7 @@ html body {
   ExportMenu.Item = MenuItem$2;
   ExportMenu.SubMenu = SubMenu$1;
   ExportMenu.ItemGroup = MenuItemGroup;
-  ExportMenu.Divider = Divider;
+  ExportMenu.Divider = Divider$1;
   const SiderContext = /* @__PURE__ */ React__namespace.createContext({});
   var EllipsisOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "ellipsis", "theme": "outlined" };
   function _extends$J() {
@@ -42089,7 +42089,7 @@ html body {
     ref,
     icon: EllipsisOutlined$1
   }));
-  const RefIcon$n = /* @__PURE__ */ React__namespace.forwardRef(EllipsisOutlined);
+  const RefIcon$m = /* @__PURE__ */ React__namespace.forwardRef(EllipsisOutlined);
   const MenuContext = /* @__PURE__ */ React.createContext({
     prefixCls: "",
     firstLevel: true,
@@ -42111,7 +42111,7 @@ html body {
     const classString = clsx({
       [`${prefixCls}-item-divider-dashed`]: !!dashed
     }, className);
-    return /* @__PURE__ */ React__namespace.createElement(Divider, {
+    return /* @__PURE__ */ React__namespace.createElement(Divider$1, {
       className: classString,
       ...restProps
     });
@@ -43075,7 +43075,7 @@ html body {
       }
     ];
   };
-  const prepareComponentToken$9 = (token2) => {
+  const prepareComponentToken$b = (token2) => {
     const {
       colorPrimary,
       colorError,
@@ -43192,7 +43192,7 @@ html body {
       itemWidth: activeBarWidth ? `calc(100% + ${activeBarBorderWidth}px)` : `calc(100% - ${itemMarginInline * 2}px)`
     };
   };
-  const useStyle$g = (prefixCls, rootCls = prefixCls, injectStyle = true) => {
+  const useStyle$i = (prefixCls, rootCls = prefixCls, injectStyle = true) => {
     const useStyle2 = genStyleHooks("Menu", (token2) => {
       const {
         colorBgElevated,
@@ -43271,7 +43271,7 @@ html body {
         initSlideMotion(menuToken, "slide-down"),
         initZoomMotion(menuToken, "zoom-big")
       ];
-    }, prepareComponentToken$9, {
+    }, prepareComponentToken$b, {
       deprecatedTokens: [["colorGroupTitle", "groupTitleColor"], ["radiusItem", "itemBorderRadius"], ["radiusSubMenuItem", "subMenuItemBorderRadius"], ["colorItemText", "itemColor"], ["colorItemTextHover", "itemHoverColor"], ["colorItemTextHoverHorizontal", "horizontalItemHoverColor"], ["colorItemTextSelected", "itemSelectedColor"], ["colorItemTextSelectedHorizontal", "horizontalItemSelectedColor"], ["colorItemTextDisabled", "itemDisabledColor"], ["colorDangerItemText", "dangerItemColor"], ["colorDangerItemTextHover", "dangerItemHoverColor"], ["colorDangerItemTextSelected", "dangerItemSelectedColor"], ["colorDangerItemBgActive", "dangerItemActiveBg"], ["colorDangerItemBgSelected", "dangerItemSelectedBg"], ["colorItemBg", "itemBg"], ["colorItemBgHover", "itemHoverBg"], ["colorSubItemBg", "subMenuItemBg"], ["colorItemBgActive", "itemActiveBg"], ["colorItemBgSelectedHorizontal", "horizontalItemSelectedBg"], ["colorActiveBarWidth", "activeBarWidth"], ["colorActiveBarHeight", "activeBarHeight"], ["colorActiveBarBorderSize", "activeBarBorderWidth"], ["colorItemBgSelected", "itemSelectedBg"]],
       // Dropdown will handle menu style self. We do not need to handle this.
       injectStyle,
@@ -43428,7 +43428,7 @@ html body {
     };
     const prefixCls = getPrefixCls("menu", customizePrefixCls || overrideObj.prefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$g(prefixCls, rootCls, !override);
+    const [hashId, cssVarCls] = useStyle$i(prefixCls, rootCls, !override);
     const menuClassName = clsx(`${prefixCls}-${theme}`, contextClassName, className);
     const mergedExpandIcon = React__namespace.useMemo(() => {
       var _a3;
@@ -43464,7 +43464,7 @@ html body {
       value: contextValue
     }, /* @__PURE__ */ React__namespace.createElement(ExportMenu, {
       getPopupContainer,
-      overflowedIndicator: /* @__PURE__ */ React__namespace.createElement(RefIcon$n, null),
+      overflowedIndicator: /* @__PURE__ */ React__namespace.createElement(RefIcon$m, null),
       overflowedIndicatorPopupClassName: clsx(prefixCls, `${prefixCls}-${theme}`, overflowedIndicatorPopupClassName),
       classNames: {
         list: mergedClassNames.list,
@@ -43802,7 +43802,7 @@ html body {
       [initSlideMotion(token2, "slide-up"), initSlideMotion(token2, "slide-down"), initMoveMotion(token2, "move-up"), initMoveMotion(token2, "move-down"), initZoomMotion(token2, "zoom-big")]
     ];
   };
-  const prepareComponentToken$8 = (token2) => ({
+  const prepareComponentToken$a = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + 50,
     paddingBlock: (token2.controlHeight - token2.fontSize * token2.lineHeight) / 2,
     ...getArrowOffsetToken({
@@ -43811,7 +43811,7 @@ html body {
     }),
     ...getArrowToken(token2)
   });
-  const useStyle$f = genStyleHooks("Dropdown", (token2) => {
+  const useStyle$h = genStyleHooks("Dropdown", (token2) => {
     const {
       marginXXS,
       sizePopupArrow,
@@ -43824,7 +43824,7 @@ html body {
       dropdownEdgeChildPadding: paddingXXS
     });
     return [genBaseStyle$2(dropdownToken), genStatusStyle(dropdownToken)];
-  }, prepareComponentToken$8, {
+  }, prepareComponentToken$a, {
     resetStyle: false
   });
   const Dropdown$1 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
@@ -43899,7 +43899,7 @@ html body {
     }, [placement, direction]);
     const prefixCls = getPrefixCls("dropdown", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$f(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$h(prefixCls, rootCls);
     const [, token2] = useToken();
     const child = React__namespace.Children.only(isPrimitive(children) ? /* @__PURE__ */ React__namespace.createElement("span", null, children) : children);
     const composedRef = useComposeRef(ref, child.ref);
@@ -43968,9 +43968,9 @@ html body {
         rootClassName: clsx(cssVarCls, rootCls),
         expandIcon: /* @__PURE__ */ React__namespace.createElement("span", {
           className: `${prefixCls}-menu-submenu-arrow`
-        }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$o, {
+        }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$n, {
           className: `${prefixCls}-menu-submenu-arrow-icon`
-        }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
+        }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$r, {
           className: `${prefixCls}-menu-submenu-arrow-icon`
         })),
         mode: "vertical",
@@ -44861,7 +44861,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$7 = (token2) => {
+  const prepareComponentToken$9 = (token2) => {
     const {
       wireframe,
       padding,
@@ -44903,7 +44903,7 @@ html body {
       radioBgColor: wireframe ? colorBgContainer : colorPrimary
     };
   };
-  const useStyle$e = genStyleHooks("Radio", (token2) => {
+  const useStyle$g = genStyleHooks("Radio", (token2) => {
     const {
       controlOutline,
       controlOutlineWidth
@@ -44915,7 +44915,7 @@ html body {
       radioButtonFocusShadow
     });
     return [getGroupRadioStyle(radioToken), getRadioBasicStyle(radioToken), getRadioButtonStyle(radioToken)];
-  }, prepareComponentToken$7, {
+  }, prepareComponentToken$9, {
     unitless: {
       radioSize: true,
       dotSize: true
@@ -44957,7 +44957,7 @@ html body {
     const isButtonType = ((groupContext == null ? void 0 : groupContext.optionType) || radioOptionTypeContext) === "button";
     const prefixCls = isButtonType ? `${radioPrefixCls}-button` : radioPrefixCls;
     const rootCls = useCSSVarCls(radioPrefixCls);
-    const [hashId, cssVarCls] = useStyle$e(radioPrefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$g(radioPrefixCls, rootCls);
     const radioProps = {
       ...restProps
     };
@@ -45065,7 +45065,7 @@ html body {
     const prefixCls = getPrefixCls("radio", customizePrefixCls);
     const groupPrefixCls = `${prefixCls}-group`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$e(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$g(prefixCls, rootCls);
     let childrenToRender = children;
     if (options && options.length > 0) {
       childrenToRender = options.map((option) => {
@@ -46079,7 +46079,7 @@ html body {
   }, initComponentToken$1, {
     resetFont: false
   });
-  const useStyle$d = genStyleHooks(["Input", "Component"], (token2) => {
+  const useStyle$f = genStyleHooks(["Input", "Component"], (token2) => {
     const inputToken = merge$1(token2, initInputToken(token2));
     return [
       genGroupStyle(inputToken),
@@ -46196,7 +46196,7 @@ html body {
       const treeNodes = toArray$6(node2);
       return treeNodes.map((treeNode) => {
         if (!isTreeNode(treeNode)) {
-          warningOnce$1(!treeNode, "Tree/TreeNode can only accept TreeNode as children.");
+          warningOnce(!treeNode, "Tree/TreeNode can only accept TreeNode as children.");
           return null;
         }
         const {
@@ -46447,7 +46447,7 @@ html body {
     if (!("props" in eventData)) {
       Object.defineProperty(eventData, "props", {
         get() {
-          warningOnce$1(false, "Second param return from event is node data instead of TreeNode instance. Please read value directly instead of reading from `props`.");
+          warningOnce(false, "Second param return from event is node data instead of TreeNode instance. Please read value directly instead of reading from `props`.");
           return props;
         }
       });
@@ -46622,7 +46622,7 @@ html body {
       levelSet.add(entity);
       maxLevel = Math.max(maxLevel, level);
     });
-    warningOnce$1(!warningMissKeys.length, `Tree missing follow keys: ${warningMissKeys.slice(0, 100).map((key2) => `'${key2}'`).join(", ")}`);
+    warningOnce(!warningMissKeys.length, `Tree missing follow keys: ${warningMissKeys.slice(0, 100).map((key2) => `'${key2}'`).join(", ")}`);
     let result2;
     if (checked === true) {
       result2 = fillConductCheck(keys2, levelEntities, maxLevel, syntheticGetCheckDisabled);
@@ -46832,7 +46832,7 @@ html body {
     });
     return genCheckboxStyle(checkboxToken);
   }
-  const useStyle$c = genStyleHooks("Checkbox", (token2, {
+  const useStyle$e = genStyleHooks("Checkbox", (token2, {
     prefixCls
   }) => [getStyle(prefixCls, token2)]);
   const GroupContext = /* @__PURE__ */ React.createContext(null);
@@ -46909,7 +46909,7 @@ html body {
     }, [indeterminate]);
     const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$c(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$e(prefixCls, rootCls);
     const checkboxProps = {
       ...restProps
     };
@@ -47022,7 +47022,7 @@ html body {
     const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
     const groupPrefixCls = `${prefixCls}-group`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$c(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$e(prefixCls, rootCls);
     const domProps = omit(restProps, ["value", "disabled"]);
     const childrenNode = options.length ? memoizedOptions.map((option) => /* @__PURE__ */ React__namespace.createElement(Checkbox$1, {
       prefixCls,
@@ -47259,6 +47259,296 @@ html body {
       ref
     }, children));
   });
+  const genSizeDividerStyle = (token2) => {
+    const {
+      componentCls
+    } = token2;
+    return {
+      [componentCls]: {
+        "&-horizontal": {
+          [`&${componentCls}`]: {
+            "&-sm": {
+              marginBlock: token2.marginXS
+            },
+            "&-md": {
+              marginBlock: token2.margin
+            }
+          }
+        }
+      }
+    };
+  };
+  const genSharedDividerStyle = (token2) => {
+    const {
+      componentCls,
+      sizePaddingEdgeHorizontal,
+      colorSplit,
+      lineWidth,
+      textPaddingInline,
+      orientationMargin,
+      verticalMarginInline
+    } = token2;
+    const railCls = `${componentCls}-rail`;
+    return {
+      [componentCls]: {
+        ...resetComponent(token2),
+        borderBlockStart: `${unit$1(lineWidth)} solid ${colorSplit}`,
+        [railCls]: {
+          borderBlockStart: `${unit$1(lineWidth)} solid ${colorSplit}`
+        },
+        // vertical
+        "&-vertical": {
+          position: "relative",
+          top: "-0.06em",
+          display: "inline-block",
+          height: "0.9em",
+          marginInline: verticalMarginInline,
+          marginBlock: 0,
+          verticalAlign: "middle",
+          borderTop: 0,
+          borderInlineStart: `${unit$1(lineWidth)} solid ${colorSplit}`
+        },
+        "&-horizontal": {
+          display: "flex",
+          clear: "both",
+          width: "100%",
+          minWidth: "100%",
+          // Fix https://github.com/ant-design/ant-design/issues/10914
+          margin: `${unit$1(token2.marginLG)} 0`
+        },
+        [`&-horizontal${componentCls}-with-text`]: {
+          display: "flex",
+          alignItems: "center",
+          margin: `${unit$1(token2.dividerHorizontalWithTextGutterMargin)} 0`,
+          color: token2.colorTextHeading,
+          fontWeight: 500,
+          fontSize: token2.fontSizeLG,
+          whiteSpace: "nowrap",
+          textAlign: "center",
+          borderBlockStart: `0 ${colorSplit}`,
+          [`${railCls}-start, ${railCls}-end`]: {
+            width: "50%",
+            // Chrome not accept `inherit` in `border-top`
+            borderBlockStartColor: "inherit",
+            borderBlockEnd: 0,
+            content: "''"
+          }
+        },
+        [`&-horizontal${componentCls}-with-text-start`]: {
+          [`${railCls}-start`]: {
+            width: `calc(${orientationMargin} * 100%)`
+          },
+          [`${railCls}-end`]: {
+            width: `calc(100% - ${orientationMargin} * 100%)`
+          }
+        },
+        [`&-horizontal${componentCls}-with-text-end`]: {
+          [`${railCls}-start`]: {
+            width: `calc(100% - ${orientationMargin} * 100%)`
+          },
+          [`${railCls}-end`]: {
+            width: `calc(${orientationMargin} * 100%)`
+          }
+        },
+        [`${componentCls}-inner-text`]: {
+          display: "inline-block",
+          paddingBlock: 0,
+          paddingInline: textPaddingInline
+        },
+        "&-dashed": {
+          background: "none",
+          borderColor: colorSplit,
+          borderStyle: "dashed",
+          borderWidth: `${unit$1(lineWidth)} 0 0`,
+          [railCls]: {
+            borderBlockStart: `${unit$1(lineWidth)} dashed ${colorSplit}`
+          }
+        },
+        [`&-horizontal${componentCls}-with-text${componentCls}-dashed`]: {
+          [`${railCls}-start, ${railCls}-end`]: {
+            borderStyle: "dashed none none"
+          }
+        },
+        [`&-vertical${componentCls}-dashed`]: {
+          borderInlineStartWidth: lineWidth,
+          borderInlineEnd: 0,
+          borderBlockStart: 0,
+          borderBlockEnd: 0
+        },
+        "&-dotted": {
+          background: "none",
+          borderColor: colorSplit,
+          borderStyle: "dotted",
+          borderWidth: `${unit$1(lineWidth)} 0 0`,
+          [railCls]: {
+            borderBlockStart: `${unit$1(lineWidth)} dotted ${colorSplit}`
+          }
+        },
+        [`&-horizontal${componentCls}-with-text${componentCls}-dotted`]: {
+          "&::before, &::after": {
+            borderStyle: "dotted none none"
+          }
+        },
+        [`&-vertical${componentCls}-dotted`]: {
+          borderInlineStartWidth: lineWidth,
+          borderInlineEnd: 0,
+          borderBlockStart: 0,
+          borderBlockEnd: 0
+        },
+        [`&-plain${componentCls}-with-text`]: {
+          color: token2.colorText,
+          fontWeight: "normal",
+          fontSize: token2.fontSize
+        },
+        [`&-horizontal${componentCls}-with-text-start${componentCls}-no-default-orientation-margin-start`]: {
+          [`${railCls}-start`]: {
+            width: 0
+          },
+          [`${railCls}-end`]: {
+            width: "100%"
+          },
+          [`${componentCls}-inner-text`]: {
+            paddingInlineStart: sizePaddingEdgeHorizontal
+          }
+        },
+        [`&-horizontal${componentCls}-with-text-end${componentCls}-no-default-orientation-margin-end`]: {
+          [`${railCls}-start`]: {
+            width: "100%"
+          },
+          [`${railCls}-end`]: {
+            width: 0
+          },
+          [`${componentCls}-inner-text`]: {
+            paddingInlineEnd: sizePaddingEdgeHorizontal
+          }
+        }
+      }
+    };
+  };
+  const prepareComponentToken$8 = (token2) => ({
+    textPaddingInline: "1em",
+    orientationMargin: 0.05,
+    verticalMarginInline: token2.marginXS
+  });
+  const useStyle$d = genStyleHooks("Divider", (token2) => {
+    const dividerToken = merge$1(token2, {
+      dividerHorizontalWithTextGutterMargin: token2.margin,
+      sizePaddingEdgeHorizontal: 0
+    });
+    return [genSharedDividerStyle(dividerToken), genSizeDividerStyle(dividerToken)];
+  }, prepareComponentToken$8, {
+    unitless: {
+      orientationMargin: true
+    }
+  });
+  const titlePlacementList = ["left", "right", "center", "start", "end"];
+  const Divider = (props) => {
+    const {
+      getPrefixCls,
+      direction,
+      className: contextClassName,
+      style: contextStyle,
+      classNames: contextClassNames,
+      styles: contextStyles
+    } = useComponentConfig("divider");
+    const {
+      prefixCls: customizePrefixCls,
+      type: type2,
+      orientation,
+      vertical,
+      titlePlacement,
+      orientationMargin,
+      className,
+      rootClassName,
+      children,
+      dashed,
+      variant = "solid",
+      plain,
+      style: style2,
+      size: customSize,
+      classNames,
+      styles: styles2,
+      ...restProps
+    } = props;
+    const prefixCls = getPrefixCls("divider", customizePrefixCls);
+    const railCls = `${prefixCls}-rail`;
+    const [hashId, cssVarCls] = useStyle$d(prefixCls);
+    const sizeFullName = useSize(customSize);
+    const hasChildren = !!children;
+    const validTitlePlacement = titlePlacementList.includes(orientation || "");
+    const mergedTitlePlacement = React__namespace.useMemo(() => {
+      const placement = titlePlacement ?? (validTitlePlacement ? orientation : "center");
+      if (placement === "left") {
+        return direction === "rtl" ? "end" : "start";
+      }
+      if (placement === "right") {
+        return direction === "rtl" ? "start" : "end";
+      }
+      return placement;
+    }, [direction, orientation, titlePlacement, validTitlePlacement]);
+    const hasMarginStart = mergedTitlePlacement === "start" && orientationMargin != null;
+    const hasMarginEnd = mergedTitlePlacement === "end" && orientationMargin != null;
+    const [mergedOrientation, mergedVertical] = useOrientation(orientation, vertical, type2);
+    const mergedProps = {
+      ...props,
+      orientation: mergedOrientation,
+      titlePlacement: mergedTitlePlacement,
+      size: sizeFullName
+    };
+    const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
+      props: mergedProps
+    });
+    const classString = clsx(prefixCls, contextClassName, hashId, cssVarCls, `${prefixCls}-${mergedOrientation}`, {
+      [`${prefixCls}-with-text`]: hasChildren,
+      [`${prefixCls}-with-text-${mergedTitlePlacement}`]: hasChildren,
+      [`${prefixCls}-dashed`]: !!dashed,
+      [`${prefixCls}-${variant}`]: variant !== "solid",
+      [`${prefixCls}-plain`]: !!plain,
+      [`${prefixCls}-rtl`]: direction === "rtl",
+      [`${prefixCls}-no-default-orientation-margin-start`]: hasMarginStart,
+      [`${prefixCls}-no-default-orientation-margin-end`]: hasMarginEnd,
+      [`${prefixCls}-md`]: sizeFullName === "medium" || sizeFullName === "middle",
+      [`${prefixCls}-sm`]: sizeFullName === "small",
+      [railCls]: !children,
+      [mergedClassNames.rail]: mergedClassNames.rail && !children
+    }, className, rootClassName, mergedClassNames.root);
+    const memoizedPlacementMargin = React__namespace.useMemo(() => {
+      if (isNumber$1(orientationMargin)) {
+        return orientationMargin;
+      }
+      if (/^\d+$/.test(orientationMargin)) {
+        return Number(orientationMargin);
+      }
+      return orientationMargin;
+    }, [orientationMargin]);
+    const innerStyle = {
+      marginInlineStart: hasMarginStart ? memoizedPlacementMargin : void 0,
+      marginInlineEnd: hasMarginEnd ? memoizedPlacementMargin : void 0
+    };
+    return /* @__PURE__ */ React__namespace.createElement("div", {
+      className: classString,
+      style: {
+        ...contextStyle,
+        ...mergedStyles.root,
+        ...children ? {} : mergedStyles.rail,
+        ...style2
+      },
+      ...restProps,
+      role: "separator"
+    }, children && !mergedVertical && /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("div", {
+      className: clsx(railCls, `${railCls}-start`, mergedClassNames.rail),
+      style: mergedStyles.rail
+    }), /* @__PURE__ */ React__namespace.createElement("span", {
+      className: clsx(`${prefixCls}-inner-text`, mergedClassNames.content),
+      style: {
+        ...innerStyle,
+        ...mergedStyles.content
+      }
+    }, children), /* @__PURE__ */ React__namespace.createElement("div", {
+      className: clsx(railCls, `${railCls}-end`, mergedClassNames.rail),
+      style: mergedStyles.rail
+    })));
+  };
   var UpOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z" } }] }, "name": "up", "theme": "outlined" };
   function _extends$H() {
     _extends$H = Object.assign ? Object.assign.bind() : function(target) {
@@ -47278,7 +47568,7 @@ html body {
     ref,
     icon: UpOutlined$1
   }));
-  const RefIcon$m = /* @__PURE__ */ React__namespace.forwardRef(UpOutlined);
+  const RefIcon$l = /* @__PURE__ */ React__namespace.forwardRef(UpOutlined);
   const genSpaceAddonStyle = (token2) => {
     const {
       componentCls,
@@ -47398,7 +47688,7 @@ html body {
       ]
     };
   };
-  const useStyle$b = genStyleHooks("Addon", (token2) => [genSpaceAddonStyle(token2), genCompactItemStyle(token2, {
+  const useStyle$c = genStyleHooks("Addon", (token2) => [genSpaceAddonStyle(token2), genCompactItemStyle(token2, {
     focus: false
   })]);
   const SpaceAddon = /* @__PURE__ */ React.forwardRef((props, ref) => {
@@ -47417,7 +47707,7 @@ html body {
       direction: directionConfig
     } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("space-addon", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$b(prefixCls);
+    const [hashId, cssVarCls] = useStyle$c(prefixCls);
     const {
       compactItemClassnames,
       compactSize
@@ -47504,7 +47794,7 @@ html body {
       className,
       style: style2,
       disabled,
-      readOnly: readOnly2,
+      readOnly,
       focused,
       triggerFocus: triggerFocus2,
       allowClear,
@@ -47542,7 +47832,7 @@ html body {
     if (hasAffix) {
       let clearIcon = null;
       if (allowClear) {
-        const needClear = !disabled && !readOnly2 && value && !(typeof allowClear === "object" && allowClear.disabled);
+        const needClear = !disabled && !readOnly && value && !(typeof allowClear === "object" && allowClear.disabled);
         const clearIconCls = `${prefixCls}-clear-icon`;
         const iconNode = typeof allowClear === "object" && (allowClear == null ? void 0 : allowClear.clearIcon) ? allowClear.clearIcon : "✖";
         clearIcon = /* @__PURE__ */ React.createElement("button", {
@@ -47566,7 +47856,7 @@ html body {
         // Not used, but keep it
         [`${affixWrapperPrefixCls}-focused`]: focused,
         // Not used, but keep it
-        [`${affixWrapperPrefixCls}-readonly`]: readOnly2,
+        [`${affixWrapperPrefixCls}-readonly`]: readOnly,
         [`${affixWrapperPrefixCls}-input-with-clear-btn`]: suffix && allowClear && value
       }, classes == null ? void 0 : classes.affixWrapper, classNames == null ? void 0 : classNames.affixWrapper, classNames == null ? void 0 : classNames.variant);
       const suffixNode = (suffix || allowClear) && /* @__PURE__ */ React.createElement("span", {
@@ -48156,7 +48446,7 @@ html body {
     onResize: onResize2,
     onClear,
     onPressEnter,
-    readOnly: readOnly2,
+    readOnly,
     autoSize,
     onKeyDown: onKeyDown2,
     ...rest
@@ -48293,7 +48583,7 @@ html body {
       } : void 0,
       styles: styles2,
       hidden,
-      readOnly: readOnly2,
+      readOnly,
       onClear
     }, /* @__PURE__ */ React.createElement(ResizableTextArea, _extends$D({}, rest, {
       autoSize,
@@ -48313,7 +48603,7 @@ html body {
       prefixCls,
       onResize: handleResize,
       ref: resizableTextAreaRef,
-      readOnly: readOnly2
+      readOnly
     })));
   });
   function useRemovePasswordTimeout(inputRef, triggerOnMount) {
@@ -48377,7 +48667,7 @@ html body {
     const inputRef = React.useRef(null);
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useSharedStyle(prefixCls, rootClassName);
-    useStyle$d(prefixCls, rootCls);
+    useStyle$f(prefixCls, rootCls);
     const {
       compactSize,
       compactItemClassnames
@@ -48578,7 +48868,7 @@ html body {
       }
     };
   };
-  const useStyle$a = genStyleHooks("Space", (token2) => {
+  const useStyle$b = genStyleHooks("Space", (token2) => {
     const spaceToken = merge$1(token2, {
       spaceGapSmallSize: token2.paddingXS,
       spaceGapMiddleSize: token2.padding,
@@ -48630,7 +48920,7 @@ html body {
     const mergedAlign = align === void 0 && !mergedVertical ? "center" : align;
     const mergedSeparator = separator ?? split;
     const prefixCls = getPrefixCls("space", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$a(prefixCls);
+    const [hashId, cssVarCls] = useStyle$b(prefixCls);
     const mergedProps = {
       ...props,
       size,
@@ -48722,7 +49012,7 @@ html body {
       placement,
       getPopupContainer,
       href,
-      icon = /* @__PURE__ */ React__namespace.createElement(RefIcon$n, null),
+      icon = /* @__PURE__ */ React__namespace.createElement(RefIcon$m, null),
       title,
       buttonsRender = (buttons) => buttons,
       mouseEnterDelay,
@@ -49314,7 +49604,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$6 = (token2) => ({
+  const prepareComponentToken$7 = (token2) => ({
     labelRequiredMarkColor: token2.colorError,
     labelColor: token2.colorTextHeading,
     labelFontSize: token2.fontSize,
@@ -49333,12 +49623,12 @@ html body {
     });
     return formToken;
   };
-  const useStyle$9 = genStyleHooks("Form", (token2, {
+  const useStyle$a = genStyleHooks("Form", (token2, {
     rootPrefixCls
   }) => {
     const formToken = prepareToken$2(token2, rootPrefixCls);
     return [genFormStyle(formToken), genFormItemStyle(formToken), genFormValidateMotionStyle(formToken), genHorizontalStyle(formToken), genInlineStyle(formToken), genVerticalStyle(formToken), genCollapseMotion(formToken), zoomIn];
-  }, prepareComponentToken$6, {
+  }, prepareComponentToken$7, {
     // Let From style before the Grid
     // ref https://github.com/ant-design/ant-design/issues/44386
     order: -1e3
@@ -49369,7 +49659,7 @@ html body {
     } = React__namespace.useContext(FormContext);
     const baseClassName = `${prefixCls}-item-explain`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$9(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$a(prefixCls, rootCls);
     const collapseMotion = React__namespace.useMemo(() => initCollapseMotion(prefixCls), [prefixCls]);
     const debounceErrors = useDebounce(errors);
     const debounceWarnings = useDebounce(warnings);
@@ -49497,7 +49787,7 @@ html body {
     };
     const prefixCls = getPrefixCls("form", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$9(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$a(prefixCls, rootCls);
     const mergedProps = {
       ...props,
       size: mergedSize,
@@ -49600,7 +49890,7 @@ html body {
       className: formClassName
     })))))));
   };
-  const Form$2 = /* @__PURE__ */ React__namespace.forwardRef(InternalForm);
+  const Form$1 = /* @__PURE__ */ React__namespace.forwardRef(InternalForm);
   const useChildren = (children) => {
     if (isFunction$2(children)) {
       return children;
@@ -49822,7 +50112,7 @@ html body {
     ref,
     icon: QuestionCircleOutlined$1
   }));
-  const RefIcon$l = /* @__PURE__ */ React__namespace.forwardRef(QuestionCircleOutlined);
+  const RefIcon$k = /* @__PURE__ */ React__namespace.forwardRef(QuestionCircleOutlined);
   const FormItemLabel = ({
     prefixCls,
     label,
@@ -49871,7 +50161,7 @@ html body {
           e2.preventDefault();
         },
         tabIndex: -1
-      }, tooltipProps.icon || tooltipProps.children || /* @__PURE__ */ React__namespace.createElement(RefIcon$l, null)));
+      }, tooltipProps.icon || tooltipProps.children || /* @__PURE__ */ React__namespace.createElement(RefIcon$k, null)));
       labelChildren = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, labelChildren, tooltipNode);
     }
     const isOptionalMark = requiredMark === "optional";
@@ -49909,10 +50199,10 @@ html body {
     }, labelChildren));
   };
   const iconMap = {
-    success: RefIcon$y,
-    warning: RefIcon$v,
-    error: RefIcon$x,
-    validating: RefIcon$t
+    success: RefIcon$x,
+    warning: RefIcon$u,
+    error: RefIcon$w,
+    validating: RefIcon$s
   };
   function StatusProvider({
     children,
@@ -50169,7 +50459,7 @@ html body {
     const hasName = isNonNullable(name);
     const prefixCls = getPrefixCls("form", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$9(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$a(prefixCls, rootCls);
     devUseWarning();
     const listContext = React__namespace.useContext(ListContext);
     const fieldKeyPathRef = React__namespace.useRef(null);
@@ -50369,14 +50659,14 @@ html body {
     } = React__namespace.useContext(FormContext);
     return form;
   }
-  const Form$1 = Form$2;
-  Form$1.Item = FormItem$2;
-  Form$1.List = FormList;
-  Form$1.ErrorList = ErrorList;
-  Form$1.useForm = useForm;
-  Form$1.useFormInstance = useFormInstance;
-  Form$1.useWatch = useWatch;
-  Form$1.Provider = FormProvider;
+  const Form = Form$1;
+  Form.Item = FormItem$2;
+  Form.List = FormList;
+  Form.ErrorList = ErrorList;
+  Form.useForm = useForm;
+  Form.useFormInstance = useFormInstance;
+  Form.useWatch = useWatch;
+  Form.Provider = FormProvider;
   const Group = (props) => {
     const {
       getPrefixCls,
@@ -50388,7 +50678,7 @@ html body {
     } = props;
     const prefixCls = getPrefixCls("input-group", customizePrefixCls);
     const inputPrefixCls = getPrefixCls("input");
-    const [hashId, cssVarCls] = useStyle$d(inputPrefixCls);
+    const [hashId, cssVarCls] = useStyle$f(inputPrefixCls);
     const cls = clsx(prefixCls, cssVarCls, {
       [`${prefixCls}-lg`]: props.size === "large",
       [`${prefixCls}-sm`]: props.size === "small",
@@ -50464,7 +50754,7 @@ html body {
       }
     };
   };
-  const useStyle$8 = genStyleHooks(["Input", "OTP"], (token2) => {
+  const useStyle$9 = genStyleHooks(["Input", "OTP"], (token2) => {
     const inputToken = merge$1(token2, initInputToken(token2));
     return genOTPStyle(inputToken);
   }, initComponentToken$1);
@@ -50608,7 +50898,7 @@ html body {
       data: true,
       attr: true
     });
-    const [hashId, cssVarCls] = useStyle$8(prefixCls);
+    const [hashId, cssVarCls] = useStyle$9(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const formContext = React__namespace.useContext(FormItemInputContext);
     const mergedStatus = getMergedStatus(formContext.status, customStatus);
@@ -50775,7 +51065,7 @@ html body {
     ref,
     icon: EyeInvisibleOutlined$1
   }));
-  const RefIcon$k = /* @__PURE__ */ React__namespace.forwardRef(EyeInvisibleOutlined);
+  const RefIcon$j = /* @__PURE__ */ React__namespace.forwardRef(EyeInvisibleOutlined);
   var EyeOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" } }] }, "name": "eye", "theme": "outlined" };
   function _extends$A() {
     _extends$A = Object.assign ? Object.assign.bind() : function(target) {
@@ -50795,8 +51085,8 @@ html body {
     ref,
     icon: EyeOutlined$1
   }));
-  const RefIcon$j = /* @__PURE__ */ React__namespace.forwardRef(EyeOutlined);
-  const defaultIconRender = (visible) => visible ? /* @__PURE__ */ React__namespace.createElement(RefIcon$j, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$k, null);
+  const RefIcon$i = /* @__PURE__ */ React__namespace.forwardRef(EyeOutlined);
+  const defaultIconRender = (visible) => visible ? /* @__PURE__ */ React__namespace.createElement(RefIcon$i, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$j, null);
   const actionMap = {
     click: "onClick",
     hover: "onMouseOver"
@@ -50934,8 +51224,8 @@ html body {
       }
     };
   };
-  const useStyle$7 = genStyleHooks(["Input", "Search"], genSearchStyle);
-  const Search$2 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+  const useStyle$8 = genStyleHooks(["Input", "Search"], genSearchStyle);
+  const Search$3 = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
     const {
       prefixCls: customizePrefixCls,
       inputPrefixCls: customizeInputPrefixCls,
@@ -50979,7 +51269,7 @@ html body {
     const composedRef = React__namespace.useRef(false);
     const prefixCls = getPrefixCls("input-search", customizePrefixCls);
     const inputPrefixCls = getPrefixCls("input", customizeInputPrefixCls);
-    const [hashId, cssVarCls] = useStyle$7(prefixCls);
+    const [hashId, cssVarCls] = useStyle$8(prefixCls);
     const {
       compactSize
     } = useCompactItemContext(prefixCls, direction);
@@ -51014,7 +51304,7 @@ html body {
       customOnPressEnter == null ? void 0 : customOnPressEnter(e2);
       onSearch(e2);
     };
-    const searchIcon = typeof enterButton === "boolean" ? fallbackProp(customizeSearchIcon, contextSearchIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null)) : null;
+    const searchIcon = typeof enterButton === "boolean" ? fallbackProp(customizeSearchIcon, contextSearchIcon, /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null)) : null;
     const btnPrefixCls = `${prefixCls}-btn`;
     const btnClassName = clsx(btnPrefixCls, {
       [`${btnPrefixCls}-${variant}`]: variant
@@ -51198,7 +51488,7 @@ html body {
       }
     };
   };
-  const useStyle$6 = genStyleHooks(["Input", "TextArea"], (token2) => {
+  const useStyle$7 = genStyleHooks(["Input", "TextArea"], (token2) => {
     const inputToken = merge$1(token2, initInputToken(token2));
     return genTextAreaStyle(inputToken);
   }, initComponentToken$1, {
@@ -51264,7 +51554,7 @@ html body {
     const prefixCls = getPrefixCls("input", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useSharedStyle(prefixCls, rootClassName);
-    useStyle$6(prefixCls, rootCls);
+    useStyle$7(prefixCls, rootCls);
     const {
       compactSize,
       compactItemClassnames
@@ -51349,7 +51639,7 @@ html body {
   });
   const Input = Input$1;
   Input.Group = Group;
-  Input.Search = Search$2;
+  Input.Search = Search$3;
   Input.TextArea = TextArea;
   Input.Password = Password;
   Input.OTP = OTP;
@@ -51372,7 +51662,7 @@ html body {
     ref,
     icon: DoubleLeftOutlined$1
   }));
-  const RefIcon$i = /* @__PURE__ */ React__namespace.forwardRef(DoubleLeftOutlined);
+  const RefIcon$h = /* @__PURE__ */ React__namespace.forwardRef(DoubleLeftOutlined);
   var DoubleRightOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M533.2 492.3L277.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H188c-6.7 0-10.4 7.7-6.3 12.9L447.1 512 181.7 851.1A7.98 7.98 0 00188 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5zm304 0L581.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H492c-6.7 0-10.4 7.7-6.3 12.9L751.1 512 485.7 851.1A7.98 7.98 0 00492 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5z" } }] }, "name": "double-right", "theme": "outlined" };
   function _extends$y() {
     _extends$y = Object.assign ? Object.assign.bind() : function(target) {
@@ -51392,7 +51682,7 @@ html body {
     ref,
     icon: DoubleRightOutlined$1
   }));
-  const RefIcon$h = /* @__PURE__ */ React__namespace.forwardRef(DoubleRightOutlined);
+  const RefIcon$g = /* @__PURE__ */ React__namespace.forwardRef(DoubleRightOutlined);
   const locale = {
     // Options
     items_per_page: "条/页",
@@ -51564,7 +51854,7 @@ html body {
     return _extends$x.apply(this, arguments);
   }
   const defaultItemRender = (_2, __, element) => element;
-  function noop$2() {
+  function noop$3() {
   }
   function isInteger(v2) {
     const value = Number(v2);
@@ -51588,7 +51878,7 @@ html body {
       total = 0,
       pageSize: pageSizeProp,
       defaultPageSize = 10,
-      onChange = noop$2,
+      onChange = noop$3,
       // config
       hideOnSinglePage,
       align,
@@ -51596,7 +51886,7 @@ html body {
       showQuickJumper,
       showLessItems,
       showTitle = true,
-      onShowSizeChange = noop$2,
+      onShowSizeChange = noop$3,
       locale: locale$12 = locale,
       style: style2,
       totalBoundaryShowSizeChanger = 50,
@@ -52458,7 +52748,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$5 = (token2) => ({
+  const prepareComponentToken$6 = (token2) => ({
     itemBg: token2.colorBgContainer,
     itemSize: token2.controlHeight,
     itemSizeSM: token2.controlHeightSM,
@@ -52485,10 +52775,10 @@ html body {
     paginationEllipsisTextIndent: "0.13em"
     // magic for ui experience
   }, initInputToken(token2));
-  const useStyle$5 = genStyleHooks("Pagination", (token2) => {
+  const useStyle$6 = genStyleHooks("Pagination", (token2) => {
     const paginationToken = prepareToken$1(token2);
     return [genPaginationStyle$1(paginationToken), genPaginationFocusStyle(paginationToken)];
-  }, prepareComponentToken$5);
+  }, prepareComponentToken$6);
   const genBorderedStyle$1 = (token2) => {
     const {
       componentCls
@@ -52573,7 +52863,7 @@ html body {
   const BorderedStyle = genSubStyleComponent(["Pagination", "bordered"], (token2) => {
     const paginationToken = prepareToken$1(token2);
     return genBorderedStyle$1(paginationToken);
-  }, prepareComponentToken$5);
+  }, prepareComponentToken$6);
   function useShowSizeChanger(showSizeChanger) {
     return React.useMemo(() => {
       if (typeof showSizeChanger === "boolean") {
@@ -52618,7 +52908,7 @@ html body {
       totalBoundaryShowSizeChanger: contextTotalBoundaryShowSizeChanger
     } = useComponentConfig("pagination");
     const prefixCls = getPrefixCls("pagination", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$5(prefixCls);
+    const [hashId, cssVarCls] = useStyle$6(prefixCls);
     const mergedSize = useSize(customizeSize);
     const isSmall = mergedSize === "small" || !!(xs && !mergedSize && responsive);
     const mergedProps = {
@@ -52681,28 +52971,28 @@ html body {
         className: `${prefixCls}-item-link`,
         type: "button",
         tabIndex: -1
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$s, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null));
+      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$r, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$n, null));
       const nextIcon = /* @__PURE__ */ React__namespace.createElement("button", {
         className: `${prefixCls}-item-link`,
         type: "button",
         tabIndex: -1
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$s, null));
+      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$n, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$r, null));
       const jumpPrevIcon = /* @__PURE__ */ React__namespace.createElement("a", {
         className: `${prefixCls}-item-link`
       }, /* @__PURE__ */ React__namespace.createElement("div", {
         className: `${prefixCls}-item-container`
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$h, {
+      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$g, {
         className: `${prefixCls}-item-link-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$i, {
+      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$h, {
         className: `${prefixCls}-item-link-icon`
       }), ellipsis));
       const jumpNextIcon = /* @__PURE__ */ React__namespace.createElement("a", {
         className: `${prefixCls}-item-link`
       }, /* @__PURE__ */ React__namespace.createElement("div", {
         className: `${prefixCls}-item-container`
-      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$i, {
+      }, direction === "rtl" ? /* @__PURE__ */ React__namespace.createElement(RefIcon$h, {
         className: `${prefixCls}-item-link-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$h, {
+      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$g, {
         className: `${prefixCls}-item-link-icon`
       }), ellipsis));
       return {
@@ -53072,7 +53362,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$4 = (token2) => {
+  const prepareComponentToken$5 = (token2) => {
     const {
       controlHeightLG,
       controlHeight
@@ -53084,12 +53374,12 @@ html body {
       dotSizeLG: controlHeight
     };
   };
-  const useStyle$4 = genStyleHooks("Spin", (token2) => {
+  const useStyle$5 = genStyleHooks("Spin", (token2) => {
     const spinToken = merge$1(token2, {
       spinDotDefault: token2.colorTextDescription
     });
     return [genSpinStyle(spinToken), genIndicatorStyle(spinToken), genSizeStyle$1(spinToken)];
-  }, prepareComponentToken$4);
+  }, prepareComponentToken$5);
   const AUTO_INTERVAL = 200;
   const STEP_BUCKETS = [[30, 0.05], [70, 0.03], [96, 0.01]];
   function usePercent(spinning, percent2) {
@@ -53155,7 +53445,7 @@ html body {
       styles: contextStyles
     } = useComponentConfig("spin");
     const prefixCls = getPrefixCls("spin", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$4(prefixCls);
+    const [hashId, cssVarCls] = useStyle$5(prefixCls);
     const [spinning, setSpinning] = React__namespace.useState(() => customSpinning && !shouldDelay(customSpinning, delay));
     const mergedPercent = usePercent(spinning, percent2);
     React__namespace.useEffect(() => {
@@ -53242,7 +53532,7 @@ html body {
     } = useComponentConfig("message");
     const prefixCls = getPrefixCls("message");
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$p(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
     const noticePrefixCls = `${prefixCls}-notice`;
     const configList = items.map((item) => {
       const {
@@ -53526,7 +53816,7 @@ html body {
     const rootPrefixCls = getPrefixCls();
     const prefixCls = customizePrefixCls || getPrefixCls("modal");
     const rootCls = useCSSVarCls(rootPrefixCls);
-    const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$m(prefixCls, rootCls);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props
     });
@@ -53619,7 +53909,7 @@ html body {
     ref,
     icon: StarFilled$1
   }));
-  const RefIcon$g = /* @__PURE__ */ React__namespace.forwardRef(StarFilled);
+  const RefIcon$f = /* @__PURE__ */ React__namespace.forwardRef(StarFilled);
   function Star(props, ref) {
     const {
       disabled,
@@ -54008,7 +54298,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$3 = (token2) => ({
+  const prepareComponentToken$4 = (token2) => ({
     starColor: token2.yellow6,
     starSize: token2.controlHeight * 0.625,
     starSizeSM: token2.controlHeightSM * 0.625,
@@ -54016,10 +54306,10 @@ html body {
     starHoverScale: "scale(1.1)",
     starBg: token2.colorFillContent
   });
-  const useStyle$3 = genStyleHooks("Rate", (token2) => {
+  const useStyle$4 = genStyleHooks("Rate", (token2) => {
     const rateToken = merge$1(token2, {});
     return genRateStyle(rateToken);
-  }, prepareComponentToken$3);
+  }, prepareComponentToken$4);
   const Rate = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
     const {
       prefixCls,
@@ -54027,7 +54317,7 @@ html body {
       rootClassName,
       style: style2,
       tooltips,
-      character: character2 = /* @__PURE__ */ React__namespace.createElement(RefIcon$g, null),
+      character: character2 = /* @__PURE__ */ React__namespace.createElement(RefIcon$f, null),
       disabled: customDisabled,
       size,
       ...rest
@@ -54055,7 +54345,7 @@ html body {
       style: contextStyle
     } = useComponentConfig("rate");
     const ratePrefixCls = getPrefixCls("rate", prefixCls);
-    const [hashId, cssVarCls] = useStyle$3(ratePrefixCls);
+    const [hashId, cssVarCls] = useStyle$4(ratePrefixCls);
     const mergedStyle = {
       ...contextStyle,
       ...style2
@@ -54078,6 +54368,481 @@ html body {
       direction
     });
   });
+  function _extends$u() {
+    _extends$u = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$u.apply(this, arguments);
+  }
+  const Switch$1 = /* @__PURE__ */ React__namespace.forwardRef(({
+    prefixCls = "rc-switch",
+    className,
+    checked,
+    defaultChecked,
+    disabled,
+    loadingIcon,
+    checkedChildren,
+    unCheckedChildren,
+    onClick,
+    onChange,
+    onKeyDown: onKeyDown2,
+    styles: styles2,
+    classNames: switchClassNames,
+    ...restProps
+  }, ref) => {
+    const [innerChecked, setInnerChecked] = useControlledState(defaultChecked ?? false, checked);
+    function triggerChange(newChecked, event) {
+      let mergedChecked = innerChecked;
+      if (!disabled) {
+        mergedChecked = newChecked;
+        setInnerChecked(mergedChecked);
+        onChange == null ? void 0 : onChange(mergedChecked, event);
+      }
+      return mergedChecked;
+    }
+    function onInternalKeyDown(e2) {
+      if (e2.which === KeyCode.LEFT) {
+        triggerChange(false, e2);
+      } else if (e2.which === KeyCode.RIGHT) {
+        triggerChange(true, e2);
+      }
+      onKeyDown2 == null ? void 0 : onKeyDown2(e2);
+    }
+    function onInternalClick(e2) {
+      const ret = triggerChange(!innerChecked, e2);
+      onClick == null ? void 0 : onClick(ret, e2);
+    }
+    const switchClassName = clsx(prefixCls, className, {
+      [`${prefixCls}-checked`]: innerChecked,
+      [`${prefixCls}-disabled`]: disabled
+    });
+    return /* @__PURE__ */ React__namespace.createElement("button", _extends$u({}, restProps, {
+      type: "button",
+      role: "switch",
+      "aria-checked": innerChecked,
+      disabled,
+      className: switchClassName,
+      ref,
+      onKeyDown: onInternalKeyDown,
+      onClick: onInternalClick
+    }), loadingIcon, /* @__PURE__ */ React__namespace.createElement("span", {
+      className: `${prefixCls}-inner`
+    }, /* @__PURE__ */ React__namespace.createElement("span", {
+      className: clsx(`${prefixCls}-inner-checked`, switchClassNames == null ? void 0 : switchClassNames.content),
+      style: styles2 == null ? void 0 : styles2.content
+    }, checkedChildren), /* @__PURE__ */ React__namespace.createElement("span", {
+      className: clsx(`${prefixCls}-inner-unchecked`, switchClassNames == null ? void 0 : switchClassNames.content),
+      style: styles2 == null ? void 0 : styles2.content
+    }, unCheckedChildren)));
+  });
+  Switch$1.displayName = "Switch";
+  const genSwitchSmallStyle = (token2) => {
+    const {
+      componentCls,
+      trackHeightSM,
+      trackPadding,
+      trackMinWidthSM,
+      innerMinMarginSM,
+      innerMaxMarginSM,
+      handleSizeSM,
+      calc
+    } = token2;
+    const switchInnerCls = `${componentCls}-inner`;
+    const trackPaddingCalc = unit$1(calc(handleSizeSM).add(calc(trackPadding).mul(2)).equal());
+    const innerMaxMarginCalc = unit$1(calc(innerMaxMarginSM).mul(2).equal());
+    return {
+      [componentCls]: {
+        [`&${componentCls}-small`]: {
+          minWidth: trackMinWidthSM,
+          height: trackHeightSM,
+          lineHeight: unit$1(trackHeightSM),
+          [`${componentCls}-inner`]: {
+            paddingInlineStart: innerMaxMarginSM,
+            paddingInlineEnd: innerMinMarginSM,
+            [`${switchInnerCls}-checked, ${switchInnerCls}-unchecked`]: {
+              minHeight: trackHeightSM
+            },
+            [`${switchInnerCls}-checked`]: {
+              marginInlineStart: `calc(-100% + ${trackPaddingCalc} - ${innerMaxMarginCalc})`,
+              marginInlineEnd: `calc(100% - ${trackPaddingCalc} + ${innerMaxMarginCalc})`
+            },
+            [`${switchInnerCls}-unchecked`]: {
+              marginTop: calc(trackHeightSM).mul(-1).equal(),
+              marginInlineStart: 0,
+              marginInlineEnd: 0
+            }
+          },
+          [`${componentCls}-handle`]: {
+            width: handleSizeSM,
+            height: handleSizeSM
+          },
+          [`${componentCls}-loading-icon`]: {
+            top: calc(calc(handleSizeSM).sub(token2.switchLoadingIconSize)).div(2).equal(),
+            fontSize: token2.switchLoadingIconSize
+          },
+          [`&${componentCls}-checked`]: {
+            [`${componentCls}-inner`]: {
+              paddingInlineStart: innerMinMarginSM,
+              paddingInlineEnd: innerMaxMarginSM,
+              [`${switchInnerCls}-checked`]: {
+                marginInlineStart: 0,
+                marginInlineEnd: 0
+              },
+              [`${switchInnerCls}-unchecked`]: {
+                marginInlineStart: `calc(100% - ${trackPaddingCalc} + ${innerMaxMarginCalc})`,
+                marginInlineEnd: `calc(-100% + ${trackPaddingCalc} - ${innerMaxMarginCalc})`
+              }
+            },
+            [`${componentCls}-handle`]: {
+              insetInlineStart: `calc(100% - ${unit$1(calc(handleSizeSM).add(trackPadding).equal())})`
+            }
+          },
+          [`&:not(${componentCls}-disabled):active`]: {
+            [`&:not(${componentCls}-checked) ${switchInnerCls}`]: {
+              [`${switchInnerCls}-unchecked`]: {
+                marginInlineStart: calc(token2.marginXXS).div(2).equal(),
+                marginInlineEnd: calc(token2.marginXXS).mul(-1).div(2).equal()
+              }
+            },
+            [`&${componentCls}-checked ${switchInnerCls}`]: {
+              [`${switchInnerCls}-checked`]: {
+                marginInlineStart: calc(token2.marginXXS).mul(-1).div(2).equal(),
+                marginInlineEnd: calc(token2.marginXXS).div(2).equal()
+              }
+            }
+          }
+        }
+      }
+    };
+  };
+  const genSwitchLoadingStyle = (token2) => {
+    const {
+      componentCls,
+      handleSize,
+      calc
+    } = token2;
+    return {
+      [componentCls]: {
+        [`${componentCls}-loading-icon${token2.iconCls}`]: {
+          position: "relative",
+          top: calc(calc(handleSize).sub(token2.fontSize)).div(2).equal(),
+          color: token2.switchLoadingIconColor,
+          verticalAlign: "top"
+        },
+        [`&${componentCls}-checked ${componentCls}-loading-icon`]: {
+          color: token2.switchColor
+        }
+      }
+    };
+  };
+  const genSwitchHandleStyle = (token2) => {
+    const {
+      componentCls,
+      trackPadding,
+      handleBg,
+      handleShadow,
+      handleSize,
+      calc
+    } = token2;
+    const switchHandleCls = `${componentCls}-handle`;
+    return {
+      [componentCls]: {
+        [switchHandleCls]: {
+          position: "absolute",
+          top: trackPadding,
+          insetInlineStart: trackPadding,
+          width: handleSize,
+          height: handleSize,
+          transition: `all ${token2.switchDuration} ease-in-out`,
+          ...genNoMotionStyle(),
+          "&::before": {
+            position: "absolute",
+            top: 0,
+            insetInlineEnd: 0,
+            bottom: 0,
+            insetInlineStart: 0,
+            backgroundColor: handleBg,
+            borderRadius: calc(handleSize).div(2).equal(),
+            boxShadow: handleShadow,
+            transition: `all ${token2.switchDuration} ease-in-out`,
+            content: '""',
+            ...genNoMotionStyle()
+          }
+        },
+        [`&${componentCls}-checked ${switchHandleCls}`]: {
+          insetInlineStart: `calc(100% - ${unit$1(calc(handleSize).add(trackPadding).equal())})`
+        },
+        [`&:not(${componentCls}-disabled):active`]: {
+          [`${switchHandleCls}::before`]: {
+            insetInlineEnd: token2.switchHandleActiveInset,
+            insetInlineStart: 0
+          },
+          [`&${componentCls}-checked ${switchHandleCls}::before`]: {
+            insetInlineEnd: 0,
+            insetInlineStart: token2.switchHandleActiveInset
+          }
+        }
+      }
+    };
+  };
+  const genSwitchInnerStyle = (token2) => {
+    const {
+      componentCls,
+      trackHeight,
+      trackPadding,
+      innerMinMargin,
+      innerMaxMargin,
+      handleSize,
+      switchDuration,
+      calc
+    } = token2;
+    const switchInnerCls = `${componentCls}-inner`;
+    const trackPaddingCalc = unit$1(calc(handleSize).add(calc(trackPadding).mul(2)).equal());
+    const innerMaxMarginCalc = unit$1(calc(innerMaxMargin).mul(2).equal());
+    return {
+      [componentCls]: {
+        [switchInnerCls]: {
+          display: "block",
+          overflow: "hidden",
+          borderRadius: 100,
+          height: "100%",
+          paddingInlineStart: innerMaxMargin,
+          paddingInlineEnd: innerMinMargin,
+          transition: [`padding-inline-start`, `padding-inline-end`].map((prop) => `${prop} ${switchDuration} ease-in-out`).join(", "),
+          ...genNoMotionStyle(),
+          [`${switchInnerCls}-checked, ${switchInnerCls}-unchecked`]: {
+            display: "block",
+            color: token2.colorTextLightSolid,
+            fontSize: token2.fontSizeSM,
+            pointerEvents: "none",
+            minHeight: trackHeight,
+            transition: [`margin-inline-start`, `margin-inline-end`].map((prop) => `${prop} ${switchDuration} ease-in-out`).join(", "),
+            ...genNoMotionStyle()
+          },
+          [`${switchInnerCls}-checked`]: {
+            marginInlineStart: `calc(-100% + ${trackPaddingCalc} - ${innerMaxMarginCalc})`,
+            marginInlineEnd: `calc(100% - ${trackPaddingCalc} + ${innerMaxMarginCalc})`
+          },
+          [`${switchInnerCls}-unchecked`]: {
+            marginTop: calc(trackHeight).mul(-1).equal(),
+            marginInlineStart: 0,
+            marginInlineEnd: 0
+          }
+        },
+        [`&${componentCls}-checked ${switchInnerCls}`]: {
+          paddingInlineStart: innerMinMargin,
+          paddingInlineEnd: innerMaxMargin,
+          [`${switchInnerCls}-checked`]: {
+            marginInlineStart: 0,
+            marginInlineEnd: 0
+          },
+          [`${switchInnerCls}-unchecked`]: {
+            marginInlineStart: `calc(100% - ${trackPaddingCalc} + ${innerMaxMarginCalc})`,
+            marginInlineEnd: `calc(-100% + ${trackPaddingCalc} - ${innerMaxMarginCalc})`
+          }
+        },
+        [`&:not(${componentCls}-disabled):active`]: {
+          [`&:not(${componentCls}-checked) ${switchInnerCls}`]: {
+            [`${switchInnerCls}-unchecked`]: {
+              marginInlineStart: calc(trackPadding).mul(2).equal(),
+              marginInlineEnd: calc(trackPadding).mul(-1).mul(2).equal()
+            }
+          },
+          [`&${componentCls}-checked ${switchInnerCls}`]: {
+            [`${switchInnerCls}-checked`]: {
+              marginInlineStart: calc(trackPadding).mul(-1).mul(2).equal(),
+              marginInlineEnd: calc(trackPadding).mul(2).equal()
+            }
+          }
+        }
+      }
+    };
+  };
+  const genSwitchStyle = (token2) => {
+    const {
+      componentCls,
+      trackHeight,
+      trackMinWidth
+    } = token2;
+    return {
+      [componentCls]: {
+        ...resetComponent(token2),
+        position: "relative",
+        display: "inline-block",
+        boxSizing: "border-box",
+        minWidth: trackMinWidth,
+        height: trackHeight,
+        lineHeight: unit$1(trackHeight),
+        verticalAlign: "middle",
+        background: token2.colorTextQuaternary,
+        border: "0",
+        borderRadius: 100,
+        cursor: "pointer",
+        transition: `all ${token2.motionDurationMid}`,
+        userSelect: "none",
+        ...genNoMotionStyle(),
+        [`&:hover:not(${componentCls}-disabled)`]: {
+          background: token2.colorTextTertiary
+        },
+        ...genFocusStyle(token2),
+        [`&${componentCls}-checked`]: {
+          background: token2.switchColor,
+          [`&:hover:not(${componentCls}-disabled)`]: {
+            background: token2.colorPrimaryHover
+          }
+        },
+        [`&${componentCls}-loading, &${componentCls}-disabled`]: {
+          cursor: "not-allowed",
+          opacity: token2.switchDisabledOpacity,
+          "*": {
+            boxShadow: "none",
+            cursor: "not-allowed"
+          }
+        },
+        // rtl style
+        [`&${componentCls}-rtl`]: {
+          direction: "rtl"
+        }
+      }
+    };
+  };
+  const prepareComponentToken$3 = (token2) => {
+    const {
+      fontSize,
+      lineHeight,
+      controlHeight,
+      colorWhite
+    } = token2;
+    const height = fontSize * lineHeight;
+    const heightSM = controlHeight / 2;
+    const padding = 2;
+    const handleSize = height - padding * 2;
+    const handleSizeSM = heightSM - padding * 2;
+    return {
+      trackHeight: height,
+      trackHeightSM: heightSM,
+      trackMinWidth: handleSize * 2 + padding * 4,
+      trackMinWidthSM: handleSizeSM * 2 + padding * 2,
+      trackPadding: padding,
+      // Fixed value
+      handleBg: colorWhite,
+      handleSize,
+      handleSizeSM,
+      handleShadow: `0 2px 4px 0 ${new FastColor("#00230b").setA(0.2).toRgbString()}`,
+      innerMinMargin: handleSize / 2,
+      innerMaxMargin: handleSize + padding + padding * 2,
+      innerMinMarginSM: handleSizeSM / 2,
+      innerMaxMarginSM: handleSizeSM + padding + padding * 2
+    };
+  };
+  const useStyle$3 = genStyleHooks("Switch", (token2) => {
+    const switchToken = merge$1(token2, {
+      switchDuration: token2.motionDurationMid,
+      switchColor: token2.colorPrimary,
+      switchDisabledOpacity: token2.opacityLoading,
+      switchLoadingIconSize: token2.calc(token2.fontSizeIcon).mul(0.75).equal(),
+      switchLoadingIconColor: `rgba(0, 0, 0, ${token2.opacityLoading})`,
+      switchHandleActiveInset: "-30%"
+    });
+    return [
+      genSwitchStyle(switchToken),
+      // inner style
+      genSwitchInnerStyle(switchToken),
+      // handle style
+      genSwitchHandleStyle(switchToken),
+      // loading style
+      genSwitchLoadingStyle(switchToken),
+      // small style
+      genSwitchSmallStyle(switchToken)
+    ];
+  }, prepareComponentToken$3);
+  const InternalSwitch = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
+    const {
+      prefixCls: customizePrefixCls,
+      size: customizeSize,
+      disabled: customDisabled,
+      loading,
+      className,
+      rootClassName,
+      style: style2,
+      checked: checkedProp,
+      value,
+      defaultChecked: defaultCheckedProp,
+      defaultValue,
+      onChange,
+      styles: styles2,
+      classNames,
+      ...restProps
+    } = props;
+    const [checked, setChecked] = useControlledState(defaultCheckedProp ?? defaultValue ?? false, checkedProp ?? value);
+    const {
+      getPrefixCls,
+      direction,
+      className: contextClassName,
+      style: contextStyle,
+      classNames: contextClassNames,
+      styles: contextStyles
+    } = useComponentConfig("switch");
+    const disabled = React__namespace.useContext(DisabledContext);
+    const mergedDisabled = (customDisabled ?? disabled) || loading;
+    const prefixCls = getPrefixCls("switch", customizePrefixCls);
+    const [hashId, cssVarCls] = useStyle$3(prefixCls);
+    const mergedSize = useSize(customizeSize);
+    const mergedProps = {
+      ...props,
+      size: mergedSize,
+      disabled: mergedDisabled
+    };
+    const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
+      props: mergedProps
+    });
+    const loadingIcon = /* @__PURE__ */ React__namespace.createElement("div", {
+      className: clsx(`${prefixCls}-handle`, mergedClassNames.indicator),
+      style: mergedStyles.indicator
+    }, loading && /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
+      className: `${prefixCls}-loading-icon`
+    }));
+    const classes = clsx(contextClassName, {
+      [`${prefixCls}-small`]: mergedSize === "small",
+      [`${prefixCls}-loading`]: loading,
+      [`${prefixCls}-rtl`]: direction === "rtl"
+    }, className, rootClassName, mergedClassNames.root, hashId, cssVarCls);
+    const mergedStyle = {
+      ...mergedStyles.root,
+      ...contextStyle,
+      ...style2
+    };
+    const changeHandler = (...args) => {
+      setChecked(args[0]);
+      onChange == null ? void 0 : onChange(...args);
+    };
+    return /* @__PURE__ */ React__namespace.createElement(Wave, {
+      component: "Switch",
+      disabled: mergedDisabled
+    }, /* @__PURE__ */ React__namespace.createElement(Switch$1, {
+      ...restProps,
+      classNames: mergedClassNames,
+      styles: mergedStyles,
+      checked,
+      onChange: changeHandler,
+      prefixCls,
+      className: classes,
+      style: mergedStyle,
+      disabled: mergedDisabled,
+      ref,
+      loadingIcon
+    }));
+  });
+  const Switch = InternalSwitch;
+  Switch.__ANT_SWITCH = true;
   const EXPAND_COLUMN = {};
   const INTERNAL_HOOKS = "rc-table-internal-hook";
   function createContext(defaultValue) {
@@ -54148,8 +54913,8 @@ html body {
     }, [context]);
     return valueRef.current;
   }
-  function _extends$u() {
-    _extends$u = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$t() {
+    _extends$t = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -54160,7 +54925,7 @@ html body {
       }
       return target;
     };
-    return _extends$u.apply(this, arguments);
+    return _extends$t.apply(this, arguments);
   }
   function createImmutable() {
     const ImmutableContext = /* @__PURE__ */ React__namespace.createContext(null);
@@ -54177,7 +54942,7 @@ html body {
         const prevProps = React__namespace.useRef(props);
         const mark = useImmutableMark2();
         if (mark !== null) {
-          return /* @__PURE__ */ React__namespace.createElement(Component, _extends$u({}, props, refProps));
+          return /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, props, refProps));
         }
         if (
           // Always trigger re-render if `shouldTriggerRender` is not provided
@@ -54188,7 +54953,7 @@ html body {
         prevProps.current = props;
         return /* @__PURE__ */ React__namespace.createElement(ImmutableContext.Provider, {
           value: renderTimesRef.current
-        }, /* @__PURE__ */ React__namespace.createElement(Component, _extends$u({}, props, refProps)));
+        }, /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, props, refProps)));
       };
       return refAble ? /* @__PURE__ */ React__namespace.forwardRef(ImmutableComponent) : ImmutableComponent;
     }
@@ -54199,7 +54964,7 @@ html body {
           ref
         } : {};
         useImmutableMark2();
-        return /* @__PURE__ */ React__namespace.createElement(Component, _extends$u({}, props, refProps));
+        return /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, props, refProps));
       };
       return /* @__PURE__ */ React__namespace.memo(refAble ? /* @__PURE__ */ React__namespace.forwardRef(ImmutableComponent) : ImmutableComponent, propsAreEqual);
     }
@@ -54305,8 +55070,8 @@ html body {
       return [hovering, ctx.onHover];
     });
   }
-  function _extends$t() {
-    _extends$t = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$s() {
+    _extends$s = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -54317,7 +55082,7 @@ html body {
       }
       return target;
     };
-    return _extends$t.apply(this, arguments);
+    return _extends$s.apply(this, arguments);
   }
   const getTitleFromCellRenderChildren = ({
     ellipsis,
@@ -54467,7 +55232,7 @@ html body {
         className: `${cellPrefixCls}-content`
       }, mergedChildNode);
     }
-    return /* @__PURE__ */ React__namespace.createElement(Component, _extends$t({}, legacyCellProps, additionalProps, {
+    return /* @__PURE__ */ React__namespace.createElement(Component, _extends$s({}, legacyCellProps, additionalProps, {
       className: mergedClassName,
       style: mergedStyle,
       title,
@@ -54538,8 +55303,8 @@ html body {
     };
   }
   const SummaryContext = /* @__PURE__ */ React__namespace.createContext({});
-  function _extends$s() {
-    _extends$s = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$r() {
+    _extends$r = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -54550,7 +55315,7 @@ html body {
       }
       return target;
     };
-    return _extends$s.apply(this, arguments);
+    return _extends$r.apply(this, arguments);
   }
   const SummaryCell = (props) => {
     const {
@@ -54572,7 +55337,7 @@ html body {
     const lastIndex = index2 + colSpan - 1;
     const mergedColSpan = lastIndex + 1 === scrollColumnIndex ? colSpan + 1 : colSpan;
     const fixedInfo = React__namespace.useMemo(() => getCellFixedInfo(index2, index2 + mergedColSpan - 1, flattenColumns, stickyOffsets), [index2, mergedColSpan, flattenColumns, stickyOffsets]);
-    return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$s({
+    return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$r({
       className,
       index: index2,
       component: "td",
@@ -54802,8 +55567,8 @@ html body {
     }
     return "";
   }
-  function _extends$r() {
-    _extends$r = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$q() {
+    _extends$q = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -54814,7 +55579,7 @@ html body {
       }
       return target;
     };
-    return _extends$r.apply(this, arguments);
+    return _extends$q.apply(this, arguments);
   }
   function getCellProps(rowInfo, column2, colIndex, indent, index2, rowKeys = [], expandedRowOffset = 0) {
     var _a2;
@@ -54904,7 +55669,7 @@ html body {
     const expandedRef = React__namespace.useRef(false);
     expandedRef.current || (expandedRef.current = expanded);
     const expandedClsName = computedExpandedClassName(expandedRowClassName, record, index2, indent);
-    const baseRowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$r({}, rowProps, {
+    const baseRowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$q({}, rowProps, {
       "data-row-key": rowKey,
       className: clsx(className, `${prefixCls}-row`, `${prefixCls}-row-level-${indent}`, rowProps == null ? void 0 : rowProps.className, classNames.row, {
         [expandedClsName]: indent >= 1
@@ -54926,7 +55691,7 @@ html body {
         appendCellNode,
         additionalCellProps
       } = getCellProps(rowInfo, column2, colIndex, indent, index2, rowKeys, expandedRowInfo == null ? void 0 : expandedRowInfo.offset);
-      return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$r({
+      return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$q({
         className: clsx(columnClassName, classNames.cell),
         style: styles2.cell,
         ellipsis: column2.ellipsis,
@@ -55153,8 +55918,8 @@ html body {
     }
     return config2;
   }
-  function _extends$q() {
-    _extends$q = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$p() {
+    _extends$p = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -55165,7 +55930,7 @@ html body {
       }
       return target;
     };
-    return _extends$q.apply(this, arguments);
+    return _extends$p.apply(this, arguments);
   }
   const ColGroup = (props) => {
     const {
@@ -55195,7 +55960,7 @@ html body {
           columnType,
           ...restAdditionalProps
         } = additionalProps || {};
-        cols.unshift(/* @__PURE__ */ React__namespace.createElement("col", _extends$q({
+        cols.unshift(/* @__PURE__ */ React__namespace.createElement("col", _extends$p({
           key: i,
           style: {
             width,
@@ -55356,8 +56121,8 @@ html body {
     })));
   });
   const FixedHolder$1 = /* @__PURE__ */ React__namespace.memo(FixedHolder);
-  function _extends$p() {
-    _extends$p = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$o() {
+    _extends$o = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -55368,7 +56133,7 @@ html body {
       }
       return target;
     };
-    return _extends$p.apply(this, arguments);
+    return _extends$o.apply(this, arguments);
   }
   const HeaderRow = (props) => {
     const {
@@ -55390,7 +56155,7 @@ html body {
       rowProps = onHeaderRow(cells.map((cell) => cell.column), index2);
     }
     const columnsKey = getColumnsKey(cells.map((cell) => cell.column));
-    return /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$p({}, rowProps, {
+    return /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$o({}, rowProps, {
       className: classNames.row,
       style: styles2.row
     }), cells.map((cell, cellIndex) => {
@@ -55403,7 +56168,7 @@ html body {
       } = cell;
       const fixedInfo = getCellFixedInfo(colStart, colEnd, flattenColumns, stickyOffsets);
       const additionalProps = ((_a2 = column2 == null ? void 0 : column2.onHeaderCell) == null ? void 0 : _a2.call(column2, column2)) || {};
-      return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$p({}, cell, {
+      return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$o({}, cell, {
         scope: column2.title ? colSpan > 1 ? "colgroup" : "col" : null,
         ellipsis: column2.ellipsis,
         align: column2.align,
@@ -56066,8 +56831,8 @@ html body {
     }));
   };
   const StickyScrollBar$1 = /* @__PURE__ */ React__namespace.forwardRef(StickyScrollBar);
-  function _extends$o() {
-    _extends$o = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$n() {
+    _extends$n = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -56078,7 +56843,7 @@ html body {
       }
       return target;
     };
-    return _extends$o.apply(this, arguments);
+    return _extends$n.apply(this, arguments);
   }
   const DEFAULT_PREFIX = "rc-table";
   const EMPTY_DATA = [];
@@ -56457,7 +57222,7 @@ html body {
           onScroll: onBodyScroll,
           ref: scrollBodyRef,
           className: `${prefixCls}-body`
-        }, /* @__PURE__ */ React__namespace.createElement(TableComponent, _extends$o({
+        }, /* @__PURE__ */ React__namespace.createElement(TableComponent, _extends$n({
           style: {
             ...scrollTableStyle,
             tableLayout: mergedTableLayout
@@ -56478,12 +57243,12 @@ html body {
         tableLayout: mergedTableLayout,
         onScroll: onInternalScroll
       };
-      groupTableNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, showHeader !== false && /* @__PURE__ */ React__namespace.createElement(FixedHolder$1, _extends$o({}, fixedHolderProps, {
+      groupTableNode = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, showHeader !== false && /* @__PURE__ */ React__namespace.createElement(FixedHolder$1, _extends$n({}, fixedHolderProps, {
         stickyTopOffset: offsetHeader,
         className: `${prefixCls}-header`,
         ref: scrollHeaderRef,
         colGroup: bodyColGroup
-      }), renderFixedHeaderTable), bodyContent, fixFooter && fixFooter !== "top" && /* @__PURE__ */ React__namespace.createElement(FixedHolder$1, _extends$o({}, fixedHolderProps, {
+      }), renderFixedHeaderTable), bodyContent, fixFooter && fixFooter !== "top" && /* @__PURE__ */ React__namespace.createElement(FixedHolder$1, _extends$n({}, fixedHolderProps, {
         stickyBottomOffset: offsetSummary,
         className: `${prefixCls}-summary`,
         ref: scrollSummaryRef,
@@ -56506,12 +57271,12 @@ html body {
         className: clsx(`${prefixCls}-content`, classNames == null ? void 0 : classNames.content),
         onScroll: onInternalScroll,
         ref: scrollBodyRef
-      }, /* @__PURE__ */ React__namespace.createElement(TableComponent, _extends$o({
+      }, /* @__PURE__ */ React__namespace.createElement(TableComponent, _extends$n({
         style: {
           ...scrollTableStyle,
           tableLayout: mergedTableLayout
         }
-      }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ React__namespace.createElement(Header$1, _extends$o({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ React__namespace.createElement(Footer$1, {
+      }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ React__namespace.createElement(Header$1, _extends$n({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ React__namespace.createElement(Footer$1, {
         stickyOffsets,
         flattenColumns
       }, summaryNode)));
@@ -56522,7 +57287,7 @@ html body {
     if (isSticky) {
       tableStyle["--columns-count"] = flattenColumns.length;
     }
-    let fullTable = /* @__PURE__ */ React__namespace.createElement("div", _extends$o({
+    let fullTable = /* @__PURE__ */ React__namespace.createElement("div", _extends$n({
       className: clsx(prefixCls, className, {
         [`${prefixCls}-rtl`]: direction === "rtl",
         [`${prefixCls}-fix-start-shadow`]: horizonScroll,
@@ -56670,8 +57435,8 @@ html body {
   ImmutableTable.Summary = FooterComponents;
   const StaticContext = createContext(null);
   const GridContext = createContext(null);
-  function _extends$n() {
-    _extends$n = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$m() {
+    _extends$m = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -56682,7 +57447,7 @@ html body {
       }
       return target;
     };
-    return _extends$n.apply(this, arguments);
+    return _extends$m.apply(this, arguments);
   }
   function getColumnWidth(colIndex, colSpan, columnsOffset) {
     const mergedColSpan = colSpan || 1;
@@ -56752,7 +57517,7 @@ html body {
       cellSpan.rowSpan = 1;
       cellSpan.colSpan = 1;
     }
-    return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$n({
+    return /* @__PURE__ */ React__namespace.createElement(Cell$1, _extends$m({
       className: clsx(columnClassName, className),
       ellipsis: column2.ellipsis,
       align: column2.align,
@@ -56775,8 +57540,8 @@ html body {
       }
     }));
   };
-  function _extends$m() {
-    _extends$m = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$l() {
+    _extends$l = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -56787,7 +57552,7 @@ html body {
       }
       return target;
     };
-    return _extends$m.apply(this, arguments);
+    return _extends$l.apply(this, arguments);
   }
   const BodyLine = /* @__PURE__ */ React__namespace.forwardRef((props, ref) => {
     var _a2, _b2;
@@ -56860,7 +57625,7 @@ html body {
       rowStyle2.position = "absolute";
       rowStyle2.pointerEvents = "none";
     }
-    const rowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$m({}, rowProps, restProps, {
+    const rowNode = /* @__PURE__ */ React__namespace.createElement(RowComponent, _extends$l({}, rowProps, restProps, {
       "data-row-key": rowKey,
       ref: rowSupportExpand ? null : ref,
       className: clsx(className, `${prefixCls}-row`, rowProps == null ? void 0 : rowProps.className, (_a2 = classNames == null ? void 0 : classNames.body) == null ? void 0 : _a2.row, {
@@ -57130,8 +57895,8 @@ html body {
     }));
   });
   const ResponseGrid = responseImmutable(Grid);
-  function _extends$l() {
-    _extends$l = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$k() {
+    _extends$k = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -57142,7 +57907,7 @@ html body {
       }
       return target;
     };
-    return _extends$l.apply(this, arguments);
+    return _extends$k.apply(this, arguments);
   }
   const renderBody = (rawData, props) => {
     const {
@@ -57188,7 +57953,7 @@ html body {
     }), [sticky, scrollY, listItemHeight, getComponent, onInternalScroll]);
     return /* @__PURE__ */ React__namespace.createElement(StaticContext.Provider, {
       value: context
-    }, /* @__PURE__ */ React__namespace.createElement(ImmutableTable, _extends$l({}, props, {
+    }, /* @__PURE__ */ React__namespace.createElement(ImmutableTable, _extends$k({}, props, {
       className: clsx(className, `${prefixCls}-virtual`),
       scroll: {
         ...scroll,
@@ -57237,8 +58002,8 @@ html body {
     }, list);
   };
   const Indent$1 = /* @__PURE__ */ React__namespace.memo(Indent);
-  function _extends$k() {
-    _extends$k = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$j() {
+    _extends$j = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -57249,7 +58014,7 @@ html body {
       }
       return target;
     };
-    return _extends$k.apply(this, arguments);
+    return _extends$j.apply(this, arguments);
   }
   const ICON_OPEN = "open";
   const ICON_CLOSE = "close";
@@ -57525,7 +58290,7 @@ html body {
     const isEndNode = isEnd[isEnd.length - 1];
     const draggableWithoutDisabled = !isDisabled && isDraggable;
     const dragging = context.draggingNodeKey === eventKey;
-    return /* @__PURE__ */ React.createElement("div", _extends$k({
+    return /* @__PURE__ */ React.createElement("div", _extends$j({
       ref: domRef,
       role: "treeitem",
       id: nodeId,
@@ -57752,7 +58517,7 @@ html body {
         halfCheckedKeys: keys2.halfChecked || void 0
       };
     } else {
-      warningOnce$1(false, "`checkedKeys` is not an array or an object");
+      warningOnce(false, "`checkedKeys` is not an array or an object");
       return null;
     }
     return keyProps;
@@ -58069,7 +58834,7 @@ html body {
           }, /* @__PURE__ */ React__namespace.createElement(Dropdown, {
             menu,
             getPopupContainer
-          }, /* @__PURE__ */ React__namespace.createElement("span", null, /* @__PURE__ */ React__namespace.createElement(RefIcon$q, null))));
+          }, /* @__PURE__ */ React__namespace.createElement("span", null, /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null))));
         }
         const allDisabledData = flattedData.reduce((list, record, index2) => {
           const key2 = getRowKey(record, index2);
@@ -58359,8 +59124,8 @@ html body {
     return result2;
   };
   var FilterFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z" } }] }, "name": "filter", "theme": "filled" };
-  function _extends$j() {
-    _extends$j = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$i() {
+    _extends$i = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -58371,13 +59136,13 @@ html body {
       }
       return target;
     };
-    return _extends$j.apply(this, arguments);
+    return _extends$i.apply(this, arguments);
   }
-  const FilterFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$j({}, props, {
+  const FilterFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$i({}, props, {
     ref,
     icon: FilterFilled$1
   }));
-  const RefIcon$f = /* @__PURE__ */ React__namespace.forwardRef(FilterFilled);
+  const RefIcon$e = /* @__PURE__ */ React__namespace.forwardRef(FilterFilled);
   const DropIndicator = (props) => {
     const {
       dropPosition,
@@ -58426,8 +59191,8 @@ html body {
       };
     }, []);
   }
-  function _extends$i() {
-    _extends$i = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$h() {
+    _extends$h = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -58438,7 +59203,7 @@ html body {
       }
       return target;
     };
-    return _extends$i.apply(this, arguments);
+    return _extends$h.apply(this, arguments);
   }
   const MotionTreeNode = /* @__PURE__ */ React__namespace.forwardRef((oriProps, ref) => {
     const {
@@ -58484,7 +59249,7 @@ html body {
       }
     };
     if (motionNodes) {
-      return /* @__PURE__ */ React__namespace.createElement(CSSMotion, _extends$i({
+      return /* @__PURE__ */ React__namespace.createElement(CSSMotion, _extends$h({
         ref,
         visible
       }, motion, {
@@ -58509,7 +59274,7 @@ html body {
         } = treeNode;
         delete restProps.children;
         const treeNodeProps = getTreeNodeProps(key2, treeNodeRequiredProps);
-        return /* @__PURE__ */ React__namespace.createElement(TreeNode, _extends$i({}, restProps, treeNodeProps, {
+        return /* @__PURE__ */ React__namespace.createElement(TreeNode, _extends$h({}, restProps, treeNodeProps, {
           title,
           active,
           data: treeNode.data,
@@ -58519,7 +59284,7 @@ html body {
         }));
       })));
     }
-    return /* @__PURE__ */ React__namespace.createElement(TreeNode, _extends$i({
+    return /* @__PURE__ */ React__namespace.createElement(TreeNode, _extends$h({
       domRef: ref,
       className,
       style: style2
@@ -58565,8 +59330,8 @@ html body {
     }
     return longer.slice(longerStartIndex + 1);
   }
-  function _extends$h() {
-    _extends$h = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$g() {
+    _extends$g = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -58577,7 +59342,7 @@ html body {
       }
       return target;
     };
-    return _extends$h.apply(this, arguments);
+    return _extends$g.apply(this, arguments);
   }
   const MOTION_KEY = `RC_TREE_MOTION_${Math.random()}`;
   const MotionNode = {
@@ -58737,7 +59502,7 @@ html body {
     }, /* @__PURE__ */ React__namespace.createElement("div", {
       ref: indentMeasurerRef,
       className: `${prefixCls}-indent-unit`
-    }))), /* @__PURE__ */ React__namespace.createElement(List$1, _extends$h({}, domProps, {
+    }))), /* @__PURE__ */ React__namespace.createElement(List$1, _extends$g({}, domProps, {
       data: mergedData,
       itemKey,
       height,
@@ -58774,7 +59539,7 @@ html body {
       delete restProps.key;
       delete restProps.children;
       const treeNodeProps = getTreeNodeProps(mergedKey, treeNodeRequiredProps);
-      return /* @__PURE__ */ React__namespace.createElement(MotionTreeNode, _extends$h({}, restProps, treeNodeProps, {
+      return /* @__PURE__ */ React__namespace.createElement(MotionTreeNode, _extends$g({}, restProps, treeNodeProps, {
         title,
         active: !!activeItem && key2 === activeItem.key,
         pos,
@@ -58794,8 +59559,8 @@ html body {
       }));
     }));
   });
-  function _extends$g() {
-    _extends$g = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$f() {
+    _extends$f = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -58806,10 +59571,10 @@ html body {
       }
       return target;
     };
-    return _extends$g.apply(this, arguments);
+    return _extends$f.apply(this, arguments);
   }
   const MAX_RETRY_TIMES = 10;
-  let Tree$3 = (_a = class extends React__namespace.Component {
+  let Tree$4 = (_a = class extends React__namespace.Component {
     constructor() {
       super(...arguments);
       __publicField(this, "destroyed", false);
@@ -59089,7 +59854,7 @@ html body {
           data: getEntity(this.state.keyEntities, dropTargetKey).node
         };
         const dropToChild = dragChildrenKeys.includes(dropTargetKey);
-        warningOnce$1(!dropToChild, "Can not drop to dragNode's children node. This is a bug of rc-tree. Please report an issue.");
+        warningOnce(!dropToChild, "Can not drop to dragNode's children node. This is a bug of rc-tree. Please report an issue.");
         const posArr = posToArr(dropTargetPos);
         const dropResult = {
           event,
@@ -59323,7 +60088,7 @@ html body {
                 const {
                   loadedKeys: currentLoadedKeys
                 } = this.state;
-                warningOnce$1(false, "Retry for `loadData` many times but still failed. No more retry.");
+                warningOnce(false, "Retry for `loadData` many times but still failed. No more retry.");
                 this.setUncontrolledState({
                   loadedKeys: arrAdd(currentLoadedKeys, key2)
                 });
@@ -59468,7 +60233,7 @@ html body {
         }
         const certain = expandedKeys.includes(key2);
         const targetExpanded = !expanded;
-        warningOnce$1(expanded && certain || !expanded && !certain, "Expand state not sync with index check");
+        warningOnce(expanded && certain || !expanded && !certain, "Expand state not sync with index check");
         expandedKeys = targetExpanded ? arrAdd(expandedKeys, key2) : arrDel(expandedKeys, key2);
         this.setExpandedKeys(expandedKeys);
         onExpand == null ? void 0 : onExpand(expandedKeys, {
@@ -59747,7 +60512,7 @@ html body {
           treeData
         } = props);
       } else if (needSync("children")) {
-        warningOnce$1(false, "`children` of Tree is deprecated. Please use `treeData` instead.");
+        warningOnce(false, "`children` of Tree is deprecated. Please use `treeData` instead.");
         treeData = convertTreeToData(props.children);
       }
       if (treeData) {
@@ -59945,7 +60710,7 @@ html body {
           [`${prefixCls}-show-line`]: showLine
         }),
         style: rootStyle
-      }, /* @__PURE__ */ React__namespace.createElement(NodeList, _extends$g({
+      }, /* @__PURE__ */ React__namespace.createElement(NodeList, _extends$f({
         ref: this.listRef,
         prefixCls,
         style: style2,
@@ -59994,26 +60759,6 @@ html body {
     expandAction: false
   }), __publicField(_a, "TreeNode", TreeNode), _a);
   var FileOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z" } }] }, "name": "file", "theme": "outlined" };
-  function _extends$f() {
-    _extends$f = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$f.apply(this, arguments);
-  }
-  const FileOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$f({}, props, {
-    ref,
-    icon: FileOutlined$1
-  }));
-  const RefIcon$e = /* @__PURE__ */ React__namespace.forwardRef(FileOutlined);
-  var FolderOpenOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z" } }] }, "name": "folder-open", "theme": "outlined" };
   function _extends$e() {
     _extends$e = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -60028,12 +60773,12 @@ html body {
     };
     return _extends$e.apply(this, arguments);
   }
-  const FolderOpenOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$e({}, props, {
+  const FileOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$e({}, props, {
     ref,
-    icon: FolderOpenOutlined$1
+    icon: FileOutlined$1
   }));
-  const RefIcon$d = /* @__PURE__ */ React__namespace.forwardRef(FolderOpenOutlined);
-  var FolderOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880 298.4H521L403.7 186.2a8.15 8.15 0 00-5.5-2.2H144c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V330.4c0-17.7-14.3-32-32-32zM840 768H184V256h188.5l119.6 114.4H840V768z" } }] }, "name": "folder", "theme": "outlined" };
+  const RefIcon$d = /* @__PURE__ */ React__namespace.forwardRef(FileOutlined);
+  var FolderOpenOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z" } }] }, "name": "folder-open", "theme": "outlined" };
   function _extends$d() {
     _extends$d = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -60048,12 +60793,12 @@ html body {
     };
     return _extends$d.apply(this, arguments);
   }
-  const FolderOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$d({}, props, {
+  const FolderOpenOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$d({}, props, {
     ref,
-    icon: FolderOutlined$1
+    icon: FolderOpenOutlined$1
   }));
-  const RefIcon$c = /* @__PURE__ */ React__namespace.forwardRef(FolderOutlined);
-  var HolderOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M300 276.5a56 56 0 1056-97 56 56 0 00-56 97zm0 284a56 56 0 1056-97 56 56 0 00-56 97zM640 228a56 56 0 10112 0 56 56 0 00-112 0zm0 284a56 56 0 10112 0 56 56 0 00-112 0zM300 844.5a56 56 0 1056-97 56 56 0 00-56 97zM640 796a56 56 0 10112 0 56 56 0 00-112 0z" } }] }, "name": "holder", "theme": "outlined" };
+  const RefIcon$c = /* @__PURE__ */ React__namespace.forwardRef(FolderOpenOutlined);
+  var FolderOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880 298.4H521L403.7 186.2a8.15 8.15 0 00-5.5-2.2H144c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V330.4c0-17.7-14.3-32-32-32zM840 768H184V256h188.5l119.6 114.4H840V768z" } }] }, "name": "folder", "theme": "outlined" };
   function _extends$c() {
     _extends$c = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -60068,11 +60813,31 @@ html body {
     };
     return _extends$c.apply(this, arguments);
   }
-  const HolderOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$c({}, props, {
+  const FolderOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$c({}, props, {
+    ref,
+    icon: FolderOutlined$1
+  }));
+  const RefIcon$b = /* @__PURE__ */ React__namespace.forwardRef(FolderOutlined);
+  var HolderOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M300 276.5a56 56 0 1056-97 56 56 0 00-56 97zm0 284a56 56 0 1056-97 56 56 0 00-56 97zM640 228a56 56 0 10112 0 56 56 0 00-112 0zm0 284a56 56 0 10112 0 56 56 0 00-112 0zM300 844.5a56 56 0 1056-97 56 56 0 00-56 97zM640 796a56 56 0 10112 0 56 56 0 00-112 0z" } }] }, "name": "holder", "theme": "outlined" };
+  function _extends$b() {
+    _extends$b = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$b.apply(this, arguments);
+  }
+  const HolderOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$b({}, props, {
     ref,
     icon: HolderOutlined$1
   }));
-  const RefIcon$b = /* @__PURE__ */ React__namespace.forwardRef(HolderOutlined);
+  const RefIcon$a = /* @__PURE__ */ React__namespace.forwardRef(HolderOutlined);
   const genDirectoryStyle = ({
     treeCls,
     treeNodeCls,
@@ -60544,26 +61309,6 @@ html body {
     });
   };
   var CaretDownFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" } }] }, "name": "caret-down", "theme": "filled" };
-  function _extends$b() {
-    _extends$b = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$b.apply(this, arguments);
-  }
-  const CaretDownFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$b({}, props, {
-    ref,
-    icon: CaretDownFilled$1
-  }));
-  const RefIcon$a = /* @__PURE__ */ React__namespace.forwardRef(CaretDownFilled);
-  var MinusSquareOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "minus-square", "theme": "outlined" };
   function _extends$a() {
     _extends$a = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -60578,12 +61323,12 @@ html body {
     };
     return _extends$a.apply(this, arguments);
   }
-  const MinusSquareOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$a({}, props, {
+  const CaretDownFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$a({}, props, {
     ref,
-    icon: MinusSquareOutlined$1
+    icon: CaretDownFilled$1
   }));
-  const RefIcon$9 = /* @__PURE__ */ React__namespace.forwardRef(MinusSquareOutlined);
-  var PlusSquareOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "plus-square", "theme": "outlined" };
+  const RefIcon$9 = /* @__PURE__ */ React__namespace.forwardRef(CaretDownFilled);
+  var MinusSquareOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "minus-square", "theme": "outlined" };
   function _extends$9() {
     _extends$9 = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -60598,11 +61343,31 @@ html body {
     };
     return _extends$9.apply(this, arguments);
   }
-  const PlusSquareOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$9({}, props, {
+  const MinusSquareOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$9({}, props, {
+    ref,
+    icon: MinusSquareOutlined$1
+  }));
+  const RefIcon$8 = /* @__PURE__ */ React__namespace.forwardRef(MinusSquareOutlined);
+  var PlusSquareOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" } }, { "tag": "path", "attrs": { "d": "M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z" } }] }, "name": "plus-square", "theme": "outlined" };
+  function _extends$8() {
+    _extends$8 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$8.apply(this, arguments);
+  }
+  const PlusSquareOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$8({}, props, {
     ref,
     icon: PlusSquareOutlined$1
   }));
-  const RefIcon$8 = /* @__PURE__ */ React__namespace.forwardRef(PlusSquareOutlined);
+  const RefIcon$7 = /* @__PURE__ */ React__namespace.forwardRef(PlusSquareOutlined);
   const SwitcherIconCom = (props) => {
     var _a2, _b2;
     const {
@@ -60621,7 +61386,7 @@ html body {
       if (/* @__PURE__ */ React__namespace.isValidElement(switcherLoadingIcon)) {
         return switcherLoadingIcon;
       }
-      return /* @__PURE__ */ React__namespace.createElement(RefIcon$t, {
+      return /* @__PURE__ */ React__namespace.createElement(RefIcon$s, {
         className: `${prefixCls}-switcher-loading-icon`
       });
     }
@@ -60643,7 +61408,7 @@ html body {
         }
         return leafIcon;
       }
-      return showLeafIcon ? /* @__PURE__ */ React__namespace.createElement(RefIcon$e, {
+      return showLeafIcon ? /* @__PURE__ */ React__namespace.createElement(RefIcon$d, {
         className: `${prefixCls}-switcher-line-icon`
       }) : /* @__PURE__ */ React__namespace.createElement("span", {
         className: `${prefixCls}-switcher-leaf-line`
@@ -60660,17 +61425,17 @@ html body {
       return switcher;
     }
     if (showLine) {
-      return expanded ? /* @__PURE__ */ React__namespace.createElement(RefIcon$9, {
+      return expanded ? /* @__PURE__ */ React__namespace.createElement(RefIcon$8, {
         className: `${prefixCls}-switcher-line-icon`
-      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$8, {
+      }) : /* @__PURE__ */ React__namespace.createElement(RefIcon$7, {
         className: `${prefixCls}-switcher-line-icon`
       });
     }
-    return /* @__PURE__ */ React__namespace.createElement(RefIcon$a, {
+    return /* @__PURE__ */ React__namespace.createElement(RefIcon$9, {
       className: switcherCls
     });
   };
-  const Tree$2 = /* @__PURE__ */ React.forwardRef((props, ref) => {
+  const Tree$3 = /* @__PURE__ */ React.forwardRef((props, ref) => {
     var _a2;
     const {
       getPrefixCls,
@@ -60748,7 +61513,7 @@ html body {
           break;
       }
       if (mergedDraggable.icon !== false) {
-        mergedDraggable.icon = mergedDraggable.icon || /* @__PURE__ */ React.createElement(RefIcon$b, null);
+        mergedDraggable.icon = mergedDraggable.icon || /* @__PURE__ */ React.createElement(RefIcon$a, null);
       }
       return mergedDraggable;
     }, [draggable]);
@@ -60759,7 +61524,7 @@ html body {
       treeNodeProps: nodeProps,
       showLine
     });
-    return /* @__PURE__ */ React.createElement(Tree$3, {
+    return /* @__PURE__ */ React.createElement(Tree$4, {
       itemHeight,
       ref,
       virtual,
@@ -60863,9 +61628,9 @@ html body {
       expanded
     } = props;
     if (isLeaf) {
-      return /* @__PURE__ */ React__namespace.createElement(RefIcon$e, null);
+      return /* @__PURE__ */ React__namespace.createElement(RefIcon$d, null);
     }
-    return expanded ? /* @__PURE__ */ React__namespace.createElement(RefIcon$d, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$c, null);
+    return expanded ? /* @__PURE__ */ React__namespace.createElement(RefIcon$c, null) : /* @__PURE__ */ React__namespace.createElement(RefIcon$b, null);
   }
   function getTreeData({
     treeData,
@@ -60980,7 +61745,7 @@ html body {
     const connectClassName = clsx(`${prefixCls}-directory`, {
       [`${prefixCls}-directory-rtl`]: direction === "rtl"
     }, className);
-    return /* @__PURE__ */ React__namespace.createElement(Tree$2, {
+    return /* @__PURE__ */ React__namespace.createElement(Tree$3, {
       icon: getIcon,
       ref,
       blockNode: true,
@@ -60995,9 +61760,9 @@ html body {
       onExpand
     });
   });
-  const Tree$1 = Tree$2;
-  Tree$1.DirectoryTree = DirectoryTree;
-  Tree$1.TreeNode = TreeNode;
+  const Tree$2 = Tree$3;
+  Tree$2.DirectoryTree = DirectoryTree;
+  Tree$2.TreeNode = TreeNode;
   const FilterSearch = (props) => {
     const {
       value,
@@ -61012,7 +61777,7 @@ html body {
     return /* @__PURE__ */ React__namespace.createElement("div", {
       className: `${tablePrefixCls}-filter-dropdown-search`
     }, /* @__PURE__ */ React__namespace.createElement(Input$1, {
-      prefix: /* @__PURE__ */ React__namespace.createElement(RefIcon$p, null),
+      prefix: /* @__PURE__ */ React__namespace.createElement(RefIcon$o, null),
       placeholder: locale2.filterSearchPlaceholder,
       onChange,
       value,
@@ -61339,7 +62104,7 @@ html body {
             indeterminate: selectedKeys.length > 0 && selectedKeys.length < flattenKeys(column2.filters).length,
             className: `${tablePrefixCls}-filter-dropdown-checkall`,
             onChange: onCheckAll
-          }, (locale2 == null ? void 0 : locale2.filterCheckall) ?? (locale2 == null ? void 0 : locale2.filterCheckAll)) : null, /* @__PURE__ */ React__namespace.createElement(Tree$1, {
+          }, (locale2 == null ? void 0 : locale2.filterCheckall) ?? (locale2 == null ? void 0 : locale2.filterCheckAll)) : null, /* @__PURE__ */ React__namespace.createElement(Tree$2, {
             checkable: true,
             selectable: false,
             blockNode: true,
@@ -61427,7 +62192,7 @@ html body {
       } else if (column2.filterIcon) {
         filterIcon = column2.filterIcon;
       } else {
-        filterIcon = /* @__PURE__ */ React__namespace.createElement(RefIcon$f, null);
+        filterIcon = /* @__PURE__ */ React__namespace.createElement(RefIcon$e, null);
       }
       return /* @__PURE__ */ React__namespace.createElement("span", {
         role: "button",
@@ -61758,26 +62523,6 @@ html body {
     }, refreshPagination];
   }
   var CaretDownOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" } }] }, "name": "caret-down", "theme": "outlined" };
-  function _extends$8() {
-    _extends$8 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$8.apply(this, arguments);
-  }
-  const CaretDownOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$8({}, props, {
-    ref,
-    icon: CaretDownOutlined$1
-  }));
-  const RefIcon$7 = /* @__PURE__ */ React__namespace.forwardRef(CaretDownOutlined);
-  var CaretUpOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z" } }] }, "name": "caret-up", "theme": "outlined" };
   function _extends$7() {
     _extends$7 = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -61792,11 +62537,31 @@ html body {
     };
     return _extends$7.apply(this, arguments);
   }
-  const CaretUpOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$7({}, props, {
+  const CaretDownOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$7({}, props, {
+    ref,
+    icon: CaretDownOutlined$1
+  }));
+  const RefIcon$6 = /* @__PURE__ */ React__namespace.forwardRef(CaretDownOutlined);
+  var CaretUpOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z" } }] }, "name": "caret-up", "theme": "outlined" };
+  function _extends$6() {
+    _extends$6 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$6.apply(this, arguments);
+  }
+  const CaretUpOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$6({}, props, {
     ref,
     icon: CaretUpOutlined$1
   }));
-  const RefIcon$6 = /* @__PURE__ */ React__namespace.forwardRef(CaretUpOutlined);
+  const RefIcon$5 = /* @__PURE__ */ React__namespace.forwardRef(CaretUpOutlined);
   const ASCEND = "ascend";
   const DESCEND = "descend";
   const getMultiplePriority = (column2) => {
@@ -61871,12 +62636,12 @@ html body {
             sortOrder
           });
         } else {
-          const upNode = sortDirections.includes(ASCEND) && /* @__PURE__ */ React__namespace.createElement(RefIcon$6, {
+          const upNode = sortDirections.includes(ASCEND) && /* @__PURE__ */ React__namespace.createElement(RefIcon$5, {
             className: clsx(`${prefixCls}-column-sorter-up`, {
               active: sortOrder === ASCEND
             })
           });
-          const downNode = sortDirections.includes(DESCEND) && /* @__PURE__ */ React__namespace.createElement(RefIcon$7, {
+          const downNode = sortDirections.includes(DESCEND) && /* @__PURE__ */ React__namespace.createElement(RefIcon$6, {
             className: clsx(`${prefixCls}-column-sorter-down`, {
               active: sortOrder === DESCEND
             })
@@ -64487,9 +65252,111 @@ html body {
   const Tag = InternalTag;
   Tag.CheckableTag = CheckableTag;
   Tag.CheckableTagGroup = CheckableTagGroup;
+  const getAlphaColor = (baseColor, alpha2) => new FastColor(baseColor).setA(alpha2).toRgbString();
+  const getSolidColor = (baseColor, brightness) => {
+    const instance = new FastColor(baseColor);
+    return instance.lighten(brightness).toHexString();
+  };
+  const generateColorPalettes = (baseColor) => {
+    const colors = generate$1(baseColor, {
+      theme: "dark"
+    });
+    return {
+      1: colors[0],
+      2: colors[1],
+      3: colors[2],
+      4: colors[3],
+      5: colors[6],
+      6: colors[5],
+      7: colors[4],
+      8: colors[6],
+      9: colors[5],
+      10: colors[4]
+    };
+  };
+  const generateNeutralColorPalettes = (bgBaseColor, textBaseColor, shadowColor) => {
+    const colorBgBase = bgBaseColor || "#000";
+    const colorTextBase = textBaseColor || "#fff";
+    const colorShadow = shadowColor || "rgba(255, 255, 255, 0.2)";
+    return {
+      colorBgBase,
+      colorTextBase,
+      colorShadow,
+      colorText: getAlphaColor(colorTextBase, 0.85),
+      colorTextSecondary: getAlphaColor(colorTextBase, 0.65),
+      colorTextTertiary: getAlphaColor(colorTextBase, 0.45),
+      colorTextQuaternary: getAlphaColor(colorTextBase, 0.25),
+      colorFill: getAlphaColor(colorTextBase, 0.18),
+      colorFillSecondary: getAlphaColor(colorTextBase, 0.12),
+      colorFillTertiary: getAlphaColor(colorTextBase, 0.08),
+      colorFillQuaternary: getAlphaColor(colorTextBase, 0.04),
+      colorBgSolid: getAlphaColor(colorTextBase, 0.95),
+      colorBgSolidHover: getAlphaColor(colorTextBase, 1),
+      colorBgSolidActive: getAlphaColor(colorTextBase, 0.9),
+      colorBgElevated: getSolidColor(colorBgBase, 12),
+      colorBgContainer: getSolidColor(colorBgBase, 8),
+      colorBgLayout: getSolidColor(colorBgBase, 0),
+      colorBgSpotlight: getSolidColor(colorBgBase, 26),
+      colorBgBlur: getAlphaColor(colorTextBase, 0.04),
+      colorBorder: getSolidColor(colorBgBase, 26),
+      colorBorderDisabled: getSolidColor(colorBgBase, 26),
+      colorBorderSecondary: getSolidColor(colorBgBase, 19)
+    };
+  };
+  const derivative = (token2, mapToken) => {
+    const colorPalettes = Object.keys(defaultPresetColors).map((colorKey) => {
+      const colors = generate$1(token2[colorKey], {
+        theme: "dark"
+      });
+      return Array.from({
+        length: 10
+      }, () => 1).reduce((prev2, _2, i) => {
+        prev2[`${colorKey}-${i + 1}`] = colors[i];
+        prev2[`${colorKey}${i + 1}`] = colors[i];
+        return prev2;
+      }, {});
+    }).reduce((prev2, cur) => {
+      prev2 = {
+        ...prev2,
+        ...cur
+      };
+      return prev2;
+    }, {});
+    const mergedMapToken = mapToken ?? derivative$1(token2);
+    const colorMapToken = genColorMapToken(token2, {
+      generateColorPalettes,
+      generateNeutralColorPalettes
+    });
+    const presetColorHoverActiveTokens = PresetColors.reduce((prev2, colorKey) => {
+      const colorBase = token2[colorKey];
+      if (colorBase) {
+        const colorPalette = generateColorPalettes(colorBase);
+        prev2[`${colorKey}Hover`] = colorPalette[7];
+        prev2[`${colorKey}Active`] = colorPalette[5];
+      }
+      return prev2;
+    }, {});
+    return {
+      ...mergedMapToken,
+      // Dark tokens
+      ...colorPalettes,
+      // Colors
+      ...colorMapToken,
+      ...presetColorHoverActiveTokens,
+      // Customize selected item background color
+      // https://github.com/ant-design/ant-design/issues/30524#issuecomment-871961867
+      colorPrimaryBg: colorMapToken.colorPrimaryBorder,
+      colorPrimaryBgHover: colorMapToken.colorPrimaryBorderHover
+    };
+  };
+  const antdTheme = {
+    /** Default seedToken */
+    defaultSeed: defaultConfig.token,
+    darkAlgorithm: derivative
+  };
   var DownloadOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z" } }] }, "name": "download", "theme": "outlined" };
-  function _extends$6() {
-    _extends$6 = Object.assign ? Object.assign.bind() : function(target) {
+  function _extends$5() {
+    _extends$5 = Object.assign ? Object.assign.bind() : function(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
         for (var key2 in source) {
@@ -64500,13 +65367,28 @@ html body {
       }
       return target;
     };
-    return _extends$6.apply(this, arguments);
+    return _extends$5.apply(this, arguments);
   }
-  const DownloadOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$6({}, props, {
+  const DownloadOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$5({}, props, {
     ref,
     icon: DownloadOutlined$1
   }));
-  const RefIcon$5 = /* @__PURE__ */ React__namespace.forwardRef(DownloadOutlined);
+  const RefIcon$4 = /* @__PURE__ */ React__namespace.forwardRef(DownloadOutlined);
+  function withTheme(Component) {
+    const Wrapped = (props) => {
+      const { theme, darkMode, ...rest } = props;
+      if (!theme && !darkMode) {
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Component, { ...rest });
+      }
+      const merged = { ...theme || {} };
+      if (darkMode && !merged.algorithm) {
+        merged.algorithm = antdTheme.darkAlgorithm;
+      }
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(ConfigProvider, { theme: merged, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Component, { darkMode, ...rest }) });
+    };
+    Wrapped.displayName = `withTheme(${Component.displayName || Component.name || "Component"})`;
+    return Wrapped;
+  }
   var lodash$1 = { exports: {} };
   /**
    * @license
@@ -70337,7 +71219,7 @@ html body {
     isArray(arrayOrString) ? define2(arrayOrString) : define2(String(arrayOrString).split(delimiter2));
     return obj;
   };
-  const noop$1 = () => {
+  const noop$2 = () => {
   };
   const toFiniteNumber = (value, defaultValue) => {
     return value != null && Number.isFinite(value = +value) ? value : defaultValue;
@@ -70443,7 +71325,7 @@ html body {
     freezeMethods,
     toObjectSet,
     toCamelCase,
-    noop: noop$1,
+    noop: noop$2,
     toFiniteNumber,
     findKey,
     global: _global,
@@ -72981,6 +73863,9 @@ html body {
   } = axios;
   const config = {
     dataApi: "https://api.checklistbank.org/",
+    // Human-facing ChecklistBank portal. Used for outbound links to
+    // dataset / publisher pages we don't host ourselves.
+    clbPortal: "https://www.checklistbank.org",
     // GBIF API base (no trailing slash). Used for the occurrence count and
     // the v2 map tile endpoint.
     gbifApi: "https://api.gbif.org",
@@ -72989,125 +73874,6 @@ html body {
     // www.gbif.org (expected mid-2026).
     gbifPortal: "https://demo.gbif.org"
   };
-  const reflect$1 = (p) => p.then(
-    (v2) => v2.data,
-    (e2) => null
-  );
-  const getDatasetsBatch = (ids, datasetKey) => {
-    return Promise.all(
-      ids.map(
-        (i) => reflect$1(axios(`${config.dataApi}dataset/${datasetKey}/source/${i}`))
-      )
-    );
-  };
-  const getPublishersBatch = (ids, datasetKey) => {
-    return Promise.all(
-      ids.map(
-        (i) => reflect$1(axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher/${i}`))
-      )
-    );
-  };
-  const getDataset = (datasetKey) => axios(`${config.dataApi}dataset/${datasetKey}`);
-  var BookOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 64H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32zm-260 72h96v209.9L621.5 312 572 347.4V136zm220 752H232V136h280v296.9c0 3.3 1 6.6 3 9.3a15.9 15.9 0 0022.3 3.7l83.8-59.9 81.4 59.4c2.7 2 6 3.1 9.4 3.1 8.8 0 16-7.2 16-16V136h64v752z" } }] }, "name": "book", "theme": "outlined" };
-  function _extends$5() {
-    _extends$5 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$5.apply(this, arguments);
-  }
-  const BookOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$5({}, props, {
-    ref,
-    icon: BookOutlined$1
-  }));
-  const RefIcon$4 = /* @__PURE__ */ React__namespace.forwardRef(BookOutlined);
-  var CloseCircleOutlined$1 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm0 76c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372zm128.01 198.83c.03 0 .05.01.09.06l45.02 45.01a.2.2 0 01.05.09.12.12 0 010 .07c0 .02-.01.04-.05.08L557.25 512l127.87 127.86a.27.27 0 01.05.06v.02a.12.12 0 010 .07c0 .03-.01.05-.05.09l-45.02 45.02a.2.2 0 01-.09.05.12.12 0 01-.07 0c-.02 0-.04-.01-.08-.05L512 557.25 384.14 685.12c-.04.04-.06.05-.08.05a.12.12 0 01-.07 0c-.03 0-.05-.01-.09-.05l-45.02-45.02a.2.2 0 01-.05-.09.12.12 0 010-.07c0-.02.01-.04.06-.08L466.75 512 338.88 384.14a.27.27 0 01-.05-.06l-.01-.02a.12.12 0 010-.07c0-.03.01-.05.05-.09l45.02-45.02a.2.2 0 01.09-.05.12.12 0 01.07 0c.02 0 .04.01.08.06L512 466.75l127.86-127.86c.04-.05.06-.06.08-.06a.12.12 0 01.07 0z" } }] }, "name": "close-circle", "theme": "outlined" };
-  function _extends$4() {
-    _extends$4 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$4.apply(this, arguments);
-  }
-  const CloseCircleOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$4({}, props, {
-    ref,
-    icon: CloseCircleOutlined$1
-  }));
-  const RefIcon$3 = /* @__PURE__ */ React__namespace.forwardRef(CloseCircleOutlined);
-  var LinkOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
-  function _extends$3() {
-    _extends$3 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$3.apply(this, arguments);
-  }
-  const LinkOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$3({}, props, {
-    ref,
-    icon: LinkOutlined$1
-  }));
-  const RefIcon$2 = /* @__PURE__ */ React__namespace.forwardRef(LinkOutlined);
-  var MessageFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M924.3 338.4a447.57 447.57 0 00-96.1-143.3 443.09 443.09 0 00-143-96.3A443.91 443.91 0 00512 64h-2c-60.5.3-119 12.3-174.1 35.9a444.08 444.08 0 00-141.7 96.5 445 445 0 00-95 142.8A449.89 449.89 0 0065 514.1c.3 69.4 16.9 138.3 47.9 199.9v152c0 25.4 20.6 46 45.9 46h151.8a447.72 447.72 0 00199.5 48h2.1c59.8 0 117.7-11.6 172.3-34.3A443.2 443.2 0 00827 830.5c41.2-40.9 73.6-88.7 96.3-142 23.5-55.2 35.5-113.9 35.8-174.5.2-60.9-11.6-120-34.8-175.6zM312.4 560c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.4 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48z" } }] }, "name": "message", "theme": "filled" };
-  function _extends$2() {
-    _extends$2 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$2.apply(this, arguments);
-  }
-  const MessageFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$2({}, props, {
-    ref,
-    icon: MessageFilled$1
-  }));
-  const RefIcon$1 = /* @__PURE__ */ React__namespace.forwardRef(MessageFilled);
-  var TagOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M938 458.8l-29.6-312.6c-1.5-16.2-14.4-29-30.6-30.6L565.2 86h-.4c-3.2 0-5.7 1-7.6 2.9L88.9 557.2a9.96 9.96 0 000 14.1l363.8 363.8c1.9 1.9 4.4 2.9 7.1 2.9s5.2-1 7.1-2.9l468.3-468.3c2-2.1 3-5 2.8-8zM459.7 834.7L189.3 564.3 589 164.6 836 188l23.4 247-399.7 399.7zM680 256c-48.5 0-88 39.5-88 88s39.5 88 88 88 88-39.5 88-88-39.5-88-88-88zm0 120c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z" } }] }, "name": "tag", "theme": "outlined" };
-  function _extends$1() {
-    _extends$1 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key2 in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key2)) {
-            target[key2] = source[key2];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends$1.apply(this, arguments);
-  }
-  const TagOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1({}, props, {
-    ref,
-    icon: TagOutlined$1
-  }));
-  const RefIcon = /* @__PURE__ */ React__namespace.forwardRef(TagOutlined);
   var dataloader;
   var hasRequiredDataloader;
   function requireDataloader() {
@@ -73353,141 +74119,259 @@ html body {
   }
   var dataloaderExports = requireDataloader();
   const DataLoader = /* @__PURE__ */ getDefaultExportFromCjs(dataloaderExports);
+  const noop$1 = () => void 0;
+  const defaultRouter = {
+    taxon: { onNavigate: null, hrefFor: null },
+    tree: { onNavigate: null, hrefFor: null },
+    search: { onNavigate: null, hrefFor: null },
+    source: { onNavigate: null, hrefFor: null }
+  };
+  const RouterContext = React.createContext(defaultRouter);
+  const useRouter = () => React.useContext(RouterContext);
+  const buildRouter = (props) => ({
+    taxon: {
+      onNavigate: props.onNavigateToTaxon || null,
+      hrefFor: props.hrefForTaxon || null
+    },
+    tree: {
+      onNavigate: props.onNavigateToTree || null,
+      hrefFor: props.hrefForTree || null
+    },
+    search: {
+      onNavigate: props.onNavigateToSearch || null,
+      hrefFor: props.hrefForSearch || null
+    },
+    source: {
+      onNavigate: props.onNavigateToSource || null,
+      hrefFor: props.hrefForSource || null
+    }
+  });
+  const LinkTo = ({ to, args, children, className, style: style2, title }) => {
+    const router = useRouter();
+    const slot = router[to];
+    if (!slot) return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: style2, className, title, children });
+    const { onNavigate, hrefFor } = slot;
+    const href = hrefFor ? hrefFor(args) : onNavigate ? "#" : null;
+    if (!onNavigate && !href) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: style2, className, title, children });
+    }
+    const handleClick = onNavigate ? (e2) => {
+      if (e2.defaultPrevented) return;
+      if (e2.button !== 0) return;
+      if (e2.metaKey || e2.ctrlKey || e2.shiftKey || e2.altKey) return;
+      e2.preventDefault();
+      onNavigate(args);
+    } : void 0;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "a",
+      {
+        href: href || void 0,
+        onClick: handleClick,
+        className,
+        style: style2,
+        title,
+        children
+      }
+    );
+  };
+  const useNavigateTo = (to) => {
+    const router = useRouter();
+    const slot = router[to];
+    if (!slot || !slot.onNavigate) return noop$1;
+    return slot.onNavigate;
+  };
+  const reflect$1 = (p) => p.then(
+    (v2) => v2.data,
+    (e2) => null
+  );
+  const getDatasetsBatch = (ids, datasetKey) => {
+    if (!(ids == null ? void 0 : ids.length)) return Promise.resolve([]);
+    const nullsForAll = () => ids.map(() => null);
+    const params = ids.map((id) => `id=${encodeURIComponent(id)}`).join("&");
+    return axios(`${config.dataApi}dataset/${datasetKey}/source/simple?${params}`).then((res) => {
+      try {
+        const byKey = /* @__PURE__ */ new Map();
+        const arr = Array.isArray(res == null ? void 0 : res.data) ? res.data : [];
+        arr.forEach((d2) => {
+          if (d2 && d2.key != null) byKey.set(d2.key, d2);
+        });
+        return ids.map((id) => byKey.get(id) ?? byKey.get(Number(id)) ?? null);
+      } catch (parseErr) {
+        return nullsForAll();
+      }
+    }).catch(() => nullsForAll());
+  };
+  const getPublishersBatch = (ids, datasetKey) => {
+    return Promise.all(
+      ids.map(
+        (i) => reflect$1(axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher/${i}`))
+      )
+    );
+  };
+  const getDataset = (datasetKey) => axios(`${config.dataApi}dataset/${datasetKey}`);
+  const getDatasetSimple = (datasetKey) => axios(`${config.dataApi}dataset/${datasetKey}`);
+  const TreeCacheContext = React.createContext({
+    datasetLoader: null,
+    publisherLoader: null
+  });
+  const createTreeCache = (datasetKey) => ({
+    datasetLoader: new DataLoader((ids) => getDatasetsBatch(ids, datasetKey)),
+    publisherLoader: new DataLoader(
+      (ids) => getPublishersBatch(ids, datasetKey)
+    )
+  });
   class TaxonSources extends React.Component {
     constructor(props) {
       super(props);
-      /*   componentDidMount = () => {
-          const { datasetSectors, datasetKey } = this.props;
-          this.datasetLoader = new DataLoader((ids) =>
-            getDatasetsBatch(ids, datasetKey)
+      // Returns the shared cache from TreeCacheContext if available, or a
+      // throwaway local DataLoader so the popover still works even if context
+      // doesn't reach this instance (which used to leave the spinner stuck
+      // because getData early-returned with no loading state set).
+      __publicField(this, "getDatasetLoader", () => {
+        var _a2;
+        const { datasetKey } = this.props;
+        if ((_a2 = this.context) == null ? void 0 : _a2.datasetLoader) return this.context.datasetLoader;
+        if (!this._localDatasetLoader) {
+          this._localDatasetLoader = new DataLoader(
+            (ids) => getDatasetsBatch(ids, datasetKey)
           );
-          if (Object.keys(datasetSectors).length < 4) {
-            this.setState({ showInNode: true }, this.getData);
-          }
-        };
-      
-        getData = () => {
-          this.setState({ loading: true });
-          const { datasetSectors } = this.props;
-          const promises = Object.keys(datasetSectors).map((s) =>
-            this.datasetLoader.load(s).then((dataset) => dataset)
-          );
-      
-          Promise.all(promises).then((data) => {
-            this.setState({ data:_.sortBy(data, ['alias']), loading: false });
-          });
-        }; */
-      __publicField(this, "componentDidMount", () => {
-        const { sourceDatasetKeys, publisherDatasetKeys, datasetKey } = this.props;
-        this.datasetLoader = new DataLoader(
-          (ids) => getDatasetsBatch(ids, datasetKey)
-        );
-        this.publisherLoader = new DataLoader(
-          (ids) => getPublishersBatch(ids, datasetKey)
-        );
-        if ((sourceDatasetKeys == null ? void 0 : sourceDatasetKeys.length) < 4) {
-          this.setState({ showInNode: true }, this.getData);
         }
-        if (publisherDatasetKeys) {
-          this.getPublisherData();
+        return this._localDatasetLoader;
+      });
+      __publicField(this, "getPublisherLoader", () => {
+        var _a2;
+        const { datasetKey } = this.props;
+        if ((_a2 = this.context) == null ? void 0 : _a2.publisherLoader) return this.context.publisherLoader;
+        if (!this._localPublisherLoader) {
+          this._localPublisherLoader = new DataLoader(
+            (ids) => getPublishersBatch(ids, datasetKey)
+          );
+        }
+        return this._localPublisherLoader;
+      });
+      __publicField(this, "componentDidMount", () => {
+        const { sourceDatasetKeys } = this.props;
+        if (sourceDatasetKeys && sourceDatasetKeys.length < 4) {
+          this.setState({ showInNode: true }, this.getData);
         }
       });
       __publicField(this, "getData", () => {
+        const { sourceDatasetKeys } = this.props;
+        if (!(sourceDatasetKeys == null ? void 0 : sourceDatasetKeys.length)) return;
         this.setState({ loading: true });
-        const { sourceDatasetKeys, publisherDatasetKeys } = this.props;
-        const promises = sourceDatasetKeys.map(
-          (s) => this.datasetLoader.load(s).then((dataset) => dataset)
-        );
-        Promise.all(promises).then((data) => {
+        const loader = this.getDatasetLoader();
+        Promise.all(
+          sourceDatasetKeys.map((s) => loader.load(s).catch(() => null))
+        ).then((data) => {
           this.setState({ data: _$1.sortBy(data, ["alias"]), loading: false });
+        }).catch(() => {
+          this.setState({ data: [], loading: false });
         });
       });
       __publicField(this, "getPublisherData", () => {
         const { publisherDatasetKeys } = this.props;
-        const promises = Object.keys(publisherDatasetKeys).map(
-          (s) => this.publisherLoader.load(s).then((publisher) => ({ ...publisher, datasets: publisherDatasetKeys[s] }))
-        );
-        Promise.all(promises).then((data) => {
-          this.setState({ publishers: _$1.sortBy(data, ["alias"]) });
+        if (!publisherDatasetKeys) return;
+        const loader = this.getPublisherLoader();
+        Promise.all(
+          Object.keys(publisherDatasetKeys).map(
+            (s) => loader.load(s).then((publisher) => ({
+              ...publisher,
+              datasets: publisherDatasetKeys[s]
+            })).catch(() => null)
+          )
+        ).then((data) => {
+          this.setState({ publishers: _$1.sortBy(data.filter(Boolean), ["alias"]) });
+        }).catch(() => {
+          this.setState({ publishers: [] });
         });
       });
       __publicField(this, "render", () => {
         const { data, showInNode, popOverVisible, loading } = this.state;
-        const { taxon, datasetKey, pathToDataset } = this.props;
-        return showInNode ? data.filter((d2) => !!d2).map((d2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "a",
-          {
-            className: "col-tree-data-source",
-            href: `${pathToDataset}${d2.key}`,
-            onClick: () => {
-              window.location.href = `${pathToDataset}${d2.key}`;
+        const { taxon, datasetKey } = this.props;
+        const linkStyle = { color: "orange", fontSize: "11px" };
+        const publisherUrl = (uuid2) => `${config.clbPortal}/dataset/${datasetKey}/publisher/${uuid2}`;
+        if (showInNode) {
+          return data.filter((d2) => !!d2).map((d2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            LinkTo,
+            {
+              to: "source",
+              args: d2.key,
+              className: "col-tree-data-source",
+              style: linkStyle,
+              children: (index2 ? ", " : "") + (d2.alias || d2.key)
             },
-            children: (index2 ? ", " : "") + (d2.alias || d2.key)
-          },
-          d2.key
-        )) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, id: `taxon_sources_${taxon.id}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            d2.key
+          ));
+        }
+        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, id: `taxon_sources_${taxon.id}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Popover,
           {
+            arrow: false,
             getPopupContainer: () => document.getElementById(`taxon_sources_${taxon.id}`),
-            content: loading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, {}) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { maxWidth: "400px" }, children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                " ",
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Source databases: " }),
-                " ",
-                data.filter((d2) => !!d2).map((d2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "a",
-                  {
-                    className: "col-tree-data-source",
-                    href: `${pathToDataset}${d2.key}`,
-                    onClick: () => {
-                      window.location.href = `${pathToDataset}${d2.key}`;
+            content: loading || data.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: { minWidth: "200px", textAlign: "center", padding: "8px 0" },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "small" })
+              }
+            ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { maxWidth: "500px" }, children: [
+              data.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: data.filter((d2) => !!d2).map((d2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                LinkTo,
+                {
+                  to: "source",
+                  args: d2.key,
+                  className: "col-tree-data-source",
+                  style: linkStyle,
+                  children: (index2 ? ", " : "") + (d2.alias || d2.key)
+                },
+                d2.key
+              )) }),
+              this.state.publishers && this.state.publishers.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: "12px" }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Publishers" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: this.state.publishers.filter((d2) => !!d2).map((d2, index2) => {
+                  var _a2;
+                  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "a",
+                    {
+                      href: publisherUrl(d2.id),
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      style: linkStyle,
+                      children: [
+                        (index2 ? ", " : "") + (d2.alias || d2.id),
+                        ((_a2 = d2.datasets) == null ? void 0 : _a2.length) ? ` (${d2.datasets.length.toLocaleString("en-GB")})` : ""
+                      ]
                     },
-                    children: (index2 ? ", " : "") + (d2.alias || d2.key)
-                  },
-                  d2.key
-                ))
-              ] }),
-              this.state.publishers && this.state.publishers.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "Publishers: " }),
-                " ",
-                this.state.publishers.filter((d2) => !!d2).map((d2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  Row,
-                  {
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 4, style: { textAlign: "right" }, children: [
-                        d2.alias,
-                        ":"
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 12, style: { paddingLeft: "20px" }, children: [
-                        d2.datasets.length.toLocaleString("en-GB"),
-                        " datasets"
-                      ] })
-                    ]
-                  },
-                  d2.id
-                ))
+                    d2.id
+                  );
+                }) })
               ] })
             ] }),
-            title: /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: taxon.name } }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                RefIcon$3,
-                {
-                  onClick: () => {
-                    this.setState({ popOverVisible: false });
-                  }
-                }
-              ) }) })
+            title: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "4px 0" }, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontWeight: 500 }, children: "Sources for " }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("em", { children: taxon == null ? void 0 : taxon.name }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, { style: { margin: "8px 0 0" } })
             ] }),
-            visible: popOverVisible,
-            onVisibleChange: (visible) => this.setState({ popOverVisible: visible }, () => {
-              if (visible && data.length === 0) {
-                this.getData();
+            open: popOverVisible,
+            onOpenChange: (visible) => this.setState({ popOverVisible: visible }, () => {
+              if (visible && this.state.data.length === 0) this.getData();
+              if (visible && this.props.publisherDatasetKeys && !this.state.publishers) {
+                this.getPublisherData();
               }
             }),
             trigger: "click",
             placement: "rightTop",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { className: "col-tree-data-source", href: "", children: "Multiple sources" })
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "a",
+              {
+                className: "col-tree-data-source",
+                role: "button",
+                tabIndex: 0,
+                style: { cursor: "pointer", color: "orange", fontSize: "11px" },
+                onClick: (e2) => e2.preventDefault(),
+                children: "Multiple sources"
+              }
+            )
           }
         ) });
       });
@@ -73498,61 +74382,7 @@ html body {
       };
     }
   }
-  class TaxonEstimate extends React.Component {
-    constructor(props) {
-      super(props);
-      __publicField(this, "getData", () => {
-        this.setState({ loading: true });
-        const { estimate } = this.props;
-        return axios(
-          `${config.dataApi}dataset/${estimate.datasetKey}/reference/${estimate.referenceId}`
-        ).then(({ data }) => this.setState({ data, loading: false }));
-      });
-      __publicField(this, "render", () => {
-        const { data, popOverVisible, loading } = this.state;
-        const { taxon } = this.props;
-        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, id: `taxon_estimates_${taxon.id}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Popover,
-          {
-            getPopupContainer: () => document.getElementById(`taxon_estimates_${taxon.id}`),
-            content: loading || !data ? /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, {}) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { maxWidth: "400px" }, children: data.citation }),
-            title: /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { flex: "auto", children: [
-                taxon.estimate.toLocaleString("en-GB"),
-                " est. spp. of ",
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: taxon.name } })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                RefIcon$3,
-                {
-                  onClick: () => {
-                    this.setState({ popOverVisible: false });
-                  }
-                }
-              ) }) })
-            ] }),
-            visible: popOverVisible,
-            onVisibleChange: (visible) => this.setState({ popOverVisible: visible }, () => {
-              if (visible && !data) {
-                this.getData();
-              }
-            }),
-            trigger: "click",
-            placement: "rightTop",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { style: { fontSize: "11px" }, href: "", children: [
-              taxon.estimate.toLocaleString("en-GB"),
-              " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: " est. spp." })
-            ] })
-          }
-        ) });
-      });
-      this.state = {
-        data: null,
-        loading: false
-      };
-    }
-  }
+  __publicField(TaxonSources, "contextType", TreeCacheContext);
   var btoa$2 = { exports: {} };
   var hasRequiredBtoa;
   function requireBtoa() {
@@ -73583,7 +74413,6 @@ html body {
     sourceDatasetKey,
     sourceId,
     popoverPlacement,
-    pathToDataset,
     verbatimSourceKey,
     sectorKey,
     createdBy
@@ -73651,9 +74480,7 @@ html body {
           !verbatimSourceKey && !sourceId && sourceDatasetKey && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Source:" }),
             " ",
-            sourceDatasetLoading ? "Loading..." : /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToDataset}${sourceDataset == null ? void 0 : sourceDataset.key}`, onClick: () => {
-              window.location.href = `${pathToDataset}${sourceDataset == null ? void 0 : sourceDataset.key}`;
-            }, children: sourceDataset == null ? void 0 : sourceDataset.title })
+            sourceDatasetLoading ? "Loading..." : /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: sourceDataset == null ? void 0 : sourceDataset.key, children: sourceDataset == null ? void 0 : sourceDataset.title })
           ] }),
           sourceDatasetKey && sourceId && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Source:" }),
@@ -73694,7 +74521,7 @@ html body {
         ] }),
         trigger: "click",
         placement: popoverPlacement || "right",
-        onVisibleChange: setOpen,
+        onOpenChange: setOpen,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Tag,
           {
@@ -73746,94 +74573,71 @@ html body {
         const {
           taxon,
           taxon: { sector, sourceDatasetKeys, publisherDatasetKeys },
-          datasetKey,
-          pathToTaxon,
-          pathToDataset
+          datasetKey
         } = this.props;
         const sectorSourceDataset = _$1.get(sector, "dataset");
         const hasDatasetSectors = (sourceDatasetKeys || []).filter((d2) => (sector == null ? void 0 : sector.subjectDatasetKey) !== d2).length > 0;
         taxon.estimate && taxon.estimates ? taxon.estimates.find((e2) => e2.estimate === taxon.estimate) : null;
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(ColTreeContext.Consumer, { children: ({ showInfo }) => {
-          var _a2;
-          return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { id: taxon.id, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "tree-node-rank", children: [
-                taxon.rank,
-                ": "
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "a",
-                {
-                  dangerouslySetInnerHTML: { __html: taxon.labelHtml },
-                  href: typeof pathToTaxon === "string" ? `${pathToTaxon}${taxon.id}` : "#",
-                  disabled: ((_a2 = taxon == null ? void 0 : taxon.id) == null ? void 0 : _a2.indexOf("--incertae-sedis--")) > -1 ? true : false,
-                  onClick: (e2) => {
-                    if (typeof pathToTaxon === "string") {
-                      window.location.href = `${pathToTaxon}${taxon.id}`;
-                    } else if (typeof pathToTaxon === "function") {
-                      e2.preventDefault();
-                      pathToTaxon(taxon.id);
-                    }
-                  }
-                }
-              ),
-              (taxon == null ? void 0 : taxon.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { style: { marginLeft: "4px" }, datasetKey: taxon == null ? void 0 : taxon.datasetKey, verbatimSourceKey: taxon == null ? void 0 : taxon.verbatimSourceKey })
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(ColTreeContext.Consumer, { children: ({ showInfo }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { id: taxon.id, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "tree-node-rank", children: [
+              taxon.rank,
+              ": "
             ] }),
-            showInfo && taxon.status === "provisionally accepted" && /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-              " • ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "warning", style: { marginRight: 0 }, children: "prov." })
-            ] }),
-            !_$1.isUndefined(taxon.count) && this.rankIsAboveSpecies(taxon == null ? void 0 : taxon.rank) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: taxon.id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: taxon.labelHtml } }) }),
+            (taxon == null ? void 0 : taxon.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { style: { marginLeft: "4px" }, datasetKey: taxon == null ? void 0 : taxon.datasetKey, verbatimSourceKey: taxon == null ? void 0 : taxon.verbatimSourceKey })
+          ] }),
+          showInfo && taxon.status === "provisionally accepted" && /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+            " • ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "warning", style: { marginRight: 0 }, children: "prov." })
+          ] }),
+          !_$1.isUndefined(taxon.count) && this.rankIsAboveSpecies(taxon == null ? void 0 : taxon.rank) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            " ",
+            "• ",
+            Number(taxon.count).toLocaleString(),
+            " ",
+            showInfo && !_$1.isUndefined(taxon.speciesEstimate) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               " ",
-              "• ",
-              Number(taxon.count).toLocaleString(),
+              "of",
               " ",
-              showInfo && !_$1.isUndefined(taxon.speciesEstimate) && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-                " ",
-                "of",
-                " ",
-                Number(
-                  taxon.speciesEstimate
-                ).toLocaleString(),
-                " ",
-                "est.",
-                " "
-              ] }),
-              "spp."
-            ] }),
-            showInfo && sector && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: " • " }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "a",
-                {
-                  style: hasDatasetSectors ? { fontWeight: "bold" } : null,
-                  href: `${pathToDataset}${sector.subjectDatasetKey}`,
-                  className: "col-tree-data-source",
-                  onClick: () => {
-                    window.location.href = `${pathToDataset}${sector.subjectDatasetKey}`;
-                  },
-                  children: [
-                    _$1.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
-                    hasDatasetSectors && ", "
-                  ]
-                }
-              )
-            ] }),
-            showInfo && hasDatasetSectors && /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+              Number(
+                taxon.speciesEstimate
+              ).toLocaleString(),
               " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TaxonSources,
-                {
-                  sourceDatasetKeys,
-                  publisherDatasetKeys,
-                  pathToDataset,
-                  taxon,
-                  datasetKey
-                }
-              )
-            ] })
-          ] });
-        } });
+              "est.",
+              " "
+            ] }),
+            "spp."
+          ] }),
+          showInfo && sector && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: " • " }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              LinkTo,
+              {
+                to: "source",
+                args: sector.subjectDatasetKey,
+                style: hasDatasetSectors ? { fontWeight: "bold" } : null,
+                className: "col-tree-data-source",
+                children: [
+                  _$1.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey,
+                  hasDatasetSectors && ", "
+                ]
+              }
+            )
+          ] }),
+          showInfo && hasDatasetSectors && /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              TaxonSources,
+              {
+                sourceDatasetKeys,
+                publisherDatasetKeys,
+                taxon,
+                datasetKey
+              }
+            )
+          ] })
+        ] }) });
       });
       this.state = {
         style: {},
@@ -73867,2904 +74671,6 @@ html body {
       ids.map((i) => reflect(axios(`${config.dataApi}dataset/${datasetKey}/sector/${i}`)))
     );
   };
-  var Action;
-  (function(Action2) {
-    Action2["Pop"] = "POP";
-    Action2["Push"] = "PUSH";
-    Action2["Replace"] = "REPLACE";
-  })(Action || (Action = {}));
-  var readOnly = function(obj) {
-    return obj;
-  };
-  var BeforeUnloadEventType = "beforeunload";
-  var PopStateEventType = "popstate";
-  function createBrowserHistory(options) {
-    if (options === void 0) {
-      options = {};
-    }
-    var _options = options, _options$window = _options.window, window2 = _options$window === void 0 ? document.defaultView : _options$window;
-    var globalHistory = window2.history;
-    function getIndexAndLocation() {
-      var _window$location = window2.location, pathname = _window$location.pathname, search2 = _window$location.search, hash2 = _window$location.hash;
-      var state = globalHistory.state || {};
-      return [state.idx, readOnly({
-        pathname,
-        search: search2,
-        hash: hash2,
-        state: state.usr || null,
-        key: state.key || "default"
-      })];
-    }
-    var blockedPopTx = null;
-    function handlePop() {
-      if (blockedPopTx) {
-        blockers.call(blockedPopTx);
-        blockedPopTx = null;
-      } else {
-        var nextAction = Action.Pop;
-        var _getIndexAndLocation = getIndexAndLocation(), nextIndex = _getIndexAndLocation[0], nextLocation = _getIndexAndLocation[1];
-        if (blockers.length) {
-          if (nextIndex != null) {
-            var delta = index2 - nextIndex;
-            if (delta) {
-              blockedPopTx = {
-                action: nextAction,
-                location: nextLocation,
-                retry: function retry() {
-                  go(delta * -1);
-                }
-              };
-              go(delta);
-            }
-          }
-        } else {
-          applyTx(nextAction);
-        }
-      }
-    }
-    window2.addEventListener(PopStateEventType, handlePop);
-    var action = Action.Pop;
-    var _getIndexAndLocation2 = getIndexAndLocation(), index2 = _getIndexAndLocation2[0], location2 = _getIndexAndLocation2[1];
-    var listeners = createEvents();
-    var blockers = createEvents();
-    if (index2 == null) {
-      index2 = 0;
-      globalHistory.replaceState(_extends$19({}, globalHistory.state, {
-        idx: index2
-      }), "");
-    }
-    function createHref(to) {
-      return typeof to === "string" ? to : createPath$1(to);
-    }
-    function getNextLocation(to, state) {
-      if (state === void 0) {
-        state = null;
-      }
-      return readOnly(_extends$19({
-        pathname: location2.pathname,
-        hash: "",
-        search: ""
-      }, typeof to === "string" ? parsePath$1(to) : to, {
-        state,
-        key: createKey()
-      }));
-    }
-    function getHistoryStateAndUrl(nextLocation, index22) {
-      return [{
-        usr: nextLocation.state,
-        key: nextLocation.key,
-        idx: index22
-      }, createHref(nextLocation)];
-    }
-    function allowTx(action2, location22, retry) {
-      return !blockers.length || (blockers.call({
-        action: action2,
-        location: location22,
-        retry
-      }), false);
-    }
-    function applyTx(nextAction) {
-      action = nextAction;
-      var _getIndexAndLocation3 = getIndexAndLocation();
-      index2 = _getIndexAndLocation3[0];
-      location2 = _getIndexAndLocation3[1];
-      listeners.call({
-        action,
-        location: location2
-      });
-    }
-    function push(to, state) {
-      var nextAction = Action.Push;
-      var nextLocation = getNextLocation(to, state);
-      function retry() {
-        push(to, state);
-      }
-      if (allowTx(nextAction, nextLocation, retry)) {
-        var _getHistoryStateAndUr = getHistoryStateAndUrl(nextLocation, index2 + 1), historyState = _getHistoryStateAndUr[0], url = _getHistoryStateAndUr[1];
-        try {
-          globalHistory.pushState(historyState, "", url);
-        } catch (error) {
-          window2.location.assign(url);
-        }
-        applyTx(nextAction);
-      }
-    }
-    function replace2(to, state) {
-      var nextAction = Action.Replace;
-      var nextLocation = getNextLocation(to, state);
-      function retry() {
-        replace2(to, state);
-      }
-      if (allowTx(nextAction, nextLocation, retry)) {
-        var _getHistoryStateAndUr2 = getHistoryStateAndUrl(nextLocation, index2), historyState = _getHistoryStateAndUr2[0], url = _getHistoryStateAndUr2[1];
-        globalHistory.replaceState(historyState, "", url);
-        applyTx(nextAction);
-      }
-    }
-    function go(delta) {
-      globalHistory.go(delta);
-    }
-    var history2 = {
-      get action() {
-        return action;
-      },
-      get location() {
-        return location2;
-      },
-      createHref,
-      push,
-      replace: replace2,
-      go,
-      back: function back() {
-        go(-1);
-      },
-      forward: function forward() {
-        go(1);
-      },
-      listen: function listen(listener) {
-        return listeners.push(listener);
-      },
-      block: function block(blocker) {
-        var unblock = blockers.push(blocker);
-        if (blockers.length === 1) {
-          window2.addEventListener(BeforeUnloadEventType, promptBeforeUnload);
-        }
-        return function() {
-          unblock();
-          if (!blockers.length) {
-            window2.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
-          }
-        };
-      }
-    };
-    return history2;
-  }
-  function promptBeforeUnload(event) {
-    event.preventDefault();
-    event.returnValue = "";
-  }
-  function createEvents() {
-    var handlers = [];
-    return {
-      get length() {
-        return handlers.length;
-      },
-      push: function push(fn) {
-        handlers.push(fn);
-        return function() {
-          handlers = handlers.filter(function(handler) {
-            return handler !== fn;
-          });
-        };
-      },
-      call: function call2(arg) {
-        handlers.forEach(function(fn) {
-          return fn && fn(arg);
-        });
-      }
-    };
-  }
-  function createKey() {
-    return Math.random().toString(36).substr(2, 8);
-  }
-  function createPath$1(_ref2) {
-    var _ref$pathname = _ref2.pathname, pathname = _ref$pathname === void 0 ? "/" : _ref$pathname, _ref$search = _ref2.search, search2 = _ref$search === void 0 ? "" : _ref$search, _ref$hash = _ref2.hash, hash2 = _ref$hash === void 0 ? "" : _ref$hash;
-    if (search2 && search2 !== "?") pathname += search2.charAt(0) === "?" ? search2 : "?" + search2;
-    if (hash2 && hash2 !== "#") pathname += hash2.charAt(0) === "#" ? hash2 : "#" + hash2;
-    return pathname;
-  }
-  function parsePath$1(path) {
-    var parsedPath = {};
-    if (path) {
-      var hashIndex = path.indexOf("#");
-      if (hashIndex >= 0) {
-        parsedPath.hash = path.substr(hashIndex);
-        path = path.substr(0, hashIndex);
-      }
-      var searchIndex = path.indexOf("?");
-      if (searchIndex >= 0) {
-        parsedPath.search = path.substr(searchIndex);
-        path = path.substr(0, searchIndex);
-      }
-      if (path) {
-        parsedPath.pathname = path;
-      }
-    }
-    return parsedPath;
-  }
-  const history = createBrowserHistory();
-  const token = "%[a-f0-9]{2}";
-  const singleMatcher = new RegExp("(" + token + ")|([^%]+?)", "gi");
-  const multiMatcher = new RegExp("(" + token + ")+", "gi");
-  function decodeComponents(components2, split) {
-    try {
-      return [decodeURIComponent(components2.join(""))];
-    } catch {
-    }
-    if (components2.length === 1) {
-      return components2;
-    }
-    split = split || 1;
-    const left = components2.slice(0, split);
-    const right = components2.slice(split);
-    return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
-  }
-  function decode$1(input) {
-    try {
-      return decodeURIComponent(input);
-    } catch {
-      let tokens = input.match(singleMatcher) || [];
-      for (let i = 1; i < tokens.length; i++) {
-        input = decodeComponents(tokens, i).join("");
-        tokens = input.match(singleMatcher) || [];
-      }
-      return input;
-    }
-  }
-  function customDecodeURIComponent(input) {
-    const replaceMap = {
-      "%FE%FF": "��",
-      "%FF%FE": "��"
-    };
-    let match2 = multiMatcher.exec(input);
-    while (match2) {
-      try {
-        replaceMap[match2[0]] = decodeURIComponent(match2[0]);
-      } catch {
-        const result2 = decode$1(match2[0]);
-        if (result2 !== match2[0]) {
-          replaceMap[match2[0]] = result2;
-        }
-      }
-      match2 = multiMatcher.exec(input);
-    }
-    replaceMap["%C2"] = "�";
-    const entries2 = Object.keys(replaceMap);
-    for (const key2 of entries2) {
-      input = input.replace(new RegExp(key2, "g"), replaceMap[key2]);
-    }
-    return input;
-  }
-  function decodeUriComponent(encodedURI) {
-    if (typeof encodedURI !== "string") {
-      throw new TypeError("Expected `encodedURI` to be of type `string`, got `" + typeof encodedURI + "`");
-    }
-    try {
-      return decodeURIComponent(encodedURI);
-    } catch {
-      return customDecodeURIComponent(encodedURI);
-    }
-  }
-  function includeKeys(object2, predicate) {
-    const result2 = {};
-    if (Array.isArray(predicate)) {
-      for (const key2 of predicate) {
-        const descriptor = Object.getOwnPropertyDescriptor(object2, key2);
-        if (descriptor == null ? void 0 : descriptor.enumerable) {
-          Object.defineProperty(result2, key2, descriptor);
-        }
-      }
-    } else {
-      for (const key2 of Reflect.ownKeys(object2)) {
-        const descriptor = Object.getOwnPropertyDescriptor(object2, key2);
-        if (descriptor.enumerable) {
-          const value = object2[key2];
-          if (predicate(key2, value, object2)) {
-            Object.defineProperty(result2, key2, descriptor);
-          }
-        }
-      }
-    }
-    return result2;
-  }
-  function splitOnFirst(string2, separator) {
-    if (!(typeof string2 === "string" && typeof separator === "string")) {
-      throw new TypeError("Expected the arguments to be of type `string`");
-    }
-    if (string2 === "" || separator === "") {
-      return [];
-    }
-    const separatorIndex = string2.indexOf(separator);
-    if (separatorIndex === -1) {
-      return [];
-    }
-    return [
-      string2.slice(0, separatorIndex),
-      string2.slice(separatorIndex + separator.length)
-    ];
-  }
-  const isNullOrUndefined = (value) => value === null || value === void 0;
-  const strictUriEncode = (string2) => encodeURIComponent(string2).replaceAll(/[!'()*]/g, (x2) => `%${x2.charCodeAt(0).toString(16).toUpperCase()}`);
-  const encodeFragmentIdentifier = Symbol("encodeFragmentIdentifier");
-  function encoderForArrayFormat(options) {
-    switch (options.arrayFormat) {
-      case "index": {
-        return (key2) => (result2, value) => {
-          const index2 = result2.length;
-          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
-            return result2;
-          }
-          if (value === null) {
-            return [
-              ...result2,
-              [encode(key2, options), "[", index2, "]"].join("")
-            ];
-          }
-          return [
-            ...result2,
-            [encode(key2, options), "[", encode(index2, options), "]=", encode(value, options)].join("")
-          ];
-        };
-      }
-      case "bracket": {
-        return (key2) => (result2, value) => {
-          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
-            return result2;
-          }
-          if (value === null) {
-            return [
-              ...result2,
-              [encode(key2, options), "[]"].join("")
-            ];
-          }
-          return [
-            ...result2,
-            [encode(key2, options), "[]=", encode(value, options)].join("")
-          ];
-        };
-      }
-      case "colon-list-separator": {
-        return (key2) => (result2, value) => {
-          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
-            return result2;
-          }
-          if (value === null) {
-            return [
-              ...result2,
-              [encode(key2, options), ":list="].join("")
-            ];
-          }
-          return [
-            ...result2,
-            [encode(key2, options), ":list=", encode(value, options)].join("")
-          ];
-        };
-      }
-      case "comma":
-      case "separator":
-      case "bracket-separator": {
-        const keyValueSeparator = options.arrayFormat === "bracket-separator" ? "[]=" : "=";
-        return (key2) => (result2, value) => {
-          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
-            return result2;
-          }
-          value = value === null ? "" : value;
-          if (result2.length === 0) {
-            return [[encode(key2, options), keyValueSeparator, encode(value, options)].join("")];
-          }
-          return [[result2, encode(value, options)].join(options.arrayFormatSeparator)];
-        };
-      }
-      default: {
-        return (key2) => (result2, value) => {
-          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
-            return result2;
-          }
-          if (value === null) {
-            return [
-              ...result2,
-              encode(key2, options)
-            ];
-          }
-          return [
-            ...result2,
-            [encode(key2, options), "=", encode(value, options)].join("")
-          ];
-        };
-      }
-    }
-  }
-  function parserForArrayFormat(options) {
-    let result2;
-    switch (options.arrayFormat) {
-      case "index": {
-        return (key2, value, accumulator) => {
-          result2 = /\[(\d*)]$/.exec(key2);
-          key2 = key2.replace(/\[\d*]$/, "");
-          if (!result2) {
-            accumulator[key2] = value;
-            return;
-          }
-          if (accumulator[key2] === void 0) {
-            accumulator[key2] = {};
-          }
-          accumulator[key2][result2[1]] = value;
-        };
-      }
-      case "bracket": {
-        return (key2, value, accumulator) => {
-          result2 = /(\[])$/.exec(key2);
-          key2 = key2.replace(/\[]$/, "");
-          if (!result2) {
-            accumulator[key2] = value;
-            return;
-          }
-          if (accumulator[key2] === void 0) {
-            accumulator[key2] = [value];
-            return;
-          }
-          accumulator[key2] = [...accumulator[key2], value];
-        };
-      }
-      case "colon-list-separator": {
-        return (key2, value, accumulator) => {
-          result2 = /(:list)$/.exec(key2);
-          key2 = key2.replace(/:list$/, "");
-          if (!result2) {
-            accumulator[key2] = value;
-            return;
-          }
-          if (accumulator[key2] === void 0) {
-            accumulator[key2] = [value];
-            return;
-          }
-          accumulator[key2] = [...accumulator[key2], value];
-        };
-      }
-      case "comma":
-      case "separator": {
-        return (key2, value, accumulator) => {
-          const isArray2 = typeof value === "string" && value.includes(options.arrayFormatSeparator);
-          const newValue = isArray2 ? value.split(options.arrayFormatSeparator).map((item) => decode(item, options)) : value === null ? value : decode(value, options);
-          accumulator[key2] = newValue;
-        };
-      }
-      case "bracket-separator": {
-        return (key2, value, accumulator) => {
-          const isArray2 = /(\[])$/.test(key2);
-          key2 = key2.replace(/\[]$/, "");
-          if (!isArray2) {
-            accumulator[key2] = value ? decode(value, options) : value;
-            return;
-          }
-          const arrayValue = value === null ? [] : decode(value, options).split(options.arrayFormatSeparator);
-          if (accumulator[key2] === void 0) {
-            accumulator[key2] = arrayValue;
-            return;
-          }
-          accumulator[key2] = [...accumulator[key2], ...arrayValue];
-        };
-      }
-      default: {
-        return (key2, value, accumulator) => {
-          if (accumulator[key2] === void 0) {
-            accumulator[key2] = value;
-            return;
-          }
-          accumulator[key2] = [...[accumulator[key2]].flat(), value];
-        };
-      }
-    }
-  }
-  function validateArrayFormatSeparator(value) {
-    if (typeof value !== "string" || value.length !== 1) {
-      throw new TypeError("arrayFormatSeparator must be single character string");
-    }
-  }
-  function encode(value, options) {
-    if (options.encode) {
-      return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
-    }
-    return value;
-  }
-  function decode(value, options) {
-    if (options.decode) {
-      return decodeUriComponent(value);
-    }
-    return value;
-  }
-  function keysSorter(input) {
-    if (Array.isArray(input)) {
-      return input.sort();
-    }
-    if (typeof input === "object") {
-      return keysSorter(Object.keys(input)).sort((a, b2) => Number(a) - Number(b2)).map((key2) => input[key2]);
-    }
-    return input;
-  }
-  function removeHash(input) {
-    const hashStart = input.indexOf("#");
-    if (hashStart !== -1) {
-      input = input.slice(0, hashStart);
-    }
-    return input;
-  }
-  function getHash(url) {
-    let hash2 = "";
-    const hashStart = url.indexOf("#");
-    if (hashStart !== -1) {
-      hash2 = url.slice(hashStart);
-    }
-    return hash2;
-  }
-  function parseValue(value, options, type2) {
-    if (type2 === "string" && typeof value === "string") {
-      return value;
-    }
-    if (typeof type2 === "function" && typeof value === "string") {
-      return type2(value);
-    }
-    if (type2 === "boolean" && value === null) {
-      return true;
-    }
-    if (type2 === "boolean" && value !== null && (value.toLowerCase() === "true" || value.toLowerCase() === "false")) {
-      return value.toLowerCase() === "true";
-    }
-    if (type2 === "boolean" && value !== null && (value.toLowerCase() === "1" || value.toLowerCase() === "0")) {
-      return value.toLowerCase() === "1";
-    }
-    if (type2 === "string[]" && options.arrayFormat !== "none" && typeof value === "string") {
-      return [value];
-    }
-    if (type2 === "number[]" && options.arrayFormat !== "none" && !Number.isNaN(Number(value)) && (typeof value === "string" && value.trim() !== "")) {
-      return [Number(value)];
-    }
-    if (type2 === "number" && !Number.isNaN(Number(value)) && (typeof value === "string" && value.trim() !== "")) {
-      return Number(value);
-    }
-    if (options.parseBooleans && value !== null && (value.toLowerCase() === "true" || value.toLowerCase() === "false")) {
-      return value.toLowerCase() === "true";
-    }
-    if (options.parseNumbers && !Number.isNaN(Number(value)) && (typeof value === "string" && value.trim() !== "")) {
-      return Number(value);
-    }
-    return value;
-  }
-  function extract(input) {
-    input = removeHash(input);
-    const queryStart = input.indexOf("?");
-    if (queryStart === -1) {
-      return "";
-    }
-    return input.slice(queryStart + 1);
-  }
-  function parse$1(query, options) {
-    options = {
-      decode: true,
-      sort: true,
-      arrayFormat: "none",
-      arrayFormatSeparator: ",",
-      parseNumbers: false,
-      parseBooleans: false,
-      types: /* @__PURE__ */ Object.create(null),
-      ...options
-    };
-    validateArrayFormatSeparator(options.arrayFormatSeparator);
-    const formatter = parserForArrayFormat(options);
-    const returnValue = /* @__PURE__ */ Object.create(null);
-    if (typeof query !== "string") {
-      return returnValue;
-    }
-    query = query.trim().replace(/^[?#&]/, "");
-    if (!query) {
-      return returnValue;
-    }
-    for (const parameter of query.split("&")) {
-      if (parameter === "") {
-        continue;
-      }
-      const parameter_ = options.decode ? parameter.replaceAll("+", " ") : parameter;
-      let [key2, value] = splitOnFirst(parameter_, "=");
-      if (key2 === void 0) {
-        key2 = parameter_;
-      }
-      value = value === void 0 ? null : ["comma", "separator", "bracket-separator"].includes(options.arrayFormat) ? value : decode(value, options);
-      formatter(decode(key2, options), value, returnValue);
-    }
-    for (const [key2, value] of Object.entries(returnValue)) {
-      if (typeof value === "object" && value !== null && options.types[key2] !== "string") {
-        for (const [key22, value2] of Object.entries(value)) {
-          const typeOption = options.types[key2];
-          const type2 = typeof typeOption === "function" ? typeOption : typeOption ? typeOption.replace("[]", "") : void 0;
-          value[key22] = parseValue(value2, options, type2);
-        }
-      } else if (typeof value === "object" && value !== null && options.types[key2] === "string") {
-        returnValue[key2] = Object.values(value).join(options.arrayFormatSeparator);
-      } else {
-        returnValue[key2] = parseValue(value, options, options.types[key2]);
-      }
-    }
-    if (options.sort === false) {
-      return returnValue;
-    }
-    return (options.sort === true ? Object.keys(returnValue).sort() : Object.keys(returnValue).sort(options.sort)).reduce((result2, key2) => {
-      const value = returnValue[key2];
-      result2[key2] = Boolean(value) && typeof value === "object" && !Array.isArray(value) ? keysSorter(value) : value;
-      return result2;
-    }, /* @__PURE__ */ Object.create(null));
-  }
-  function stringify(object2, options) {
-    if (!object2) {
-      return "";
-    }
-    options = {
-      encode: true,
-      strict: true,
-      arrayFormat: "none",
-      arrayFormatSeparator: ",",
-      ...options
-    };
-    validateArrayFormatSeparator(options.arrayFormatSeparator);
-    const shouldFilter = (key2) => options.skipNull && isNullOrUndefined(object2[key2]) || options.skipEmptyString && object2[key2] === "";
-    const formatter = encoderForArrayFormat(options);
-    const objectCopy = {};
-    for (const [key2, value] of Object.entries(object2)) {
-      if (!shouldFilter(key2)) {
-        objectCopy[key2] = value;
-      }
-    }
-    const keys2 = Object.keys(objectCopy);
-    if (options.sort !== false) {
-      keys2.sort(options.sort);
-    }
-    return keys2.map((key2) => {
-      let value = object2[key2];
-      if (options.replacer) {
-        value = options.replacer(key2, value);
-        if (value === void 0) {
-          return "";
-        }
-      }
-      if (value === void 0) {
-        return "";
-      }
-      if (value === null) {
-        return encode(key2, options);
-      }
-      if (Array.isArray(value)) {
-        if (value.length === 0 && options.arrayFormat === "bracket-separator") {
-          return encode(key2, options) + "[]";
-        }
-        let processedArray = value;
-        if (options.replacer) {
-          processedArray = value.map(
-            (item, index2) => options.replacer(`${key2}[${index2}]`, item)
-          ).filter((item) => item !== void 0);
-        }
-        return processedArray.reduce(formatter(key2), []).join("&");
-      }
-      return encode(key2, options) + "=" + encode(value, options);
-    }).filter((x2) => x2.length > 0).join("&");
-  }
-  function parseUrl(url, options) {
-    var _a2;
-    options = {
-      decode: true,
-      ...options
-    };
-    let [url_, hash2] = splitOnFirst(url, "#");
-    if (url_ === void 0) {
-      url_ = url;
-    }
-    return {
-      url: ((_a2 = url_ == null ? void 0 : url_.split("?")) == null ? void 0 : _a2[0]) ?? "",
-      query: parse$1(extract(url), options),
-      ...options && options.parseFragmentIdentifier && hash2 ? { fragmentIdentifier: decode(hash2, options) } : {}
-    };
-  }
-  function stringifyUrl(object2, options) {
-    options = {
-      encode: true,
-      strict: true,
-      [encodeFragmentIdentifier]: true,
-      ...options
-    };
-    const url = removeHash(object2.url).split("?")[0] || "";
-    const queryFromUrl = extract(object2.url);
-    const query = {
-      ...parse$1(queryFromUrl, { sort: false, ...options }),
-      ...object2.query
-    };
-    let queryString2 = stringify(query, options);
-    queryString2 && (queryString2 = `?${queryString2}`);
-    let hash2 = getHash(object2.url);
-    if (typeof object2.fragmentIdentifier === "string") {
-      const urlObjectForFragmentEncode = new URL(url);
-      urlObjectForFragmentEncode.hash = object2.fragmentIdentifier;
-      hash2 = options[encodeFragmentIdentifier] ? urlObjectForFragmentEncode.hash : `#${object2.fragmentIdentifier}`;
-    }
-    return `${url}${queryString2}${hash2}`;
-  }
-  function pick(input, filter2, options) {
-    options = {
-      parseFragmentIdentifier: true,
-      [encodeFragmentIdentifier]: false,
-      ...options
-    };
-    const { url, query, fragmentIdentifier } = parseUrl(input, options);
-    return stringifyUrl({
-      url,
-      query: includeKeys(query, filter2),
-      fragmentIdentifier
-    }, options);
-  }
-  function exclude(input, filter2, options) {
-    const exclusionFilter = Array.isArray(filter2) ? (key2) => !filter2.includes(key2) : (key2, value) => !filter2(key2, value);
-    return pick(input, exclusionFilter, options);
-  }
-  const queryString = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    exclude,
-    extract,
-    parse: parse$1,
-    parseUrl,
-    pick,
-    stringify,
-    stringifyUrl
-  }, Symbol.toStringTag, { value: "Module" }));
-  /**
-   * react-router v7.15.1
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   */
-  function invariant(value, message2) {
-    if (value === false || value === null || typeof value === "undefined") {
-      throw new Error(message2);
-    }
-  }
-  function warning(cond, message2) {
-    if (!cond) {
-      if (typeof console !== "undefined") console.warn(message2);
-      try {
-        throw new Error(message2);
-      } catch (e2) {
-      }
-    }
-  }
-  function createPath({
-    pathname = "/",
-    search: search2 = "",
-    hash: hash2 = ""
-  }) {
-    if (search2 && search2 !== "?")
-      pathname += search2.charAt(0) === "?" ? search2 : "?" + search2;
-    if (hash2 && hash2 !== "#")
-      pathname += hash2.charAt(0) === "#" ? hash2 : "#" + hash2;
-    return pathname;
-  }
-  function parsePath(path) {
-    let parsedPath = {};
-    if (path) {
-      let hashIndex = path.indexOf("#");
-      if (hashIndex >= 0) {
-        parsedPath.hash = path.substring(hashIndex);
-        path = path.substring(0, hashIndex);
-      }
-      let searchIndex = path.indexOf("?");
-      if (searchIndex >= 0) {
-        parsedPath.search = path.substring(searchIndex);
-        path = path.substring(0, searchIndex);
-      }
-      if (path) {
-        parsedPath.pathname = path;
-      }
-    }
-    return parsedPath;
-  }
-  function matchRoutes(routes, locationArg, basename = "/") {
-    return matchRoutesImpl(routes, locationArg, basename, false);
-  }
-  function matchRoutesImpl(routes, locationArg, basename, allowPartial, precomputedBranches) {
-    let location2 = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-    let pathname = stripBasename(location2.pathname || "/", basename);
-    if (pathname == null) {
-      return null;
-    }
-    let branches = flattenAndRankRoutes(routes);
-    let matches = null;
-    let decoded = decodePath(pathname);
-    for (let i = 0; matches == null && i < branches.length; ++i) {
-      matches = matchRouteBranch(
-        branches[i],
-        decoded,
-        allowPartial
-      );
-    }
-    return matches;
-  }
-  function flattenAndRankRoutes(routes) {
-    let branches = flattenRoutes(routes);
-    rankRouteBranches(branches);
-    return branches;
-  }
-  function flattenRoutes(routes, branches = [], parentsMeta = [], parentPath = "", _hasParentOptionalSegments = false) {
-    let flattenRoute = (route, index2, hasParentOptionalSegments = _hasParentOptionalSegments, relativePath) => {
-      let meta = {
-        relativePath: relativePath === void 0 ? route.path || "" : relativePath,
-        caseSensitive: route.caseSensitive === true,
-        childrenIndex: index2,
-        route
-      };
-      if (meta.relativePath.startsWith("/")) {
-        if (!meta.relativePath.startsWith(parentPath) && hasParentOptionalSegments) {
-          return;
-        }
-        invariant(
-          meta.relativePath.startsWith(parentPath),
-          `Absolute route path "${meta.relativePath}" nested under path "${parentPath}" is not valid. An absolute child route path must start with the combined path of all its parent routes.`
-        );
-        meta.relativePath = meta.relativePath.slice(parentPath.length);
-      }
-      let path = joinPaths([parentPath, meta.relativePath]);
-      let routesMeta = parentsMeta.concat(meta);
-      if (route.children && route.children.length > 0) {
-        invariant(
-          // Our types know better, but runtime JS may not!
-          // @ts-expect-error
-          route.index !== true,
-          `Index routes must not have child routes. Please remove all child routes from route path "${path}".`
-        );
-        flattenRoutes(
-          route.children,
-          branches,
-          routesMeta,
-          path,
-          hasParentOptionalSegments
-        );
-      }
-      if (route.path == null && !route.index) {
-        return;
-      }
-      branches.push({
-        path,
-        score: computeScore(path, route.index),
-        routesMeta
-      });
-    };
-    routes.forEach((route, index2) => {
-      var _a2;
-      if (route.path === "" || !((_a2 = route.path) == null ? void 0 : _a2.includes("?"))) {
-        flattenRoute(route, index2);
-      } else {
-        for (let exploded of explodeOptionalSegments(route.path)) {
-          flattenRoute(route, index2, true, exploded);
-        }
-      }
-    });
-    return branches;
-  }
-  function explodeOptionalSegments(path) {
-    let segments = path.split("/");
-    if (segments.length === 0) return [];
-    let [first, ...rest] = segments;
-    let isOptional = first.endsWith("?");
-    let required2 = first.replace(/\?$/, "");
-    if (rest.length === 0) {
-      return isOptional ? [required2, ""] : [required2];
-    }
-    let restExploded = explodeOptionalSegments(rest.join("/"));
-    let result2 = [];
-    result2.push(
-      ...restExploded.map(
-        (subpath) => subpath === "" ? required2 : [required2, subpath].join("/")
-      )
-    );
-    if (isOptional) {
-      result2.push(...restExploded);
-    }
-    return result2.map(
-      (exploded) => path.startsWith("/") && exploded === "" ? "/" : exploded
-    );
-  }
-  function rankRouteBranches(branches) {
-    branches.sort(
-      (a, b2) => a.score !== b2.score ? b2.score - a.score : compareIndexes(
-        a.routesMeta.map((meta) => meta.childrenIndex),
-        b2.routesMeta.map((meta) => meta.childrenIndex)
-      )
-    );
-  }
-  var paramRe = /^:[\w-]+$/;
-  var dynamicSegmentValue = 3;
-  var indexRouteValue = 2;
-  var emptySegmentValue = 1;
-  var staticSegmentValue = 10;
-  var splatPenalty = -2;
-  var isSplat = (s) => s === "*";
-  function computeScore(path, index2) {
-    let segments = path.split("/");
-    let initialScore = segments.length;
-    if (segments.some(isSplat)) {
-      initialScore += splatPenalty;
-    }
-    if (index2) {
-      initialScore += indexRouteValue;
-    }
-    return segments.filter((s) => !isSplat(s)).reduce(
-      (score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue),
-      initialScore
-    );
-  }
-  function compareIndexes(a, b2) {
-    let siblings = a.length === b2.length && a.slice(0, -1).every((n2, i) => n2 === b2[i]);
-    return siblings ? (
-      // If two routes are siblings, we should try to match the earlier sibling
-      // first. This allows people to have fine-grained control over the matching
-      // behavior by simply putting routes with identical paths in the order they
-      // want them tried.
-      a[a.length - 1] - b2[b2.length - 1]
-    ) : (
-      // Otherwise, it doesn't really make sense to rank non-siblings by index,
-      // so they sort equally.
-      0
-    );
-  }
-  function matchRouteBranch(branch, pathname, allowPartial = false) {
-    let { routesMeta } = branch;
-    let matchedParams = {};
-    let matchedPathname = "/";
-    let matches = [];
-    for (let i = 0; i < routesMeta.length; ++i) {
-      let meta = routesMeta[i];
-      let end = i === routesMeta.length - 1;
-      let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-      let match2 = matchPath(
-        { path: meta.relativePath, caseSensitive: meta.caseSensitive, end },
-        remainingPathname
-      );
-      let route = meta.route;
-      if (!match2 && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
-        match2 = matchPath(
-          {
-            path: meta.relativePath,
-            caseSensitive: meta.caseSensitive,
-            end: false
-          },
-          remainingPathname
-        );
-      }
-      if (!match2) {
-        return null;
-      }
-      Object.assign(matchedParams, match2.params);
-      matches.push({
-        // TODO: Can this as be avoided?
-        params: matchedParams,
-        pathname: joinPaths([matchedPathname, match2.pathname]),
-        pathnameBase: normalizePathname(
-          joinPaths([matchedPathname, match2.pathnameBase])
-        ),
-        route
-      });
-      if (match2.pathnameBase !== "/") {
-        matchedPathname = joinPaths([matchedPathname, match2.pathnameBase]);
-      }
-    }
-    return matches;
-  }
-  function matchPath(pattern2, pathname) {
-    if (typeof pattern2 === "string") {
-      pattern2 = { path: pattern2, caseSensitive: false, end: true };
-    }
-    let [matcher, compiledParams] = compilePath(
-      pattern2.path,
-      pattern2.caseSensitive,
-      pattern2.end
-    );
-    let match2 = pathname.match(matcher);
-    if (!match2) return null;
-    let matchedPathname = match2[0];
-    let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-    let captureGroups = match2.slice(1);
-    let params = compiledParams.reduce(
-      (memo2, { paramName, isOptional }, index2) => {
-        if (paramName === "*") {
-          let splatValue = captureGroups[index2] || "";
-          pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
-        }
-        const value = captureGroups[index2];
-        if (isOptional && !value) {
-          memo2[paramName] = void 0;
-        } else {
-          memo2[paramName] = (value || "").replace(/%2F/g, "/");
-        }
-        return memo2;
-      },
-      {}
-    );
-    return {
-      params,
-      pathname: matchedPathname,
-      pathnameBase,
-      pattern: pattern2
-    };
-  }
-  function compilePath(path, caseSensitive = false, end = true) {
-    warning(
-      path === "*" || !path.endsWith("*") || path.endsWith("/*"),
-      `Route path "${path}" will be treated as if it were "${path.replace(/\*$/, "/*")}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${path.replace(/\*$/, "/*")}".`
-    );
-    let params = [];
-    let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^${}|()[\]]/g, "\\$&").replace(
-      /\/:([\w-]+)(\?)?/g,
-      (match2, paramName, isOptional, index2, str) => {
-        params.push({ paramName, isOptional: isOptional != null });
-        if (isOptional) {
-          let nextChar = str.charAt(index2 + match2.length);
-          if (nextChar && nextChar !== "/") {
-            return "/([^\\/]*)";
-          }
-          return "(?:/([^\\/]*))?";
-        }
-        return "/([^\\/]+)";
-      }
-    ).replace(/\/([\w-]+)\?(\/|$)/g, "(/$1)?$2");
-    if (path.endsWith("*")) {
-      params.push({ paramName: "*" });
-      regexpSource += path === "*" || path === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$";
-    } else if (end) {
-      regexpSource += "\\/*$";
-    } else if (path !== "" && path !== "/") {
-      regexpSource += "(?:(?=\\/|$))";
-    } else ;
-    let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
-    return [matcher, params];
-  }
-  function decodePath(value) {
-    try {
-      return value.split("/").map((v2) => decodeURIComponent(v2).replace(/\//g, "%2F")).join("/");
-    } catch (error) {
-      warning(
-        false,
-        `The URL path "${value}" could not be decoded because it is a malformed URL segment. This is probably due to a bad percent encoding (${error}).`
-      );
-      return value;
-    }
-  }
-  function stripBasename(pathname, basename) {
-    if (basename === "/") return pathname;
-    if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
-      return null;
-    }
-    let startIndex = basename.endsWith("/") ? basename.length - 1 : basename.length;
-    let nextChar = pathname.charAt(startIndex);
-    if (nextChar && nextChar !== "/") {
-      return null;
-    }
-    return pathname.slice(startIndex) || "/";
-  }
-  var ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-  function resolvePath(to, fromPathname = "/") {
-    let {
-      pathname: toPathname,
-      search: search2 = "",
-      hash: hash2 = ""
-    } = typeof to === "string" ? parsePath(to) : to;
-    let pathname;
-    if (toPathname) {
-      toPathname = removeDoubleSlashes(toPathname);
-      if (toPathname.startsWith("/")) {
-        pathname = resolvePathname(toPathname.substring(1), "/");
-      } else {
-        pathname = resolvePathname(toPathname, fromPathname);
-      }
-    } else {
-      pathname = fromPathname;
-    }
-    return {
-      pathname,
-      search: normalizeSearch(search2),
-      hash: normalizeHash(hash2)
-    };
-  }
-  function resolvePathname(relativePath, fromPathname) {
-    let segments = removeTrailingSlash(fromPathname).split("/");
-    let relativeSegments = relativePath.split("/");
-    relativeSegments.forEach((segment) => {
-      if (segment === "..") {
-        if (segments.length > 1) segments.pop();
-      } else if (segment !== ".") {
-        segments.push(segment);
-      }
-    });
-    return segments.length > 1 ? segments.join("/") : "/";
-  }
-  function getInvalidPathError(char2, field, dest, path) {
-    return `Cannot include a '${char2}' character in a manually specified \`to.${field}\` field [${JSON.stringify(
-      path
-    )}].  Please separate it out to the \`to.${dest}\` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.`;
-  }
-  function getPathContributingMatches(matches) {
-    return matches.filter(
-      (match2, index2) => index2 === 0 || match2.route.path && match2.route.path.length > 0
-    );
-  }
-  function getResolveToMatches(matches) {
-    let pathMatches = getPathContributingMatches(matches);
-    return pathMatches.map(
-      (match2, idx) => idx === pathMatches.length - 1 ? match2.pathname : match2.pathnameBase
-    );
-  }
-  function resolveTo(toArg, routePathnames, locationPathname, isPathRelative = false) {
-    let to;
-    if (typeof toArg === "string") {
-      to = parsePath(toArg);
-    } else {
-      to = { ...toArg };
-      invariant(
-        !to.pathname || !to.pathname.includes("?"),
-        getInvalidPathError("?", "pathname", "search", to)
-      );
-      invariant(
-        !to.pathname || !to.pathname.includes("#"),
-        getInvalidPathError("#", "pathname", "hash", to)
-      );
-      invariant(
-        !to.search || !to.search.includes("#"),
-        getInvalidPathError("#", "search", "hash", to)
-      );
-    }
-    let isEmptyPath = toArg === "" || to.pathname === "";
-    let toPathname = isEmptyPath ? "/" : to.pathname;
-    let from2;
-    if (toPathname == null) {
-      from2 = locationPathname;
-    } else {
-      let routePathnameIndex = routePathnames.length - 1;
-      if (!isPathRelative && toPathname.startsWith("..")) {
-        let toSegments = toPathname.split("/");
-        while (toSegments[0] === "..") {
-          toSegments.shift();
-          routePathnameIndex -= 1;
-        }
-        to.pathname = toSegments.join("/");
-      }
-      from2 = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
-    }
-    let path = resolvePath(to, from2);
-    let hasExplicitTrailingSlash = toPathname && toPathname !== "/" && toPathname.endsWith("/");
-    let hasCurrentTrailingSlash = (isEmptyPath || toPathname === ".") && locationPathname.endsWith("/");
-    if (!path.pathname.endsWith("/") && (hasExplicitTrailingSlash || hasCurrentTrailingSlash)) {
-      path.pathname += "/";
-    }
-    return path;
-  }
-  var removeDoubleSlashes = (path) => path.replace(/\/\/+/g, "/");
-  var joinPaths = (paths) => removeDoubleSlashes(paths.join("/"));
-  var removeTrailingSlash = (path) => path.replace(/\/+$/, "");
-  var normalizePathname = (pathname) => removeTrailingSlash(pathname).replace(/^\/*/, "/");
-  var normalizeSearch = (search2) => !search2 || search2 === "?" ? "" : search2.startsWith("?") ? search2 : "?" + search2;
-  var normalizeHash = (hash2) => !hash2 || hash2 === "#" ? "" : hash2.startsWith("#") ? hash2 : "#" + hash2;
-  var ErrorResponseImpl = class {
-    constructor(status, statusText, data2, internal = false) {
-      this.status = status;
-      this.statusText = statusText || "";
-      this.internal = internal;
-      if (data2 instanceof Error) {
-        this.data = data2.toString();
-        this.error = data2;
-      } else {
-        this.data = data2;
-      }
-    }
-  };
-  function isRouteErrorResponse(error) {
-    return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
-  }
-  function getRoutePattern(matches) {
-    let parts = matches.map((m2) => m2.route.path).filter(Boolean);
-    return joinPaths(parts) || "/";
-  }
-  var isBrowser$1 = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-  function parseToInfo(_to, basename) {
-    let to = _to;
-    if (typeof to !== "string" || !ABSOLUTE_URL_REGEX.test(to)) {
-      return {
-        absoluteURL: void 0,
-        isExternal: false,
-        to
-      };
-    }
-    let absoluteURL = to;
-    let isExternal = false;
-    if (isBrowser$1) {
-      try {
-        let currentUrl = new URL(window.location.href);
-        let targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
-        let path = stripBasename(targetUrl.pathname, basename);
-        if (targetUrl.origin === currentUrl.origin && path != null) {
-          to = path + targetUrl.search + targetUrl.hash;
-        } else {
-          isExternal = true;
-        }
-      } catch (e2) {
-        warning(
-          false,
-          `<Link to="${to}"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.`
-        );
-      }
-    }
-    return {
-      absoluteURL,
-      isExternal,
-      to
-    };
-  }
-  Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
-  var validMutationMethodsArr = [
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE"
-  ];
-  new Set(
-    validMutationMethodsArr
-  );
-  var validRequestMethodsArr = [
-    "GET",
-    ...validMutationMethodsArr
-  ];
-  new Set(validRequestMethodsArr);
-  var DataRouterContext = React__namespace.createContext(null);
-  DataRouterContext.displayName = "DataRouter";
-  var DataRouterStateContext = React__namespace.createContext(null);
-  DataRouterStateContext.displayName = "DataRouterState";
-  var RSCRouterContext = React__namespace.createContext(false);
-  function useIsRSCRouterContext() {
-    return React__namespace.useContext(RSCRouterContext);
-  }
-  var ViewTransitionContext = React__namespace.createContext({
-    isTransitioning: false
-  });
-  ViewTransitionContext.displayName = "ViewTransition";
-  var FetchersContext = React__namespace.createContext(
-    /* @__PURE__ */ new Map()
-  );
-  FetchersContext.displayName = "Fetchers";
-  var AwaitContext = React__namespace.createContext(null);
-  AwaitContext.displayName = "Await";
-  var NavigationContext = React__namespace.createContext(
-    null
-  );
-  NavigationContext.displayName = "Navigation";
-  var LocationContext = React__namespace.createContext(
-    null
-  );
-  LocationContext.displayName = "Location";
-  var RouteContext = React__namespace.createContext({
-    outlet: null,
-    matches: [],
-    isDataRoute: false
-  });
-  RouteContext.displayName = "Route";
-  var RouteErrorContext = React__namespace.createContext(null);
-  RouteErrorContext.displayName = "RouteError";
-  var ERROR_DIGEST_BASE = "REACT_ROUTER_ERROR";
-  var ERROR_DIGEST_REDIRECT = "REDIRECT";
-  var ERROR_DIGEST_ROUTE_ERROR_RESPONSE = "ROUTE_ERROR_RESPONSE";
-  function decodeRedirectErrorDigest(digest) {
-    if (digest.startsWith(`${ERROR_DIGEST_BASE}:${ERROR_DIGEST_REDIRECT}:{`)) {
-      try {
-        let parsed = JSON.parse(digest.slice(28));
-        if (typeof parsed === "object" && parsed && typeof parsed.status === "number" && typeof parsed.statusText === "string" && typeof parsed.location === "string" && typeof parsed.reloadDocument === "boolean" && typeof parsed.replace === "boolean") {
-          return parsed;
-        }
-      } catch {
-      }
-    }
-  }
-  function decodeRouteErrorResponseDigest(digest) {
-    if (digest.startsWith(
-      `${ERROR_DIGEST_BASE}:${ERROR_DIGEST_ROUTE_ERROR_RESPONSE}:{`
-    )) {
-      try {
-        let parsed = JSON.parse(digest.slice(40));
-        if (typeof parsed === "object" && parsed && typeof parsed.status === "number" && typeof parsed.statusText === "string") {
-          return new ErrorResponseImpl(
-            parsed.status,
-            parsed.statusText,
-            parsed.data
-          );
-        }
-      } catch {
-      }
-    }
-  }
-  function useHref(to, { relative } = {}) {
-    invariant(
-      useInRouterContext(),
-      // TODO: This error is probably because they somehow have 2 versions of the
-      // router loaded. We can help them understand how to avoid that.
-      `useHref() may be used only in the context of a <Router> component.`
-    );
-    let { basename, navigator: navigator2 } = React__namespace.useContext(NavigationContext);
-    let { hash: hash2, pathname, search: search2 } = useResolvedPath(to, { relative });
-    let joinedPathname = pathname;
-    if (basename !== "/") {
-      joinedPathname = pathname === "/" ? basename : joinPaths([basename, pathname]);
-    }
-    return navigator2.createHref({ pathname: joinedPathname, search: search2, hash: hash2 });
-  }
-  function useInRouterContext() {
-    return React__namespace.useContext(LocationContext) != null;
-  }
-  function useLocation() {
-    invariant(
-      useInRouterContext(),
-      // TODO: This error is probably because they somehow have 2 versions of the
-      // router loaded. We can help them understand how to avoid that.
-      `useLocation() may be used only in the context of a <Router> component.`
-    );
-    return React__namespace.useContext(LocationContext).location;
-  }
-  var navigateEffectWarning = `You should call navigate() in a React.useEffect(), not when your component is first rendered.`;
-  function useIsomorphicLayoutEffect(cb) {
-    let isStatic = React__namespace.useContext(NavigationContext).static;
-    if (!isStatic) {
-      React__namespace.useLayoutEffect(cb);
-    }
-  }
-  function useNavigate() {
-    let { isDataRoute } = React__namespace.useContext(RouteContext);
-    return isDataRoute ? useNavigateStable() : useNavigateUnstable();
-  }
-  function useNavigateUnstable() {
-    invariant(
-      useInRouterContext(),
-      // TODO: This error is probably because they somehow have 2 versions of the
-      // router loaded. We can help them understand how to avoid that.
-      `useNavigate() may be used only in the context of a <Router> component.`
-    );
-    let dataRouterContext = React__namespace.useContext(DataRouterContext);
-    let { basename, navigator: navigator2 } = React__namespace.useContext(NavigationContext);
-    let { matches } = React__namespace.useContext(RouteContext);
-    let { pathname: locationPathname } = useLocation();
-    let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
-    let activeRef = React__namespace.useRef(false);
-    useIsomorphicLayoutEffect(() => {
-      activeRef.current = true;
-    });
-    let navigate = React__namespace.useCallback(
-      (to, options = {}) => {
-        warning(activeRef.current, navigateEffectWarning);
-        if (!activeRef.current) return;
-        if (typeof to === "number") {
-          navigator2.go(to);
-          return;
-        }
-        let path = resolveTo(
-          to,
-          JSON.parse(routePathnamesJson),
-          locationPathname,
-          options.relative === "path"
-        );
-        if (dataRouterContext == null && basename !== "/") {
-          path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
-        }
-        (!!options.replace ? navigator2.replace : navigator2.push)(
-          path,
-          options.state,
-          options
-        );
-      },
-      [
-        basename,
-        navigator2,
-        routePathnamesJson,
-        locationPathname,
-        dataRouterContext
-      ]
-    );
-    return navigate;
-  }
-  React__namespace.createContext(null);
-  function useParams() {
-    let { matches } = React__namespace.useContext(RouteContext);
-    let routeMatch = matches[matches.length - 1];
-    return (routeMatch == null ? void 0 : routeMatch.params) ?? {};
-  }
-  function useResolvedPath(to, { relative } = {}) {
-    let { matches } = React__namespace.useContext(RouteContext);
-    let { pathname: locationPathname } = useLocation();
-    let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
-    return React__namespace.useMemo(
-      () => resolveTo(
-        to,
-        JSON.parse(routePathnamesJson),
-        locationPathname,
-        relative === "path"
-      ),
-      [to, routePathnamesJson, locationPathname, relative]
-    );
-  }
-  function useRoutesImpl(routes, locationArg, dataRouterOpts) {
-    invariant(
-      useInRouterContext(),
-      // TODO: This error is probably because they somehow have 2 versions of the
-      // router loaded. We can help them understand how to avoid that.
-      `useRoutes() may be used only in the context of a <Router> component.`
-    );
-    let { navigator: navigator2 } = React__namespace.useContext(NavigationContext);
-    let { matches: parentMatches } = React__namespace.useContext(RouteContext);
-    let routeMatch = parentMatches[parentMatches.length - 1];
-    let parentParams = routeMatch ? routeMatch.params : {};
-    let parentPathname = routeMatch ? routeMatch.pathname : "/";
-    let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-    let parentRoute = routeMatch && routeMatch.route;
-    {
-      let parentPath = parentRoute && parentRoute.path || "";
-      warningOnce(
-        parentPathname,
-        !parentRoute || parentPath.endsWith("*") || parentPath.endsWith("*?"),
-        `You rendered descendant <Routes> (or called \`useRoutes()\`) at "${parentPathname}" (under <Route path="${parentPath}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
-
-Please change the parent <Route path="${parentPath}"> to <Route path="${parentPath === "/" ? "*" : `${parentPath}/*`}">.`
-      );
-    }
-    let locationFromContext = useLocation();
-    let location2;
-    {
-      location2 = locationFromContext;
-    }
-    let pathname = location2.pathname || "/";
-    let remainingPathname = pathname;
-    if (parentPathnameBase !== "/") {
-      let parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
-      let segments = pathname.replace(/^\//, "").split("/");
-      remainingPathname = "/" + segments.slice(parentSegments.length).join("/");
-    }
-    let matches = dataRouterOpts && dataRouterOpts.state.matches.length ? (
-      // If we're in a data router, use the matches we've already identified but ensure
-      // we have the latest route instances from the manifest in case elements have changed
-      dataRouterOpts.state.matches.map(
-        (m2) => Object.assign(m2, {
-          route: dataRouterOpts.manifest[m2.route.id] || m2.route
-        })
-      )
-    ) : matchRoutes(routes, { pathname: remainingPathname });
-    {
-      warning(
-        parentRoute || matches != null,
-        `No routes matched location "${location2.pathname}${location2.search}${location2.hash}" `
-      );
-      warning(
-        matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0,
-        `Matched leaf route at location "${location2.pathname}${location2.search}${location2.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`
-      );
-    }
-    let renderedMatches = _renderMatches(
-      matches && matches.map(
-        (match2) => Object.assign({}, match2, {
-          params: Object.assign({}, parentParams, match2.params),
-          pathname: joinPaths([
-            parentPathnameBase,
-            // Re-encode pathnames that were decoded inside matchRoutes.
-            // Pre-encode `%`, `?` and `#` ahead of `encodeLocation` because it uses
-            // `new URL()` internally and we need to prevent it from treating
-            // them as separators
-            navigator2.encodeLocation ? navigator2.encodeLocation(
-              match2.pathname.replace(/%/g, "%25").replace(/\?/g, "%3F").replace(/#/g, "%23")
-            ).pathname : match2.pathname
-          ]),
-          pathnameBase: match2.pathnameBase === "/" ? parentPathnameBase : joinPaths([
-            parentPathnameBase,
-            // Re-encode pathnames that were decoded inside matchRoutes
-            // Pre-encode `%`, `?` and `#` ahead of `encodeLocation` because it uses
-            // `new URL()` internally and we need to prevent it from treating
-            // them as separators
-            navigator2.encodeLocation ? navigator2.encodeLocation(
-              match2.pathnameBase.replace(/%/g, "%25").replace(/\?/g, "%3F").replace(/#/g, "%23")
-            ).pathname : match2.pathnameBase
-          ])
-        })
-      ),
-      parentMatches,
-      dataRouterOpts
-    );
-    return renderedMatches;
-  }
-  function DefaultErrorComponent() {
-    let error = useRouteError();
-    let message2 = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
-    let stack2 = error instanceof Error ? error.stack : null;
-    let lightgrey = "rgba(200,200,200, 0.5)";
-    let preStyles = { padding: "0.5rem", backgroundColor: lightgrey };
-    let codeStyles = { padding: "2px 4px", backgroundColor: lightgrey };
-    let devInfo = null;
-    {
-      console.error(
-        "Error handled by React Router default ErrorBoundary:",
-        error
-      );
-      devInfo = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("p", null, "💿 Hey developer 👋"), /* @__PURE__ */ React__namespace.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own ", /* @__PURE__ */ React__namespace.createElement("code", { style: codeStyles }, "ErrorBoundary"), " or", " ", /* @__PURE__ */ React__namespace.createElement("code", { style: codeStyles }, "errorElement"), " prop on your route."));
-    }
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("h2", null, "Unexpected Application Error!"), /* @__PURE__ */ React__namespace.createElement("h3", { style: { fontStyle: "italic" } }, message2), stack2 ? /* @__PURE__ */ React__namespace.createElement("pre", { style: preStyles }, stack2) : null, devInfo);
-  }
-  var defaultErrorElement = /* @__PURE__ */ React__namespace.createElement(DefaultErrorComponent, null);
-  var RenderErrorBoundary = class extends React__namespace.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        location: props.location,
-        revalidation: props.revalidation,
-        error: props.error
-      };
-    }
-    static getDerivedStateFromError(error) {
-      return { error };
-    }
-    static getDerivedStateFromProps(props, state) {
-      if (state.location !== props.location || state.revalidation !== "idle" && props.revalidation === "idle") {
-        return {
-          error: props.error,
-          location: props.location,
-          revalidation: props.revalidation
-        };
-      }
-      return {
-        error: props.error !== void 0 ? props.error : state.error,
-        location: state.location,
-        revalidation: props.revalidation || state.revalidation
-      };
-    }
-    componentDidCatch(error, errorInfo) {
-      if (this.props.onError) {
-        this.props.onError(error, errorInfo);
-      } else {
-        console.error(
-          "React Router caught the following error during render",
-          error
-        );
-      }
-    }
-    render() {
-      let error = this.state.error;
-      if (this.context && typeof error === "object" && error && "digest" in error && typeof error.digest === "string") {
-        const decoded = decodeRouteErrorResponseDigest(error.digest);
-        if (decoded) error = decoded;
-      }
-      let result2 = error !== void 0 ? /* @__PURE__ */ React__namespace.createElement(RouteContext.Provider, { value: this.props.routeContext }, /* @__PURE__ */ React__namespace.createElement(
-        RouteErrorContext.Provider,
-        {
-          value: error,
-          children: this.props.component
-        }
-      )) : this.props.children;
-      if (this.context) {
-        return /* @__PURE__ */ React__namespace.createElement(RSCErrorHandler, { error }, result2);
-      }
-      return result2;
-    }
-  };
-  RenderErrorBoundary.contextType = RSCRouterContext;
-  var errorRedirectHandledMap = /* @__PURE__ */ new WeakMap();
-  function RSCErrorHandler({
-    children,
-    error
-  }) {
-    let { basename } = React__namespace.useContext(NavigationContext);
-    if (typeof error === "object" && error && "digest" in error && typeof error.digest === "string") {
-      let redirect2 = decodeRedirectErrorDigest(error.digest);
-      if (redirect2) {
-        let existingRedirect = errorRedirectHandledMap.get(error);
-        if (existingRedirect) throw existingRedirect;
-        let parsed = parseToInfo(redirect2.location, basename);
-        if (isBrowser$1 && !errorRedirectHandledMap.get(error)) {
-          if (parsed.isExternal || redirect2.reloadDocument) {
-            window.location.href = parsed.absoluteURL || parsed.to;
-          } else {
-            const redirectPromise = Promise.resolve().then(
-              () => window.__reactRouterDataRouter.navigate(parsed.to, {
-                replace: redirect2.replace
-              })
-            );
-            errorRedirectHandledMap.set(error, redirectPromise);
-            throw redirectPromise;
-          }
-        }
-        return /* @__PURE__ */ React__namespace.createElement(
-          "meta",
-          {
-            httpEquiv: "refresh",
-            content: `0;url=${parsed.absoluteURL || parsed.to}`
-          }
-        );
-      }
-    }
-    return children;
-  }
-  function RenderedRoute({ routeContext, match: match2, children }) {
-    let dataRouterContext = React__namespace.useContext(DataRouterContext);
-    if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match2.route.errorElement || match2.route.ErrorBoundary)) {
-      dataRouterContext.staticContext._deepestRenderedBoundaryId = match2.route.id;
-    }
-    return /* @__PURE__ */ React__namespace.createElement(RouteContext.Provider, { value: routeContext }, children);
-  }
-  function _renderMatches(matches, parentMatches = [], dataRouterOpts) {
-    let dataRouterState = dataRouterOpts == null ? void 0 : dataRouterOpts.state;
-    if (matches == null) {
-      if (!dataRouterState) {
-        return null;
-      }
-      if (dataRouterState.errors) {
-        matches = dataRouterState.matches;
-      } else if (parentMatches.length === 0 && !dataRouterState.initialized && dataRouterState.matches.length > 0) {
-        matches = dataRouterState.matches;
-      } else {
-        return null;
-      }
-    }
-    let renderedMatches = matches;
-    let errors = dataRouterState == null ? void 0 : dataRouterState.errors;
-    if (errors != null) {
-      let errorIndex = renderedMatches.findIndex(
-        (m2) => m2.route.id && (errors == null ? void 0 : errors[m2.route.id]) !== void 0
-      );
-      invariant(
-        errorIndex >= 0,
-        `Could not find a matching route for errors on route IDs: ${Object.keys(
-          errors
-        ).join(",")}`
-      );
-      renderedMatches = renderedMatches.slice(
-        0,
-        Math.min(renderedMatches.length, errorIndex + 1)
-      );
-    }
-    let renderFallback = false;
-    let fallbackIndex = -1;
-    if (dataRouterOpts && dataRouterState) {
-      renderFallback = dataRouterState.renderFallback;
-      for (let i = 0; i < renderedMatches.length; i++) {
-        let match2 = renderedMatches[i];
-        if (match2.route.HydrateFallback || match2.route.hydrateFallbackElement) {
-          fallbackIndex = i;
-        }
-        if (match2.route.id) {
-          let { loaderData, errors: errors2 } = dataRouterState;
-          let needsToRunLoader = match2.route.loader && !loaderData.hasOwnProperty(match2.route.id) && (!errors2 || errors2[match2.route.id] === void 0);
-          if (match2.route.lazy || needsToRunLoader) {
-            if (dataRouterOpts.isStatic) {
-              renderFallback = true;
-            }
-            if (fallbackIndex >= 0) {
-              renderedMatches = renderedMatches.slice(0, fallbackIndex + 1);
-            } else {
-              renderedMatches = [renderedMatches[0]];
-            }
-            break;
-          }
-        }
-      }
-    }
-    let onErrorHandler = dataRouterOpts == null ? void 0 : dataRouterOpts.onError;
-    let onError = dataRouterState && onErrorHandler ? (error, errorInfo) => {
-      var _a2, _b2;
-      onErrorHandler(error, {
-        location: dataRouterState.location,
-        params: ((_b2 = (_a2 = dataRouterState.matches) == null ? void 0 : _a2[0]) == null ? void 0 : _b2.params) ?? {},
-        pattern: getRoutePattern(dataRouterState.matches),
-        errorInfo
-      });
-    } : void 0;
-    return renderedMatches.reduceRight(
-      (outlet, match2, index2) => {
-        let error;
-        let shouldRenderHydrateFallback = false;
-        let errorElement = null;
-        let hydrateFallbackElement = null;
-        if (dataRouterState) {
-          error = errors && match2.route.id ? errors[match2.route.id] : void 0;
-          errorElement = match2.route.errorElement || defaultErrorElement;
-          if (renderFallback) {
-            if (fallbackIndex < 0 && index2 === 0) {
-              warningOnce(
-                "route-fallback",
-                false,
-                "No `HydrateFallback` element provided to render during initial hydration"
-              );
-              shouldRenderHydrateFallback = true;
-              hydrateFallbackElement = null;
-            } else if (fallbackIndex === index2) {
-              shouldRenderHydrateFallback = true;
-              hydrateFallbackElement = match2.route.hydrateFallbackElement || null;
-            }
-          }
-        }
-        let matches2 = parentMatches.concat(renderedMatches.slice(0, index2 + 1));
-        let getChildren = () => {
-          let children;
-          if (error) {
-            children = errorElement;
-          } else if (shouldRenderHydrateFallback) {
-            children = hydrateFallbackElement;
-          } else if (match2.route.Component) {
-            children = /* @__PURE__ */ React__namespace.createElement(match2.route.Component, null);
-          } else if (match2.route.element) {
-            children = match2.route.element;
-          } else {
-            children = outlet;
-          }
-          return /* @__PURE__ */ React__namespace.createElement(
-            RenderedRoute,
-            {
-              match: match2,
-              routeContext: {
-                outlet,
-                matches: matches2,
-                isDataRoute: dataRouterState != null
-              },
-              children
-            }
-          );
-        };
-        return dataRouterState && (match2.route.ErrorBoundary || match2.route.errorElement || index2 === 0) ? /* @__PURE__ */ React__namespace.createElement(
-          RenderErrorBoundary,
-          {
-            location: dataRouterState.location,
-            revalidation: dataRouterState.revalidation,
-            component: errorElement,
-            error,
-            children: getChildren(),
-            routeContext: { outlet: null, matches: matches2, isDataRoute: true },
-            onError
-          }
-        ) : getChildren();
-      },
-      null
-    );
-  }
-  function getDataRouterConsoleError(hookName) {
-    return `${hookName} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`;
-  }
-  function useDataRouterContext(hookName) {
-    let ctx = React__namespace.useContext(DataRouterContext);
-    invariant(ctx, getDataRouterConsoleError(hookName));
-    return ctx;
-  }
-  function useDataRouterState(hookName) {
-    let state = React__namespace.useContext(DataRouterStateContext);
-    invariant(state, getDataRouterConsoleError(hookName));
-    return state;
-  }
-  function useRouteContext(hookName) {
-    let route = React__namespace.useContext(RouteContext);
-    invariant(route, getDataRouterConsoleError(hookName));
-    return route;
-  }
-  function useCurrentRouteId(hookName) {
-    let route = useRouteContext(hookName);
-    let thisRoute = route.matches[route.matches.length - 1];
-    invariant(
-      thisRoute.route.id,
-      `${hookName} can only be used on routes that contain a unique "id"`
-    );
-    return thisRoute.route.id;
-  }
-  function useRouteId() {
-    return useCurrentRouteId(
-      "useRouteId"
-      /* UseRouteId */
-    );
-  }
-  function useRouteError() {
-    var _a2;
-    let error = React__namespace.useContext(RouteErrorContext);
-    let state = useDataRouterState(
-      "useRouteError"
-      /* UseRouteError */
-    );
-    let routeId = useCurrentRouteId(
-      "useRouteError"
-      /* UseRouteError */
-    );
-    if (error !== void 0) {
-      return error;
-    }
-    return (_a2 = state.errors) == null ? void 0 : _a2[routeId];
-  }
-  function useNavigateStable() {
-    let { router } = useDataRouterContext(
-      "useNavigate"
-      /* UseNavigateStable */
-    );
-    let id = useCurrentRouteId(
-      "useNavigate"
-      /* UseNavigateStable */
-    );
-    let activeRef = React__namespace.useRef(false);
-    useIsomorphicLayoutEffect(() => {
-      activeRef.current = true;
-    });
-    let navigate = React__namespace.useCallback(
-      async (to, options = {}) => {
-        warning(activeRef.current, navigateEffectWarning);
-        if (!activeRef.current) return;
-        if (typeof to === "number") {
-          await router.navigate(to);
-        } else {
-          await router.navigate(to, { fromRouteId: id, ...options });
-        }
-      },
-      [router, id]
-    );
-    return navigate;
-  }
-  var alreadyWarned = {};
-  function warningOnce(key2, cond, message2) {
-    if (!cond && !alreadyWarned[key2]) {
-      alreadyWarned[key2] = true;
-      warning(false, message2);
-    }
-  }
-  React__namespace.memo(DataRoutes2);
-  function DataRoutes2({
-    routes,
-    manifest,
-    future,
-    state,
-    isStatic,
-    onError
-  }) {
-    return useRoutesImpl(routes, void 0, {
-      manifest,
-      state,
-      isStatic,
-      onError
-    });
-  }
-  function Router({
-    basename: basenameProp = "/",
-    children = null,
-    location: locationProp,
-    navigationType = "POP",
-    navigator: navigator2,
-    static: staticProp = false,
-    useTransitions
-  }) {
-    invariant(
-      !useInRouterContext(),
-      `You cannot render a <Router> inside another <Router>. You should never have more than one in your app.`
-    );
-    let basename = basenameProp.replace(/^\/*/, "/");
-    let navigationContext = React__namespace.useMemo(
-      () => ({
-        basename,
-        navigator: navigator2,
-        static: staticProp,
-        useTransitions,
-        future: {}
-      }),
-      [basename, navigator2, staticProp, useTransitions]
-    );
-    if (typeof locationProp === "string") {
-      locationProp = parsePath(locationProp);
-    }
-    let {
-      pathname = "/",
-      search: search2 = "",
-      hash: hash2 = "",
-      state = null,
-      key: key2 = "default",
-      mask: mask2
-    } = locationProp;
-    let locationContext = React__namespace.useMemo(() => {
-      let trailingPathname = stripBasename(pathname, basename);
-      if (trailingPathname == null) {
-        return null;
-      }
-      return {
-        location: {
-          pathname: trailingPathname,
-          search: search2,
-          hash: hash2,
-          state,
-          key: key2,
-          mask: mask2
-        },
-        navigationType
-      };
-    }, [basename, pathname, search2, hash2, state, key2, navigationType, mask2]);
-    warning(
-      locationContext != null,
-      `<Router basename="${basename}"> is not able to match the URL "${pathname}${search2}${hash2}" because it does not start with the basename, so the <Router> won't render anything.`
-    );
-    if (locationContext == null) {
-      return null;
-    }
-    return /* @__PURE__ */ React__namespace.createElement(NavigationContext.Provider, { value: navigationContext }, /* @__PURE__ */ React__namespace.createElement(LocationContext.Provider, { children, value: locationContext }));
-  }
-  var defaultMethod = "get";
-  var defaultEncType = "application/x-www-form-urlencoded";
-  function isHtmlElement(object2) {
-    return typeof HTMLElement !== "undefined" && object2 instanceof HTMLElement;
-  }
-  function isButtonElement(object2) {
-    return isHtmlElement(object2) && object2.tagName.toLowerCase() === "button";
-  }
-  function isFormElement(object2) {
-    return isHtmlElement(object2) && object2.tagName.toLowerCase() === "form";
-  }
-  function isInputElement(object2) {
-    return isHtmlElement(object2) && object2.tagName.toLowerCase() === "input";
-  }
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-  function shouldProcessLinkClick(event, target) {
-    return event.button === 0 && // Ignore everything but left clicks
-    (!target || target === "_self") && // Let browser handle "target=_blank" etc.
-    !isModifiedEvent(event);
-  }
-  var _formDataSupportsSubmitter = null;
-  function isFormDataSubmitterSupported() {
-    if (_formDataSupportsSubmitter === null) {
-      try {
-        new FormData(
-          document.createElement("form"),
-          // @ts-expect-error if FormData supports the submitter parameter, this will throw
-          0
-        );
-        _formDataSupportsSubmitter = false;
-      } catch (e2) {
-        _formDataSupportsSubmitter = true;
-      }
-    }
-    return _formDataSupportsSubmitter;
-  }
-  var supportedFormEncTypes = /* @__PURE__ */ new Set([
-    "application/x-www-form-urlencoded",
-    "multipart/form-data",
-    "text/plain"
-  ]);
-  function getFormEncType(encType) {
-    if (encType != null && !supportedFormEncTypes.has(encType)) {
-      warning(
-        false,
-        `"${encType}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${defaultEncType}"`
-      );
-      return null;
-    }
-    return encType;
-  }
-  function getFormSubmissionInfo(target, basename) {
-    let method2;
-    let action;
-    let encType;
-    let formData;
-    let body;
-    if (isFormElement(target)) {
-      let attr = target.getAttribute("action");
-      action = attr ? stripBasename(attr, basename) : null;
-      method2 = target.getAttribute("method") || defaultMethod;
-      encType = getFormEncType(target.getAttribute("enctype")) || defaultEncType;
-      formData = new FormData(target);
-    } else if (isButtonElement(target) || isInputElement(target) && (target.type === "submit" || target.type === "image")) {
-      let form = target.form;
-      if (form == null) {
-        throw new Error(
-          `Cannot submit a <button> or <input type="submit"> without a <form>`
-        );
-      }
-      let attr = target.getAttribute("formaction") || form.getAttribute("action");
-      action = attr ? stripBasename(attr, basename) : null;
-      method2 = target.getAttribute("formmethod") || form.getAttribute("method") || defaultMethod;
-      encType = getFormEncType(target.getAttribute("formenctype")) || getFormEncType(form.getAttribute("enctype")) || defaultEncType;
-      formData = new FormData(form, target);
-      if (!isFormDataSubmitterSupported()) {
-        let { name, type: type2, value } = target;
-        if (type2 === "image") {
-          let prefix2 = name ? `${name}.` : "";
-          formData.append(`${prefix2}x`, "0");
-          formData.append(`${prefix2}y`, "0");
-        } else if (name) {
-          formData.append(name, value);
-        }
-      }
-    } else if (isHtmlElement(target)) {
-      throw new Error(
-        `Cannot submit element that is not <form>, <button>, or <input type="submit|image">`
-      );
-    } else {
-      method2 = defaultMethod;
-      action = null;
-      encType = defaultEncType;
-      body = target;
-    }
-    if (formData && encType === "text/plain") {
-      body = formData;
-      formData = void 0;
-    }
-    return { action, method: method2.toLowerCase(), encType, formData, body };
-  }
-  Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
-  function invariant2(value, message2) {
-    if (value === false || value === null || typeof value === "undefined") {
-      throw new Error(message2);
-    }
-  }
-  function singleFetchUrl(reqUrl, basename, trailingSlashAware, extension) {
-    let url = typeof reqUrl === "string" ? new URL(
-      reqUrl,
-      // This can be called during the SSR flow via PrefetchPageLinksImpl so
-      // don't assume window is available
-      typeof window === "undefined" ? "server://singlefetch/" : window.location.origin
-    ) : reqUrl;
-    if (trailingSlashAware) {
-      if (url.pathname.endsWith("/")) {
-        url.pathname = `${url.pathname}_.${extension}`;
-      } else {
-        url.pathname = `${url.pathname}.${extension}`;
-      }
-    } else {
-      if (url.pathname === "/") {
-        url.pathname = `_root.${extension}`;
-      } else if (basename && stripBasename(url.pathname, basename) === "/") {
-        url.pathname = `${removeTrailingSlash(basename)}/_root.${extension}`;
-      } else {
-        url.pathname = `${removeTrailingSlash(url.pathname)}.${extension}`;
-      }
-    }
-    return url;
-  }
-  async function loadRouteModule(route, routeModulesCache) {
-    if (route.id in routeModulesCache) {
-      return routeModulesCache[route.id];
-    }
-    try {
-      let routeModule = await import(
-        /* @vite-ignore */
-        /* webpackIgnore: true */
-        route.module
-      );
-      routeModulesCache[route.id] = routeModule;
-      return routeModule;
-    } catch (error) {
-      console.error(
-        `Error loading route module \`${route.module}\`, reloading page...`
-      );
-      console.error(error);
-      if (window.__reactRouterContext && window.__reactRouterContext.isSpaMode && // @ts-expect-error
-      void 0) ;
-      window.location.reload();
-      return new Promise(() => {
-      });
-    }
-  }
-  function isHtmlLinkDescriptor(object2) {
-    if (object2 == null) {
-      return false;
-    }
-    if (object2.href == null) {
-      return object2.rel === "preload" && typeof object2.imageSrcSet === "string" && typeof object2.imageSizes === "string";
-    }
-    return typeof object2.rel === "string" && typeof object2.href === "string";
-  }
-  async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
-    let links = await Promise.all(
-      matches.map(async (match2) => {
-        let route = manifest.routes[match2.route.id];
-        if (route) {
-          let mod = await loadRouteModule(route, routeModules);
-          return mod.links ? mod.links() : [];
-        }
-        return [];
-      })
-    );
-    return dedupeLinkDescriptors(
-      links.flat(1).filter(isHtmlLinkDescriptor).filter((link) => link.rel === "stylesheet" || link.rel === "preload").map(
-        (link) => link.rel === "stylesheet" ? { ...link, rel: "prefetch", as: "style" } : { ...link, rel: "prefetch" }
-      )
-    );
-  }
-  function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location2, mode) {
-    let isNew = (match2, index2) => {
-      if (!currentMatches[index2]) return true;
-      return match2.route.id !== currentMatches[index2].route.id;
-    };
-    let matchPathChanged = (match2, index2) => {
-      var _a2;
-      return (
-        // param change, /users/123 -> /users/456
-        currentMatches[index2].pathname !== match2.pathname || // splat param changed, which is not present in match.path
-        // e.g. /files/images/avatar.jpg -> files/finances.xls
-        ((_a2 = currentMatches[index2].route.path) == null ? void 0 : _a2.endsWith("*")) && currentMatches[index2].params["*"] !== match2.params["*"]
-      );
-    };
-    if (mode === "assets") {
-      return nextMatches.filter(
-        (match2, index2) => isNew(match2, index2) || matchPathChanged(match2, index2)
-      );
-    }
-    if (mode === "data") {
-      return nextMatches.filter((match2, index2) => {
-        var _a2;
-        let manifestRoute = manifest.routes[match2.route.id];
-        if (!manifestRoute || !manifestRoute.hasLoader) {
-          return false;
-        }
-        if (isNew(match2, index2) || matchPathChanged(match2, index2)) {
-          return true;
-        }
-        if (match2.route.shouldRevalidate) {
-          let routeChoice = match2.route.shouldRevalidate({
-            currentUrl: new URL(
-              location2.pathname + location2.search + location2.hash,
-              window.origin
-            ),
-            currentParams: ((_a2 = currentMatches[0]) == null ? void 0 : _a2.params) || {},
-            nextUrl: new URL(page, window.origin),
-            nextParams: match2.params,
-            defaultShouldRevalidate: true
-          });
-          if (typeof routeChoice === "boolean") {
-            return routeChoice;
-          }
-        }
-        return true;
-      });
-    }
-    return [];
-  }
-  function getModuleLinkHrefs(matches, manifest, { includeHydrateFallback } = {}) {
-    return dedupeHrefs(
-      matches.map((match2) => {
-        let route = manifest.routes[match2.route.id];
-        if (!route) return [];
-        let hrefs = [route.module];
-        if (route.clientActionModule) {
-          hrefs = hrefs.concat(route.clientActionModule);
-        }
-        if (route.clientLoaderModule) {
-          hrefs = hrefs.concat(route.clientLoaderModule);
-        }
-        if (includeHydrateFallback && route.hydrateFallbackModule) {
-          hrefs = hrefs.concat(route.hydrateFallbackModule);
-        }
-        if (route.imports) {
-          hrefs = hrefs.concat(route.imports);
-        }
-        return hrefs;
-      }).flat(1)
-    );
-  }
-  function dedupeHrefs(hrefs) {
-    return [...new Set(hrefs)];
-  }
-  function sortKeys(obj) {
-    let sorted = {};
-    let keys2 = Object.keys(obj).sort();
-    for (let key2 of keys2) {
-      sorted[key2] = obj[key2];
-    }
-    return sorted;
-  }
-  function dedupeLinkDescriptors(descriptors, preloads) {
-    let set2 = /* @__PURE__ */ new Set();
-    new Set(preloads);
-    return descriptors.reduce((deduped, descriptor) => {
-      let key2 = JSON.stringify(sortKeys(descriptor));
-      if (!set2.has(key2)) {
-        set2.add(key2);
-        deduped.push({ key: key2, link: descriptor });
-      }
-      return deduped;
-    }, []);
-  }
-  function useDataRouterContext2() {
-    let context = React__namespace.useContext(DataRouterContext);
-    invariant2(
-      context,
-      "You must render this element inside a <DataRouterContext.Provider> element"
-    );
-    return context;
-  }
-  function useDataRouterStateContext() {
-    let context = React__namespace.useContext(DataRouterStateContext);
-    invariant2(
-      context,
-      "You must render this element inside a <DataRouterStateContext.Provider> element"
-    );
-    return context;
-  }
-  var FrameworkContext = React__namespace.createContext(void 0);
-  FrameworkContext.displayName = "FrameworkContext";
-  function useFrameworkContext() {
-    let context = React__namespace.useContext(FrameworkContext);
-    invariant2(
-      context,
-      "You must render this element inside a <HydratedRouter> element"
-    );
-    return context;
-  }
-  function usePrefetchBehavior(prefetch, theirElementProps) {
-    let frameworkContext = React__namespace.useContext(FrameworkContext);
-    let [maybePrefetch, setMaybePrefetch] = React__namespace.useState(false);
-    let [shouldPrefetch, setShouldPrefetch] = React__namespace.useState(false);
-    let { onFocus, onBlur, onMouseEnter, onMouseLeave, onTouchStart } = theirElementProps;
-    let ref = React__namespace.useRef(null);
-    React__namespace.useEffect(() => {
-      if (prefetch === "render") {
-        setShouldPrefetch(true);
-      }
-      if (prefetch === "viewport") {
-        let callback = (entries2) => {
-          entries2.forEach((entry) => {
-            setShouldPrefetch(entry.isIntersecting);
-          });
-        };
-        let observer2 = new IntersectionObserver(callback, { threshold: 0.5 });
-        if (ref.current) observer2.observe(ref.current);
-        return () => {
-          observer2.disconnect();
-        };
-      }
-    }, [prefetch]);
-    React__namespace.useEffect(() => {
-      if (maybePrefetch) {
-        let id = setTimeout(() => {
-          setShouldPrefetch(true);
-        }, 100);
-        return () => {
-          clearTimeout(id);
-        };
-      }
-    }, [maybePrefetch]);
-    let setIntent = () => {
-      setMaybePrefetch(true);
-    };
-    let cancelIntent = () => {
-      setMaybePrefetch(false);
-      setShouldPrefetch(false);
-    };
-    if (!frameworkContext) {
-      return [false, ref, {}];
-    }
-    if (prefetch !== "intent") {
-      return [shouldPrefetch, ref, {}];
-    }
-    return [
-      shouldPrefetch,
-      ref,
-      {
-        onFocus: composeEventHandlers(onFocus, setIntent),
-        onBlur: composeEventHandlers(onBlur, cancelIntent),
-        onMouseEnter: composeEventHandlers(onMouseEnter, setIntent),
-        onMouseLeave: composeEventHandlers(onMouseLeave, cancelIntent),
-        onTouchStart: composeEventHandlers(onTouchStart, setIntent)
-      }
-    ];
-  }
-  function composeEventHandlers(theirHandler, ourHandler) {
-    return (event) => {
-      theirHandler && theirHandler(event);
-      if (!event.defaultPrevented) {
-        ourHandler(event);
-      }
-    };
-  }
-  function PrefetchPageLinks({ page, ...linkProps }) {
-    let rsc = useIsRSCRouterContext();
-    let { router } = useDataRouterContext2();
-    let matches = React__namespace.useMemo(
-      () => matchRoutes(router.routes, page, router.basename),
-      [router.routes, page, router.basename]
-    );
-    if (!matches) {
-      return null;
-    }
-    if (rsc) {
-      return /* @__PURE__ */ React__namespace.createElement(RSCPrefetchPageLinksImpl, { page, matches, ...linkProps });
-    }
-    return /* @__PURE__ */ React__namespace.createElement(PrefetchPageLinksImpl, { page, matches, ...linkProps });
-  }
-  function useKeyedPrefetchLinks(matches) {
-    let { manifest, routeModules } = useFrameworkContext();
-    let [keyedPrefetchLinks, setKeyedPrefetchLinks] = React__namespace.useState([]);
-    React__namespace.useEffect(() => {
-      let interrupted = false;
-      void getKeyedPrefetchLinks(matches, manifest, routeModules).then(
-        (links) => {
-          if (!interrupted) {
-            setKeyedPrefetchLinks(links);
-          }
-        }
-      );
-      return () => {
-        interrupted = true;
-      };
-    }, [matches, manifest, routeModules]);
-    return keyedPrefetchLinks;
-  }
-  function RSCPrefetchPageLinksImpl({
-    page,
-    matches: nextMatches,
-    ...linkProps
-  }) {
-    let location2 = useLocation();
-    let { future } = useFrameworkContext();
-    let { basename } = useDataRouterContext2();
-    let dataHrefs = React__namespace.useMemo(() => {
-      if (page === location2.pathname + location2.search + location2.hash) {
-        return [];
-      }
-      let url = singleFetchUrl(
-        page,
-        basename,
-        future.unstable_trailingSlashAwareDataRequests,
-        "rsc"
-      );
-      let hasSomeRoutesWithShouldRevalidate = false;
-      let targetRoutes = [];
-      for (let match2 of nextMatches) {
-        if (typeof match2.route.shouldRevalidate === "function") {
-          hasSomeRoutesWithShouldRevalidate = true;
-        } else {
-          targetRoutes.push(match2.route.id);
-        }
-      }
-      if (hasSomeRoutesWithShouldRevalidate && targetRoutes.length > 0) {
-        url.searchParams.set("_routes", targetRoutes.join(","));
-      }
-      return [url.pathname + url.search];
-    }, [
-      basename,
-      future.unstable_trailingSlashAwareDataRequests,
-      page,
-      location2,
-      nextMatches
-    ]);
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, dataHrefs.map((href) => /* @__PURE__ */ React__namespace.createElement("link", { key: href, rel: "prefetch", as: "fetch", href, ...linkProps })));
-  }
-  function PrefetchPageLinksImpl({
-    page,
-    matches: nextMatches,
-    ...linkProps
-  }) {
-    let location2 = useLocation();
-    let { future, manifest, routeModules } = useFrameworkContext();
-    let { basename } = useDataRouterContext2();
-    let { loaderData, matches } = useDataRouterStateContext();
-    let newMatchesForData = React__namespace.useMemo(
-      () => getNewMatchesForLinks(
-        page,
-        nextMatches,
-        matches,
-        manifest,
-        location2,
-        "data"
-      ),
-      [page, nextMatches, matches, manifest, location2]
-    );
-    let newMatchesForAssets = React__namespace.useMemo(
-      () => getNewMatchesForLinks(
-        page,
-        nextMatches,
-        matches,
-        manifest,
-        location2,
-        "assets"
-      ),
-      [page, nextMatches, matches, manifest, location2]
-    );
-    let dataHrefs = React__namespace.useMemo(() => {
-      if (page === location2.pathname + location2.search + location2.hash) {
-        return [];
-      }
-      let routesParams = /* @__PURE__ */ new Set();
-      let foundOptOutRoute = false;
-      nextMatches.forEach((m2) => {
-        var _a2;
-        let manifestRoute = manifest.routes[m2.route.id];
-        if (!manifestRoute || !manifestRoute.hasLoader) {
-          return;
-        }
-        if (!newMatchesForData.some((m22) => m22.route.id === m2.route.id) && m2.route.id in loaderData && ((_a2 = routeModules[m2.route.id]) == null ? void 0 : _a2.shouldRevalidate)) {
-          foundOptOutRoute = true;
-        } else if (manifestRoute.hasClientLoader) {
-          foundOptOutRoute = true;
-        } else {
-          routesParams.add(m2.route.id);
-        }
-      });
-      if (routesParams.size === 0) {
-        return [];
-      }
-      let url = singleFetchUrl(
-        page,
-        basename,
-        future.unstable_trailingSlashAwareDataRequests,
-        "data"
-      );
-      if (foundOptOutRoute && routesParams.size > 0) {
-        url.searchParams.set(
-          "_routes",
-          nextMatches.filter((m2) => routesParams.has(m2.route.id)).map((m2) => m2.route.id).join(",")
-        );
-      }
-      return [url.pathname + url.search];
-    }, [
-      basename,
-      future.unstable_trailingSlashAwareDataRequests,
-      loaderData,
-      location2,
-      manifest,
-      newMatchesForData,
-      nextMatches,
-      page,
-      routeModules
-    ]);
-    let moduleHrefs = React__namespace.useMemo(
-      () => getModuleLinkHrefs(newMatchesForAssets, manifest),
-      [newMatchesForAssets, manifest]
-    );
-    let keyedPrefetchLinks = useKeyedPrefetchLinks(newMatchesForAssets);
-    return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, dataHrefs.map((href) => /* @__PURE__ */ React__namespace.createElement("link", { key: href, rel: "prefetch", as: "fetch", href, ...linkProps })), moduleHrefs.map((href) => /* @__PURE__ */ React__namespace.createElement("link", { key: href, rel: "modulepreload", href, ...linkProps })), keyedPrefetchLinks.map(({ key: key2, link }) => (
-      // these don't spread `linkProps` because they are full link descriptors
-      // already with their own props
-      /* @__PURE__ */ React__namespace.createElement(
-        "link",
-        {
-          key: key2,
-          nonce: linkProps.nonce,
-          ...link,
-          crossOrigin: link.crossOrigin ?? linkProps.crossOrigin
-        }
-      )
-    )));
-  }
-  function mergeRefs(...refs) {
-    return (value) => {
-      refs.forEach((ref) => {
-        if (typeof ref === "function") {
-          ref(value);
-        } else if (ref != null) {
-          ref.current = value;
-        }
-      });
-    };
-  }
-  var isBrowser2 = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-  try {
-    if (isBrowser2) {
-      window.__reactRouterVersion = // @ts-expect-error
-      "7.15.1";
-    }
-  } catch (e2) {
-  }
-  function HistoryRouter({
-    basename,
-    children,
-    history: history2,
-    useTransitions
-  }) {
-    let [state, setStateImpl] = React__namespace.useState({
-      action: history2.action,
-      location: history2.location
-    });
-    let setState = React__namespace.useCallback(
-      (newState) => {
-        if (useTransitions === false) {
-          setStateImpl(newState);
-        } else {
-          React__namespace.startTransition(() => setStateImpl(newState));
-        }
-      },
-      [useTransitions]
-    );
-    React__namespace.useLayoutEffect(() => history2.listen(setState), [history2, setState]);
-    return /* @__PURE__ */ React__namespace.createElement(
-      Router,
-      {
-        basename,
-        children,
-        location: state.location,
-        navigationType: state.action,
-        navigator: history2,
-        useTransitions
-      }
-    );
-  }
-  HistoryRouter.displayName = "unstable_HistoryRouter";
-  var ABSOLUTE_URL_REGEX2 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-  var Link = React__namespace.forwardRef(
-    function LinkWithRef({
-      onClick,
-      discover = "render",
-      prefetch = "none",
-      relative,
-      reloadDocument,
-      replace: replace2,
-      mask: mask2,
-      state,
-      target,
-      to,
-      preventScrollReset,
-      viewTransition,
-      defaultShouldRevalidate,
-      ...rest
-    }, forwardedRef) {
-      let { basename, navigator: navigator2, useTransitions } = React__namespace.useContext(NavigationContext);
-      let isAbsolute = typeof to === "string" && ABSOLUTE_URL_REGEX2.test(to);
-      let parsed = parseToInfo(to, basename);
-      to = parsed.to;
-      let href = useHref(to, { relative });
-      let location2 = useLocation();
-      let maskedHref = null;
-      if (mask2) {
-        let resolved = resolveTo(
-          mask2,
-          [],
-          location2.mask ? location2.mask.pathname : "/",
-          true
-        );
-        if (basename !== "/") {
-          resolved.pathname = resolved.pathname === "/" ? basename : joinPaths([basename, resolved.pathname]);
-        }
-        maskedHref = navigator2.createHref(resolved);
-      }
-      let [shouldPrefetch, prefetchRef, prefetchHandlers] = usePrefetchBehavior(
-        prefetch,
-        rest
-      );
-      let internalOnClick = useLinkClickHandler(to, {
-        replace: replace2,
-        mask: mask2,
-        state,
-        target,
-        preventScrollReset,
-        relative,
-        viewTransition,
-        defaultShouldRevalidate,
-        useTransitions
-      });
-      function handleClick(event) {
-        if (onClick) onClick(event);
-        if (!event.defaultPrevented) {
-          internalOnClick(event);
-        }
-      }
-      let isSpaLink = !(parsed.isExternal || reloadDocument);
-      let link = (
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        /* @__PURE__ */ React__namespace.createElement(
-          "a",
-          {
-            ...rest,
-            ...prefetchHandlers,
-            href: (isSpaLink ? maskedHref : void 0) || parsed.absoluteURL || href,
-            onClick: isSpaLink ? handleClick : onClick,
-            ref: mergeRefs(forwardedRef, prefetchRef),
-            target,
-            "data-discover": !isAbsolute && discover === "render" ? "true" : void 0
-          }
-        )
-      );
-      return shouldPrefetch && !isAbsolute ? /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, link, /* @__PURE__ */ React__namespace.createElement(PrefetchPageLinks, { page: href })) : link;
-    }
-  );
-  Link.displayName = "Link";
-  var NavLink = React__namespace.forwardRef(
-    function NavLinkWithRef({
-      "aria-current": ariaCurrentProp = "page",
-      caseSensitive = false,
-      className: classNameProp = "",
-      end = false,
-      style: styleProp,
-      to,
-      viewTransition,
-      children,
-      ...rest
-    }, ref) {
-      let path = useResolvedPath(to, { relative: rest.relative });
-      let location2 = useLocation();
-      let routerState = React__namespace.useContext(DataRouterStateContext);
-      let { navigator: navigator2, basename } = React__namespace.useContext(NavigationContext);
-      let isTransitioning = routerState != null && // Conditional usage is OK here because the usage of a data router is static
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useViewTransitionState(path) && viewTransition === true;
-      let toPathname = navigator2.encodeLocation ? navigator2.encodeLocation(path).pathname : path.pathname;
-      let locationPathname = location2.pathname;
-      let nextLocationPathname = routerState && routerState.navigation && routerState.navigation.location ? routerState.navigation.location.pathname : null;
-      if (!caseSensitive) {
-        locationPathname = locationPathname.toLowerCase();
-        nextLocationPathname = nextLocationPathname ? nextLocationPathname.toLowerCase() : null;
-        toPathname = toPathname.toLowerCase();
-      }
-      if (nextLocationPathname && basename) {
-        nextLocationPathname = stripBasename(nextLocationPathname, basename) || nextLocationPathname;
-      }
-      const endSlashPosition = toPathname !== "/" && toPathname.endsWith("/") ? toPathname.length - 1 : toPathname.length;
-      let isActive2 = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
-      let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
-      let renderProps = {
-        isActive: isActive2,
-        isPending,
-        isTransitioning
-      };
-      let ariaCurrent = isActive2 ? ariaCurrentProp : void 0;
-      let className;
-      if (typeof classNameProp === "function") {
-        className = classNameProp(renderProps);
-      } else {
-        className = [
-          classNameProp,
-          isActive2 ? "active" : null,
-          isPending ? "pending" : null,
-          isTransitioning ? "transitioning" : null
-        ].filter(Boolean).join(" ");
-      }
-      let style2 = typeof styleProp === "function" ? styleProp(renderProps) : styleProp;
-      return /* @__PURE__ */ React__namespace.createElement(
-        Link,
-        {
-          ...rest,
-          "aria-current": ariaCurrent,
-          className,
-          ref,
-          style: style2,
-          to,
-          viewTransition
-        },
-        typeof children === "function" ? children(renderProps) : children
-      );
-    }
-  );
-  NavLink.displayName = "NavLink";
-  var Form = React__namespace.forwardRef(
-    ({
-      discover = "render",
-      fetcherKey,
-      navigate,
-      reloadDocument,
-      replace: replace2,
-      state,
-      method: method2 = defaultMethod,
-      action,
-      onSubmit,
-      relative,
-      preventScrollReset,
-      viewTransition,
-      defaultShouldRevalidate,
-      ...props
-    }, forwardedRef) => {
-      let { useTransitions } = React__namespace.useContext(NavigationContext);
-      let submit = useSubmit();
-      let formAction = useFormAction(action, { relative });
-      let formMethod = method2.toLowerCase() === "get" ? "get" : "post";
-      let isAbsolute = typeof action === "string" && ABSOLUTE_URL_REGEX2.test(action);
-      let submitHandler = (event) => {
-        onSubmit && onSubmit(event);
-        if (event.defaultPrevented) return;
-        event.preventDefault();
-        let submitter = event.nativeEvent.submitter;
-        let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method2;
-        let doSubmit = () => submit(submitter || event.currentTarget, {
-          fetcherKey,
-          method: submitMethod,
-          navigate,
-          replace: replace2,
-          state,
-          relative,
-          preventScrollReset,
-          viewTransition,
-          defaultShouldRevalidate
-        });
-        if (useTransitions && navigate !== false) {
-          React__namespace.startTransition(() => doSubmit());
-        } else {
-          doSubmit();
-        }
-      };
-      return /* @__PURE__ */ React__namespace.createElement(
-        "form",
-        {
-          ref: forwardedRef,
-          method: formMethod,
-          action: formAction,
-          onSubmit: reloadDocument ? onSubmit : submitHandler,
-          ...props,
-          "data-discover": !isAbsolute && discover === "render" ? "true" : void 0
-        }
-      );
-    }
-  );
-  Form.displayName = "Form";
-  function getDataRouterConsoleError2(hookName) {
-    return `${hookName} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`;
-  }
-  function useDataRouterContext3(hookName) {
-    let ctx = React__namespace.useContext(DataRouterContext);
-    invariant(ctx, getDataRouterConsoleError2(hookName));
-    return ctx;
-  }
-  function useLinkClickHandler(to, {
-    target,
-    replace: replaceProp,
-    mask: mask2,
-    state,
-    preventScrollReset,
-    relative,
-    viewTransition,
-    defaultShouldRevalidate,
-    useTransitions
-  } = {}) {
-    let navigate = useNavigate();
-    let location2 = useLocation();
-    let path = useResolvedPath(to, { relative });
-    return React__namespace.useCallback(
-      (event) => {
-        if (shouldProcessLinkClick(event, target)) {
-          event.preventDefault();
-          let replace2 = replaceProp !== void 0 ? replaceProp : createPath(location2) === createPath(path);
-          let doNavigate = () => navigate(to, {
-            replace: replace2,
-            mask: mask2,
-            state,
-            preventScrollReset,
-            relative,
-            viewTransition,
-            defaultShouldRevalidate
-          });
-          if (useTransitions) {
-            React__namespace.startTransition(() => doNavigate());
-          } else {
-            doNavigate();
-          }
-        }
-      },
-      [
-        location2,
-        navigate,
-        path,
-        replaceProp,
-        mask2,
-        state,
-        target,
-        to,
-        preventScrollReset,
-        relative,
-        viewTransition,
-        defaultShouldRevalidate,
-        useTransitions
-      ]
-    );
-  }
-  var fetcherId = 0;
-  var getUniqueFetcherId = () => `__${String(++fetcherId)}__`;
-  function useSubmit() {
-    let { router } = useDataRouterContext3(
-      "useSubmit"
-      /* UseSubmit */
-    );
-    let { basename } = React__namespace.useContext(NavigationContext);
-    let currentRouteId = useRouteId();
-    let routerFetch = router.fetch;
-    let routerNavigate = router.navigate;
-    return React__namespace.useCallback(
-      async (target, options = {}) => {
-        let { action, method: method2, encType, formData, body } = getFormSubmissionInfo(
-          target,
-          basename
-        );
-        if (options.navigate === false) {
-          let key2 = options.fetcherKey || getUniqueFetcherId();
-          await routerFetch(key2, currentRouteId, options.action || action, {
-            defaultShouldRevalidate: options.defaultShouldRevalidate,
-            preventScrollReset: options.preventScrollReset,
-            formData,
-            body,
-            formMethod: options.method || method2,
-            formEncType: options.encType || encType,
-            flushSync: options.flushSync
-          });
-        } else {
-          await routerNavigate(options.action || action, {
-            defaultShouldRevalidate: options.defaultShouldRevalidate,
-            preventScrollReset: options.preventScrollReset,
-            formData,
-            body,
-            formMethod: options.method || method2,
-            formEncType: options.encType || encType,
-            replace: options.replace,
-            state: options.state,
-            fromRouteId: currentRouteId,
-            flushSync: options.flushSync,
-            viewTransition: options.viewTransition
-          });
-        }
-      },
-      [routerFetch, routerNavigate, basename, currentRouteId]
-    );
-  }
-  function useFormAction(action, { relative } = {}) {
-    let { basename } = React__namespace.useContext(NavigationContext);
-    let routeContext = React__namespace.useContext(RouteContext);
-    invariant(routeContext, "useFormAction must be used inside a RouteContext");
-    let [match2] = routeContext.matches.slice(-1);
-    let path = { ...useResolvedPath(action ? action : ".", { relative }) };
-    let location2 = useLocation();
-    if (action == null) {
-      path.search = location2.search;
-      let params = new URLSearchParams(path.search);
-      let indexValues = params.getAll("index");
-      let hasNakedIndexParam = indexValues.some((v2) => v2 === "");
-      if (hasNakedIndexParam) {
-        params.delete("index");
-        indexValues.filter((v2) => v2).forEach((v2) => params.append("index", v2));
-        let qs = params.toString();
-        path.search = qs ? `?${qs}` : "";
-      }
-    }
-    if ((!action || action === ".") && match2.route.index) {
-      path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
-    }
-    if (basename !== "/") {
-      path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
-    }
-    return createPath(path);
-  }
-  function useViewTransitionState(to, { relative } = {}) {
-    let vtContext = React__namespace.useContext(ViewTransitionContext);
-    invariant(
-      vtContext != null,
-      "`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?"
-    );
-    let { basename } = useDataRouterContext3(
-      "useViewTransitionState"
-      /* useViewTransitionState */
-    );
-    let path = useResolvedPath(to, { relative });
-    if (!vtContext.isTransitioning) {
-      return false;
-    }
-    let currentPath = stripBasename(vtContext.currentLocation.pathname, basename) || vtContext.currentLocation.pathname;
-    let nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
-    return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
-  }
-  function withRouter(Component) {
-    const Wrapped = (props) => {
-      const location2 = useLocation();
-      const navigate = useNavigate();
-      const params = useParams();
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Component,
-        {
-          ...props,
-          location: location2,
-          navigate,
-          match: { params }
-        }
-      );
-    };
-    Wrapped.displayName = `withRouter(${Component.displayName || Component.name || "Component"})`;
-    return Wrapped;
-  }
   const CHILD_PAGE_SIZE = 1e3;
   class LoadMoreChildrenTreeNode extends React.Component {
     constructor(props) {
@@ -76791,9 +74697,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       __publicField(this, "componentDidMount", () => {
         const { datasetKey } = this.props;
         this.loadRoot();
-        this.datasetLoader = new DataLoader(
-          (ids) => getDatasetsBatch(ids, datasetKey)
-        );
         this.sectorLoader = new DataLoader(
           (ids) => getSectorsBatch(ids, datasetKey)
         );
@@ -76826,16 +74729,12 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         const {
           showSourceTaxon,
           datasetKey,
-          pathToTaxon,
-          pathToDataset,
           hideExtinct,
           insertPlaceholder,
-          type: type2
+          type: type2,
+          expandedTaxonKey
         } = this.props;
-        const defaultExpandKey = _$1.get(
-          queryString.parse(_$1.get(location, "search")),
-          "taxonKey"
-        );
+        const defaultExpandKey = expandedTaxonKey;
         const { defaultTaxonKey } = this.props;
         this.setState({ rootLoading: true, treeData: [] });
         return axios(
@@ -76856,8 +74755,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               ColTreeNode,
               {
                 taxon: tx,
-                pathToTaxon,
-                pathToDataset,
                 datasetKey,
                 showSourceTaxon,
                 reloadChildren: () => this.fetchChildPage(dataRef, true),
@@ -76899,8 +74796,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         const {
           showSourceTaxon,
           datasetKey,
-          pathToTaxon,
-          pathToDataset,
           hideExtinct,
           type: type2
         } = this.props;
@@ -76938,8 +74833,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           ColTreeNode,
           {
             taxon: tx,
-            pathToTaxon,
-            pathToDataset,
             datasetKey,
             showSourceTaxon,
             rank: this.state.rank,
@@ -76963,8 +74856,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             ColTreeNode,
             {
               taxon: tx2,
-              pathToTaxon,
-              pathToDataset,
               datasetKey,
               showSourceTaxon,
               rank: this.state.rank,
@@ -76987,8 +74878,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         const {
           showSourceTaxon,
           datasetKey,
-          pathToTaxon,
-          pathToDataset,
           hideExtinct,
           insertPlaceholder,
           type: type2
@@ -77016,8 +74905,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             ColTreeNode,
             {
               taxon: tx,
-              pathToTaxon,
-              pathToDataset,
               datasetKey,
               showSourceTaxon,
               rank: this.state.rank,
@@ -77218,6 +75105,12 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       };
       this.treeRef = React.createRef();
     }
+    // datasetLoader comes from the shared TreeCacheContext so multiple tree
+    // nodes (and TaxonSources instances) share one in-memory cache instead
+    // of each re-fetching the same source datasets.
+    get datasetLoader() {
+      return this.context.datasetLoader;
+    }
     render() {
       const {
         error,
@@ -77229,12 +75122,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         loadedKeys,
         expandedKeys
       } = this.state;
-      const { location: location2, treeType, dataset, height } = this.props;
-      console.log(height);
-      const defaultExpandKey = _$1.get(
-        queryString.parse(_$1.get(location2, "search")),
-        "taxonKey"
-      );
+      const { treeType, dataset, height, expandedTaxonKey } = this.props;
+      const defaultExpandKey = expandedTaxonKey;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         error && /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: _$1.get(error, "response.data.code") !== 404 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
           Alert,
@@ -77275,7 +75164,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         ),
         rootLoading && /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { paragraph: { rows: 10 }, active: true }),
         !rootLoading && treeData.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Tree$1,
+          Tree$2,
           {
             ref: this.treeRef,
             defaultExpandAll,
@@ -77287,20 +75176,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             filterTreeNode: (node2) => node2.key === defaultExpandKey,
             onExpand: (expandedKeys2, obj) => {
               this.setState({ expandedKeys: expandedKeys2 });
-              if (obj.expanded) {
-                const params = queryString.parse(_$1.get(location2, "search"));
-                const newParams = { ...params, taxonKey: obj.node.key };
-                history.push({
-                  pathname: location2.path,
-                  search: `?${queryString.stringify(newParams)}`
-                });
-              } else {
-                history.push({
-                  pathname: location2.path,
-                  search: `?${queryString.stringify(
-                    _$1.omit(queryString.parse(_$1.get(location2, "search")), "taxonKey")
-                  )}`
-                });
+              if (this.props.onExpandedTaxonKeyChange) {
+                this.props.onExpandedTaxonKeyChange(
+                  obj.expanded ? obj.node.key : null
+                );
               }
             }
           }
@@ -77312,7 +75191,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       ] });
     }
   }
-  const ColTree$1 = withRouter(ColTree);
+  __publicField(ColTree, "contextType", TreeCacheContext);
   var main = { exports: {} };
   var hasRequiredMain;
   function requireMain() {
@@ -77782,7 +75661,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           {
             value: value || void 0,
             defaultActiveFirstOption: false,
-            showArrow: false,
+            suffixIcon: null,
             showSearch: true,
             allowClear: true,
             notFoundContent: null,
@@ -77844,19 +75723,35 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       __publicField(this, "render", () => {
         const {
           datasetKey,
-          pathToTaxon,
-          pathToDataset,
           defaultTaxonKey,
+          expandedTaxonKey,
+          onExpandedTaxonKeyChange,
           showTreeOptions,
           linkToSpeciesPage,
           citation,
-          type: type2
+          type: type2,
+          insertPlaceholder = true
         } = this.props;
-        const { hideExtinct, insertPlaceholder, dataset } = this.state;
-        const params = queryString.parse(_$1.get(location, "search"));
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(HistoryRouter, { history, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "catalogue-of-life", children: [
+        const { hideExtinct, dataset } = this.state;
+        const handleSelectName = (name) => {
+          var _a2, _b2;
+          const key2 = _$1.get(name, "key");
+          if (!key2) return;
+          const rank = _$1.get(name, "rank");
+          if (linkToSpeciesPage && INFRASPECIFIC_RANKS$1.includes(rank)) {
+            const navigateToTaxon = (_b2 = (_a2 = this.context) == null ? void 0 : _a2.taxon) == null ? void 0 : _b2.onNavigate;
+            if (navigateToTaxon) navigateToTaxon(key2);
+          } else if (onExpandedTaxonKeyChange) {
+            onExpandedTaxonKeyChange(key2);
+            if (this.treeRef && this.treeRef.reloadRoot) this.treeRef.reloadRoot();
+          }
+        };
+        const handleResetSearch = () => {
+          if (onExpandedTaxonKeyChange) onExpandedTaxonKeyChange(null);
+        };
+        return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "catalogue-of-life", children: [
           citation === "top" && dataset && /* @__PURE__ */ jsxRuntimeExports.jsx(Citation, { dataset }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(ColTreeContext.Provider, { value: this.state, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TreeCacheContext.Provider, { value: this.cache, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(ColTreeContext.Provider, { value: this.state, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 NameSearchAutocomplete,
@@ -77868,41 +75763,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                     paddingTop: "5px",
                     paddingBottom: "5px"
                   },
-                  defaultTaxonKey: _$1.get(params, "taxonKey") || null,
-                  onSelectName: (name) => {
-                    if (linkToSpeciesPage && INFRASPECIFIC_RANKS$1.includes(_$1.get(name, "rank"))) {
-                      if (typeof pathToTaxon === "string") {
-                        window.location.href = `${pathToTaxon}${_$1.get(
-                          name,
-                          "key"
-                        )}`;
-                      } else if (typeof pathToTaxon === "function") {
-                        pathToTaxon(_$1.get(
-                          name,
-                          "key"
-                        ));
-                      }
-                    } else {
-                      const newParams = {
-                        ...params,
-                        taxonKey: _$1.get(name, "key")
-                      };
-                      history.push({
-                        pathname: location.path,
-                        search: `?${queryString.stringify(newParams)}`
-                      });
-                      this.treeRef.reloadRoot();
-                    }
-                  },
-                  onResetSearch: () => {
-                    const newParams = { ...params, taxonKey: null };
-                    history.push({
-                      pathname: location.path,
-                      search: `?${queryString.stringify(
-                        _$1.omit(newParams, ["taxonKey"])
-                      )}`
-                    });
-                  }
+                  defaultTaxonKey: expandedTaxonKey || null,
+                  onSelectName: handleSelectName,
+                  onResetSearch: handleResetSearch
                 }
               ) }),
               showTreeOptions && /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { style: { paddingLeft: "8px" }, children: [
@@ -77924,44 +75787,25 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                     },
                     children: "Extant only"
                   }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Tooltip,
-                  {
-                    placement: "left",
-                    title: 'This virtually groups children of lower ranks into a "Not assigned" node for a more compact browsing experience',
-                    getPopupContainer: () => document.getElementById("col_insertPlaceholder"),
-                    trigger: "hover",
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: "col_insertPlaceholder", style: { display: "inline-block" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Checkbox,
-                      {
-                        defaultChecked: true,
-                        onChange: ({ target: { checked } }) => {
-                          this.setState({ insertPlaceholder: checked });
-                        },
-                        children: "Placeholder"
-                      }
-                    ) })
-                  }
                 )
               ] })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ColTree$1,
+              ColTree,
               {
                 insertPlaceholder,
                 hideExtinct,
                 datasetKey,
-                pathToTaxon,
-                pathToDataset,
                 defaultTaxonKey,
+                expandedTaxonKey,
+                onExpandedTaxonKeyChange,
                 treeRef: (ref) => this.treeRef = ref,
                 type: type2
               }
             )
-          ] }),
+          ] }) }),
           citation === "bottom" && dataset && /* @__PURE__ */ jsxRuntimeExports.jsx(Citation, { dataset })
-        ] }) });
+        ] });
       });
       if (this.props.auth) {
         axios.defaults.headers.common["Authorization"] = `Basic ${btoa$1(
@@ -77969,13 +75813,128 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         )}`;
       }
       this.state = {
-        insertPlaceholder: true,
         hideExtinct: false,
         showInfo: false,
         dataset: null
       };
+      this.cache = createTreeCache(this.props.datasetKey);
+    }
+    componentDidUpdate(prevProps) {
+      if (prevProps.datasetKey !== this.props.datasetKey) {
+        this.cache = createTreeCache(this.props.datasetKey);
+      }
     }
   }
+  __publicField(ColTreeWrapper, "contextType", RouterContext);
+  function Tree$1({
+    datasetKey,
+    defaultTaxonKey,
+    expandedTaxonKey,
+    onExpandedTaxonKeyChange,
+    showTreeOptions,
+    linkToSpeciesPage,
+    citation,
+    type: type2,
+    insertPlaceholder,
+    auth,
+    ...routerProps
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ColTreeWrapper,
+      {
+        datasetKey,
+        defaultTaxonKey,
+        expandedTaxonKey,
+        onExpandedTaxonKeyChange,
+        showTreeOptions,
+        linkToSpeciesPage,
+        citation,
+        type: type2,
+        insertPlaceholder,
+        auth
+      }
+    ) });
+  }
+  var BookOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 64H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32zm-260 72h96v209.9L621.5 312 572 347.4V136zm220 752H232V136h280v296.9c0 3.3 1 6.6 3 9.3a15.9 15.9 0 0022.3 3.7l83.8-59.9 81.4 59.4c2.7 2 6 3.1 9.4 3.1 8.8 0 16-7.2 16-16V136h64v752z" } }] }, "name": "book", "theme": "outlined" };
+  function _extends$4() {
+    _extends$4 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$4.apply(this, arguments);
+  }
+  const BookOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$4({}, props, {
+    ref,
+    icon: BookOutlined$1
+  }));
+  const RefIcon$3 = /* @__PURE__ */ React__namespace.forwardRef(BookOutlined);
+  var LinkOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
+  function _extends$3() {
+    _extends$3 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$3.apply(this, arguments);
+  }
+  const LinkOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$3({}, props, {
+    ref,
+    icon: LinkOutlined$1
+  }));
+  const RefIcon$2 = /* @__PURE__ */ React__namespace.forwardRef(LinkOutlined);
+  var MessageFilled$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M924.3 338.4a447.57 447.57 0 00-96.1-143.3 443.09 443.09 0 00-143-96.3A443.91 443.91 0 00512 64h-2c-60.5.3-119 12.3-174.1 35.9a444.08 444.08 0 00-141.7 96.5 445 445 0 00-95 142.8A449.89 449.89 0 0065 514.1c.3 69.4 16.9 138.3 47.9 199.9v152c0 25.4 20.6 46 45.9 46h151.8a447.72 447.72 0 00199.5 48h2.1c59.8 0 117.7-11.6 172.3-34.3A443.2 443.2 0 00827 830.5c41.2-40.9 73.6-88.7 96.3-142 23.5-55.2 35.5-113.9 35.8-174.5.2-60.9-11.6-120-34.8-175.6zM312.4 560c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.4 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48z" } }] }, "name": "message", "theme": "filled" };
+  function _extends$2() {
+    _extends$2 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$2.apply(this, arguments);
+  }
+  const MessageFilled = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$2({}, props, {
+    ref,
+    icon: MessageFilled$1
+  }));
+  const RefIcon$1 = /* @__PURE__ */ React__namespace.forwardRef(MessageFilled);
+  var TagOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M938 458.8l-29.6-312.6c-1.5-16.2-14.4-29-30.6-30.6L565.2 86h-.4c-3.2 0-5.7 1-7.6 2.9L88.9 557.2a9.96 9.96 0 000 14.1l363.8 363.8c1.9 1.9 4.4 2.9 7.1 2.9s5.2-1 7.1-2.9l468.3-468.3c2-2.1 3-5 2.8-8zM459.7 834.7L189.3 564.3 589 164.6 836 188l23.4 247-399.7 399.7zM680 256c-48.5 0-88 39.5-88 88s39.5 88 88 88 88-39.5 88-88-39.5-88-88-88zm0 120c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z" } }] }, "name": "tag", "theme": "outlined" };
+  function _extends$1() {
+    _extends$1 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key2 in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key2)) {
+            target[key2] = source[key2];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends$1.apply(this, arguments);
+  }
+  const TagOutlined = (props, ref) => /* @__PURE__ */ React__namespace.createElement(Icon$1, _extends$1({}, props, {
+    ref,
+    icon: TagOutlined$1
+  }));
+  const RefIcon = /* @__PURE__ */ React__namespace.forwardRef(TagOutlined);
   var reactIs = { exports: {} };
   var reactIs_production_min = {};
   /** @license React v16.13.1
@@ -78201,7 +76160,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     }
     emptyFunctionWithReset.resetWarningCache = emptyFunction;
     factoryWithThrowingShims = function() {
-      function shim(props, propName, componentName, location2, propFullName, secret) {
+      function shim(props, propName, componentName, location, propFullName, secret) {
         if (secret === ReactPropTypesSecret) {
           return;
         }
@@ -79870,7 +77829,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     };
   };
   var semiWithNl = /;\n/;
-  var parse = function parse2(cssText) {
+  var parse$1 = function parse2(cssText) {
     var style2 = {};
     var split = cssText.split(semiWithNl);
     for (var i = 0; i < split.length; i++) {
@@ -79888,7 +77847,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   };
   var onProcessRule = function onProcessRule2(rule) {
     if (typeof rule.style === "string") {
-      rule.style = parse(rule.style);
+      rule.style = parse$1(rule.style);
     }
   };
   function templatePlugin() {
@@ -81713,14 +79672,14 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       __publicField(this, "render", () => {
         const { referenceId: referenceId2, referenceIndexMap, trigger } = this.props;
         const refIds = !_$1.isArray(referenceId2) ? [referenceId2] : referenceId2;
-        let icon = referenceIndexMap && _$1.get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { className: "col-reference-link", href: `#col-refererence-${r2}`, children: `[${referenceIndexMap[r2]}]` })) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$4, { style: { cursor: "pointer" } });
+        let icon = referenceIndexMap && _$1.get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { className: "col-reference-link", href: `#col-refererence-${r2}`, children: `[${referenceIndexMap[r2]}]` }, r2)) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$3, { style: { cursor: "pointer" } });
         return referenceId2 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `reference_${referenceId2}`, style: this.props.style, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Popover,
           {
             getPopupContainer: () => document.getElementById(`reference_${referenceId2}`),
             placement: this.props.placement || "left",
             title: "Reference",
-            onVisibleChange: (visible) => visible && this.getData(),
+            onOpenChange: (visible) => visible && this.getData(),
             content: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { maxWidth: "500px" }, children: this.getContent() }),
             trigger: trigger || "hover",
             children: icon
@@ -84241,8 +82200,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     decisions,
     typeMaterial,
     referenceIndexMap,
-    primarySource,
-    pathToDataset
+    primarySource
   }) => {
     const [showAll, setShowAll] = React.useState(false);
     const getNomStatus = (taxon) => !nomStatus ? _$1.get(taxon, "name.nomStatus") : nomStatus[_$1.get(taxon, "name.nomStatus")][_$1.get(taxon, "name.code"), "zoological"];
@@ -84300,7 +82258,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           createdBy: s == null ? void 0 : s.createdBy,
           datasetKey: s.datasetKey,
           sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
-          pathToDataset,
           verbatimSourceKey: s.verbatimSourceKey
         }
       ),
@@ -85613,7 +83570,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     var _a2, _b2;
     return ((_a2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _a2.gazetteer) !== "text" && !!((_b2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _b2.globalId);
   };
-  const ListView = ({ datasetKey, data, pathToDataset }) => {
+  const ListView = ({ datasetKey, data }) => {
     const [iso3Map, setIso3Map] = React.useState({});
     React.useEffect(() => {
       let isIso = false;
@@ -85637,7 +83594,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           datasetKey: s.datasetKey,
           sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
           verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
-          pathToDataset,
           style: { marginRight: "4px" }
         }
       ),
@@ -85658,7 +83614,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     datasetKey,
     data,
     style: style2,
-    pathToDataset,
     showDistributionMap,
     focalTaxon,
     rankOrder,
@@ -85708,14 +83663,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     }
     if (!showMap) {
       if (!hasAnyRecords) return null;
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ListView,
-        {
-          datasetKey,
-          data,
-          pathToDataset
-        }
-      ) });
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data }) });
     }
     const unmappable = baseUnmappable + fetchFailures;
     const showToggle = hasAnyRecords;
@@ -85758,43 +83706,21 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           unmappable === 1 ? "" : "s",
           " not on map"
         ] }) })
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ListView,
-        {
-          datasetKey,
-          data,
-          pathToDataset
-        }
-      )
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data })
     ] });
   };
   const rankStyle = {
     color: "rgba(0, 0, 0, 0.45)",
     fontSize: "11px"
   };
-  const ClassificationTable = ({
-    data,
-    taxon,
-    style: style2,
-    pathToTaxon,
-    pathToTree
-  }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
+  const ClassificationTable = ({ data, style: style2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
     " ",
     data.map((t2, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { float: "left", marginRight: "3px" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: rankStyle, children: [
         t2.rank,
         ": "
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "a",
-        {
-          href: `${pathToTaxon}${t2.id}`,
-          onClick: () => {
-            window.location.href = `${pathToTaxon}${t2.id}`;
-          },
-          dangerouslySetInnerHTML: { __html: t2.labelHtml }
-        }
-      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: t2.id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: t2.labelHtml } }) }),
       i < data.length - 1 && " >"
     ] }, t2.rank))
   ] });
@@ -85808,7 +83734,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     }
   };
   const Help = ({ title, classes }) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: title && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.tip, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { title, getPopupContainer: () => document.getElementsByClassName(`catalogue-of-life`)[0], children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$l, { className: classes.icon }) }) }) });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: title && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.tip, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { title, getPopupContainer: () => document.getElementsByClassName(`catalogue-of-life`)[0], children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$k, { className: classes.icon }) }) }) });
   };
   const Help$1 = createWithStyles(styles$1)(Help);
   const styles = {
@@ -87111,14 +85037,13 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     data,
     referenceIndexMap,
     style: style2,
-    primarySourceDatasetKey,
-    pathToDataset
+    primarySourceDatasetKey
   }) => {
     React.useEffect(() => {
     }, [referenceIndexMap]);
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, className: "col-reference-link-container", children: _$1.values(data).map((s) => {
       var _a2, _b2;
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { style: { paddingRight: "5px" }, children: _$1.get(referenceIndexMap, s.id) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: `[${_$1.get(referenceIndexMap, s.id)}]` }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 20, children: [
           ((_a2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _a2.key) !== primarySourceDatasetKey && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -87127,19 +85052,20 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               createdBy: s == null ? void 0 : s.createdBy,
               datasetKey: s.datasetKey,
               verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
-              sourceDatasetKey: (_b2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _b2.key,
-              pathToDataset
+              sourceDatasetKey: (_b2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _b2.key
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "span",
             {
               id: `col-refererence-${s.id}`,
-              dangerouslySetInnerHTML: { __html: linkifyHtml(purify.sanitize(s.citation)) }
+              dangerouslySetInnerHTML: {
+                __html: linkifyHtml(purify.sanitize(s.citation))
+              }
             }
           )
         ] })
-      ] }, s.id) });
+      ] }, s.id);
     }) });
   };
   var localizedFormat$2 = { exports: {} };
@@ -87174,7 +85100,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
   var localizedFormatExports = requireLocalizedFormat();
   const localizedFormat = /* @__PURE__ */ getDefaultExportFromCjs(localizedFormatExports);
-  const IncludesTable = ({ data, style: style2, rank, pathToSearch, taxon }) => {
+  const IncludesTable = ({ data, style: style2, rank, taxon }) => {
     const rankToPlural = rank.reduce(
       (acc, cur) => (acc[cur.value] = cur.plural, acc),
       {}
@@ -87187,16 +85113,18 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           md: 6,
           label: _$1.startCase(rankToPlural[t2.value] || t2.value),
           classes: { formItem: { borderBottom: "none" } },
-          children: pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "a",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            LinkTo,
             {
-              href: `${pathToSearch}?TAXON_ID=${taxon.id}&rank=${t2.value}&status=accepted&status=provisionally%20accepted`,
-              onClick: () => {
-                window.location.href = `${pathToSearch}?TAXON_ID=${taxon.id}&rank=${t2.value}&status=accepted&status=provisionally%20accepted`;
+              to: "search",
+              args: {
+                TAXON_ID: taxon.id,
+                rank: t2.value,
+                status: ["accepted", "provisionally accepted"]
               },
               children: t2.count
             }
-          ) : t2.count
+          )
         },
         t2.value
       ))
@@ -93203,8 +91131,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     })(exporting$1);
     return exporting$1.exports;
   }
-  var exportingExports = requireExporting();
-  const HC_exporting = /* @__PURE__ */ getDefaultExportFromCjs(exportingExports);
+  requireExporting();
   var highchartsReact_min$1 = { exports: {} };
   var highchartsReact_min = highchartsReact_min$1.exports;
   var hasRequiredHighchartsReact_min;
@@ -93313,8 +91240,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
   var highchartsReact_minExports = requireHighchartsReact_min();
   const HighchartsReact = /* @__PURE__ */ getDefaultExportFromCjs(highchartsReact_minExports);
-  HC_exporting(Highcharts);
-  const MAX_GRAND_CHILDREN = 1e3;
+  const MAX_SLICES_PER_RING = 100;
   const canonicalRanks = [
     "kingdom",
     "phylum",
@@ -93324,24 +91250,47 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     "genus",
     "species"
   ];
+  const notAssignedLabel = (rk) => rk ? `Not assigned ${rk}` : "Not assigned";
+  const sortAndClip = (nodes) => {
+    if (!nodes || nodes.length === 0) return [];
+    const sorted = [...nodes].sort((a, b2) => (b2.species || 0) - (a.species || 0));
+    return sorted.length <= MAX_SLICES_PER_RING ? sorted : sorted.slice(0, MAX_SLICES_PER_RING);
+  };
+  const padNotAssigned = (kids, parentSpecies) => {
+    const sorted = sortAndClip(kids || []);
+    const sum = sorted.reduce((a, n2) => a + (n2.species || 0), 0);
+    if (sum >= parentSpecies) return sorted;
+    return [
+      ...sorted,
+      {
+        name: notAssignedLabel(_$1.get(sorted, "[0].rank", "")),
+        species: parentSpecies - sum,
+        children: []
+      }
+    ];
+  };
   const TaxonBreakdown$1 = ({
     taxon,
     datasetKey,
     rank = [],
-    pathToTaxon,
-    dataset
+    dataset,
+    level = 1,
+    showLevelSwitch = false,
+    darkMode
   }) => {
+    const navigateToTaxon = useNavigateTo("taxon");
     const [options, setOptions] = React.useState(null);
-    const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [invalid, setInvalid] = React.useState(false);
-    const [taxonID, setTaxonID] = React.useState(null);
+    const [activeLevel, setActiveLevel] = React.useState(level);
     React.useEffect(() => {
-      if ((taxon == null ? void 0 : taxon.id) !== taxonID) {
+      setActiveLevel(level);
+    }, [level]);
+    React.useEffect(() => {
+      if ((taxon == null ? void 0 : taxon.id) && datasetKey) {
         getData();
-        setTaxonID(taxon == null ? void 0 : taxon.id);
       }
-    }, [taxon, datasetKey]);
+    }, [taxon, datasetKey, activeLevel]);
     const getOverView = async () => {
       const res = await axios(
         `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${encodeURIComponent(
@@ -93359,7 +91308,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         if (taxonRankIdx === -1) {
           let rankIndex2 = rank.indexOf(_$1.get(taxon, "name.rank")) + 1;
           while (taxonRankIdx === -1 && rankIndex2 < rank.length - 1) {
-            let canonicalRankIndex = ranks2.indexOf(rank[rankIndex2]);
+            const canonicalRankIndex = ranks2.indexOf(rank[rankIndex2]);
             if (canonicalRankIndex > -1) {
               taxonRankIdx = canonicalRankIndex - 1;
             }
@@ -93376,231 +91325,188 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             childRankIndex++;
           }
         }
-        let grandChildRank;
-        let grandChildRankIndex = childRankIndex + 1;
-        while (!grandChildRank && grandChildRankIndex < ranks2.length) {
-          const nextRank = _$1.get(ranks2, `[${grandChildRankIndex}]`);
-          if (nextRank && _$1.get(counts, `${nextRank}.count`, 0) > 0) {
-            grandChildRank = nextRank;
-          } else {
-            grandChildRankIndex++;
-          }
-        }
-        let root2;
-        if (!grandChildRank || grandChildRank === "species" || _$1.get(counts, `${grandChildRank}.count`) > MAX_GRAND_CHILDREN) {
-          root2 = [{ name: _$1.get(taxon, "name.scientificName"), id: taxon.id }];
-        }
         if (!childRank) {
           setInvalid(true);
           setLoading(false);
-        } else {
-          const res = await axios(
-            `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown`
-          );
-          const childRankData = res.data;
-          if (_$1.get(root2, "[0]")) {
-            root2[0].children = processChildren(childRankData);
-            root2[0].species = root2[0].children.reduce(
-              (acc, cur) => acc + cur.species,
-              0
-            );
-          } else {
-            root2 = processChildren(childRankData);
-          }
-          setLoading(false);
-          initChart(root2);
+          return;
         }
+        const res = await axios(
+          `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${activeLevel}`
+        );
+        const children = res.data || [];
+        const totalSpecies = _$1.get(counts, "species.count", 0);
+        setLoading(false);
+        buildChart(children, totalSpecies);
       } catch (err) {
-        setError(err);
         setLoading(false);
       }
     };
-    const processChildren = (children) => {
-      children.sort(function compareFn(a, b2) {
-        return b2.species - a.species;
-      });
-      if (children.length < 100) {
-        return children;
-      } else {
-        return children.slice(0, 100);
-      }
-    };
-    const initChart = (root2) => {
+    const buildChart = (children, totalSpecies) => {
       const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
-      const totalCount2 = root2.reduce((acc, cur) => acc + cur.species, 0);
-      var colors = Highcharts.getOptions().colors, categories = root2.map((t2) => t2.name), data = root2.map((k, idx) => {
-        const children = processChildren(k.children);
-        const sum = k.children.reduce((acc, cur) => acc + cur.species, 0);
-        let c = sum < k.species ? [
-          ...children,
-          {
-            name: `Other / Unknown ${_$1.get(children, "[0].rank", "")}`,
-            species: k.species - sum
+      const baseColors = Highcharts.getOptions().colors;
+      const prefersDark = typeof darkMode === "boolean" ? darkMode : typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const gapColor = prefersDark ? "#1f1f1f" : "#ffffff";
+      const taxonClickHandler = {
+        click: (e2) => {
+          if (e2.point._id) {
+            navigateToTaxon(e2.point._id);
           }
-        ] : children;
-        return {
-          color: colors[idx],
-          y: k.species,
-          _id: k.id,
-          drilldown: {
-            name: k.name,
-            categories: c.map((c2) => c2.name),
-            data: c
-          }
-        };
-      }), rootData = [], childData = [], i, j2, dataLen = data.length, drillDataLen, brightness;
-      for (i = 0; i < dataLen; i += 1) {
-        rootData.push({
-          name: categories[i],
-          y: data[i].y,
-          _id: data[i]._id,
-          color: data[i].color
-        });
-        drillDataLen = data[i].drilldown.data.length;
-        for (j2 = 0; j2 < drillDataLen; j2 += 1) {
-          brightness = 0.2 - j2 / drillDataLen / 5;
-          childData.push({
-            name: data[i].drilldown.categories[j2],
-            y: data[i].drilldown.data[j2].species,
-            _id: data[i].drilldown.data[j2].id,
-            color: Highcharts.color(data[i].color).brighten(brightness).get()
-          });
         }
+      };
+      const innerNodes = padNotAssigned(children, totalSpecies);
+      const innerData = innerNodes.map((n2, i) => ({
+        name: n2.name,
+        y: n2.species,
+        _id: n2.id,
+        color: baseColors[i % baseColors.length],
+        _kids: n2.children
+      }));
+      const outerData = [];
+      const hasOuterData = activeLevel >= 2 && innerData.some((s) => s._kids && s._kids.length > 0);
+      if (hasOuterData) {
+        innerData.forEach((slice2) => {
+          const sorted = sortAndClip(slice2._kids || []);
+          const sum = sorted.reduce((a, n2) => a + (n2.species || 0), 0);
+          sorted.forEach((g2, j2) => {
+            const t2 = sorted.length > 1 ? j2 / (sorted.length - 1) : 0;
+            const shift = -0.1 + t2 * 0.4;
+            outerData.push({
+              name: g2.name,
+              y: g2.species,
+              _id: g2.id,
+              color: Highcharts.color(slice2.color).brighten(shift).get()
+            });
+          });
+          if (sum < slice2.y) {
+            outerData.push({
+              name: notAssignedLabel(_$1.get(sorted, "[0].rank", "")),
+              y: slice2.y - sum,
+              color: gapColor,
+              borderColor: gapColor,
+              borderWidth: 0,
+              dataLabels: { enabled: false }
+            });
+          }
+        });
       }
-      let options2 = {
-        chart: {
-          type: "pie"
+      const clean = (rows) => rows.map(({ _kids, ...rest }) => rest);
+      const grandTotal = totalSpecies || innerData.reduce((a, s) => a + s.y, 0);
+      const innerLabelStyle = {
+        color: "contrast",
+        textOutline: "1px contrast",
+        fontWeight: "bold"
+      };
+      const innerDataLabels = hasOuterData ? {
+        formatter: function() {
+          return this.y > grandTotal / 10 ? this.point.name : null;
         },
+        distance: -30,
+        style: innerLabelStyle
+      } : {
+        formatter: function() {
+          return this.y > 1 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
+        }
+      };
+      const series = [
+        {
+          name: "Species",
+          data: clean(innerData),
+          size: hasOuterData ? "60%" : "85%",
+          dataLabels: innerDataLabels,
+          point: { events: taxonClickHandler }
+        }
+      ];
+      if (hasOuterData) {
+        series.push({
+          name: "Species",
+          data: outerData,
+          size: "85%",
+          innerSize: "60%",
+          dataLabels: {
+            formatter: function() {
+              return this.y > 1 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
+            }
+          },
+          point: { events: taxonClickHandler }
+        });
+      }
+      setOptions({
+        chart: { type: "pie" },
         credits: {
           text: `${taxon.name.scientificName} in ${dataset.title}${dataset.version ? " (" + dataset.version + ")" : ""}. ${(dataset.doi ? "DOI:" + dataset.doi : null) || dataset.url || ""}`,
           href: DOI || dataset.url || ""
         },
-        title: {
-          text: ""
-        },
-        plotOptions: {
-          pie: {
-            shadow: false,
-            center: ["50%", "50%"]
-          }
-        },
+        title: { text: "" },
+        plotOptions: { pie: { shadow: false, center: ["50%", "50%"] } },
         tooltip: {},
-        series: [
-          {
-            name: "Species",
-            //_.startCase(countBy),
-            data: rootData,
-            size: "60%",
-            dataLabels: {
-              formatter: function() {
-                return this.y > totalCount2 / 10 ? this.point.name : null;
-              },
-              distance: -30
-            },
-            point: {
-              events: {
-                click: (e2) => {
-                  if (e2.point._id) {
-                    window.location.href = `${pathToTaxon}${e2.point._id}`;
-                  }
-                }
-              }
-            }
-          },
-          {
-            name: "Species",
-            // _.startCase(countBy),
-            data: childData,
-            size: "80%",
-            innerSize: "60%",
-            point: {
-              events: {
-                click: (e2) => {
-                  if (e2.point._id) {
-                    window.location.href = `${pathToTaxon}${e2.point._id}`;
-                  }
-                }
-              }
-            },
-            dataLabels: {
-              formatter: function() {
-                return this.y > 1 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
-              }
-            },
-            id: "Species"
-            //countBy,
-          }
-        ],
+        series,
         responsive: {
           rules: [
             {
-              condition: {
-                maxWidth: 400
-              },
+              condition: { maxWidth: 400 },
               chartOptions: {
-                series: [
-                  {},
-                  {
-                    id: "species",
-                    dataLabels: {
-                      enabled: false
-                    }
-                  }
-                ]
+                series: hasOuterData ? [{}, { dataLabels: { enabled: false } }] : [{}]
               }
             }
           ]
         },
         exporting: {
           chartOptions: {
-            // specific options for the exported image
-            plotOptions: {
-              series: {
-                dataLabels: {
-                  enabled: true
-                }
-              }
-            }
+            plotOptions: { series: { dataLabels: { enabled: true } } }
           },
           fallbackToExportServer: false
         }
-      };
-      setOptions(options2);
+      });
     };
-    return invalid ? null : loading || !options ? /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { style: { padding: "48px" }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "large" }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto" })
-    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(HighchartsReact, { highcharts: Highcharts, options });
+    if (invalid) return null;
+    const levelSwitch = showLevelSwitch ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Switch,
+      {
+        size: "small",
+        checked: activeLevel === 2,
+        onChange: (checked) => setActiveLevel(checked ? 2 : 1),
+        checkedChildren: "lvl2",
+        unCheckedChildren: "lvl1",
+        style: {
+          position: "absolute",
+          top: 11,
+          right: 44,
+          zIndex: 2,
+          background: activeLevel === 2 ? "#8c8c8c" : "#bfbfbf"
+        }
+      }
+    ) : null;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+      levelSwitch,
+      loading || !options ? /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { style: { padding: "48px" }, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "large" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto" })
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(HighchartsReact, { highcharts: Highcharts, options })
+    ] });
   };
-  const SecondarySources = ({
-    info,
-    datasetKey,
-    pathToTaxon
-  }) => {
+  const SecondarySources = ({ info, datasetKey }) => {
     var _a2, _b2;
     const [datasets, setDatasets] = React.useState({});
     React.useEffect(() => {
       var _a3;
-      if ((_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) {
-        getDatasets();
-      }
+      if ((_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) getDatasets();
     }, [info]);
-    React.useEffect(() => {
-    }, [datasets]);
     const datasetLoader = new DataLoader((ids) => getDatasetsBatch(ids, datasetKey));
     const getDatasets = async () => {
       var _a3;
-      let data = {};
+      const data = {};
       try {
-        await Promise.all(Object.keys(((_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) || {}).map(
-          (key2) => {
-            var _a4;
-            return datasetLoader.load((_a4 = info == null ? void 0 : info.source) == null ? void 0 : _a4.secondarySources[key2].datasetKey).then((dataset) => {
-              data[dataset.key] = dataset;
-            });
-          }
-        ));
+        await Promise.all(
+          Object.keys(((_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) || {}).map(
+            (key2) => {
+              var _a4;
+              return datasetLoader.load((_a4 = info == null ? void 0 : info.source) == null ? void 0 : _a4.secondarySources[key2].datasetKey).then((dataset) => {
+                data[dataset.key] = dataset;
+              });
+            }
+          )
+        );
       } catch (error) {
         console.log(error);
       }
@@ -93608,11 +91514,18 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     };
     return ((_a2 = info == null ? void 0 : info.source) == null ? void 0 : _a2.secondarySources) ? Object.keys(((_b2 = info == null ? void 0 : info.source) == null ? void 0 : _b2.secondarySources) || {}).map((key2) => {
       var _a3, _b3, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m;
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
         _$1.startCase(key2),
-        ": ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `https://www.checklistbank.org/dataset/${(_c = (_b3 = (_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) == null ? void 0 : _b3[key2]) == null ? void 0 : _c.datasetKey}/taxon/${encodeURIComponent((_f = (_e2 = (_d = info == null ? void 0 : info.source) == null ? void 0 : _d.secondarySources) == null ? void 0 : _e2[key2]) == null ? void 0 : _f.id)}`, children: ((_j = datasets[(_i = (_h = (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.secondarySources) == null ? void 0 : _h[key2]) == null ? void 0 : _i.datasetKey]) == null ? void 0 : _j.title) || ((_m = (_l = (_k = info == null ? void 0 : info.source) == null ? void 0 : _k.secondarySources) == null ? void 0 : _l[key2]) == null ? void 0 : _m.datasetKey) })
-      ] });
+        ":",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "a",
+          {
+            href: `https://www.checklistbank.org/dataset/${(_c = (_b3 = (_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) == null ? void 0 : _b3[key2]) == null ? void 0 : _c.datasetKey}/taxon/${encodeURIComponent((_f = (_e2 = (_d = info == null ? void 0 : info.source) == null ? void 0 : _d.secondarySources) == null ? void 0 : _e2[key2]) == null ? void 0 : _f.id)}`,
+            children: ((_j = datasets[(_i = (_h = (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.secondarySources) == null ? void 0 : _h[key2]) == null ? void 0 : _i.datasetKey]) == null ? void 0 : _j.title) || ((_m = (_l = (_k = info == null ? void 0 : info.source) == null ? void 0 : _k.secondarySources) == null ? void 0 : _l[key2]) == null ? void 0 : _m.datasetKey)
+          }
+        )
+      ] }, key2);
     }) : null;
   };
   const axiosNoAuth = axios.create({
@@ -93633,7 +91546,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { margin: "6px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: getMsg(error) }) });
   };
   const Feedback = ({ datasetKey, taxonKey }) => {
-    const [form] = Form$1.useForm();
+    const [form] = Form.useForm();
     const [loading, setLoading] = React.useState(false);
     const [visible, setVisible] = React.useState(false);
     const [error, setError] = React.useState(null);
@@ -93668,7 +91581,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         {
           getContainer: ".catalogue-of-life",
           title: "Feedback",
-          visible,
+          open: visible,
           destroyOnClose: true,
           onOk: () => {
             if (issueUrl) {
@@ -93708,16 +91621,16 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 " which you can monitor or use to further discuss with us."
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { spinning: loading, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Form$1,
+                Form,
                 {
                   ...layout,
                   form,
                   onFinish: submitData,
                   onFinishFailed,
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { name: "message", label: "Message", rules: [{ required: true }], children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input.TextArea, { rows: 8 }) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Form.Item, { name: "message", label: "Message", rules: [{ required: true }], children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input.TextArea, { rows: 8 }) }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Form$1.Item,
+                      Form.Item,
                       {
                         name: "email",
                         label: "Email (optional)",
@@ -93741,7 +91654,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ jsxRuntimeExports.jsx(Col, {}),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { href: `https://www.checklistbank.org/dataset/${datasetKey}/download?taxonID=${taxonKey}`, style: { marginTop: "12px", marginRight: "4px" }, size: "small", children: [
           "Download ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$5, {})
+          /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$4, {})
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { style: { marginTop: "12px" }, size: "small", onClick: () => setVisible(true), children: [
           "Feedback ",
@@ -93756,16 +91669,15 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     constructor(props) {
       super(props);
       __publicField(this, "componentDidMount", () => {
-        const { pathToTaxon } = this.props;
-        const { location: location2 } = history;
-        const uri = `${location2.pathname}${location2.search}`;
-        const taxonKey = uri.split(pathToTaxon)[1];
+        const { taxonKey } = this.props;
         this.getCatalogue();
-        this.getTaxon(taxonKey);
-        this.getInfo(taxonKey);
-        this.getRank(taxonKey);
-        this.getIncludes(taxonKey);
-        this.getNomStatus(taxonKey);
+        if (taxonKey) {
+          this.getTaxon(taxonKey);
+          this.getInfo(taxonKey);
+          this.getRank(taxonKey);
+          this.getIncludes(taxonKey);
+          this.getNomStatus(taxonKey);
+        }
       });
       __publicField(this, "getTaxon", (taxonKey) => {
         const { datasetKey, pageTitleTemplate } = this.props;
@@ -94006,12 +91918,12 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         });
       });
       __publicField(this, "fetchSynonymAndRedirect", (taxonKey) => {
-        const { datasetKey, pathToTaxon } = this.props;
+        var _a2, _b2;
+        const { datasetKey } = this.props;
+        const navigateToTaxon = (_b2 = (_a2 = this.context) == null ? void 0 : _a2.taxon) == null ? void 0 : _b2.onNavigate;
         axios(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`).then((res) => {
-          window.location.href = `${pathToTaxon}${_$1.get(
-            res,
-            "data.accepted.id"
-          )}`;
+          const acceptedId = _$1.get(res, "data.accepted.id");
+          if (acceptedId && navigateToTaxon) navigateToTaxon(acceptedId);
         }).catch((err) => {
           if (_$1.get(err, "response.status") === 404) {
             this.setState({ status: 404 });
@@ -94044,14 +91956,20 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         sourceDatasetKeyMap: null
       };
     }
+    componentDidUpdate(prevProps) {
+      if (prevProps.taxonKey !== this.props.taxonKey && this.props.taxonKey) {
+        const taxonKey = this.props.taxonKey;
+        this.getTaxon(taxonKey);
+        this.getInfo(taxonKey);
+        this.getRank(taxonKey);
+        this.getIncludes(taxonKey);
+        this.getNomStatus(taxonKey);
+      }
+    }
     render() {
       var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C;
       const {
         datasetKey,
-        pathToTaxon,
-        pathToSearch,
-        pathToDataset,
-        pathToTree,
         showDistributionMap,
         gbifChecklistKey
       } = this.props;
@@ -94101,8 +92019,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                     datasetKey: (_d = info == null ? void 0 : info.usage) == null ? void 0 : _d.datasetKey,
                     verbatimSourceKey: (_e2 = info == null ? void 0 : info.usage) == null ? void 0 : _e2.verbatimSourceKey,
                     sourceDatasetKey: (_f = info == null ? void 0 : info.source) == null ? void 0 : _f.sourceDatasetKey,
-                    sourceId: (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.sourceId,
-                    pathToDataset
+                    sourceId: (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.sourceId
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -94172,7 +92089,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                             taxon,
                             "id"
                           ))}`,
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$5, {})
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$4, {})
                         }
                       )
                     }
@@ -94227,7 +92144,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 typeMaterial: _$1.get(info, "typeMaterial"),
                 referenceIndexMap,
                 style: { marginTop: "-3px" },
-                pathToDataset,
                 datasetKey
               }
             ) }),
@@ -94273,29 +92189,26 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 style: { marginTop: "-3px", marginLeft: "-3px" },
                 data: classification,
                 taxon,
-                datasetKey,
-                pathToTaxon,
-                pathToTree
+                datasetKey
               }
             ) }),
-            (taxon && rank.indexOf(_$1.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(_$1.get(taxon, "name.rank")) > -1 || _$1.get(taxon, "name.rank") === "unranked" && _$1.get(taxon, "name.scientificName") === "Biota") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            (taxon && rank.indexOf(_$1.get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(_$1.get(taxon, "name.rank")) > -1 || _$1.get(taxon, "name.rank") === "unranked" && _$1.get(taxon, "name.scientificName") === "Biota") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Breakdown", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               TaxonBreakdown$1,
               {
                 taxon,
                 datasetKey,
                 rank,
-                pathToTaxon,
-                dataset: catalogue
+                dataset: catalogue,
+                showLevelSwitch: true
               }
-            ),
+            ) }),
             includes2.length > 1 && rank && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Statistics", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               IncludesTable,
               {
                 style: { marginTop: "-3px", marginLeft: "-3px" },
                 data: includes2,
                 rank,
-                taxon,
-                pathToSearch
+                taxon
               }
             ) }),
             _$1.get(info, "vernacularNames") && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Vernacular names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -94310,7 +92223,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             (_$1.get(info, "distributions") || showDistributionMap && gbifChecklistKey && taxon) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               DistributionsTable,
               {
-                pathToDataset,
                 style: { marginTop: "-3px" },
                 data: (info == null ? void 0 : info.distributions) || [],
                 datasetKey,
@@ -94335,8 +92247,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                   datasetKey: (_p = info == null ? void 0 : info.usage) == null ? void 0 : _p.datasetKey,
                   verbatimSourceKey: (_q = info == null ? void 0 : info.usage) == null ? void 0 : _q.verbatimSourceKey,
                   sourceDatasetKey: (_r = info == null ? void 0 : info.source) == null ? void 0 : _r.sourceDatasetKey,
-                  sourceId: (_s = info == null ? void 0 : info.source) == null ? void 0 : _s.sourceId,
-                  pathToDataset
+                  sourceId: (_s = info == null ? void 0 : info.source) == null ? void 0 : _s.sourceId
                 }
               ),
               " ",
@@ -94352,22 +92263,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 "in",
                 " "
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "a",
-                {
-                  href: `${pathToDataset}${_$1.get(sourceDataset, "key")}`,
-                  onClick: () => {
-                    window.location = `${pathToDataset}${_$1.get(
-                      sourceDataset,
-                      "key"
-                    )}`;
-                  },
-                  children: `${_$1.get(sourceDataset, "alias")}: ${_$1.get(
-                    sourceDataset,
-                    "title"
-                  )}`
-                }
-              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: _$1.get(sourceDataset, "key"), children: `${_$1.get(sourceDataset, "alias")}: ${_$1.get(
+                sourceDataset,
+                "title"
+              )}` }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: _$1.get(sourceDataset, "completeness") && _$1.get(sourceDataset, "completeness") + "%" }),
               _$1.get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Rate,
@@ -94379,11 +92278,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               )
             ] }) }),
             _$1.get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Link to original resource", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: _$1.get(taxon, "link"), children: _$1.get(taxon, "link") }) }),
-            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey, pathToTaxon }) }),
+            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
             _$1.get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               ReferencesTable,
               {
-                pathToDataset,
                 referenceIndexMap,
                 primarySourceDatasetKey: (_y = info == null ? void 0 : info.source) == null ? void 0 : _y.sourceDatasetKey,
                 data: _$1.get(info, "references"),
@@ -94396,15 +92294,561 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       ) });
     }
   }
-  const ranks = ["family", "superfamily", "order", "subclass", "class", "superclass", "subphylum", "phylum"];
-  const navigateToTaxon = (pathToTaxon, id) => {
-    if (typeof pathToTaxon === "string") {
-      window.location.href = `${pathToTaxon}${id}`;
-    } else if (typeof pathToTaxon === "function") {
-      pathToTaxon(id);
+  __publicField(TaxonPage, "contextType", RouterContext);
+  function Taxon$1({
+    taxonKey,
+    datasetKey,
+    pageTitleTemplate,
+    identifierLabel,
+    showDistributionMap,
+    gbifChecklistKey,
+    auth,
+    ...routerProps
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      TaxonPage,
+      {
+        taxonKey,
+        datasetKey,
+        pageTitleTemplate,
+        identifierLabel,
+        showDistributionMap,
+        gbifChecklistKey,
+        auth
+      }
+    ) });
+  }
+  const token = "%[a-f0-9]{2}";
+  const singleMatcher = new RegExp("(" + token + ")|([^%]+?)", "gi");
+  const multiMatcher = new RegExp("(" + token + ")+", "gi");
+  function decodeComponents(components2, split) {
+    try {
+      return [decodeURIComponent(components2.join(""))];
+    } catch {
     }
-  };
-  const Classification = ({ classification, pathToTaxon, maxParents = classification.length, truncate }) => {
+    if (components2.length === 1) {
+      return components2;
+    }
+    split = split || 1;
+    const left = components2.slice(0, split);
+    const right = components2.slice(split);
+    return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+  }
+  function decode$1(input) {
+    try {
+      return decodeURIComponent(input);
+    } catch {
+      let tokens = input.match(singleMatcher) || [];
+      for (let i = 1; i < tokens.length; i++) {
+        input = decodeComponents(tokens, i).join("");
+        tokens = input.match(singleMatcher) || [];
+      }
+      return input;
+    }
+  }
+  function customDecodeURIComponent(input) {
+    const replaceMap = {
+      "%FE%FF": "��",
+      "%FF%FE": "��"
+    };
+    let match2 = multiMatcher.exec(input);
+    while (match2) {
+      try {
+        replaceMap[match2[0]] = decodeURIComponent(match2[0]);
+      } catch {
+        const result2 = decode$1(match2[0]);
+        if (result2 !== match2[0]) {
+          replaceMap[match2[0]] = result2;
+        }
+      }
+      match2 = multiMatcher.exec(input);
+    }
+    replaceMap["%C2"] = "�";
+    const entries2 = Object.keys(replaceMap);
+    for (const key2 of entries2) {
+      input = input.replace(new RegExp(key2, "g"), replaceMap[key2]);
+    }
+    return input;
+  }
+  function decodeUriComponent(encodedURI) {
+    if (typeof encodedURI !== "string") {
+      throw new TypeError("Expected `encodedURI` to be of type `string`, got `" + typeof encodedURI + "`");
+    }
+    try {
+      return decodeURIComponent(encodedURI);
+    } catch {
+      return customDecodeURIComponent(encodedURI);
+    }
+  }
+  function includeKeys(object2, predicate) {
+    const result2 = {};
+    if (Array.isArray(predicate)) {
+      for (const key2 of predicate) {
+        const descriptor = Object.getOwnPropertyDescriptor(object2, key2);
+        if (descriptor == null ? void 0 : descriptor.enumerable) {
+          Object.defineProperty(result2, key2, descriptor);
+        }
+      }
+    } else {
+      for (const key2 of Reflect.ownKeys(object2)) {
+        const descriptor = Object.getOwnPropertyDescriptor(object2, key2);
+        if (descriptor.enumerable) {
+          const value = object2[key2];
+          if (predicate(key2, value, object2)) {
+            Object.defineProperty(result2, key2, descriptor);
+          }
+        }
+      }
+    }
+    return result2;
+  }
+  function splitOnFirst(string2, separator) {
+    if (!(typeof string2 === "string" && typeof separator === "string")) {
+      throw new TypeError("Expected the arguments to be of type `string`");
+    }
+    if (string2 === "" || separator === "") {
+      return [];
+    }
+    const separatorIndex = string2.indexOf(separator);
+    if (separatorIndex === -1) {
+      return [];
+    }
+    return [
+      string2.slice(0, separatorIndex),
+      string2.slice(separatorIndex + separator.length)
+    ];
+  }
+  const isNullOrUndefined = (value) => value === null || value === void 0;
+  const strictUriEncode = (string2) => encodeURIComponent(string2).replaceAll(/[!'()*]/g, (x2) => `%${x2.charCodeAt(0).toString(16).toUpperCase()}`);
+  const encodeFragmentIdentifier = Symbol("encodeFragmentIdentifier");
+  function encoderForArrayFormat(options) {
+    switch (options.arrayFormat) {
+      case "index": {
+        return (key2) => (result2, value) => {
+          const index2 = result2.length;
+          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
+            return result2;
+          }
+          if (value === null) {
+            return [
+              ...result2,
+              [encode(key2, options), "[", index2, "]"].join("")
+            ];
+          }
+          return [
+            ...result2,
+            [encode(key2, options), "[", encode(index2, options), "]=", encode(value, options)].join("")
+          ];
+        };
+      }
+      case "bracket": {
+        return (key2) => (result2, value) => {
+          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
+            return result2;
+          }
+          if (value === null) {
+            return [
+              ...result2,
+              [encode(key2, options), "[]"].join("")
+            ];
+          }
+          return [
+            ...result2,
+            [encode(key2, options), "[]=", encode(value, options)].join("")
+          ];
+        };
+      }
+      case "colon-list-separator": {
+        return (key2) => (result2, value) => {
+          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
+            return result2;
+          }
+          if (value === null) {
+            return [
+              ...result2,
+              [encode(key2, options), ":list="].join("")
+            ];
+          }
+          return [
+            ...result2,
+            [encode(key2, options), ":list=", encode(value, options)].join("")
+          ];
+        };
+      }
+      case "comma":
+      case "separator":
+      case "bracket-separator": {
+        const keyValueSeparator = options.arrayFormat === "bracket-separator" ? "[]=" : "=";
+        return (key2) => (result2, value) => {
+          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
+            return result2;
+          }
+          value = value === null ? "" : value;
+          if (result2.length === 0) {
+            return [[encode(key2, options), keyValueSeparator, encode(value, options)].join("")];
+          }
+          return [[result2, encode(value, options)].join(options.arrayFormatSeparator)];
+        };
+      }
+      default: {
+        return (key2) => (result2, value) => {
+          if (value === void 0 || options.skipNull && value === null || options.skipEmptyString && value === "") {
+            return result2;
+          }
+          if (value === null) {
+            return [
+              ...result2,
+              encode(key2, options)
+            ];
+          }
+          return [
+            ...result2,
+            [encode(key2, options), "=", encode(value, options)].join("")
+          ];
+        };
+      }
+    }
+  }
+  function parserForArrayFormat(options) {
+    let result2;
+    switch (options.arrayFormat) {
+      case "index": {
+        return (key2, value, accumulator) => {
+          result2 = /\[(\d*)]$/.exec(key2);
+          key2 = key2.replace(/\[\d*]$/, "");
+          if (!result2) {
+            accumulator[key2] = value;
+            return;
+          }
+          if (accumulator[key2] === void 0) {
+            accumulator[key2] = {};
+          }
+          accumulator[key2][result2[1]] = value;
+        };
+      }
+      case "bracket": {
+        return (key2, value, accumulator) => {
+          result2 = /(\[])$/.exec(key2);
+          key2 = key2.replace(/\[]$/, "");
+          if (!result2) {
+            accumulator[key2] = value;
+            return;
+          }
+          if (accumulator[key2] === void 0) {
+            accumulator[key2] = [value];
+            return;
+          }
+          accumulator[key2] = [...accumulator[key2], value];
+        };
+      }
+      case "colon-list-separator": {
+        return (key2, value, accumulator) => {
+          result2 = /(:list)$/.exec(key2);
+          key2 = key2.replace(/:list$/, "");
+          if (!result2) {
+            accumulator[key2] = value;
+            return;
+          }
+          if (accumulator[key2] === void 0) {
+            accumulator[key2] = [value];
+            return;
+          }
+          accumulator[key2] = [...accumulator[key2], value];
+        };
+      }
+      case "comma":
+      case "separator": {
+        return (key2, value, accumulator) => {
+          const isArray2 = typeof value === "string" && value.includes(options.arrayFormatSeparator);
+          const newValue = isArray2 ? value.split(options.arrayFormatSeparator).map((item) => decode(item, options)) : value === null ? value : decode(value, options);
+          accumulator[key2] = newValue;
+        };
+      }
+      case "bracket-separator": {
+        return (key2, value, accumulator) => {
+          const isArray2 = /(\[])$/.test(key2);
+          key2 = key2.replace(/\[]$/, "");
+          if (!isArray2) {
+            accumulator[key2] = value ? decode(value, options) : value;
+            return;
+          }
+          const arrayValue = value === null ? [] : decode(value, options).split(options.arrayFormatSeparator);
+          if (accumulator[key2] === void 0) {
+            accumulator[key2] = arrayValue;
+            return;
+          }
+          accumulator[key2] = [...accumulator[key2], ...arrayValue];
+        };
+      }
+      default: {
+        return (key2, value, accumulator) => {
+          if (accumulator[key2] === void 0) {
+            accumulator[key2] = value;
+            return;
+          }
+          accumulator[key2] = [...[accumulator[key2]].flat(), value];
+        };
+      }
+    }
+  }
+  function validateArrayFormatSeparator(value) {
+    if (typeof value !== "string" || value.length !== 1) {
+      throw new TypeError("arrayFormatSeparator must be single character string");
+    }
+  }
+  function encode(value, options) {
+    if (options.encode) {
+      return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
+    }
+    return value;
+  }
+  function decode(value, options) {
+    if (options.decode) {
+      return decodeUriComponent(value);
+    }
+    return value;
+  }
+  function keysSorter(input) {
+    if (Array.isArray(input)) {
+      return input.sort();
+    }
+    if (typeof input === "object") {
+      return keysSorter(Object.keys(input)).sort((a, b2) => Number(a) - Number(b2)).map((key2) => input[key2]);
+    }
+    return input;
+  }
+  function removeHash(input) {
+    const hashStart = input.indexOf("#");
+    if (hashStart !== -1) {
+      input = input.slice(0, hashStart);
+    }
+    return input;
+  }
+  function getHash(url) {
+    let hash2 = "";
+    const hashStart = url.indexOf("#");
+    if (hashStart !== -1) {
+      hash2 = url.slice(hashStart);
+    }
+    return hash2;
+  }
+  function parseValue(value, options, type2) {
+    if (type2 === "string" && typeof value === "string") {
+      return value;
+    }
+    if (typeof type2 === "function" && typeof value === "string") {
+      return type2(value);
+    }
+    if (type2 === "boolean" && value === null) {
+      return true;
+    }
+    if (type2 === "boolean" && value !== null && (value.toLowerCase() === "true" || value.toLowerCase() === "false")) {
+      return value.toLowerCase() === "true";
+    }
+    if (type2 === "boolean" && value !== null && (value.toLowerCase() === "1" || value.toLowerCase() === "0")) {
+      return value.toLowerCase() === "1";
+    }
+    if (type2 === "string[]" && options.arrayFormat !== "none" && typeof value === "string") {
+      return [value];
+    }
+    if (type2 === "number[]" && options.arrayFormat !== "none" && !Number.isNaN(Number(value)) && (typeof value === "string" && value.trim() !== "")) {
+      return [Number(value)];
+    }
+    if (type2 === "number" && !Number.isNaN(Number(value)) && (typeof value === "string" && value.trim() !== "")) {
+      return Number(value);
+    }
+    if (options.parseBooleans && value !== null && (value.toLowerCase() === "true" || value.toLowerCase() === "false")) {
+      return value.toLowerCase() === "true";
+    }
+    if (options.parseNumbers && !Number.isNaN(Number(value)) && (typeof value === "string" && value.trim() !== "")) {
+      return Number(value);
+    }
+    return value;
+  }
+  function extract(input) {
+    input = removeHash(input);
+    const queryStart = input.indexOf("?");
+    if (queryStart === -1) {
+      return "";
+    }
+    return input.slice(queryStart + 1);
+  }
+  function parse(query, options) {
+    options = {
+      decode: true,
+      sort: true,
+      arrayFormat: "none",
+      arrayFormatSeparator: ",",
+      parseNumbers: false,
+      parseBooleans: false,
+      types: /* @__PURE__ */ Object.create(null),
+      ...options
+    };
+    validateArrayFormatSeparator(options.arrayFormatSeparator);
+    const formatter = parserForArrayFormat(options);
+    const returnValue = /* @__PURE__ */ Object.create(null);
+    if (typeof query !== "string") {
+      return returnValue;
+    }
+    query = query.trim().replace(/^[?#&]/, "");
+    if (!query) {
+      return returnValue;
+    }
+    for (const parameter of query.split("&")) {
+      if (parameter === "") {
+        continue;
+      }
+      const parameter_ = options.decode ? parameter.replaceAll("+", " ") : parameter;
+      let [key2, value] = splitOnFirst(parameter_, "=");
+      if (key2 === void 0) {
+        key2 = parameter_;
+      }
+      value = value === void 0 ? null : ["comma", "separator", "bracket-separator"].includes(options.arrayFormat) ? value : decode(value, options);
+      formatter(decode(key2, options), value, returnValue);
+    }
+    for (const [key2, value] of Object.entries(returnValue)) {
+      if (typeof value === "object" && value !== null && options.types[key2] !== "string") {
+        for (const [key22, value2] of Object.entries(value)) {
+          const typeOption = options.types[key2];
+          const type2 = typeof typeOption === "function" ? typeOption : typeOption ? typeOption.replace("[]", "") : void 0;
+          value[key22] = parseValue(value2, options, type2);
+        }
+      } else if (typeof value === "object" && value !== null && options.types[key2] === "string") {
+        returnValue[key2] = Object.values(value).join(options.arrayFormatSeparator);
+      } else {
+        returnValue[key2] = parseValue(value, options, options.types[key2]);
+      }
+    }
+    if (options.sort === false) {
+      return returnValue;
+    }
+    return (options.sort === true ? Object.keys(returnValue).sort() : Object.keys(returnValue).sort(options.sort)).reduce((result2, key2) => {
+      const value = returnValue[key2];
+      result2[key2] = Boolean(value) && typeof value === "object" && !Array.isArray(value) ? keysSorter(value) : value;
+      return result2;
+    }, /* @__PURE__ */ Object.create(null));
+  }
+  function stringify(object2, options) {
+    if (!object2) {
+      return "";
+    }
+    options = {
+      encode: true,
+      strict: true,
+      arrayFormat: "none",
+      arrayFormatSeparator: ",",
+      ...options
+    };
+    validateArrayFormatSeparator(options.arrayFormatSeparator);
+    const shouldFilter = (key2) => options.skipNull && isNullOrUndefined(object2[key2]) || options.skipEmptyString && object2[key2] === "";
+    const formatter = encoderForArrayFormat(options);
+    const objectCopy = {};
+    for (const [key2, value] of Object.entries(object2)) {
+      if (!shouldFilter(key2)) {
+        objectCopy[key2] = value;
+      }
+    }
+    const keys2 = Object.keys(objectCopy);
+    if (options.sort !== false) {
+      keys2.sort(options.sort);
+    }
+    return keys2.map((key2) => {
+      let value = object2[key2];
+      if (options.replacer) {
+        value = options.replacer(key2, value);
+        if (value === void 0) {
+          return "";
+        }
+      }
+      if (value === void 0) {
+        return "";
+      }
+      if (value === null) {
+        return encode(key2, options);
+      }
+      if (Array.isArray(value)) {
+        if (value.length === 0 && options.arrayFormat === "bracket-separator") {
+          return encode(key2, options) + "[]";
+        }
+        let processedArray = value;
+        if (options.replacer) {
+          processedArray = value.map(
+            (item, index2) => options.replacer(`${key2}[${index2}]`, item)
+          ).filter((item) => item !== void 0);
+        }
+        return processedArray.reduce(formatter(key2), []).join("&");
+      }
+      return encode(key2, options) + "=" + encode(value, options);
+    }).filter((x2) => x2.length > 0).join("&");
+  }
+  function parseUrl(url, options) {
+    var _a2;
+    options = {
+      decode: true,
+      ...options
+    };
+    let [url_, hash2] = splitOnFirst(url, "#");
+    if (url_ === void 0) {
+      url_ = url;
+    }
+    return {
+      url: ((_a2 = url_ == null ? void 0 : url_.split("?")) == null ? void 0 : _a2[0]) ?? "",
+      query: parse(extract(url), options),
+      ...options && options.parseFragmentIdentifier && hash2 ? { fragmentIdentifier: decode(hash2, options) } : {}
+    };
+  }
+  function stringifyUrl(object2, options) {
+    options = {
+      encode: true,
+      strict: true,
+      [encodeFragmentIdentifier]: true,
+      ...options
+    };
+    const url = removeHash(object2.url).split("?")[0] || "";
+    const queryFromUrl = extract(object2.url);
+    const query = {
+      ...parse(queryFromUrl, { sort: false, ...options }),
+      ...object2.query
+    };
+    let queryString2 = stringify(query, options);
+    queryString2 && (queryString2 = `?${queryString2}`);
+    let hash2 = getHash(object2.url);
+    if (typeof object2.fragmentIdentifier === "string") {
+      const urlObjectForFragmentEncode = new URL(url);
+      urlObjectForFragmentEncode.hash = object2.fragmentIdentifier;
+      hash2 = options[encodeFragmentIdentifier] ? urlObjectForFragmentEncode.hash : `#${object2.fragmentIdentifier}`;
+    }
+    return `${url}${queryString2}${hash2}`;
+  }
+  function pick(input, filter2, options) {
+    options = {
+      parseFragmentIdentifier: true,
+      [encodeFragmentIdentifier]: false,
+      ...options
+    };
+    const { url, query, fragmentIdentifier } = parseUrl(input, options);
+    return stringifyUrl({
+      url,
+      query: includeKeys(query, filter2),
+      fragmentIdentifier
+    }, options);
+  }
+  function exclude(input, filter2, options) {
+    const exclusionFilter = Array.isArray(filter2) ? (key2) => !filter2.includes(key2) : (key2, value) => !filter2(key2, value);
+    return pick(input, exclusionFilter, options);
+  }
+  const queryString = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+    __proto__: null,
+    exclude,
+    extract,
+    parse,
+    parseUrl,
+    pick,
+    stringify,
+    stringifyUrl
+  }, Symbol.toStringTag, { value: "Module" }));
+  const ranks = ["family", "superfamily", "order", "subclass", "class", "superclass", "subphylum", "phylum"];
+  const Classification = ({ classification, maxParents = classification.length, truncate }) => {
     const clazzification = classification.slice(Math.max(classification.length - maxParents));
     if (truncate) {
       const classificationRankMap = classification.reduce((acc, curr) => (acc[curr.rank] = curr, acc), {});
@@ -94418,23 +92862,23 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       }
       if (kingdom && familyOrClosestAlternative) {
         return /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: () => navigateToTaxon(pathToTaxon, kingdom.id), children: kingdom.name }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: kingdom.id, children: kingdom.name }),
           familyOrClosestAlternative.rank === "phylum" ? " > " : " > ... > ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: () => navigateToTaxon(pathToTaxon, familyOrClosestAlternative.id), children: familyOrClosestAlternative.name })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: familyOrClosestAlternative.id, children: familyOrClosestAlternative.name })
         ] });
       } else if (kingdom) {
-        return /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: () => navigateToTaxon(pathToTaxon, kingdom.id), children: kingdom.name });
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: kingdom.id, children: kingdom.name });
       } else {
         return null;
       }
     } else {
       return clazzification.map((t2, key2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: () => navigateToTaxon(pathToTaxon, t2.id), children: t2.name }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: t2.id, children: t2.name }),
         !Object.is(clazzification.length - 1, key2) && " > "
       ] }, key2));
     }
   };
-  const Search$1 = Input.Search;
+  const Search$2 = Input.Search;
   class SearchBox extends React.Component {
     constructor(props) {
       super(props);
@@ -94455,7 +92899,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       });
       __publicField(this, "render", () => {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Search$1,
+          Search$2,
           {
             style: this.props.style || null,
             placeholder: "Search query",
@@ -94473,7 +92917,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       };
     }
   }
-  const FormItem$1 = Form$1.Item;
+  const FormItem$1 = Form.Item;
   const Option = Select.Option;
   const formItemLayout = {
     labelCol: {
@@ -94534,7 +92978,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       };
     }
   }
-  const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap, pathToTaxon }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+  const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
     _$1.get(usage, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { style: { marginBottom: "10px" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Col,
@@ -94566,8 +93010,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 18, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Classification,
         {
-          classification: _$1.initial(classification),
-          pathToTaxon
+          classification: _$1.initial(classification)
         }
       ) })
     ] }),
@@ -94656,7 +93099,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             style: style2 ? style2 : { width: "100%" },
             onChange: (value2) => this.setState({ value: value2 }),
             value,
-            optionLabelProp: "value",
             getPopupContainer: () => document.getElementById(`dataset_autocomplete_${randomID}`),
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input.Search, { allowClear: true })
           }
@@ -94673,7 +93115,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       this.getDatasets.cancel();
     }
   }
-  const FormItem = Form$1.Item;
+  const FormItem = Form.Item;
   const RadioGroup = Radio.Group;
   const FACET_VOCAB = [
     "rank",
@@ -94698,7 +93140,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     facetLimit: FACET_LIMIT,
     sortBy: "relevance"
   };
-  const getColumns$1 = (pathToTaxon) => [
+  const getColumns$1 = () => [
     {
       title: "",
       dataIndex: ["usage", "merged"],
@@ -94715,21 +93157,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       key: "scientificName",
       render: (text2, record) => {
         const id = _$1.get(record, "usage.accepted.id") || _$1.get(record, "usage.id");
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "a",
-          {
-            href: typeof pathToTaxon === "string" ? `${pathToTaxon}${id}` : "#",
-            onClick: (e2) => {
-              if (typeof pathToTaxon === "string") {
-                window.location.href = `${pathToTaxon}${id}`;
-              } else if (typeof pathToTaxon === "function") {
-                e2.preventDefault();
-                pathToTaxon(id);
-              }
-            },
-            dangerouslySetInnerHTML: { __html: text2 }
-          }
-        ) });
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: text2 } }) });
       },
       width: 200,
       sorter: true
@@ -94773,8 +93201,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           {
             classification: _$1.initial(record.classification),
             truncate: true,
-            datasetKey: _$1.get(record, "usage.name.datasetKey"),
-            pathToTaxon
+            datasetKey: _$1.get(record, "usage.name.datasetKey")
           },
           _$1.get(record, "usage.id")
         );
@@ -94786,10 +93213,13 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       super(props);
       __publicField(this, "componentDidMount", async () => {
         this.parseParamsAndGetData();
-        const { datasetKey, citation } = this.props;
+        const { datasetKey } = this.props;
         try {
-          const { data: dataset } = await getDataset(datasetKey);
-          this.setState({ dataset });
+          const { data: dataset } = await getDatasetSimple(datasetKey);
+          this.setState({
+            dataset,
+            datasetOrigin: ((dataset == null ? void 0 : dataset.origin) || "").toLowerCase()
+          });
         } catch (err) {
         }
         try {
@@ -94799,9 +93229,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         }
       });
       __publicField(this, "componentDidUpdate", (prevProps) => {
-        const params = queryString.parse(_$1.get(this.props, "location.search"));
-        const prevParams = queryString.parse(_$1.get(prevProps, "location.search"));
-        if (!_$1.isEqual(params, prevParams)) {
+        if (!_$1.isEqual(prevProps.filters, this.props.filters)) {
           this.parseParamsAndGetData();
         }
       });
@@ -94811,8 +93239,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         );
       });
       __publicField(this, "parseParamsAndGetData", () => {
-        const { defaultTaxonKey } = this.props;
-        let params = queryString.parse(_$1.get(this.props, "location.search"));
+        const { defaultTaxonKey, filters } = this.props;
+        let params = { ...filters || {} };
         if (defaultTaxonKey && !params.TAXON_ID) {
           params.TAXON_ID = defaultTaxonKey;
         }
@@ -94846,13 +93274,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         );
       });
       __publicField(this, "pushParams", (params) => {
-        if (!params.q) {
-          delete params.q;
-        }
-        history.push({
-          pathname: _$1.get(this.props, "location.path"),
-          search: `?${queryString.stringify(params)}`
-        });
+        const next2 = { ...params };
+        if (!next2.q) delete next2.q;
+        if (this.props.onFiltersChange) this.props.onFiltersChange(next2);
       });
       __publicField(this, "getData", () => {
         const { params } = this.state;
@@ -94923,7 +93347,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       this.state = {
         data: [],
         advancedFilters: false,
-        columns: getColumns$1(this.props.pathToTaxon),
+        columns: getColumns$1(),
         params: {},
         taxGroups: [],
         pagination: {
@@ -94948,7 +93372,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         dataset,
         taxGroups
       } = this.state;
-      const { pathToTaxon, datasetKey, defaultTaxonKey, citation } = this.props;
+      const { datasetKey, defaultTaxonKey, citation } = this.props;
       const facetRanks = _$1.get(facets, "rank") ? facets.rank.map((r2) => ({
         value: r2.value,
         label: `${_$1.startCase(r2.value)} (${r2.count.toLocaleString("en-GB")})`
@@ -95022,10 +93446,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   SearchBox,
                   {
-                    defaultValue: _$1.get(
-                      queryString.parse(_$1.get(this.props, "location.search")),
-                      "q"
-                    ),
+                    defaultValue: _$1.get(this.props.filters || {}, "q"),
                     onSearch: (value) => this.updateSearch({ q: value }),
                     onResetSearch: (value) => this.updateSearch({ q: null }),
                     style: { marginBottom: "8px", width: "100%" }
@@ -95048,7 +93469,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                     autoFocus: false
                   }
                 ),
-                dataset && dataset.origin === "xrelease" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "8px", marginBottom: "8px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                (this.state.datasetOrigin === "xrelease" || this.state.datasetOrigin === "release") && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "8px", marginBottom: "8px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                   DatasetAutocomplete,
                   {
                     contributesTo: Number(datasetKey),
@@ -95064,7 +93485,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                   }
                 ) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: "10px" }, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1, { layout: "inline", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Matching", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form, { layout: "inline", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Matching", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     RadioGroup,
                     {
                       size: "small",
@@ -95081,8 +93502,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                       ]
                     }
                   ) }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "inline", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Form, { layout: "inline", children: [
+                    (this.state.datasetOrigin === "xrelease" || this.state.datasetOrigin === "project") && /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                       RadioGroup,
                       {
                         style: { marginLeft: "8px" },
@@ -95219,7 +93640,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                     children: [
                       "Advanced",
                       " ",
-                      this.state.advancedFilters ? /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$m, {}) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$q, {})
+                      this.state.advancedFilters ? /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$l, {}) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$p, {})
                     ]
                   }
                 ) })
@@ -95245,8 +93666,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                   RowDetail,
                   {
                     ...record,
-                    datasetKey,
-                    pathToTaxon
+                    datasetKey
                   }
                 )
               }
@@ -95257,25 +93677,88 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       );
     }
   }
-  const NameSearch = withRouter(NameSearchPage);
-  const search = ({ datasetKey, pathToTaxon, defaultTaxonKey, citation, auth }) => {
+  function Search$1({
+    datasetKey,
+    filters,
+    onFiltersChange,
+    defaultTaxonKey,
+    citation,
+    auth,
+    ...routerProps
+  }) {
     if (auth) {
       axios.defaults.headers.common["Authorization"] = `Basic ${btoa$1(auth)}`;
     }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(HistoryRouter, { history, children: /* @__PURE__ */ jsxRuntimeExports.jsx(NameSearch, { datasetKey, pathToTaxon, defaultTaxonKey, citation }) });
-  };
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      NameSearchPage,
+      {
+        datasetKey,
+        filters,
+        onFiltersChange,
+        defaultTaxonKey,
+        citation
+      }
+    ) });
+  }
   const getLivingTaxa = (metrics, rank) => (_$1.get(metrics, `taxaByRankCount.${rank}`) || 0) - (_$1.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
   const getExtinctTaxa = (metrics, rank) => _$1.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
-  const getSearchParam$1 = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.key}` : `SECTOR_PUBLISHER_KEY=${dataset.id}`;
-  const MetricsPresentation = ({ metrics, rank, style: style2, dataset, pathToSearch }) => metrics && rank ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
+  const baseFilters$1 = (dataset) => {
+    const f = dataset.key ? { SECTOR_DATASET_KEY: dataset.key } : { SECTOR_PUBLISHER_KEY: dataset.id };
+    if (_$1.isArray(dataset.sectorModes)) f.sectorMode = dataset.sectorModes;
+    return f;
+  };
+  const MetricsPresentation = ({ metrics, rank, style: style2, dataset }) => metrics && rank ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `Living species`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=species&extinct=false&extinct=_NULL${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`, children: getLivingTaxa(metrics, "species").toLocaleString("en-GB") }) : getLivingTaxa(metrics, "species").toLocaleString("en-GB") }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `Extinct species`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=species&extinct=true${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`, children: getExtinctTaxa(metrics, "species").toLocaleString("en-GB") }) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB") })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Living species", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        LinkTo,
+        {
+          to: "search",
+          args: {
+            ...baseFilters$1(dataset),
+            rank: "species",
+            extinct: ["false", "_NULL"]
+          },
+          children: getLivingTaxa(metrics, "species").toLocaleString("en-GB")
+        }
+      ) : getLivingTaxa(metrics, "species").toLocaleString("en-GB") }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Extinct species", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        LinkTo,
+        {
+          to: "search",
+          args: {
+            ...baseFilters$1(dataset),
+            rank: "species",
+            extinct: "true"
+          },
+          children: getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
+        }
+      ) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB") })
     ] }),
-    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).sort((a, b2) => rank.indexOf(b2) - rank.indexOf(a)).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `${_$1.startCase(k)}`, children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&rank=${k}&status=accepted&status=provisionally%20accepted${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`, children: metrics.taxaByRankCount[k].toLocaleString("en-GB") }) : metrics.taxaByRankCount[k].toLocaleString("en-GB") }, k)),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Synonyms", children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}&status=misapplied&status=synonym&status=ambiguous%20synonym${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`, children: (metrics.synonymCount || 0).toLocaleString("en-GB") }) : (metrics.synonymCount || 0).toLocaleString("en-GB") }, "Synonyms"),
+    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).sort((a, b2) => rank.indexOf(b2) - rank.indexOf(a)).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `${_$1.startCase(k)}`, children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      LinkTo,
+      {
+        to: "search",
+        args: {
+          ...baseFilters$1(dataset),
+          rank: k,
+          status: ["accepted", "provisionally accepted"]
+        },
+        children: metrics.taxaByRankCount[k].toLocaleString("en-GB")
+      }
+    ) : metrics.taxaByRankCount[k].toLocaleString("en-GB") }, k)),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Synonyms", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      LinkTo,
+      {
+        to: "search",
+        args: {
+          ...baseFilters$1(dataset),
+          status: ["misapplied", "synonym", "ambiguous synonym"]
+        },
+        children: (metrics.synonymCount || 0).toLocaleString("en-GB")
+      }
+    ) : (metrics.synonymCount || 0).toLocaleString("en-GB") }, "Synonyms"),
     /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Common names", children: (metrics.vernacularCount || 0).toLocaleString("en-GB") }, "vernaculars"),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Total number of names", children: dataset && pathToSearch ? /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToSearch}?${getSearchParam$1(dataset)}${_$1.isArray(dataset.sectorModes) ? dataset.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`, children: (metrics.nameCount || 0).toLocaleString("en-GB") }) : (metrics.nameCount || 0).toLocaleString("en-GB") }, "names")
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Total number of names", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "search", args: baseFilters$1(dataset), children: (metrics.nameCount || 0).toLocaleString("en-GB") }) : (metrics.nameCount || 0).toLocaleString("en-GB") }, "names")
   ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } }) });
   class Metrics extends React.Component {
     constructor(props) {
@@ -95293,7 +93776,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
         );
       });
-      __publicField(this, "render", () => /* @__PURE__ */ jsxRuntimeExports.jsx(MetricsPresentation, { ...this.state, dataset: this.props.dataset, pathToSearch: this.props.pathToSearch }));
+      __publicField(this, "render", () => /* @__PURE__ */ jsxRuntimeExports.jsx(MetricsPresentation, { ...this.state, dataset: this.props.dataset }));
       this.state = {
         metrics: null,
         rank: null,
@@ -95345,7 +93828,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       });
       __publicField(this, "render", () => {
         const { taxonMap } = this.state;
-        const { style: style2, pathToTree } = this.props;
+        const { style: style2 } = this.props;
         return taxonMap ? Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort((a, b2) => a.length - b2.length).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
             k,
@@ -95353,9 +93836,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           ] }),
           " ",
           taxonMap[k].map((tx, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: `${pathToTree}?taxonKey=${tx.id}`, onClick: () => {
-              window.location.href = `${pathToTree}?taxonKey=${tx.id}`;
-            }, children: tx.name }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "tree", args: { taxonKey: tx.id }, children: tx.name }),
             idx !== taxonMap[k].length - 1 ? ", " : ""
           ] }, idx))
         ] }, k)) : "N/A" : /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } });
@@ -96635,7 +95116,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     plazi: "http://publication.plazi.org/id/",
     doi: "https://doi.org/"
   };
-  class DatasetPage extends React.Component {
+  class SourceDatasetPage extends React.Component {
     constructor(props) {
       super(props);
       __publicField(this, "componentDidMount", () => {
@@ -96649,10 +95130,8 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         });
       });
       __publicField(this, "getData", () => {
-        const { datasetKey, pageTitleTemplate } = this.props;
-        const { location: path } = history;
-        const pathParts = path.pathname.split("/");
-        const sourceDatasetKey = pathParts[pathParts.length - 1];
+        const { datasetKey, sourceDatasetKey, pageTitleTemplate } = this.props;
+        if (!sourceDatasetKey) return;
         axios(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`).then((dataset) => {
           if (pageTitleTemplate && _$1.get(dataset, "data.title")) {
             document.title = pageTitleTemplate.replace(
@@ -96680,8 +95159,13 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         countryAlpha2: {}
       };
     }
+    componentDidUpdate(prevProps) {
+      if (prevProps.sourceDatasetKey !== this.props.sourceDatasetKey || prevProps.datasetKey !== this.props.datasetKey) {
+        this.getData();
+      }
+    }
     render() {
-      const { pathToTree, datasetKey } = this.props;
+      const { datasetKey } = this.props;
       const { data, countryAlpha2, datasetError } = this.state;
       return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -96817,16 +95301,14 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
                 TaxonomicCoverage,
                 {
                   dataset: data,
-                  datasetKey,
-                  pathToTree
+                  datasetKey
                 }
               ) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Metrics,
                 {
                   datasetKey,
-                  dataset: data,
-                  pathToSearch: this.props.pathToSearch
+                  dataset: data
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Abstract", children: data.description ? /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -96903,9 +95385,30 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       ) });
     }
   }
+  function SourceDataset$1({
+    sourceDatasetKey,
+    datasetKey,
+    pageTitleTemplate,
+    auth,
+    ...routerProps
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      SourceDatasetPage,
+      {
+        sourceDatasetKey,
+        datasetKey,
+        pageTitleTemplate,
+        auth
+      }
+    ) });
+  }
+  const baseFilters = (record) => {
+    const f = record.key ? { SECTOR_DATASET_KEY: record.key } : { SECTOR_PUBLISHER_KEY: record.id };
+    if (_$1.isArray(record.sectorModes)) f.sectorMode = record.sectorModes;
+    return f;
+  };
   const getLivingSpecies = (record, rank) => _$1.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
-  const getSearchParam = (dataset) => dataset.key ? `SECTOR_DATASET_KEY=${dataset.key}` : `SECTOR_PUBLISHER_KEY=${dataset.id}`;
-  const getColumns = (pathToDataset, datasetKey, auth, hasPublishers, pathToSearch) => [
+  const getColumns = (datasetKey, auth, hasPublishers) => [
     {
       title: "Title",
       dataIndex: ["alias"],
@@ -96932,16 +95435,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
             " ",
             !!(record == null ? void 0 : record.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { style: { marginLeft: "0px" } }),
             " ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
-              {
-                href: `${pathToDataset}${record.key}`,
-                onClick: () => {
-                  window.location.href = `${pathToDataset}${record.key}`;
-                },
-                children: record.alias || record.title
-              }
-            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: record.key, children: record.alias || record.title }),
             !!(record == null ? void 0 : record.taxonomicScope) && /* @__PURE__ */ jsxRuntimeExports.jsx("br", {})
           ] }),
           !!(record == null ? void 0 : record.taxonomicScope) && (record == null ? void 0 : record.taxonomicScope)
@@ -96996,11 +95490,14 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       dataIndex: ["metrics", "taxaByRankCount", "family"],
       key: "species",
       render: (text2, record) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "a",
+        LinkTo,
         {
-          href: `${pathToSearch}?${getSearchParam(
-            record
-          )}&rank=family&status=accepted&status=provisionally%20accepted${_$1.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`,
+          to: "search",
+          args: {
+            ...baseFilters(record),
+            rank: "family",
+            status: ["accepted", "provisionally accepted"]
+          },
           children: getLivingSpecies(record, "family").toLocaleString("en-GB")
         }
       ),
@@ -97019,11 +95516,14 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       dataIndex: ["metrics", "taxaByRankCount", "genus"],
       key: "species",
       render: (text2, record) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "a",
+        LinkTo,
         {
-          href: `${pathToSearch}?${getSearchParam(
-            record
-          )}&rank=genus&status=accepted&status=provisionally%20accepted${_$1.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`,
+          to: "search",
+          args: {
+            ...baseFilters(record),
+            rank: "genus",
+            status: ["accepted", "provisionally accepted"]
+          },
           children: getLivingSpecies(record, "genus").toLocaleString("en-GB")
         }
       ),
@@ -97042,18 +95542,21 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       dataIndex: ["metrics", "taxaByRankCount", "species"],
       key: "species",
       render: (text2, record) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "a",
+        LinkTo,
         {
-          href: `${pathToSearch}?${getSearchParam(
-            record
-          )}&rank=species&status=accepted&status=provisionally%20accepted${_$1.isArray(record.sectorModes) ? "&" + record.sectorModes.map((m2) => `&sectorMode=${m2}`).join("") : ""}`,
+          to: "search",
+          args: {
+            ...baseFilters(record),
+            rank: "species",
+            status: ["accepted", "provisionally accepted"]
+          },
           children: getLivingSpecies(record).toLocaleString("en-GB")
         }
       ),
       sorter: (a, b2) => getLivingSpecies(a) - getLivingSpecies(b2)
     }
   ].filter((clm) => !hasPublishers ? clm.key !== "datasets" : true);
-  class DatasetSearchPage extends React.Component {
+  class SourceDatasetListPage extends React.Component {
     constructor(props) {
       super(props);
       __publicField(this, "componentDidMount", () => {
@@ -97180,7 +95683,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     }
     render() {
       const { data, loading, rank, hasPublishers, error } = this.state;
-      const { pathToDataset, pathToSearch, datasetKey } = this.props;
+      const { datasetKey } = this.props;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
@@ -97232,13 +95735,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
               ForwardTable,
               {
                 size: "small",
-                columns: getColumns(
-                  pathToDataset,
-                  datasetKey,
-                  this.props.auth,
-                  hasPublishers,
-                  pathToSearch
-                ),
+                columns: getColumns(datasetKey, this.props.auth, hasPublishers),
                 dataSource: data.filter((d2) => {
                   var _a2, _b2, _c;
                   if (!this.state.showMerged && ((d2 == null ? void 0 : d2.merged) || !!(d2 == null ? void 0 : d2.id))) {
@@ -97273,7 +95770,6 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
                     {
                       metrics: dataset.metrics,
                       dataset,
-                      pathToSearch: this.props.pathToSearch,
                       rank
                     }
                   ),
@@ -97295,64 +95791,116 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       );
     }
   }
-  const BreakDownWrapper = ({ taxonId, datasetKey, pathToTaxon }) => {
+  function SourceDatasetList$1({
+    datasetKey,
+    auth,
+    ...routerProps
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(SourceDatasetListPage, { datasetKey, auth }) });
+  }
+  const BreakDownWrapper = ({
+    taxonId,
+    datasetKey,
+    level = 1,
+    showLevelSwitch = false,
+    darkMode,
+    ...routerProps
+  }) => {
     const [taxon, setTaxon] = React.useState(null);
     const [dataset, setDataset] = React.useState(null);
     const [rank, setRank] = React.useState([]);
     React.useEffect(() => {
-      getRank();
-      if (taxonId && datasetKey) {
-        getTaxon();
-      }
+      if (taxonId && datasetKey) getTaxon();
       if (datasetKey) {
         getDataset2();
+        getRank();
       }
     }, [taxonId, datasetKey]);
-    const getRank = () => {
-      axios(`${config.dataApi}vocab/rank`).then(
-        (res) => setRank(res.data.map((r2) => r2.name))
-      );
-    };
-    const getTaxon = () => {
-      axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonId}`).then(
-        (res) => {
-          const taxon2 = res.data;
-          setTaxon(taxon2);
-        }
-      );
-    };
-    const getDataset2 = () => {
-      axios(`${config.dataApi}dataset/${datasetKey}`).then((res) => {
-        const dataset2 = res.data;
-        setDataset(dataset2);
-      });
-    };
-    return !!taxon && !!dataset && rank.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+    const getRank = () => axios(`${config.dataApi}vocab/rank`).then(
+      (res) => setRank(res.data.map((r2) => r2.name))
+    );
+    const getTaxon = () => axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonId}`).then(
+      (res) => setTaxon(res.data)
+    );
+    const getDataset2 = () => axios(`${config.dataApi}dataset/${datasetKey}`).then(
+      (res) => setDataset(res.data)
+    );
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: !!taxon && !!dataset && rank.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
       TaxonBreakdown$1,
       {
         taxon,
         datasetKey,
         rank,
-        pathToTaxon,
-        dataset
+        dataset,
+        level,
+        showLevelSwitch,
+        darkMode
       }
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { justify: "center", style: { padding: "24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "large" }) }) });
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { justify: "center", style: { padding: "24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "large" }) }) }) });
   };
-  const Tree = withDatasetKey(ColTreeWrapper);
-  const Taxon = withDatasetKey(TaxonPage);
-  const Search = withDatasetKey(search);
-  const Dataset = withDatasetKey(DatasetPage);
-  const DatasetSearch = withDatasetKey(DatasetSearchPage);
-  const BibTex = withBibTexLegacyShim(BibTex$1);
-  const TaxonBreakdown = BreakDownWrapper;
+  const DistributionsWrapper = ({
+    taxonId,
+    datasetKey,
+    gbifChecklistKey,
+    style: style2,
+    ...routerProps
+  }) => {
+    const [taxon, setTaxon] = React.useState(null);
+    const [distributions, setDistributions] = React.useState(null);
+    const [rank, setRank] = React.useState([]);
+    React.useEffect(() => {
+      let cancelled = false;
+      setTaxon(null);
+      setDistributions(null);
+      if (!taxonId || !datasetKey) return void 0;
+      axios(`${config.dataApi}vocab/rank`).then((res) => {
+        if (!cancelled) setRank(res.data.map((r2) => r2.name));
+      });
+      axios(
+        `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}`
+      ).then((res) => {
+        if (!cancelled) setTaxon(res.data);
+      });
+      axios(
+        `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}/info`
+      ).then((res) => {
+        var _a2;
+        if (!cancelled) setDistributions(((_a2 = res == null ? void 0 : res.data) == null ? void 0 : _a2.distributions) || []);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, [taxonId, datasetKey]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: !taxon || distributions === null || rank.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { justify: "center", style: { padding: "24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin, { size: "large" }) }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DistributionsTable,
+      {
+        data: distributions,
+        datasetKey,
+        focalTaxon: taxon,
+        rankOrder: rank,
+        gbifChecklistKey,
+        showDistributionMap: true,
+        style: style2
+      }
+    ) });
+  };
+  const Tree = withTheme(withDatasetKey(Tree$1));
+  const Taxon = withTheme(withDatasetKey(Taxon$1));
+  const Search = withTheme(withDatasetKey(Search$1));
+  const SourceDataset = withTheme(withDatasetKey(SourceDataset$1));
+  const SourceDatasetList = withTheme(withDatasetKey(SourceDatasetList$1));
+  const BibTex = withTheme(withBibTexLegacyShim(BibTex$1));
+  const TaxonBreakdown = withTheme(BreakDownWrapper);
+  const TaxonDistribution = withTheme(DistributionsWrapper);
   const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     BibTex,
-    Dataset,
-    DatasetSearch,
     Search,
+    SourceDataset,
+    SourceDatasetList,
     Taxon,
     TaxonBreakdown,
+    TaxonDistribution,
     Tree
   }, Symbol.toStringTag, { value: "Module" }));
   return components;
