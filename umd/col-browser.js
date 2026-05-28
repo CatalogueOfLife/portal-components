@@ -96380,8 +96380,15 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     const url = `${prefix2}${arg}${tail}`;
     return isHash(mode) ? `#${url}` : url;
   };
-  const navigate = (mode, prefix2, args) => {
+  const navigate = (mode, navigation2, prefix2, args) => {
     if (!prefix2) return;
+    if (navigation2 === "reload") {
+      const url = hrefFor(mode, prefix2, args);
+      if (url != null && typeof window !== "undefined") {
+        window.location.assign(url);
+      }
+      return;
+    }
     let path = prefix2;
     let search = null;
     if (typeof args === "string" || typeof args === "number") {
@@ -96391,15 +96398,15 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     }
     writeLocation(mode, path, search);
   };
-  const buildNavProps = (mode, paths) => ({
+  const buildNavProps = (mode, navigation2, paths) => ({
     hrefForTaxon: (id) => hrefFor(mode, paths.taxon, id),
     hrefForTree: (a) => hrefFor(mode, paths.tree, a),
     hrefForSearch: (a) => hrefFor(mode, paths.search, a),
     hrefForSource: (id) => hrefFor(mode, paths.source, id),
-    onNavigateToTaxon: (id) => navigate(mode, paths.taxon, id),
-    onNavigateToTree: (a) => navigate(mode, paths.tree, a),
-    onNavigateToSearch: (a) => navigate(mode, paths.search, a),
-    onNavigateToSource: (id) => navigate(mode, paths.source, id)
+    onNavigateToTaxon: (id) => navigate(mode, navigation2, paths.taxon, id),
+    onNavigateToTree: (a) => navigate(mode, navigation2, paths.tree, a),
+    onNavigateToSearch: (a) => navigate(mode, navigation2, paths.search, a),
+    onNavigateToSource: (id) => navigate(mode, navigation2, paths.source, id)
   });
   const lastSegmentAfter = (path, prefix2) => {
     if (!prefix2) return void 0;
@@ -96411,12 +96418,12 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     return path.slice(prefix2.length).split("/").filter(Boolean).pop();
   };
   function withRouting(Component, options) {
-    const { kind, mode = "path", paths = {} } = options;
+    const { kind, mode = "path", navigation: navigation2 = "spa", paths = {} } = options;
     const Wrapped = (props) => {
       const [tick, setTick] = reactExports.useState(0);
       reactExports.useEffect(() => subscribe(mode, () => setTick((t2) => t2 + 1)), []);
       const { path, search } = readLocationKind(mode);
-      const navProps = reactExports.useMemo(() => buildNavProps(mode, paths), []);
+      const navProps = reactExports.useMemo(() => buildNavProps(mode, navigation2, paths), []);
       let extra = {};
       if (kind === "taxon") {
         extra.taxonKey = lastSegmentAfter(path, paths.taxon);
