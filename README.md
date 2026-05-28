@@ -95,6 +95,7 @@ The 2.x components are fully controlled: they take their identifier (e.g. `taxon
   const URLTaxon = ColBrowser.withRouting(ColBrowser.Taxon, {
     kind: 'taxon',
     mode: 'path', // or 'hash' — see the GitHub Pages demo
+    navigation: 'reload', // static portal; use 'spa' (the default) for SPA hosts — see below
     paths: {
       taxon:  '/taxon/',   // /taxon/{taxonKey}
       tree:   '/tree',     // /tree?taxonKey={…}
@@ -115,6 +116,7 @@ import { Taxon, withRouting } from 'col-browser';
 const URLTaxon = withRouting(Taxon, {
   kind: 'taxon',
   mode: 'path',
+  navigation: 'reload',
   paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
 });
 
@@ -122,6 +124,28 @@ const URLTaxon = withRouting(Taxon, {
 ```
 
 One wrapper per top-level component. The `mode` controls whether identifiers are read from `location.pathname` (`"path"`) or from `location.hash` (`"hash"`). The `paths` map gives each navigation target a prefix; the adapter appends the identifier when navigating (e.g. `/taxon/` + `6W3C4` → `/taxon/6W3C4`).
+
+#### `navigation: 'spa'` vs `navigation: 'reload'`
+
+A third option controls what the four `onNavigateToX` callbacks do when an in-component action triggers cross-page navigation:
+
+- `navigation: 'spa'` (default) — calls `history.pushState`. The URL changes but the page is not reloaded; an SPA host re-renders in response. Right for react-router, Next.js, TanStack Router, Redux-driven hosts.
+- `navigation: 'reload'` — calls `window.location.assign(url)`, forcing the browser to load the target page. Right for **static / multi-page hosts**: a Jekyll site, the GitHub Pages demo, any plain-HTML embedder where each `/taxon/<id>` is a separate page.
+
+If you're embedding into a static portal, use `navigation: 'reload'`. Otherwise links that don't have an `<a href>` fallback (most visible: Highcharts pie segments in `TaxonBreakdown`) will update the URL without loading the new page, leaving the user stuck on the current one.
+
+```js
+ColBrowser.withRouting(ColBrowser.Taxon, {
+  kind: 'taxon',
+  mode: 'path',
+  navigation: 'reload',   // ← static / multi-page hosts
+  paths: { taxon: '/data/taxon/', tree: '/data/browse', search: '/data/search', source: '/data/dataset/' },
+});
+```
+
+The in-component state callbacks (`onExpandedTaxonKeyChange` on Tree, `onFiltersChange` on Search) always use `pushState` regardless of `navigation` — those represent local state within a single component (tree expansion, filter typing) and reloading the page on each change would be disruptive.
+
+`navigation: 'reload'` is only meaningful with `mode: 'path'`. With `mode: 'hash'`, hash changes never reload the page by definition, so `'reload'` and `'spa'` behave identically.
 
 Available kinds and what each one wires up:
 
@@ -215,6 +239,7 @@ With the URL adapter:
 const URLTree = ColBrowser.withRouting(ColBrowser.Tree, {
   kind: 'tree',
   mode: 'path',
+  navigation: 'reload', // static portal; use 'spa' (the default) for SPA hosts
   paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
 });
 
@@ -258,6 +283,7 @@ With the URL adapter:
 const URLSearch = ColBrowser.withRouting(ColBrowser.Search, {
   kind: 'search',
   mode: 'path',
+  navigation: 'reload',
   paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
 });
 
@@ -327,6 +353,7 @@ With the URL adapter:
 const URLTaxon = ColBrowser.withRouting(ColBrowser.Taxon, {
   kind: 'taxon',
   mode: 'path',
+  navigation: 'reload',
   paths: { taxon: '/taxon/', tree: '/tree', search: '/search', source: '/source/' },
 });
 
@@ -372,6 +399,7 @@ With the URL adapter:
 const URLBreakdown = ColBrowser.withRouting(ColBrowser.TaxonBreakdown, {
   kind: 'taxonBreakdown',
   mode: 'path',
+  navigation: 'reload',
   paths: { taxonBreakdown: '/breakdown/', taxon: '/taxon/' },
 });
 
@@ -423,6 +451,7 @@ With the URL adapter:
 const URLDistribution = ColBrowser.withRouting(ColBrowser.TaxonDistribution, {
   kind: 'taxonDistribution',
   mode: 'path',
+  navigation: 'reload',
   paths: { taxonDistribution: '/distribution/', source: '/source/' },
 });
 
@@ -465,6 +494,7 @@ With the URL adapter:
 const URLSourceList = ColBrowser.withRouting(ColBrowser.SourceDatasetList, {
   kind: 'sourceList',
   mode: 'path',
+  navigation: 'reload',
   paths: { search: '/search', source: '/source/' },
 });
 
@@ -508,6 +538,7 @@ With the URL adapter:
 const URLSourceDataset = ColBrowser.withRouting(ColBrowser.SourceDataset, {
   kind: 'source',
   mode: 'path',
+  navigation: 'reload',
   paths: { source: '/source/', tree: '/tree', search: '/search' },
 });
 
@@ -550,6 +581,7 @@ With the URL adapter:
 const URLBibTex = ColBrowser.withRouting(ColBrowser.BibTex, {
   kind: 'bibtex',
   mode: 'path',
+  navigation: 'reload',
   paths: { bibtex: '/bibtex/' },
 });
 

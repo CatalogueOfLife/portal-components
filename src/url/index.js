@@ -4,16 +4,32 @@ import qs from "query-string";
 // withRouting(Component, options): adapts a controlled col-browser
 // component to read/write the host page's URL.
 //
-//   options.kind  — one of "taxon" | "tree" | "source" | "sourceList" | "search"
-//   options.mode  — "path" (recommended for the COL portal) or "hash"
-//                   (used by the GitHub Pages demo)
-//   options.paths — prefix strings for the four navigation targets, e.g.
-//                   { taxon: "/taxon/", tree: "/tree", search: "/search",
-//                     source: "/source/" }. For hash mode, the prefixes are
-//                     applied to window.location.hash (without the leading
-//                     #). Both modes use plain pathnames; query strings are
-//                     only used for `expandedTaxonKey` (Tree) and `filters`
-//                     (Search).
+//   options.kind        — one of "taxon" | "tree" | "source" | "sourceList" |
+//                         "search" | "taxonBreakdown" | "taxonDistribution" |
+//                         "bibtex"
+//   options.mode        — "path" (recommended for the COL portal) or "hash"
+//                         (used by the GitHub Pages demo)
+//   options.navigation  — "spa" (default) or "reload". Controls what the four
+//                         onNavigateToX callbacks do when an in-component
+//                         action triggers cross-page navigation (e.g. a
+//                         Highcharts pie segment click with no <a href>
+//                         fallback). "spa" uses history.pushState — right
+//                         for SPA hosts (react-router, Next.js, TanStack
+//                         Router). "reload" calls window.location.assign,
+//                         forcing the browser to load the target page —
+//                         right for static / multi-page hosts (a Jekyll
+//                         portal, the GitHub Pages demo, any plain HTML).
+//                         The in-component state callbacks
+//                         (onExpandedTaxonKeyChange, onFiltersChange) always
+//                         use pushState so they don't reload the page while
+//                         the user is interacting with a single component.
+//   options.paths       — prefix strings for the four navigation targets, e.g.
+//                         { taxon: "/taxon/", tree: "/tree", search: "/search",
+//                         source: "/source/" }. For hash mode, the prefixes
+//                         are applied to window.location.hash (without the
+//                         leading #). Both modes use plain pathnames; query
+//                         strings are only used for `expandedTaxonKey` (Tree)
+//                         and `filters` (Search).
 //
 // All wrappers provide the four hrefForX + onNavigateToX pairs, derived
 // from `paths` and the active routing mode. Kind-specific wrappers also
@@ -70,8 +86,19 @@ const hrefFor = (mode, prefix, args) => {
   return isHash(mode) ? `#${url}` : url;
 };
 
-const navigate = (mode, prefix, args) => {
+const navigate = (mode, navigation, prefix, args) => {
   if (!prefix) return;
+  if (navigation === "reload") {
+    // Force a real browser navigation. hrefFor builds the same URL the
+    // adapter would render in href= attributes, so the imperative and
+    // anchor paths land on identical URLs.
+    const url = hrefFor(mode, prefix, args);
+    if (url != null && typeof window !== "undefined") {
+      window.location.assign(url);
+    }
+    return;
+  }
+  // Default "spa" behaviour: pushState + popstate so an SPA host re-renders.
   let path = prefix;
   let search = null;
   if (typeof args === "string" || typeof args === "number") {
@@ -82,16 +109,16 @@ const navigate = (mode, prefix, args) => {
   writeLocation(mode, path, search);
 };
 
-const buildNavProps = (mode, paths) => ({
+const buildNavProps = (mode, navigation, paths) => ({
   hrefForTaxon:  (id) => hrefFor(mode, paths.taxon, id),
   hrefForTree:   (a)  => hrefFor(mode, paths.tree, a),
   hrefForSearch: (a)  => hrefFor(mode, paths.search, a),
   hrefForSource: (id) => hrefFor(mode, paths.source, id),
 
-  onNavigateToTaxon:  (id) => navigate(mode, paths.taxon, id),
-  onNavigateToTree:   (a)  => navigate(mode, paths.tree, a),
-  onNavigateToSearch: (a)  => navigate(mode, paths.search, a),
-  onNavigateToSource: (id) => navigate(mode, paths.source, id),
+  onNavigateToTaxon:  (id) => navigate(mode, navigation, paths.taxon, id),
+  onNavigateToTree:   (a)  => navigate(mode, navigation, paths.tree, a),
+  onNavigateToSearch: (a)  => navigate(mode, navigation, paths.search, a),
+  onNavigateToSource: (id) => navigate(mode, navigation, paths.source, id),
 });
 
 // Extract the last path segment after a prefix, ignoring trailing slash.
@@ -108,7 +135,7 @@ const lastSegmentAfter = (path, prefix) => {
 };
 
 export function withRouting(Component, options) {
-  const { kind, mode = "path", paths = {} } = options;
+  const { kind, mode = "path", navigation = "spa", paths = {} } = options;
 
   const Wrapped = (props) => {
     const [tick, setTick] = useState(0);
@@ -116,7 +143,7 @@ export function withRouting(Component, options) {
 
     const { path, search } = readLocationKind(mode);
 
-    const navProps = useMemo(() => buildNavProps(mode, paths), []);
+    const navProps = useMemo(() => buildNavProps(mode, navigation, paths), []);
 
     // Controlled identifier per kind.
     let extra = {};
