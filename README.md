@@ -35,7 +35,7 @@ All components are in use on the [main Catalogue of Life portal](https://www.cat
 
 ## Usage
 
-> The documentation below describes the **2.x** API. For the 1.x API (React 16 / antd 4 era), see the [README on the `v1` branch](https://github.com/CatalogueOfLife/portal-components/blob/v1/README.md). If you're moving from 1.x to 2.x, jump to [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20) first.
+> The documentation below describes the **2.x** version. For the 1.x version (React 16 / antd 4 era), see the [README on the `v1` branch](https://github.com/CatalogueOfLife/portal-components/blob/v1/README.md). If you're moving from 1.x to 2.x, jump to [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20) first.
 
 These components can be included in any html page.
 Include dependencies, React and React Dom:
