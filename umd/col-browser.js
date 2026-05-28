@@ -74763,7 +74763,6 @@ html body {
         return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, id: `taxon_sources_${taxon.id}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Popover,
           {
-            arrow: false,
             getPopupContainer: () => document.getElementById(`taxon_sources_${taxon.id}`),
             content: loading || data.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
@@ -75035,13 +75034,14 @@ html body {
         const sectorSourceDataset = _$1.get(sector, "dataset");
         const hasDatasetSectors = (sourceDatasetKeys || []).filter((d2) => (sector == null ? void 0 : sector.subjectDatasetKey) !== d2).length > 0;
         taxon.estimate && taxon.estimates ? taxon.estimates.find((e2) => e2.estimate === taxon.estimate) : null;
+        const isPlaceholder = typeof taxon.id === "string" && taxon.id.indexOf("incertae-sedis") > -1;
         return /* @__PURE__ */ jsxRuntimeExports.jsx(ColTreeContext.Consumer, { children: ({ showInfo }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { id: taxon.id, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "tree-node-rank", children: [
               taxon.rank,
               ": "
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: taxon.id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: taxon.labelHtml } }) }),
+            isPlaceholder ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: taxon.labelHtml } }) : /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: taxon.id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: taxon.labelHtml } }) }),
             (taxon == null ? void 0 : taxon.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { style: { marginLeft: "4px" }, datasetKey: taxon == null ? void 0 : taxon.datasetKey, verbatimSourceKey: taxon == null ? void 0 : taxon.verbatimSourceKey })
           ] }),
           showInfo && taxon.status === "provisionally accepted" && /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
@@ -80126,10 +80126,26 @@ html body {
           return /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: reference.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r2.citation }, r2.id)) });
         }
       });
+      __publicField(this, "scrollToReference", (e2, id) => {
+        const el2 = document.getElementById(`col-reference-${id}`);
+        if (el2) {
+          e2.preventDefault();
+          el2.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
       __publicField(this, "render", () => {
         const { referenceId: referenceId2, referenceIndexMap, trigger } = this.props;
         const refIds = !_$1.isArray(referenceId2) ? [referenceId2] : referenceId2;
-        let icon = referenceIndexMap && _$1.get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { className: "col-reference-link", href: `#col-refererence-${r2}`, children: `[${referenceIndexMap[r2]}]` }, r2)) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$3, { style: { cursor: "pointer" } });
+        let icon = referenceIndexMap && _$1.get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "a",
+          {
+            className: "col-reference-link",
+            href: `#col-reference-${r2}`,
+            onClick: (e2) => this.scrollToReference(e2, r2),
+            children: `[${referenceIndexMap[r2]}]`
+          },
+          r2
+        )) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$3, { style: { cursor: "pointer" } });
         return referenceId2 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `reference_${referenceId2}`, style: this.props.style, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Popover,
           {
@@ -85515,7 +85531,7 @@ html body {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "span",
             {
-              id: `col-refererence-${s.id}`,
+              id: `col-reference-${s.id}`,
               dangerouslySetInnerHTML: {
                 __html: linkifyHtml(purify.sanitize(s.citation))
               }
