@@ -72,6 +72,18 @@ describe('Search', () => {
     expect(node.innerHTML).toContain('Content')
   })
 
+  it('renders the "Reset all" button with antd 6 danger styling', () => {
+    node = mountIn(
+      <Search datasetKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
+    )
+    const resetBtn = Array.from(node.querySelectorAll('button')).find(
+      (b) => b.textContent.trim() === 'Reset all'
+    )
+    expect(resetBtn).toBeTruthy()
+    // antd 6 emits the red color via ant-btn-color-dangerous, not the legacy ant-btn-danger
+    expect(resetBtn.className).toContain('ant-btn-color-dangerous')
+  })
+
   it('loads search results from the production API', () => {
     node = mountIn(
       <Search datasetKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />

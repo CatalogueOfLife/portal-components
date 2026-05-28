@@ -594,7 +594,7 @@ class NameSearchPage extends React.Component {
         </Row>
         <Row>
           <Col span={12} style={{ textAlign: "left", marginBottom: "8px" }}>
-            <Button type="danger" onClick={this.resetSearch}>
+            <Button type="primary" danger onClick={this.resetSearch}>
               Reset all
             </Button>
           </Col>
