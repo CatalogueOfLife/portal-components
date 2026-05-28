@@ -5,11 +5,25 @@ import axios from 'axios'
 import { Tree, Search, Taxon, SourceDataset, SourceDatasetList, BibTex } from 'src/'
 
 const CATALOGUE_KEY = '310463'
+// The "Content" (sector-mode) filter only renders for project/xrelease
+// datasets; 310463 is a release, so it is correctly hidden there. Key 3 is
+// the COL project dataset (origin "project") where the filter does show.
+const PROJECT_KEY = '3'
 const TAXON_PATH = '/data/taxon/'
 const SOURCE_PATH = '/data/source/'
 const ROOT_TAXON_KEY = 'V'
 
 const waitMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+// Poll until predicate is truthy or the timeout elapses (condition-based
+// waiting — beats a fixed sleep for async, network-dependent state).
+const waitFor = async (predicate, { timeout = 8000, interval = 100 } = {}) => {
+  const start = Date.now()
+  while (!predicate()) {
+    if (Date.now() - start > timeout) throw new Error('waitFor: condition not met within timeout')
+    await waitMs(interval)
+  }
+}
 
 const mountIn = (component) => {
   const node = document.createElement('div')
@@ -63,12 +77,16 @@ describe('Search', () => {
   let node
   afterEach(() => { unmount(node) })
 
-  it('renders the search form with Matching and Content controls', () => {
+  it('renders the search form with Matching and Content controls', async () => {
+    // Use a project dataset so the origin-gated "Content" filter renders.
     node = mountIn(
-      <Search datasetKey={CATALOGUE_KEY} pathToTaxon={TAXON_PATH} />
+      <Search datasetKey={PROJECT_KEY} pathToTaxon={TAXON_PATH} />
     )
     expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
+    // "Matching" is unconditional, present on the first render.
     expect(node.innerHTML).toContain('Matching')
+    // "Content" only appears once the dataset origin loads asynchronously.
+    await waitFor(() => node.innerHTML.includes('Content'))
     expect(node.innerHTML).toContain('Content')
   })
 
