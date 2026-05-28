@@ -31,7 +31,7 @@ const ReferencesTable = ({
               />
             )}
             <span
-              id={`col-refererence-${s.id}`}
+              id={`col-reference-${s.id}`}
               dangerouslySetInnerHTML={{
                 __html: linkify(DOMPurify.sanitize(s.citation)),
               }}

@@ -55,10 +55,33 @@ class ReferencePopover extends React.Component {
     }
   };
 
+  scrollToReference = (e, id) => {
+    // Default <a href="#col-reference-{id}"> behaviour writes the hash into
+    // window.location, which hijacks hosts using hash-based routing (the
+    // GitHub Pages demo, COL portal preview). Scroll without touching the
+    // URL.
+    const el = document.getElementById(`col-reference-${id}`);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   render = () => {
     const { referenceId, referenceIndexMap, trigger } = this.props;
     const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
-    let icon = referenceIndexMap && _.get(referenceIndexMap, refIds[0]) ? refIds.map(r => <a key={r} className="col-reference-link" href={`#col-refererence-${r}`}>{`[${referenceIndexMap[r]}]`}</a>) : <BookOutlined style={{ cursor: "pointer" }} />;
+    let icon = referenceIndexMap && _.get(referenceIndexMap, refIds[0])
+      ? refIds.map((r) => (
+          <a
+            key={r}
+            className="col-reference-link"
+            href={`#col-reference-${r}`}
+            onClick={(e) => this.scrollToReference(e, r)}
+          >
+            {`[${referenceIndexMap[r]}]`}
+          </a>
+        ))
+      : <BookOutlined style={{ cursor: "pointer" }} />;
 
     return referenceId ? (
       <div id={`reference_${referenceId}`} key={`reference_${referenceId}`} style={this.props.style}>
