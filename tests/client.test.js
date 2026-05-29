@@ -102,4 +102,18 @@ describe("api/client (fetch wrapper)", () => {
     expect(lastInit().body).toBe(JSON.stringify({ msg: "hi" }));
     expect(lastInit().headers["Content-Type"]).toBe("application/json");
   });
+
+  it("parses application/geo+json (structured-suffix JSON) as an object, not text", async () => {
+    const featureCollection = { type: "FeatureCollection", features: [] };
+    fetch.mockResolvedValueOnce(
+      makeRes({ data: featureCollection, contentType: "application/geo+json" })
+    );
+    const res = await client("https://api.example/vocab/area/iso:DE", {
+      headers: { Accept: "application/geo+json" },
+    });
+    // Regression: the distribution map's GeoJSON shapes come back as
+    // application/geo+json; they must be parsed, not returned as a string.
+    expect(typeof res.data).toBe("object");
+    expect(res.data).toEqual(featureCollection);
+  });
 });

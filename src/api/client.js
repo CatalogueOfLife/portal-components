@@ -36,14 +36,22 @@ const buildUrl = (url, params) => {
 
 const parseBody = async (res) => {
   if (res.status === 204) return null;
-  const ct = res.headers && res.headers.get && res.headers.get("content-type");
-  try {
-    if (ct && ct.includes("application/json")) return await res.json();
-    const text = await res.text();
-    return text === "" ? null : text;
-  } catch {
-    return null;
+  const ct =
+    (res.headers && res.headers.get && res.headers.get("content-type")) || "";
+  const text = await res.text();
+  if (text === "") return null;
+  // Parse application/json AND structured-suffix JSON types such as
+  // application/geo+json (the distribution-map area shapes use that). Fall back
+  // to raw text otherwise, or if parsing fails — mirroring axios's default
+  // lenient JSON handling, which parsed any body regardless of content-type.
+  if (/\bjson\b/i.test(ct)) {
+    try {
+      return JSON.parse(text);
+    } catch {
+      return text;
+    }
   }
+  return text;
 };
 
 const request = async (
