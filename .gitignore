@@ -4,9 +4,12 @@
 /es
 /lib
 /dist
-/umd
 /node_modules
 npm-debug.log*
 **/.DS_Store
 .claude/
 /docs/superpowers
+
+# umd/ is committed so jsDelivr can serve the bundle straight from the git tag.
+# Only the large (~7 MB) unminified sourcemap is excluded.
+umd/col-browser.js.map
