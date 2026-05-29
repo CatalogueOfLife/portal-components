@@ -1,7 +1,7 @@
 import React from "react";
 import { Popover, Spin, Divider } from "antd";
 import DataLoader from "dataloader";
-import _ from "lodash";
+import { sortBy } from "lodash-es";
 import { LinkTo } from "../router";
 import { TreeCacheContext } from "./treeCache";
 import { getDatasetsBatch, getPublishersBatch } from "../api/dataset";
@@ -61,7 +61,7 @@ class TaxonSources extends React.Component {
       sourceDatasetKeys.map((s) => loader.load(s).catch(() => null))
     )
       .then((data) => {
-        this.setState({ data: _.sortBy(data, ["alias"]), loading: false });
+        this.setState({ data: sortBy(data, ["alias"]), loading: false });
       })
       .catch(() => {
         this.setState({ data: [], loading: false });
@@ -84,7 +84,7 @@ class TaxonSources extends React.Component {
       )
     )
       .then((data) => {
-        this.setState({ publishers: _.sortBy(data.filter(Boolean), ["alias"]) });
+        this.setState({ publishers: sortBy(data.filter(Boolean), ["alias"]) });
       })
       .catch(() => {
         this.setState({ publishers: [] });

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import _ from "lodash";
+import { get, values } from "lodash-es";
 import linkify from "linkify-html";
 import { Row, Col } from "antd";
 import MergedDataBadge from "../components/MergedDataBadge";
@@ -14,11 +14,11 @@ const ReferencesTable = ({
   useEffect(() => {}, [referenceIndexMap]);
   return (
     <div style={style} className="col-reference-link-container">
-      {_.values(data).map((s) => (
+      {values(data).map((s) => (
         <Row key={s.id}>
           <Col style={{ paddingRight: "5px" }}>
-            {_.get(referenceIndexMap, s.id) && (
-              <span>{`[${_.get(referenceIndexMap, s.id)}]`}</span>
+            {get(referenceIndexMap, s.id) && (
+              <span>{`[${get(referenceIndexMap, s.id)}]`}</span>
             )}
           </Col>
           <Col span={20}>

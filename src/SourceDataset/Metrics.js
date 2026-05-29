@@ -1,8 +1,7 @@
 import React from "react";
 import config from "../config";
-import axios from "axios";
+import client from "../api/client";
 import MetricsPresentation from "./MetricsPresentation"
-import _ from "lodash";
 
 
 class Metrics extends React.Component {
@@ -23,7 +22,7 @@ class Metrics extends React.Component {
 
   getData = () => {
     const { dataset, datasetKey } = this.props;
-    axios(
+    client(
       `${config.dataApi}dataset/${datasetKey}/source/${dataset.key}/metrics`
     ).then((res) => {
       this.setState({ metrics: res.data });
@@ -31,7 +30,7 @@ class Metrics extends React.Component {
   };
 
   getRank = () => {
-    axios(`${config.dataApi}vocab/rank`).then((res) =>
+    client(`${config.dataApi}vocab/rank`).then((res) =>
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };

@@ -1,4 +1,4 @@
-import axios from "axios";
+import client from "../../api/client";
 import config from "../../config";
 import { getDescendantRanks } from "./descendantRanks";
 
@@ -31,7 +31,7 @@ const searchDescendants = async (datasetKey, focalId, ranks) => {
   );
   params.append("limit", "1000");
   const url = `${config.dataApi}dataset/${datasetKey}/nameusage/search?${params}`;
-  const res = await axios(url);
+  const res = await client(url);
   const list = res?.data?.result || [];
   return list
     .filter((u) => u?.usage?.id)
@@ -47,7 +47,7 @@ const searchDescendants = async (datasetKey, focalId, ranks) => {
 const fetchDistributions = async (datasetKey, taxonId) => {
   const url = `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}/distribution`;
   try {
-    const res = await axios(url);
+    const res = await client(url);
     return Array.isArray(res?.data) ? res.data : [];
   } catch {
     return [];

@@ -1,5 +1,5 @@
 import React from "react";
-import _ from "lodash";
+import { startCase } from "lodash-es";
 import PresentationItem from "../components/PresentationItem";
 import { LinkTo } from "../router";
 
@@ -17,7 +17,7 @@ const IncludesTable = ({ data, style, rank, taxon }) => {
         .map((t) => (
           <PresentationItem
             md={6}
-            label={_.startCase(rankToPlural[t.value] || t.value)}
+            label={startCase(rankToPlural[t.value] || t.value)}
             classes={{ formItem: { borderBottom: "none" } }}
             key={t.value}
           >

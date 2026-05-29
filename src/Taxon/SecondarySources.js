@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import _ from "lodash";
+import { startCase } from "lodash-es";
 import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
 
@@ -33,7 +33,7 @@ const SecondarySources = ({ info, datasetKey }) => {
   return info?.source?.secondarySources
     ? Object.keys(info?.source?.secondarySources || {}).map((key) => (
         <React.Fragment key={key}>
-          {_.startCase(key)}:{" "}
+          {startCase(key)}:{" "}
           <a
             href={`https://www.checklistbank.org/dataset/${info?.source?.secondarySources?.[key]?.datasetKey}/taxon/${encodeURIComponent(info?.source?.secondarySources?.[key]?.id)}`}
           >

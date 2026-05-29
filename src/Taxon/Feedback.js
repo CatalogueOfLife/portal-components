@@ -3,16 +3,10 @@ import axios from "axios";
 import { Button, Form, Input, message, Modal , Spin,  Alert, Row, Col} from "antd";
 import config from "../config";
 import { MessageFilled, DownloadOutlined } from "@ant-design/icons";
-import { set } from "lodash";
 
-const axiosNoAuth = axios.create({
-  transformRequest: (data, headers) => {
-      delete headers.common.Authorization;
-      headers["Content-Type"] = "application/json";
-      return JSON.stringify(data);
-  }
-})
-
+// The feedback endpoint is public and must not receive Basic-Auth credentials.
+// Auth now lives on the dedicated api/client instance (see api/client.js), so
+// the bare `axios` import below never carries it.
 message.config({
     getContainer: () => document.getElementsByClassName("catalogue-of-life")[0],
 });
@@ -39,7 +33,7 @@ const onFinishFailed = ({ errorFields }) => {
     form.scrollToField(errorFields[0].name);
   };
   const submitData = (values) => {
-    axiosNoAuth
+    axios
       .post(
         `${config.dataApi}dataset/${datasetKey}/nameusage/${taxonKey}/feedback`,
         values

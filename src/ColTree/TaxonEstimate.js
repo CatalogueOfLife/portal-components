@@ -1,7 +1,7 @@
 import React from "react";
 import { Popover, Spin, Row, Col } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
-import axios from 'axios'
+import client from "../api/client";
 import config from "../config";
 
 class TaxonEstimate extends React.Component {
@@ -19,7 +19,7 @@ class TaxonEstimate extends React.Component {
     this.setState({ loading: true });
     const { estimate } = this.props;
 
-    return axios(
+    return client(
         `${config.dataApi}dataset/${estimate.datasetKey}/reference/${estimate.referenceId}`
       ).then( ({data}) => this.setState({data, loading: false}))
   };

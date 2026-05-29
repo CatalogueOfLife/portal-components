@@ -45,7 +45,10 @@ export default defineConfig({
           info.name?.endsWith('.css') ? 'main.css' : info.name,
         // Inject browser polyfills for Node globals inside the UMD wrapper.
         // setImmediate: used by some scheduler code.
-        // Buffer: used by the btoa npm package to encode Basic Auth credentials.
+        // Buffer: axios references Buffer (form-data / byteLength paths) and
+        // assumes a Node environment; provide a minimal browser shim so the
+        // bundle doesn't throw "Buffer is not defined". (Auth encoding now uses
+        // the native btoa() global directly — no btoa npm package.)
         intro: `
 var setImmediate = typeof globalThis.setImmediate !== 'undefined' ? globalThis.setImmediate : function(fn) { return setTimeout(fn, 0); };
 var Buffer = (function() {

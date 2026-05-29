@@ -1,11 +1,11 @@
 import React from "react";
 import { Row, Col, Tag, Tooltip } from "antd";
 import Classification from "./Classification";
-import _ from "lodash";
+import { get, initial } from "lodash-es";
 
 const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap }) => (
   <React.Fragment>
-    {_.get(usage, "id") && (
+    {get(usage, "id") && (
       <Row style={{ marginBottom: "10px" }}>
         <Col
           span={3}
@@ -17,7 +17,7 @@ const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap })
         >
           ID:
         </Col>
-        <Col span={18}>{_.get(usage, "id")}</Col>
+        <Col span={18}>{get(usage, "id")}</Col>
       </Row>
     )}
     {classification && (
@@ -34,7 +34,7 @@ const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap })
         </Col>
         <Col span={18}>
           <Classification
-            classification={_.initial(classification)}
+            classification={initial(classification)}
           />
         </Col>
       </Row>
@@ -70,9 +70,9 @@ const RowDetail = ({ issues, usage, classification, vernacularNames, issueMap })
         </Col>
         <Col span={18}>
           {issues.map(i => (
-            <Tooltip key={i} title={_.get(issueMap, `[${i}].description`)}>
+            <Tooltip key={i} title={get(issueMap, `[${i}].description`)}>
               {" "}
-              <Tag key={i} color={_.get(issueMap, `[${i}].color`)}>
+              <Tag key={i} color={get(issueMap, `[${i}].color`)}>
                 {i}
               </Tag>
             </Tooltip>

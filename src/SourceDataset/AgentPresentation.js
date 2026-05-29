@@ -1,12 +1,12 @@
 import React from "react";
-import _ from "lodash";
+import { get } from "lodash-es";
 
 const AgentPresentation = ({ agent, countryAlpha2, style, noLinks }) => {
-  const country = _.get(agent, "country")
-    ? _.get(
+  const country = get(agent, "country")
+    ? get(
         countryAlpha2,
-        `[${_.get(agent, "country")}].title`,
-        _.get(agent, "country")
+        `[${get(agent, "country")}].title`,
+        get(agent, "country")
       )
     : null;
   return agent ? (

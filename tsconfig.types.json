@@ -1,0 +1,14 @@
+{
+  "//": "Type-check only the public .d.ts and its type-level test. A non-default filename keeps Vite/esbuild from auto-reading it (which could alter the JS build's class-field/JSX semantics). Run via `npm run typecheck`.",
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["types/index.d.ts", "tests/types.test-d.tsx"]
+}

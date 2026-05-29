@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-import _ from "lodash";
+import { get, isUndefined } from "lodash-es";
 import TaxonSources from "./TaxonSources";
 import MergedDataBadge from "../components/MergedDataBadge";
 import {ColTreeContext} from "./ColTreeContext"
@@ -27,8 +27,8 @@ class ColTreeNode extends React.Component {
       datasetKey,
     } = this.props;
 
-    const sectorSourceDataset = _.get(sector, "dataset");
-/*     const hasDatasetSectors = datasetSectors && ( sector && sector.subjectDatasetKey ? Object.keys(_.omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true)
+    const sectorSourceDataset = get(sector, "dataset");
+/*     const hasDatasetSectors = datasetSectors && ( sector && sector.subjectDatasetKey ? Object.keys(omit(datasetSectors, [sector.subjectDatasetKey])).length > 0 : true)
  */    
 const hasDatasetSectors =
 (sourceDatasetKeys || []).filter((d) => sector?.subjectDatasetKey !== d)
@@ -70,12 +70,12 @@ const hasDatasetSectors =
                           </React.Fragment>
                         )}
 
-                      {!_.isUndefined(taxon.count) &&
+                      {!isUndefined(taxon.count) &&
                         this.rankIsAboveSpecies(taxon?.rank) && (
                           <span>
                             {" "}
                             • {Number(taxon.count).toLocaleString()}{" "}
-                            {showInfo && !_.isUndefined(taxon.speciesEstimate) && (
+                            {showInfo && !isUndefined(taxon.speciesEstimate) && (
                               <span>
                                 {" "}
                                 of{" "}
@@ -99,7 +99,7 @@ const hasDatasetSectors =
                               style={hasDatasetSectors ? {fontWeight: 'bold'} : null}
                               className="col-tree-data-source"
                             >
-                              {_.get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{hasDatasetSectors && ", "}
+                              {get(sectorSourceDataset, "alias") || sector.subjectDatasetKey}{hasDatasetSectors && ", "}
                             </LinkTo>
                           </span>
                         )}

@@ -1,14 +1,14 @@
 import React from "react";
 import { Skeleton } from "antd";
 import PresentationItem from "../components/PresentationItem";
-import _ from "lodash";
+import { get, isArray, startCase } from "lodash-es";
 import { LinkTo } from "../router";
 
 const getLivingTaxa = (metrics, rank) =>
-  (_.get(metrics, `taxaByRankCount.${rank}`) || 0) -
-  (_.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
+  (get(metrics, `taxaByRankCount.${rank}`) || 0) -
+  (get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
 const getExtinctTaxa = (metrics, rank) =>
-  _.get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
+  get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
 
 // Filter object passed to the `search` slot's onNavigate / hrefFor.
 // The URL adapter knows how to turn this into a query string.
@@ -16,7 +16,7 @@ const baseFilters = (dataset) => {
   const f = dataset.key
     ? { SECTOR_DATASET_KEY: dataset.key }
     : { SECTOR_PUBLISHER_KEY: dataset.id };
-  if (_.isArray(dataset.sectorModes)) f.sectorMode = dataset.sectorModes;
+  if (isArray(dataset.sectorModes)) f.sectorMode = dataset.sectorModes;
   return f;
 };
 
@@ -61,7 +61,7 @@ export default ({ metrics, rank, style, dataset }) =>
         Object.keys(metrics.taxaByRankCount)
           .sort((a, b) => rank.indexOf(b) - rank.indexOf(a))
           .map((k) => (
-            <PresentationItem label={`${_.startCase(k)}`} key={k}>
+            <PresentationItem label={`${startCase(k)}`} key={k}>
               {dataset ? (
                 <LinkTo
                   to="search"

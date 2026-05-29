@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import client from "../api/client";
 import config from "../config";
 import { Row, Col, Spin } from "antd";
 import Distributions from "./Distributions";
@@ -27,15 +27,15 @@ export const DistributionsWrapper = ({
 
     if (!taxonId || !datasetKey) return undefined;
 
-    axios(`${config.dataApi}vocab/rank`).then((res) => {
+    client(`${config.dataApi}vocab/rank`).then((res) => {
       if (!cancelled) setRank(res.data.map((r) => r.name));
     });
-    axios(
+    client(
       `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}`
     ).then((res) => {
       if (!cancelled) setTaxon(res.data);
     });
-    axios(
+    client(
       `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}/info`
     ).then((res) => {
       if (!cancelled) setDistributions(res?.data?.distributions || []);

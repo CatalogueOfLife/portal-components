@@ -1,9 +1,8 @@
 import React from "react";
-import axios from "axios";
+import client, { setAuth } from "../api/client";
 import { Table, Alert, Row, Col, Tooltip, Checkbox } from "antd";
 import config from "../config";
-import btoa from "btoa";
-import _ from "lodash";
+import { get, isArray, merge } from "lodash-es";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import MetricsPresentation from "../SourceDataset/MetricsPresentation";
@@ -14,13 +13,13 @@ const baseFilters = (record) => {
   const f = record.key
     ? { SECTOR_DATASET_KEY: record.key }
     : { SECTOR_PUBLISHER_KEY: record.id };
-  if (_.isArray(record.sectorModes)) f.sectorMode = record.sectorModes;
+  if (isArray(record.sectorModes)) f.sectorMode = record.sectorModes;
   return f;
 };
 const getLivingSpecies = (record, rank) =>
-  _.get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
+  get(record, `metrics.taxaByRankCount.${rank || "species"}`) || 0;
 const getExtinctSpecies = (record) =>
-  _.get(record, "metrics.extinctTaxaByRankCount.species") || 0;
+  get(record, "metrics.extinctTaxaByRankCount.species") || 0;
 const getSearchParam = (dataset) =>
   dataset.key
     ? `SECTOR_DATASET_KEY=${dataset.key}`
@@ -84,7 +83,7 @@ const getColumns = (
       dataIndex: ["metrics", "datasetCount"],
       key: "datasets",
       render: (text, record) =>
-        _.get(record, "metrics.datasetCount", 1).toLocaleString("en-GB"),
+        get(record, "metrics.datasetCount", 1).toLocaleString("en-GB"),
     },
     /*  {
     title: "Version",
@@ -196,11 +195,7 @@ const getColumns = (
 class SourceDatasetListPage extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.auth) {
-      axios.defaults.headers.common["Authorization"] = `Basic ${btoa(
-        this.props.auth
-      )}`;
-    }
+    setAuth(this.props.auth);
     this.state = {
       data: [],
       rank: null,
@@ -220,11 +215,11 @@ class SourceDatasetListPage extends React.Component {
     this.setState({ loading: true });
     const { datasetKey } = this.props;
    
-    axios(`${config.dataApi}dataset/${datasetKey}/source`)
+    client(`${config.dataApi}dataset/${datasetKey}/source`)
     .then((res) => {
           return Promise.all(
             res.data.map((r) => 
-                axios(
+                client(
                     `${config.dataApi}dataset/${datasetKey}/source/${r.key}/metrics`
                   ).then((res) => ({...r, metrics: res.data}))
               
@@ -249,17 +244,17 @@ class SourceDatasetListPage extends React.Component {
     this.setState({ loading: true });
     const { datasetKey } = this.props;
     Promise.all([
-      axios(
+      client(
         /* `${config.dataApi}dataset?limit=1000&contributesTo=${datasetKey}&sortBy=alias` */
         // `${config.dataApi}dataset/${datasetKey}/source?inclPublisherSources=false`
         `${config.dataApi}dataset/${datasetKey}/source?splitMerge=true`
       ),
-      axios(`${config.dataApi}dataset/${datasetKey}/sector/publisher?limit=1000`),
+      client(`${config.dataApi}dataset/${datasetKey}/sector/publisher?limit=1000`),
     ])
       .then(([res, publisherRes]) => {
         let columns = {};
         const datasetData = res.data || [];
-        const publisherData = _.get(publisherRes, "data.result", []);
+        const publisherData = get(publisherRes, "data.result", []);
         if (publisherData.length > 0) {
           this.setState({ hasPublishers: true });
         }
@@ -267,7 +262,7 @@ class SourceDatasetListPage extends React.Component {
           ...publisherData.map((r) => {
             return this.getPublisherMetrics(datasetKey, r.id).then(
               (metrics) => {
-                // columns = _.merge(columns, metrics);
+                // columns = merge(columns, metrics);
                 return {
                   ...r,
                   metrics: metrics,
@@ -277,7 +272,7 @@ class SourceDatasetListPage extends React.Component {
           }),
           ...datasetData.map((r) => {
             return this.getMetrics(datasetKey, r).then((metrics) => {
-              columns = _.merge(columns, metrics);
+              columns = merge(columns, metrics);
               return {
                 ...r,
                 metrics: metrics,
@@ -315,18 +310,18 @@ class SourceDatasetListPage extends React.Component {
   };
 
   getMetrics = (datasetKey, source) => {
-    return axios(
+    return client(
       `${config.dataApi}dataset/${datasetKey}/source/${source?.key}/metrics?merged=${source?.merged}`
     ).then((res) => res.data);
   };
   getPublisherMetrics = (datasetKey, publisherId) => {
-    return axios(
+    return client(
       `${config.dataApi}dataset/${datasetKey}/sector/publisher/${publisherId}/metrics`
     ).then((res) => res.data);
   };
 
   getRank = () => {
-    axios(`${config.dataApi}vocab/rank`).then((res) =>
+    client(`${config.dataApi}vocab/rank`).then((res) =>
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Radio } from "antd";
-import _ from "lodash";
+import { get, keyBy, startCase } from "lodash-es";
 import ReferencePopover from "./ReferencePopover";
 import config from "../config";
-import axios from "axios";
+import client from "../api/client";
 import MergedDataBadge from "../components/MergedDataBadge";
 import DistributionsMap from "./DistributionsMap";
 
@@ -22,8 +22,8 @@ const ListView = ({ datasetKey, data }) => {
       }
     }
     if (isIso) {
-      axios(`${config.dataApi}vocab/country`).then((res) => {
-        setIso3Map(_.keyBy(res.data, "alpha3"));
+      client(`${config.dataApi}vocab/country`).then((res) => {
+        setIso3Map(keyBy(res.data, "alpha3"));
       });
     }
   }, []);
@@ -41,11 +41,11 @@ const ListView = ({ datasetKey, data }) => {
               style={{ marginRight: "4px" }}
             />
           )}
-          {(_.get(iso3Map, `[${_.get(s, "area.name")}].name`)
-            ? _.startCase(_.get(iso3Map, `[${_.get(s, "area.name")}].name`))
+          {(get(iso3Map, `[${get(s, "area.name")}].name`)
+            ? startCase(get(iso3Map, `[${get(s, "area.name")}].name`))
             : null) ||
-            _.get(s, "area.name") ||
-            _.get(s, "area.globalId")}{" "}
+            get(s, "area.name") ||
+            get(s, "area.globalId")}{" "}
           {s.referenceId && (
             <ReferencePopover
               datasetKey={datasetKey}

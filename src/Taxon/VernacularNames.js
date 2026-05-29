@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "antd";
-import _ from "lodash";
-import axios from "axios";
+import { get } from "lodash-es";
+import client from "../api/client";
 import config from "../config";
 import ReferencePopover from "./ReferencePopover";
 import MergedDataBadge from "../components/MergedDataBadge";
@@ -103,12 +103,12 @@ class VernacularNamesTable extends React.Component {
     if (countryAlpha2 && name.country && name.country.length === 2) {
       return {
         ...name,
-        countryTitle: _.get(countryAlpha2, `[${name.country}].title`) || "",
+        countryTitle: get(countryAlpha2, `[${name.country}].title`) || "",
       };
     } else if (countryAlpha3 && name.country && name.country.length === 3) {
       return {
         ...name,
-        countryTitle: _.get(countryAlpha3, `[${name.country}].title`) || "",
+        countryTitle: get(countryAlpha3, `[${name.country}].title`) || "",
       };
     } else {
       return name;
@@ -118,7 +118,7 @@ class VernacularNamesTable extends React.Component {
   decorateWithLanguageByCode = (name) => {
     return !name.language
       ? Promise.resolve()
-      : axios(`${config.dataApi}vocab/language/${name.language}`)
+      : client(`${config.dataApi}vocab/language/${name.language}`)
           .then((res) => {
             name.languageName = res.data;
           })

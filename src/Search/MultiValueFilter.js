@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Form, Select } from "antd";
-import _ from "lodash";
+import { isArray, snakeCase, startCase } from "lodash-es";
 
 
 const FormItem = Form.Item;
@@ -44,7 +44,7 @@ class MultiValueFilter extends React.Component {
     //const randomID = (Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1)*(Math.floor(Math.random() * 100) +1);
     const vocabKeys = new Set([...vocab.map(i => i.value)]);
     let val; 
-    if(defaultValue && _.isArray(defaultValue)){
+    if(defaultValue && isArray(defaultValue)){
       val = defaultValue.filter(v => vocabKeys.has(v))
     } else if(defaultValue){
       val = [defaultValue].filter(v => vocabKeys.has(v))
@@ -55,7 +55,7 @@ class MultiValueFilter extends React.Component {
         label={label}
         style={{marginBottom: '8px', width: "100%"}}
       >
-        <div id={`${_.snakeCase(label)}_${randomID}`}>
+        <div id={`${snakeCase(label)}_${randomID}`}>
       <Select
         showSearch
        // style={{ width: "100%" }}
@@ -64,11 +64,11 @@ class MultiValueFilter extends React.Component {
         value={val}
         onChange={this.handleChange}
         getPopupContainer={() =>
-          document.getElementById(`${_.snakeCase(label)}_${randomID}`)
+          document.getElementById(`${snakeCase(label)}_${randomID}`)
         }
       >
           {vocab.map((i) => {
-                return (typeof i === 'string') ? <Option key={i} value={i}>{_.startCase(i)}</Option> : <Option key={i.value} value={i.value}>{i.label}</Option>
+                return (typeof i === 'string') ? <Option key={i} value={i}>{startCase(i)}</Option> : <Option key={i.value} value={i.value}>{i.label}</Option>
               })}
       </Select>
       </div>

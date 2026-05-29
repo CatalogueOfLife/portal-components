@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import { get } from "lodash-es";
 
 class ErrorMsg extends React.Component {
 
@@ -11,21 +11,21 @@ class ErrorMsg extends React.Component {
                 {error.message && <h3>
                     {error.message}
                 </h3>}
-                {_.get(error, 'response.data.message') && <p>
-                    {_.get(error, 'response.data.message')}
+                {get(error, 'response.data.message') && <p>
+                    {get(error, 'response.data.message')}
                 </p>}
-                {_.get(error, 'response.data.details') && <p>
-                    {_.get(error, 'response.data.details')}
+                {get(error, 'response.data.details') && <p>
+                    {get(error, 'response.data.details')}
                 </p>}
-                {_.get(error, 'config.method') && <p>
-                    HTTP method: <strong>{_.get(error, 'config.method').toUpperCase()}</strong>
+                {get(error, 'config.method') && <p>
+                    HTTP method: <strong>{get(error, 'config.method').toUpperCase()}</strong>
                 </p>}
-                {_.get(error, 'response.request.responseURL') &&
-                    <p><a href={_.get(error, 'response.request.responseURL')} target="_blank">{_.get(error, 'response.request.responseURL')}</a></p>}
-                 {_.get(error, 'config.data') && typeof _.get(error, 'config.data') === 'string' && <div>
+                {get(error, 'response.request.responseURL') &&
+                    <p><a href={get(error, 'response.request.responseURL')} target="_blank">{get(error, 'response.request.responseURL')}</a></p>}
+                 {get(error, 'config.data') && typeof get(error, 'config.data') === 'string' && <div>
                      <h4>Body:</h4>
                      <p>
-                     {_.get(error, 'config.data')}
+                     {get(error, 'config.data')}
                 </p></div>}
             </div>
 

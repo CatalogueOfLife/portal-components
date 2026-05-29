@@ -3,7 +3,7 @@ import config from "../config";
 import { getSectorsBatch } from "../api/sector";
 import { getDatasetsBatch } from "../api/dataset";
 import DataLoader from "dataloader";
-import axios from "axios";
+import client, { setAuth } from "../api/client";
 import { LinkOutlined, DownloadOutlined } from "@ant-design/icons";
 import { Alert, Tag, Row, Col, Button, Rate, Tooltip } from "antd";
 // import SynonymTable from "./Synonyms";
@@ -16,7 +16,7 @@ import Classification from "./Classification";
 import NameRelations from "./NameRelations";
 import References from "./References";
 import ErrorMsg from "../components/ErrorMsg";
-import _ from "lodash";
+import { get } from "lodash-es";
 import PresentationItem from "../components/PresentationItem";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -26,7 +26,6 @@ import BooleanValue from "../components/BooleanValue";
 // import ReferencePopover from "./ReferencePopover"
 import IncludesTable from "./Includes";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
-import btoa from "btoa";
 import Page404 from "../components/Page404";
 import TaxonBreakdown from "./TaxonBreakdown";
 import SecondarySources from "./SecondarySources";
@@ -40,11 +39,7 @@ class TaxonPage extends React.Component {
 
   constructor(props) {
     super(props);
-    if (this.props.auth) {
-      axios.defaults.headers.common["Authorization"] = `Basic ${btoa(
-        this.props.auth
-      )}`;
-    }
+    setAuth(this.props.auth);
     this.state = {
       taxon: null,
       info: null,
@@ -93,19 +88,19 @@ class TaxonPage extends React.Component {
   getTaxon = (taxonKey) => {
     const { datasetKey, pageTitleTemplate } = this.props;
     this.setState({ loading: true });
-    axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`)
+    client(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`)
       .then((res) => {
         let promises = [res];
-        if (pageTitleTemplate && _.get(res, "data.label")) {
+        if (pageTitleTemplate && get(res, "data.label")) {
           document.title = pageTitleTemplate.replace(
             "__taxon__",
             res.data.label
           );
         }
-        if (_.get(res, "data.name.publishedInId")) {
+        if (get(res, "data.name.publishedInId")) {
           promises.push(
-            axios(
-              `${config.dataApi}dataset/${datasetKey}/reference/${_.get(
+            client(
+              `${config.dataApi}dataset/${datasetKey}/reference/${get(
                 res,
                 "data.name.publishedInId"
               )}`
@@ -116,10 +111,10 @@ class TaxonPage extends React.Component {
           );
         }
 
-        if (_.get(res, "data.name")) {
+        if (get(res, "data.name")) {
           promises.push(
-            axios(
-              `${config.dataApi}dataset/${datasetKey}/name/${_.get(
+            client(
+              `${config.dataApi}dataset/${datasetKey}/name/${get(
                 res,
                 "data.name.id"
               )}/relations`
@@ -127,7 +122,7 @@ class TaxonPage extends React.Component {
               res.data.name.relations = relations.data;
               return Promise.allSettled(
                 relations.data.map((r) => {
-                  return axios(
+                  return client(
                     `${config.dataApi}dataset/${datasetKey}/name/${r.relatedNameId}`
                   ).then((n) => {
                     r.relatedName = n.data;
@@ -142,15 +137,15 @@ class TaxonPage extends React.Component {
           );
         }
         // sector keys are only present if its a catalogue
-        if (_.get(res, "data.sectorKey")) {
-          axios(
-            `${config.dataApi}dataset/${datasetKey}/sector/${_.get(
+        if (get(res, "data.sectorKey")) {
+          client(
+            `${config.dataApi}dataset/${datasetKey}/sector/${get(
               res,
               "data.sectorKey"
             )}`
           ).then((sector) => {
-            axios(
-              `${config.dataApi}dataset/${datasetKey}/logo/source/${_.get(
+            client(
+              `${config.dataApi}dataset/${datasetKey}/logo/source/${get(
                 sector,
                 "data.subjectDatasetKey"
               )}`
@@ -159,7 +154,7 @@ class TaxonPage extends React.Component {
                 this.setState({
                   logoUrl: `${
                     config.dataApi
-                  }dataset/${datasetKey}/logo/source/${_.get(
+                  }dataset/${datasetKey}/logo/source/${get(
                     sector,
                     "data.subjectDatasetKey"
                   )}?size=MEDIUM`,
@@ -169,8 +164,8 @@ class TaxonPage extends React.Component {
                 // ignore, there is no logo
               });
 
-            axios(
-              `${config.dataApi}dataset/${datasetKey}/source/${_.get(
+            client(
+              `${config.dataApi}dataset/${datasetKey}/source/${get(
                 sector,
                 "data.subjectDatasetKey"
               )}`
@@ -194,7 +189,7 @@ class TaxonPage extends React.Component {
         });
       })
       .catch((err) => {
-        if (_.get(err, "response.status") === 404) {
+        if (get(err, "response.status") === 404) {
           this.fetchSynonymAndRedirect(taxonKey);
         } else {
           this.setState({ taxonLoading: false, taxonError: err, taxon: null });
@@ -204,7 +199,7 @@ class TaxonPage extends React.Component {
 
   getCatalogue = () => {
     const { datasetKey } = this.props;
-    axios(`${config.dataApi}dataset/${datasetKey}`)
+    client(`${config.dataApi}dataset/${datasetKey}`)
       .then((res) => {
         this.setState({ catalogue: res.data });
       })
@@ -274,11 +269,11 @@ class TaxonPage extends React.Component {
 
 
     try {
-      const res = await axios(
+      const res = await client(
         `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
       );
       let referenceIndexMap = {};
-      if (_.get(res, "data.references")) {
+      if (get(res, "data.references")) {
         Object.keys(res.data.references).forEach((k, i) => {
           referenceIndexMap[k] = (i + 1).toString();
         });
@@ -320,8 +315,8 @@ class TaxonPage extends React.Component {
           )
         );
       }
-      let sourceDatasetKeyMap = _.get(res, "data.synonyms")
-        ? await this.decorateWithSectorsAndDataset(_.get(res, "data.synonyms"))
+      let sourceDatasetKeyMap = get(res, "data.synonyms")
+        ? await this.decorateWithSectorsAndDataset(get(res, "data.synonyms"))
         : null;
 
       if (res?.data?.nameRelations && res?.data?.names) {
@@ -339,7 +334,7 @@ class TaxonPage extends React.Component {
         sourceDatasetKeyMap,
       });
     } catch (err) {
-      if (_.get(err, "response.status") === 404) {
+      if (get(err, "response.status") === 404) {
         this.fetchSynonymAndRedirect(taxonKey);
       } else {
         this.setState({ infoLoading: false, infoError: err, info: null });
@@ -348,13 +343,13 @@ class TaxonPage extends React.Component {
   };
 
   getRank = () => {
-    axios(`${config.dataApi}vocab/rank`).then((res) =>
+    client(`${config.dataApi}vocab/rank`).then((res) =>
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };
 
   getNomStatus = () => {
-    axios(`${config.dataApi}vocab/nomstatus`).then((res) =>
+    client(`${config.dataApi}vocab/nomstatus`).then((res) =>
       this.setState({
         nomStatus: res.data.reduce((a, c) => ((a[c.name] = c), a), {}),
       })
@@ -364,13 +359,13 @@ class TaxonPage extends React.Component {
   getIncludes = (taxonKey) => {
     const { datasetKey } = this.props;
 
-    axios(
+    client(
       `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
     )
       .then((res) => {
         this.setState({
           includesLoading: false,
-          includes: _.get(res, "data.facets.rank") || [],
+          includes: get(res, "data.facets.rank") || [],
         });
       })
       .catch((err) => {
@@ -385,13 +380,13 @@ class TaxonPage extends React.Component {
     const { datasetKey } = this.props;
     const navigateToTaxon = this.context?.taxon?.onNavigate;
 
-    axios(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`)
+    client(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`)
       .then((res) => {
-        const acceptedId = _.get(res, "data.accepted.id");
+        const acceptedId = get(res, "data.accepted.id");
         if (acceptedId && navigateToTaxon) navigateToTaxon(acceptedId);
       })
       .catch((err) => {
-        if (_.get(err, "response.status") === 404) {
+        if (get(err, "response.status") === 404) {
           this.setState({ status: 404 });
         }
       });
@@ -429,9 +424,9 @@ class TaxonPage extends React.Component {
       info && info.synonyms && info.synonyms.length > 0
         ? info.synonyms.filter((s) => s.status === "misapplied")
         : []; */
-    const homotypic = _.get(info, "synonyms.homotypic", []);
-    const heterotypic = _.get(info, "synonyms.heterotypic", []);
-    const misapplied = _.get(info, "synonyms.misapplied", []);
+    const homotypic = get(info, "synonyms.homotypic", []);
+    const heterotypic = get(info, "synonyms.heterotypic", []);
+    const misapplied = get(info, "synonyms.misapplied", []);
     const synonyms = [
       ...homotypic.map((h) => ({ ...h, __homotypic: true })),
       ...heterotypic,
@@ -499,14 +494,14 @@ class TaxonPage extends React.Component {
               )}
             </Row>
           )}
-          {_.get(taxon, "id") && (
+          {get(taxon, "id") && (
             <PresentationItem
               md={md}
-              label={_.get(this.props, "identifierLabel", "Identifier")}
+              label={get(this.props, "identifierLabel", "Identifier")}
             >
-              {_.get(taxon, "id")}{" "}
+              {get(taxon, "id")}{" "}
               <a
-                href={`https://www.checklistbank.org/dataset/${datasetKey}/taxon/${_.get(
+                href={`https://www.checklistbank.org/dataset/${datasetKey}/taxon/${get(
                   taxon,
                   "id"
                 )}`}
@@ -514,13 +509,13 @@ class TaxonPage extends React.Component {
                 <LinkOutlined />
               </a>
                 <Tooltip title={"Download data for this taxon and descendants"}
-                 getPopupContainer={() => document.getElementById(`col-download-${_.get(taxon, "id")}`) || document.body}
+                 getPopupContainer={() => document.getElementById(`col-download-${get(taxon, "id")}`) || document.body}
                 >
               <a
                 style={{ marginLeft: "5px" }}
-                id={`col-download-${_.get(taxon, "id")}`}
+                id={`col-download-${get(taxon, "id")}`}
                 target="_blank"
-                href={`http://checklistbank.org/dataset/${datasetKey}/download?taxonID=${encodeURIComponent(_.get(
+                href={`http://checklistbank.org/dataset/${datasetKey}/download?taxonID=${encodeURIComponent(get(
                   taxon,
                   "id"
                 ))}`}
@@ -530,7 +525,7 @@ class TaxonPage extends React.Component {
               </Tooltip>
             </PresentationItem>
           )}
-          {_.get(taxon, "labelHtml") && (
+          {get(taxon, "labelHtml") && (
             <PresentationItem md={md} label="Name">
               <span
                 dangerouslySetInnerHTML={{
@@ -539,18 +534,18 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {_.get(taxon, "name.publishedIn.citation") && (
+          {get(taxon, "name.publishedIn.citation") && (
             <PresentationItem md={md} label="Published in">
-            {_.get(info, "source.secondarySources['published in']") && 
+            {get(info, "source.secondarySources['published in']") && 
               <MergedDataBadge 
-                sourceDatasetKey={_.get(info, "source.secondarySources['published in'].datasetKey")} 
-                sourceId={_.get(info, "source.secondarySources['published in'].id")} />}  
-                {_.get(taxon, "name.publishedIn.citation")}
+                sourceDatasetKey={get(info, "source.secondarySources['published in'].datasetKey")} 
+                sourceId={get(info, "source.secondarySources['published in'].id")} />}  
+                {get(taxon, "name.publishedIn.citation")}
             </PresentationItem>
           )}
-          {_.get(taxon, "status") && (
+          {get(taxon, "status") && (
             <PresentationItem md={md} label="Checklist status">
-              {`${_.get(taxon, "status")} ${_.get(taxon, "name.rank")}`}
+              {`${get(taxon, "status")} ${get(taxon, "name.rank")}`}
               {info?.decisions?.[taxon?.id] && (
                           <>
                             &nbsp;with{" "}
@@ -567,27 +562,27 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
 
-          {_.get(taxon, "name.nomStatus") && nomStatus && (
+          {get(taxon, "name.nomStatus") && nomStatus && (
             <PresentationItem md={md} label="Nomenclatural Status">
               {
-                nomStatus[_.get(taxon, "name.nomStatus")][
-                  (_.get(taxon, "name.code"), "zoological")
+                nomStatus[get(taxon, "name.nomStatus")][
+                  (get(taxon, "name.code"), "zoological")
                 ]
               }
             </PresentationItem>
           )}
           {/*           <PresentationItem md={md} label="Extinct">
-            <BooleanValue value={_.get(taxon, "extinct")} />
+            <BooleanValue value={get(taxon, "extinct")} />
           </PresentationItem> */}
           {/* 
           <PresentationItem md={md} label="Fossil">
-            <BooleanValue value={_.get(taxon, "fossil")} />
+            <BooleanValue value={get(taxon, "fossil")} />
           </PresentationItem>
           <PresentationItem md={md} label="Recent">
-            <BooleanValue value={_.get(taxon, "recent")} />
+            <BooleanValue value={get(taxon, "recent")} />
           </PresentationItem> */}
 
-          {/*   {_.get(taxon, "name.relations") && taxon.name.relations.length > 0 && 
+          {/*   {get(taxon, "name.relations") && taxon.name.relations.length > 0 && 
           <NameRelations
           md={md}
           style={{ marginTop: "-3px" }}
@@ -596,14 +591,14 @@ class TaxonPage extends React.Component {
           {infoError && (
             <Alert message={<ErrorMsg error={infoError} />} type="error" />
           )}
-          {_.get(info, "synonyms") && (
+          {get(info, "synonyms") && (
             <PresentationItem md={md} label="Synonyms and combinations">
               <Synonyms
                 primarySource={sourceDataset}
-                data={_.get(info, "synonyms")}
-                decisions={_.get(info, "decisions")}
-                references={_.get(info, "references")}
-                typeMaterial={_.get(info, "typeMaterial")}
+                data={get(info, "synonyms")}
+                decisions={get(info, "decisions")}
+                references={get(info, "references")}
+                typeMaterial={get(info, "typeMaterial")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
                                 /*                     datasetKey={datasetKey}
@@ -611,16 +606,16 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {_.get(info, "typeMaterial") &&
+          {get(info, "typeMaterial") &&
                 info.typeMaterial[info?.usage?.name?.id] && (
                   <PresentationItem md={md} label="Type material">
                     <TypeMaterial
-                      data={_.get(info, "typeMaterial")}
-                      nameID={_.get(taxon, "name.id")}
+                      data={get(info, "typeMaterial")}
+                      nameID={get(taxon, "name.id")}
                     />
                   </PresentationItem>
                 )}
-          {_.get(info, "nameRelations") &&
+          {get(info, "nameRelations") &&
             info.nameRelations.filter((rel) => rel?.usageId === taxon?.id)
               .length > 0 && (
               <NameRelations
@@ -631,7 +626,7 @@ class TaxonPage extends React.Component {
                 )}
               />
             )}
-          {_.get(info, "nameRelations") &&
+          {get(info, "nameRelations") &&
             info.nameRelations.filter((rel) => rel?.usageId !== taxon?.id)
               .length > 0 && (
               <NameRelations
@@ -649,7 +644,7 @@ class TaxonPage extends React.Component {
               <SynonymTable
                 data={synonyms}
                                 nomStatus={nomStatus}
-                references={_.get(info, "references")}
+                references={get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginTop: "-3px" }}
                 datasetKey={datasetKey}
@@ -661,7 +656,7 @@ class TaxonPage extends React.Component {
             <PresentationItem md={md} label="Misapplied names">
               <SynonymTable
                 data={misapplied}
-                references={_.get(info, "references")}
+                references={get(info, "references")}
                 referenceIndexMap={referenceIndexMap}
                 style={{ marginBottom: 16, marginTop: "-3px" }}
                 datasetKey={datasetKey}
@@ -689,10 +684,10 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
           {((taxon &&
-            rank.indexOf(_.get(taxon, "name.rank")) < genusRankIndex &&
-            rank.indexOf(_.get(taxon, "name.rank")) > -1) ||
-            (_.get(taxon, "name.rank") === "unranked" &&
-              _.get(taxon, "name.scientificName") === "Biota")) && (
+            rank.indexOf(get(taxon, "name.rank")) < genusRankIndex &&
+            rank.indexOf(get(taxon, "name.rank")) > -1) ||
+            (get(taxon, "name.rank") === "unranked" &&
+              get(taxon, "name.scientificName") === "Biota")) && (
             <PresentationItem md={md} label="Breakdown">
               <TaxonBreakdown
                 taxon={taxon}
@@ -713,17 +708,17 @@ class TaxonPage extends React.Component {
                               />
             </PresentationItem>
           )}
-          {_.get(info, "vernacularNames") && taxon && (
+          {get(info, "vernacularNames") && taxon && (
             <PresentationItem md={md} label="Vernacular names">
               <VernacularNames
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}
                 data={info.vernacularNames}
-                references={_.get(info, "references")}
+                references={get(info, "references")}
                 datasetKey={taxon.datasetKey}
               />
             </PresentationItem>
           )}
-          {(_.get(info, "distributions") ||
+          {(get(info, "distributions") ||
             (showDistributionMap && gbifChecklistKey && taxon)) && (
             <PresentationItem md={md} label="Distributions">
               <Distributions
@@ -737,48 +732,48 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {_.get(taxon, "environments") && (
+          {get(taxon, "environments") && (
             <PresentationItem md={md} label="Environment(s)">
-              {_.get(taxon, "environments").join(", ")}
+              {get(taxon, "environments").join(", ")}
             </PresentationItem>
           )}
 
-          {_.get(taxon, "remarks") && (
+          {get(taxon, "remarks") && (
             <PresentationItem md={md} label="Additional Data">
               {taxon.remarks}
             </PresentationItem>
           )}
 
           <Row>
-            {_.get(taxon, "accordingTo") && (
+            {get(taxon, "accordingTo") && (
               <Col span={12}>
                 <PresentationItem md={md * 2} label="According to">
-                  {`${_.get(taxon, "accordingTo")}`}
-                  {_.get(taxon, "accordingToDate") &&
-                    `, ${dayjs(_.get(taxon, "accordingToDate")).format("LL")}`}
+                  {`${get(taxon, "accordingTo")}`}
+                  {get(taxon, "accordingToDate") &&
+                    `, ${dayjs(get(taxon, "accordingToDate")).format("LL")}`}
                 </PresentationItem>
               </Col>
             )}
             {/*           <Col span={12}>
-          {_.get(taxon, "origin") && (
+          {get(taxon, "origin") && (
             <PresentationItem md={md * 2} label="Origin">
-              {_.get(taxon, "origin")}
+              {get(taxon, "origin")}
             </PresentationItem>
           )}
           </Col>   */}
           </Row>
-          {_.get(taxon, "scrutinizer") && (
+          {get(taxon, "scrutinizer") && (
             <Col span={12}>
               <PresentationItem md={md * 2} label="Taxonomic scrutiny">
-                {`${_.get(taxon, "scrutinizer")}${
-                  _.get(taxon, "scrutinizerDate")
-                    ? ", " + _.get(taxon, "scrutinizerDate")
+                {`${get(taxon, "scrutinizer")}${
+                  get(taxon, "scrutinizerDate")
+                    ? ", " + get(taxon, "scrutinizerDate")
                     : ""
                 }`}
               </PresentationItem>
             </Col>
           )}
-          {_.get(sourceDataset, "title") && (
+          {get(sourceDataset, "title") && (
             <PresentationItem md={md} label="Source">
               <div style={{ display: "inline-block" }}>
               {info?.usage?.merged && 
@@ -799,29 +794,29 @@ class TaxonPage extends React.Component {
                     in{" "}
                   </>
                 )}
-                <LinkTo to="source" args={_.get(sourceDataset, "key")}>
-                  {`${_.get(sourceDataset, "alias")}: ${_.get(
+                <LinkTo to="source" args={get(sourceDataset, "key")}>
+                  {`${get(sourceDataset, "alias")}: ${get(
                     sourceDataset,
                     "title"
                   )}`}
                 </LinkTo>
                 <span style={{ marginLeft: "10px" }}>
-                  {_.get(sourceDataset, "completeness") &&
-                    _.get(sourceDataset, "completeness") + "%"}
+                  {get(sourceDataset, "completeness") &&
+                    get(sourceDataset, "completeness") + "%"}
                 </span>
-                {_.get(sourceDataset, "confidence") && (
+                {get(sourceDataset, "confidence") && (
                   <Rate
                     style={{ marginLeft: "10px" }}
-                    value={_.get(sourceDataset, "confidence")}
+                    value={get(sourceDataset, "confidence")}
                     disabled
                   />
                 )}
               </div>
             </PresentationItem>
           )}
-          {_.get(taxon, "link") && (
+          {get(taxon, "link") && (
             <PresentationItem md={md} label="Link to original resource">
-              <a href={_.get(taxon, "link")}>{_.get(taxon, "link")}</a>
+              <a href={get(taxon, "link")}>{get(taxon, "link")}</a>
             </PresentationItem>
           )}
           {info?.source?.secondarySources && (
@@ -838,12 +833,12 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )} */}
-          {_.get(info, "references") && (
+          {get(info, "references") && (
             <PresentationItem md={md} label="References">
               <References
                                 referenceIndexMap={referenceIndexMap}
                 primarySourceDatasetKey={info?.source?.sourceDatasetKey}
-                data={_.get(info, "references")}
+                data={get(info, "references")}
                 style={{ marginTop: "-3px" }}
               />
             </PresentationItem>

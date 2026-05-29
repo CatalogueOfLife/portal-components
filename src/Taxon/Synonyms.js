@@ -1,5 +1,5 @@
 import { useState } from "react";
-import _ from "lodash";
+import { get } from "lodash-es";
 import BorderedListItem from "./BorderedListItem";
 import ReferencePopover from "./ReferencePopover";
 import MergedDataBadge from "../components/MergedDataBadge";
@@ -24,22 +24,22 @@ const SynonymsTable = ({
 
   const getNomStatus = (taxon) =>
     !nomStatus
-      ? _.get(taxon, "name.nomStatus")
-      : nomStatus[_.get(taxon, "name.nomStatus")][
-          (_.get(taxon, "name.code"), "zoological")
+      ? get(taxon, "name.nomStatus")
+      : nomStatus[get(taxon, "name.nomStatus")][
+          (get(taxon, "name.code"), "zoological")
         ];
 
   const sorter = (a, b) => {
     if (
-      _.get(a, "name.combinationAuthorship.year") &&
-      _.get(b, "name.combinationAuthorship.year")
+      get(a, "name.combinationAuthorship.year") &&
+      get(b, "name.combinationAuthorship.year")
     ) {
       return (
-        _.get(b, "name.combinationAuthorship.year") -
-        _.get(a, "name.combinationAuthorship.year")
+        get(b, "name.combinationAuthorship.year") -
+        get(a, "name.combinationAuthorship.year")
       );
     } else {
-      if (_.get(a, "name.scientificName") < _.get(b, "name.scientificName")) {
+      if (get(a, "name.scientificName") < get(b, "name.scientificName")) {
         return -1;
       } else {
         return 1;
@@ -71,15 +71,15 @@ const SynonymsTable = ({
   const visibleItems = showAll ? items : items.slice(0, TOP_N);
 
   const renderItem = ({ syn: s, homotypic, indent }) => (
-    <BorderedListItem key={_.get(s, "name.id")}>
+    <BorderedListItem key={get(s, "name.id")}>
       <span style={indent ? { marginLeft: "10px" } : null}>
         {homotypic === true ? "≡ " : "= "}{" "}
         <span
           dangerouslySetInnerHTML={{
-            __html: _.get(
+            __html: get(
               s,
               "labelHtml",
-              `${_.get(s, "name.scientificName")} ${_.get(
+              `${get(s, "name.scientificName")} ${get(
                 s,
                 "name.authorship",
                 ""
@@ -89,7 +89,7 @@ const SynonymsTable = ({
         />
       </span>{" "}
       {s?.sourceDatasetKey &&
-        _.get(primarySource, "key") !== s?.sourceDatasetKey && (
+        get(primarySource, "key") !== s?.sourceDatasetKey && (
           <MergedDataBadge
             createdBy={s?.createdBy}
             datasetKey={s.datasetKey}
@@ -101,21 +101,21 @@ const SynonymsTable = ({
       <TypeMaterialPopover
         datasetKey={datasetKey}
         typeMaterial={typeMaterial}
-        nameId={_.get(s, "name.id")}
+        nameId={get(s, "name.id")}
         placement="top"
       />{" "}
-      {_.get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
-      {_.get(s, "status") === "misapplied" && _.get(s, "accordingTo")
-        ? _.get(s, "accordingTo")
+      {get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
+      {get(s, "status") === "misapplied" && get(s, "accordingTo")
+        ? get(s, "accordingTo")
         : ""}
-      {_.get(s, "status") === "ambiguous synonym" && "(Ambiguous)"}
+      {get(s, "status") === "ambiguous synonym" && "(Ambiguous)"}
       <ReferencePopover
         datasetKey={datasetKey}
         references={references}
         referenceIndexMap={referenceIndexMap}
         referenceId={
-          _.get(s, "name.publishedInId")
-            ? [_.get(s, "name.publishedInId"), ...(s.referenceIds || [])]
+          get(s, "name.publishedInId")
+            ? [get(s, "name.publishedInId"), ...(s.referenceIds || [])]
             : s.referenceIds
         }
         placement="top"

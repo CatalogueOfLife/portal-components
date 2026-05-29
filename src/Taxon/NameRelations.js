@@ -1,10 +1,10 @@
 import React from "react";
 import PresentationItem from "../components/PresentationItem";
-import _ from "lodash";
+import { capitalize } from "lodash-es";
 
 const getLabel = (r, reverse) => {
   if (!reverse) {
-    // return `${_.capitalize(r.type)} ${typeMap[r.type] ? typeMap[r.type] : ""}`;
+    // return `${capitalize(r.type)} ${typeMap[r.type] ? typeMap[r.type] : ""}`;
     switch (r.type) {
       case "spelling correction":
         return "Spelling correction of";
@@ -21,7 +21,7 @@ const getLabel = (r, reverse) => {
       case "type":
         return "Type";
       default:
-        return _.capitalize(r.type);
+        return capitalize(r.type);
     }
   } else {
     switch (r.type) {
@@ -40,7 +40,7 @@ const getLabel = (r, reverse) => {
       case "type":
         return "Type of";
       default:
-        return _.capitalize(r.type);
+        return capitalize(r.type);
     }
   }
 };

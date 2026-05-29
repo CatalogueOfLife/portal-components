@@ -1,7 +1,7 @@
 import React from "react";
 import { Tree, Alert, Spin, Button, Skeleton } from "antd";
-import _ from "lodash";
-import axios from "axios";
+import { flatten, get, isArray } from "lodash-es";
+import client from "../api/client";
 import config from "../config";
 import ColTreeNode from "./ColTreeNode";
 import ErrorMsg from "../components/ErrorMsg";
@@ -85,7 +85,7 @@ class ColTree extends React.Component {
   };
 
   getRank = () => {
-    axios(`${config.dataApi}vocab/rank`).then((res) =>
+    client(`${config.dataApi}vocab/rank`).then((res) =>
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };
@@ -119,7 +119,7 @@ class ColTree extends React.Component {
     const { defaultTaxonKey } = this.props;
 
     this.setState({ rootLoading: true, treeData: [] });
-    return axios(
+    return client(
       `${
         config.dataApi
       }dataset/${datasetKey}/tree?projectKey=${datasetKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
@@ -192,7 +192,7 @@ class ColTree extends React.Component {
     } = this.props;
 
     this.setState({ rootLoading: true/* , treeData: [] */ });
-    const { data } = await axios(
+    const { data } = await client(
       `${
         config.dataApi
       }dataset/${datasetKey}/tree/${defaultExpandKey}?projectKey=${datasetKey}&insertPlaceholder=true${type ? "&type="+type :""}${
@@ -284,10 +284,10 @@ const { treeData } = this.state;
       type
     } = this.props;
     const { treeData } = this.state;
-    const childcount = _.get(dataRef, "childCount");
+    const childcount = get(dataRef, "childCount");
     const limit = CHILD_PAGE_SIZE;
-    const offset = _.get(dataRef, "childOffset");
-    const res = await axios(
+    const offset = get(dataRef, "childOffset");
+    const res = await client(
       `${config.dataApi}dataset/${datasetKey}/tree/${
         dataRef.taxon.id //taxonKey
       }/children?limit=${limit}&offset=${offset}&projectKey=${datasetKey}${type ? "&type="+type :""}${
@@ -399,13 +399,13 @@ const { treeData } = this.state;
   findNode = (id, nodeArray) => {
     let node = null;
 
-    node = nodeArray.find((n) => _.get(n, "taxon.id") === id);
+    node = nodeArray.find((n) => get(n, "taxon.id") === id);
 
     if (node) {
       return node;
     } else {
-      const children = nodeArray.map((n) => _.get(n, "children") || []);
-      const flattenedChildren = _.flatten(children); //.flat();
+      const children = nodeArray.map((n) => get(n, "children") || []);
+      const flattenedChildren = flatten(children); //.flat();
       if (flattenedChildren.length === 0) {
         return null;
       } else {
@@ -429,7 +429,7 @@ const { treeData } = this.state;
     }
     if (!node) {
       node = parentNode.children.find((c) =>
-        _.get(c, "taxon.id") ? c.taxon.id.indexOf("incertae-sedis") > -1 : false
+        get(c, "taxon.id") ? c.taxon.id.indexOf("incertae-sedis") > -1 : false
       );
     }
     return node;
@@ -438,7 +438,7 @@ const { treeData } = this.state;
   reloadLoadedKeys = async (keys, expandKey, expandAll = true) => {
     this.setState({ rootLoading: true });
     const { loadedKeys: storedKeys } = this.state;
-    // const defaultExpandKey = _.get(qs.parse(_.get(location, "search")), 'taxonKey');
+    // const defaultExpandKey = get(qs.parse(get(location, "search")), 'taxonKey');
 
     let { treeData } = this.state;
     const targetTaxon = expandKey ? this.findNode(expandKey, treeData) : null;
@@ -450,7 +450,7 @@ const { treeData } = this.state;
         const parentNode = this.findNode(loadedKeys[index - 1], treeData);
         if (
           parentNode &&
-          _.isArray(_.get(parentNode, "children")) &&
+          isArray(get(parentNode, "children")) &&
           parentNode.children.length > 0
         ) {
           node = await this.pageThroughChildrenUntilTaxonFound(
@@ -483,20 +483,20 @@ const { treeData } = this.state;
       if (node) {
         await this.fetchChildPage(node, true, true);
         let targetNode = node.children.find(
-          (c) => _.get(c, "taxon.id") === _.get(targetTaxon, "taxon.id")
+          (c) => get(c, "taxon.id") === get(targetTaxon, "taxon.id")
         );
         if (
           targetTaxon &&
           index === loadedKeys.length - 2 &&
-          _.get(node, "taxon.id") !== _.get(targetTaxon, "taxon.id") &&
-          _.isArray(node.children) &&
+          get(node, "taxon.id") !== get(targetTaxon, "taxon.id") &&
+          isArray(node.children) &&
           !targetNode
         ) {
           if (node.children.length < node.childCount) {
             // its the parent of the taxon we are after - if its not in the first page, insert it
             targetNode = await this.pageThroughChildrenUntilTaxonFound(
               node,
-              _.get(targetTaxon, "taxon.id")
+              get(targetTaxon, "taxon.id")
             );
             // node.children = [targetTaxon, ...node.children];
             if (targetNode) {
@@ -504,7 +504,7 @@ const { treeData } = this.state;
                 setTimeout(() => {
                   const elmnt = document.getElementById(expandKey);
                   elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
-                  /* if (_.get(this, "treeRef.current")) {
+                  /* if (get(this, "treeRef.current")) {
                     this.treeRef.current.scrollTo({ key: expandKey });
                   } */
                 }, 100);
@@ -541,7 +541,7 @@ const { treeData } = this.state;
         setTimeout(() => {
           const elmnt = document.getElementById(expandKey);
           elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
-          /*           if (_.get(this, "treeRef.current")) {
+          /*           if (get(this, "treeRef.current")) {
             this.treeRef.current.scrollTo({ key: expandKey });
           } */
         }, 100);
@@ -568,7 +568,7 @@ const { treeData } = this.state;
       <div>
         {error && (
           <React.Fragment>
-            {_.get(error, "response.data.code") !== 404 ? (
+            {get(error, "response.data.code") !== 404 ? (
               <Alert
                 closable
                 onClose={() => this.setState({ error: null })}

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./treeControl.css";
-import axios from "axios";
+import client from "../../api/client";
 import config from "../../config";
 import { fetchDescendants } from "./descendantFetch";
 import { getDescendantRanks, INFRASPECIFIC_RANKS } from "./descendantRanks";
@@ -109,7 +109,7 @@ const fetchShape = (gazetteer, id) => {
   const key = `${gazetteer}:${id}`;
   if (cache.has(key)) return cache.get(key);
   const url = `${config.dataApi}vocab/area/${key}`;
-  const p = axios(url, {
+  const p = client(url, {
     headers: { Accept: "application/geo+json" },
   }).then(
     (r) => r.data,

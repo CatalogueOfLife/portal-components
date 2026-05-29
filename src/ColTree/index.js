@@ -1,9 +1,8 @@
 import React from "react";
 import ColTree from "./ColTree";
-import _ from "lodash";
+import { get } from "lodash-es";
 import NameAutocomplete from "./NameAutocomplete";
-import axios from "axios";
-import btoa from "btoa";
+import client, { setAuth } from "../api/client";
 import { Row, Col, Checkbox } from "antd";
 import { ColTreeContext } from "./ColTreeContext";
 import { TreeCacheContext, createTreeCache } from "./treeCache";
@@ -23,11 +22,7 @@ class ColTreeWrapper extends React.Component {
 
   constructor(props) {
     super(props);
-    if (this.props.auth) {
-      axios.defaults.headers.common["Authorization"] = `Basic ${btoa(
-        this.props.auth
-      )}`;
-    }
+    setAuth(this.props.auth);
     this.state = {
       hideExtinct: false,
       showInfo: false,
@@ -70,9 +65,9 @@ class ColTreeWrapper extends React.Component {
     const { hideExtinct, dataset } = this.state;
 
     const handleSelectName = (name) => {
-      const key = _.get(name, "key");
+      const key = get(name, "key");
       if (!key) return;
-      const rank = _.get(name, "rank");
+      const rank = get(name, "rank");
       if (linkToSpeciesPage && INFRASPECIFIC_RANKS.includes(rank)) {
         // Leaf-like selection: jump to the taxon page via the host's nav.
         const navigateToTaxon = this.context?.taxon?.onNavigate;

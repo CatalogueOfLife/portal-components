@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import config from "../config";
-import axios from "axios";
+import client from "../api/client";
 import Highcharts from "highcharts";
 import "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
-import _ from "lodash";
+import { get, keyBy } from "lodash-es";
 import { Spin, Row, Col, Switch } from "antd";
 import { useNavigateTo } from "../router";
 
@@ -40,7 +40,7 @@ const padNotAssigned = (kids, parentSpecies) => {
   return [
     ...sorted,
     {
-      name: notAssignedLabel(_.get(sorted, "[0].rank", "")),
+      name: notAssignedLabel(get(sorted, "[0].rank", "")),
       species: parentSpecies - sum,
       children: [],
     },
@@ -75,14 +75,14 @@ const TaxonBreakdown = ({
   }, [taxon, datasetKey, activeLevel]);
 
   const getOverView = async () => {
-    const res = await axios(
+    const res = await client(
       `${
         config.dataApi
       }dataset/${datasetKey}/nameusage/search?TAXON_ID=${encodeURIComponent(
         taxon.id
       )}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
     );
-    return _.keyBy(_.get(res, "data.facets.rank", []), "value");
+    return keyBy(get(res, "data.facets.rank", []), "value");
   };
 
   const getData = async () => {
@@ -92,9 +92,9 @@ const TaxonBreakdown = ({
 
       // confirm the focal taxon has at least one child rank with content
       const ranks = canonicalRanks;
-      let taxonRankIdx = ranks.indexOf(_.get(taxon, "name.rank"));
+      let taxonRankIdx = ranks.indexOf(get(taxon, "name.rank"));
       if (taxonRankIdx === -1) {
-        let rankIndex = rank.indexOf(_.get(taxon, "name.rank")) + 1;
+        let rankIndex = rank.indexOf(get(taxon, "name.rank")) + 1;
         while (taxonRankIdx === -1 && rankIndex < rank.length - 1) {
           const canonicalRankIndex = ranks.indexOf(rank[rankIndex]);
           if (canonicalRankIndex > -1) {
@@ -106,8 +106,8 @@ const TaxonBreakdown = ({
       let childRank;
       let childRankIndex = taxonRankIdx + 1;
       while (!childRank && childRankIndex < ranks.length) {
-        const nextRank = _.get(ranks, `[${childRankIndex}]`);
-        if (nextRank && _.get(counts, `${nextRank}.count`, 0) > 0) {
+        const nextRank = get(ranks, `[${childRankIndex}]`);
+        if (nextRank && get(counts, `${nextRank}.count`, 0) > 0) {
           childRank = nextRank;
         } else {
           childRankIndex++;
@@ -119,11 +119,11 @@ const TaxonBreakdown = ({
         return;
       }
 
-      const res = await axios(
+      const res = await client(
         `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${activeLevel}`
       );
       const children = res.data || [];
-      const totalSpecies = _.get(counts, "species.count", 0);
+      const totalSpecies = get(counts, "species.count", 0);
 
       setLoading(false);
       buildChart(children, totalSpecies);
@@ -192,7 +192,7 @@ const TaxonBreakdown = ({
         // (rather than a labelled "Not assigned" wedge).
         if (sum < slice.y) {
           outerData.push({
-            name: notAssignedLabel(_.get(sorted, "[0].rank", "")),
+            name: notAssignedLabel(get(sorted, "[0].rank", "")),
             y: slice.y - sum,
             color: gapColor,
             borderColor: gapColor,

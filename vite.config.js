@@ -45,7 +45,7 @@ export default defineConfig({
         /^antd/, /^axios/, /^lodash/, /^history/,
         /^highcharts/, /^marked/, /^query-string/,
         /^react-jss/, /^react-highlight-words/,
-        /^dompurify/, /^linkify/, /^dataloader/, /^btoa/,
+        /^dompurify/, /^linkify/, /^dataloader/,
         /^maplibre-gl/,
       ],
       output: {

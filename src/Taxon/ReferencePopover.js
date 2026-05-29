@@ -1,9 +1,9 @@
 import React from "react";
 import { BookOutlined } from "@ant-design/icons";
 import { Popover, Spin } from "antd";
-import axios from "axios";
+import client from "../api/client";
 import config from "../config";
-import _ from "lodash";
+import { get, isArray } from "lodash-es";
 import ErrorMsg from "../components/ErrorMsg";
 
 class ReferencePopover extends React.Component {
@@ -20,13 +20,13 @@ class ReferencePopover extends React.Component {
   getData = () => {
     const { referenceId, datasetKey, references } = this.props;
      if (referenceId) {
-      const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
+      const refIds = !isArray(referenceId) ? [referenceId] : referenceId;
       const reference = [];
       this.setState({ loading: true });
       Promise.allSettled(
-        refIds.map((id) => _.get(references, id) ? Promise.resolve(reference.push(references[id])) :
+        refIds.map((id) => get(references, id) ? Promise.resolve(reference.push(references[id])) :
 
-          axios(
+          client(
             `${config.dataApi}dataset/${datasetKey}/reference/${id}`
           ).then((res) => reference.push(res.data)).catch(err => this.setState({error: err}))
 
@@ -69,8 +69,8 @@ class ReferencePopover extends React.Component {
 
   render = () => {
     const { referenceId, referenceIndexMap, trigger } = this.props;
-    const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
-    let icon = referenceIndexMap && _.get(referenceIndexMap, refIds[0])
+    const refIds = !isArray(referenceId) ? [referenceId] : referenceId;
+    let icon = referenceIndexMap && get(referenceIndexMap, refIds[0])
       ? refIds.map((r) => (
           <a
             key={r}

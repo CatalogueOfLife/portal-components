@@ -1,8 +1,8 @@
 import React from "react";
 import config from "../config";
-import axios from "axios";
+import client from "../api/client";
 import {Skeleton} from "antd";
-import _ from "lodash";
+import { get } from "lodash-es";
 import { LinkTo } from "../router";
 
 class TaxonomicCoverage extends React.Component {
@@ -22,15 +22,15 @@ class TaxonomicCoverage extends React.Component {
   getData = () => {
     const { dataset, datasetKey } = this.props;
     const taxonMap = {};
-    axios(
+    client(
       `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
     ).then((res) => {
       return Promise.allSettled(
         res.data.result.filter(t => !!t?.target).map((t) =>
-          axios(
+          client(
             `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${t?.target?.id}${t?.subject?.rank ? "&rank="+t?.subject?.rank : ""}&q=${t?.subject?.name}`
           ).then((usages) => {
-            const taxon = _.get(usages, "data.result[0]");
+            const taxon = get(usages, "data.result[0]");
             if (taxon) {
               const path = taxon.classification
                 .slice(1, taxon.classification.length - 1)

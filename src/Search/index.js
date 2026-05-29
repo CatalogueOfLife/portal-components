@@ -1,7 +1,6 @@
 import React from "react";
 import NameSearch from "./NameSearch";
-import axios from "axios";
-import btoa from "btoa";
+import client, { setAuth } from "../api/client";
 import { RouterContext, buildRouter } from "../router";
 
 export default function Search({
@@ -13,9 +12,7 @@ export default function Search({
   auth,
   ...routerProps
 }) {
-  if (auth) {
-    axios.defaults.headers.common["Authorization"] = `Basic ${btoa(auth)}`;
-  }
+  setAuth(auth);
   return (
     <RouterContext.Provider value={buildRouter(routerProps)}>
       <NameSearch

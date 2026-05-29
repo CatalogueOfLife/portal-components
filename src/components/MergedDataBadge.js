@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Tag, Popover } from "antd";
-import btoa from "btoa";
-import axios from "axios";
+import client from "../api/client";
 import config from "../config";
 import { LinkTo } from "../router";
 
@@ -43,7 +42,7 @@ const MergedDataBadge = ({
   const getSourceTaxon = () => {
     setSourceTaxonLoading(true);
     setSourceTaxon(null);
-    axios(`${config.dataApi}dataset/${sourceDatasetKey}/taxon/${sourceId}`)
+    client(`${config.dataApi}dataset/${sourceDatasetKey}/taxon/${sourceId}`)
       .then((res) => {
         setSourceTaxonLoading(false);
         setSourceTaxon(res.data);
@@ -58,7 +57,7 @@ const MergedDataBadge = ({
   const getSourceDataset = () => {
     setSourceDatasetLoading(true);
     setSourceDataset(null);
-    axios(`${config.dataApi}dataset/${sourceDatasetKey}`)
+    client(`${config.dataApi}dataset/${sourceDatasetKey}`)
       .then((res) => {
         setSourceDatasetLoading(false);
         setSourceDataset(res.data);
@@ -73,7 +72,7 @@ const MergedDataBadge = ({
   const getVerbatimRecord = () => {
     setVerbatimRecordLoading(true);
     setVerbatimRecord(null);
-    axios(`${config.dataApi}dataset/${datasetKey}/verbatimsource/${verbatimSourceKey}`)
+    client(`${config.dataApi}dataset/${datasetKey}/verbatimsource/${verbatimSourceKey}`)
       .then((res) => {
         setVerbatimRecordLoading(false);
         setVerbatimRecord(res.data);

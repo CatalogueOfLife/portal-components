@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import client from "../api/client";
 import config from "../config";
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { AutoComplete, Input, Button } from 'antd';
-import _ from 'lodash'
-import {debounce} from 'lodash';
+import { debounce, get } from "lodash-es";
 import Highlighter from "react-highlight-words";
 
 const Option = AutoComplete.Option;
@@ -46,16 +45,16 @@ class DatasetAutocomplete extends React.Component {
     }
 
     setDefaultValue = (defaultDatasetKey) => {
-        axios(`${config.dataApi}dataset/${defaultDatasetKey}`)
+        client(`${config.dataApi}dataset/${defaultDatasetKey}`)
             .then(res => {
-                this.setState({value: _.get(res, 'data.title') || ''})
+                this.setState({value: get(res, 'data.title') || ''})
                 this.props.onSelectDataset(res.data)
             })
     }
 
     getDatasets = (q) => {
         const {contributesTo} = this.props;
-        axios(`${config.dataApi}dataset?q=${q}&limit=30${contributesTo ? '&contributesTo='+contributesTo : ''}`)
+        client(`${config.dataApi}dataset?q=${q}&limit=30${contributesTo ? '&contributesTo='+contributesTo : ''}`)
             .then((res) => {
                 this.setState({ datasets: res.data.result})
             })

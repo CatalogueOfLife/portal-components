@@ -1,9 +1,9 @@
 import React from "react";
 import { TagOutlined } from "@ant-design/icons";
 import { Popover, Spin, Tag } from "antd";
-import axios from "axios";
+import client from "../api/client";
 import config from "../config";
-import _ from "lodash";
+import { get, isArray } from "lodash-es";
 import { getTypeColor } from "./TypeMaterial";
 import linkify from "linkify-html";
 import MergedDataBadge from "../components/MergedDataBadge";
@@ -22,14 +22,14 @@ class TypeMaterialPopover extends React.Component {
   getData = () => {
     const { nameId, datasetKey, references } = this.props;
     if (referenceId) {
-      const refIds = !_.isArray(referenceId) ? [referenceId] : referenceId;
+      const refIds = !isArray(referenceId) ? [referenceId] : referenceId;
       const typeMaterial = [];
       this.setState({ loading: true });
       Promise.all(
         refIds.map((id) =>
-          _.get(references, id)
+          get(references, id)
             ? Promise.resolve(typeMaterial.push(references[nameId]))
-            : axios(
+            : client(
                 `${
                   config.dataApi
                 }dataset/${datasetKey}/name/${encodeURIComponent(nameId)}/types`

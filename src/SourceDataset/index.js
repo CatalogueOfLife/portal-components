@@ -1,12 +1,11 @@
 import React from "react";
 import config from "../config";
-import btoa from "btoa";
-import axios from "axios";
+import client, { setAuth } from "../api/client";
 import { Alert, Rate, Row, Col, Button, Tooltip } from "antd";
 import ErrorMsg from "../components/ErrorMsg";
 import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import Metrics from "./Metrics";
-import _ from "lodash";
+import { get, isArray, isEmpty } from "lodash-es";
 import PresentationItem from "../components/PresentationItem";
 import TaxonomicCoverage from "./TaxonomicCoverage";
 import { RouterContext, buildRouter } from "../router";
@@ -26,11 +25,7 @@ const IDENTIFIER_TYPES = {
 class SourceDatasetPage extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.auth) {
-      axios.defaults.headers.common["Authorization"] = `Basic ${btoa(
-        this.props.auth
-      )}`;
-    }
+    setAuth(this.props.auth);
     this.state = {
       datasetLoading: true,
       data: null,
@@ -63,9 +58,9 @@ class SourceDatasetPage extends React.Component {
     const { datasetKey, sourceDatasetKey, pageTitleTemplate } = this.props;
     if (!sourceDatasetKey) return;
 
-    axios(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`)
+    client(`${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}`)
       .then((dataset) => {
-        if (pageTitleTemplate && _.get(dataset, "data.title")) {
+        if (pageTitleTemplate && get(dataset, "data.title")) {
           document.title = pageTitleTemplate.replace(
             "__dataset__",
             dataset.data.title
@@ -77,7 +72,7 @@ class SourceDatasetPage extends React.Component {
   };
 
   getRank = () => {
-    axios(`${config.dataApi}vocab/rank`).then((res) =>
+    client(`${config.dataApi}vocab/rank`).then((res) =>
       this.setState({ rank: res.data.map((r) => r.name) })
     );
   };
@@ -195,7 +190,7 @@ class SourceDatasetPage extends React.Component {
                   "-"
                 )}
               </PresentationItem>
-              {data.contact && !_.isEmpty(data.contact) && (
+              {data.contact && !isEmpty(data.contact) && (
                 <PresentationItem label="Contact">
                   <AgentPresentation
                     countryAlpha2={countryAlpha2}
@@ -203,7 +198,7 @@ class SourceDatasetPage extends React.Component {
                   />
                 </PresentationItem>
               )}
-              {data.publisher && !_.isEmpty(data.publisher) && (
+              {data.publisher && !isEmpty(data.publisher) && (
                 <PresentationItem label="Publisher">
                   <AgentPresentation
                     countryAlpha2={countryAlpha2}
@@ -385,7 +380,7 @@ class SourceDatasetPage extends React.Component {
               {data.sourceKey}
             </PresentationItem> */}
               <PresentationItem label="Source">
-                {data.source && _.isArray(data.source)
+                {data.source && isArray(data.source)
                   ? data.source.map(
                       (s) =>
                         !!s &&

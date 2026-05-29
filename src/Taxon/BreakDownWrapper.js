@@ -1,6 +1,6 @@
 import TaxonBreakdown from "./TaxonBreakdown";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import client from "../api/client";
 import config from "../config";
 import { Row, Col, Spin } from "antd";
 import { RouterContext, buildRouter } from "../router";
@@ -27,15 +27,15 @@ export const BreakDownWrapper = ({
   }, [taxonId, datasetKey]);
 
   const getRank = () =>
-    axios(`${config.dataApi}vocab/rank`).then((res) =>
+    client(`${config.dataApi}vocab/rank`).then((res) =>
       setRank(res.data.map((r) => r.name))
     );
   const getTaxon = () =>
-    axios(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonId}`).then(
+    client(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonId}`).then(
       (res) => setTaxon(res.data)
     );
   const getDataset = () =>
-    axios(`${config.dataApi}dataset/${datasetKey}`).then((res) =>
+    client(`${config.dataApi}dataset/${datasetKey}`).then((res) =>
       setDataset(res.data)
     );
 

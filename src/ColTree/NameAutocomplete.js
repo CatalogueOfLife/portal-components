@@ -1,9 +1,8 @@
 import React from "react";
-import axios from "axios";
+import client from "../api/client";
 import config from "../config";
 import { AutoComplete, Input , Select} from "antd";
-import _ from "lodash";
-import { debounce } from "lodash";
+import { debounce, get } from "lodash-es";
 import Highlighter from "react-highlight-words";
 
 
@@ -43,10 +42,10 @@ class NameSearchAutocomplete extends React.Component {
 
   setDefaultValue = (usageId) => {
     const { datasetKey } = this.props;
-    axios(
+    client(
       `${config.dataApi}dataset/${datasetKey}/nameusage/search?USAGE_ID=${usageId}`
     ).then((res) => {
-      this.setState({ value: _.get(res, "data.result[0].usage.label") || "" });
+      this.setState({ value: get(res, "data.result[0].usage.label") || "" });
     });
   };
   getNames = (q) => {
@@ -56,7 +55,7 @@ class NameSearchAutocomplete extends React.Component {
       ? `${config.dataApi}dataset/${datasetKey}/nameusage/suggest`
       : `${config.dataApi}name/search`;
 
-    axios(
+    client(
       `${url}?limit=25&q=${q}${
         minRank ? `&minRank=${minRank}` : ""
       }${extinct ? `&extinct=${extinct}`:''}`
@@ -72,13 +71,13 @@ class NameSearchAutocomplete extends React.Component {
       });
   };
   onSelectName = (val, obj) => {
-    const selectedTaxon = _.get(obj, "data.acceptedUsageId")
+    const selectedTaxon = get(obj, "data.acceptedUsageId")
       ? {
-          key: _.get(obj, "data.acceptedUsageId"),
-          rank: _.get(obj, "data.rank"),
-          title: _.get(obj, "data.parentOrAcceptedName"),
+          key: get(obj, "data.acceptedUsageId"),
+          rank: get(obj, "data.rank"),
+          title: get(obj, "data.parentOrAcceptedName"),
         }
-      : { key: _.get(obj, "data.usageId"), rank: _.get(obj, "data.rank"), title: _.get(obj, "data.name") };
+      : { key: get(obj, "data.usageId"), rank: get(obj, "data.rank"), title: get(obj, "data.name") };
     this.setState({ value: val });
     this.props.onSelectName(selectedTaxon);
   };

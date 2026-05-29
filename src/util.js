@@ -1,5 +1,5 @@
 
-import _ from 'lodash'
+import { get, startCase } from "lodash-es";
 
 export const stringToColour = (str) => {
     if (!str){
@@ -23,13 +23,13 @@ export const titleToAbbrev = (str) => {
    if(splitted.length > 2){
        return splitted[0][0]+splitted[1][0]+splitted[2][0]
    } else if(splitted.length > 1) {
-       return `${splitted[0][0]}${splitted[1][0]}${_.get(splitted, '[1][1]') ? _.get(splitted, '[1][1]'): ''}`
+       return `${splitted[0][0]}${splitted[1][0]}${get(splitted, '[1][1]') ? get(splitted, '[1][1]'): ''}`
    } else {
-       const startCased = _.startCase(str).split(' ')
+       const startCased = startCase(str).split(' ')
        if(startCased.length > 2){
         return startCased[0][0]+startCased[1][0]+startCased[2][0]
     } else if(startCased.length > 1) {
-        return `${startCased[0][0]}${startCased[1][0]}${_.get(startCased, '[1][1]') ? _.get(startCased, '[1][1]'): ''}`
+        return `${startCased[0][0]}${startCased[1][0]}${get(startCased, '[1][1]') ? get(startCased, '[1][1]'): ''}`
     } else {
         return str.substring(0, 3)
     }

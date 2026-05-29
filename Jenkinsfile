@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('Typecheck') {
+            steps {
+                sh 'npm run typecheck'
+            }
+        }
+
         stage('Test') {
             steps {
                 sh 'npm test'
