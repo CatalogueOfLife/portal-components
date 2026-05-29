@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "antd": "^6.4.3",
-    "axios": "^1.16.1",
     "dataloader": "^2.2.3",
     "dayjs": "^1.11.13",
     "dompurify": "^3.4.6",

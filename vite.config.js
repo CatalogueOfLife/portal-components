@@ -42,7 +42,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'react', 'react-dom', 'react-router-dom',
-        /^antd/, /^axios/, /^lodash/, /^history/,
+        /^antd/, /^lodash/, /^history/,
         /^highcharts/, /^marked/, /^query-string/,
         /^react-jss/, /^react-highlight-words/,
         /^dompurify/, /^linkify/, /^dataloader/,

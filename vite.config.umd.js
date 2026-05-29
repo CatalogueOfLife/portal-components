@@ -44,20 +44,11 @@ export default defineConfig({
         assetFileNames: (info) =>
           info.name?.endsWith('.css') ? 'main.css' : info.name,
         // Inject browser polyfills for Node globals inside the UMD wrapper.
-        // setImmediate: used by some scheduler code.
-        // Buffer: axios references Buffer (form-data / byteLength paths) and
-        // assumes a Node environment; provide a minimal browser shim so the
-        // bundle doesn't throw "Buffer is not defined". (Auth encoding now uses
-        // the native btoa() global directly — no btoa npm package.)
+        // setImmediate: used by some scheduler code. (The Buffer shim that used
+        // to live here was only needed by axios, which is no longer bundled —
+        // API calls now go through a native fetch wrapper, see src/api/client.js.)
         intro: `
 var setImmediate = typeof globalThis.setImmediate !== 'undefined' ? globalThis.setImmediate : function(fn) { return setTimeout(fn, 0); };
-var Buffer = (function() {
-  function BBuffer(s) { this._s = s; }
-  BBuffer.prototype.toString = function(e) { return e === 'base64' ? btoa(this._s) : this._s; };
-  BBuffer.from = function(s) { return new BBuffer(s); };
-  BBuffer.isBuffer = function() { return false; };
-  return BBuffer;
-})();
         `,
       },
     },

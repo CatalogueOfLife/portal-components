@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { act } from 'react'
-import axios from 'axios'
+import { publicClient } from 'src/api/client'
 import { Tree, Search, Taxon, SourceDataset, SourceDatasetList, BibTex } from 'src/'
 
 const CATALOGUE_KEY = '310463'
@@ -157,7 +157,7 @@ describe('SourceDataset', () => {
 
   beforeAll(async () => {
     try {
-      const res = await axios.get(`https://api.checklistbank.org/dataset/${CATALOGUE_KEY}/source?limit=1`)
+      const res = await publicClient.get(`https://api.checklistbank.org/dataset/${CATALOGUE_KEY}/source?limit=1`)
       sourceDatasetKey = res.data?.[0]?.key
     } catch (e) {
       // ignore — fallback key used below

@@ -3,9 +3,8 @@ import { Radio } from "antd";
 import { get, keyBy, startCase } from "lodash-es";
 import ReferencePopover from "./ReferencePopover";
 import config from "../config";
-import client from "../api/client";
-// Bare axios (no CoL auth) for the third-party GBIF occurrence API below.
-import axios from "axios";
+// publicClient (no CoL auth) for the third-party GBIF occurrence API below.
+import client, { publicClient } from "../api/client";
 import MergedDataBadge from "../components/MergedDataBadge";
 import DistributionsMap from "./DistributionsMap";
 
@@ -87,7 +86,7 @@ const DistributionsTable = ({
     }
     setGbifCount(null);
     let cancelled = false;
-    axios
+    publicClient
       .get(`${config.gbifApi}/v1/occurrence/search`, {
         params: {
           checklistKey: gbifChecklistKey,
