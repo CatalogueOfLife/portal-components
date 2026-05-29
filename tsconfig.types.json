@@ -10,5 +10,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["types/index.d.ts", "tests/types.test-d.tsx"]
+  "include": ["types/*.d.ts", "tests/types.test-d.tsx"]
 }
