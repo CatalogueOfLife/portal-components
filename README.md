@@ -65,6 +65,23 @@ Then mount any component using `ColBrowser.React` and `ColBrowser.ReactDOM`:
 
 The full version list is on the [releases page](https://github.com/CatalogueOfLife/portal-components/releases).
 
+### npm / ES module
+
+If you bundle your own app, install from npm and import the components plus the stylesheet:
+
+```bash
+npm install col-browser
+```
+
+```jsx
+import { Tree } from 'col-browser';
+import 'col-browser/style.css';
+
+<Tree datasetKey="3LR" hrefForTaxon={(id) => `/taxon/${id}`} />
+```
+
+The `col-browser/style.css` import carries the `.catalogue-of-life` layout overrides and is **not** auto-injected, so import it once in your entry. antd 6 injects its own component styles at runtime (CSS-in-JS), so no antd stylesheet is needed. `Taxon` / `TaxonDistribution` additionally need MapLibre GL JS and its CSS — see [those components below](#colbrowsertaxon).
+
 ### jsDelivr version selectors
 
 jsDelivr resolves semver-style git tags, so you can pick the granularity that suits you:
