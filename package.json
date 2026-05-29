@@ -1,6 +1,6 @@
 {
   "name": "col-browser",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Catalogue of Life browse and search React components",
   "main": "umd/col-browser.js",
   "module": "es/index.js",
@@ -11,15 +11,42 @@
       "import": "./es/index.js",
       "require": "./umd/col-browser.js"
     },
-    "./tree": { "types": "./types/tree.d.ts", "import": "./es/tree.js" },
-    "./search": { "types": "./types/search.d.ts", "import": "./es/search.js" },
-    "./taxon": { "types": "./types/taxon.d.ts", "import": "./es/taxon.js" },
-    "./source-dataset": { "types": "./types/sourceDataset.d.ts", "import": "./es/sourceDataset.js" },
-    "./source-dataset-list": { "types": "./types/sourceDatasetList.d.ts", "import": "./es/sourceDatasetList.js" },
-    "./bibtex": { "types": "./types/bibtex.d.ts", "import": "./es/bibtex.js" },
-    "./taxon-breakdown": { "types": "./types/taxonBreakdown.d.ts", "import": "./es/taxonBreakdown.js" },
-    "./taxon-distribution": { "types": "./types/taxonDistribution.d.ts", "import": "./es/taxonDistribution.js" },
-    "./routing": { "types": "./types/routing.d.ts", "import": "./es/routing.js" },
+    "./tree": {
+      "types": "./types/tree.d.ts",
+      "import": "./es/tree.js"
+    },
+    "./search": {
+      "types": "./types/search.d.ts",
+      "import": "./es/search.js"
+    },
+    "./taxon": {
+      "types": "./types/taxon.d.ts",
+      "import": "./es/taxon.js"
+    },
+    "./source-dataset": {
+      "types": "./types/sourceDataset.d.ts",
+      "import": "./es/sourceDataset.js"
+    },
+    "./source-dataset-list": {
+      "types": "./types/sourceDatasetList.d.ts",
+      "import": "./es/sourceDatasetList.js"
+    },
+    "./bibtex": {
+      "types": "./types/bibtex.d.ts",
+      "import": "./es/bibtex.js"
+    },
+    "./taxon-breakdown": {
+      "types": "./types/taxonBreakdown.d.ts",
+      "import": "./es/taxonBreakdown.js"
+    },
+    "./taxon-distribution": {
+      "types": "./types/taxonDistribution.d.ts",
+      "import": "./es/taxonDistribution.js"
+    },
+    "./routing": {
+      "types": "./types/routing.d.ts",
+      "import": "./es/routing.js"
+    },
     "./style.css": "./es/col-browser.css"
   },
   "files": [
