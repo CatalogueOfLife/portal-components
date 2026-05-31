@@ -69613,6 +69613,21 @@ html body {
       ] })
     ] });
   };
+  const PREFIX = "col-browser:";
+  function readSetting(key2, fallback) {
+    try {
+      const raw = window.localStorage.getItem(PREFIX + key2);
+      return raw === null ? fallback : JSON.parse(raw);
+    } catch {
+      return fallback;
+    }
+  }
+  function writeSetting(key2, value) {
+    try {
+      window.localStorage.setItem(PREFIX + key2, JSON.stringify(value));
+    } catch {
+    }
+  }
   const INFRASPECIFIC_RANKS$1 = [
     "infraspecific name",
     "species",
@@ -69684,8 +69699,10 @@ html body {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Checkbox,
                   {
+                    defaultChecked: this.state.showInfo,
                     onChange: ({ target: { checked } }) => {
                       this.setState({ showInfo: checked });
+                      writeSetting("tree-show-source", checked);
                     },
                     children: "Source"
                   }
@@ -69693,9 +69710,10 @@ html body {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Checkbox,
                   {
-                    defaultChecked: false,
+                    defaultChecked: this.state.hideExtinct,
                     onChange: ({ target: { checked } }) => {
                       this.setState({ hideExtinct: checked });
+                      writeSetting("tree-extant-only", checked);
                     },
                     children: "Extant only"
                   }
@@ -69721,8 +69739,8 @@ html body {
       });
       setAuth(this.props.auth);
       this.state = {
-        hideExtinct: false,
-        showInfo: false,
+        hideExtinct: readSetting("tree-extant-only", false),
+        showInfo: readSetting("tree-show-source", false),
         dataset: null
       };
       this.cache = createTreeCache(this.props.datasetKey);
@@ -70651,6 +70669,7 @@ html body {
       this.getDatasets.cancel();
     }
   }
+  const CONTENT_TYPE_KEY = "search-content-type";
   const FormItem = Form.Item;
   const RadioGroup = Radio.Group;
   const FACET_VOCAB = [
@@ -70781,8 +70800,12 @@ html body {
           params.TAXON_ID = defaultTaxonKey;
         }
         if (isEmpty(params)) {
-          params = defaultParams;
-          this.pushParams(defaultParams);
+          params = { ...defaultParams };
+          const storedContentType = readSetting(CONTENT_TYPE_KEY, void 0);
+          if (storedContentType !== void 0 && storedContentType !== null) {
+            params.sectorMode = storedContentType;
+          }
+          this.pushParams(params);
         } else if (!params.facet) {
           params.facet = FACET_VOCAB;
         }
@@ -70856,6 +70879,7 @@ html body {
         this.setState({ params: query }, () => this.pushParams(query));
       });
       __publicField(this, "updateSearch", (params) => {
+        if ("sectorMode" in params) writeSetting(CONTENT_TYPE_KEY, params.sectorMode);
         let newParams = { ...this.state.params, offset: 0, limit: 50 };
         forEach(params, (v2, k) => {
           newParams[k] = v2;
@@ -78025,25 +78049,9 @@ html body {
     return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
   };
   const POSITRON_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
-  const GBIF_VISIBLE_STORAGE_KEY = "col-browser:gbif-visible";
-  const readStoredGbifVisible = (defaultValue) => {
-    try {
-      const v2 = window.sessionStorage.getItem(GBIF_VISIBLE_STORAGE_KEY);
-      if (v2 === "true") return true;
-      if (v2 === "false") return false;
-    } catch {
-    }
-    return defaultValue;
-  };
-  const writeStoredGbifVisible = (visible) => {
-    try {
-      window.sessionStorage.setItem(
-        GBIF_VISIBLE_STORAGE_KEY,
-        visible ? "true" : "false"
-      );
-    } catch {
-    }
-  };
+  const GBIF_VISIBLE_KEY = "gbif-visible";
+  const readStoredGbifVisible = (defaultValue) => readSetting(GBIF_VISIBLE_KEY, defaultValue);
+  const writeStoredGbifVisible = (visible) => writeSetting(GBIF_VISIBLE_KEY, visible);
   const GBIF_TILE_PATH = "/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&checklistKey={checklistKey}&taxonKey={taxonKey}";
   const FOCAL_SOURCE = "col-focal-distributions";
   const FOCAL_FILL = "col-focal-fill";
@@ -78175,7 +78183,7 @@ html body {
     const [focalVisible, setFocalVisible] = reactExports.useState(true);
     const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
     const [gbifVisible, setGbifVisible] = reactExports.useState(
-      () => isGbifOnly ? true : readStoredGbifVisible(true)
+      () => readStoredGbifVisible(true)
     );
     const [visibleTaxonIds, setVisibleTaxonIds] = reactExports.useState(/* @__PURE__ */ new Set());
     const [controlOpen, setControlOpen] = reactExports.useState(false);
@@ -78183,9 +78191,13 @@ html body {
     const handleToggleGbif = () => {
       setGbifVisible((v2) => {
         const next2 = !v2;
-        if (!isGbifOnly) writeStoredGbifVisible(next2);
+        writeStoredGbifVisible(next2);
         return next2;
       });
+    };
+    const activateGbif = () => {
+      setGbifVisible(true);
+      writeStoredGbifVisible(true);
     };
     const presentMeans = reactExports.useMemo(() => {
       if (!(records == null ? void 0 : records.length)) return [];
@@ -78600,6 +78612,44 @@ html body {
             fontSize: 12
           },
           children: "Maps require WebGL, which your browser doesn't support."
+        }
+      );
+    }
+    if (isGbifOnly && !gbifVisible) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "col-distributions-map col-distributions-map--collapsed",
+          style: {
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "8px 12px",
+            background: "#fafafa",
+            border: "1px solid #eee",
+            borderRadius: 4,
+            color: "#666",
+            fontSize: 12
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "No curated distribution data." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "a",
+              {
+                role: "button",
+                tabIndex: 0,
+                style: { cursor: "pointer" },
+                onClick: activateGbif,
+                onKeyDown: (e2) => {
+                  if (e2.key === "Enter" || e2.key === " ") {
+                    e2.preventDefault();
+                    activateGbif();
+                  }
+                },
+                children: "Show GBIF occurrences"
+              }
+            )
+          ]
         }
       );
     }
@@ -86546,6 +86596,7 @@ html body {
   }
   var highchartsReact_minExports = requireHighchartsReact_min();
   const HighchartsReact = /* @__PURE__ */ getDefaultExportFromCjs(highchartsReact_minExports);
+  const BREAKDOWN_LEVEL_KEY = "breakdown-level";
   const MAX_SLICES_PER_RING = 100;
   const canonicalRanks = [
     "kingdom",
@@ -86588,10 +86639,15 @@ html body {
     const [options, setOptions] = reactExports.useState(null);
     const [loading, setLoading] = reactExports.useState(false);
     const [invalid, setInvalid] = reactExports.useState(false);
-    const [activeLevel, setActiveLevel] = reactExports.useState(level);
+    const [activeLevel, setActiveLevel] = reactExports.useState(
+      () => showLevelSwitch ? readSetting(BREAKDOWN_LEVEL_KEY, level) : level
+    );
     reactExports.useEffect(() => {
-      setActiveLevel(level);
-    }, [level]);
+      if (!showLevelSwitch) setActiveLevel(level);
+    }, [level, showLevelSwitch]);
+    reactExports.useEffect(() => {
+      if (showLevelSwitch) writeSetting(BREAKDOWN_LEVEL_KEY, activeLevel);
+    }, [activeLevel, showLevelSwitch]);
     reactExports.useEffect(() => {
       if ((taxon == null ? void 0 : taxon.id) && datasetKey) {
         getData();
@@ -89713,8 +89769,10 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     level = 1,
     showLevelSwitch = false,
     darkMode,
+    auth,
     ...routerProps
   }) => {
+    setAuth(auth);
     const [taxon, setTaxon] = reactExports.useState(null);
     const [dataset, setDataset] = reactExports.useState(null);
     const [rank, setRank] = reactExports.useState([]);
@@ -89753,8 +89811,10 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     datasetKey,
     gbifChecklistKey,
     style: style2,
+    auth,
     ...routerProps
   }) => {
+    setAuth(auth);
     const [taxon, setTaxon] = reactExports.useState(null);
     const [distributions, setDistributions] = reactExports.useState(null);
     const [rank, setRank] = reactExports.useState([]);
