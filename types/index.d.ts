@@ -150,6 +150,13 @@ export interface WithRoutingOptions {
   navigation?: "spa" | "reload";
   /** Per-kind URL prefixes used to read/write the controlled identifier. */
   paths?: Partial<Record<WithRoutingOptions["kind"], string>>;
+  /**
+   * Reserved query string (e.g. "?v=br") appended to every generated link and
+   * preserved across the component's own state writes, but excluded from its
+   * parsed state — so a release/variant marker never leaks into Search filters
+   * or Tree state.
+   */
+  query?: string;
 }
 
 /**
