@@ -7,6 +7,9 @@ import HighchartsReact from "highcharts-react-official";
 import { get, keyBy } from "lodash-es";
 import { Spin, Row, Col, Switch } from "antd";
 import { useNavigateTo } from "../router";
+import { readSetting, writeSetting } from "../storage";
+
+const BREAKDOWN_LEVEL_KEY = "breakdown-level";
 
 const MAX_SLICES_PER_RING = 100;
 const canonicalRanks = [
@@ -63,10 +66,18 @@ const TaxonBreakdown = ({
   // The chart's effective level is controlled internally when the switch
   // is enabled, so toggling can refetch + re-render the chart. Otherwise
   // the prop drives directly.
-  const [activeLevel, setActiveLevel] = useState(level);
+  const [activeLevel, setActiveLevel] = useState(() =>
+    showLevelSwitch ? readSetting(BREAKDOWN_LEVEL_KEY, level) : level
+  );
   useEffect(() => {
-    setActiveLevel(level);
-  }, [level]);
+    // When the 1/2 switch is shown the remembered choice owns the level, so a
+    // (usually static) `level` prop must not clobber it; otherwise the prop
+    // drives directly.
+    if (!showLevelSwitch) setActiveLevel(level);
+  }, [level, showLevelSwitch]);
+  useEffect(() => {
+    if (showLevelSwitch) writeSetting(BREAKDOWN_LEVEL_KEY, activeLevel);
+  }, [activeLevel, showLevelSwitch]);
   useEffect(() => {
     if (taxon?.id && datasetKey) {
       getData();

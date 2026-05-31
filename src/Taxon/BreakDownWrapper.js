@@ -1,6 +1,6 @@
 import TaxonBreakdown from "./TaxonBreakdown";
 import React, { useEffect, useState } from "react";
-import client from "../api/client";
+import client, { setAuth } from "../api/client";
 import config from "../config";
 import { Row, Col, Spin } from "antd";
 import { RouterContext, buildRouter } from "../router";
@@ -11,8 +11,12 @@ export const BreakDownWrapper = ({
   level = 1,
   showLevelSwitch = false,
   darkMode,
+  auth,
   ...routerProps
 }) => {
+  // Private candidate releases (preview/dev) require Basic auth on every call,
+  // including the breakdown's taxon/dataset/rank fetches via `client`.
+  setAuth(auth);
   const [taxon, setTaxon] = useState(null);
   const [dataset, setDataset] = useState(null);
   const [rank, setRank] = useState([]);

@@ -8,6 +8,7 @@ import { fetchDescendants } from "./descendantFetch";
 import { getDescendantRanks, INFRASPECIFIC_RANKS } from "./descendantRanks";
 import { assignColors } from "./colorAssignment";
 import IncludedTaxaLegend from "./IncludedTaxaLegend";
+import { readSetting, writeSetting } from "../../storage";
 
 const POPUP_FIELDS = [
   "establishmentMeans",
@@ -57,33 +58,15 @@ const colorFor = (record) => {
 const POSITRON_STYLE =
   "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
-// sessionStorage key for the GBIF overlay toggle. Persists across navigations
-// within a tab so a user who turns the overlay off on one taxon page sees it
-// off on the next (when that page actually has distribution polygons to fall
-// back to). GBIF-only maps ignore this and always show the overlay.
-const GBIF_VISIBLE_STORAGE_KEY = "col-browser:gbif-visible";
-
-const readStoredGbifVisible = (defaultValue) => {
-  try {
-    const v = window.sessionStorage.getItem(GBIF_VISIBLE_STORAGE_KEY);
-    if (v === "true") return true;
-    if (v === "false") return false;
-  } catch {
-    // sessionStorage can throw in private browsing or restrictive contexts.
-  }
-  return defaultValue;
-};
-
-const writeStoredGbifVisible = (visible) => {
-  try {
-    window.sessionStorage.setItem(
-      GBIF_VISIBLE_STORAGE_KEY,
-      visible ? "true" : "false"
-    );
-  } catch {
-    // ignore
-  }
-};
+// localStorage-backed GBIF overlay preference: a user who turns the overlay off
+// keeps it off across page loads and sessions. Applies to all maps, including
+// GBIF-only ones — there, turning it off collapses the (otherwise empty) map to
+// a small activate bar (see the render below).
+const GBIF_VISIBLE_KEY = "gbif-visible";
+const readStoredGbifVisible = (defaultValue) =>
+  readSetting(GBIF_VISIBLE_KEY, defaultValue);
+const writeStoredGbifVisible = (visible) =>
+  writeSetting(GBIF_VISIBLE_KEY, visible);
 
 // GBIF v2 occurrence-density tile path (multitaxonomy). Concatenated with
 // config.gbifApi at request time.
@@ -249,11 +232,11 @@ const DistributionsMap = ({
     taxa: [],
   });
   const [focalVisible, setFocalVisible] = useState(true);
-  // GBIF-only maps (no distribution polygons) always show the overlay
-  // regardless of any saved preference — there's nothing else to look at.
   const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
+  // Respect the saved GBIF preference on every map. On a GBIF-only map, an
+  // off preference collapses to a small activate bar instead of an empty map.
   const [gbifVisible, setGbifVisible] = useState(() =>
-    isGbifOnly ? true : readStoredGbifVisible(true)
+    readStoredGbifVisible(true)
   );
   const [visibleTaxonIds, setVisibleTaxonIds] = useState(new Set());
   const [controlOpen, setControlOpen] = useState(false);
@@ -262,12 +245,14 @@ const DistributionsMap = ({
   const handleToggleGbif = () => {
     setGbifVisible((v) => {
       const next = !v;
-      // Only persist when this page has distribution polygons — otherwise
-      // saving a toggle-off here would affect maps that have nothing else to
-      // show, which the consumer explicitly asked us to keep visible.
-      if (!isGbifOnly) writeStoredGbifVisible(next);
+      writeStoredGbifVisible(next);
       return next;
     });
+  };
+
+  const activateGbif = () => {
+    setGbifVisible(true);
+    writeStoredGbifVisible(true);
   };
 
   const presentMeans = useMemo(() => {
@@ -761,6 +746,44 @@ const DistributionsMap = ({
         }}
       >
         Maps require WebGL, which your browser doesn't support.
+      </div>
+    );
+  }
+
+  // A GBIF-only taxon (no curated distribution polygons) with the GBIF overlay
+  // turned off would render a blank map — collapse to a slim bar that
+  // re-activates the map + overlay.
+  if (isGbifOnly && !gbifVisible) {
+    return (
+      <div
+        className="col-distributions-map col-distributions-map--collapsed"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          padding: "8px 12px",
+          background: "#fafafa",
+          border: "1px solid #eee",
+          borderRadius: 4,
+          color: "#666",
+          fontSize: 12,
+        }}
+      >
+        <span>No curated distribution data.</span>
+        <a
+          role="button"
+          tabIndex={0}
+          style={{ cursor: "pointer" }}
+          onClick={activateGbif}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              activateGbif();
+            }
+          }}
+        >
+          Show GBIF occurrences
+        </a>
       </div>
     );
   }

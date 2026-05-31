@@ -4,6 +4,11 @@ import { UpOutlined, DownOutlined } from "@ant-design/icons";
 import { LinkTo } from "../router";
 import { getDatasetSimple } from "../api/dataset";
 import { getTaxGroup } from "../api/enumeration";
+import { readSetting, writeSetting } from "../storage";
+
+// Only the Content filter (All/Base/Extended) is remembered across visits —
+// never the query, search fields, or other filters.
+const CONTENT_TYPE_KEY = "search-content-type";
 import {
   Table,
   Alert,
@@ -181,8 +186,14 @@ class NameSearchPage extends React.Component {
       params.TAXON_ID = defaultTaxonKey;
     }
     if (isEmpty(params)) {
-      params = defaultParams;
-      this.pushParams(defaultParams);
+      // Fresh visit (clean URL): start from the defaults, but restore the
+      // remembered Content filter (All/Base/Extended) if one was saved.
+      params = { ...defaultParams };
+      const storedContentType = readSetting(CONTENT_TYPE_KEY, undefined);
+      if (storedContentType !== undefined && storedContentType !== null) {
+        params.sectorMode = storedContentType;
+      }
+      this.pushParams(params);
     } else if (!params.facet) {
       params.facet = FACET_VOCAB;
     }
@@ -269,6 +280,8 @@ class NameSearchPage extends React.Component {
   };
 
   updateSearch = (params) => {
+    // Remember the Content filter (All/Base/Extended) across visits.
+    if ("sectorMode" in params) writeSetting(CONTENT_TYPE_KEY, params.sectorMode);
     let newParams = { ...this.state.params, offset: 0, limit: 50 };
     forEach(params, (v, k) => {
       newParams[k] = v;

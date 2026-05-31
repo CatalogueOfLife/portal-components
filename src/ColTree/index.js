@@ -9,6 +9,7 @@ import { TreeCacheContext, createTreeCache } from "./treeCache";
 import { getDataset } from "../api/dataset";
 import Citation from "../components/DatasetCitation";
 import { RouterContext, buildRouter } from "../router";
+import { readSetting, writeSetting } from "../storage";
 
 const INFRASPECIFIC_RANKS = [
   "infraspecific name",
@@ -24,8 +25,8 @@ class ColTreeWrapper extends React.Component {
     super(props);
     setAuth(this.props.auth);
     this.state = {
-      hideExtinct: false,
-      showInfo: false,
+      hideExtinct: readSetting("tree-extant-only", false),
+      showInfo: readSetting("tree-show-source", false),
       dataset: null,
     };
     // Per-Tree DataLoader cache. Rebuilt only if datasetKey changes (rare).
@@ -105,17 +106,20 @@ class ColTreeWrapper extends React.Component {
             {showTreeOptions && (
               <Col style={{ paddingLeft: "8px" }}>
                 <Checkbox
+                  defaultChecked={this.state.showInfo}
                   onChange={({ target: { checked } }) => {
                     this.setState({ showInfo: checked });
+                    writeSetting("tree-show-source", checked);
                   }}
                 >
                   Source
                 </Checkbox>
 
                 <Checkbox
-                  defaultChecked={false}
+                  defaultChecked={this.state.hideExtinct}
                   onChange={({ target: { checked } }) => {
                     this.setState({ hideExtinct: checked });
+                    writeSetting("tree-extant-only", checked);
                   }}
                 >
                   Extant only

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import client from "../api/client";
+import client, { setAuth } from "../api/client";
 import config from "../config";
 import { Row, Col, Spin } from "antd";
 import Distributions from "./Distributions";
@@ -14,8 +14,12 @@ export const DistributionsWrapper = ({
   datasetKey,
   gbifChecklistKey,
   style,
+  auth,
   ...routerProps
 }) => {
+  // Private candidate releases (preview/dev) require Basic auth on every call,
+  // including the taxon/info/rank fetches below via `client`.
+  setAuth(auth);
   const [taxon, setTaxon] = useState(null);
   const [distributions, setDistributions] = useState(null);
   const [rank, setRank] = useState([]);

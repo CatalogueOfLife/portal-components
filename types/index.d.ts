@@ -112,6 +112,8 @@ export interface TaxonBreakdownProps extends ThemeProps, NavigationProps {
   /** Breakdown depth. Defaults to 1. */
   level?: number;
   showLevelSwitch?: boolean;
+  /** HTTP Basic Auth credentials in `user:password` form. */
+  auth?: string;
 }
 
 export interface TaxonDistributionProps extends ThemeProps, NavigationProps {
@@ -119,6 +121,8 @@ export interface TaxonDistributionProps extends ThemeProps, NavigationProps {
   datasetKey?: string | number;
   gbifChecklistKey?: string | number;
   style?: React.CSSProperties;
+  /** HTTP Basic Auth credentials in `user:password` form. */
+  auth?: string;
 }
 
 export const Tree: React.FC<TreeProps>;
