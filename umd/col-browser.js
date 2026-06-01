@@ -89887,40 +89887,41 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     window.addEventListener(evt, cb);
     return () => window.removeEventListener(evt, cb);
   };
-  const hrefFor = (mode, prefix2, args) => {
+  const hrefFor = (mode, prefix2, args, reserved = {}) => {
     if (!prefix2) return null;
     const arg = args == null ? "" : typeof args === "object" ? "" : String(args);
-    const tail = typeof args === "object" && args && Object.keys(args).length > 0 ? `?${queryString.stringify(args, { arrayFormat: "none" })}` : "";
+    const queryObj = typeof args === "object" && args ? { ...args, ...reserved } : { ...reserved };
+    const tail = Object.keys(queryObj).length > 0 ? `?${queryString.stringify(queryObj, { arrayFormat: "none" })}` : "";
     const url = `${prefix2}${arg}${tail}`;
     return isHash(mode) ? `#${url}` : url;
   };
-  const navigate = (mode, navigation2, prefix2, args) => {
+  const navigate = (mode, navigation2, prefix2, args, reserved = {}) => {
     if (!prefix2) return;
     if (navigation2 === "reload") {
-      const url = hrefFor(mode, prefix2, args);
+      const url = hrefFor(mode, prefix2, args, reserved);
       if (url != null && typeof window !== "undefined") {
         window.location.assign(url);
       }
       return;
     }
     let path = prefix2;
-    let search = null;
+    let search = Object.keys(reserved).length > 0 ? { ...reserved } : null;
     if (typeof args === "string" || typeof args === "number") {
       path = `${prefix2}${args}`;
     } else if (args && typeof args === "object") {
-      search = args;
+      search = { ...search || {}, ...args };
     }
     writeLocation(mode, path, search);
   };
-  const buildNavProps = (mode, navigation2, paths) => ({
-    hrefForTaxon: (id) => hrefFor(mode, paths.taxon, id),
-    hrefForTree: (a) => hrefFor(mode, paths.tree, a),
-    hrefForSearch: (a) => hrefFor(mode, paths.search, a),
-    hrefForSource: (id) => hrefFor(mode, paths.source, id),
-    onNavigateToTaxon: (id) => navigate(mode, navigation2, paths.taxon, id),
-    onNavigateToTree: (a) => navigate(mode, navigation2, paths.tree, a),
-    onNavigateToSearch: (a) => navigate(mode, navigation2, paths.search, a),
-    onNavigateToSource: (id) => navigate(mode, navigation2, paths.source, id)
+  const buildNavProps = (mode, navigation2, paths, reserved = {}) => ({
+    hrefForTaxon: (id) => hrefFor(mode, paths.taxon, id, reserved),
+    hrefForTree: (a) => hrefFor(mode, paths.tree, a, reserved),
+    hrefForSearch: (a) => hrefFor(mode, paths.search, a, reserved),
+    hrefForSource: (id) => hrefFor(mode, paths.source, id, reserved),
+    onNavigateToTaxon: (id) => navigate(mode, navigation2, paths.taxon, id, reserved),
+    onNavigateToTree: (a) => navigate(mode, navigation2, paths.tree, a, reserved),
+    onNavigateToSearch: (a) => navigate(mode, navigation2, paths.search, a, reserved),
+    onNavigateToSource: (id) => navigate(mode, navigation2, paths.source, id, reserved)
   });
   const lastSegmentAfter = (path, prefix2) => {
     if (!prefix2) return void 0;
@@ -89932,12 +89933,20 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     return path.slice(prefix2.length).split("/").filter(Boolean).pop();
   };
   function withRouting(Component, options) {
-    const { kind, mode = "path", navigation: navigation2 = "spa", paths = {} } = options;
+    const { kind, mode = "path", navigation: navigation2 = "spa", paths = {}, query = "" } = options;
+    const reserved = query ? queryString.parse(query) : {};
+    const reservedKeys = Object.keys(reserved);
+    const stripReserved = (obj) => {
+      if (reservedKeys.length === 0) return obj;
+      const out = { ...obj };
+      for (const k of reservedKeys) delete out[k];
+      return out;
+    };
     const Wrapped = (props) => {
       const [tick, setTick] = reactExports.useState(0);
       reactExports.useEffect(() => subscribe(mode, () => setTick((t2) => t2 + 1)), []);
       const { path, search } = readLocationKind(mode);
-      const navProps = reactExports.useMemo(() => buildNavProps(mode, navigation2, paths), []);
+      const navProps = reactExports.useMemo(() => buildNavProps(mode, navigation2, paths, reserved), []);
       let extra = {};
       if (kind === "taxon") {
         extra.taxonKey = lastSegmentAfter(path, paths.taxon);
@@ -89950,7 +89959,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       } else if (kind === "bibtex") {
         extra.sourceDatasetKey = lastSegmentAfter(path, paths.bibtex);
       } else if (kind === "tree") {
-        const parsed = queryString.parse(search);
+        const parsed = stripReserved(queryString.parse(search));
         extra.expandedTaxonKey = parsed.taxonKey || void 0;
         extra.onExpandedTaxonKeyChange = reactExports.useCallback((id) => {
           const cur = readLocationKind(mode);
@@ -89960,11 +89969,11 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
           writeLocation(mode, cur.path || paths.tree || "/", next2);
         }, []);
       } else if (kind === "search") {
-        const parsed = queryString.parse(search, { arrayFormat: "none" });
+        const parsed = stripReserved(queryString.parse(search, { arrayFormat: "none" }));
         extra.filters = parsed;
         extra.onFiltersChange = reactExports.useCallback((filters) => {
           const cur = readLocationKind(mode);
-          writeLocation(mode, cur.path || paths.search || "/", filters);
+          writeLocation(mode, cur.path || paths.search || "/", { ...reserved, ...filters });
         }, []);
       }
       return /* @__PURE__ */ jsxRuntimeExports.jsx(Component, { ...navProps, ...extra, ...props });
