@@ -68681,7 +68681,10 @@ html body {
               rootTotal,
               rootLoading: false,
               treeData: [...this.state.treeData, ...treeData],
-              expandedKeys: treeData.length < 10 ? treeData.map((n2) => n2.taxon.id).filter((n2) => n2 === "CS5HF") : [],
+              // Nothing is auto-expanded by default. Consumers open a specific root
+              // (or deep taxon) by passing `defaultTaxonKey`/`expandedTaxonKey` —
+              // e.g. defaultTaxonKey="CS5HF" opens Eukaryota in current COL releases.
+              expandedKeys: [],
               error: null
             },
             () => {
@@ -77770,6 +77773,84 @@ html body {
       ] });
     }
   }
+  const styles$1 = {
+    tip: {
+      color: "rgba(0,0,0,.45)",
+      marginLeft: "4px"
+    },
+    icon: {
+      marginTop: "4px"
+    }
+  };
+  const Help = ({ title, classes }) => {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: title && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.tip, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { title, getPopupContainer: () => document.getElementsByClassName(`catalogue-of-life`)[0], children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$k, { className: classes.icon }) }) }) });
+  };
+  const Help$1 = createWithStyles(styles$1)(Help);
+  const styles = {
+    formItem: {
+      paddingBottom: 0,
+      width: "100%",
+      clear: "both",
+      borderBottom: "1px solid #eee",
+      "&:last-of-type": {
+        border: "none"
+      },
+      "&>div": {
+        paddingLeft: 10,
+        paddingRight: 10
+      }
+    },
+    label: {
+      display: "block",
+      color: "rgba(0, 0, 0, 0.85)"
+    },
+    content: {
+      wordBreak: "break-word",
+      marginBottom: 0
+    },
+    noContent: {
+      wordBreak: "break-word",
+      color: "#bbb",
+      marginBottom: 0
+    },
+    contentCol: {
+      wordBreak: "break-word"
+    },
+    smallMargin: {
+      marginBottom: 3,
+      marginTop: 3
+    },
+    mediumMargin: {
+      marginBottom: 10,
+      marginTop: 10
+    }
+  };
+  const PresentationItem = ({ label, helpText, classes, children, width, md: md2, size }) => {
+    const getValue2 = () => {
+      let value;
+      if (Array.isArray(children) && children.length > 0) {
+        value = children.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.content, children: item }, i));
+      } else if (!Array.isArray(children) && typeof children !== "undefined") {
+        value = /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.content, children });
+      }
+      return value;
+    };
+    const medium = md2 || 8;
+    const mediumCol2 = medium < 24 ? 24 - medium : 24;
+    const marginSize = size === "medium" ? classes.mediumMargin : classes.smallMargin;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { className: classes.formItem, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { sm: 24, md: medium, style: width < MEDIUM ? { marginBottom: 0 } : {}, className: marginSize, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("dt", { className: classes.label, children: [
+        label,
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Help$1, { title: helpText })
+      ] }) }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { sm: 24, md: mediumCol2, style: width < MEDIUM ? { marginTop: 0 } : {}, className: marginSize, children: getValue2() })
+    ] });
+  };
+  PresentationItem.propTypes = {
+    label: PropTypes.string.isRequired,
+    helpText: PropTypes.object
+  };
+  const PresentationItem$1 = withWidth()(createWithStyles(styles)(PresentationItem));
   const INFRASPECIFIC_RANKS = [
     "subspecies",
     "variety",
@@ -78973,7 +79054,9 @@ html body {
     showDistributionMap,
     focalTaxon,
     rankOrder,
-    gbifChecklistKey
+    gbifChecklistKey,
+    label,
+    md: md2
   }) => {
     const mappable = data.filter(isMappable);
     const baseUnmappable = data.length - mappable.length;
@@ -79014,22 +79097,16 @@ html body {
     const gbifAvailable = !hasGbifConfigured ? false : gbifCount === null || gbifCount > 0;
     const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
     const showMap = showDistributionMap && (mappable.length > 0 || gbifAvailable) && !(mappable.length > 0 && allMappableFailed && !gbifAvailable);
-    if (!showMap && hasGbifConfigured && mappable.length === 0 && gbifCount === 0) {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "#888" }, children: "No occurrence data on GBIF for this taxon." }) });
-    }
-    if (!showMap) {
-      if (!hasAnyRecords) return null;
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data }) });
-    }
+    if (!showMap && !hasAnyRecords) return null;
     const unmappable = baseUnmappable + fetchFailures;
     const showToggle = hasAnyRecords;
-    const activeView = showToggle ? view : "map";
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
+    const activeView = showMap && showToggle ? view : showMap ? "map" : "list";
+    const body = activeView === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
       showToggle ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
         Radio.Group,
         {
           size: "small",
-          value: activeView,
+          value: view,
           onChange: (e2) => setView(e2.target.value),
           style: { marginBottom: 8 },
           children: [
@@ -79042,28 +79119,31 @@ html body {
         // map's top edge lines up with the "Distributions" label.
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { height: 24, marginBottom: 8 } })
       ),
-      activeView === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          DistributionsMap,
-          {
-            records: mappable,
-            onUnmappable: setFetchFailures,
-            datasetKey,
-            focalTaxon,
-            rankOrder,
-            gbifChecklistKey,
-            gbifAvailable
-          }
-        ),
-        showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
-          "+",
-          unmappable,
-          " distribution",
-          unmappable === 1 ? "" : "s",
-          " not on map"
-        ] }) })
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data })
-    ] });
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        DistributionsMap,
+        {
+          records: mappable,
+          onUnmappable: setFetchFailures,
+          datasetKey,
+          focalTaxon,
+          rankOrder,
+          gbifChecklistKey,
+          gbifAvailable
+        }
+      ),
+      showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
+        "+",
+        unmappable,
+        " distribution",
+        unmappable === 1 ? "" : "s",
+        " not on map"
+      ] }) })
+    ] }) : (
+      // List view: either the user toggled to it, or there is no map to show.
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data })
+    );
+    const content = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: body });
+    return label ? /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md2, label, children: content }) : content;
   };
   const rankStyle = {
     color: "rgba(0, 0, 0, 0.45)",
@@ -79080,84 +79160,6 @@ html body {
       i < data.length - 1 && " >"
     ] }, t2.rank))
   ] });
-  const styles$1 = {
-    tip: {
-      color: "rgba(0,0,0,.45)",
-      marginLeft: "4px"
-    },
-    icon: {
-      marginTop: "4px"
-    }
-  };
-  const Help = ({ title, classes }) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: title && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.tip, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { title, getPopupContainer: () => document.getElementsByClassName(`catalogue-of-life`)[0], children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$k, { className: classes.icon }) }) }) });
-  };
-  const Help$1 = createWithStyles(styles$1)(Help);
-  const styles = {
-    formItem: {
-      paddingBottom: 0,
-      width: "100%",
-      clear: "both",
-      borderBottom: "1px solid #eee",
-      "&:last-of-type": {
-        border: "none"
-      },
-      "&>div": {
-        paddingLeft: 10,
-        paddingRight: 10
-      }
-    },
-    label: {
-      display: "block",
-      color: "rgba(0, 0, 0, 0.85)"
-    },
-    content: {
-      wordBreak: "break-word",
-      marginBottom: 0
-    },
-    noContent: {
-      wordBreak: "break-word",
-      color: "#bbb",
-      marginBottom: 0
-    },
-    contentCol: {
-      wordBreak: "break-word"
-    },
-    smallMargin: {
-      marginBottom: 3,
-      marginTop: 3
-    },
-    mediumMargin: {
-      marginBottom: 10,
-      marginTop: 10
-    }
-  };
-  const PresentationItem = ({ label, helpText, classes, children, width, md: md2, size }) => {
-    const getValue2 = () => {
-      let value;
-      if (Array.isArray(children) && children.length > 0) {
-        value = children.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.content, children: item }, i));
-      } else if (!Array.isArray(children) && typeof children !== "undefined") {
-        value = /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: classes.content, children });
-      }
-      return value;
-    };
-    const medium = md2 || 8;
-    const mediumCol2 = medium < 24 ? 24 - medium : 24;
-    const marginSize = size === "medium" ? classes.mediumMargin : classes.smallMargin;
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { className: classes.formItem, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { sm: 24, md: medium, style: width < MEDIUM ? { marginBottom: 0 } : {}, className: marginSize, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("dt", { className: classes.label, children: [
-        label,
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Help$1, { title: helpText })
-      ] }) }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { sm: 24, md: mediumCol2, style: width < MEDIUM ? { marginTop: 0 } : {}, className: marginSize, children: getValue2() })
-    ] });
-  };
-  PresentationItem.propTypes = {
-    label: PropTypes.string.isRequired,
-    helpText: PropTypes.object
-  };
-  const PresentationItem$1 = withWidth()(createWithStyles(styles)(PresentationItem));
   const getLabel = (r2, reverse) => {
     if (!reverse) {
       switch (r2.type) {
@@ -87571,10 +87573,15 @@ html body {
                 datasetKey: taxon.datasetKey
               }
             ) }),
-            (get(info, "distributions") || showDistributionMap && gbifChecklistKey && taxon) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Distributions", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            (get(info, "distributions") || showDistributionMap && gbifChecklistKey && taxon) && // Distributions owns its labelled block so it can hide entirely
+            // (label included) when there is nothing to show — including after
+            // the async GBIF occurrence lookup comes back empty.
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
               DistributionsTable,
               {
                 style: { marginTop: "-3px" },
+                label: "Distributions",
+                md,
                 data: (info == null ? void 0 : info.distributions) || [],
                 datasetKey,
                 showDistributionMap,
@@ -87582,7 +87589,7 @@ html body {
                 rankOrder: rank,
                 gbifChecklistKey
               }
-            ) }),
+            ),
             get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: get(taxon, "environments").join(", ") }),
             get(taxon, "remarks") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Additional Data", children: taxon.remarks }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { children: get(taxon, "accordingTo") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md: md * 2, label: "According to", children: [

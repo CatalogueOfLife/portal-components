@@ -6,6 +6,7 @@ import config from "../config";
 // publicClient (no CoL auth) for the third-party GBIF occurrence API below.
 import client, { publicClient } from "../api/client";
 import MergedDataBadge from "../components/MergedDataBadge";
+import PresentationItem from "../components/PresentationItem";
 import DistributionsMap from "./DistributionsMap";
 
 const isMappable = (r) =>
@@ -69,6 +70,8 @@ const DistributionsTable = ({
   focalTaxon,
   rankOrder,
   gbifChecklistKey,
+  label,
+  md,
 }) => {
   const mappable = data.filter(isMappable);
   const baseUnmappable = data.length - mappable.length;
@@ -125,77 +128,65 @@ const DistributionsTable = ({
     (mappable.length > 0 || gbifAvailable) &&
     !(mappable.length > 0 && allMappableFailed && !gbifAvailable);
 
-  // GBIF configured but found 0 occurrences AND nothing else mappable → say so.
-  if (
-    !showMap &&
-    hasGbifConfigured &&
-    mappable.length === 0 &&
-    gbifCount === 0
-  ) {
-    return (
-      <div style={style}>
-        <span style={{ color: "#888" }}>
-          No occurrence data on GBIF for this taxon.
-        </span>
-      </div>
-    );
-  }
-
-  // Fall back to the plain list when there's no map to show.
-  if (!showMap) {
-    if (!hasAnyRecords) return null;
-    return (
-      <div style={style}>
-        <ListView datasetKey={datasetKey} data={data} />
-      </div>
-    );
-  }
+  // Nothing to show — no map (no mappable records and no GBIF occurrences) and
+  // no records to list. Hide the whole block, like other empty content blocks.
+  if (!showMap && !hasAnyRecords) return null;
 
   const unmappable = baseUnmappable + fetchFailures;
   const showToggle = hasAnyRecords;
-  const activeView = showToggle ? view : "map";
+  const activeView = showMap && showToggle ? view : showMap ? "map" : "list";
 
-  return (
-    <div style={style}>
-      {showToggle ? (
-        <Radio.Group
-          size="small"
-          value={activeView}
-          onChange={(e) => setView(e.target.value)}
-          style={{ marginBottom: 8 }}
-        >
-          <Radio.Button value="map">Map</Radio.Button>
-          <Radio.Button value="list">List</Radio.Button>
-        </Radio.Group>
-      ) : (
-        // Reserve the vertical space the Map/List toggle would occupy so the
-        // map's top edge lines up with the "Distributions" label.
-        <div style={{ height: 24, marginBottom: 8 }} />
-      )}
-      {activeView === "map" ? (
-        <>
-          <DistributionsMap
-            records={mappable}
-            onUnmappable={setFetchFailures}
-            datasetKey={datasetKey}
-            focalTaxon={focalTaxon}
-            rankOrder={rankOrder}
-            gbifChecklistKey={gbifChecklistKey}
-            gbifAvailable={gbifAvailable}
-          />
-          {showToggle && unmappable > 0 && (
-            <div style={{ marginTop: 6 }}>
-              <a onClick={() => setView("list")} style={{ cursor: "pointer" }}>
-                +{unmappable} distribution{unmappable === 1 ? "" : "s"} not on
-                map
-              </a>
-            </div>
-          )}
-        </>
-      ) : (
-        <ListView datasetKey={datasetKey} data={data} />
-      )}
-    </div>
+  const body =
+    activeView === "map" ? (
+      <>
+        {showToggle ? (
+          <Radio.Group
+            size="small"
+            value={view}
+            onChange={(e) => setView(e.target.value)}
+            style={{ marginBottom: 8 }}
+          >
+            <Radio.Button value="map">Map</Radio.Button>
+            <Radio.Button value="list">List</Radio.Button>
+          </Radio.Group>
+        ) : (
+          // Reserve the vertical space the Map/List toggle would occupy so the
+          // map's top edge lines up with the "Distributions" label.
+          <div style={{ height: 24, marginBottom: 8 }} />
+        )}
+        <DistributionsMap
+          records={mappable}
+          onUnmappable={setFetchFailures}
+          datasetKey={datasetKey}
+          focalTaxon={focalTaxon}
+          rankOrder={rankOrder}
+          gbifChecklistKey={gbifChecklistKey}
+          gbifAvailable={gbifAvailable}
+        />
+        {showToggle && unmappable > 0 && (
+          <div style={{ marginTop: 6 }}>
+            <a onClick={() => setView("list")} style={{ cursor: "pointer" }}>
+              +{unmappable} distribution{unmappable === 1 ? "" : "s"} not on map
+            </a>
+          </div>
+        )}
+      </>
+    ) : (
+      // List view: either the user toggled to it, or there is no map to show.
+      <ListView datasetKey={datasetKey} data={data} />
+    );
+
+  const content = <div style={style}>{body}</div>;
+
+  // When a `label` is given (the Taxon page), own the labelled block so it
+  // disappears entirely when empty (returning null above). Standalone embeds
+  // pass no label and just get the bare block.
+  return label ? (
+    <PresentationItem md={md} label={label}>
+      {content}
+    </PresentationItem>
+  ) : (
+    content
   );
 };
 

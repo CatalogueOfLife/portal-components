@@ -41,6 +41,12 @@ export interface TreeProps
   extends DatasetKeyProps,
     ThemeProps,
     NavigationProps {
+  /**
+   * Uncontrolled fallback: the taxon to expand to on load when
+   * `expandedTaxonKey` is not set. Nothing is expanded unless one of these is
+   * provided — pass a root id to open it, e.g. `"CS5HF"` opens Eukaryota in
+   * current Catalogue of Life releases.
+   */
   defaultTaxonKey?: string;
   expandedTaxonKey?: string;
   onExpandedTaxonKeyChange?: (taxonKey: string | null) => void;

@@ -720,17 +720,20 @@ class TaxonPage extends React.Component {
           )}
           {(get(info, "distributions") ||
             (showDistributionMap && gbifChecklistKey && taxon)) && (
-            <PresentationItem md={md} label="Distributions">
-              <Distributions
-                                style={{ marginTop: "-3px" }}
-                data={info?.distributions || []}
-                datasetKey={datasetKey}
-                showDistributionMap={showDistributionMap}
-                focalTaxon={taxon}
-                rankOrder={rank}
-                gbifChecklistKey={gbifChecklistKey}
-              />
-            </PresentationItem>
+            // Distributions owns its labelled block so it can hide entirely
+            // (label included) when there is nothing to show — including after
+            // the async GBIF occurrence lookup comes back empty.
+            <Distributions
+              style={{ marginTop: "-3px" }}
+              label="Distributions"
+              md={md}
+              data={info?.distributions || []}
+              datasetKey={datasetKey}
+              showDistributionMap={showDistributionMap}
+              focalTaxon={taxon}
+              rankOrder={rank}
+              gbifChecklistKey={gbifChecklistKey}
+            />
           )}
           {get(taxon, "environments") && (
             <PresentationItem md={md} label="Environment(s)">

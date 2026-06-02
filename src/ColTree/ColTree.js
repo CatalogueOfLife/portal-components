@@ -158,8 +158,10 @@ class ColTree extends React.Component {
           rootTotal: rootTotal,
           rootLoading: false,
           treeData: [...this.state.treeData, ...treeData],
-          expandedKeys:
-            treeData.length < 10 ? treeData.map((n) => n.taxon.id).filter(n => n ==="CS5HF") : [],
+          // Nothing is auto-expanded by default. Consumers open a specific root
+          // (or deep taxon) by passing `defaultTaxonKey`/`expandedTaxonKey` —
+          // e.g. defaultTaxonKey="CS5HF" opens Eukaryota in current COL releases.
+          expandedKeys: [],
           error: null,
         },
           () => {
