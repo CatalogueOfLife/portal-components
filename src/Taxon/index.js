@@ -724,7 +724,6 @@ class TaxonPage extends React.Component {
             // (label included) when there is nothing to show — including after
             // the async GBIF occurrence lookup comes back empty.
             <Distributions
-              style={{ marginTop: "-3px" }}
               label="Distributions"
               md={md}
               data={info?.distributions || []}

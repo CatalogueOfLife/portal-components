@@ -134,15 +134,22 @@ const DistributionsTable = ({
 
   const unmappable = baseUnmappable + fetchFailures;
   const showToggle = hasAnyRecords;
-  const activeView = showMap && showToggle ? view : showMap ? "map" : "list";
 
-  const body =
-    activeView === "map" ? (
+  let body;
+  if (!showMap) {
+    // No map to show — just the plain text list.
+    body = <ListView datasetKey={datasetKey} data={data} />;
+  } else {
+    // Map available. The Map/List toggle is rendered above the view switch so
+    // it stays visible in BOTH sub-views — the user can always go back to the
+    // map after looking at the list.
+    const activeView = showToggle ? view : "map";
+    body = (
       <>
         {showToggle ? (
           <Radio.Group
             size="small"
-            value={view}
+            value={activeView}
             onChange={(e) => setView(e.target.value)}
             style={{ marginBottom: 8 }}
           >
@@ -154,29 +161,39 @@ const DistributionsTable = ({
           // map's top edge lines up with the "Distributions" label.
           <div style={{ height: 24, marginBottom: 8 }} />
         )}
-        <DistributionsMap
-          records={mappable}
-          onUnmappable={setFetchFailures}
-          datasetKey={datasetKey}
-          focalTaxon={focalTaxon}
-          rankOrder={rankOrder}
-          gbifChecklistKey={gbifChecklistKey}
-          gbifAvailable={gbifAvailable}
-        />
-        {showToggle && unmappable > 0 && (
-          <div style={{ marginTop: 6 }}>
-            <a onClick={() => setView("list")} style={{ cursor: "pointer" }}>
-              +{unmappable} distribution{unmappable === 1 ? "" : "s"} not on map
-            </a>
-          </div>
+        {activeView === "map" ? (
+          <>
+            <DistributionsMap
+              records={mappable}
+              onUnmappable={setFetchFailures}
+              datasetKey={datasetKey}
+              focalTaxon={focalTaxon}
+              rankOrder={rankOrder}
+              gbifChecklistKey={gbifChecklistKey}
+              gbifAvailable={gbifAvailable}
+            />
+            {showToggle && unmappable > 0 && (
+              <div style={{ marginTop: 6 }}>
+                <a onClick={() => setView("list")} style={{ cursor: "pointer" }}>
+                  +{unmappable} distribution{unmappable === 1 ? "" : "s"} not on
+                  map
+                </a>
+              </div>
+            )}
+          </>
+        ) : (
+          <ListView datasetKey={datasetKey} data={data} />
         )}
       </>
-    ) : (
-      // List view: either the user toggled to it, or there is no map to show.
-      <ListView datasetKey={datasetKey} data={data} />
     );
+  }
 
-  const content = <div style={style}>{body}</div>;
+  // Only the map block needs the small negative top margin that lines its
+  // toggle/map up with the Taxon page's label column. The plain text-only list
+  // (no map) aligns on its own, exactly like other text PresentationItem
+  // blocks, so it gets no nudge. Standalone embeds (no `label`) never get it.
+  const mapNudge = label && showMap ? { marginTop: -3 } : null;
+  const content = <div style={{ ...mapNudge, ...style }}>{body}</div>;
 
   // When a `label` is given (the Taxon page), own the labelled block so it
   // disappears entirely when empty (returning null above). Standalone embeds

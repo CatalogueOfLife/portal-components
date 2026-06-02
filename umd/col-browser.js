@@ -79100,49 +79100,54 @@ html body {
     if (!showMap && !hasAnyRecords) return null;
     const unmappable = baseUnmappable + fetchFailures;
     const showToggle = hasAnyRecords;
-    const activeView = showMap && showToggle ? view : showMap ? "map" : "list";
-    const body = activeView === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-      showToggle ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Radio.Group,
-        {
-          size: "small",
-          value: view,
-          onChange: (e2) => setView(e2.target.value),
-          style: { marginBottom: 8 },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
-          ]
-        }
-      ) : (
-        // Reserve the vertical space the Map/List toggle would occupy so the
-        // map's top edge lines up with the "Distributions" label.
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { height: 24, marginBottom: 8 } })
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        DistributionsMap,
-        {
-          records: mappable,
-          onUnmappable: setFetchFailures,
-          datasetKey,
-          focalTaxon,
-          rankOrder,
-          gbifChecklistKey,
-          gbifAvailable
-        }
-      ),
-      showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
-        "+",
-        unmappable,
-        " distribution",
-        unmappable === 1 ? "" : "s",
-        " not on map"
-      ] }) })
-    ] }) : (
-      // List view: either the user toggled to it, or there is no map to show.
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data })
-    );
-    const content = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: body });
+    let body;
+    if (!showMap) {
+      body = /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data });
+    } else {
+      const activeView = showToggle ? view : "map";
+      body = /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        showToggle ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Radio.Group,
+          {
+            size: "small",
+            value: activeView,
+            onChange: (e2) => setView(e2.target.value),
+            style: { marginBottom: 8 },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "map", children: "Map" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Radio.Button, { value: "list", children: "List" })
+            ]
+          }
+        ) : (
+          // Reserve the vertical space the Map/List toggle would occupy so the
+          // map's top edge lines up with the "Distributions" label.
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { height: 24, marginBottom: 8 } })
+        ),
+        activeView === "map" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            DistributionsMap,
+            {
+              records: mappable,
+              onUnmappable: setFetchFailures,
+              datasetKey,
+              focalTaxon,
+              rankOrder,
+              gbifChecklistKey,
+              gbifAvailable
+            }
+          ),
+          showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
+            "+",
+            unmappable,
+            " distribution",
+            unmappable === 1 ? "" : "s",
+            " not on map"
+          ] }) })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data })
+      ] });
+    }
+    const mapNudge = label && showMap ? { marginTop: -3 } : null;
+    const content = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { ...mapNudge, ...style2 }, children: body });
     return label ? /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md2, label, children: content }) : content;
   };
   const rankStyle = {
@@ -87579,7 +87584,6 @@ html body {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               DistributionsTable,
               {
-                style: { marginTop: "-3px" },
                 label: "Distributions",
                 md,
                 data: (info == null ? void 0 : info.distributions) || [],
