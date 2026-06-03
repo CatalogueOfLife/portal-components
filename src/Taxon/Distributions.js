@@ -188,12 +188,11 @@ const DistributionsTable = ({
     );
   }
 
-  // Only the map block needs the small negative top margin that lines its
-  // toggle/map up with the Taxon page's label column. The plain text-only list
-  // (no map) aligns on its own, exactly like other text PresentationItem
-  // blocks, so it gets no nudge. Standalone embeds (no `label`) never get it.
-  const mapNudge = label && showMap ? { marginTop: -3 } : null;
-  const content = <div style={{ ...mapNudge, ...style }}>{body}</div>;
+  // No negative top nudge: the map block's top element (the Map/List toggle, or
+  // the spacer reserving its height) lines up with the "Distributions" label
+  // the same way every other content row does. The plain text-only list aligns
+  // naturally too.
+  const content = <div style={style}>{body}</div>;
 
   // When a `label` is given (the Taxon page), own the labelled block so it
   // disappears entirely when empty (returning null above). Standalone embeds

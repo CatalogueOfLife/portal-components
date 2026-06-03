@@ -78246,6 +78246,7 @@ html body {
   }) => {
     var _a2;
     const containerRef = reactExports.useRef(null);
+    const wrapperRef = reactExports.useRef(null);
     const mapRef = reactExports.useRef(null);
     const popupRef = reactExports.useRef(null);
     const recordMapRef = reactExports.useRef(/* @__PURE__ */ new Map());
@@ -78346,6 +78347,10 @@ html body {
       map.addControl(
         new maplibregl.NavigationControl({ showCompass: false }),
         "top-left"
+      );
+      map.addControl(
+        new maplibregl.FullscreenControl({ container: wrapperRef.current }),
+        "top-right"
       );
       mapRef.current = map;
       map.on("load", () => {
@@ -78735,93 +78740,102 @@ html body {
       );
     }
     const focalName = ((_a2 = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a2.scientificName) || "This taxon";
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-distributions-map", style: { position: "relative" }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          ref: containerRef,
-          style: { height: 360, width: "100%", background: "#f5f5f5" }
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        LayerControl,
-        {
-          open: controlOpen,
-          onOpen: openControl,
-          onClose: () => setControlOpen(false),
-          focalName,
-          focalReady,
-          focalVisible,
-          onToggleFocal: () => setFocalVisible((v2) => !v2),
-          gbifEnabled: !!gbifChecklistKey,
-          gbifVisible,
-          gbifAvailable,
-          onToggleGbif: handleToggleGbif,
-          descendantStatus: descendantState.status,
-          descendantsByRank,
-          descendantColors,
-          visibleTaxonIds,
-          onToggleTaxon: toggleTaxon,
-          onToggleRankGroup: toggleRankGroup,
-          onRetry: () => {
-            fetchTriggeredRef.current = false;
-            setDescendantState({ status: "idle", taxa: [] });
-            triggerDescendantFetch();
-          }
-        }
-      ),
-      !showDescendantLegend && (presentMeans.length > 0 || gbifChecklistKey && gbifAvailable !== false && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            position: "absolute",
-            bottom: 8,
-            left: 8,
-            zIndex: 1,
-            background: "#fff",
-            borderRadius: 4,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-            padding: "6px 8px",
-            fontSize: 12,
-            lineHeight: 1.5
-          },
-          children: [
-            presentMeans.map((m2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: { display: "flex", alignItems: "center", gap: 6 },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "span",
-                    {
-                      style: {
-                        display: "inline-block",
-                        width: 12,
-                        height: 12,
-                        background: m2.color,
-                        border: "1px solid rgba(0,0,0,0.15)",
-                        borderRadius: 2
-                      }
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m2.label })
-                ]
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "col-distributions-map",
+        ref: wrapperRef,
+        style: { position: "relative" },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              ref: containerRef,
+              className: "col-distributions-map__canvas",
+              style: { height: 360, width: "100%", background: "#f5f5f5" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            LayerControl,
+            {
+              open: controlOpen,
+              onOpen: openControl,
+              onClose: () => setControlOpen(false),
+              focalName,
+              focalReady,
+              focalVisible,
+              onToggleFocal: () => setFocalVisible((v2) => !v2),
+              gbifEnabled: !!gbifChecklistKey,
+              gbifVisible,
+              gbifAvailable,
+              onToggleGbif: handleToggleGbif,
+              descendantStatus: descendantState.status,
+              descendantsByRank,
+              descendantColors,
+              visibleTaxonIds,
+              onToggleTaxon: toggleTaxon,
+              onToggleRankGroup: toggleRankGroup,
+              onRetry: () => {
+                fetchTriggeredRef.current = false;
+                setDescendantState({ status: "idle", taxa: [] });
+                triggerDescendantFetch();
+              }
+            }
+          ),
+          !showDescendantLegend && (presentMeans.length > 0 || gbifChecklistKey && gbifAvailable !== false && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                position: "absolute",
+                bottom: 8,
+                left: 8,
+                zIndex: 1,
+                background: "#fff",
+                borderRadius: 4,
+                boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+                padding: "6px 8px",
+                fontSize: 12,
+                lineHeight: 1.5
               },
-              m2.key
-            )),
-            gbifChecklistKey && gbifAvailable !== false && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
-          ]
-        }
-      ),
-      showDescendantLegend && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        IncludedTaxaLegend,
-        {
-          visibleGroups: descendantLegend.visibleGroups,
-          unmappableGroups: descendantLegend.unmappableGroups,
-          showGbif: !!gbifChecklistKey && gbifAvailable !== false && gbifVisible
-        }
-      )
-    ] });
+              children: [
+                presentMeans.map((m2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    style: { display: "flex", alignItems: "center", gap: 6 },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          style: {
+                            display: "inline-block",
+                            width: 12,
+                            height: 12,
+                            background: m2.color,
+                            border: "1px solid rgba(0,0,0,0.15)",
+                            borderRadius: 2
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: m2.label })
+                    ]
+                  },
+                  m2.key
+                )),
+                gbifChecklistKey && gbifAvailable !== false && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
+              ]
+            }
+          ),
+          showDescendantLegend && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            IncludedTaxaLegend,
+            {
+              visibleGroups: descendantLegend.visibleGroups,
+              unmappableGroups: descendantLegend.unmappableGroups,
+              showGbif: !!gbifChecklistKey && gbifAvailable !== false && gbifVisible
+            }
+          )
+        ]
+      }
+    );
   };
   const LayerControl = ({
     open: open2,
@@ -78853,7 +78867,8 @@ html body {
           title: "Layers",
           style: {
             position: "absolute",
-            top: 10,
+            // Sits just below the maplibre fullscreen control (top-right).
+            top: 48,
             right: 10,
             zIndex: 2,
             width: 30,
@@ -78876,7 +78891,8 @@ html body {
       {
         style: {
           position: "absolute",
-          top: 10,
+          // Aligns with the collapsed "+" button, below the fullscreen control.
+          top: 48,
           right: 10,
           zIndex: 2,
           background: "#fff",
@@ -79146,8 +79162,7 @@ html body {
         ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ListView, { datasetKey, data })
       ] });
     }
-    const mapNudge = label && showMap ? { marginTop: -3 } : null;
-    const content = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { ...mapNudge, ...style2 }, children: body });
+    const content = /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: body });
     return label ? /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md2, label, children: content }) : content;
   };
   const rankStyle = {

@@ -125,3 +125,25 @@ td.ant-table-cell {
     margin-right: -34px;
   }
 }
+
+/* Fullscreen: MapLibre's FullscreenControl expands the whole wrapper (so the
+   legend and layer control come along). Make the map canvas fill it — its
+   inline height:360px would otherwise leave the map a thin strip at the top.
+   The prefixed selector is kept in its own rule: a browser that doesn't
+   recognise one selector would drop the entire comma-separated list. */
+.col-distributions-map:fullscreen {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+.col-distributions-map:fullscreen .col-distributions-map__canvas {
+  height: 100% !important;
+}
+.col-distributions-map:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+.col-distributions-map:-webkit-full-screen .col-distributions-map__canvas {
+  height: 100% !important;
+}

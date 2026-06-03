@@ -216,6 +216,7 @@ const DistributionsMap = ({
   gbifAvailable = true,
 }) => {
   const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
   const mapRef = useRef(null);
   const popupRef = useRef(null);
   const recordMapRef = useRef(new Map()); // recordKey → record
@@ -326,6 +327,13 @@ const DistributionsMap = ({
     map.addControl(
       new maplibregl.NavigationControl({ showCompass: false }),
       "top-left"
+    );
+    // Fullscreen toggle, top-right. Expand the whole wrapper (not just the map
+    // canvas) so the legend and the layer control come along into fullscreen.
+    // The custom layer "+" button is positioned just below this control.
+    map.addControl(
+      new maplibregl.FullscreenControl({ container: wrapperRef.current }),
+      "top-right"
     );
     mapRef.current = map;
 
@@ -791,9 +799,14 @@ const DistributionsMap = ({
   const focalName = focalTaxon?.name?.scientificName || "This taxon";
 
   return (
-    <div className="col-distributions-map" style={{ position: "relative" }}>
+    <div
+      className="col-distributions-map"
+      ref={wrapperRef}
+      style={{ position: "relative" }}
+    >
       <div
         ref={containerRef}
+        className="col-distributions-map__canvas"
         style={{ height: 360, width: "100%", background: "#f5f5f5" }}
       />
 
@@ -903,7 +916,8 @@ const LayerControl = ({
         title="Layers"
         style={{
           position: "absolute",
-          top: 10,
+          // Sits just below the maplibre fullscreen control (top-right).
+          top: 48,
           right: 10,
           zIndex: 2,
           width: 30,
@@ -926,7 +940,8 @@ const LayerControl = ({
     <div
       style={{
         position: "absolute",
-        top: 10,
+        // Aligns with the collapsed "+" button, below the fullscreen control.
+        top: 48,
         right: 10,
         zIndex: 2,
         background: "#fff",
