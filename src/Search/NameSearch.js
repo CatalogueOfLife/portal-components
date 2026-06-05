@@ -203,6 +203,10 @@ class NameSearchPage extends React.Component {
 
     // fuzzy is no longer a separate API parameter; it's now the FUZZY type value
     delete params.fuzzy;
+    // the UI only supports fuzzy matching on/off; drop other legacy type values
+    if (params.type && String(params.type).toUpperCase() !== "FUZZY") {
+      delete params.type;
+    }
 
     if (!params.limit) {
       params.limit = PAGE_SIZE;
@@ -322,6 +326,7 @@ class NameSearchPage extends React.Component {
       taxGroups,
     } = this.state;
     const { datasetKey, defaultTaxonKey, citation } = this.props;
+    const isFuzzy = String(params.type || "").toUpperCase() === "FUZZY";
     const facetRanks = get(facets, "rank")
       ? facets.rank.map((r) => ({
           value: r.value,
@@ -461,25 +466,6 @@ class NameSearchPage extends React.Component {
               )}
             <div style={{ marginTop: "10px" }}>
               <Form layout="inline">
-                <FormItem label="Matching" >
-                  <RadioGroup
-                    size="small"
-                    onChange={(evt) => {
-                      this.updateSearch({ type: evt.target.value });
-                    }}
-                    value={params.type || "WHOLE_WORDS"}
-                    optionType="button"
-                    options={[
-                      { value: "EXACT", label: "Exact" },
-                      { value: "WHOLE_WORDS", label: "Words" },
-                      { value: "PREFIX", label: "Prefix" },
-                      { value: "FUZZY", label: "Fuzzy" },
-                    ]}
-                  ></RadioGroup>
-                </FormItem>
-               
-              </Form>
-              <Form layout="inline">
                 {(this.state.datasetOrigin === "xrelease" ||
                   this.state.datasetOrigin === "project") && (
                   <FormItem label="Content">
@@ -515,6 +501,21 @@ class NameSearchPage extends React.Component {
                       { value: "VERNACULAR_NAME", label: "Vernacular name" },
                     ]}
                   />
+                </FormItem>
+                <FormItem>
+                  <Button
+                    size="small"
+                    // match the checked Radio.Button look of the Content selector:
+                    // primary-coloured outline & text, default background
+                    color={isFuzzy ? "primary" : "default"}
+                    variant="outlined"
+                    aria-pressed={isFuzzy}
+                    onClick={() =>
+                      this.updateSearch({ type: isFuzzy ? null : "FUZZY" })
+                    }
+                  >
+                    Fuzzy
+                  </Button>
                 </FormItem>
               </Form>
               

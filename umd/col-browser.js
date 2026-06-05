@@ -70816,6 +70816,9 @@ html body {
           params.facetLimit = FACET_LIMIT;
         }
         delete params.fuzzy;
+        if (params.type && String(params.type).toUpperCase() !== "FUZZY") {
+          delete params.type;
+        }
         if (!params.limit) {
           params.limit = PAGE_SIZE;
         }
@@ -70936,6 +70939,7 @@ html body {
         taxGroups
       } = this.state;
       const { datasetKey, defaultTaxonKey, citation } = this.props;
+      const isFuzzy = String(params.type || "").toUpperCase() === "FUZZY";
       const facetRanks = get(facets, "rank") ? facets.rank.map((r2) => ({
         value: r2.value,
         label: `${startCase(r2.value)} (${r2.count.toLocaleString("en-GB")})`
@@ -71047,61 +71051,53 @@ html body {
                     autoFocus: false
                   }
                 ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: "10px" }, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form, { layout: "inline", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Matching", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "10px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form, { layout: "inline", children: [
+                  (this.state.datasetOrigin === "xrelease" || this.state.datasetOrigin === "project") && /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     RadioGroup,
                     {
+                      style: { marginLeft: "8px" },
                       size: "small",
                       onChange: (evt) => {
-                        this.updateSearch({ type: evt.target.value });
+                        this.updateSearch({ sectorMode: evt.target.value.split(",").filter((v2) => v2 !== "") });
                       },
-                      value: params.type || "WHOLE_WORDS",
+                      value: isArray(params == null ? void 0 : params.sectorMode) ? (_a2 = params == null ? void 0 : params.sectorMode) == null ? void 0 : _a2.join(",") : (params == null ? void 0 : params.sectorMode) || "",
                       optionType: "button",
                       options: [
-                        { value: "EXACT", label: "Exact" },
-                        { value: "WHOLE_WORDS", label: "Words" },
-                        { value: "PREFIX", label: "Prefix" },
-                        { value: "FUZZY", label: "Fuzzy" }
+                        { value: "", label: "All" },
+                        { value: "attach,union", label: "Base" },
+                        { value: "merge", label: "Extended" }
                       ]
                     }
-                  ) }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Form, { layout: "inline", children: [
-                    (this.state.datasetOrigin === "xrelease" || this.state.datasetOrigin === "project") && /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { label: "Content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      RadioGroup,
-                      {
-                        style: { marginLeft: "8px" },
-                        size: "small",
-                        onChange: (evt) => {
-                          this.updateSearch({ sectorMode: evt.target.value.split(",").filter((v2) => v2 !== "") });
-                        },
-                        value: isArray(params == null ? void 0 : params.sectorMode) ? (_a2 = params == null ? void 0 : params.sectorMode) == null ? void 0 : _a2.join(",") : (params == null ? void 0 : params.sectorMode) || "",
-                        optionType: "button",
-                        options: [
-                          { value: "", label: "All" },
-                          { value: "attach,union", label: "Base" },
-                          { value: "merge", label: "Extended" }
-                        ]
-                      }
-                    ) }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Select,
-                      {
-                        mode: "multiple",
-                        allowClear: true,
-                        size: "small",
-                        style: { minWidth: 200 },
-                        placeholder: "Search fields",
-                        value: isArray(params == null ? void 0 : params.content) ? params.content : (params == null ? void 0 : params.content) ? [params.content] : [],
-                        onChange: (value) => this.updateSearch({ content: value.length ? value : null }),
-                        options: [
-                          { value: "SCIENTIFIC_NAME", label: "Scientific name" },
-                          { value: "AUTHORSHIP", label: "Authorship" },
-                          { value: "VERNACULAR_NAME", label: "Vernacular name" }
-                        ]
-                      }
-                    ) })
-                  ] })
-                ] })
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Select,
+                    {
+                      mode: "multiple",
+                      allowClear: true,
+                      size: "small",
+                      style: { minWidth: 200 },
+                      placeholder: "Search fields",
+                      value: isArray(params == null ? void 0 : params.content) ? params.content : (params == null ? void 0 : params.content) ? [params.content] : [],
+                      onChange: (value) => this.updateSearch({ content: value.length ? value : null }),
+                      options: [
+                        { value: "SCIENTIFIC_NAME", label: "Scientific name" },
+                        { value: "AUTHORSHIP", label: "Authorship" },
+                        { value: "VERNACULAR_NAME", label: "Vernacular name" }
+                      ]
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FormItem, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button$1,
+                    {
+                      size: "small",
+                      color: isFuzzy ? "primary" : "default",
+                      variant: "outlined",
+                      "aria-pressed": isFuzzy,
+                      onClick: () => this.updateSearch({ type: isFuzzy ? null : "FUZZY" }),
+                      children: "Fuzzy"
+                    }
+                  ) })
+                ] }) })
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { xs: 24, sm: 24, md: 12, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(

@@ -77,14 +77,17 @@ describe('Search', () => {
   let node
   afterEach(() => { unmount(node) })
 
-  it('renders the search form with Matching and Content controls', async () => {
+  it('renders the search form with Fuzzy and Content controls', async () => {
     // Use a project dataset so the origin-gated "Content" filter renders.
     node = mountIn(
       <Search datasetKey={PROJECT_KEY} pathToTaxon={TAXON_PATH} />
     )
     expect(node.querySelector('.catalogue-of-life')).toBeTruthy()
-    // "Matching" is unconditional, present on the first render.
-    expect(node.innerHTML).toContain('Matching')
+    // The "Fuzzy" toggle is unconditional, present on the first render.
+    const fuzzyBtn = Array.from(node.querySelectorAll('button')).find(
+      (b) => b.textContent.trim() === 'Fuzzy'
+    )
+    expect(fuzzyBtn).toBeTruthy()
     // "Content" only appears once the dataset origin loads asynchronously.
     await waitFor(() => node.innerHTML.includes('Content'))
     expect(node.innerHTML).toContain('Content')
