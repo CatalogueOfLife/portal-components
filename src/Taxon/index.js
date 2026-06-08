@@ -474,7 +474,7 @@ class TaxonPage extends React.Component {
           )}
           {Array.isArray(get(taxon, "identifier")) &&
             get(taxon, "identifier").length > 0 && (
-              <PresentationItem md={md} label="Identifiers">
+              <PresentationItem md={md} label="Other identifiers">
                 {get(taxon, "identifier").map((id, i) => (
                   <React.Fragment key={i}>
                     {i > 0 && ", "}
