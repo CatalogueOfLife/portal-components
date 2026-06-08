@@ -339,6 +339,9 @@ class TaxonPage extends React.Component {
       referenceIndexMap,
     } = this.state;
     const genusRankIndex = rank ? rank.indexOf("genus") : -1;
+    const isSynonym = ["synonym", "ambiguous synonym", "misapplied"].includes(
+      get(taxon, "status")
+    );
 
     /*  const synonyms =
       info && info.synonyms && info.synonyms.length > 0
@@ -418,6 +421,26 @@ class TaxonPage extends React.Component {
               )}
             </Row>
           )}
+          {isSynonym && get(taxon, "accepted.id") && (
+            <div
+              style={{
+                paddingLeft: "10px",
+                marginTop: "2px",
+                marginBottom: "10px",
+                fontSize: "16px",
+              }}
+            >
+              {get(taxon, "status")}{" "}
+              {get(taxon, "status") === "misapplied" ? "to" : "of"}{" "}
+              <LinkTo to="taxon" args={get(taxon, "accepted.id")}>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: get(taxon, "accepted.labelHtml"),
+                  }}
+                />
+              </LinkTo>
+            </div>
+          )}
           {get(taxon, "id") && (
             <PresentationItem
               md={md}
@@ -449,6 +472,17 @@ class TaxonPage extends React.Component {
               </Tooltip>
             </PresentationItem>
           )}
+          {Array.isArray(get(taxon, "identifier")) &&
+            get(taxon, "identifier").length > 0 && (
+              <PresentationItem md={md} label="Identifiers">
+                {get(taxon, "identifier").map((id, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && ", "}
+                    {String(id)}
+                  </React.Fragment>
+                ))}
+              </PresentationItem>
+            )}
           {get(taxon, "labelHtml") && (
             <PresentationItem md={md} label="Name">
               <span
@@ -515,7 +549,7 @@ class TaxonPage extends React.Component {
           {infoError && (
             <Alert message={<ErrorMsg error={infoError} />} type="error" />
           )}
-          {get(info, "synonyms") && (
+          {!isSynonym && get(info, "synonyms") && (
             <PresentationItem md={md} label="Synonyms and combinations">
               <Synonyms
                 primarySource={sourceDataset}
@@ -607,7 +641,7 @@ class TaxonPage extends React.Component {
                                               />
             </PresentationItem>
           )}
-          {((taxon &&
+          {!isSynonym && ((taxon &&
             rank.indexOf(get(taxon, "name.rank")) < genusRankIndex &&
             rank.indexOf(get(taxon, "name.rank")) > -1) ||
             (get(taxon, "name.rank") === "unranked" &&
@@ -622,7 +656,7 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {includes.length > 1 && rank && taxon && (
+          {!isSynonym && includes.length > 1 && rank && taxon && (
             <PresentationItem md={md} label="Statistics">
               <IncludesTable
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}
@@ -632,7 +666,7 @@ class TaxonPage extends React.Component {
                               />
             </PresentationItem>
           )}
-          {get(info, "vernacularNames") && taxon && (
+          {!isSynonym && get(info, "vernacularNames") && taxon && (
             <PresentationItem md={md} label="Vernacular names">
               <VernacularNames
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}
@@ -642,8 +676,9 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
-          {(get(info, "distributions") ||
-            (showDistributionMap && gbifChecklistKey && taxon)) && (
+          {!isSynonym &&
+            (get(info, "distributions") ||
+              (showDistributionMap && gbifChecklistKey && taxon)) && (
             // Distributions owns its labelled block so it can hide entirely
             // (label included) when there is nothing to show — including after
             // the async GBIF occurrence lookup comes back empty.

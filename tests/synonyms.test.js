@@ -61,4 +61,25 @@ describe('Synonym page', () => {
     await waitFor(() => node.innerHTML.includes('Sorry, this page does not exist'))
     expect(node.innerHTML).toContain('Sorry, this page does not exist')
   })
+
+  it('shows a "synonym of" banner linking to the accepted taxon and hides the synonyms list', async () => {
+    node = mountIn(
+      <Taxon
+        datasetKey={DATASET_KEY}
+        taxonKey={SYNONYM_KEY}
+        hrefForTaxon={(id) => `/data/taxon/${id}`}
+        hrefForSource={(id) => `/data/source/${id}`}
+      />
+    )
+    await waitFor(() => node.innerHTML.includes('Felis catus domestica'))
+    // Banner links to the accepted taxon page.
+    const acceptedLink = Array.from(node.querySelectorAll('a')).find(
+      (a) => a.getAttribute('href') === `/data/taxon/${ACCEPTED_KEY}`
+    )
+    expect(acceptedLink).toBeTruthy()
+    // The "synonym of" wording is present.
+    expect(node.innerHTML).toContain('synonym of')
+    // A synonym page must not render the accepted page's synonyms list.
+    expect(node.innerHTML).not.toContain('Synonyms and combinations')
+  })
 })
