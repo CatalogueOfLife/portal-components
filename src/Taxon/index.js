@@ -30,6 +30,7 @@ import Page404 from "../components/Page404";
 import TaxonBreakdown from "./TaxonBreakdown";
 import SecondarySources from "./SecondarySources";
 import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 import DecisionBadge from "../components/DecisionBadge";
 import { Feedback } from "./Feedback";
 const md = 5;
@@ -751,39 +752,45 @@ class TaxonPage extends React.Component {
           )}
           {get(sourceDataset, "title") && (
             <PresentationItem md={md} label="Source">
-              <div style={{ display: "inline-block" }}>
-              {info?.usage?.merged && 
-                <MergedDataBadge 
+              <div
+                style={{
+                  display: "inline-block",
+                  paddingLeft: info?.usage?.merged ? "22px" : 0,
+                }}
+              >
+                <XrGutter
+                  merged={info?.usage?.merged}
                   createdBy={info?.usage?.createdBy}
-                  datasetKey={info?.usage?.datasetKey} 
-                  verbatimSourceKey={info?.usage?.verbatimSourceKey} 
-                  sourceDatasetKey={info?.source?.sourceDatasetKey} 
-                  sourceId={info?.source?.sourceId} 
-                  />}{" "}
-                {info?.source?.sourceId ? (
-                  <a
-                    href={`https://www.checklistbank.org/dataset/${info?.source?.sourceDatasetKey}/taxon/${info?.source?.sourceId}`}
-                  >
-                    {get(sourceDataset, "alias")}
-                  </a>
-                ) : (
-                  get(sourceDataset, "alias")
-                )}
-                {": "}
-                <LinkTo to="source" args={get(sourceDataset, "key")}>
-                  {get(sourceDataset, "title")}
-                </LinkTo>
-                <span style={{ marginLeft: "10px" }}>
-                  {get(sourceDataset, "completeness") &&
-                    get(sourceDataset, "completeness") + "%"}
-                </span>
-                {get(sourceDataset, "confidence") && (
-                  <Rate
-                    style={{ marginLeft: "10px" }}
-                    value={get(sourceDataset, "confidence")}
-                    disabled
-                  />
-                )}
+                  datasetKey={info?.usage?.datasetKey}
+                  verbatimSourceKey={info?.usage?.verbatimSourceKey}
+                  sourceDatasetKey={info?.source?.sourceDatasetKey}
+                  sourceId={info?.source?.sourceId}
+                >
+                  {info?.source?.sourceId ? (
+                    <a
+                      href={`https://www.checklistbank.org/dataset/${info?.source?.sourceDatasetKey}/taxon/${info?.source?.sourceId}`}
+                    >
+                      {get(sourceDataset, "alias")}
+                    </a>
+                  ) : (
+                    get(sourceDataset, "alias")
+                  )}
+                  {": "}
+                  <LinkTo to="source" args={get(sourceDataset, "key")}>
+                    {get(sourceDataset, "title")}
+                  </LinkTo>
+                  <span style={{ marginLeft: "10px" }}>
+                    {get(sourceDataset, "completeness") &&
+                      get(sourceDataset, "completeness") + "%"}
+                  </span>
+                  {get(sourceDataset, "confidence") && (
+                    <Rate
+                      style={{ marginLeft: "10px" }}
+                      value={get(sourceDataset, "confidence")}
+                      disabled
+                    />
+                  )}
+                </XrGutter>
               </div>
             </PresentationItem>
           )}
