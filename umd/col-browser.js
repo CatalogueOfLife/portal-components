@@ -68330,38 +68330,24 @@ html body {
   }) => {
     const [sourceDataset, setSourceDataset] = reactExports.useState(null);
     const [sourceDatasetLoading, setSourceDatasetLoading] = reactExports.useState(false);
-    const [sourceTaxon, setSourceTaxon] = reactExports.useState(null);
-    const [sourceTaxonLoading, setSourceTaxonLoading] = reactExports.useState(null);
     const [verbatimRecord, setVerbatimRecord] = reactExports.useState(null);
     const [verbatimRecordLoading, setVerbatimRecordLoading] = reactExports.useState(false);
     const [open2, setOpen] = reactExports.useState(false);
+    const effectiveSourceDatasetKey = sourceDatasetKey || (verbatimRecord == null ? void 0 : verbatimRecord.sourceDatasetKey);
+    const effectiveSourceId = sourceId || (verbatimRecord == null ? void 0 : verbatimRecord.sourceId);
     reactExports.useEffect(() => {
-      if (open2 && sourceDatasetKey && sourceId) {
-        getSourceTaxon();
-      }
-      if (open2 && sourceDatasetKey) {
-        getSourceDataset();
-      }
       if (open2 && verbatimSourceKey && !createdByAlgorithm[createdBy]) {
         getVerbatimRecord();
       }
-    }, [sourceDatasetKey, sourceId, verbatimSourceKey, open2]);
-    const getSourceTaxon = () => {
-      setSourceTaxonLoading(true);
-      setSourceTaxon(null);
-      client(`${config.dataApi}dataset/${sourceDatasetKey}/taxon/${sourceId}`).then((res) => {
-        setSourceTaxonLoading(false);
-        setSourceTaxon(res.data);
-      }).catch((err) => {
-        console.error("Error fetching source  taxon:", err);
-        setSourceTaxonLoading(false);
-        setSourceTaxon(null);
-      });
-    };
-    const getSourceDataset = () => {
+    }, [verbatimSourceKey, open2]);
+    reactExports.useEffect(() => {
+      if (open2 && effectiveSourceDatasetKey) {
+        getSourceDataset(effectiveSourceDatasetKey);
+      }
+    }, [open2, effectiveSourceDatasetKey]);
+    const getSourceDataset = (key2) => {
       setSourceDatasetLoading(true);
-      setSourceDataset(null);
-      client(`${config.dataApi}dataset/${sourceDatasetKey}`).then((res) => {
+      client(`${config.dataApi}dataset/${key2}`).then((res) => {
         setSourceDatasetLoading(false);
         setSourceDataset(res.data);
       }).catch((err) => {
@@ -68373,7 +68359,9 @@ html body {
     const getVerbatimRecord = () => {
       setVerbatimRecordLoading(true);
       setVerbatimRecord(null);
-      client(`${config.dataApi}dataset/${datasetKey}/verbatimsource/${verbatimSourceKey}`).then((res) => {
+      client(
+        `${config.dataApi}dataset/${datasetKey}/verbatimsource/${verbatimSourceKey}`
+      ).then((res) => {
         setVerbatimRecordLoading(false);
         setVerbatimRecord(res.data);
       }).catch((err) => {
@@ -68383,95 +68371,51 @@ html body {
       });
     };
     const idRef = reactExports.useRef(Math.random().toString(36).substring(2, 15));
+    const clbEntity = ((verbatimRecord == null ? void 0 : verbatimRecord.sourceEntity) || "").toLowerCase().replace(/\s+/g, "");
+    const clbPath = clbEntity === "reference" ? "reference" : "taxon";
+    const sourceRecordHref = effectiveSourceId && effectiveSourceDatasetKey ? `https://www.checklistbank.org/dataset/${effectiveSourceDatasetKey}/${clbPath}/${encodeURIComponent(
+      effectiveSourceId
+    )}` : null;
+    const loadingSource = sourceDatasetLoading || !!verbatimSourceKey && verbatimRecordLoading;
+    const content = /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { minWidth: "300px" }, children: [
+      !!createdByAlgorithm[createdBy] && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: createdByAlgorithm[createdBy] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Source:" }),
+        " ",
+        sourceDataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: sourceDataset.key, children: sourceDataset.title }) : loadingSource ? "Loading..." : "—"
+      ] }),
+      sourceRecordHref && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "ID:" }),
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: sourceRecordHref, target: "_blank", rel: "noreferrer", children: effectiveSourceId })
+      ] }),
+      (verbatimRecord == null ? void 0 : verbatimRecord.issues) && verbatimRecord.issues.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Issues: " }),
+        verbatimRecord.issues.map((issue, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { style: { margin: "2px" }, children: issue }, index2))
+      ] })
+    ] });
+    const tagStyle = {
+      cursor: "pointer",
+      fontFamily: "monospace",
+      fontSize: "8px",
+      fontWeight: 900,
+      padding: "2px",
+      lineHeight: "8px",
+      verticalAlign: "middle",
+      marginRight: "2px",
+      ...style2
+    };
     return !!sourceDatasetKey || !!verbatimSourceKey ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, id: idRef.current, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Popover,
       {
         getPopupContainer: () => document.getElementById(idRef.current),
-        content: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { minWidth: "300px" }, children: [
-          !verbatimSourceKey && !sourceId && sourceDatasetKey && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Source:" }),
-            " ",
-            sourceDatasetLoading ? "Loading..." : /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: sourceDataset == null ? void 0 : sourceDataset.key, children: sourceDataset == null ? void 0 : sourceDataset.title })
-          ] }),
-          sourceDatasetKey && sourceId && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Source:" }),
-            " ",
-            sourceTaxonLoading ? "Loading..." : /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
-              {
-                href: `https://www.checklistbank.org/dataset/${sourceDatasetKey}/taxon/${sourceId}`,
-                dangerouslySetInnerHTML: { __html: sourceTaxon == null ? void 0 : sourceTaxon.labelHtml },
-                onClick: () => {
-                  window.location.href = `https://www.checklistbank.org/dataset/${sourceDatasetKey}/taxon/${sourceId}`;
-                }
-              }
-            )
-          ] }),
-          !sourceId && verbatimSourceKey && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Source:" }),
-            " ",
-            !!createdByAlgorithm[createdBy] && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: createdByAlgorithm[createdBy] }),
-            verbatimRecordLoading ? "Loading..." : !!verbatimRecord ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-              " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "a",
-                {
-                  href: `https://www.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`,
-                  dangerouslySetInnerHTML: { __html: (sourceDataset == null ? void 0 : sourceDataset.title) || (verbatimRecord == null ? void 0 : verbatimRecord.sourceEntity) },
-                  onClick: () => {
-                    window.location.href = `https://www.checklistbank.org/dataset/${verbatimRecord.sourceDatasetKey}/${(verbatimRecord.sourceEntity || "").replace(/\s/g, "")}/${encodeURIComponent(verbatimRecord.sourceId)}`;
-                  }
-                }
-              ),
-              (verbatimRecord == null ? void 0 : verbatimRecord.issues) && (verbatimRecord == null ? void 0 : verbatimRecord.issues.length) > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Issues: " }),
-                verbatimRecord.issues.map((issue, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { style: { margin: "2px" }, children: issue }, index2))
-              ] }) : ""
-            ] }) : ""
-          ] })
-        ] }),
+        content,
         trigger: "click",
         placement: popoverPlacement || "right",
         onOpenChange: setOpen,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Tag,
-          {
-            color: "purple",
-            style: {
-              cursor: "pointer",
-              fontFamily: "monospace",
-              fontSize: "8px",
-              fontWeight: 900,
-              padding: "2px",
-              lineHeight: "8px",
-              verticalAlign: "middle",
-              marginRight: "2px",
-              ...style2
-            },
-            children: "XR"
-          }
-        )
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "purple", style: tagStyle, children: "XR" })
       }
-    ) }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "inline" }, children: [
-      " ",
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Tag,
-        {
-          color: "purple",
-          style: {
-            fontFamily: "monospace",
-            fontSize: "8px",
-            fontWeight: 900,
-            padding: "2px",
-            lineHeight: "8px",
-            verticalAlign: "middle",
-            marginRight: "2px",
-            ...style2
-          },
-          children: "XR"
-        }
-      )
-    ] });
+    ) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "inline" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "purple", style: { ...tagStyle, cursor: "default" }, children: "XR" }) });
   };
   const ColTreeContext = React.createContext();
   class ColTreeNode extends React.Component {
@@ -70672,6 +70616,22 @@ html body {
       this.getDatasets.cancel();
     }
   }
+  const XrGutter = ({ merged, style: style2, children, ...badgeProps }) => merged ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { position: "relative", display: "inline-block", ...style2 }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      MergedDataBadge,
+      {
+        ...badgeProps,
+        style: {
+          position: "absolute",
+          right: "100%",
+          top: "50%",
+          transform: "translateY(-50%)",
+          marginRight: "4px"
+        }
+      }
+    ),
+    children
+  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children });
   const CONTENT_TYPE_KEY = "search-content-type";
   const FormItem = Form.Item;
   const RadioGroup = Radio.Group;
@@ -70700,22 +70660,21 @@ html body {
   };
   const getColumns$1 = () => [
     {
-      title: "",
-      dataIndex: ["usage", "merged"],
-      key: "merged",
-      width: 12,
-      render: (text2, record) => {
-        var _a2, _b2, _c;
-        return ((_a2 = record == null ? void 0 : record.usage) == null ? void 0 : _a2.merged) ? /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { datasetKey: (_b2 = record == null ? void 0 : record.usage) == null ? void 0 : _b2.datasetKey, verbatimSourceKey: (_c = record == null ? void 0 : record.usage) == null ? void 0 : _c.verbatimSourceKey }) : "";
-      }
-    },
-    {
       title: "Scientific Name",
       dataIndex: ["usage", "labelHtml"],
       key: "scientificName",
       render: (text2, record) => {
+        var _a2, _b2, _c;
         const id = get(record, "usage.accepted.id") || get(record, "usage.id");
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: text2 } }) });
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(
+          XrGutter,
+          {
+            merged: (_a2 = record == null ? void 0 : record.usage) == null ? void 0 : _a2.merged,
+            datasetKey: (_b2 = record == null ? void 0 : record.usage) == null ? void 0 : _b2.datasetKey,
+            verbatimSourceKey: (_c = record == null ? void 0 : record.usage) == null ? void 0 : _c.verbatimSourceKey,
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: id, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { dangerouslySetInnerHTML: { __html: text2 } }) })
+          }
+        );
       },
       width: 200,
       sorter: true
@@ -77439,27 +77398,28 @@ html body {
     ] }) });
   };
   const TypeMaterial = ({ dataset, data, nameID, style: style2 }) => {
-    return data[nameID] ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: data[nameID].map((s) => /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedListItem$1, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(s == null ? void 0 : s.status), children: s == null ? void 0 : s.status }),
-      " ",
-      s.merged && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        MergedDataBadge,
-        {
-          createdBy: s == null ? void 0 : s.createdBy,
-          datasetKey: s == null ? void 0 : s.datasetKey,
-          verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
-          sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey
-        }
-      ),
-      getLinks(dataset, s),
-      " ",
-      (s == null ? void 0 : s.citation) && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "span",
-        {
-          dangerouslySetInnerHTML: { __html: linkifyHtml((s == null ? void 0 : s.citation) || "") }
-        }
-      )
-    ] }, s.id)) }) : null;
+    return data[nameID] ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: data[nameID].map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx(BorderedListItem$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      XrGutter,
+      {
+        merged: s.merged,
+        createdBy: s == null ? void 0 : s.createdBy,
+        datasetKey: s == null ? void 0 : s.datasetKey,
+        verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
+        sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(s == null ? void 0 : s.status), children: s == null ? void 0 : s.status }),
+          " ",
+          getLinks(dataset, s),
+          " ",
+          (s == null ? void 0 : s.citation) && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              dangerouslySetInnerHTML: { __html: linkifyHtml((s == null ? void 0 : s.citation) || "") }
+            }
+          )
+        ]
+      }
+    ) }, s.id)) }) : null;
   };
   class TypeMaterialPopover extends React.Component {
     constructor(props) {
@@ -77483,12 +77443,9 @@ html body {
         const { typeMaterial, nameId } = this.props;
         const data = (typeMaterial == null ? void 0 : typeMaterial[nameId]) || [];
         if (data.length > 0) {
-          return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: data.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginBottom: "8px" }, children: [
+          return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: data.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginBottom: "8px", paddingLeft: "18px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(XrGutter, { merged: s.merged, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(s == null ? void 0 : s.status), children: s == null ? void 0 : s.status }),
-            s.merged && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, {}),
-              " "
-            ] }),
+            " ",
             (s == null ? void 0 : s.citation) && /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
               {
@@ -77497,7 +77454,7 @@ html body {
                 }
               }
             )
-          ] }, s.id)) });
+          ] }) }, s.id)) });
         }
       });
       __publicField(this, "render", () => {
@@ -77579,34 +77536,34 @@ html body {
     const total = items.length;
     const visibleItems = showAll ? items : items.slice(0, TOP_N);
     const renderItem = ({ syn: s, homotypic, indent }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedListItem$1, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: indent ? { marginLeft: "10px" } : null, children: [
-        misapplied ? "" : homotypic === true ? "≡ " : "= ",
-        " ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: get(s, "id"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "span",
-          {
-            dangerouslySetInnerHTML: {
-              __html: get(
-                s,
-                "labelHtml",
-                `${get(s, "name.scientificName")} ${get(
-                  s,
-                  "name.authorship",
-                  ""
-                )}`
-              )
-            }
-          }
-        ) })
-      ] }),
-      " ",
-      (s == null ? void 0 : s.sourceDatasetKey) && get(primarySource, "key") !== (s == null ? void 0 : s.sourceDatasetKey) && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        MergedDataBadge,
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        XrGutter,
         {
+          merged: !!(s == null ? void 0 : s.sourceDatasetKey) && get(primarySource, "key") !== (s == null ? void 0 : s.sourceDatasetKey),
           createdBy: s == null ? void 0 : s.createdBy,
           datasetKey: s.datasetKey,
           sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
-          verbatimSourceKey: s.verbatimSourceKey
+          verbatimSourceKey: s.verbatimSourceKey,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: indent ? { marginLeft: "10px" } : null, children: [
+            misapplied ? "" : homotypic === true ? "≡ " : "= ",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: get(s, "id"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                dangerouslySetInnerHTML: {
+                  __html: get(
+                    s,
+                    "labelHtml",
+                    `${get(s, "name.scientificName")} ${get(
+                      s,
+                      "name.authorship",
+                      ""
+                    )}`
+                  )
+                }
+              }
+            ) })
+          ] })
         }
       ),
       " ",
@@ -77702,16 +77659,20 @@ html body {
         countryAlpha2: {},
         columns: [
           {
-            title: "",
-            dataIndex: "merged",
-            key: "merged",
-            width: 12,
-            render: (text2, record) => (record == null ? void 0 : record.merged) ? /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { createdBy: record == null ? void 0 : record.createdBy, datasetKey: record == null ? void 0 : record.datasetKey, verbatimSourceKey: record == null ? void 0 : record.verbatimSourceKey, sourceDatasetKey: record == null ? void 0 : record.sourceDatasetKey }) : ""
-          },
-          {
             title: "Original name",
             dataIndex: "name",
-            key: "name"
+            key: "name",
+            render: (text2, record) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              XrGutter,
+              {
+                merged: record == null ? void 0 : record.merged,
+                createdBy: record == null ? void 0 : record.createdBy,
+                datasetKey: record == null ? void 0 : record.datasetKey,
+                verbatimSourceKey: record == null ? void 0 : record.verbatimSourceKey,
+                sourceDatasetKey: record == null ? void 0 : record.sourceDatasetKey,
+                children: text2
+              }
+            )
           },
           {
             title: "Transliterated name",
@@ -80428,26 +80389,25 @@ html body {
       var _a2, _b2;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { style: { paddingRight: "5px" }, children: get(referenceIndexMap, s.id) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: `[${get(referenceIndexMap, s.id)}]` }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 20, children: [
-          ((_a2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _a2.key) !== primarySourceDatasetKey && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            MergedDataBadge,
-            {
-              createdBy: s == null ? void 0 : s.createdBy,
-              datasetKey: s.datasetKey,
-              verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
-              sourceDatasetKey: (_b2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _b2.key
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              id: `col-reference-${s.id}`,
-              dangerouslySetInnerHTML: {
-                __html: linkifyHtml(purify.sanitize(s.citation))
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 20, style: { paddingLeft: "18px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          XrGutter,
+          {
+            merged: ((_a2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _a2.key) !== primarySourceDatasetKey,
+            createdBy: s == null ? void 0 : s.createdBy,
+            datasetKey: s.datasetKey,
+            verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
+            sourceDatasetKey: (_b2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _b2.key,
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                id: `col-reference-${s.id}`,
+                dangerouslySetInnerHTML: {
+                  __html: linkifyHtml(purify.sanitize(s.citation))
+                }
               }
-            }
-          )
-        ] })
+            )
+          }
+        ) })
       ] }, s.id);
     }) });
   };
@@ -87275,7 +87235,7 @@ html body {
       }
     }
     render() {
-      var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C;
+      var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B;
       const {
         datasetKey,
         showDistributionMap,
@@ -87433,7 +87393,7 @@ html body {
                 ]
               }
             ),
-            Array.isArray(get(taxon, "identifier")) && get(taxon, "identifier").length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Identifiers", children: get(taxon, "identifier").map((id, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+            Array.isArray(get(taxon, "identifier")) && get(taxon, "identifier").length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Other identifiers", children: get(taxon, "identifier").map((id, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
               i > 0 && ", ",
               String(id)
             ] }, i)) }),
@@ -87609,22 +87569,15 @@ html body {
                 }
               ),
               " ",
-              (info == null ? void 0 : info.source) && ((_t = info == null ? void 0 : info.source) == null ? void 0 : _t.sourceId) && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "a",
-                  {
-                    href: `https://www.checklistbank.org/dataset/${(_u = info == null ? void 0 : info.source) == null ? void 0 : _u.sourceDatasetKey}/taxon/${(_v = info == null ? void 0 : info.source) == null ? void 0 : _v.sourceId}`,
-                    children: (_w = info == null ? void 0 : info.source) == null ? void 0 : _w.sourceId
-                  }
-                ),
-                " ",
-                "in",
-                " "
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: get(sourceDataset, "key"), children: `${get(sourceDataset, "alias")}: ${get(
-                sourceDataset,
-                "title"
-              )}` }),
+              ((_t = info == null ? void 0 : info.source) == null ? void 0 : _t.sourceId) ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "a",
+                {
+                  href: `https://www.checklistbank.org/dataset/${(_u = info == null ? void 0 : info.source) == null ? void 0 : _u.sourceDatasetKey}/taxon/${(_v = info == null ? void 0 : info.source) == null ? void 0 : _v.sourceId}`,
+                  children: get(sourceDataset, "alias")
+                }
+              ) : get(sourceDataset, "alias"),
+              ": ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: get(sourceDataset, "key"), children: get(sourceDataset, "title") }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: get(sourceDataset, "completeness") && get(sourceDataset, "completeness") + "%" }),
               get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Rate,
@@ -87636,17 +87589,17 @@ html body {
               )
             ] }) }),
             get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Original record", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: get(taxon, "link"), children: get(taxon, "link") }) }),
-            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
+            ((_w = info == null ? void 0 : info.source) == null ? void 0 : _w.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
             get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               ReferencesTable,
               {
                 referenceIndexMap,
-                primarySourceDatasetKey: (_y = info == null ? void 0 : info.source) == null ? void 0 : _y.sourceDatasetKey,
+                primarySourceDatasetKey: (_x = info == null ? void 0 : info.source) == null ? void 0 : _x.sourceDatasetKey,
                 data: get(info, "references"),
                 style: { marginTop: "-3px" }
               }
             ) }),
-            ((_A = (_z = window == null ? void 0 : window.location) == null ? void 0 : _z.hostname) == null ? void 0 : _A.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_C = (_B = this == null ? void 0 : this.state) == null ? void 0 : _B.taxon) == null ? void 0 : _C.id, datasetKey: this.props.datasetKey }) })
+            ((_z = (_y = window == null ? void 0 : window.location) == null ? void 0 : _y.hostname) == null ? void 0 : _z.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_B = (_A = this == null ? void 0 : this.state) == null ? void 0 : _A.taxon) == null ? void 0 : _B.id, datasetKey: this.props.datasetKey }) })
           ]
         }
       ) });
@@ -89390,9 +89343,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       ellipsis: true,
       render: (text2, record) => {
         return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          record.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { style: { marginLeft: "0px" } }),
-            " ",
+          record.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs(XrGutter, { merged: true, children: [
             "Publisher: ",
             " ",
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -89406,10 +89357,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
             ),
             " "
           ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            " ",
-            !!(record == null ? void 0 : record.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, { style: { marginLeft: "0px" } }),
-            " ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: record.key, children: record.alias || record.title }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(XrGutter, { merged: !!(record == null ? void 0 : record.merged), children: /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: record.key, children: record.alias || record.title }) }),
             !!(record == null ? void 0 : record.taxonomicScope) && /* @__PURE__ */ jsxRuntimeExports.jsx("br", {})
           ] }),
           !!(record == null ? void 0 : record.taxonomicScope) && (record == null ? void 0 : record.taxonomicScope)
