@@ -564,6 +564,21 @@ class TaxonPage extends React.Component {
               />
             </PresentationItem>
           )}
+          {!isSynonym && misapplied.length > 0 && (
+            <PresentationItem md={md} label="Misapplied names">
+              <Synonyms
+                misapplied
+                primarySource={sourceDataset}
+                data={get(info, "synonyms")}
+                decisions={get(info, "decisions")}
+                references={get(info, "references")}
+                typeMaterial={get(info, "typeMaterial")}
+                referenceIndexMap={referenceIndexMap}
+                style={{ marginTop: "-3px" }}
+                datasetKey={datasetKey}
+              />
+            </PresentationItem>
+          )}
           {get(info, "typeMaterial") &&
                 info.typeMaterial[info?.usage?.name?.id] && (
                   <PresentationItem md={md} label="Type material">

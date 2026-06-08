@@ -20,6 +20,7 @@ const SynonymsTable = ({
   typeMaterial,
   referenceIndexMap,
   primarySource,
+  misapplied,
 }) => {
   const [showAll, setShowAll] = useState(false);
 
@@ -53,19 +54,29 @@ const SynonymsTable = ({
   // (homotypic=false, "=") followed by their nested homotypic members
   // (homotypic=true + indent, "≡").
   const items = [];
-  if (data.homotypic) {
-    [...data.homotypic].sort(sorter).forEach((s) => {
-      items.push({ syn: s, homotypic: true, indent: false });
-    });
-  }
-  if (data.heterotypicGroups) {
-    [...data.heterotypicGroups]
-      .sort((a, b) => sorter(a[0], b[0]))
-      .forEach((group) => {
-        group.forEach((s, i) => {
-          items.push({ syn: s, homotypic: i > 0, indent: i > 0 });
-        });
+  if (misapplied) {
+    // Misapplied names render in their own block, so they get no homotypic/
+    // heterotypic connector — the name's labelHtml already carries "auct. non …".
+    if (data.misapplied) {
+      [...data.misapplied].sort(sorter).forEach((s) => {
+        items.push({ syn: s, homotypic: false, indent: false });
       });
+    }
+  } else {
+    if (data.homotypic) {
+      [...data.homotypic].sort(sorter).forEach((s) => {
+        items.push({ syn: s, homotypic: true, indent: false });
+      });
+    }
+    if (data.heterotypicGroups) {
+      [...data.heterotypicGroups]
+        .sort((a, b) => sorter(a[0], b[0]))
+        .forEach((group) => {
+          group.forEach((s, i) => {
+            items.push({ syn: s, homotypic: i > 0, indent: i > 0 });
+          });
+        });
+    }
   }
 
   const total = items.length;
@@ -74,7 +85,7 @@ const SynonymsTable = ({
   const renderItem = ({ syn: s, homotypic, indent }) => (
     <BorderedListItem key={get(s, "name.id")}>
       <span style={indent ? { marginLeft: "10px" } : null}>
-        {homotypic === true ? "≡ " : "= "}{" "}
+        {misapplied ? "" : homotypic === true ? "≡ " : "= "}{" "}
         <LinkTo to="taxon" args={get(s, "id")}>
           <span
             dangerouslySetInnerHTML={{

@@ -6,6 +6,9 @@ import { Taxon } from 'src/'
 const DATASET_KEY = '310463'
 const SYNONYM_KEY = '5HBYN'   // Felis catus domestica -> accepted Felis catus
 const ACCEPTED_KEY = '3DXV3'  // Felis catus
+// Cionus scrophulariae has misapplied names; 32GHY = Curculio blattariae auct. non Panzer
+const MISAPPLIED_ACCEPTED_KEY = 'VFL3'
+const MISAPPLIED_KEY = '32GHY'
 
 const waitMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const waitFor = async (predicate, { timeout = 8000, interval = 100 } = {}) => {
@@ -102,5 +105,27 @@ describe('Accepted taxon synonym links', () => {
       (a) => a.getAttribute('href') === `/data/taxon/${SYNONYM_KEY}`
     )
     expect(synLink).toBeTruthy()
+  })
+})
+
+describe('Misapplied names block', () => {
+  let node
+  afterEach(() => { unmount(node) })
+
+  it('renders a "Misapplied names" block linking each misapplied name to its page', async () => {
+    node = mountIn(
+      <Taxon
+        datasetKey={DATASET_KEY}
+        taxonKey={MISAPPLIED_ACCEPTED_KEY}
+        hrefForTaxon={(id) => `/data/taxon/${id}`}
+        hrefForSource={(id) => `/data/source/${id}`}
+      />
+    )
+    await waitFor(() => node.innerHTML.includes('Misapplied names'))
+    expect(node.innerHTML).toContain('Misapplied names')
+    const misLink = Array.from(node.querySelectorAll('a')).find(
+      (a) => a.getAttribute('href') === `/data/taxon/${MISAPPLIED_KEY}`
+    )
+    expect(misLink).toBeTruthy()
   })
 })
