@@ -8,6 +8,7 @@ import DatasetlogoWithFallback from "../components/DatasetlogoWithFallback";
 import MetricsPresentation from "../SourceDataset/MetricsPresentation";
 import PresentationItem from "../components/PresentationItem";
 import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 import { RouterContext, buildRouter, LinkTo } from "../router";
 const baseFilters = (record) => {
   const f = record.key
@@ -41,25 +42,22 @@ const getColumns = (
         return (
           <>
             {record.id ? (
-              <span>
-               <MergedDataBadge style={{marginLeft: "0px"}} /> {"Publisher: "}{" "}
+              <XrGutter merged>
+                {"Publisher: "}{" "}
                 <a
                   href={`https://www.checklistbank.org/dataset/${datasetKey}/publisher/${record.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  /* onClick={() => {
-                    window.location.href = `https://www.checklistbank.org/dataset/${datasetKey}/publisher/${record.id}`;
-                  }} */
                   dangerouslySetInnerHTML={{ __html: text }}
                 />{" "}
-              </span>
+              </XrGutter>
             ) : (
               <>
-                {" "}
-                {!!record?.merged && <MergedDataBadge style={{marginLeft: "0px"}} />}{" "}
-                <LinkTo to="source" args={record.key}>
-                  {record.alias || record.title}
-                </LinkTo>
+                <XrGutter merged={!!record?.merged}>
+                  <LinkTo to="source" args={record.key}>
+                    {record.alias || record.title}
+                  </LinkTo>
+                </XrGutter>
                {!!record?.taxonomicScope && <br/>}
               </>
             )}

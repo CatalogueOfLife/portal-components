@@ -30,7 +30,7 @@ import ErrorMsg from "../components/ErrorMsg";
 import NameAutocomplete from "../ColTree/NameAutocomplete";
 import DatasetAutocomplete from "../components/DatasetAutocomplete";
 import Citation from "../components/DatasetCitation";
-import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -59,14 +59,6 @@ const defaultParams = {
 
 const getColumns = () => [
   {
-    title: "",
-    dataIndex: ["usage", "merged"],
-    key: "merged",
-    width: 12,
-    render: (text, record) =>
-      record?.usage?.merged ? <MergedDataBadge datasetKey={record?.usage?.datasetKey} verbatimSourceKey={record?.usage?.verbatimSourceKey} /> : "",
-  },
-  {
     title: "Scientific Name",
     dataIndex: ["usage", "labelHtml"],
     key: "scientificName",
@@ -74,9 +66,15 @@ const getColumns = () => [
       const id =
         get(record, "usage.accepted.id") || get(record, "usage.id");
       return (
-        <LinkTo to="taxon" args={id}>
-          <span dangerouslySetInnerHTML={{ __html: text }} />
-        </LinkTo>
+        <XrGutter
+          merged={record?.usage?.merged}
+          datasetKey={record?.usage?.datasetKey}
+          verbatimSourceKey={record?.usage?.verbatimSourceKey}
+        >
+          <LinkTo to="taxon" args={id}>
+            <span dangerouslySetInnerHTML={{ __html: text }} />
+          </LinkTo>
+        </XrGutter>
       );
     },
     width: 200,

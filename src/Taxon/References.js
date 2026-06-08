@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { get, values } from "lodash-es";
 import linkify from "linkify-html";
 import { Row, Col } from "antd";
-import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 import DOMPurify from "dompurify";
 
 const ReferencesTable = ({
@@ -21,21 +21,21 @@ const ReferencesTable = ({
               <span>{`[${get(referenceIndexMap, s.id)}]`}</span>
             )}
           </Col>
-          <Col span={20}>
-            {s?.sourceDataset?.key !== primarySourceDatasetKey && (
-              <MergedDataBadge
-                createdBy={s?.createdBy}
-                datasetKey={s.datasetKey}
-                verbatimSourceKey={s?.verbatimSourceKey}
-                sourceDatasetKey={s?.sourceDataset?.key}
-              />
-            )}
-            <span
-              id={`col-reference-${s.id}`}
-              dangerouslySetInnerHTML={{
-                __html: linkify(DOMPurify.sanitize(s.citation)),
-              }}
-            ></span>
+          <Col span={20} style={{ paddingLeft: "18px" }}>
+            <XrGutter
+              merged={s?.sourceDataset?.key !== primarySourceDatasetKey}
+              createdBy={s?.createdBy}
+              datasetKey={s.datasetKey}
+              verbatimSourceKey={s?.verbatimSourceKey}
+              sourceDatasetKey={s?.sourceDataset?.key}
+            >
+              <span
+                id={`col-reference-${s.id}`}
+                dangerouslySetInnerHTML={{
+                  __html: linkify(DOMPurify.sanitize(s.citation)),
+                }}
+              ></span>
+            </XrGutter>
           </Col>
         </Row>
       ))}

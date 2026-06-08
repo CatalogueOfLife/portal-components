@@ -6,7 +6,7 @@ import config from "../config";
 import { get, isArray } from "lodash-es";
 import { getTypeColor } from "./TypeMaterial";
 import linkify from "linkify-html";
-import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 
 class TypeMaterialPopover extends React.Component {
   constructor(props) {
@@ -46,21 +46,17 @@ class TypeMaterialPopover extends React.Component {
       return (
         <div>
           {data.map((s) => (
-            <div key={s.id} style={{ marginBottom: "8px" }} >
-              
-              <Tag color={getTypeColor(s?.status)}>{s?.status}</Tag>
-              {s.merged && (
-                <>
-                  <MergedDataBadge />{" "}
-                </>
-              )}
-              {s?.citation && (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: linkify(s?.citation || ""),
-                  }}
-                ></span>
-              )}
+            <div key={s.id} style={{ marginBottom: "8px", paddingLeft: "18px" }}>
+              <XrGutter merged={s.merged}>
+                <Tag color={getTypeColor(s?.status)}>{s?.status}</Tag>{" "}
+                {s?.citation && (
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: linkify(s?.citation || ""),
+                    }}
+                  ></span>
+                )}
+              </XrGutter>
             </div>
           ))}
         </div>

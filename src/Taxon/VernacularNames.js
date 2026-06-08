@@ -4,7 +4,7 @@ import { get } from "lodash-es";
 import client from "../api/client";
 import config from "../config";
 import ReferencePopover from "./ReferencePopover";
-import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 import ShowMoreToggle from "./ShowMoreToggle";
 
 import { getCountries } from "../api/enumeration";
@@ -20,17 +20,20 @@ class VernacularNamesTable extends React.Component {
       countryAlpha2: {},
       columns: [
         {
-          title: "",
-          dataIndex: "merged",
-          key: "merged",
-          width: 12,
-          render: (text, record) =>
-            record?.merged ? <MergedDataBadge createdBy={record?.createdBy} datasetKey={record?.datasetKey} verbatimSourceKey={record?.verbatimSourceKey} sourceDatasetKey={record?.sourceDatasetKey} /> : "",
-        },
-        {
           title: "Original name",
           dataIndex: "name",
           key: "name",
+          render: (text, record) => (
+            <XrGutter
+              merged={record?.merged}
+              createdBy={record?.createdBy}
+              datasetKey={record?.datasetKey}
+              verbatimSourceKey={record?.verbatimSourceKey}
+              sourceDatasetKey={record?.sourceDatasetKey}
+            >
+              {text}
+            </XrGutter>
+          ),
         },
         {
           title: "Transliterated name",

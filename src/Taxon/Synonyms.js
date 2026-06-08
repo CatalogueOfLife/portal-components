@@ -2,7 +2,7 @@ import { useState } from "react";
 import { get } from "lodash-es";
 import BorderedListItem from "./BorderedListItem";
 import ReferencePopover from "./ReferencePopover";
-import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 import DecisionBadge from "../components/DecisionBadge";
 import TypeMaterialPopover from "./TypeMaterialPopover";
 import ShowMoreToggle from "./ShowMoreToggle";
@@ -84,33 +84,35 @@ const SynonymsTable = ({
 
   const renderItem = ({ syn: s, homotypic, indent }) => (
     <BorderedListItem key={get(s, "name.id")}>
-      <span style={indent ? { marginLeft: "10px" } : null}>
-        {misapplied ? "" : homotypic === true ? "≡ " : "= "}{" "}
-        <LinkTo to="taxon" args={get(s, "id")}>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: get(
-                s,
-                "labelHtml",
-                `${get(s, "name.scientificName")} ${get(
+      <XrGutter
+        merged={
+          !!s?.sourceDatasetKey &&
+          get(primarySource, "key") !== s?.sourceDatasetKey
+        }
+        createdBy={s?.createdBy}
+        datasetKey={s.datasetKey}
+        sourceDatasetKey={s?.sourceDatasetKey}
+        verbatimSourceKey={s.verbatimSourceKey}
+      >
+        <span style={indent ? { marginLeft: "10px" } : null}>
+          {misapplied ? "" : homotypic === true ? "≡ " : "= "}{" "}
+          <LinkTo to="taxon" args={get(s, "id")}>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: get(
                   s,
-                  "name.authorship",
-                  ""
-                )}`
-              ),
-            }}
-          />
-        </LinkTo>
-      </span>{" "}
-      {s?.sourceDatasetKey &&
-        get(primarySource, "key") !== s?.sourceDatasetKey && (
-          <MergedDataBadge
-            createdBy={s?.createdBy}
-            datasetKey={s.datasetKey}
-            sourceDatasetKey={s?.sourceDatasetKey}
-            verbatimSourceKey={s.verbatimSourceKey}
-          />
-        )}{" "}
+                  "labelHtml",
+                  `${get(s, "name.scientificName")} ${get(
+                    s,
+                    "name.authorship",
+                    ""
+                  )}`
+                ),
+              }}
+            />
+          </LinkTo>
+        </span>
+      </XrGutter>{" "}
       {decisions?.[s?.id] && <DecisionBadge decision={decisions?.[s?.id]} />}
       <TypeMaterialPopover
         datasetKey={datasetKey}

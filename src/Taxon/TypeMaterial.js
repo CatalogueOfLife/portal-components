@@ -5,7 +5,7 @@ import linkify from "linkify-html";
 import { Tag, Space, Tooltip } from "antd";
 import {LinkOutlined} from "@ant-design/icons";
 
-import MergedDataBadge from "../components/MergedDataBadge";
+import XrGutter from "../components/XrGutter";
 
 export const getTypeColor = (status) => {
   const typeStatus = status ? status.toUpperCase() : "";
@@ -64,21 +64,21 @@ const TypeMaterial = ({ dataset, data, nameID, style }) => {
     <div style={style}>
       {data[nameID].map((s) => (
         <BorderedListItem key={s.id}>
-          <Tag color={getTypeColor(s?.status)}>{s?.status}</Tag>{" "}
-          {s.merged && (
-            <MergedDataBadge
-              createdBy={s?.createdBy}
-              datasetKey={s?.datasetKey}
-              verbatimSourceKey={s?.verbatimSourceKey}
-              sourceDatasetKey={s?.sourceDatasetKey}
-            />
-          )}
-          {getLinks(dataset, s)}{" "}
-          {s?.citation && (
-            <span
-              dangerouslySetInnerHTML={{ __html: linkify(s?.citation || "") }}
-            ></span>
-          )}
+          <XrGutter
+            merged={s.merged}
+            createdBy={s?.createdBy}
+            datasetKey={s?.datasetKey}
+            verbatimSourceKey={s?.verbatimSourceKey}
+            sourceDatasetKey={s?.sourceDatasetKey}
+          >
+            <Tag color={getTypeColor(s?.status)}>{s?.status}</Tag>{" "}
+            {getLinks(dataset, s)}{" "}
+            {s?.citation && (
+              <span
+                dangerouslySetInnerHTML={{ __html: linkify(s?.citation || "") }}
+              ></span>
+            )}
+          </XrGutter>
         </BorderedListItem>
       ))}
     </div>
