@@ -77539,7 +77539,8 @@ html body {
     decisions,
     typeMaterial,
     referenceIndexMap,
-    primarySource
+    primarySource,
+    misapplied
   }) => {
     const [showAll, setShowAll] = reactExports.useState(false);
     const getNomStatus = (taxon) => !nomStatus ? get(taxon, "name.nomStatus") : nomStatus[get(taxon, "name.nomStatus")][get(taxon, "name.code"), "zoological"];
@@ -77555,23 +77556,31 @@ html body {
       }
     };
     const items = [];
-    if (data.homotypic) {
-      [...data.homotypic].sort(sorter).forEach((s) => {
-        items.push({ syn: s, homotypic: true, indent: false });
-      });
-    }
-    if (data.heterotypicGroups) {
-      [...data.heterotypicGroups].sort((a, b2) => sorter(a[0], b2[0])).forEach((group) => {
-        group.forEach((s, i) => {
-          items.push({ syn: s, homotypic: i > 0, indent: i > 0 });
+    if (misapplied) {
+      if (data.misapplied) {
+        [...data.misapplied].sort(sorter).forEach((s) => {
+          items.push({ syn: s, homotypic: false, indent: false });
         });
-      });
+      }
+    } else {
+      if (data.homotypic) {
+        [...data.homotypic].sort(sorter).forEach((s) => {
+          items.push({ syn: s, homotypic: true, indent: false });
+        });
+      }
+      if (data.heterotypicGroups) {
+        [...data.heterotypicGroups].sort((a, b2) => sorter(a[0], b2[0])).forEach((group) => {
+          group.forEach((s, i) => {
+            items.push({ syn: s, homotypic: i > 0, indent: i > 0 });
+          });
+        });
+      }
     }
     const total = items.length;
     const visibleItems = showAll ? items : items.slice(0, TOP_N);
     const renderItem = ({ syn: s, homotypic, indent }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(BorderedListItem$1, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: indent ? { marginLeft: "10px" } : null, children: [
-        homotypic === true ? "≡ " : "= ",
+        misapplied ? "" : homotypic === true ? "≡ " : "= ",
         " ",
         /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: get(s, "id"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "span",
@@ -87294,7 +87303,7 @@ html body {
       );
       const homotypic = get(info, "synonyms.homotypic", []);
       const heterotypic = get(info, "synonyms.heterotypic", []);
-      get(info, "synonyms.misapplied", []);
+      const misapplied = get(info, "synonyms.misapplied", []);
       [
         ...homotypic.map((h) => ({ ...h, __homotypic: true })),
         ...heterotypic
@@ -87468,6 +87477,20 @@ html body {
             !isSynonym && get(info, "synonyms") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Synonyms and combinations", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               SynonymsTable,
               {
+                primarySource: sourceDataset,
+                data: get(info, "synonyms"),
+                decisions: get(info, "decisions"),
+                references: get(info, "references"),
+                typeMaterial: get(info, "typeMaterial"),
+                referenceIndexMap,
+                style: { marginTop: "-3px" },
+                datasetKey
+              }
+            ) }),
+            !isSynonym && misapplied.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Misapplied names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              SynonymsTable,
+              {
+                misapplied: true,
                 primarySource: sourceDataset,
                 data: get(info, "synonyms"),
                 decisions: get(info, "decisions"),
