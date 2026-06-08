@@ -760,21 +760,18 @@ class TaxonPage extends React.Component {
                   sourceDatasetKey={info?.source?.sourceDatasetKey} 
                   sourceId={info?.source?.sourceId} 
                   />}{" "}
-                {info?.source && info?.source?.sourceId && (
-                  <>
-                    <a
-                      href={`https://www.checklistbank.org/dataset/${info?.source?.sourceDatasetKey}/taxon/${info?.source?.sourceId}`}
-                    >
-                      {info?.source?.sourceId}
-                    </a>{" "}
-                    in{" "}
-                  </>
+                {info?.source?.sourceId ? (
+                  <a
+                    href={`https://www.checklistbank.org/dataset/${info?.source?.sourceDatasetKey}/taxon/${info?.source?.sourceId}`}
+                  >
+                    {get(sourceDataset, "alias")}
+                  </a>
+                ) : (
+                  get(sourceDataset, "alias")
                 )}
+                {": "}
                 <LinkTo to="source" args={get(sourceDataset, "key")}>
-                  {`${get(sourceDataset, "alias")}: ${get(
-                    sourceDataset,
-                    "title"
-                  )}`}
+                  {get(sourceDataset, "title")}
                 </LinkTo>
                 <span style={{ marginLeft: "10px" }}>
                   {get(sourceDataset, "completeness") &&
