@@ -291,7 +291,7 @@ class SourceDatasetPage extends React.Component {
               <PresentationItem label="Completeness">
                 {data.completeness}
               </PresentationItem>
-              <PresentationItem label="Url (website)">
+              <PresentationItem label="Website">
                 {data.url ? (
                   <a href={data.url} target="_blank">
                     {data.url}

@@ -817,7 +817,7 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
           {get(taxon, "link") && (
-            <PresentationItem md={md} label="Link to original resource">
+            <PresentationItem md={md} label="Original record">
               <a href={get(taxon, "link")}>{get(taxon, "link")}</a>
             </PresentationItem>
           )}
