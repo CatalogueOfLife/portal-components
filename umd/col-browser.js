@@ -87235,7 +87235,7 @@ html body {
       }
     }
     render() {
-      var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B;
+      var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C;
       const {
         datasetKey,
         showDistributionMap,
@@ -87557,49 +87557,58 @@ html body {
               get(taxon, "accordingToDate") && `, ${dayjs(get(taxon, "accordingToDate")).format("LL")}`
             ] }) }) }),
             get(taxon, "scrutinizer") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md * 2, label: "Taxonomic scrutiny", children: `${get(taxon, "scrutinizer")}${get(taxon, "scrutinizerDate") ? ", " + get(taxon, "scrutinizerDate") : ""}` }) }),
-            get(sourceDataset, "title") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Source", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "inline-block" }, children: [
-              ((_n = info == null ? void 0 : info.usage) == null ? void 0 : _n.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                MergedDataBadge,
-                {
-                  createdBy: (_o = info == null ? void 0 : info.usage) == null ? void 0 : _o.createdBy,
-                  datasetKey: (_p = info == null ? void 0 : info.usage) == null ? void 0 : _p.datasetKey,
-                  verbatimSourceKey: (_q = info == null ? void 0 : info.usage) == null ? void 0 : _q.verbatimSourceKey,
-                  sourceDatasetKey: (_r = info == null ? void 0 : info.source) == null ? void 0 : _r.sourceDatasetKey,
-                  sourceId: (_s = info == null ? void 0 : info.source) == null ? void 0 : _s.sourceId
-                }
-              ),
-              " ",
-              ((_t = info == null ? void 0 : info.source) == null ? void 0 : _t.sourceId) ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "a",
-                {
-                  href: `https://www.checklistbank.org/dataset/${(_u = info == null ? void 0 : info.source) == null ? void 0 : _u.sourceDatasetKey}/taxon/${(_v = info == null ? void 0 : info.source) == null ? void 0 : _v.sourceId}`,
-                  children: get(sourceDataset, "alias")
-                }
-              ) : get(sourceDataset, "alias"),
-              ": ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: get(sourceDataset, "key"), children: get(sourceDataset, "title") }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: get(sourceDataset, "completeness") && get(sourceDataset, "completeness") + "%" }),
-              get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Rate,
-                {
-                  style: { marginLeft: "10px" },
-                  value: get(sourceDataset, "confidence"),
-                  disabled: true
-                }
-              )
-            ] }) }),
+            get(sourceDataset, "title") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Source", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  display: "inline-block",
+                  paddingLeft: ((_n = info == null ? void 0 : info.usage) == null ? void 0 : _n.merged) ? "22px" : 0
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  XrGutter,
+                  {
+                    merged: (_o = info == null ? void 0 : info.usage) == null ? void 0 : _o.merged,
+                    createdBy: (_p = info == null ? void 0 : info.usage) == null ? void 0 : _p.createdBy,
+                    datasetKey: (_q = info == null ? void 0 : info.usage) == null ? void 0 : _q.datasetKey,
+                    verbatimSourceKey: (_r = info == null ? void 0 : info.usage) == null ? void 0 : _r.verbatimSourceKey,
+                    sourceDatasetKey: (_s = info == null ? void 0 : info.source) == null ? void 0 : _s.sourceDatasetKey,
+                    sourceId: (_t = info == null ? void 0 : info.source) == null ? void 0 : _t.sourceId,
+                    children: [
+                      ((_u = info == null ? void 0 : info.source) == null ? void 0 : _u.sourceId) ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "a",
+                        {
+                          href: `https://www.checklistbank.org/dataset/${(_v = info == null ? void 0 : info.source) == null ? void 0 : _v.sourceDatasetKey}/taxon/${(_w = info == null ? void 0 : info.source) == null ? void 0 : _w.sourceId}`,
+                          children: get(sourceDataset, "alias")
+                        }
+                      ) : get(sourceDataset, "alias"),
+                      ": ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: get(sourceDataset, "key"), children: get(sourceDataset, "title") }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: get(sourceDataset, "completeness") && get(sourceDataset, "completeness") + "%" }),
+                      get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Rate,
+                        {
+                          style: { marginLeft: "10px" },
+                          value: get(sourceDataset, "confidence"),
+                          disabled: true
+                        }
+                      )
+                    ]
+                  }
+                )
+              }
+            ) }),
             get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Original record", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: get(taxon, "link"), children: get(taxon, "link") }) }),
-            ((_w = info == null ? void 0 : info.source) == null ? void 0 : _w.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
+            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
             get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               ReferencesTable,
               {
                 referenceIndexMap,
-                primarySourceDatasetKey: (_x = info == null ? void 0 : info.source) == null ? void 0 : _x.sourceDatasetKey,
+                primarySourceDatasetKey: (_y = info == null ? void 0 : info.source) == null ? void 0 : _y.sourceDatasetKey,
                 data: get(info, "references"),
                 style: { marginTop: "-3px" }
               }
             ) }),
-            ((_z = (_y = window == null ? void 0 : window.location) == null ? void 0 : _y.hostname) == null ? void 0 : _z.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_B = (_A = this == null ? void 0 : this.state) == null ? void 0 : _A.taxon) == null ? void 0 : _B.id, datasetKey: this.props.datasetKey }) })
+            ((_A = (_z = window == null ? void 0 : window.location) == null ? void 0 : _z.hostname) == null ? void 0 : _A.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_C = (_B = this == null ? void 0 : this.state) == null ? void 0 : _B.taxon) == null ? void 0 : _C.id, datasetKey: this.props.datasetKey }) })
           ]
         }
       ) });
