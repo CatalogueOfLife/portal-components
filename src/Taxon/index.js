@@ -66,7 +66,6 @@ class TaxonPage extends React.Component {
     const { taxonKey } = this.props;
     this.getCatalogue();
     if (taxonKey) {
-      this.getTaxon(taxonKey);
       this.getInfo(taxonKey);
       this.getRank(taxonKey);
       this.getIncludes(taxonKey);
@@ -77,125 +76,12 @@ class TaxonPage extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.taxonKey !== this.props.taxonKey && this.props.taxonKey) {
       const taxonKey = this.props.taxonKey;
-      this.getTaxon(taxonKey);
       this.getInfo(taxonKey);
       this.getRank(taxonKey);
       this.getIncludes(taxonKey);
       this.getNomStatus(taxonKey);
     }
   }
-
-  getTaxon = (taxonKey) => {
-    const { datasetKey, pageTitleTemplate } = this.props;
-    this.setState({ loading: true });
-    client(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}`)
-      .then((res) => {
-        let promises = [res];
-        if (pageTitleTemplate && get(res, "data.label")) {
-          document.title = pageTitleTemplate.replace(
-            "__taxon__",
-            res.data.label
-          );
-        }
-        if (get(res, "data.name.publishedInId")) {
-          promises.push(
-            client(
-              `${config.dataApi}dataset/${datasetKey}/reference/${get(
-                res,
-                "data.name.publishedInId"
-              )}`
-            ).then((publishedIn) => {
-              res.data.name.publishedIn = publishedIn.data;
-              return res;
-            })
-          );
-        }
-
-        if (get(res, "data.name")) {
-          promises.push(
-            client(
-              `${config.dataApi}dataset/${datasetKey}/name/${get(
-                res,
-                "data.name.id"
-              )}/relations`
-            ).then((relations) => {
-              res.data.name.relations = relations.data;
-              return Promise.allSettled(
-                relations.data.map((r) => {
-                  return client(
-                    `${config.dataApi}dataset/${datasetKey}/name/${r.relatedNameId}`
-                  ).then((n) => {
-                    r.relatedName = n.data;
-                  });
-                })
-              ).then((results) => {
-                return results
-                  .filter((r) => (r.status = "fulfilled"))
-                  .map((r) => r.value);
-              });
-            })
-          );
-        }
-        // sector keys are only present if its a catalogue
-        if (get(res, "data.sectorKey")) {
-          client(
-            `${config.dataApi}dataset/${datasetKey}/sector/${get(
-              res,
-              "data.sectorKey"
-            )}`
-          ).then((sector) => {
-            client(
-              `${config.dataApi}dataset/${datasetKey}/logo/source/${get(
-                sector,
-                "data.subjectDatasetKey"
-              )}`
-            )
-              .then(() => {
-                this.setState({
-                  logoUrl: `${
-                    config.dataApi
-                  }dataset/${datasetKey}/logo/source/${get(
-                    sector,
-                    "data.subjectDatasetKey"
-                  )}?size=MEDIUM`,
-                });
-              })
-              .catch(() => {
-                // ignore, there is no logo
-              });
-
-            client(
-              `${config.dataApi}dataset/${datasetKey}/source/${get(
-                sector,
-                "data.subjectDatasetKey"
-              )}`
-            ).then((dataset) => {
-              this.setState({ sourceDataset: dataset.data });
-            });
-          });
-        }
-
-        return Promise.allSettled(promises).then((results) => {
-          return results
-            .filter((r) => (r.status = "fulfilled"))
-            .map((r) => r.value);
-        });
-      })
-      .then((res) => {
-        this.setState({
-          taxonLoading: false,
-          taxon: res[0].data,
-          taxonError: null,
-        });
-      })
-      .catch((err) => {
-        if (get(err, "response.status") === 404) {
-          this.fetchSynonymAndRedirect(taxonKey);
-        } else {
-          this.setState({ taxonLoading: false, taxonError: err, taxon: null });
-        }
-      });
-  };
 
   getCatalogue = () => {
     const { datasetKey } = this.props;
@@ -265,13 +151,66 @@ class TaxonPage extends React.Component {
   };
 
   getInfo = async (taxonKey) => {
-    const { datasetKey } = this.props;
+    const { datasetKey, pageTitleTemplate } = this.props;
 
 
     try {
       const res = await client(
         `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
       );
+      const usage = get(res, "data.usage");
+
+      // Page title from the usage label (moved from the old getTaxon).
+      if (pageTitleTemplate && get(usage, "label")) {
+        document.title = pageTitleTemplate.replace("__taxon__", usage.label);
+      }
+
+      // Resolve the name's "published in" reference from the references map the
+      // /info payload already carries; fall back to a single fetch only if it
+      // is not included. Attaches as usage.name.publishedIn so the existing
+      // "Published in" render keeps working.
+      const publishedInId = get(usage, "name.publishedInId");
+      if (publishedInId && usage.name) {
+        const cited = get(res, "data.references") && res.data.references[publishedInId];
+        if (cited) {
+          usage.name.publishedIn = cited;
+        } else {
+          try {
+            const pub = await client(
+              `${config.dataApi}dataset/${datasetKey}/reference/${publishedInId}`
+            );
+            usage.name.publishedIn = pub.data;
+          } catch (e) {
+            // no reference available — leave publishedIn unset
+          }
+        }
+      }
+
+      // Source-dataset logo + metadata, only on catalogues (moved from getTaxon).
+      if (get(usage, "sectorKey")) {
+        client(
+          `${config.dataApi}dataset/${datasetKey}/sector/${get(usage, "sectorKey")}`
+        ).then((sector) => {
+          const subjectDatasetKey = get(sector, "data.subjectDatasetKey");
+          client(
+            `${config.dataApi}dataset/${datasetKey}/logo/source/${subjectDatasetKey}`
+          )
+            .then(() => {
+              this.setState({
+                logoUrl: `${config.dataApi}dataset/${datasetKey}/logo/source/${subjectDatasetKey}?size=MEDIUM`,
+              });
+            })
+            .catch(() => {
+              // ignore, there is no logo
+            });
+          client(
+            `${config.dataApi}dataset/${datasetKey}/source/${subjectDatasetKey}`
+          ).then((dataset) => {
+            this.setState({ sourceDataset: dataset.data });
+          });
+        });
+      }
+
       let referenceIndexMap = {};
       if (get(res, "data.references")) {
         Object.keys(res.data.references).forEach((k, i) => {
@@ -328,6 +267,7 @@ class TaxonPage extends React.Component {
       this.setState({
         infoLoading: false,
         info: res.data,
+        taxon: usage,
         classification: res?.data?.classification,
         infoError: null,
         referenceIndexMap,
@@ -335,7 +275,7 @@ class TaxonPage extends React.Component {
       });
     } catch (err) {
       if (get(err, "response.status") === 404) {
-        this.fetchSynonymAndRedirect(taxonKey);
+        this.setState({ infoLoading: false, info: null, taxon: null, status: 404 });
       } else {
         this.setState({ infoLoading: false, infoError: err, info: null });
       }
@@ -373,22 +313,6 @@ class TaxonPage extends React.Component {
           includesLoading: false,
           includes: [],
         });
-      });
-  };
-
-  fetchSynonymAndRedirect = (taxonKey) => {
-    const { datasetKey } = this.props;
-    const navigateToTaxon = this.context?.taxon?.onNavigate;
-
-    client(`${config.dataApi}dataset/${datasetKey}/synonym/${taxonKey}`)
-      .then((res) => {
-        const acceptedId = get(res, "data.accepted.id");
-        if (acceptedId && navigateToTaxon) navigateToTaxon(acceptedId);
-      })
-      .catch((err) => {
-        if (get(err, "response.status") === 404) {
-          this.setState({ status: 404 });
-        }
       });
   };
 
