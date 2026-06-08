@@ -6,6 +6,7 @@ import MergedDataBadge from "../components/MergedDataBadge";
 import DecisionBadge from "../components/DecisionBadge";
 import TypeMaterialPopover from "./TypeMaterialPopover";
 import ShowMoreToggle from "./ShowMoreToggle";
+import { LinkTo } from "../router";
 
 const TOP_N = 5;
 
@@ -74,19 +75,21 @@ const SynonymsTable = ({
     <BorderedListItem key={get(s, "name.id")}>
       <span style={indent ? { marginLeft: "10px" } : null}>
         {homotypic === true ? "≡ " : "= "}{" "}
-        <span
-          dangerouslySetInnerHTML={{
-            __html: get(
-              s,
-              "labelHtml",
-              `${get(s, "name.scientificName")} ${get(
+        <LinkTo to="taxon" args={get(s, "id")}>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: get(
                 s,
-                "name.authorship",
-                ""
-              )}`
-            ),
-          }}
-        />
+                "labelHtml",
+                `${get(s, "name.scientificName")} ${get(
+                  s,
+                  "name.authorship",
+                  ""
+                )}`
+              ),
+            }}
+          />
+        </LinkTo>
       </span>{" "}
       {s?.sourceDatasetKey &&
         get(primarySource, "key") !== s?.sourceDatasetKey && (

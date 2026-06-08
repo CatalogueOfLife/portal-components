@@ -83,3 +83,24 @@ describe('Synonym page', () => {
     expect(node.innerHTML).not.toContain('Synonyms and combinations')
   })
 })
+
+describe('Accepted taxon synonym links', () => {
+  let node
+  afterEach(() => { unmount(node) })
+
+  it('links each synonym entry to its own synonym page', async () => {
+    node = mountIn(
+      <Taxon
+        datasetKey={DATASET_KEY}
+        taxonKey={ACCEPTED_KEY}
+        hrefForTaxon={(id) => `/data/taxon/${id}`}
+        hrefForSource={(id) => `/data/source/${id}`}
+      />
+    )
+    await waitFor(() => node.innerHTML.includes('Synonyms and combinations'))
+    const synLink = Array.from(node.querySelectorAll('a')).find(
+      (a) => a.getAttribute('href') === `/data/taxon/${SYNONYM_KEY}`
+    )
+    expect(synLink).toBeTruthy()
+  })
+})
