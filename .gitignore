@@ -9,6 +9,7 @@ npm-debug.log*
 **/.DS_Store
 .claude/
 /docs/superpowers
+TODO.md
 
 # umd/ is committed so jsDelivr can serve the bundle straight from the git tag.
 # Only the large (~7 MB) unminified sourcemap is excluded.
