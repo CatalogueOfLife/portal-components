@@ -74960,17 +74960,25 @@ html body {
       });
       __publicField(this, "render", () => {
         const { referenceId: referenceId2, referenceIndexMap, trigger } = this.props;
+        const maxInline = this.props.maxInline || 4;
         const refIds = !isArray(referenceId2) ? [referenceId2] : referenceId2;
-        let icon = referenceIndexMap && get(referenceIndexMap, refIds[0]) ? refIds.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "a",
-          {
-            className: "col-reference-link",
-            href: `#col-reference-${r2}`,
-            onClick: (e2) => this.scrollToReference(e2, r2),
-            children: `[${referenceIndexMap[r2]}]`
-          },
-          r2
-        )) : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$3, { style: { cursor: "pointer" } });
+        let icon = referenceIndexMap && get(referenceIndexMap, refIds[0]) ? (() => {
+          const shown = refIds.slice(0, maxInline);
+          const overflow = refIds.length - shown.length;
+          return [
+            ...shown.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "a",
+              {
+                className: "col-reference-link",
+                href: `#col-reference-${r2}`,
+                onClick: (e2) => this.scrollToReference(e2, r2),
+                children: `[${referenceIndexMap[r2]}]`
+              },
+              r2
+            )),
+            overflow > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "col-reference-link", children: ` +${overflow}` }, "overflow") : null
+          ];
+        })() : /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$3, { style: { cursor: "pointer" } });
         return referenceId2 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { id: `reference_${referenceId2}`, style: this.props.style, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Popover,
           {

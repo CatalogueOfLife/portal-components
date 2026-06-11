@@ -69,18 +69,33 @@ class ReferencePopover extends React.Component {
 
   render = () => {
     const { referenceId, referenceIndexMap, trigger } = this.props;
+    // Cap the inline [n] markers so a name linked to many references does not
+    // render an unreadable trail across the row. Overflow collapses into a
+    // "+N" indicator; the hover popover still lists every citation.
+    const maxInline = this.props.maxInline || 4;
     const refIds = !isArray(referenceId) ? [referenceId] : referenceId;
     let icon = referenceIndexMap && get(referenceIndexMap, refIds[0])
-      ? refIds.map((r) => (
-          <a
-            key={r}
-            className="col-reference-link"
-            href={`#col-reference-${r}`}
-            onClick={(e) => this.scrollToReference(e, r)}
-          >
-            {`[${referenceIndexMap[r]}]`}
-          </a>
-        ))
+      ? (() => {
+          const shown = refIds.slice(0, maxInline);
+          const overflow = refIds.length - shown.length;
+          return [
+            ...shown.map((r) => (
+              <a
+                key={r}
+                className="col-reference-link"
+                href={`#col-reference-${r}`}
+                onClick={(e) => this.scrollToReference(e, r)}
+              >
+                {`[${referenceIndexMap[r]}]`}
+              </a>
+            )),
+            overflow > 0 ? (
+              <span key="overflow" className="col-reference-link">
+                {` +${overflow}`}
+              </span>
+            ) : null,
+          ];
+        })()
       : <BookOutlined style={{ cursor: "pointer" }} />;
 
     return referenceId ? (
