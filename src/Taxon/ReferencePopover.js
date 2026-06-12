@@ -107,7 +107,17 @@ class ReferencePopover extends React.Component {
           placement={this.props.placement || "left"}
           title="Reference"
           onOpenChange={(visible) => visible && this.getData()}
-          content={<div style={{ maxWidth: "500px" }}>{this.getContent()}</div>}
+          content={
+            <div
+              style={{
+                maxWidth: "500px",
+                maxHeight: "60vh",
+                overflowY: "auto",
+              }}
+            >
+              {this.getContent()}
+            </div>
+          }
           trigger={trigger || "hover"}
         >
           {icon}

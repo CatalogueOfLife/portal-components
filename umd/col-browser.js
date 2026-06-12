@@ -74986,7 +74986,17 @@ html body {
             placement: this.props.placement || "left",
             title: "Reference",
             onOpenChange: (visible) => visible && this.getData(),
-            content: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { maxWidth: "500px" }, children: this.getContent() }),
+            content: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  maxWidth: "500px",
+                  maxHeight: "60vh",
+                  overflowY: "auto"
+                },
+                children: this.getContent()
+              }
+            ),
             trigger: trigger || "hover",
             children: icon
           }
