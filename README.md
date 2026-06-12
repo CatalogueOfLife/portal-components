@@ -800,7 +800,9 @@ history.listen(({ location }) => { /* ... */ });
 
 ## Releasing
 
-After a tagged release, purge the floating jsDelivr URLs at <https://www.jsdelivr.com/tools/purge> so embedders pick up the new build within minutes instead of waiting out the ~12 h edge cache:
+A release publishes the package to npm and pushes a `v*` tag (which also redeploys the GitHub Pages demo). The Catalogue of Life portal consumes the npm package via Astro, so it needs no extra step.
+
+Third-party embedders loading the UMD bundle from jsDelivr can optionally purge the floating `@2` / `@latest` URLs at <https://www.jsdelivr.com/tools/purge> to pick up the new build within minutes instead of waiting out the ~12 h edge cache:
 
 ```
 # v2.x release — purge @2 and @latest
