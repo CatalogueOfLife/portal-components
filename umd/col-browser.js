@@ -87023,870 +87023,6 @@ html body {
       ] })
     ] });
   };
-  dayjs.extend(localizedFormat);
-  const md = 5;
-  class TaxonPage extends React.Component {
-    constructor(props) {
-      super(props);
-      __publicField(this, "componentDidMount", () => {
-        const { taxonKey } = this.props;
-        this.getCatalogue();
-        if (taxonKey) {
-          this.getInfo(taxonKey);
-          this.getRank(taxonKey);
-          this.getIncludes(taxonKey);
-          this.getNomStatus(taxonKey);
-        }
-      });
-      __publicField(this, "getCatalogue", () => {
-        const { datasetKey } = this.props;
-        client(`${config.dataApi}dataset/${datasetKey}`).then((res) => {
-          this.setState({ catalogue: res.data });
-        }).catch((err) => {
-        });
-      });
-      __publicField(this, "datasetLoader", new DataLoader(
-        (ids) => getDatasetsBatch(ids, this.props.datasetKey)
-      ));
-      __publicField(this, "sectorLoader", new DataLoader(
-        (ids) => getSectorsBatch(ids, this.props.datasetKey)
-      ));
-      __publicField(this, "decorateWithSectorsAndDataset", async (synonyms) => {
-        const { datasetKey } = this.props;
-        const sourceDatasetsMap = {};
-        for (const type2 of ["misapplied", "heterotypic", "homotypic"].filter(
-          (t2) => !!synonyms[t2]
-        )) {
-          await Promise.allSettled(
-            synonyms[type2].filter((tx) => !!tx.sectorKey).map(
-              (tx) => this.sectorLoader.load(tx.sectorKey, datasetKey).then((r2) => {
-                tx.sector = r2;
-                return this.datasetLoader.load(r2.subjectDatasetKey).then((dataset) => {
-                  tx.sourceDatasetKey = dataset.key;
-                  sourceDatasetsMap[dataset.key] = dataset;
-                });
-              })
-            )
-          );
-        }
-        if (synonyms == null ? void 0 : synonyms.heterotypicGroups) {
-          for (const arr of synonyms == null ? void 0 : synonyms.heterotypicGroups) {
-            await Promise.allSettled(
-              arr.filter((tx) => !!tx.sectorKey).map(
-                (tx) => this.sectorLoader.load(tx.sectorKey, datasetKey).then((r2) => {
-                  tx.sector = r2;
-                  return this.datasetLoader.load(r2.subjectDatasetKey).then((dataset) => {
-                    tx.sourceDatasetKey = dataset.key;
-                    sourceDatasetsMap[dataset.key] = dataset;
-                  });
-                })
-              )
-            );
-          }
-        }
-        return Object.keys(sourceDatasetsMap).length > 0 ? sourceDatasetsMap : null;
-      });
-      __publicField(this, "getInfo", async (taxonKey) => {
-        var _a2, _b2, _c, _d, _e2, _f;
-        const { datasetKey, pageTitleTemplate } = this.props;
-        try {
-          const res = await client(
-            `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
-          );
-          const usage = get(res, "data.usage");
-          if (pageTitleTemplate && get(usage, "label")) {
-            document.title = pageTitleTemplate.replace("__taxon__", usage.label);
-          }
-          const publishedInId = get(usage, "name.publishedInId");
-          if (publishedInId && usage.name) {
-            const cited = get(res, "data.references") && res.data.references[publishedInId];
-            if (cited) {
-              usage.name.publishedIn = cited;
-            } else {
-              try {
-                const pub = await client(
-                  `${config.dataApi}dataset/${datasetKey}/reference/${publishedInId}`
-                );
-                usage.name.publishedIn = pub.data;
-              } catch (e2) {
-              }
-            }
-          }
-          if (get(usage, "sectorKey")) {
-            client(
-              `${config.dataApi}dataset/${datasetKey}/sector/${get(usage, "sectorKey")}`
-            ).then((sector) => {
-              const subjectDatasetKey = get(sector, "data.subjectDatasetKey");
-              client(
-                `${config.dataApi}dataset/${datasetKey}/logo/source/${subjectDatasetKey}`
-              ).then(() => {
-                this.setState({
-                  logoUrl: `${config.dataApi}dataset/${datasetKey}/logo/source/${subjectDatasetKey}?size=MEDIUM`
-                });
-              }).catch(() => {
-              });
-              client(
-                `${config.dataApi}dataset/${datasetKey}/source/${subjectDatasetKey}`
-              ).then((dataset) => {
-                this.setState({ sourceDataset: dataset.data });
-              });
-            });
-          }
-          let referenceIndexMap = {};
-          if (get(res, "data.references")) {
-            Object.keys(res.data.references).forEach((k, i) => {
-              referenceIndexMap[k] = (i + 1).toString();
-            });
-            await Promise.allSettled(
-              Object.keys(res.data.references).map((key2) => res.data.references[key2]).filter((ref) => !!ref.sectorKey).map(
-                (ref) => this.sectorLoader.load(ref.sectorKey).then((r2) => {
-                  ref.sector = r2;
-                  return this.datasetLoader.load(r2.subjectDatasetKey).then((dataset) => {
-                    ref.sourceDataset = dataset;
-                  });
-                })
-              )
-            );
-          }
-          if ((_a2 = res == null ? void 0 : res.data) == null ? void 0 : _a2.vernacularNames) {
-            await Promise.allSettled(
-              res.data.vernacularNames.filter((name) => !!name.sectorKey).map(
-                (name) => this.sectorLoader.load(name.sectorKey).then((r2) => {
-                  name.sector = r2;
-                  name.sourceDatasetKey = r2.subjectDatasetKey;
-                })
-              )
-            );
-          }
-          if ((_b2 = res == null ? void 0 : res.data) == null ? void 0 : _b2.distributions) {
-            await Promise.allSettled(
-              res.data.distributions.filter((dist) => !!dist.sectorKey).map(
-                (dist) => this.sectorLoader.load(dist.sectorKey).then((r2) => {
-                  dist.sector = r2;
-                  dist.sourceDatasetKey = r2.subjectDatasetKey;
-                })
-              )
-            );
-          }
-          let sourceDatasetKeyMap = get(res, "data.synonyms") ? await this.decorateWithSectorsAndDataset(get(res, "data.synonyms")) : null;
-          if (((_c = res == null ? void 0 : res.data) == null ? void 0 : _c.nameRelations) && ((_d = res == null ? void 0 : res.data) == null ? void 0 : _d.names)) {
-            (_e2 = res == null ? void 0 : res.data) == null ? void 0 : _e2.nameRelations.forEach((rel) => {
-              var _a3, _b3, _c2, _d2;
-              rel.relatedName = (_b3 = (_a3 = res == null ? void 0 : res.data) == null ? void 0 : _a3.names) == null ? void 0 : _b3[rel == null ? void 0 : rel.relatedNameId];
-              rel.name = (_d2 = (_c2 = res == null ? void 0 : res.data) == null ? void 0 : _c2.names) == null ? void 0 : _d2[rel == null ? void 0 : rel.nameId];
-            });
-          }
-          this.setState({
-            infoLoading: false,
-            info: res.data,
-            taxon: usage,
-            classification: (_f = res == null ? void 0 : res.data) == null ? void 0 : _f.classification,
-            infoError: null,
-            referenceIndexMap,
-            sourceDatasetKeyMap
-          });
-        } catch (err) {
-          if (get(err, "response.status") === 404) {
-            this.setState({ infoLoading: false, info: null, taxon: null, status: 404 });
-          } else {
-            this.setState({ infoLoading: false, infoError: err, info: null });
-          }
-        }
-      });
-      __publicField(this, "getRank", () => {
-        client(`${config.dataApi}vocab/rank`).then(
-          (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
-        );
-      });
-      __publicField(this, "getNomStatus", () => {
-        client(`${config.dataApi}vocab/nomstatus`).then(
-          (res) => this.setState({
-            nomStatus: res.data.reduce((a, c) => (a[c.name] = c, a), {})
-          })
-        );
-      });
-      __publicField(this, "getIncludes", (taxonKey) => {
-        const { datasetKey } = this.props;
-        client(
-          `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
-        ).then((res) => {
-          this.setState({
-            includesLoading: false,
-            includes: get(res, "data.facets.rank") || []
-          });
-        }).catch((err) => {
-          this.setState({
-            includesLoading: false,
-            includes: []
-          });
-        });
-      });
-      setAuth(this.props.auth);
-      this.state = {
-        taxon: null,
-        info: null,
-        taxonLoading: true,
-        datasetLoading: true,
-        infoLoading: true,
-        infoError: null,
-        taxonError: null,
-        verbatimLoading: true,
-        verbatimError: null,
-        verbatim: null,
-        logoUrl: null,
-        sourceDataset: null,
-        includes: [],
-        rank: [],
-        nomStatus: null,
-        catalogue: null,
-        referenceIndexMap: {},
-        sourceDatasetKeyMap: null
-      };
-    }
-    componentDidUpdate(prevProps) {
-      if (prevProps.taxonKey !== this.props.taxonKey && this.props.taxonKey) {
-        const taxonKey = this.props.taxonKey;
-        this.getInfo(taxonKey);
-        this.getRank(taxonKey);
-        this.getIncludes(taxonKey);
-        this.getNomStatus(taxonKey);
-      }
-    }
-    render() {
-      var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C;
-      const {
-        datasetKey,
-        showDistributionMap,
-        gbifChecklistKey
-      } = this.props;
-      const {
-        taxon,
-        info,
-        classification,
-        sourceDataset,
-        includes: includes2,
-        rank,
-        nomStatus,
-        taxonError,
-        synonymsError,
-        classificationError,
-        infoError,
-        status,
-        catalogue,
-        referenceIndexMap
-      } = this.state;
-      const genusRankIndex = rank ? rank.indexOf("genus") : -1;
-      const isSynonym = ["synonym", "ambiguous synonym", "misapplied"].includes(
-        get(taxon, "status")
-      );
-      const homotypic = get(info, "synonyms.homotypic", []);
-      const heterotypic = get(info, "synonyms.heterotypic", []);
-      const misapplied = get(info, "synonyms.misapplied", []);
-      [
-        ...homotypic.map((h) => ({ ...h, __homotypic: true })),
-        ...heterotypic
-      ];
-      return status === 404 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Page404, {}) : /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          className: "catalogue-of-life",
-          style: {
-            padding: 24,
-            minHeight: 280,
-            margin: "16px 0",
-            fontSize: "12px"
-          },
-          children: [
-            taxonError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: taxonError }), type: "error" }),
-            taxon && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { align: "bottom", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginLeft: ((_a2 = info == null ? void 0 : info.usage) == null ? void 0 : _a2.merged) ? "-22px" : 0 }, children: [
-                ((_b2 = info == null ? void 0 : info.usage) == null ? void 0 : _b2.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  MergedDataBadge,
-                  {
-                    style: { marginBottom: "10px" },
-                    createdBy: (_c = info == null ? void 0 : info.usage) == null ? void 0 : _c.createdBy,
-                    datasetKey: (_d = info == null ? void 0 : info.usage) == null ? void 0 : _d.datasetKey,
-                    verbatimSourceKey: (_e2 = info == null ? void 0 : info.usage) == null ? void 0 : _e2.verbatimSourceKey,
-                    sourceDatasetKey: (_f = info == null ? void 0 : info.source) == null ? void 0 : _f.sourceDatasetKey,
-                    sourceId: (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.sourceId
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h1",
-                  {
-                    style: {
-                      fontSize: "30px",
-                      fontWeight: "400",
-                      paddingLeft: "10px",
-                      display: "inline",
-                      textTransform: "none"
-                    },
-                    dangerouslySetInnerHTML: {
-                      __html: taxon.labelHtml
-                    }
-                  }
-                )
-              ] }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 1, children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "" }),
-                taxon.provisional && /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "red", children: "Provisional" })
-              ] }),
-              sourceDataset && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 5, style: { textAlign: "right" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                DatasetlogoWithFallback,
-                {
-                  auth: this.props.auth,
-                  style: {
-                    maxWidth: "100%",
-                    height: "auto",
-                    marginRight: "8px"
-                  },
-                  datasetKey,
-                  sourceDatasetKey: sourceDataset.key
-                }
-              ) })
-            ] }),
-            isSynonym && get(taxon, "accepted.id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: {
-                  paddingLeft: "10px",
-                  marginTop: "2px",
-                  marginBottom: "10px",
-                  fontSize: "16px"
-                },
-                children: [
-                  get(taxon, "status"),
-                  " ",
-                  get(taxon, "status") === "misapplied" ? "to" : "of",
-                  " ",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: get(taxon, "accepted.id"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "span",
-                    {
-                      dangerouslySetInnerHTML: {
-                        __html: get(taxon, "accepted.labelHtml")
-                      }
-                    }
-                  ) })
-                ]
-              }
-            ),
-            get(taxon, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              PresentationItem$1,
-              {
-                md,
-                label: get(this.props, "identifierLabel", "Identifier"),
-                children: [
-                  get(taxon, "id"),
-                  " ",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "a",
-                    {
-                      href: `https://www.checklistbank.org/dataset/${datasetKey}/taxon/${get(
-                        taxon,
-                        "id"
-                      )}`,
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$2, {})
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Tooltip,
-                    {
-                      title: "Download data for this taxon and descendants",
-                      getPopupContainer: () => document.getElementById(`col-download-${get(taxon, "id")}`) || document.body,
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "a",
-                        {
-                          style: { marginLeft: "5px" },
-                          id: `col-download-${get(taxon, "id")}`,
-                          target: "_blank",
-                          href: `http://checklistbank.org/dataset/${datasetKey}/download?taxonID=${encodeURIComponent(get(
-                            taxon,
-                            "id"
-                          ))}`,
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$4, {})
-                        }
-                      )
-                    }
-                  )
-                ]
-              }
-            ),
-            Array.isArray(get(taxon, "identifier")) && get(taxon, "identifier").length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Other identifiers", children: get(taxon, "identifier").map((id, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-              i > 0 && ", ",
-              String(id)
-            ] }, i)) }),
-            get(taxon, "labelHtml") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                dangerouslySetInnerHTML: {
-                  __html: taxon.labelHtml
-                }
-              }
-            ) }),
-            get(taxon, "name.publishedIn.citation") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Published in", children: [
-              get(info, "source.secondarySources['published in']") && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                MergedDataBadge,
-                {
-                  sourceDatasetKey: get(info, "source.secondarySources['published in'].datasetKey"),
-                  sourceId: get(info, "source.secondarySources['published in'].id")
-                }
-              ),
-              get(taxon, "name.publishedIn.citation")
-            ] }),
-            get(taxon, "status") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Checklist status", children: [
-              `${get(taxon, "status")} ${get(taxon, "name.rank")}`,
-              ((_h = info == null ? void 0 : info.decisions) == null ? void 0 : _h[taxon == null ? void 0 : taxon.id]) && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                " with",
-                " ",
-                (_j = (_i = info == null ? void 0 : info.decisions) == null ? void 0 : _i[taxon == null ? void 0 : taxon.id]) == null ? void 0 : _j.mode,
-                " ",
-                "decision",
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  DecisionBadge,
-                  {
-                    style: { marginLeft: "10px" },
-                    decision: (_k = info == null ? void 0 : info.decisions) == null ? void 0 : _k[taxon == null ? void 0 : taxon.id]
-                  }
-                )
-              ] })
-            ] }),
-            get(taxon, "name.nomStatus") && nomStatus && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Nomenclatural Status", children: nomStatus[get(taxon, "name.nomStatus")][get(taxon, "name.code"), "zoological"] }),
-            infoError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: infoError }), type: "error" }),
-            !isSynonym && get(info, "synonyms") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Synonyms and combinations", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              SynonymsTable,
-              {
-                primarySource: sourceDataset,
-                data: get(info, "synonyms"),
-                decisions: get(info, "decisions"),
-                references: get(info, "references"),
-                typeMaterial: get(info, "typeMaterial"),
-                referenceIndexMap,
-                style: { marginTop: "-3px" },
-                datasetKey
-              }
-            ) }),
-            !isSynonym && misapplied.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Misapplied names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              SynonymsTable,
-              {
-                misapplied: true,
-                primarySource: sourceDataset,
-                data: get(info, "synonyms"),
-                decisions: get(info, "decisions"),
-                references: get(info, "references"),
-                typeMaterial: get(info, "typeMaterial"),
-                referenceIndexMap,
-                style: { marginTop: "-3px" },
-                datasetKey
-              }
-            ) }),
-            get(info, "typeMaterial") && info.typeMaterial[(_m = (_l = info == null ? void 0 : info.usage) == null ? void 0 : _l.name) == null ? void 0 : _m.id] && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Type material", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TypeMaterial,
-              {
-                data: get(info, "typeMaterial"),
-                nameID: get(taxon, "name.id")
-              }
-            ) }),
-            get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) === (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              NameRelations,
-              {
-                md,
-                style: { marginTop: "-3px" },
-                data: info.nameRelations.filter(
-                  (rel) => (rel == null ? void 0 : rel.usageId) === (taxon == null ? void 0 : taxon.id)
-                )
-              }
-            ),
-            get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) !== (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              NameRelations,
-              {
-                md,
-                reverse: true,
-                style: { marginTop: "-3px" },
-                data: info.nameRelations.filter(
-                  (rel) => (rel == null ? void 0 : rel.usageId) !== (taxon == null ? void 0 : taxon.id)
-                )
-              }
-            ),
-            synonymsError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: synonymsError }), type: "error" }),
-            classificationError && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Alert,
-              {
-                message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: classificationError }),
-                type: "error"
-              }
-            ),
-            classification && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Classification", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ClassificationTable,
-              {
-                style: { marginTop: "-3px", marginLeft: "-3px" },
-                data: classification,
-                taxon,
-                datasetKey
-              }
-            ) }),
-            !isSynonym && (taxon && rank.indexOf(get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(get(taxon, "name.rank")) > -1 || get(taxon, "name.rank") === "unranked" && get(taxon, "name.scientificName") === "Biota") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Breakdown", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TaxonBreakdown$1,
-              {
-                taxon,
-                datasetKey,
-                rank,
-                dataset: catalogue,
-                showLevelSwitch: true
-              }
-            ) }),
-            !isSynonym && includes2.length > 1 && rank && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Statistics", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              IncludesTable,
-              {
-                style: { marginTop: "-3px", marginLeft: "-3px" },
-                data: includes2,
-                rank,
-                taxon
-              }
-            ) }),
-            !isSynonym && get(info, "vernacularNames") && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Vernacular names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              VernacularNamesTable,
-              {
-                style: { marginTop: "-3px", marginLeft: "-3px" },
-                data: info.vernacularNames,
-                references: get(info, "references"),
-                datasetKey: taxon.datasetKey
-              }
-            ) }),
-            !isSynonym && (get(info, "distributions") || showDistributionMap && gbifChecklistKey && taxon) && // Distributions owns its labelled block so it can hide entirely
-            // (label included) when there is nothing to show — including after
-            // the async GBIF occurrence lookup comes back empty.
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              DistributionsTable,
-              {
-                label: "Distributions",
-                md,
-                data: (info == null ? void 0 : info.distributions) || [],
-                datasetKey,
-                showDistributionMap,
-                focalTaxon: taxon,
-                rankOrder: rank,
-                gbifChecklistKey
-              }
-            ),
-            get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: get(taxon, "environments").join(", ") }),
-            get(taxon, "remarks") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Additional Data", children: taxon.remarks }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { children: get(taxon, "accordingTo") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md: md * 2, label: "According to", children: [
-              `${get(taxon, "accordingTo")}`,
-              get(taxon, "accordingToDate") && `, ${dayjs(get(taxon, "accordingToDate")).format("LL")}`
-            ] }) }) }),
-            get(taxon, "scrutinizer") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md * 2, label: "Taxonomic scrutiny", children: `${get(taxon, "scrutinizer")}${get(taxon, "scrutinizerDate") ? ", " + get(taxon, "scrutinizerDate") : ""}` }) }),
-            get(sourceDataset, "title") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Source", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                style: {
-                  display: "inline-block",
-                  paddingLeft: ((_n = info == null ? void 0 : info.usage) == null ? void 0 : _n.merged) ? "22px" : 0
-                },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  XrGutter,
-                  {
-                    merged: (_o = info == null ? void 0 : info.usage) == null ? void 0 : _o.merged,
-                    createdBy: (_p = info == null ? void 0 : info.usage) == null ? void 0 : _p.createdBy,
-                    datasetKey: (_q = info == null ? void 0 : info.usage) == null ? void 0 : _q.datasetKey,
-                    verbatimSourceKey: (_r = info == null ? void 0 : info.usage) == null ? void 0 : _r.verbatimSourceKey,
-                    sourceDatasetKey: (_s = info == null ? void 0 : info.source) == null ? void 0 : _s.sourceDatasetKey,
-                    sourceId: (_t = info == null ? void 0 : info.source) == null ? void 0 : _t.sourceId,
-                    children: [
-                      ((_u = info == null ? void 0 : info.source) == null ? void 0 : _u.sourceId) ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "a",
-                        {
-                          href: `https://www.checklistbank.org/dataset/${(_v = info == null ? void 0 : info.source) == null ? void 0 : _v.sourceDatasetKey}/taxon/${(_w = info == null ? void 0 : info.source) == null ? void 0 : _w.sourceId}`,
-                          children: get(sourceDataset, "alias")
-                        }
-                      ) : get(sourceDataset, "alias"),
-                      ": ",
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: get(sourceDataset, "key"), children: get(sourceDataset, "title") }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: get(sourceDataset, "completeness") && get(sourceDataset, "completeness") + "%" }),
-                      get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Rate,
-                        {
-                          style: { marginLeft: "10px" },
-                          value: get(sourceDataset, "confidence"),
-                          disabled: true
-                        }
-                      )
-                    ]
-                  }
-                )
-              }
-            ) }),
-            get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Original record", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: get(taxon, "link"), children: get(taxon, "link") }) }),
-            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
-            get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ReferencesTable,
-              {
-                referenceIndexMap,
-                primarySourceDatasetKey: (_y = info == null ? void 0 : info.source) == null ? void 0 : _y.sourceDatasetKey,
-                data: get(info, "references"),
-                style: { marginTop: "-3px" }
-              }
-            ) }),
-            ((_A = (_z = window == null ? void 0 : window.location) == null ? void 0 : _z.hostname) == null ? void 0 : _A.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_C = (_B = this == null ? void 0 : this.state) == null ? void 0 : _B.taxon) == null ? void 0 : _C.id, datasetKey: this.props.datasetKey }) })
-          ]
-        }
-      ) });
-    }
-  }
-  __publicField(TaxonPage, "contextType", RouterContext);
-  function Taxon$1({
-    taxonKey,
-    datasetKey,
-    pageTitleTemplate,
-    identifierLabel,
-    showDistributionMap,
-    gbifChecklistKey,
-    auth,
-    ...routerProps
-  }) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      TaxonPage,
-      {
-        taxonKey,
-        datasetKey,
-        pageTitleTemplate,
-        identifierLabel,
-        showDistributionMap,
-        gbifChecklistKey,
-        auth
-      }
-    ) });
-  }
-  const Taxon = withTheme(withDatasetKey(Taxon$1));
-  const getLivingTaxa = (metrics, rank) => (get(metrics, `taxaByRankCount.${rank}`) || 0) - (get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
-  const getExtinctTaxa = (metrics, rank) => get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
-  const baseFilters$1 = (dataset) => {
-    const f = dataset.key ? { SECTOR_DATASET_KEY: dataset.key } : { SECTOR_PUBLISHER_KEY: dataset.id };
-    if (isArray(dataset.sectorModes)) f.sectorMode = dataset.sectorModes;
-    return f;
-  };
-  const MetricsPresentation = ({ metrics, rank, style: style2, dataset }) => metrics && rank ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Living species", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-        LinkTo,
-        {
-          to: "search",
-          args: {
-            ...baseFilters$1(dataset),
-            rank: "species",
-            extinct: ["false", "_NULL"]
-          },
-          children: getLivingTaxa(metrics, "species").toLocaleString("en-GB")
-        }
-      ) : getLivingTaxa(metrics, "species").toLocaleString("en-GB") }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Extinct species", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-        LinkTo,
-        {
-          to: "search",
-          args: {
-            ...baseFilters$1(dataset),
-            rank: "species",
-            extinct: "true"
-          },
-          children: getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
-        }
-      ) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB") })
-    ] }),
-    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).sort((a, b2) => rank.indexOf(b2) - rank.indexOf(a)).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `${startCase(k)}`, children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-      LinkTo,
-      {
-        to: "search",
-        args: {
-          ...baseFilters$1(dataset),
-          rank: k,
-          status: ["accepted", "provisionally accepted"]
-        },
-        children: metrics.taxaByRankCount[k].toLocaleString("en-GB")
-      }
-    ) : metrics.taxaByRankCount[k].toLocaleString("en-GB") }, k)),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Synonyms", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-      LinkTo,
-      {
-        to: "search",
-        args: {
-          ...baseFilters$1(dataset),
-          status: ["misapplied", "synonym", "ambiguous synonym"]
-        },
-        children: (metrics.synonymCount || 0).toLocaleString("en-GB")
-      }
-    ) : (metrics.synonymCount || 0).toLocaleString("en-GB") }, "Synonyms"),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Common names", children: (metrics.vernacularCount || 0).toLocaleString("en-GB") }, "vernaculars"),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Total number of names", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "search", args: baseFilters$1(dataset), children: (metrics.nameCount || 0).toLocaleString("en-GB") }) : (metrics.nameCount || 0).toLocaleString("en-GB") }, "names")
-  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } }) });
-  class Metrics extends React.Component {
-    constructor(props) {
-      super(props);
-      __publicField(this, "getData", () => {
-        const { dataset, datasetKey } = this.props;
-        client(
-          `${config.dataApi}dataset/${datasetKey}/source/${dataset.key}/metrics`
-        ).then((res) => {
-          this.setState({ metrics: res.data });
-        });
-      });
-      __publicField(this, "getRank", () => {
-        client(`${config.dataApi}vocab/rank`).then(
-          (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
-        );
-      });
-      __publicField(this, "render", () => /* @__PURE__ */ jsxRuntimeExports.jsx(MetricsPresentation, { ...this.state, dataset: this.props.dataset }));
-      this.state = {
-        metrics: null,
-        rank: null,
-        loading: true
-      };
-    }
-    componentDidMount() {
-      this.getData();
-      this.getRank();
-    }
-  }
-  class TaxonomicCoverage extends React.Component {
-    constructor(props) {
-      super(props);
-      __publicField(this, "getData", () => {
-        const { dataset, datasetKey } = this.props;
-        const taxonMap = {};
-        client(
-          `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
-        ).then((res) => {
-          return Promise.allSettled(
-            res.data.result.filter((t2) => !!(t2 == null ? void 0 : t2.target)).map(
-              (t2) => {
-                var _a2, _b2, _c, _d;
-                return client(
-                  `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${(_a2 = t2 == null ? void 0 : t2.target) == null ? void 0 : _a2.id}${((_b2 = t2 == null ? void 0 : t2.subject) == null ? void 0 : _b2.rank) ? "&rank=" + ((_c = t2 == null ? void 0 : t2.subject) == null ? void 0 : _c.rank) : ""}&q=${(_d = t2 == null ? void 0 : t2.subject) == null ? void 0 : _d.name}`
-                ).then((usages) => {
-                  const taxon = get(usages, "data.result[0]");
-                  if (taxon) {
-                    const path = taxon.classification.slice(1, taxon.classification.length - 1).map((t22) => t22.name).join(" > ");
-                    if (taxonMap[path]) {
-                      taxonMap[path].push(
-                        taxon.classification[taxon.classification.length - 1]
-                      );
-                    } else {
-                      taxonMap[path] = [
-                        taxon.classification[taxon.classification.length - 1]
-                      ];
-                    }
-                  }
-                }).catch((err) => {
-                  console.log(t2);
-                  console.log(err);
-                });
-              }
-            )
-          ).then(() => this.setState({ taxonMap, loading: false }));
-        });
-      });
-      __publicField(this, "render", () => {
-        const { taxonMap } = this.state;
-        const { style: style2 } = this.props;
-        return taxonMap ? Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort((a, b2) => a.length - b2.length).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-            k,
-            k !== "" ? ":" : ""
-          ] }),
-          " ",
-          taxonMap[k].map((tx, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "tree", args: { taxonKey: tx.id }, children: tx.name }),
-            idx !== taxonMap[k].length - 1 ? ", " : ""
-          ] }, idx))
-        ] }, k)) : "N/A" : /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } });
-      });
-      this.state = {
-        loading: true,
-        taxonMap: null
-      };
-    }
-    componentDidMount() {
-      this.getData();
-    }
-  }
-  const AgentPresentation = ({ agent, countryAlpha2, style: style2, noLinks }) => {
-    const country = get(agent, "country") ? get(
-      countryAlpha2,
-      `[${get(agent, "country")}].title`,
-      get(agent, "country")
-    ) : null;
-    return agent ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: style2, children: [
-      (agent.given || agent.family) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: [agent.family, agent.given].filter((a) => !!a).join(", ") }),
-      agent.orcid && (noLinks ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "img",
-          {
-            src: "https://www.checklistbank.org/images/orcid_16x16.png",
-            style: { flex: "0 0 auto" },
-            alt: ""
-          }
-        ),
-        " ",
-        agent.orcid
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "a",
-        {
-          style: { display: "block" },
-          href: `https://orcid.org/${agent.orcid}`,
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "img",
-              {
-                src: "https://www.checklistbank.org/images/orcid_16x16.png",
-                style: { flex: "0 0 auto" },
-                alt: ""
-              }
-            ),
-            " ",
-            agent.orcid
-          ]
-        }
-      )),
-      agent.organisation && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: agent.organisation }),
-      agent.rorid && (noLinks ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "img",
-          {
-            src: "https://www.checklistbank.org/images/ror-logo-small.png",
-            style: { flex: "0 0 auto", height: "20px" },
-            alt: ""
-          }
-        ),
-        " ",
-        agent.rorid
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "a",
-        {
-          style: { display: "block" },
-          href: `https://ror.org/${agent.rorid}`,
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "img",
-              {
-                src: "https://www.checklistbank.org/images/ror-logo-small.png",
-                style: { flex: "0 0 auto", height: "20px" },
-                alt: ""
-              }
-            ),
-            " ",
-            agent.rorid
-          ]
-        }
-      )),
-      agent.department && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: agent.department }),
-      (agent.city || agent.state || country) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: [agent.city, agent.state, country].filter((a) => !!a).join(", ") })
-    ] }) : null;
-  };
-  const BibTex$1 = ({ datasetKey, sourceDatasetKey, style: style2 = {} }) => {
-    const defaultStyle = {
-      height: "40px"
-    };
-    const url = sourceDatasetKey ? `${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`;
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: url, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "https://www.checklistbank.org/images/bibtex_logo.png", style: { ...defaultStyle, ...style2 } }) });
-  };
   function M() {
     return { async: false, breaks: false, extensions: null, gfm: true, hooks: null, pedantic: false, renderer: null, silent: false, tokenizer: null, walkTokens: null };
   }
@@ -89067,6 +88203,883 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
   g.parseInline;
   b.parse;
   x.lex;
+  dayjs.extend(localizedFormat);
+  const md = 5;
+  const Markdown = ({ source }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "span",
+    {
+      dangerouslySetInnerHTML: {
+        __html: purify.sanitize(g.parse(source))
+      }
+    }
+  );
+  class TaxonPage extends React.Component {
+    constructor(props) {
+      super(props);
+      __publicField(this, "componentDidMount", () => {
+        const { taxonKey } = this.props;
+        this.getCatalogue();
+        if (taxonKey) {
+          this.getInfo(taxonKey);
+          this.getRank(taxonKey);
+          this.getIncludes(taxonKey);
+          this.getNomStatus(taxonKey);
+        }
+      });
+      __publicField(this, "getCatalogue", () => {
+        const { datasetKey } = this.props;
+        client(`${config.dataApi}dataset/${datasetKey}`).then((res) => {
+          this.setState({ catalogue: res.data });
+        }).catch((err) => {
+        });
+      });
+      __publicField(this, "datasetLoader", new DataLoader(
+        (ids) => getDatasetsBatch(ids, this.props.datasetKey)
+      ));
+      __publicField(this, "sectorLoader", new DataLoader(
+        (ids) => getSectorsBatch(ids, this.props.datasetKey)
+      ));
+      __publicField(this, "decorateWithSectorsAndDataset", async (synonyms) => {
+        const { datasetKey } = this.props;
+        const sourceDatasetsMap = {};
+        for (const type2 of ["misapplied", "heterotypic", "homotypic"].filter(
+          (t2) => !!synonyms[t2]
+        )) {
+          await Promise.allSettled(
+            synonyms[type2].filter((tx) => !!tx.sectorKey).map(
+              (tx) => this.sectorLoader.load(tx.sectorKey, datasetKey).then((r2) => {
+                tx.sector = r2;
+                return this.datasetLoader.load(r2.subjectDatasetKey).then((dataset) => {
+                  tx.sourceDatasetKey = dataset.key;
+                  sourceDatasetsMap[dataset.key] = dataset;
+                });
+              })
+            )
+          );
+        }
+        if (synonyms == null ? void 0 : synonyms.heterotypicGroups) {
+          for (const arr of synonyms == null ? void 0 : synonyms.heterotypicGroups) {
+            await Promise.allSettled(
+              arr.filter((tx) => !!tx.sectorKey).map(
+                (tx) => this.sectorLoader.load(tx.sectorKey, datasetKey).then((r2) => {
+                  tx.sector = r2;
+                  return this.datasetLoader.load(r2.subjectDatasetKey).then((dataset) => {
+                    tx.sourceDatasetKey = dataset.key;
+                    sourceDatasetsMap[dataset.key] = dataset;
+                  });
+                })
+              )
+            );
+          }
+        }
+        return Object.keys(sourceDatasetsMap).length > 0 ? sourceDatasetsMap : null;
+      });
+      __publicField(this, "getInfo", async (taxonKey) => {
+        var _a2, _b2, _c, _d, _e2, _f;
+        const { datasetKey, pageTitleTemplate } = this.props;
+        try {
+          const res = await client(
+            `${config.dataApi}dataset/${datasetKey}/taxon/${taxonKey}/info`
+          );
+          const usage = get(res, "data.usage");
+          if (pageTitleTemplate && get(usage, "label")) {
+            document.title = pageTitleTemplate.replace("__taxon__", usage.label);
+          }
+          const publishedInId = get(usage, "name.publishedInId");
+          if (publishedInId && usage.name) {
+            const cited = get(res, "data.references") && res.data.references[publishedInId];
+            if (cited) {
+              usage.name.publishedIn = cited;
+            } else {
+              try {
+                const pub = await client(
+                  `${config.dataApi}dataset/${datasetKey}/reference/${publishedInId}`
+                );
+                usage.name.publishedIn = pub.data;
+              } catch (e2) {
+              }
+            }
+          }
+          if (get(usage, "sectorKey")) {
+            client(
+              `${config.dataApi}dataset/${datasetKey}/sector/${get(usage, "sectorKey")}`
+            ).then((sector) => {
+              const subjectDatasetKey = get(sector, "data.subjectDatasetKey");
+              client(
+                `${config.dataApi}dataset/${datasetKey}/logo/source/${subjectDatasetKey}`
+              ).then(() => {
+                this.setState({
+                  logoUrl: `${config.dataApi}dataset/${datasetKey}/logo/source/${subjectDatasetKey}?size=MEDIUM`
+                });
+              }).catch(() => {
+              });
+              client(
+                `${config.dataApi}dataset/${datasetKey}/source/${subjectDatasetKey}`
+              ).then((dataset) => {
+                this.setState({ sourceDataset: dataset.data });
+              });
+            });
+          }
+          let referenceIndexMap = {};
+          if (get(res, "data.references")) {
+            Object.keys(res.data.references).forEach((k, i) => {
+              referenceIndexMap[k] = (i + 1).toString();
+            });
+            await Promise.allSettled(
+              Object.keys(res.data.references).map((key2) => res.data.references[key2]).filter((ref) => !!ref.sectorKey).map(
+                (ref) => this.sectorLoader.load(ref.sectorKey).then((r2) => {
+                  ref.sector = r2;
+                  return this.datasetLoader.load(r2.subjectDatasetKey).then((dataset) => {
+                    ref.sourceDataset = dataset;
+                  });
+                })
+              )
+            );
+          }
+          if ((_a2 = res == null ? void 0 : res.data) == null ? void 0 : _a2.vernacularNames) {
+            await Promise.allSettled(
+              res.data.vernacularNames.filter((name) => !!name.sectorKey).map(
+                (name) => this.sectorLoader.load(name.sectorKey).then((r2) => {
+                  name.sector = r2;
+                  name.sourceDatasetKey = r2.subjectDatasetKey;
+                })
+              )
+            );
+          }
+          if ((_b2 = res == null ? void 0 : res.data) == null ? void 0 : _b2.distributions) {
+            await Promise.allSettled(
+              res.data.distributions.filter((dist) => !!dist.sectorKey).map(
+                (dist) => this.sectorLoader.load(dist.sectorKey).then((r2) => {
+                  dist.sector = r2;
+                  dist.sourceDatasetKey = r2.subjectDatasetKey;
+                })
+              )
+            );
+          }
+          let sourceDatasetKeyMap = get(res, "data.synonyms") ? await this.decorateWithSectorsAndDataset(get(res, "data.synonyms")) : null;
+          if (((_c = res == null ? void 0 : res.data) == null ? void 0 : _c.nameRelations) && ((_d = res == null ? void 0 : res.data) == null ? void 0 : _d.names)) {
+            (_e2 = res == null ? void 0 : res.data) == null ? void 0 : _e2.nameRelations.forEach((rel) => {
+              var _a3, _b3, _c2, _d2;
+              rel.relatedName = (_b3 = (_a3 = res == null ? void 0 : res.data) == null ? void 0 : _a3.names) == null ? void 0 : _b3[rel == null ? void 0 : rel.relatedNameId];
+              rel.name = (_d2 = (_c2 = res == null ? void 0 : res.data) == null ? void 0 : _c2.names) == null ? void 0 : _d2[rel == null ? void 0 : rel.nameId];
+            });
+          }
+          this.setState({
+            infoLoading: false,
+            info: res.data,
+            taxon: usage,
+            classification: (_f = res == null ? void 0 : res.data) == null ? void 0 : _f.classification,
+            infoError: null,
+            referenceIndexMap,
+            sourceDatasetKeyMap
+          });
+        } catch (err) {
+          if (get(err, "response.status") === 404) {
+            this.setState({ infoLoading: false, info: null, taxon: null, status: 404 });
+          } else {
+            this.setState({ infoLoading: false, infoError: err, info: null });
+          }
+        }
+      });
+      __publicField(this, "getRank", () => {
+        client(`${config.dataApi}vocab/rank`).then(
+          (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
+        );
+      });
+      __publicField(this, "getNomStatus", () => {
+        client(`${config.dataApi}vocab/nomstatus`).then(
+          (res) => this.setState({
+            nomStatus: res.data.reduce((a, c) => (a[c.name] = c, a), {})
+          })
+        );
+      });
+      __publicField(this, "getIncludes", (taxonKey) => {
+        const { datasetKey } = this.props;
+        client(
+          `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
+        ).then((res) => {
+          this.setState({
+            includesLoading: false,
+            includes: get(res, "data.facets.rank") || []
+          });
+        }).catch((err) => {
+          this.setState({
+            includesLoading: false,
+            includes: []
+          });
+        });
+      });
+      setAuth(this.props.auth);
+      this.state = {
+        taxon: null,
+        info: null,
+        taxonLoading: true,
+        datasetLoading: true,
+        infoLoading: true,
+        infoError: null,
+        taxonError: null,
+        verbatimLoading: true,
+        verbatimError: null,
+        verbatim: null,
+        logoUrl: null,
+        sourceDataset: null,
+        includes: [],
+        rank: [],
+        nomStatus: null,
+        catalogue: null,
+        referenceIndexMap: {},
+        sourceDatasetKeyMap: null
+      };
+    }
+    componentDidUpdate(prevProps) {
+      if (prevProps.taxonKey !== this.props.taxonKey && this.props.taxonKey) {
+        const taxonKey = this.props.taxonKey;
+        this.getInfo(taxonKey);
+        this.getRank(taxonKey);
+        this.getIncludes(taxonKey);
+        this.getNomStatus(taxonKey);
+      }
+    }
+    render() {
+      var _a2, _b2, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C;
+      const {
+        datasetKey,
+        showDistributionMap,
+        gbifChecklistKey
+      } = this.props;
+      const {
+        taxon,
+        info,
+        classification,
+        sourceDataset,
+        includes: includes2,
+        rank,
+        nomStatus,
+        taxonError,
+        synonymsError,
+        classificationError,
+        infoError,
+        status,
+        catalogue,
+        referenceIndexMap
+      } = this.state;
+      const genusRankIndex = rank ? rank.indexOf("genus") : -1;
+      const isSynonym = ["synonym", "ambiguous synonym", "misapplied"].includes(
+        get(taxon, "status")
+      );
+      const homotypic = get(info, "synonyms.homotypic", []);
+      const heterotypic = get(info, "synonyms.heterotypic", []);
+      const misapplied = get(info, "synonyms.misapplied", []);
+      [
+        ...homotypic.map((h) => ({ ...h, __homotypic: true })),
+        ...heterotypic
+      ];
+      return status === 404 ? /* @__PURE__ */ jsxRuntimeExports.jsx(Page404, {}) : /* @__PURE__ */ jsxRuntimeExports.jsx(React.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "catalogue-of-life",
+          style: {
+            padding: 24,
+            minHeight: 280,
+            margin: "16px 0",
+            fontSize: "12px"
+          },
+          children: [
+            taxonError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: taxonError }), type: "error" }),
+            taxon && /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { align: "bottom", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { flex: "auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginLeft: ((_a2 = info == null ? void 0 : info.usage) == null ? void 0 : _a2.merged) ? "-22px" : 0 }, children: [
+                ((_b2 = info == null ? void 0 : info.usage) == null ? void 0 : _b2.merged) && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  MergedDataBadge,
+                  {
+                    style: { marginBottom: "10px" },
+                    createdBy: (_c = info == null ? void 0 : info.usage) == null ? void 0 : _c.createdBy,
+                    datasetKey: (_d = info == null ? void 0 : info.usage) == null ? void 0 : _d.datasetKey,
+                    verbatimSourceKey: (_e2 = info == null ? void 0 : info.usage) == null ? void 0 : _e2.verbatimSourceKey,
+                    sourceDatasetKey: (_f = info == null ? void 0 : info.source) == null ? void 0 : _f.sourceDatasetKey,
+                    sourceId: (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.sourceId
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "h1",
+                  {
+                    style: {
+                      fontSize: "30px",
+                      fontWeight: "400",
+                      paddingLeft: "10px",
+                      display: "inline",
+                      textTransform: "none"
+                    },
+                    dangerouslySetInnerHTML: {
+                      __html: taxon.labelHtml
+                    }
+                  }
+                )
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { span: 1, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "" }),
+                taxon.provisional && /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: "red", children: "Provisional" })
+              ] }),
+              sourceDataset && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 5, style: { textAlign: "right" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                DatasetlogoWithFallback,
+                {
+                  auth: this.props.auth,
+                  style: {
+                    maxWidth: "100%",
+                    height: "auto",
+                    marginRight: "8px"
+                  },
+                  datasetKey,
+                  sourceDatasetKey: sourceDataset.key
+                }
+              ) })
+            ] }),
+            isSynonym && get(taxon, "accepted.id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: {
+                  paddingLeft: "10px",
+                  marginTop: "2px",
+                  marginBottom: "10px",
+                  fontSize: "16px"
+                },
+                children: [
+                  get(taxon, "status"),
+                  " ",
+                  get(taxon, "status") === "misapplied" ? "to" : "of",
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "taxon", args: get(taxon, "accepted.id"), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      dangerouslySetInnerHTML: {
+                        __html: get(taxon, "accepted.labelHtml")
+                      }
+                    }
+                  ) })
+                ]
+              }
+            ),
+            get(taxon, "id") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              PresentationItem$1,
+              {
+                md,
+                label: get(this.props, "identifierLabel", "Identifier"),
+                children: [
+                  get(taxon, "id"),
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "a",
+                    {
+                      href: `https://www.checklistbank.org/dataset/${datasetKey}/taxon/${get(
+                        taxon,
+                        "id"
+                      )}`,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$2, {})
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Tooltip,
+                    {
+                      title: "Download data for this taxon and descendants",
+                      getPopupContainer: () => document.getElementById(`col-download-${get(taxon, "id")}`) || document.body,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "a",
+                        {
+                          style: { marginLeft: "5px" },
+                          id: `col-download-${get(taxon, "id")}`,
+                          target: "_blank",
+                          href: `http://checklistbank.org/dataset/${datasetKey}/download?taxonID=${encodeURIComponent(get(
+                            taxon,
+                            "id"
+                          ))}`,
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$4, {})
+                        }
+                      )
+                    }
+                  )
+                ]
+              }
+            ),
+            Array.isArray(get(taxon, "identifier")) && get(taxon, "identifier").length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Other identifiers", children: get(taxon, "identifier").map((id, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+              i > 0 && ", ",
+              String(id)
+            ] }, i)) }),
+            get(taxon, "labelHtml") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                dangerouslySetInnerHTML: {
+                  __html: taxon.labelHtml
+                }
+              }
+            ) }),
+            get(taxon, "name.publishedIn.citation") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Published in", children: [
+              get(info, "source.secondarySources['published in']") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MergedDataBadge,
+                {
+                  sourceDatasetKey: get(info, "source.secondarySources['published in'].datasetKey"),
+                  sourceId: get(info, "source.secondarySources['published in'].id")
+                }
+              ),
+              get(taxon, "name.publishedIn.citation")
+            ] }),
+            get(taxon, "status") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Checklist status", children: [
+              `${get(taxon, "status")} ${get(taxon, "name.rank")}`,
+              ((_h = info == null ? void 0 : info.decisions) == null ? void 0 : _h[taxon == null ? void 0 : taxon.id]) && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                " with",
+                " ",
+                (_j = (_i = info == null ? void 0 : info.decisions) == null ? void 0 : _i[taxon == null ? void 0 : taxon.id]) == null ? void 0 : _j.mode,
+                " ",
+                "decision",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  DecisionBadge,
+                  {
+                    style: { marginLeft: "10px" },
+                    decision: (_k = info == null ? void 0 : info.decisions) == null ? void 0 : _k[taxon == null ? void 0 : taxon.id]
+                  }
+                )
+              ] })
+            ] }),
+            get(taxon, "name.nomStatus") && nomStatus && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Nomenclatural Status", children: nomStatus[get(taxon, "name.nomStatus")][get(taxon, "name.code"), "zoological"] }),
+            infoError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: infoError }), type: "error" }),
+            !isSynonym && get(info, "synonyms") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Synonyms and combinations", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              SynonymsTable,
+              {
+                primarySource: sourceDataset,
+                data: get(info, "synonyms"),
+                decisions: get(info, "decisions"),
+                references: get(info, "references"),
+                typeMaterial: get(info, "typeMaterial"),
+                referenceIndexMap,
+                style: { marginTop: "-3px" },
+                datasetKey
+              }
+            ) }),
+            !isSynonym && misapplied.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Misapplied names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              SynonymsTable,
+              {
+                misapplied: true,
+                primarySource: sourceDataset,
+                data: get(info, "synonyms"),
+                decisions: get(info, "decisions"),
+                references: get(info, "references"),
+                typeMaterial: get(info, "typeMaterial"),
+                referenceIndexMap,
+                style: { marginTop: "-3px" },
+                datasetKey
+              }
+            ) }),
+            get(info, "typeMaterial") && info.typeMaterial[(_m = (_l = info == null ? void 0 : info.usage) == null ? void 0 : _l.name) == null ? void 0 : _m.id] && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Type material", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              TypeMaterial,
+              {
+                data: get(info, "typeMaterial"),
+                nameID: get(taxon, "name.id")
+              }
+            ) }),
+            get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) === (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              NameRelations,
+              {
+                md,
+                style: { marginTop: "-3px" },
+                data: info.nameRelations.filter(
+                  (rel) => (rel == null ? void 0 : rel.usageId) === (taxon == null ? void 0 : taxon.id)
+                )
+              }
+            ),
+            get(info, "nameRelations") && info.nameRelations.filter((rel) => (rel == null ? void 0 : rel.usageId) !== (taxon == null ? void 0 : taxon.id)).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              NameRelations,
+              {
+                md,
+                reverse: true,
+                style: { marginTop: "-3px" },
+                data: info.nameRelations.filter(
+                  (rel) => (rel == null ? void 0 : rel.usageId) !== (taxon == null ? void 0 : taxon.id)
+                )
+              }
+            ),
+            synonymsError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: synonymsError }), type: "error" }),
+            classificationError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Alert,
+              {
+                message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: classificationError }),
+                type: "error"
+              }
+            ),
+            classification && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Classification", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              ClassificationTable,
+              {
+                style: { marginTop: "-3px", marginLeft: "-3px" },
+                data: classification,
+                taxon,
+                datasetKey
+              }
+            ) }),
+            !isSynonym && (taxon && rank.indexOf(get(taxon, "name.rank")) < genusRankIndex && rank.indexOf(get(taxon, "name.rank")) > -1 || get(taxon, "name.rank") === "unranked" && get(taxon, "name.scientificName") === "Biota") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Breakdown", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              TaxonBreakdown$1,
+              {
+                taxon,
+                datasetKey,
+                rank,
+                dataset: catalogue,
+                showLevelSwitch: true
+              }
+            ) }),
+            !isSynonym && includes2.length > 1 && rank && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Statistics", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              IncludesTable,
+              {
+                style: { marginTop: "-3px", marginLeft: "-3px" },
+                data: includes2,
+                rank,
+                taxon
+              }
+            ) }),
+            !isSynonym && get(info, "vernacularNames") && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Vernacular names", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              VernacularNamesTable,
+              {
+                style: { marginTop: "-3px", marginLeft: "-3px" },
+                data: info.vernacularNames,
+                references: get(info, "references"),
+                datasetKey: taxon.datasetKey
+              }
+            ) }),
+            !isSynonym && (get(info, "distributions") || showDistributionMap && gbifChecklistKey && taxon) && // Distributions owns its labelled block so it can hide entirely
+            // (label included) when there is nothing to show — including after
+            // the async GBIF occurrence lookup comes back empty.
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              DistributionsTable,
+              {
+                label: "Distributions",
+                md,
+                data: (info == null ? void 0 : info.distributions) || [],
+                datasetKey,
+                showDistributionMap,
+                focalTaxon: taxon,
+                rankOrder: rank,
+                gbifChecklistKey
+              }
+            ),
+            get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: get(taxon, "environments").join(", ") }),
+            (get(taxon, "remarks") || get(taxon, "name.remarks")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Remarks", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Markdown,
+              {
+                source: [get(taxon, "remarks"), get(taxon, "name.remarks")].filter(Boolean).join("\n\n")
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { children: get(taxon, "accordingTo") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md: md * 2, label: "According to", children: [
+              `${get(taxon, "accordingTo")}`,
+              get(taxon, "accordingToDate") && `, ${dayjs(get(taxon, "accordingToDate")).format("LL")}`
+            ] }) }) }),
+            get(taxon, "scrutinizer") && /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 12, children: /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md: md * 2, label: "Taxonomic scrutiny", children: `${get(taxon, "scrutinizer")}${get(taxon, "scrutinizerDate") ? ", " + get(taxon, "scrutinizerDate") : ""}` }) }),
+            get(sourceDataset, "title") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Source", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  display: "inline-block",
+                  paddingLeft: ((_n = info == null ? void 0 : info.usage) == null ? void 0 : _n.merged) ? "22px" : 0
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  XrGutter,
+                  {
+                    merged: (_o = info == null ? void 0 : info.usage) == null ? void 0 : _o.merged,
+                    createdBy: (_p = info == null ? void 0 : info.usage) == null ? void 0 : _p.createdBy,
+                    datasetKey: (_q = info == null ? void 0 : info.usage) == null ? void 0 : _q.datasetKey,
+                    verbatimSourceKey: (_r = info == null ? void 0 : info.usage) == null ? void 0 : _r.verbatimSourceKey,
+                    sourceDatasetKey: (_s = info == null ? void 0 : info.source) == null ? void 0 : _s.sourceDatasetKey,
+                    sourceId: (_t = info == null ? void 0 : info.source) == null ? void 0 : _t.sourceId,
+                    children: [
+                      ((_u = info == null ? void 0 : info.source) == null ? void 0 : _u.sourceId) ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "a",
+                        {
+                          href: `https://www.checklistbank.org/dataset/${(_v = info == null ? void 0 : info.source) == null ? void 0 : _v.sourceDatasetKey}/taxon/${(_w = info == null ? void 0 : info.source) == null ? void 0 : _w.sourceId}`,
+                          children: get(sourceDataset, "alias")
+                        }
+                      ) : get(sourceDataset, "alias"),
+                      ": ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "source", args: get(sourceDataset, "key"), children: get(sourceDataset, "title") }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { marginLeft: "10px" }, children: get(sourceDataset, "completeness") && get(sourceDataset, "completeness") + "%" }),
+                      get(sourceDataset, "confidence") && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Rate,
+                        {
+                          style: { marginLeft: "10px" },
+                          value: get(sourceDataset, "confidence"),
+                          disabled: true
+                        }
+                      )
+                    ]
+                  }
+                )
+              }
+            ) }),
+            get(taxon, "link") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Original record", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: get(taxon, "link"), children: get(taxon, "link") }) }),
+            ((_x = info == null ? void 0 : info.source) == null ? void 0 : _x.secondarySources) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Secondary Sources", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SecondarySources, { info, datasetKey }) }),
+            get(info, "references") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "References", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              ReferencesTable,
+              {
+                referenceIndexMap,
+                primarySourceDatasetKey: (_y = info == null ? void 0 : info.source) == null ? void 0 : _y.sourceDatasetKey,
+                data: get(info, "references"),
+                style: { marginTop: "-3px" }
+              }
+            ) }),
+            ((_A = (_z = window == null ? void 0 : window.location) == null ? void 0 : _z.hostname) == null ? void 0 : _A.endsWith("catalogueoflife.org")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Feedback, { taxonKey: (_C = (_B = this == null ? void 0 : this.state) == null ? void 0 : _B.taxon) == null ? void 0 : _C.id, datasetKey: this.props.datasetKey }) })
+          ]
+        }
+      ) });
+    }
+  }
+  __publicField(TaxonPage, "contextType", RouterContext);
+  function Taxon$1({
+    taxonKey,
+    datasetKey,
+    pageTitleTemplate,
+    identifierLabel,
+    showDistributionMap,
+    gbifChecklistKey,
+    auth,
+    ...routerProps
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      TaxonPage,
+      {
+        taxonKey,
+        datasetKey,
+        pageTitleTemplate,
+        identifierLabel,
+        showDistributionMap,
+        gbifChecklistKey,
+        auth
+      }
+    ) });
+  }
+  const Taxon = withTheme(withDatasetKey(Taxon$1));
+  const getLivingTaxa = (metrics, rank) => (get(metrics, `taxaByRankCount.${rank}`) || 0) - (get(metrics, `extinctTaxaByRankCount.${rank}`) || 0);
+  const getExtinctTaxa = (metrics, rank) => get(metrics, `extinctTaxaByRankCount.${rank}`) || 0;
+  const baseFilters$1 = (dataset) => {
+    const f = dataset.key ? { SECTOR_DATASET_KEY: dataset.key } : { SECTOR_PUBLISHER_KEY: dataset.id };
+    if (isArray(dataset.sectorModes)) f.sectorMode = dataset.sectorModes;
+    return f;
+  };
+  const MetricsPresentation = ({ metrics, rank, style: style2, dataset }) => metrics && rank ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Living species", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        LinkTo,
+        {
+          to: "search",
+          args: {
+            ...baseFilters$1(dataset),
+            rank: "species",
+            extinct: ["false", "_NULL"]
+          },
+          children: getLivingTaxa(metrics, "species").toLocaleString("en-GB")
+        }
+      ) : getLivingTaxa(metrics, "species").toLocaleString("en-GB") }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Extinct species", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        LinkTo,
+        {
+          to: "search",
+          args: {
+            ...baseFilters$1(dataset),
+            rank: "species",
+            extinct: "true"
+          },
+          children: getExtinctTaxa(metrics, "species").toLocaleString("en-GB")
+        }
+      ) : getExtinctTaxa(metrics, "species").toLocaleString("en-GB") })
+    ] }),
+    metrics.taxaByRankCount && Object.keys(metrics.taxaByRankCount).sort((a, b2) => rank.indexOf(b2) - rank.indexOf(a)).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: `${startCase(k)}`, children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      LinkTo,
+      {
+        to: "search",
+        args: {
+          ...baseFilters$1(dataset),
+          rank: k,
+          status: ["accepted", "provisionally accepted"]
+        },
+        children: metrics.taxaByRankCount[k].toLocaleString("en-GB")
+      }
+    ) : metrics.taxaByRankCount[k].toLocaleString("en-GB") }, k)),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Synonyms", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      LinkTo,
+      {
+        to: "search",
+        args: {
+          ...baseFilters$1(dataset),
+          status: ["misapplied", "synonym", "ambiguous synonym"]
+        },
+        children: (metrics.synonymCount || 0).toLocaleString("en-GB")
+      }
+    ) : (metrics.synonymCount || 0).toLocaleString("en-GB") }, "Synonyms"),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Common names", children: (metrics.vernacularCount || 0).toLocaleString("en-GB") }, "vernaculars"),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "Total number of names", children: dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "search", args: baseFilters$1(dataset), children: (metrics.nameCount || 0).toLocaleString("en-GB") }) : (metrics.nameCount || 0).toLocaleString("en-GB") }, "names")
+  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { label: "", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } }) });
+  class Metrics extends React.Component {
+    constructor(props) {
+      super(props);
+      __publicField(this, "getData", () => {
+        const { dataset, datasetKey } = this.props;
+        client(
+          `${config.dataApi}dataset/${datasetKey}/source/${dataset.key}/metrics`
+        ).then((res) => {
+          this.setState({ metrics: res.data });
+        });
+      });
+      __publicField(this, "getRank", () => {
+        client(`${config.dataApi}vocab/rank`).then(
+          (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
+        );
+      });
+      __publicField(this, "render", () => /* @__PURE__ */ jsxRuntimeExports.jsx(MetricsPresentation, { ...this.state, dataset: this.props.dataset }));
+      this.state = {
+        metrics: null,
+        rank: null,
+        loading: true
+      };
+    }
+    componentDidMount() {
+      this.getData();
+      this.getRank();
+    }
+  }
+  class TaxonomicCoverage extends React.Component {
+    constructor(props) {
+      super(props);
+      __publicField(this, "getData", () => {
+        const { dataset, datasetKey } = this.props;
+        const taxonMap = {};
+        client(
+          `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
+        ).then((res) => {
+          return Promise.allSettled(
+            res.data.result.filter((t2) => !!(t2 == null ? void 0 : t2.target)).map(
+              (t2) => {
+                var _a2, _b2, _c, _d;
+                return client(
+                  `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${(_a2 = t2 == null ? void 0 : t2.target) == null ? void 0 : _a2.id}${((_b2 = t2 == null ? void 0 : t2.subject) == null ? void 0 : _b2.rank) ? "&rank=" + ((_c = t2 == null ? void 0 : t2.subject) == null ? void 0 : _c.rank) : ""}&q=${(_d = t2 == null ? void 0 : t2.subject) == null ? void 0 : _d.name}`
+                ).then((usages) => {
+                  const taxon = get(usages, "data.result[0]");
+                  if (taxon) {
+                    const path = taxon.classification.slice(1, taxon.classification.length - 1).map((t22) => t22.name).join(" > ");
+                    if (taxonMap[path]) {
+                      taxonMap[path].push(
+                        taxon.classification[taxon.classification.length - 1]
+                      );
+                    } else {
+                      taxonMap[path] = [
+                        taxon.classification[taxon.classification.length - 1]
+                      ];
+                    }
+                  }
+                }).catch((err) => {
+                  console.log(t2);
+                  console.log(err);
+                });
+              }
+            )
+          ).then(() => this.setState({ taxonMap, loading: false }));
+        });
+      });
+      __publicField(this, "render", () => {
+        const { taxonMap } = this.state;
+        const { style: style2 } = this.props;
+        return taxonMap ? Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort((a, b2) => a.length - b2.length).map((k) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: style2, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            k,
+            k !== "" ? ":" : ""
+          ] }),
+          " ",
+          taxonMap[k].map((tx, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "tree", args: { taxonKey: tx.id }, children: tx.name }),
+            idx !== taxonMap[k].length - 1 ? ", " : ""
+          ] }, idx))
+        ] }, k)) : "N/A" : /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } });
+      });
+      this.state = {
+        loading: true,
+        taxonMap: null
+      };
+    }
+    componentDidMount() {
+      this.getData();
+    }
+  }
+  const AgentPresentation = ({ agent, countryAlpha2, style: style2, noLinks }) => {
+    const country = get(agent, "country") ? get(
+      countryAlpha2,
+      `[${get(agent, "country")}].title`,
+      get(agent, "country")
+    ) : null;
+    return agent ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: style2, children: [
+      (agent.given || agent.family) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: [agent.family, agent.given].filter((a) => !!a).join(", ") }),
+      agent.orcid && (noLinks ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "img",
+          {
+            src: "https://www.checklistbank.org/images/orcid_16x16.png",
+            style: { flex: "0 0 auto" },
+            alt: ""
+          }
+        ),
+        " ",
+        agent.orcid
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "a",
+        {
+          style: { display: "block" },
+          href: `https://orcid.org/${agent.orcid}`,
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "img",
+              {
+                src: "https://www.checklistbank.org/images/orcid_16x16.png",
+                style: { flex: "0 0 auto" },
+                alt: ""
+              }
+            ),
+            " ",
+            agent.orcid
+          ]
+        }
+      )),
+      agent.organisation && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: agent.organisation }),
+      agent.rorid && (noLinks ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "img",
+          {
+            src: "https://www.checklistbank.org/images/ror-logo-small.png",
+            style: { flex: "0 0 auto", height: "20px" },
+            alt: ""
+          }
+        ),
+        " ",
+        agent.rorid
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "a",
+        {
+          style: { display: "block" },
+          href: `https://ror.org/${agent.rorid}`,
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "img",
+              {
+                src: "https://www.checklistbank.org/images/ror-logo-small.png",
+                style: { flex: "0 0 auto", height: "20px" },
+                alt: ""
+              }
+            ),
+            " ",
+            agent.rorid
+          ]
+        }
+      )),
+      agent.department && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: agent.department }),
+      (agent.city || agent.state || country) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block" }, children: [agent.city, agent.state, country].filter((a) => !!a).join(", ") })
+    ] }) : null;
+  };
+  const BibTex$1 = ({ datasetKey, sourceDatasetKey, style: style2 = {} }) => {
+    const defaultStyle = {
+      height: "40px"
+    };
+    const url = sourceDatasetKey ? `${config.dataApi}dataset/${datasetKey}/source/${sourceDatasetKey}.bib` : `${config.dataApi}dataset/${datasetKey}.bib`;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: url, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "https://www.checklistbank.org/images/bibtex_logo.png", style: { ...defaultStyle, ...style2 } }) });
+  };
   const IDENTIFIER_TYPES = {
     col: "https://www.checklistbank.org/dataset/",
     gbif: "https://www.gbif.org/dataset/",

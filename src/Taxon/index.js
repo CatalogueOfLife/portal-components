@@ -33,7 +33,18 @@ import MergedDataBadge from "../components/MergedDataBadge";
 import XrGutter from "../components/XrGutter";
 import DecisionBadge from "../components/DecisionBadge";
 import { Feedback } from "./Feedback";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 const md = 5;
+
+// Render markdown remarks as sanitized HTML (matches SourceDataset/CLB).
+const Markdown = ({ source }) => (
+  <span
+    dangerouslySetInnerHTML={{
+      __html: DOMPurify.sanitize(marked.parse(source)),
+    }}
+  />
+);
 
 class TaxonPage extends React.Component {
   static contextType = RouterContext;
@@ -715,9 +726,13 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
 
-          {get(taxon, "remarks") && (
-            <PresentationItem md={md} label="Additional Data">
-              {taxon.remarks}
+          {(get(taxon, "remarks") || get(taxon, "name.remarks")) && (
+            <PresentationItem md={md} label="Remarks">
+              <Markdown
+                source={[get(taxon, "remarks"), get(taxon, "name.remarks")]
+                  .filter(Boolean)
+                  .join("\n\n")}
+              />
             </PresentationItem>
           )}
 
