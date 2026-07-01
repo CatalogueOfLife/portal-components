@@ -68741,7 +68741,6 @@ html body {
           insertPlaceholder,
           type: type2
         } = this.props;
-        const { treeData } = this.state;
         get(dataRef, "childCount");
         const limit = CHILD_PAGE_SIZE;
         const offset2 = get(dataRef, "childOffset");
@@ -68802,10 +68801,10 @@ html body {
           ];
         }
         if (!dontUpdateState) {
-          this.setState({
-            treeData: [...treeData],
-            loadedKeys: [.../* @__PURE__ */ new Set([...this.state.loadedKeys, dataRef.key])]
-          });
+          this.setState((prevState) => ({
+            treeData: [...prevState.treeData],
+            loadedKeys: [.../* @__PURE__ */ new Set([...prevState.loadedKeys, dataRef.key])]
+          }));
         }
       });
       __publicField(this, "decorateWithSectorsAndDataset", (res) => {

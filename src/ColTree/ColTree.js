@@ -285,7 +285,6 @@ const { treeData } = this.state;
       insertPlaceholder,
       type
     } = this.props;
-    const { treeData } = this.state;
     const childcount = get(dataRef, "childCount");
     const limit = CHILD_PAGE_SIZE;
     const offset = get(dataRef, "childOffset");
@@ -364,10 +363,13 @@ const { treeData } = this.state;
       ];
     }
     if (!dontUpdateState) {
-      this.setState({
-        treeData: [...treeData],
-        loadedKeys: [...new Set([...this.state.loadedKeys, dataRef.key])],
-      });
+      // Use the updater form: this often runs right after a sibling setState
+      // (e.g. loadRoot's auto-expand of a single root) that may not have
+      // committed yet, so this.state can be stale here.
+      this.setState((prevState) => ({
+        treeData: [...prevState.treeData],
+        loadedKeys: [...new Set([...prevState.loadedKeys, dataRef.key])],
+      }));
     }
   };
 
