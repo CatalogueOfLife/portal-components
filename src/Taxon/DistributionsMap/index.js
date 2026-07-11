@@ -514,9 +514,9 @@ const DistributionsMap = ({
     const url = (config.gbifApi + GBIF_TILE_PATH)
       .replace("{checklistKey}", encodeURIComponent(gbifChecklistKey))
       .replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
-    // Link to GBIF's multitaxonomy occurrence search for the focal taxon.
-    // Lives on demo.gbif.org (config.gbifPortal) until that feature moves to
-    // the production portal; same checklistKey we pass to the tile API.
+    // Link to GBIF's multitaxonomy occurrence search for the focal taxon on
+    // the production portal (config.gbifPortal); same checklistKey we pass to
+    // the tile API.
     const searchUrl =
       config.gbifPortal +
       "/occurrence/search?checklist_key=" +
