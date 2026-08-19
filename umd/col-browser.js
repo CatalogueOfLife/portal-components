@@ -67802,10 +67802,9 @@ html body {
     // GBIF API base (no trailing slash). Used for the occurrence count and
     // the v2 map tile endpoint.
     gbifApi: "https://api.gbif.org",
-    // GBIF human-facing portal where the attribution link points. Stays on
-    // demo.gbif.org until the multitaxonomy occurrence search ships on
-    // www.gbif.org (expected mid-2026).
-    gbifPortal: "https://demo.gbif.org"
+    // GBIF human-facing portal where the attribution link points. The
+    // multitaxonomy occurrence search now ships on the production portal.
+    gbifPortal: "https://www.gbif.org"
   };
   var dataloader;
   var hasRequiredDataloader;
@@ -68528,6 +68527,9 @@ html body {
     );
   };
   const CHILD_PAGE_SIZE = 1e3;
+  const LOAD_MORE_PREFIX = "__loadMoreBTN__";
+  const loadMoreKey = (parentKey) => `${LOAD_MORE_PREFIX}${parentKey}`;
+  const isLoadMoreKey = (key2) => typeof key2 === "string" && key2.startsWith(LOAD_MORE_PREFIX);
   class LoadMoreChildrenTreeNode extends React.Component {
     constructor(props) {
       super(props);
@@ -68581,7 +68583,14 @@ html body {
         },
         this.loadRoot
       ));
-      __publicField(this, "loadRoot", async () => {
+      // `append` is only set by the "Load more" button, which pages in the next
+      // batch of root taxa; every other caller loads page one from scratch.
+      // Each call takes a request id and a response is merged only while its id is
+      // still the current one. Without that, two overlapping loads — React
+      // StrictMode's double mount in dev, or a prop change while a load is in
+      // flight — both merged their page into treeData, so every root appeared
+      // twice and antd warned "Same 'key' exist in the Tree" (issue #59).
+      __publicField(this, "loadRoot", async (append2 = false) => {
         const {
           showSourceTaxon,
           datasetKey,
@@ -68592,10 +68601,15 @@ html body {
         } = this.props;
         const defaultExpandKey = expandedTaxonKey;
         const { defaultTaxonKey } = this.props;
-        this.setState({ rootLoading: true, treeData: [] });
+        const requestId = ++this.rootRequestId;
+        const offset2 = append2 ? this.state.treeData.length : 0;
+        this.setState(
+          append2 ? { rootLoading: true } : { rootLoading: true, treeData: [] }
+        );
         return client(
-          `${config.dataApi}dataset/${datasetKey}/tree?projectKey=${datasetKey}${type2 ? "&type=" + type2 : ""}&limit=${CHILD_PAGE_SIZE}&offset=${this.state.treeData.length}${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
+          `${config.dataApi}dataset/${datasetKey}/tree?projectKey=${datasetKey}${type2 ? "&type=" + type2 : ""}&limit=${CHILD_PAGE_SIZE}&offset=${offset2}${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
         ).then(this.decorateWithSectorsAndDataset).then((res) => {
+          if (requestId !== this.rootRequestId) return;
           const mainTreeData = res.data.result || [];
           const rootTotal = res.data.total;
           const treeData = mainTreeData.map((tx) => {
@@ -68621,16 +68635,16 @@ html body {
             return dataRef;
           });
           this.setState(
-            {
+            (prevState) => ({
               rootTotal,
               rootLoading: false,
-              treeData: [...this.state.treeData, ...treeData],
+              treeData: append2 ? [...prevState.treeData, ...treeData] : treeData,
               // Nothing is auto-expanded by default. Consumers open a specific root
               // (or deep taxon) by passing `defaultTaxonKey`/`expandedTaxonKey` —
               // e.g. defaultTaxonKey="CS5HF" opens Eukaryota in current COL releases.
               expandedKeys: [],
               error: null
-            },
+            }),
             () => {
               if (defaultExpandKey) {
                 return this.expandToTaxon(defaultExpandKey);
@@ -68643,6 +68657,7 @@ html body {
             this.fetchChildPage(treeData[treeData.length - 1]);
           }
         }).catch((err) => {
+          if (requestId !== this.rootRequestId) return;
           this.setState({
             treeData: [],
             rootLoading: false,
@@ -68779,7 +68794,7 @@ html body {
         if (!res.data.last) {
           const loadMoreFn = () => {
             dataRef.childOffset += CHILD_PAGE_SIZE;
-            if (dataRef.children[dataRef.children.length - 1].key === "__loadMoreBTN__") {
+            if (isLoadMoreKey(get(dataRef.children[dataRef.children.length - 1], "key"))) {
               dataRef.children = dataRef.children.slice(0, -1);
             }
             return this.fetchChildPage(dataRef, false);
@@ -68792,9 +68807,9 @@ html body {
                 {
                   onClick: loadMoreFn
                 },
-                "__loadMoreBTN__"
+                loadMoreKey(dataRef.key)
               ),
-              key: "__loadMoreBTN__",
+              key: loadMoreKey(dataRef.key),
               childCount: 0,
               isLeaf: true
             }
@@ -68846,7 +68861,7 @@ html body {
         let node2;
         while (!node2 && parentNode.children.length < parentNode.childCount) {
           parentNode.childOffset += CHILD_PAGE_SIZE;
-          if (parentNode.children[parentNode.children.length - 1].key === "__loadMoreBTN__") {
+          if (isLoadMoreKey(get(parentNode.children[parentNode.children.length - 1], "key"))) {
             parentNode.children = parentNode.children.slice(0, -1);
           }
           await this.fetchChildPage(parentNode, false, true);
@@ -68962,6 +68977,7 @@ html body {
         rank: []
       };
       this.treeRef = React.createRef();
+      this.rootRequestId = 0;
     }
     // datasetLoader comes from the shared TreeCacheContext so multiple tree
     // nodes (and TaxonSources instances) share one in-memory cache instead
@@ -69042,7 +69058,7 @@ html body {
             }
           }
         ),
-        !error && treeData.length < rootTotal && /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { loading: rootLoading, onClick: this.loadRoot, children: [
+        !error && treeData.length < rootTotal && /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$1, { loading: rootLoading, onClick: () => this.loadRoot(true), children: [
           "Load more",
           " "
         ] })
