@@ -11,6 +11,14 @@ import { TreeCacheContext } from "./treeCache";
 
 const CHILD_PAGE_SIZE = 1000; // How many children will we load at a time
 
+// Key of the synthetic "Load more..." child node. It has to be scoped to its
+// parent: two nodes that both have more children than one page would otherwise
+// share one key and antd warns "Same 'key' exist in the Tree" (issue #59).
+const LOAD_MORE_PREFIX = "__loadMoreBTN__";
+const loadMoreKey = (parentKey) => `${LOAD_MORE_PREFIX}${parentKey}`;
+const isLoadMoreKey = (key) =>
+  typeof key === "string" && key.startsWith(LOAD_MORE_PREFIX);
+
 class LoadMoreChildrenTreeNode extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +62,9 @@ class ColTree extends React.Component {
       rank: []
     };
     this.treeRef = React.createRef();
+    // Incremented on every root load; a response whose id is no longer the
+    // current one is stale and gets discarded (see loadRoot).
+    this.rootRequestId = 0;
   }
 
   // datasetLoader comes from the shared TreeCacheContext so multiple tree
@@ -105,7 +116,14 @@ class ColTree extends React.Component {
 
  
 
-  loadRoot = async () => {
+  // `append` is only set by the "Load more" button, which pages in the next
+  // batch of root taxa; every other caller loads page one from scratch.
+  // Each call takes a request id and a response is merged only while its id is
+  // still the current one. Without that, two overlapping loads — React
+  // StrictMode's double mount in dev, or a prop change while a load is in
+  // flight — both merged their page into treeData, so every root appeared
+  // twice and antd warned "Same 'key' exist in the Tree" (issue #59).
+  loadRoot = async (append = false) => {
     const {
       showSourceTaxon,
       datasetKey,
@@ -118,16 +136,21 @@ class ColTree extends React.Component {
     const defaultExpandKey = expandedTaxonKey;
     const { defaultTaxonKey } = this.props;
 
-    this.setState({ rootLoading: true, treeData: [] });
+    const requestId = ++this.rootRequestId;
+    const offset = append ? this.state.treeData.length : 0;
+
+    this.setState(
+      append ? { rootLoading: true } : { rootLoading: true, treeData: [] }
+    );
     return client(
       `${
         config.dataApi
-      }dataset/${datasetKey}/tree?projectKey=${datasetKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${
-        this.state.treeData.length
-      }${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
+      }dataset/${datasetKey}/tree?projectKey=${datasetKey}${type ? "&type="+type :""}&limit=${CHILD_PAGE_SIZE}&offset=${offset}${hideExtinct ? `&extinct=false&extinct=` : ""}${insertPlaceholder ? "&insertPlaceholder=true" : ""}`
     )
       .then(this.decorateWithSectorsAndDataset)
       .then((res) => {
+        // A newer load has started since — drop this page instead of merging it.
+        if (requestId !== this.rootRequestId) return;
         const mainTreeData = res.data.result || [];
         const rootTotal = res.data.total;
         const treeData = mainTreeData.map((tx) => {
@@ -154,16 +177,16 @@ class ColTree extends React.Component {
           return dataRef;
         });
 
-        this.setState({
+        this.setState((prevState) => ({
           rootTotal: rootTotal,
           rootLoading: false,
-          treeData: [...this.state.treeData, ...treeData],
+          treeData: append ? [...prevState.treeData, ...treeData] : treeData,
           // Nothing is auto-expanded by default. Consumers open a specific root
           // (or deep taxon) by passing `defaultTaxonKey`/`expandedTaxonKey` —
           // e.g. defaultTaxonKey="CS5HF" opens Eukaryota in current COL releases.
           expandedKeys: [],
           error: null,
-        },
+        }),
           () => {
             if (defaultExpandKey) {
               return this.expandToTaxon(defaultExpandKey);
@@ -176,6 +199,7 @@ class ColTree extends React.Component {
         }
       })
       .catch((err) => {
+        if (requestId !== this.rootRequestId) return;
         this.setState({
           treeData: [],
           rootLoading: false,
@@ -339,10 +363,7 @@ const { treeData } = this.state;
     if (!res.data.last) {
       const loadMoreFn = () => {
         dataRef.childOffset += CHILD_PAGE_SIZE;
-        if (
-          dataRef.children[dataRef.children.length - 1].key ===
-          "__loadMoreBTN__"
-        ) {
+        if (isLoadMoreKey(get(dataRef.children[dataRef.children.length - 1], "key"))) {
           dataRef.children = dataRef.children.slice(0, -1);
         }
         return this.fetchChildPage(dataRef, false);
@@ -353,10 +374,10 @@ const { treeData } = this.state;
           title: (
             <LoadMoreChildrenTreeNode
               onClick={loadMoreFn}
-              key="__loadMoreBTN__"
+              key={loadMoreKey(dataRef.key)}
             />
           ),
-          key: "__loadMoreBTN__",
+          key: loadMoreKey(dataRef.key),
           childCount: 0,
           isLeaf: true,
         },
@@ -422,10 +443,7 @@ const { treeData } = this.state;
     let node;
     while (!node && parentNode.children.length < parentNode.childCount) {
       parentNode.childOffset += CHILD_PAGE_SIZE;
-      if (
-        parentNode.children[parentNode.children.length - 1].key ===
-        "__loadMoreBTN__"
-      ) {
+      if (isLoadMoreKey(get(parentNode.children[parentNode.children.length - 1], "key"))) {
         parentNode.children = parentNode.children.slice(0, -1);
       }
       await this.fetchChildPage(parentNode, false, true);
@@ -632,7 +650,7 @@ const { treeData } = this.state;
         )}
 
         {!error && treeData.length < rootTotal && (
-          <Button loading={rootLoading} onClick={this.loadRoot}>
+          <Button loading={rootLoading} onClick={() => this.loadRoot(true)}>
             Load more{" "}
           </Button>
         )}
