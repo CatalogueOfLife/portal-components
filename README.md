@@ -320,12 +320,20 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
 2. `taxonKey` - (controlled) the taxon to render. Read by the host from its URL and passed in.
 3. `pageTitleTemplate` - (Optional) a template for formatting the page title. A string containing the variable `__taxon__` that will be replaced with the taxon name.
 4. `identifierLabel` - (Optional) label for the identifier listed on top of the taxon view. Defaults to `"Identifier"`.
-5. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL map (CARTO Positron vector basemap) for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. **Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency).
+5. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL vector map (basemap configurable via `basemapStyle`, below) for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. **Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency).
 6. `gbifChecklistKey` - (Optional) When set, the distribution map adds a GBIF occurrence overlay (iNaturalist.poly hex bins) for the focal taxon, using the GBIF v2 multitaxonomy tile endpoint. The value is passed as the `checklistKey` query parameter; the focal taxon's id is passed as `taxonKey`. **The consumer is responsible for only setting this when the configured `datasetKey` actually uses identifiers that GBIF recognises under the given checklist.** For datasets keyed by COL identifiers, use the Catalogue of Life backbone UUID:
 
     ```
     gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
     ```
+
+7. `basemapStyle` - (Optional) MapLibre style URL for the map's basemap. Defaults to [OpenFreeMap](https://openfreemap.org/) Positron (`https://tiles.openfreemap.org/styles/positron`) — the same cartography as CARTO Positron, but with no API key and no request quota, so an embed works out of the box. Point it at any MapLibre style you host or are entitled to use, e.g. CARTO Positron with your own [CARTO API key](https://carto.com/basemaps/apikey/):
+
+    ```
+    basemapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json?api_key=<your key>"
+    ```
+
+    Read once when the map mounts; changing it later does not restyle a live map.
 
 To use the map, include MapLibre GL JS alongside React in your page:
 
@@ -435,7 +443,8 @@ The Taxon page's distribution block — a MapLibre GL vector map of the taxon's 
 1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
 2. `taxonId` - (controlled) the taxon to render. The component loads the taxon, its distributions, and the rank vocabulary itself.
 3. `gbifChecklistKey` - (Optional) when set, adds the GBIF occurrence overlay (iNaturalist.poly hex bins) for the focal taxon. See the same prop on `ColBrowser.Taxon` for the caveat about checklist-key alignment.
-4. `style` - (Optional) inline style passed through to the outer wrapper.
+4. `basemapStyle` - (Optional) MapLibre style URL for the basemap. See the same prop on [`ColBrowser.Taxon`](#colbrowsertaxon); defaults to OpenFreeMap Positron.
+5. `style` - (Optional) inline style passed through to the outer wrapper.
 
 **Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency), same as `ColBrowser.Taxon` with `showDistributionMap`:
 

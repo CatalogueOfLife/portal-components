@@ -82,6 +82,13 @@ export interface TaxonProps
   identifierLabel?: string;
   showDistributionMap?: boolean;
   gbifChecklistKey?: string | number;
+  /**
+   * MapLibre style URL for the distribution map's basemap. Defaults to
+   * OpenFreeMap Positron (no API key, no quota). Point it at any style you
+   * host or are entitled to use, e.g. CARTO Positron with your own key:
+   * `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json?api_key=<key>`.
+   */
+  basemapStyle?: string;
   /** HTTP Basic Auth credentials in `user:password` form. */
   auth?: string;
 }
@@ -126,6 +133,13 @@ export interface TaxonDistributionProps extends ThemeProps, NavigationProps {
   taxonId?: string;
   datasetKey?: string | number;
   gbifChecklistKey?: string | number;
+  /**
+   * MapLibre style URL for the distribution map's basemap. Defaults to
+   * OpenFreeMap Positron (no API key, no quota). Point it at any style you
+   * host or are entitled to use, e.g. CARTO Positron with your own key:
+   * `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json?api_key=<key>`.
+   */
+  basemapStyle?: string;
   style?: React.CSSProperties;
   /** HTTP Basic Auth credentials in `user:password` form. */
   auth?: string;

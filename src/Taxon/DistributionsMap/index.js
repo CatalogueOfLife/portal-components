@@ -55,9 +55,6 @@ const colorFor = (record) => {
   return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
 };
 
-const POSITRON_STYLE =
-  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
-
 // localStorage-backed GBIF overlay preference: a user who turns the overlay off
 // keeps it off across page loads and sessions. Applies to all maps, including
 // GBIF-only ones — there, turning it off collapses the (otherwise empty) map to
@@ -210,6 +207,9 @@ const DistributionsMap = ({
   focalTaxon,
   rankOrder,
   gbifChecklistKey,
+  // MapLibre style URL for the basemap. Read once, when the map is mounted;
+  // changing it later does not restyle a live map.
+  basemapStyle = config.basemapStyle,
   // true | null → show GBIF layer; false → GBIF API returned 0 occurrences,
   // grey out the toggle and skip loading tiles. Defaults to true so the
   // component works without the count check.
@@ -313,7 +313,7 @@ const DistributionsMap = ({
     if (!supported()) return;
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: POSITRON_STYLE,
+      style: basemapStyle,
       center: [0, 20],
       zoom: 1,
       minZoom: 0,

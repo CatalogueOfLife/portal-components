@@ -333,6 +333,7 @@ class TaxonPage extends React.Component {
       datasetKey,
       showDistributionMap,
       gbifChecklistKey,
+      basemapStyle,
     } = this.props;
     const {
       taxon,
@@ -718,6 +719,7 @@ class TaxonPage extends React.Component {
               focalTaxon={taxon}
               rankOrder={rank}
               gbifChecklistKey={gbifChecklistKey}
+              basemapStyle={basemapStyle}
             />
           )}
           {get(taxon, "environments") && (
@@ -856,6 +858,7 @@ export default function Taxon({
   identifierLabel,
   showDistributionMap,
   gbifChecklistKey,
+  basemapStyle,
   auth,
   ...routerProps
 }) {
@@ -868,6 +871,7 @@ export default function Taxon({
         identifierLabel={identifierLabel}
         showDistributionMap={showDistributionMap}
         gbifChecklistKey={gbifChecklistKey}
+        basemapStyle={basemapStyle}
         auth={auth}
       />
     </RouterContext.Provider>
