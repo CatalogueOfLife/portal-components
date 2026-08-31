@@ -49,6 +49,7 @@ export default defineConfig({
         taxonBreakdown: resolve(__dirname, 'src/entries/taxonBreakdown.js'),
         taxonDistribution: resolve(__dirname, 'src/entries/taxonDistribution.js'),
         routing: resolve(__dirname, 'src/entries/routing.js'),
+        config: resolve(__dirname, 'src/entries/config.js'),
       },
       formats: ['es'],
     },

@@ -12,9 +12,9 @@ import {
   TaxonBreakdown,
   TaxonDistribution,
   withRouting,
+  configure,
 } from "../../src";
 import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
-import config from "../../src/config";
 
 // All hosted on GitHub Pages with hash routing, so the URL adapter speaks
 // hash mode. Each top-level component gets its own wrapper that knows the
@@ -78,7 +78,7 @@ class Demo extends Component {
 
   switchEnv = (e) => {
     const env = e.target.value;
-    config.dataApi = environments[env];
+    configure({ dataApi: environments[env] });
     this.setState({ env });
   };
 

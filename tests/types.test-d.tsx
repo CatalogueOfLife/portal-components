@@ -16,6 +16,7 @@ import {
   TaxonBreakdown,
   TaxonDistribution,
   withRouting,
+  configure,
   type TaxonProps,
   type NavigationProps,
 } from "../types/index";
@@ -67,6 +68,9 @@ export const taxonProps: TaxonProps = { datasetKey: 1, auth: "user:pass" };
 const nav: NavigationProps = { onNavigateToSource: (k) => void k };
 void nav;
 
+configure({ dataApi: "https://api.dev.checklistbank.org/" });
+configure({ gbifApi: "https://api.gbif.org", gbifPortal: "https://www.gbif.org" });
+
 // --- negative cases (each @ts-expect-error MUST fire) ---
 // @ts-expect-error citation only accepts "top" | "bottom"
 const bad1 = <Tree datasetKey={1} citation="middle" />;
@@ -83,3 +87,10 @@ void bad2;
 void bad3;
 void bad4;
 void bad5;
+
+// @ts-expect-error base URLs are strings
+const bad6 = configure({ dataApi: 1 });
+// @ts-expect-error unknown config keys are rejected
+const bad7 = configure({ notAKey: "x" });
+void bad6;
+void bad7;

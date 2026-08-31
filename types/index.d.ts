@@ -131,6 +131,27 @@ export interface TaxonDistributionProps extends ThemeProps, NavigationProps {
   auth?: string;
 }
 
+/** Base URLs the components talk to. Override them with `configure`. */
+export interface ColBrowserConfig {
+  /** ChecklistBank API base. Defaults to "https://api.checklistbank.org/". */
+  dataApi: string;
+  /** Human-facing ChecklistBank portal, for outbound dataset/publisher links. */
+  clbPortal: string;
+  /** GBIF API base, for the occurrence count and map tiles. */
+  gbifApi: string;
+  /** GBIF portal the occurrence attribution link points at. */
+  gbifPortal: string;
+}
+
+/**
+ * Override the base URLs the components talk to, e.g. to point them at the
+ * ChecklistBank dev API. Merges into the shared config — keys left out keep
+ * their current value. Call once before rendering.
+ */
+export function configure(
+  overrides: Partial<ColBrowserConfig>
+): ColBrowserConfig;
+
 export const Tree: React.FC<TreeProps>;
 export const Search: React.FC<SearchProps>;
 export const Taxon: React.FC<TaxonProps>;

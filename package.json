@@ -43,6 +43,10 @@
       "types": "./types/taxonDistribution.d.ts",
       "import": "./es/taxonDistribution.js"
     },
+    "./config": {
+      "types": "./types/config.d.ts",
+      "import": "./es/config.js"
+    },
     "./routing": {
       "types": "./types/routing.d.ts",
       "import": "./es/routing.js"

@@ -19,7 +19,7 @@ npm run build:all  # build both ES and UMD bundles (runs on npm publish)
 
 - **`src/index.js`** — public exports (re-exported from `src/entries/*`): `Tree`, `Search`, `Taxon`, `TaxonBreakdown`, `TaxonDistribution`, `SourceDataset`, `SourceDatasetList`, `BibTex`, and the `withRouting` URL adapter.
 - **`src/umd.js`** — UMD entry point; same exports under the `ColBrowser` global, which also re-exposes the bundled `React` and `ReactDOM` (React 19 ships no UMD build of its own).
-- **`src/config.js`** — `dataApi` base URL (https://api.checklistbank.org/)
+- **`src/config.js`** — base URLs (`dataApi` defaults to https://api.checklistbank.org/), plus the public `configure()` override exported from the barrel and from `col-browser/config`
 - **`src/api/`** — axios wrappers around the ChecklistBank API
 - **`src/url/index.js`** — the `withRouting` adapter; the only place react-router-dom (v7) is used.
 

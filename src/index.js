@@ -14,3 +14,6 @@ export { BibTex } from './entries/bibtex';
 export { TaxonBreakdown } from './entries/taxonBreakdown';
 export { TaxonDistribution } from './entries/taxonDistribution';
 export { withRouting } from './entries/routing';
+
+// Base-URL overrides (e.g. to point the components at the dev API).
+export { configure } from './config';

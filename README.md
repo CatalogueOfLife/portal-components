@@ -181,6 +181,35 @@ The COL portal uses `mode: 'path'`. The GitHub Pages demo uses `mode: 'hash'` ag
 
 For SPA frameworks where the adapter doesn't fit (a custom router, Redux state, no URL at all), every component also works as a plain controlled component — see [Bypassing the adapter](#bypassing-the-adapter-custom-router-redux-no-url-at-all).
 
+### API endpoint (optional)
+
+By default every component reads from the production ChecklistBank API (`https://api.checklistbank.org/`). To point them at the dev API — or a local backend — call `configure()` once before mounting:
+
+```jsx
+// ES module — from the barrel …
+import { configure } from 'col-browser';
+// … or from its own subpath, if you only import single components:
+import { configure } from 'col-browser/config';
+
+configure({ dataApi: 'https://api.dev.checklistbank.org/' });
+```
+
+```html
+<!-- UMD -->
+<script>
+  ColBrowser.configure({ dataApi: 'https://api.dev.checklistbank.org/' });
+</script>
+```
+
+| Key | Default | Used for |
+|---|---|---|
+| `dataApi` | `https://api.checklistbank.org/` | every ChecklistBank API request |
+| `clbPortal` | `https://www.checklistbank.org` | outbound links to dataset / publisher pages |
+| `gbifApi` | `https://api.gbif.org` | occurrence counts and distribution-map tiles |
+| `gbifPortal` | `https://www.gbif.org` | the GBIF occurrence-search attribution link |
+
+`configure()` merges into the shared config, so keys you leave out keep their current value, and trailing slashes are normalised — pass the URL in either form. Components read the base URL as they render and as they fire each request, so call `configure()` before mounting; to switch endpoints at runtime, remount afterwards (the demo app does this with a React `key`).
+
 ### Theming (optional)
 
 Every top-level component accepts two optional theming props. When neither is set, the library's defaults are used and no Ant Design `ConfigProvider` is mounted.
