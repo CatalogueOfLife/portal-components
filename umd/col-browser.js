@@ -29818,7 +29818,7 @@ html body {
     });
   }
   const SPLIT = "__@field_split__";
-  function normalize(namePath) {
+  function normalize$1(namePath) {
     return namePath.map((cell) => `${typeof cell}:${cell}`).join(SPLIT);
   }
   class NameMap {
@@ -29826,13 +29826,13 @@ html body {
       __publicField(this, "kvs", /* @__PURE__ */ new Map());
     }
     set(key2, value) {
-      this.kvs.set(normalize(key2), value);
+      this.kvs.set(normalize$1(key2), value);
     }
     get(key2) {
-      return this.kvs.get(normalize(key2));
+      return this.kvs.get(normalize$1(key2));
     }
     getAsPrefix(key2) {
-      const normalizedKey = normalize(key2);
+      const normalizedKey = normalize$1(key2);
       const normalizedPrefix = normalizedKey + SPLIT;
       const results = [];
       const current = this.kvs.get(normalizedKey);
@@ -29856,7 +29856,7 @@ html body {
       }
     }
     delete(key2) {
-      this.kvs.delete(normalize(key2));
+      this.kvs.delete(normalize$1(key2));
     }
     // Since we only use this in test, let simply realize this
     map(callback) {
@@ -67806,6 +67806,14 @@ html body {
     // multitaxonomy occurrence search now ships on the production portal.
     gbifPortal: "https://www.gbif.org"
   };
+  const SLASH_TERMINATED = /* @__PURE__ */ new Set(["dataApi"]);
+  const normalize = (key2, value) => SLASH_TERMINATED.has(key2) ? value.replace(/\/*$/, "/") : value.replace(/\/+$/, "");
+  function configure(overrides = {}) {
+    Object.entries(overrides).forEach(([key2, value]) => {
+      config[key2] = typeof value === "string" ? normalize(key2, value) : value;
+    });
+    return config;
+  }
   var dataloader;
   var hasRequiredDataloader;
   function requireDataloader() {
@@ -90001,6 +90009,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     TaxonBreakdown,
     TaxonDistribution,
     Tree,
+    configure,
     withRouting
   }, Symbol.toStringTag, { value: "Module" }));
   const umd = { ...components, React: React$1, ReactDOM: ReactDOMClient };
