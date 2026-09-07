@@ -67809,10 +67809,15 @@ html body {
     // `style` works: a style URL (bake your provider's API key into it) or an
     // inline style object. The default is CARTO's public Positron CDN, which
     // needs no key.
-    basemapStyle: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+    basemapStyle: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+    // CARTO Basemaps API key. Empty means unauthenticated (fine today, but
+    // CARTO is moving to enforce keys). Set it and every cartocdn.com request
+    // the map makes — style, vector tiles, glyphs, sprites — carries `?key=`.
+    // Not needed when `basemapStyle` points at a non-CARTO provider.
+    cartoKey: ""
   };
   const SLASH_TERMINATED = /* @__PURE__ */ new Set(["dataApi"]);
-  const VERBATIM = /* @__PURE__ */ new Set(["basemapStyle"]);
+  const VERBATIM = /* @__PURE__ */ new Set(["basemapStyle", "cartoKey"]);
   const normalize = (key2, value) => SLASH_TERMINATED.has(key2) ? value.replace(/\/*$/, "/") : value.replace(/\/+$/, "");
   function configure(overrides = {}) {
     Object.entries(overrides).forEach(([key2, value]) => {
@@ -77987,6 +77992,23 @@ html body {
     return out;
   };
   const resolveBasemapStyle = (prop) => prop ?? config.basemapStyle;
+  const CARTO_HOST = /(^|\.)cartocdn\.com$/i;
+  const cartoTransformRequest = (key2 = config.cartoKey) => {
+    if (!key2) return void 0;
+    return (url) => {
+      let parsed;
+      try {
+        parsed = new URL(url);
+      } catch {
+        return { url };
+      }
+      if (!CARTO_HOST.test(parsed.hostname) || parsed.searchParams.has("key")) {
+        return { url };
+      }
+      parsed.searchParams.set("key", key2);
+      return { url: parsed.toString() };
+    };
+  };
   const wrapStyle = {
     position: "absolute",
     bottom: 8,
@@ -78345,13 +78367,15 @@ html body {
     }, [descendantState, descendantColors, visibleTaxonIds]);
     const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
     const styleSpec = resolveBasemapStyle(basemapStyle);
-    const styleKey = typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec);
+    const cartoKey = config.cartoKey;
+    const styleKey = `${typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec)}|${cartoKey || ""}`;
     reactExports.useEffect(() => {
       if (!containerRef.current || mapRef.current) return;
       if (!supported()) return;
       const map = new maplibregl.Map({
         container: containerRef.current,
         style: styleSpec,
+        transformRequest: cartoTransformRequest(cartoKey),
         center: [0, 20],
         zoom: 1,
         minZoom: 0,
