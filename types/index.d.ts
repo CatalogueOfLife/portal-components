@@ -159,6 +159,13 @@ export interface ColBrowserConfig {
    * CARTO's keyless Positron CDN. Stored verbatim — not URL-normalised.
    */
   basemapStyle: string | Record<string, unknown>;
+  /**
+   * CARTO Basemaps API key. When set, every cartocdn.com request the
+   * distribution map makes — style, vector tiles, glyphs, sprites — carries
+   * `?key=`. Defaults to "" (unauthenticated). Not needed if `basemapStyle`
+   * points at a non-CARTO provider.
+   */
+  cartoKey: string;
 }
 
 /**

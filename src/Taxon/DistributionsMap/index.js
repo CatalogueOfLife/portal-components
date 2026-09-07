@@ -7,7 +7,7 @@ import config from "../../config";
 import { fetchDescendants } from "./descendantFetch";
 import { getDescendantRanks, INFRASPECIFIC_RANKS } from "./descendantRanks";
 import { assignColors } from "./colorAssignment";
-import { resolveBasemapStyle } from "./basemap";
+import { cartoTransformRequest, resolveBasemapStyle } from "./basemap";
 import IncludedTaxaLegend from "./IncludedTaxaLegend";
 import { readSetting, writeSetting } from "../../storage";
 
@@ -309,11 +309,14 @@ const DistributionsMap = ({
   const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
 
   const styleSpec = resolveBasemapStyle(basemapStyle);
+  const cartoKey = config.cartoKey;
   // Depend on a stable key, not the spec itself: an inline style object passed
   // as a prop is a fresh reference on every render and would otherwise rebuild
-  // the map continuously.
-  const styleKey =
-    typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec);
+  // the map continuously. The CARTO key is folded in so that configuring one
+  // after first render rebuilds the map onto authenticated tiles.
+  const styleKey = `${
+    typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec)
+  }|${cartoKey || ""}`;
 
   // Mount the map. Re-runs when the basemap style changes: the cleanup below
   // tears the old map down completely, so the layer effects rebuild onto the
@@ -324,6 +327,7 @@ const DistributionsMap = ({
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: styleSpec,
+      transformRequest: cartoTransformRequest(cartoKey),
       center: [0, 20],
       zoom: 1,
       minZoom: 0,

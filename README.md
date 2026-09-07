@@ -208,12 +208,21 @@ configure({ dataApi: 'https://api.dev.checklistbank.org/' });
 | `gbifApi` | `https://api.gbif.org` | occurrence counts and distribution-map tiles |
 | `gbifPortal` | `https://www.gbif.org` | the GBIF occurrence-search attribution link |
 | `basemapStyle` | `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json` | the MapLibre basemap under the distribution map |
+| `cartoKey` | `""` | CARTO Basemaps API key, appended to every CARTO request the map makes |
 
 `configure()` merges into the shared config, so keys you leave out keep their current value, and trailing slashes are normalised — pass the URL in either form. Components read the base URL as they render and as they fire each request, so call `configure()` before mounting; to switch endpoints at runtime, remount afterwards (the demo app does this with a React `key`).
 
 #### Basemap
 
 `basemapStyle` is the one key that is not a base URL, so it is stored verbatim — path, query string and API key survive untouched. It takes anything MapLibre accepts as `style`: a style URL with your provider's key baked in, or an inline style object.
+
+`cartoKey` authenticates CARTO's own basemaps. CARTO's published styles are static files whose `glyphs`, `sprite` and vector-source URLs are absolute and key-free, so putting `?key=` in the style URL authenticates that one request and nothing else — while CARTO meters *tile* requests. Setting `cartoKey` instead installs a MapLibre `transformRequest` that appends the key to every `cartocdn.com` request the map makes, and leaves other hosts (GBIF occurrence tiles, ChecklistBank) alone:
+
+```js
+configure({ cartoKey: "your-carto-key" });
+```
+
+A key already baked into `basemapStyle` is left as-is. Leave `cartoKey` empty for a non-CARTO provider and bake that provider's key into `basemapStyle` instead.
 
 ```js
 // your own CARTO account

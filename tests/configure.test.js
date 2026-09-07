@@ -70,6 +70,17 @@ describe('configure', () => {
     expect(config.basemapStyle).toBe(style)
   })
 
+  it('stores cartoKey verbatim', () => {
+    configure({ cartoKey: 'cb1_304b_1_abc/' })
+
+    // An opaque credential, not a base URL: normalisation must not touch it.
+    expect(config.cartoKey).toBe('cb1_304b_1_abc/')
+  })
+
+  it('defaults cartoKey to empty (unauthenticated)', () => {
+    expect(original.cartoKey).toBe('')
+  })
+
   it('is exposed on the UMD global', () => {
     expect(typeof ColBrowser.configure).toBe('function')
   })

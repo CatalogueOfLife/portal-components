@@ -14,6 +14,11 @@ const config = {
     // inline style object. The default is CARTO's public Positron CDN, which
     // needs no key.
     basemapStyle: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+    // CARTO Basemaps API key. Empty means unauthenticated (fine today, but
+    // CARTO is moving to enforce keys). Set it and every cartocdn.com request
+    // the map makes — style, vector tiles, glyphs, sprites — carries `?key=`.
+    // Not needed when `basemapStyle` points at a non-CARTO provider.
+    cartoKey: "",
 };
 
 // `dataApi` is concatenated with bare paths (`${dataApi}dataset/…`) so it must
@@ -23,8 +28,9 @@ const config = {
 const SLASH_TERMINATED = new Set(["dataApi"]);
 
 // Keys that are not base URLs and must survive untouched — a basemap style URL
-// carries its own path and query string (e.g. an API key).
-const VERBATIM = new Set(["basemapStyle"]);
+// carries its own path and query string (e.g. an API key), and an API key is
+// an opaque credential.
+const VERBATIM = new Set(["basemapStyle", "cartoKey"]);
 
 const normalize = (key, value) =>
     SLASH_TERMINATED.has(key)
