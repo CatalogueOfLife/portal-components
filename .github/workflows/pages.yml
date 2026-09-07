@@ -18,8 +18,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # The repo's .npmrc points at GBIF's internal mirror, which the public
-    # GitHub runner can't reach. Override to the canonical registry.
+    # Belt and braces: this project resolves against canonical npm (the
+    # .npmrc pinning GBIF's internal mirror, unreachable from public runners,
+    # was removed). Note this only covers metadata lookups — npm ci downloads
+    # from the resolved URLs in package-lock.json, so those must stay
+    # registry.npmjs.org too.
     env:
       NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
     steps:
