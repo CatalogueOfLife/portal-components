@@ -67804,13 +67804,19 @@ html body {
     gbifApi: "https://api.gbif.org",
     // GBIF human-facing portal where the attribution link points. The
     // multitaxonomy occurrence search now ships on the production portal.
-    gbifPortal: "https://www.gbif.org"
+    gbifPortal: "https://www.gbif.org",
+    // MapLibre basemap for the distribution map. Anything MapLibre accepts as
+    // `style` works: a style URL (bake your provider's API key into it) or an
+    // inline style object. The default is CARTO's public Positron CDN, which
+    // needs no key.
+    basemapStyle: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
   };
   const SLASH_TERMINATED = /* @__PURE__ */ new Set(["dataApi"]);
+  const VERBATIM = /* @__PURE__ */ new Set(["basemapStyle"]);
   const normalize = (key2, value) => SLASH_TERMINATED.has(key2) ? value.replace(/\/*$/, "/") : value.replace(/\/+$/, "");
   function configure(overrides = {}) {
     Object.entries(overrides).forEach(([key2, value]) => {
-      config[key2] = typeof value === "string" ? normalize(key2, value) : value;
+      config[key2] = typeof value === "string" && !VERBATIM.has(key2) ? normalize(key2, value) : value;
     });
     return config;
   }
@@ -77980,6 +77986,7 @@ html body {
     });
     return out;
   };
+  const resolveBasemapStyle = (prop) => prop ?? config.basemapStyle;
   const wrapStyle = {
     position: "absolute",
     bottom: 8,
@@ -78136,7 +78143,6 @@ html body {
     const k = resolveKey(record);
     return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
   };
-  const POSITRON_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
   const GBIF_VISIBLE_KEY = "gbif-visible";
   const readStoredGbifVisible = (defaultValue) => readSetting(GBIF_VISIBLE_KEY, defaultValue);
   const writeStoredGbifVisible = (visible) => writeSetting(GBIF_VISIBLE_KEY, visible);
@@ -78249,7 +78255,10 @@ html body {
     // true | null → show GBIF layer; false → GBIF API returned 0 occurrences,
     // grey out the toggle and skip loading tiles. Defaults to true so the
     // component works without the count check.
-    gbifAvailable = true
+    gbifAvailable = true,
+    // MapLibre style URL or inline style object; falls back to the global
+    // `configure({ basemapStyle })` value. Changing it rebuilds the map.
+    basemapStyle
   }) => {
     var _a2;
     const containerRef = reactExports.useRef(null);
@@ -78262,7 +78271,7 @@ html body {
     const focalAttachedRef = reactExports.useRef(false);
     const gbifAttachedRef = reactExports.useRef(false);
     const descendantLayersRef = reactExports.useRef(/* @__PURE__ */ new Set());
-    const [styleReady, setStyleReady] = reactExports.useState(false);
+    const [readyMap, setReadyMap] = reactExports.useState(null);
     const [focalReady, setFocalReady] = reactExports.useState(false);
     const [descendantState, setDescendantState] = reactExports.useState({
       status: "idle",
@@ -78335,12 +78344,14 @@ html body {
       return { visibleGroups, unmappableGroups };
     }, [descendantState, descendantColors, visibleTaxonIds]);
     const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
+    const styleSpec = resolveBasemapStyle(basemapStyle);
+    const styleKey = typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec);
     reactExports.useEffect(() => {
       if (!containerRef.current || mapRef.current) return;
       if (!supported()) return;
       const map = new maplibregl.Map({
         container: containerRef.current,
-        style: POSITRON_STYLE,
+        style: styleSpec,
         center: [0, 20],
         zoom: 1,
         minZoom: 0,
@@ -78361,7 +78372,7 @@ html body {
       );
       mapRef.current = map;
       map.on("load", () => {
-        setStyleReady(true);
+        setReadyMap(map);
         const attrib = map.getContainer().querySelector(".maplibregl-ctrl-attrib");
         if (attrib) attrib.classList.remove("maplibregl-compact-show");
       });
@@ -78378,12 +78389,12 @@ html body {
         focalAttachedRef.current = false;
         gbifAttachedRef.current = false;
         descendantLayersRef.current = /* @__PURE__ */ new Set();
+        setReadyMap(null);
       };
-    }, []);
+    }, [styleKey]);
     reactExports.useEffect(() => {
-      if (!styleReady || !(records == null ? void 0 : records.length)) return;
-      const map = mapRef.current;
-      if (!map) return;
+      const map = readyMap;
+      if (!map || !(records == null ? void 0 : records.length)) return;
       let cancelled = false;
       setFocalReady(false);
       Promise.allSettled(
@@ -78394,7 +78405,7 @@ html body {
           }))
         )
       ).then((results) => {
-        if (cancelled) return;
+        if (cancelled || mapRef.current !== map) return;
         const features = [];
         const recordMap = /* @__PURE__ */ new Map();
         let failures = 0;
@@ -78464,7 +78475,7 @@ html body {
       return () => {
         cancelled = true;
       };
-    }, [styleReady, records]);
+    }, [readyMap, records]);
     const onFocalClick = (e2) => {
       var _a3, _b2;
       const map = mapRef.current;
@@ -78492,8 +78503,7 @@ html body {
       if (map.getLayer(FOCAL_LINE)) map.setLayoutProperty(FOCAL_LINE, "visibility", v2);
     }, [focalVisible, focalReady]);
     reactExports.useEffect(() => {
-      if (!styleReady) return;
-      const map = mapRef.current;
+      const map = readyMap;
       if (!map) return;
       const removeGbif = () => {
         if (map.getLayer(GBIF_LAYER)) map.removeLayer(GBIF_LAYER);
@@ -78519,16 +78529,16 @@ html body {
         layout: { visibility: gbifVisible ? "visible" : "none" }
       });
       gbifAttachedRef.current = true;
-    }, [styleReady, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id, gbifAvailable]);
+    }, [readyMap, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id, gbifAvailable]);
     reactExports.useEffect(() => {
       const map = mapRef.current;
       if (!map || !gbifAttachedRef.current) return;
       const v2 = gbifVisible ? "visible" : "none";
       if (map.getLayer(GBIF_LAYER)) map.setLayoutProperty(GBIF_LAYER, "visibility", v2);
     }, [gbifVisible]);
+    const descendantVisibility = (id) => visibleTaxonIds.has(id) ? "visible" : "none";
     reactExports.useEffect(() => {
-      if (!styleReady) return;
-      const map = mapRef.current;
+      const map = readyMap;
       if (!map) return;
       descendantLayersRef.current.forEach((id) => {
         if (map.getLayer(descendantFillId(id))) map.removeLayer(descendantFillId(id));
@@ -78551,7 +78561,7 @@ html body {
             }))
           )
         ).then((results) => {
-          if (!mapRef.current) return;
+          if (mapRef.current !== map) return;
           const features = [];
           results.forEach((res, i) => {
             if (res.status !== "fulfilled" || !res.value.geojson) return;
@@ -78584,7 +78594,7 @@ html body {
                 type: "fill",
                 source: srcId,
                 paint: { "fill-color": color, "fill-opacity": 0.55 },
-                layout: { visibility: "none" }
+                layout: { visibility: descendantVisibility(t2.id) }
               },
               beforeId
             );
@@ -78594,7 +78604,7 @@ html body {
                 type: "line",
                 source: srcId,
                 paint: { "line-color": color, "line-width": 2 },
-                layout: { visibility: "none" }
+                layout: { visibility: descendantVisibility(t2.id) }
               },
               beforeId
             );
@@ -78605,7 +78615,7 @@ html body {
           }
         });
       });
-    }, [styleReady, descendantState, descendantColors]);
+    }, [readyMap, descendantState, descendantColors]);
     const onDescendantClick = (e2) => {
       var _a3, _b2;
       const map = mapRef.current;
@@ -79078,6 +79088,7 @@ html body {
     focalTaxon,
     rankOrder,
     gbifChecklistKey,
+    basemapStyle,
     label,
     md: md2
   }) => {
@@ -79156,7 +79167,8 @@ html body {
               focalTaxon,
               rankOrder,
               gbifChecklistKey,
-              gbifAvailable
+              gbifAvailable,
+              basemapStyle
             }
           ),
           showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
@@ -88468,7 +88480,8 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       const {
         datasetKey,
         showDistributionMap,
-        gbifChecklistKey
+        gbifChecklistKey,
+        basemapStyle
       } = this.props;
       const {
         taxon,
@@ -88776,7 +88789,8 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
                 showDistributionMap,
                 focalTaxon: taxon,
                 rankOrder: rank,
-                gbifChecklistKey
+                gbifChecklistKey,
+                basemapStyle
               }
             ),
             get(taxon, "environments") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Environment(s)", children: get(taxon, "environments").join(", ") }),
@@ -88856,6 +88870,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     identifierLabel,
     showDistributionMap,
     gbifChecklistKey,
+    basemapStyle,
     auth,
     ...routerProps
   }) {
@@ -88868,6 +88883,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         identifierLabel,
         showDistributionMap,
         gbifChecklistKey,
+        basemapStyle,
         auth
       }
     ) });
@@ -89828,6 +89844,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     taxonId,
     datasetKey,
     gbifChecklistKey,
+    basemapStyle,
     style: style2,
     auth,
     ...routerProps
@@ -89867,6 +89884,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         focalTaxon: taxon,
         rankOrder: rank,
         gbifChecklistKey,
+        basemapStyle,
         showDistributionMap: true,
         style: style2
       }
