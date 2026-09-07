@@ -48,12 +48,23 @@ export const valid = (
       pageTitleTemplate="__taxon__"
       showDistributionMap
       gbifChecklistKey={7707728}
+      basemapStyle="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
     />
     <SourceDataset datasetKey={310463} sourceDatasetKey={1234} />
     <SourceDatasetList datasetKey={310463} auth="user:pass" />
     <BibTex datasetKey={310463} sourceDatasetKey={1234} style={{ height: 40 }} />
     <TaxonBreakdown datasetKey={310463} taxonId="V" level={2} showLevelSwitch />
-    <TaxonDistribution datasetKey={310463} taxonId="V" gbifChecklistKey={7707728} />
+    <TaxonDistribution
+      datasetKey={310463}
+      taxonId="V"
+      gbifChecklistKey={7707728}
+      basemapStyle="https://api.maptiler.com/maps/basic-v2/style.json?key=xyz"
+    />
+    <TaxonDistribution
+      datasetKey={310463}
+      taxonId="V"
+      basemapStyle={{ version: 8, sources: {}, layers: [] }}
+    />
   </>
 );
 
@@ -70,6 +81,8 @@ void nav;
 
 configure({ dataApi: "https://api.dev.checklistbank.org/" });
 configure({ gbifApi: "https://api.gbif.org", gbifPortal: "https://www.gbif.org" });
+configure({ basemapStyle: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json" });
+configure({ basemapStyle: { version: 8, sources: {}, layers: [] } });
 
 // --- negative cases (each @ts-expect-error MUST fire) ---
 // @ts-expect-error citation only accepts "top" | "bottom"
@@ -92,5 +105,11 @@ void bad5;
 const bad6 = configure({ dataApi: 1 });
 // @ts-expect-error unknown config keys are rejected
 const bad7 = configure({ notAKey: "x" });
+// @ts-expect-error basemapStyle is a style URL or style object, not a number
+const bad8 = configure({ basemapStyle: 1 });
+// @ts-expect-error basemapStyle is a style URL or style object, not a number
+const bad9 = <TaxonDistribution datasetKey={1} basemapStyle={1} />;
 void bad6;
 void bad7;
+void bad8;
+void bad9;

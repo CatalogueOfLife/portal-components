@@ -13,6 +13,7 @@ export const DistributionsWrapper = ({
   taxonId,
   datasetKey,
   gbifChecklistKey,
+  basemapStyle,
   style,
   auth,
   ...routerProps
@@ -65,6 +66,7 @@ export const DistributionsWrapper = ({
           focalTaxon={taxon}
           rankOrder={rank}
           gbifChecklistKey={gbifChecklistKey}
+          basemapStyle={basemapStyle}
           showDistributionMap={true}
           style={style}
         />

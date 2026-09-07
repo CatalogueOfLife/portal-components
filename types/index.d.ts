@@ -82,6 +82,12 @@ export interface TaxonProps
   identifierLabel?: string;
   showDistributionMap?: boolean;
   gbifChecklistKey?: string | number;
+  /**
+   * MapLibre basemap for the distribution map: a style URL (with your
+   * provider's API key baked in) or an inline style object. Overrides the
+   * global `configure({ basemapStyle })` default for this instance.
+   */
+  basemapStyle?: string | Record<string, unknown>;
   /** HTTP Basic Auth credentials in `user:password` form. */
   auth?: string;
 }
@@ -126,6 +132,12 @@ export interface TaxonDistributionProps extends ThemeProps, NavigationProps {
   taxonId?: string;
   datasetKey?: string | number;
   gbifChecklistKey?: string | number;
+  /**
+   * MapLibre basemap for the distribution map: a style URL (with your
+   * provider's API key baked in) or an inline style object. Overrides the
+   * global `configure({ basemapStyle })` default for this instance.
+   */
+  basemapStyle?: string | Record<string, unknown>;
   style?: React.CSSProperties;
   /** HTTP Basic Auth credentials in `user:password` form. */
   auth?: string;
@@ -141,6 +153,12 @@ export interface ColBrowserConfig {
   gbifApi: string;
   /** GBIF portal the occurrence attribution link points at. */
   gbifPortal: string;
+  /**
+   * MapLibre basemap for the distribution map: a style URL (with your
+   * provider's API key baked in) or an inline style object. Defaults to
+   * CARTO's keyless Positron CDN. Stored verbatim — not URL-normalised.
+   */
+  basemapStyle: string | Record<string, unknown>;
 }
 
 /**

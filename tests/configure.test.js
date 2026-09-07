@@ -53,6 +53,23 @@ describe('configure', () => {
     expect(config.clbPortal).toBe(original.clbPortal)
   })
 
+  it('stores basemapStyle verbatim, key and all', () => {
+    const keyed =
+      'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json?api_key=abc123/'
+    configure({ basemapStyle: keyed })
+
+    // Not a base URL: the trailing slash must survive the normalisation the
+    // other keys get.
+    expect(config.basemapStyle).toBe(keyed)
+  })
+
+  it('accepts an inline style object for basemapStyle', () => {
+    const style = { version: 8, sources: {}, layers: [] }
+    configure({ basemapStyle: style })
+
+    expect(config.basemapStyle).toBe(style)
+  })
+
   it('is exposed on the UMD global', () => {
     expect(typeof ColBrowser.configure).toBe('function')
   })

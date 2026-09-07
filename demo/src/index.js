@@ -43,6 +43,16 @@ const environments = {
   development: "https://api.dev.checklistbank.org/",
 };
 
+// Keyless CARTO styles, so the demo needs no credentials. Swapping between
+// them exercises the live `basemapStyle` prop — note the map-bearing routes
+// below deliberately do NOT include the basemap in their `key`, so a switch
+// has to be handled by the component rebuilding its own map.
+const basemaps = {
+  positron: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+  darkmatter: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  voyager: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+};
+
 const routes = [
   { path: "tree", label: "Tree" },
   { path: "search", label: "Search" },
@@ -67,6 +77,7 @@ class Demo extends Component {
       env: "production",
       datasetKey: "3LXR",
       datasetKeyInput: "3LXR",
+      basemap: "positron",
     };
     this._onHash = () => this.setState({ route: parseRoute() || "/" });
     window.addEventListener("hashchange", this._onHash);
@@ -82,13 +93,17 @@ class Demo extends Component {
     this.setState({ env });
   };
 
+  switchBasemap = (e) => {
+    this.setState({ basemap: e.target.value });
+  };
+
   applyDatasetKey = (e) => {
     e.preventDefault();
     this.setState({ datasetKey: this.state.datasetKeyInput });
   };
 
   render() {
-    const { route, env, datasetKey } = this.state;
+    const { route, env, datasetKey, basemap } = this.state;
     const isHome = route === "/" || route === "";
 
     const mountKey = `${env}-${datasetKey}`;
@@ -152,6 +167,11 @@ class Demo extends Component {
               <option value="production">Production</option>
               <option value="development">Development</option>
             </select>
+            <select value={basemap} onChange={this.switchBasemap} style={inputStyle}>
+              <option value="positron">Positron</option>
+              <option value="darkmatter">Dark Matter</option>
+              <option value="voyager">Voyager</option>
+            </select>
           </form>
         </nav>
 
@@ -212,6 +232,7 @@ class Demo extends Component {
             identifierLabel="COL identifier"
             showDistributionMap
             gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
+            basemapStyle={basemaps[basemap]}
           />
         )}
         {route === "search" && (
@@ -252,6 +273,7 @@ class Demo extends Component {
               key={mountKey + "-" + route}
               datasetKey={datasetKey}
               gbifChecklistKey="7ddf754f-d193-4cc9-b351-99906754a03b"
+              basemapStyle={basemaps[basemap]}
             />
             <div style={{ padding: "24px 16px", borderTop: "1px solid #e5e7eb", marginTop: "24px" }}>
               <h3 style={{ marginTop: 0 }}>Distribution map legend</h3>

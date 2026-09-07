@@ -9,6 +9,11 @@ const config = {
     // GBIF human-facing portal where the attribution link points. The
     // multitaxonomy occurrence search now ships on the production portal.
     gbifPortal: "https://www.gbif.org",
+    // MapLibre basemap for the distribution map. Anything MapLibre accepts as
+    // `style` works: a style URL (bake your provider's API key into it) or an
+    // inline style object. The default is CARTO's public Positron CDN, which
+    // needs no key.
+    basemapStyle: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
 };
 
 // `dataApi` is concatenated with bare paths (`${dataApi}dataset/…`) so it must
@@ -16,6 +21,10 @@ const config = {
 // leading slash, so they must not. Normalising here means callers can pass
 // either form without breaking every URL the components build.
 const SLASH_TERMINATED = new Set(["dataApi"]);
+
+// Keys that are not base URLs and must survive untouched — a basemap style URL
+// carries its own path and query string (e.g. an API key).
+const VERBATIM = new Set(["basemapStyle"]);
 
 const normalize = (key, value) =>
     SLASH_TERMINATED.has(key)
@@ -31,7 +40,10 @@ const normalize = (key, value) =>
  */
 export function configure(overrides = {}) {
     Object.entries(overrides).forEach(([key, value]) => {
-        config[key] = typeof value === "string" ? normalize(key, value) : value;
+        config[key] =
+            typeof value === "string" && !VERBATIM.has(key)
+                ? normalize(key, value)
+                : value;
     });
     return config;
 }

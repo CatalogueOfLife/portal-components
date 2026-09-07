@@ -70,6 +70,7 @@ const DistributionsTable = ({
   focalTaxon,
   rankOrder,
   gbifChecklistKey,
+  basemapStyle,
   label,
   md,
 }) => {
@@ -171,6 +172,7 @@ const DistributionsTable = ({
               rankOrder={rankOrder}
               gbifChecklistKey={gbifChecklistKey}
               gbifAvailable={gbifAvailable}
+              basemapStyle={basemapStyle}
             />
             {showToggle && unmappable > 0 && (
               <div style={{ marginTop: 6 }}>

@@ -7,6 +7,7 @@ import config from "../../config";
 import { fetchDescendants } from "./descendantFetch";
 import { getDescendantRanks, INFRASPECIFIC_RANKS } from "./descendantRanks";
 import { assignColors } from "./colorAssignment";
+import { resolveBasemapStyle } from "./basemap";
 import IncludedTaxaLegend from "./IncludedTaxaLegend";
 import { readSetting, writeSetting } from "../../storage";
 
@@ -54,9 +55,6 @@ const colorFor = (record) => {
   const k = resolveKey(record);
   return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
 };
-
-const POSITRON_STYLE =
-  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
 // localStorage-backed GBIF overlay preference: a user who turns the overlay off
 // keeps it off across page loads and sessions. Applies to all maps, including
@@ -214,6 +212,9 @@ const DistributionsMap = ({
   // grey out the toggle and skip loading tiles. Defaults to true so the
   // component works without the count check.
   gbifAvailable = true,
+  // MapLibre style URL or inline style object; falls back to the global
+  // `configure({ basemapStyle })` value. Changing it rebuilds the map.
+  basemapStyle,
 }) => {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -226,7 +227,7 @@ const DistributionsMap = ({
   const gbifAttachedRef = useRef(false);
   const descendantLayersRef = useRef(new Set()); // taxonIds currently attached
 
-  const [styleReady, setStyleReady] = useState(false);
+  const [readyMap, setReadyMap] = useState(null);
   const [focalReady, setFocalReady] = useState(false);
   const [descendantState, setDescendantState] = useState({
     status: "idle", // idle | loading | ready | empty | error
@@ -307,13 +308,22 @@ const DistributionsMap = ({
 
   const showDescendantLegend = descendantLegend.visibleGroups.length > 0;
 
-  // Mount map once.
+  const styleSpec = resolveBasemapStyle(basemapStyle);
+  // Depend on a stable key, not the spec itself: an inline style object passed
+  // as a prop is a fresh reference on every render and would otherwise rebuild
+  // the map continuously.
+  const styleKey =
+    typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec);
+
+  // Mount the map. Re-runs when the basemap style changes: the cleanup below
+  // tears the old map down completely, so the layer effects rebuild onto the
+  // new style.
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
     if (!supported()) return;
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: POSITRON_STYLE,
+      style: styleSpec,
       center: [0, 20],
       zoom: 1,
       minZoom: 0,
@@ -338,7 +348,7 @@ const DistributionsMap = ({
     mapRef.current = map;
 
     map.on("load", () => {
-      setStyleReady(true);
+      setReadyMap(map);
       // Start the attribution control collapsed. MapLibre opens it by
       // default in compact mode and only closes it on drag; remove the
       // `compact-show` class to hide the inner attribution text until the
@@ -366,14 +376,17 @@ const DistributionsMap = ({
       focalAttachedRef.current = false;
       gbifAttachedRef.current = false;
       descendantLayersRef.current = new Set();
+      // The layer effects below key off this. Clearing it on teardown — and
+      // setting it again only from the new map's "load" — means they can never
+      // run against a map that is gone or whose style has not loaded yet.
+      setReadyMap(null);
     };
-  }, []);
+  }, [styleKey]);
 
   // Focal taxon polygons.
   useEffect(() => {
-    if (!styleReady || !records?.length) return;
-    const map = mapRef.current;
-    if (!map) return;
+    const map = readyMap;
+    if (!map || !records?.length) return;
     let cancelled = false;
     setFocalReady(false);
 
@@ -385,7 +398,7 @@ const DistributionsMap = ({
         }))
       )
     ).then((results) => {
-      if (cancelled) return;
+      if (cancelled || mapRef.current !== map) return;
       const features = [];
       const recordMap = new Map();
       let failures = 0;
@@ -462,7 +475,7 @@ const DistributionsMap = ({
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [styleReady, records]);
+  }, [readyMap, records]);
 
   // Focal click handler — defined as stable closure that reads ref.
   const onFocalClick = (e) => {
@@ -499,8 +512,7 @@ const DistributionsMap = ({
 
   // GBIF raster layer — added always last so it sits on top.
   useEffect(() => {
-    if (!styleReady) return;
-    const map = mapRef.current;
+    const map = readyMap;
     if (!map) return;
     const removeGbif = () => {
       if (map.getLayer(GBIF_LAYER)) map.removeLayer(GBIF_LAYER);
@@ -547,7 +559,7 @@ const DistributionsMap = ({
     // runs cleanups in reverse declaration order on unmount) and throw
     // because MapLibre nulls map.style during remove().
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [styleReady, gbifChecklistKey, focalTaxon?.id, gbifAvailable]);
+  }, [readyMap, gbifChecklistKey, focalTaxon?.id, gbifAvailable]);
 
   // Sync GBIF visibility.
   useEffect(() => {
@@ -557,10 +569,17 @@ const DistributionsMap = ({
     if (map.getLayer(GBIF_LAYER)) map.setLayoutProperty(GBIF_LAYER, "visibility", v);
   }, [gbifVisible]);
 
+  // Layers start hidden and the visibility effect below reveals the ones the
+  // user has ticked. After a basemap switch they are re-added from scratch
+  // while `visibleTaxonIds` is unchanged — so that effect would not re-run and
+  // the selection would silently disappear. Add them at their current
+  // visibility instead.
+  const descendantVisibility = (id) =>
+    visibleTaxonIds.has(id) ? "visible" : "none";
+
   // Descendant layers — added once when state.status becomes "ready".
   useEffect(() => {
-    if (!styleReady) return;
-    const map = mapRef.current;
+    const map = readyMap;
     if (!map) return;
     // Tear down previous descendant layers.
     descendantLayersRef.current.forEach((id) => {
@@ -585,7 +604,9 @@ const DistributionsMap = ({
           }))
         )
       ).then((results) => {
-        if (!mapRef.current) return;
+        // Same guard as the focal layer: a basemap switch mid-fetch replaces
+        // the map, and these writes must not land on the new one.
+        if (mapRef.current !== map) return;
         const features = [];
         results.forEach((res, i) => {
           if (res.status !== "fulfilled" || !res.value.geojson) return;
@@ -618,7 +639,7 @@ const DistributionsMap = ({
               type: "fill",
               source: srcId,
               paint: { "fill-color": color, "fill-opacity": 0.55 },
-              layout: { visibility: "none" },
+              layout: { visibility: descendantVisibility(t.id) },
             },
             beforeId
           );
@@ -628,7 +649,7 @@ const DistributionsMap = ({
               type: "line",
               source: srcId,
               paint: { "line-color": color, "line-width": 2 },
-              layout: { visibility: "none" },
+              layout: { visibility: descendantVisibility(t.id) },
             },
             beforeId
           );
@@ -640,7 +661,7 @@ const DistributionsMap = ({
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [styleReady, descendantState, descendantColors]);
+  }, [readyMap, descendantState, descendantColors]);
 
   const onDescendantClick = (e) => {
     const map = mapRef.current;
