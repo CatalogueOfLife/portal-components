@@ -6,6 +6,7 @@ import XrGutter from "../components/XrGutter";
 import DecisionBadge from "../components/DecisionBadge";
 import TypeMaterialPopover from "./TypeMaterialPopover";
 import ShowMoreToggle from "./ShowMoreToggle";
+import NomStatus from "../components/NomStatus";
 import { LinkTo } from "../router";
 
 const TOP_N = 5;
@@ -14,7 +15,6 @@ const SynonymsTable = ({
   datasetKey,
   data,
   style,
-  nomStatus,
   references,
   decisions,
   typeMaterial,
@@ -23,13 +23,6 @@ const SynonymsTable = ({
   misapplied,
 }) => {
   const [showAll, setShowAll] = useState(false);
-
-  const getNomStatus = (taxon) =>
-    !nomStatus
-      ? get(taxon, "name.nomStatus")
-      : nomStatus[get(taxon, "name.nomStatus")][
-          (get(taxon, "name.code"), "zoological")
-        ];
 
   const sorter = (a, b) => {
     if (
@@ -120,7 +113,11 @@ const SynonymsTable = ({
         nameId={get(s, "name.id")}
         placement="top"
       />{" "}
-      {get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : ""}{" "}
+      <NomStatus
+        nomStatus={get(s, "name.nomStatus")}
+        code={get(s, "name.code")}
+        brackets
+      />{" "}
       {get(s, "status") === "misapplied" && get(s, "accordingTo")
         ? get(s, "accordingTo")
         : ""}

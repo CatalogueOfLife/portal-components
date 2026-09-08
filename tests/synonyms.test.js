@@ -9,6 +9,9 @@ const ACCEPTED_KEY = '3DXV3'  // Felis catus
 // Cionus scrophulariae has misapplied names; 32GHY = Curculio blattariae auct. non Panzer
 const MISAPPLIED_ACCEPTED_KEY = 'VFL3'
 const MISAPPLIED_KEY = '32GHY'
+// Pallaviciniaceae (botanical) has synonyms carrying a nomenclatural status,
+// e.g. Blytiaceae with nomStatus "unacceptable".
+const BOTANICAL_ACCEPTED_KEY = '9J9H5'
 
 const waitMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const waitFor = async (predicate, { timeout = 8000, interval = 100 } = {}) => {
@@ -48,6 +51,27 @@ describe('Synonym page', () => {
     // The synonym's own name appears as the page heading (no redirect/blank).
     await waitFor(() => node.innerHTML.includes('Felis catus domestica'))
     expect(node.innerHTML).toContain('Felis catus domestica')
+  })
+
+  // Regression guard for portal#305: the status label must follow the name's own
+  // nomenclatural code. "unacceptable" is "nomen illegitimum" botanically and
+  // "objectively invalid" zoologically; the old lookup discarded the code and
+  // always used the zoological wording (and the synonym list fell back to the
+  // bare vocabulary term because the vocabulary never reached it).
+  it('labels a synonym nomenclatural status in the wording of its own code', async () => {
+    node = mountIn(
+      <Taxon
+        datasetKey={DATASET_KEY}
+        taxonKey={BOTANICAL_ACCEPTED_KEY}
+        hrefForTaxon={(id) => `/data/taxon/${id}`}
+        hrefForSource={(id) => `/data/source/${id}`}
+      />
+    )
+    await waitFor(() => node.innerHTML.includes('Blytiaceae'))
+    await waitFor(() => node.innerHTML.includes('nomen illegitimum'))
+    expect(node.innerHTML).toContain('(nomen illegitimum)')
+    expect(node.innerHTML).not.toContain('objectively invalid')
+    expect(node.innerHTML).not.toContain('(unacceptable)')
   })
 
   // Regression guard: a non-existent key must still land on Page404 once the

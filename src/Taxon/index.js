@@ -8,6 +8,7 @@ import { LinkOutlined, DownloadOutlined } from "@ant-design/icons";
 import { Alert, Tag, Row, Col, Button, Rate, Tooltip } from "antd";
 // import SynonymTable from "./Synonyms";
 import Synonyms from "./Synonyms";
+import NomStatus from "../components/NomStatus";
 import TypeMaterial from "./TypeMaterial";
 
 import VernacularNames from "./VernacularNames";
@@ -67,7 +68,6 @@ class TaxonPage extends React.Component {
       sourceDataset: null,
       includes: [],
       rank: [],
-      nomStatus: null,
       catalogue: null,
       referenceIndexMap: {},
       sourceDatasetKeyMap: null,
@@ -81,7 +81,6 @@ class TaxonPage extends React.Component {
       this.getInfo(taxonKey);
       this.getRank(taxonKey);
       this.getIncludes(taxonKey);
-      this.getNomStatus(taxonKey);
     }
   };
 
@@ -91,7 +90,6 @@ class TaxonPage extends React.Component {
       this.getInfo(taxonKey);
       this.getRank(taxonKey);
       this.getIncludes(taxonKey);
-      this.getNomStatus(taxonKey);
     }
   }
 
@@ -300,14 +298,6 @@ class TaxonPage extends React.Component {
     );
   };
 
-  getNomStatus = () => {
-    client(`${config.dataApi}vocab/nomstatus`).then((res) =>
-      this.setState({
-        nomStatus: res.data.reduce((a, c) => ((a[c.name] = c), a), {}),
-      })
-    );
-  };
-
   getIncludes = (taxonKey) => {
     const { datasetKey } = this.props;
 
@@ -342,7 +332,6 @@ class TaxonPage extends React.Component {
       sourceDataset,
       includes,
       rank,
-      nomStatus,
       taxonError,
       synonymsError,
       classificationError,
@@ -533,13 +522,12 @@ class TaxonPage extends React.Component {
             </PresentationItem>
           )}
 
-          {get(taxon, "name.nomStatus") && nomStatus && (
+          {get(taxon, "name.nomStatus") && (
             <PresentationItem md={md} label="Nomenclatural Status">
-              {
-                nomStatus[get(taxon, "name.nomStatus")][
-                  (get(taxon, "name.code"), "zoological")
-                ]
-              }
+              <NomStatus
+                nomStatus={get(taxon, "name.nomStatus")}
+                code={get(taxon, "name.code")}
+              />
             </PresentationItem>
           )}
           {/*           <PresentationItem md={md} label="Extinct">
