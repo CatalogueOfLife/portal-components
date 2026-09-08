@@ -69853,6 +69853,24 @@ html body {
       (res) => res.data
     );
   };
+  const vocabCache = /* @__PURE__ */ new Map();
+  const cachedVocab = (path, transform2) => {
+    const url = `${config.dataApi}vocab/${path}`;
+    if (!vocabCache.has(url)) {
+      vocabCache.set(
+        url,
+        client(url).then((res) => transform2(res.data)).catch((err) => {
+          vocabCache.delete(url);
+          throw err;
+        })
+      );
+    }
+    return vocabCache.get(url);
+  };
+  const getNomStatusVocab = () => cachedVocab(
+    "nomstatus",
+    (data) => data.reduce((a, c) => (a[c.name] = c, a), {})
+  );
   const token = "%[a-f0-9]{2}";
   const singleMatcher = new RegExp("(" + token + ")|([^%]+?)", "gi");
   const multiMatcher = new RegExp("(" + token + ")+", "gi");
@@ -77538,12 +77556,43 @@ html body {
     if (total <= visible && !showAll) return null;
     return /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: () => onChange(!showAll), style: { cursor: "pointer" }, children: showAll ? "Show less" : `Show all (${total})` });
   };
+  const NOM_CODES = /* @__PURE__ */ new Set([
+    "bacterial",
+    "botanical",
+    "cultivars",
+    "phyto",
+    "phylo",
+    "virus",
+    "zoological"
+  ]);
+  const nomStatusLabel = (vocab, nomStatus, code) => {
+    if (!nomStatus) return "";
+    const term = vocab == null ? void 0 : vocab[nomStatus];
+    if (!term) return nomStatus;
+    const key2 = NOM_CODES.has(code) && typeof term[code] === "string" ? code : "zoological";
+    return term[key2] || term.name || nomStatus;
+  };
+  const NomStatus = ({ nomStatus, code, brackets }) => {
+    const [vocab, setVocab] = reactExports.useState(null);
+    reactExports.useEffect(() => {
+      let cancelled = false;
+      getNomStatusVocab().then((v2) => {
+        if (!cancelled) setVocab(v2);
+      }).catch(() => {
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, []);
+    if (!nomStatus) return null;
+    const label = nomStatusLabel(vocab, nomStatus, code);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: brackets ? `(${label})` : label });
+  };
   const TOP_N = 5;
   const SynonymsTable = ({
     datasetKey,
     data,
     style: style2,
-    nomStatus,
     references,
     decisions,
     typeMaterial,
@@ -77552,7 +77601,6 @@ html body {
     misapplied
   }) => {
     const [showAll, setShowAll] = reactExports.useState(false);
-    const getNomStatus = (taxon) => !nomStatus ? get(taxon, "name.nomStatus") : nomStatus[get(taxon, "name.nomStatus")][get(taxon, "name.code"), "zoological"];
     const sorter = (a, b2) => {
       if (get(a, "name.combinationAuthorship.year") && get(b2, "name.combinationAuthorship.year")) {
         return get(b2, "name.combinationAuthorship.year") - get(a, "name.combinationAuthorship.year");
@@ -77630,7 +77678,14 @@ html body {
         }
       ),
       " ",
-      get(s, "name.nomStatus") ? `(${getNomStatus(s)})` : "",
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        NomStatus,
+        {
+          nomStatus: get(s, "name.nomStatus"),
+          code: get(s, "name.code"),
+          brackets: true
+        }
+      ),
       " ",
       get(s, "status") === "misapplied" && get(s, "accordingTo") ? get(s, "accordingTo") : "",
       get(s, "status") === "ambiguous synonym" && "(Ambiguous)",
@@ -88282,7 +88337,6 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
           this.getInfo(taxonKey);
           this.getRank(taxonKey);
           this.getIncludes(taxonKey);
-          this.getNomStatus(taxonKey);
         }
       });
       __publicField(this, "getCatalogue", () => {
@@ -88445,13 +88499,6 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
           (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
         );
       });
-      __publicField(this, "getNomStatus", () => {
-        client(`${config.dataApi}vocab/nomstatus`).then(
-          (res) => this.setState({
-            nomStatus: res.data.reduce((a, c) => (a[c.name] = c, a), {})
-          })
-        );
-      });
       __publicField(this, "getIncludes", (taxonKey) => {
         const { datasetKey } = this.props;
         client(
@@ -88484,7 +88531,6 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         sourceDataset: null,
         includes: [],
         rank: [],
-        nomStatus: null,
         catalogue: null,
         referenceIndexMap: {},
         sourceDatasetKeyMap: null
@@ -88496,7 +88542,6 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         this.getInfo(taxonKey);
         this.getRank(taxonKey);
         this.getIncludes(taxonKey);
-        this.getNomStatus(taxonKey);
       }
     }
     render() {
@@ -88514,7 +88559,6 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
         sourceDataset,
         includes: includes2,
         rank,
-        nomStatus,
         taxonError,
         synonymsError,
         classificationError,
@@ -88698,7 +88742,13 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
                 )
               ] })
             ] }),
-            get(taxon, "name.nomStatus") && nomStatus && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Nomenclatural Status", children: nomStatus[get(taxon, "name.nomStatus")][get(taxon, "name.code"), "zoological"] }),
+            get(taxon, "name.nomStatus") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Nomenclatural Status", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              NomStatus,
+              {
+                nomStatus: get(taxon, "name.nomStatus"),
+                code: get(taxon, "name.code")
+              }
+            ) }),
             infoError && /* @__PURE__ */ jsxRuntimeExports.jsx(Alert, { message: /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error: infoError }), type: "error" }),
             !isSynonym && get(info, "synonyms") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Synonyms and combinations", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               SynonymsTable,
