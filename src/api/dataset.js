@@ -47,12 +47,6 @@ export const getPublishersBatch = (ids, datasetKey) => {
   );
 };
 
-export const getCatalogues = () => {
-  return client(`${config.dataApi}dataset/catalogues`).then(({ data }) =>
-    getDatasetsBatch(data)
-  );
-};
-
 export const getDataset = (datasetKey) =>
   client(`${config.dataApi}dataset/${datasetKey}`);
 
