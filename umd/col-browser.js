@@ -89520,6 +89520,12 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       dataIndex: ["alias"],
       key: "title",
       ellipsis: true,
+      // An ellipsis cell clips overflow, which cut off all but the edge of the
+      // XR badge XrGutter places left of the title. Widen the left padding by
+      // the badge (16px) and its margin (4px) so the badge sits inside the cell,
+      // and pad the header alike so "Title" stays aligned with the titles.
+      onCell: () => ({ style: { paddingLeft: 28 } }),
+      onHeaderCell: () => ({ style: { paddingLeft: 28 } }),
       render: (text2, record) => {
         return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
           record.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs(XrGutter, { merged: true, children: [
