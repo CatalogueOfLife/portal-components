@@ -4,6 +4,41 @@ import client from "../api/client";
 import {Skeleton} from "antd";
 import { get } from "lodash-es";
 import { LinkTo } from "../router";
+import MergedDataBadge from "../components/MergedDataBadge";
+
+// Resolves the search hit for the taxon a sector contributes, by exact name.
+// Merge and union sectors bring the descendants of their subject but never the
+// subject itself, so their target stands in for them. Any other sector brings
+// its subject: searched within the sector only, preferring the hit placed right
+// below the target, so neither a homonym from another source nor a same-named
+// taxon nested inside the sector is taken for it.
+const findSectorTaxon = (datasetKey, sector) => {
+  const { id, mode, subject, target } = sector;
+  const byTarget = mode === "merge" || mode === "union";
+  const params = new URLSearchParams({ TAXON_ID: target.id });
+  if (byTarget) {
+    params.set("q", target.name);
+  } else {
+    params.set("SECTOR_KEY", id);
+    if (subject.rank) params.set("rank", subject.rank);
+    params.set("q", subject.name);
+  }
+  params.set("type", "EXACT");
+  return client(
+    `${config.dataApi}dataset/${datasetKey}/nameusage/search?${params}`
+  ).then((res) => {
+    const hits = get(res, "data.result") || [];
+    if (byTarget) {
+      return hits.find((h) => h.usage?.id === target.id);
+    }
+    const parentId = (h) => h.classification?.[h.classification.length - 2]?.id;
+    return hits.find((h) => parentId(h) === target.id) || hits[0];
+  });
+};
+
+const searchable = (s) =>
+  !!s?.target?.id &&
+  (s.mode === "merge" || s.mode === "union" ? !!s.target.name : !!s.subject?.name);
 
 class TaxonomicCoverage extends React.Component {
   constructor(props) {
@@ -26,29 +61,26 @@ class TaxonomicCoverage extends React.Component {
       `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
     ).then((res) => {
       return Promise.allSettled(
-        res.data.result.filter(t => !!t?.target).map((t) =>
-          client(
-            `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${t?.target?.id}${t?.subject?.rank ? "&rank="+t?.subject?.rank : ""}&q=${t?.subject?.name}`
-          ).then((usages) => {
-            const taxon = get(usages, "data.result[0]");
-            if (taxon) {
-              const path = taxon.classification
-                .slice(1, taxon.classification.length - 1)
+        res.data.result.filter(searchable).map((s) =>
+          findSectorTaxon(datasetKey, s)
+          .then((hit) => {
+            if (hit) {
+              const cl = hit.classification;
+              const path = cl
+                .slice(1, cl.length - 1)
                 .map((t) => t.name)
                 .join(" > ");
+              // merge sectors only exist in an extended release (XR)
+              const entry = { taxon: cl[cl.length - 1], merged: s.mode === "merge" };
               if (taxonMap[path]) {
-                taxonMap[path].push(
-                  taxon.classification[taxon.classification.length - 1]
-                );
+                taxonMap[path].push(entry);
               } else {
-                taxonMap[path] = [
-                  taxon.classification[taxon.classification.length - 1],
-                ];
+                taxonMap[path] = [entry];
               }
             }
           })
           .catch(err => {
-            console.log(t)
+            console.log(s)
             console.log(err)})
         )
       ).then(() => this.setState({ taxonMap, loading: false }));
@@ -62,9 +94,10 @@ class TaxonomicCoverage extends React.Component {
       ? (Object.keys(taxonMap).length > 0 ? Object.keys(taxonMap).sort((a,b) => a.length - b.length).map((k) => (
           <div style={style} key={k}>
             <span>{k}{k !== "" ? ":" : ""}</span>{" "}
-            {taxonMap[k].map((tx, idx) => (
+            {taxonMap[k].map(({ taxon, merged }, idx) => (
               <React.Fragment key={idx}>
-                <LinkTo to="tree" args={{ taxonKey: tx.id }}>{tx.name}</LinkTo>
+                {merged && <MergedDataBadge />}
+                <LinkTo to="tree" args={{ taxonKey: taxon.id }}>{taxon.name}</LinkTo>
                 {idx !== taxonMap[k].length - 1 ? ", " : ""}
               </React.Fragment>
             ))}
