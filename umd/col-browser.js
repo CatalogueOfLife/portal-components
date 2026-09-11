@@ -89051,6 +89051,39 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
       this.getRank();
     }
   }
+  const findSectorTaxon = (datasetKey, sector) => {
+    const { id, mode, subject, target } = sector;
+    const byTarget = mode === "merge" || mode === "union";
+    const params = new URLSearchParams({ TAXON_ID: target.id });
+    if (byTarget) {
+      params.set("q", target.name);
+    } else {
+      params.set("SECTOR_KEY", id);
+      if (subject.rank) params.set("rank", subject.rank);
+      params.set("q", subject.name);
+    }
+    params.set("type", "EXACT");
+    return client(
+      `${config.dataApi}dataset/${datasetKey}/nameusage/search?${params}`
+    ).then((res) => {
+      const hits = get(res, "data.result") || [];
+      if (byTarget) {
+        return hits.find((h) => {
+          var _a2;
+          return ((_a2 = h.usage) == null ? void 0 : _a2.id) === target.id;
+        });
+      }
+      const parentId = (h) => {
+        var _a2, _b2;
+        return (_b2 = (_a2 = h.classification) == null ? void 0 : _a2[h.classification.length - 2]) == null ? void 0 : _b2.id;
+      };
+      return hits.find((h) => parentId(h) === target.id) || hits[0];
+    });
+  };
+  const searchable = (s) => {
+    var _a2, _b2;
+    return !!((_a2 = s == null ? void 0 : s.target) == null ? void 0 : _a2.id) && (s.mode === "merge" || s.mode === "union" ? !!s.target.name : !!((_b2 = s.subject) == null ? void 0 : _b2.name));
+  };
   class TaxonomicCoverage extends React.Component {
     constructor(props) {
       super(props);
@@ -89061,30 +89094,22 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
           `${config.dataApi}dataset/${datasetKey}/sector?limit=1000&subjectDatasetKey=${dataset.key}`
         ).then((res) => {
           return Promise.allSettled(
-            res.data.result.filter((t2) => !!(t2 == null ? void 0 : t2.target)).map(
-              (t2) => {
-                var _a2, _b2, _c, _d;
-                return client(
-                  `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${(_a2 = t2 == null ? void 0 : t2.target) == null ? void 0 : _a2.id}${((_b2 = t2 == null ? void 0 : t2.subject) == null ? void 0 : _b2.rank) ? "&rank=" + ((_c = t2 == null ? void 0 : t2.subject) == null ? void 0 : _c.rank) : ""}&q=${(_d = t2 == null ? void 0 : t2.subject) == null ? void 0 : _d.name}`
-                ).then((usages) => {
-                  const taxon = get(usages, "data.result[0]");
-                  if (taxon) {
-                    const path = taxon.classification.slice(1, taxon.classification.length - 1).map((t22) => t22.name).join(" > ");
-                    if (taxonMap[path]) {
-                      taxonMap[path].push(
-                        taxon.classification[taxon.classification.length - 1]
-                      );
-                    } else {
-                      taxonMap[path] = [
-                        taxon.classification[taxon.classification.length - 1]
-                      ];
-                    }
+            res.data.result.filter(searchable).map(
+              (s) => findSectorTaxon(datasetKey, s).then((hit) => {
+                if (hit) {
+                  const cl = hit.classification;
+                  const path = cl.slice(1, cl.length - 1).map((t2) => t2.name).join(" > ");
+                  const entry = { taxon: cl[cl.length - 1], merged: s.mode === "merge" };
+                  if (taxonMap[path]) {
+                    taxonMap[path].push(entry);
+                  } else {
+                    taxonMap[path] = [entry];
                   }
-                }).catch((err) => {
-                  console.log(t2);
-                  console.log(err);
-                });
-              }
+                }
+              }).catch((err) => {
+                console.log(s);
+                console.log(err);
+              })
             )
           ).then(() => this.setState({ taxonMap, loading: false }));
         });
@@ -89098,8 +89123,9 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
             k !== "" ? ":" : ""
           ] }),
           " ",
-          taxonMap[k].map((tx, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "tree", args: { taxonKey: tx.id }, children: tx.name }),
+          taxonMap[k].map(({ taxon, merged }, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
+            merged && /* @__PURE__ */ jsxRuntimeExports.jsx(MergedDataBadge, {}),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LinkTo, { to: "tree", args: { taxonKey: taxon.id }, children: taxon.name }),
             idx !== taxonMap[k].length - 1 ? ", " : ""
           ] }, idx))
         ] }, k)) : "N/A" : /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { active: true, paragraph: { rows: 4 } });
