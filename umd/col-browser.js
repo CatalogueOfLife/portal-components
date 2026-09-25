@@ -88803,7 +88803,19 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
                   sourceId: get(info, "source.secondarySources['published in'].id")
                 }
               ),
-              get(taxon, "name.publishedIn.citation")
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "col-published-in", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    dangerouslySetInnerHTML: {
+                      __html: linkifyHtml(
+                        purify.sanitize(get(taxon, "name.publishedIn.citation"))
+                      )
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(ReferenceLink, { reference: get(taxon, "name.publishedIn") })
+              ] })
             ] }),
             get(taxon, "status") && /* @__PURE__ */ jsxRuntimeExports.jsxs(PresentationItem$1, { md, label: "Checklist status", children: [
               `${get(taxon, "status")} ${get(taxon, "name.rank")}`,
