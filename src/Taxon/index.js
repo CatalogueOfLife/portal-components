@@ -16,6 +16,7 @@ import Distributions from "./Distributions";
 import Classification from "./Classification";
 import NameRelations from "./NameRelations";
 import References from "./References";
+import IdentifierList from "../components/IdentifierList";
 import ErrorMsg from "../components/ErrorMsg";
 import { get } from "lodash-es";
 import PresentationItem from "../components/PresentationItem";
@@ -477,12 +478,7 @@ class TaxonPage extends React.Component {
           {Array.isArray(get(taxon, "identifier")) &&
             get(taxon, "identifier").length > 0 && (
               <PresentationItem md={md} label="Other identifiers">
-                {get(taxon, "identifier").map((id, i) => (
-                  <React.Fragment key={i}>
-                    {i > 0 && ", "}
-                    {String(id)}
-                  </React.Fragment>
-                ))}
+                <IdentifierList identifiers={get(taxon, "identifier")} />
               </PresentationItem>
             )}
           {get(taxon, "labelHtml") && (

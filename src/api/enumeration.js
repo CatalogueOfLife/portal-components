@@ -141,3 +141,14 @@ export const getNomStatusVocab = () =>
   cachedVocab("nomstatus", (data) =>
     data.reduce((a, c) => ((a[c.name] = c), a), {})
   );
+
+/**
+ * The identifier scope vocabulary as a map keyed by scope, e.g.
+ * { wfo: { scope: "wfo", title: "World Flora Online",
+ *          resolver: "https://www.worldfloraonline.org/taxon/{id}", … }, … }
+ * Shared and cached; feed it to `parseIdentifier` to resolve a CURIE.
+ */
+export const getIdentifierScopeVocab = () =>
+  cachedVocab("identifier-scope", (data) =>
+    data.reduce((a, c) => ((a[c.scope] = c), a), {})
+  );

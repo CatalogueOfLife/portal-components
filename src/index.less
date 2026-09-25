@@ -109,6 +109,59 @@ a.col-tree-data-source {
     font-size: 9px;
 }
 
+/* Compact chips for the (often many) identifiers on the taxon page */
+.col-identifier-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: flex-start;
+}
+
+.col-identifier {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.col-identifier-scope {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.45);
+  border-right: 1px solid #f0f0f0;
+  white-space: nowrap;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.col-identifier-value {
+  padding: 1px 6px;
+  min-width: 0;
+  color: rgba(0, 0, 0, 0.85);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+a.col-identifier {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+a.col-identifier .col-identifier-value {
+  color: #1677ff;
+}
+a.col-identifier:hover {
+  border-color: #91caff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+a.col-identifier:hover .col-identifier-value {
+  color: #4096ff;
+}
+
 }
 
 /* Dropped: ~225 lines of v4-era .ant-select-item-* / .ant-select-dropdown-*
