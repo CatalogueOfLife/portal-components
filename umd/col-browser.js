@@ -69871,6 +69871,10 @@ html body {
     "nomstatus",
     (data) => data.reduce((a, c) => (a[c.name] = c, a), {})
   );
+  const getIdentifierScopeVocab = () => cachedVocab(
+    "identifier-scope",
+    (data) => data.reduce((a, c) => (a[c.scope] = c, a), {})
+  );
   const token = "%[a-f0-9]{2}";
   const singleMatcher = new RegExp("(" + token + ")|([^%]+?)", "gi");
   const multiMatcher = new RegExp("(" + token + ")+", "gi");
@@ -74973,6 +74977,22 @@ html body {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Row, { className: classes.formItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 24, className: marginSize, children: getValue2() }) });
   };
   const BorderedListItem$1 = withWidth()(createWithStyles(styles$2)(BorderedListItem));
+  const DOI_PREFIX_RE = /^(doi:|https?:\/\/(dx\.)?doi\.org\/)/i;
+  const referenceHref = (reference) => {
+    const csl = reference == null ? void 0 : reference.csl;
+    if (csl == null ? void 0 : csl.URL) return csl.URL;
+    if (csl == null ? void 0 : csl.DOI) return `https://doi.org/${csl.DOI.trim().replace(DOI_PREFIX_RE, "")}`;
+    return void 0;
+  };
+  const ReferenceLink = ({ reference }) => {
+    var _a2;
+    const href = referenceHref(reference);
+    if (!href || ((_a2 = reference.citation) == null ? void 0 : _a2.includes(href))) return null;
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      " ",
+      /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefIcon$2, {}) })
+    ] });
+  };
   class ReferencePopover extends React.Component {
     constructor(props) {
       super(props);
@@ -74998,9 +75018,15 @@ html body {
         } else if (error) {
           return /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorMsg, { error });
         } else if (reference.length === 1) {
-          return reference[0].citation;
+          return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            reference[0].citation,
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ReferenceLink, { reference: reference[0] })
+          ] });
         } else {
-          return /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: reference.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r2.citation }, r2.id)) });
+          return /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: reference.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            r2.citation,
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ReferenceLink, { reference: r2 })
+          ] }, r2.id)) });
         }
       });
       __publicField(this, "scrollToReference", (e2, id) => {
@@ -80521,7 +80547,7 @@ html body {
       var _a2, _b2;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(Row, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { style: { paddingRight: "5px" }, children: get(referenceIndexMap, s.id) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: `[${get(referenceIndexMap, s.id)}]` }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 20, style: { paddingLeft: "18px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Col, { span: 20, style: { paddingLeft: "18px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
           XrGutter,
           {
             merged: ((_a2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _a2.key) !== primarySourceDatasetKey,
@@ -80529,19 +80555,76 @@ html body {
             datasetKey: s.datasetKey,
             verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
             sourceDatasetKey: (_b2 = s == null ? void 0 : s.sourceDataset) == null ? void 0 : _b2.key,
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                id: `col-reference-${s.id}`,
-                dangerouslySetInnerHTML: {
-                  __html: linkifyHtml(purify.sanitize(s.citation))
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  id: `col-reference-${s.id}`,
+                  dangerouslySetInnerHTML: {
+                    __html: linkifyHtml(purify.sanitize(s.citation))
+                  }
                 }
-              }
-            )
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ReferenceLink, { reference: s })
+            ]
           }
         ) })
       ] }, s.id);
     }) });
+  };
+  const CLB_DATASET_RE = /^clb(\d+)$/;
+  const parseIdentifier = (identifier2, vocab) => {
+    const colonIdx = identifier2.indexOf(":");
+    if (colonIdx < 1) return { value: identifier2 };
+    const scope = identifier2.slice(0, colonIdx);
+    const value = identifier2.slice(colonIdx + 1);
+    const clbMatch = scope.match(CLB_DATASET_RE);
+    if (clbMatch) {
+      return {
+        scope: "clb",
+        value,
+        title: `ChecklistBank dataset ${clbMatch[1]}`,
+        href: `${config.clbPortal}/dataset/${clbMatch[1]}/nameusage/${encodeURIComponent(value)}`
+      };
+    }
+    const entry = vocab == null ? void 0 : vocab[scope];
+    return {
+      scope,
+      value,
+      title: (entry == null ? void 0 : entry.title) || scope,
+      href: (entry == null ? void 0 : entry.resolver) ? entry.resolver.replace("{id}", encodeURIComponent(value)) : void 0
+    };
+  };
+  const IdentifierChip = ({ scope, value, title, href }) => {
+    const inner = /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      scope && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "col-identifier-scope", children: scope }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "col-identifier-value", children: value })
+    ] });
+    return href ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "a",
+      {
+        className: "col-identifier",
+        href,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        title,
+        children: inner
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "col-identifier", title, children: inner });
+  };
+  const IdentifierList = ({ identifiers }) => {
+    const [vocab, setVocab] = reactExports.useState(null);
+    reactExports.useEffect(() => {
+      let cancelled = false;
+      getIdentifierScopeVocab().then((v2) => {
+        if (!cancelled) setVocab(v2);
+      }).catch(() => {
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, []);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-identifier-list", children: identifiers.map((id) => /* @__PURE__ */ jsxRuntimeExports.jsx(IdentifierChip, { ...parseIdentifier(String(id), vocab) }, id)) });
   };
   var localizedFormat$2 = { exports: {} };
   var localizedFormat$1 = localizedFormat$2.exports;
@@ -88703,10 +88786,7 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
                 ]
               }
             ),
-            Array.isArray(get(taxon, "identifier")) && get(taxon, "identifier").length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Other identifiers", children: get(taxon, "identifier").map((id, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-              i > 0 && ", ",
-              String(id)
-            ] }, i)) }),
+            Array.isArray(get(taxon, "identifier")) && get(taxon, "identifier").length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Other identifiers", children: /* @__PURE__ */ jsxRuntimeExports.jsx(IdentifierList, { identifiers: get(taxon, "identifier") }) }),
             get(taxon, "labelHtml") && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
               {

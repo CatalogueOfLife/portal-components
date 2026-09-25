@@ -15,6 +15,7 @@
    hardcoded the v4 primary palette (#1890ff / #40a9ff / #096dd9) and
    re-implemented radio sizing. antd v6 generates these via cssinjs and
    honours the configured theme.token.colorPrimary. */
+  /* Compact chips for the (often many) identifiers on the taxon page */
 }
 .catalogue-of-life .ant-table-small > .ant-table-content > .ant-table-body {
   margin: 0px !important;
@@ -102,6 +103,53 @@
 }
 .catalogue-of-life .col-dataset-citation-source {
   font-size: 9px;
+}
+.catalogue-of-life .col-identifier-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: flex-start;
+}
+.catalogue-of-life .col-identifier {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  background: #fff;
+  overflow: hidden;
+}
+.catalogue-of-life .col-identifier-scope {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.45);
+  border-right: 1px solid #f0f0f0;
+  white-space: nowrap;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+.catalogue-of-life .col-identifier-value {
+  padding: 1px 6px;
+  min-width: 0;
+  color: rgba(0, 0, 0, 0.85);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.catalogue-of-life a.col-identifier {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.catalogue-of-life a.col-identifier .col-identifier-value {
+  color: #1677ff;
+}
+.catalogue-of-life a.col-identifier:hover {
+  border-color: #91caff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+.catalogue-of-life a.col-identifier:hover .col-identifier-value {
+  color: #4096ff;
 }
 /* Dropped: ~225 lines of v4-era .ant-select-item-* / .ant-select-dropdown-*
    overrides that re-implemented the dropdown using v4 markup and a
