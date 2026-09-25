@@ -5,6 +5,7 @@ import client from "../api/client";
 import config from "../config";
 import { get, isArray } from "lodash-es";
 import ErrorMsg from "../components/ErrorMsg";
+import ReferenceLink from "../components/ReferenceLink";
 
 class ReferencePopover extends React.Component {
   constructor(props) {
@@ -43,12 +44,20 @@ class ReferencePopover extends React.Component {
     } else if (error) {
       return <ErrorMsg error={error}/>;
     } else if (reference.length === 1) {
-      return reference[0].citation;
+      return (
+        <>
+          {reference[0].citation}
+          <ReferenceLink reference={reference[0]} />
+        </>
+      );
     } else {
       return (
         <ul>
           {reference.map((r) => (
-            <li key={r.id}>{r.citation}</li>
+            <li key={r.id}>
+              {r.citation}
+              <ReferenceLink reference={r} />
+            </li>
           ))}
         </ul>
       );

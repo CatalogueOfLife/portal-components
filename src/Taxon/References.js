@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { get, values } from "lodash-es";
 import linkify from "linkify-html";
 import { Row, Col } from "antd";
+import ReferenceLink from "../components/ReferenceLink";
 import XrGutter from "../components/XrGutter";
 import DOMPurify from "dompurify";
 
@@ -35,6 +36,7 @@ const ReferencesTable = ({
                   __html: linkify(DOMPurify.sanitize(s.citation)),
                 }}
               ></span>
+              <ReferenceLink reference={s} />
             </XrGutter>
           </Col>
         </Row>
