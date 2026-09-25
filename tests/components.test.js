@@ -150,6 +150,24 @@ describe('Taxon', () => {
       expect(node.innerHTML.length).toBeGreaterThan(500)
     })
   })
+
+  // 8MH3X's "published in" reference carries its DOI only in the CSL data,
+  // not in the citation string.
+  it('links the published-in reference to its DOI', async () => {
+    node = mountIn(
+      <Taxon
+        datasetKey="3LXR"
+        taxonKey="8MH3X"
+        hrefForTaxon={(id) => `${TAXON_PATH}${id}`}
+        hrefForSearch={() => `/data/search`}
+        hrefForTree={() => `/data/tree`}
+        hrefForSource={(id) => `${SOURCE_PATH}${id}`}
+      />
+    )
+    await waitFor(() => node.querySelector('.col-published-in'))
+    const link = node.querySelector('.col-published-in a')
+    expect(link && link.getAttribute('href')).toBe('https://doi.org/10.3897/zookeys.1044.62572')
+  })
 })
 
 // ─── SourceDataset ─────────────────────────────────────────────────────────

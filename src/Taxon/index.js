@@ -17,6 +17,7 @@ import Classification from "./Classification";
 import NameRelations from "./NameRelations";
 import References from "./References";
 import IdentifierList from "../components/IdentifierList";
+import ReferenceLink from "../components/ReferenceLink";
 import ErrorMsg from "../components/ErrorMsg";
 import { get } from "lodash-es";
 import PresentationItem from "../components/PresentationItem";
@@ -37,6 +38,7 @@ import DecisionBadge from "../components/DecisionBadge";
 import { Feedback } from "./Feedback";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
+import linkify from "linkify-html";
 const md = 5;
 
 // Render markdown remarks as sanitized HTML (matches SourceDataset/CLB).
@@ -496,7 +498,16 @@ class TaxonPage extends React.Component {
               <MergedDataBadge 
                 sourceDatasetKey={get(info, "source.secondarySources['published in'].datasetKey")} 
                 sourceId={get(info, "source.secondarySources['published in'].id")} />}  
-                {get(taxon, "name.publishedIn.citation")}
+              <span className="col-published-in">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: linkify(
+                      DOMPurify.sanitize(get(taxon, "name.publishedIn.citation"))
+                    ),
+                  }}
+                />
+                <ReferenceLink reference={get(taxon, "name.publishedIn")} />
+              </span>
             </PresentationItem>
           )}
           {get(taxon, "status") && (
