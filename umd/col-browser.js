@@ -13397,7 +13397,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
      */
     WIN_KEY: 224
   };
-  let cached;
+  let cached$1;
   function measureScrollbarSize(ele) {
     const randomId = `rc-scrollbar-measure-${Math.random().toString(36).substring(7)}`;
     const measureEle = document.createElement("div");
@@ -13446,10 +13446,10 @@ ${heightStyle}
     if (typeof document === "undefined") {
       return 0;
     }
-    if (cached === void 0) {
-      cached = measureScrollbarSize();
+    if (cached$1 === void 0) {
+      cached$1 = measureScrollbarSize();
     }
-    return cached.width;
+    return cached$1.width;
   }
   function getTargetScrollBarSize(target) {
     if (typeof document === "undefined" || !target || !(target instanceof Element)) {
@@ -78210,6 +78210,26 @@ html body {
       ] })
     ] });
   };
+  let cached = null;
+  const probe = () => {
+    var _a2, _b2;
+    if (typeof window === "undefined" || !window.WebGLRenderingContext) {
+      return false;
+    }
+    try {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("webgl2") || canvas.getContext("webgl");
+      if (!ctx || typeof ctx.getParameter !== "function") return false;
+      (_b2 = (_a2 = ctx.getExtension) == null ? void 0 : _a2.call(ctx, "WEBGL_lose_context")) == null ? void 0 : _b2.loseContext();
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  };
+  const isWebglSupported = () => {
+    if (cached === null) cached = probe();
+    return cached;
+  };
   const POPUP_FIELDS = [
     "establishmentMeans",
     "degreeOfEstablishment",
@@ -78344,10 +78364,6 @@ html body {
     if (geojson.type === "FeatureCollection") return geojson.features || [];
     return [geojson];
   };
-  const supported = () => {
-    if (typeof (maplibregl == null ? void 0 : maplibregl.supported) === "function") return maplibregl.supported();
-    return typeof WebGLRenderingContext !== "undefined";
-  };
   const DistributionsMap = ({
     records,
     onUnmappable,
@@ -78361,7 +78377,9 @@ html body {
     gbifAvailable = true,
     // MapLibre style URL or inline style object; falls back to the global
     // `configure({ basemapStyle })` value. Changing it rebuilds the map.
-    basemapStyle
+    basemapStyle,
+    // Called from the no-WebGL notice to switch the host to its list view.
+    onShowList
   }) => {
     var _a2;
     const containerRef = reactExports.useRef(null);
@@ -78374,6 +78392,7 @@ html body {
     const focalAttachedRef = reactExports.useRef(false);
     const gbifAttachedRef = reactExports.useRef(false);
     const descendantLayersRef = reactExports.useRef(/* @__PURE__ */ new Set());
+    const [webglFailed, setWebglFailed] = reactExports.useState(false);
     const [readyMap, setReadyMap] = reactExports.useState(null);
     const [focalReady, setFocalReady] = reactExports.useState(false);
     const [descendantState, setDescendantState] = reactExports.useState({
@@ -78452,17 +78471,24 @@ html body {
     const styleKey = `${typeof styleSpec === "string" ? styleSpec : JSON.stringify(styleSpec)}|${cartoKey || ""}`;
     reactExports.useEffect(() => {
       if (!containerRef.current || mapRef.current) return;
-      if (!supported()) return;
-      const map = new maplibregl.Map({
-        container: containerRef.current,
-        style: styleSpec,
-        transformRequest: cartoTransformRequest(cartoKey),
-        center: [0, 20],
-        zoom: 1,
-        minZoom: 0,
-        attributionControl: false,
-        renderWorldCopies: true
-      });
+      if (!isWebglSupported()) return;
+      let map;
+      try {
+        map = new maplibregl.Map({
+          container: containerRef.current,
+          style: styleSpec,
+          transformRequest: cartoTransformRequest(cartoKey),
+          center: [0, 20],
+          zoom: 1,
+          minZoom: 0,
+          attributionControl: false,
+          renderWorldCopies: true
+        });
+      } catch (e2) {
+        console.warn("Distribution map disabled:", e2);
+        setWebglFailed(true);
+        return;
+      }
       map.addControl(
         new maplibregl.AttributionControl({ compact: true }),
         "bottom-right"
@@ -78807,8 +78833,8 @@ html body {
         return next2;
       });
     };
-    if (!supported()) {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    if (webglFailed || !isWebglSupported()) {
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
           style: {
@@ -78819,7 +78845,15 @@ html body {
             color: "#666",
             fontSize: 12
           },
-          children: "Maps require WebGL, which your browser doesn't support."
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "The distribution map can't be shown because WebGL is not available in your browser." }),
+            " ",
+            "This usually means hardware acceleration is turned off or the graphics drivers aren't set up for WebGL.",
+            typeof onShowList === "function" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: onShowList, style: { cursor: "pointer" }, children: "Show distributions as a list" })
+            ] })
+          ]
         }
       );
     }
@@ -79201,7 +79235,9 @@ html body {
     const baseUnmappable = data.length - mappable.length;
     const hasGbifConfigured = !!gbifChecklistKey;
     const hasAnyRecords = data.length > 0;
-    const [view, setView] = reactExports.useState("map");
+    const [view, setView] = reactExports.useState(
+      () => isWebglSupported() ? "map" : "list"
+    );
     const [fetchFailures, setFetchFailures] = reactExports.useState(0);
     const [gbifCount, setGbifCount] = reactExports.useState(null);
     reactExports.useEffect(() => {
@@ -79273,7 +79309,8 @@ html body {
               rankOrder,
               gbifChecklistKey,
               gbifAvailable,
-              basemapStyle
+              basemapStyle,
+              onShowList: showToggle ? () => setView("list") : void 0
             }
           ),
           showToggle && unmappable > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { onClick: () => setView("list"), style: { cursor: "pointer" }, children: [
