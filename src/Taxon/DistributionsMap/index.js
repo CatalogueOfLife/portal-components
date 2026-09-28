@@ -10,6 +10,7 @@ import { assignColors } from "./colorAssignment";
 import { cartoTransformRequest, resolveBasemapStyle } from "./basemap";
 import IncludedTaxaLegend from "./IncludedTaxaLegend";
 import { readSetting, writeSetting } from "../../storage";
+import { isWebglSupported } from "./webgl";
 
 const POPUP_FIELDS = [
   "establishmentMeans",
@@ -195,12 +196,6 @@ const flattenFeatures = (geojson) => {
   return [geojson];
 };
 
-const supported = () => {
-  if (typeof maplibregl?.supported === "function") return maplibregl.supported();
-  // Newer maplibre-gl uses isWebGLSupported / no helper — assume true at SSR time.
-  return typeof WebGLRenderingContext !== "undefined";
-};
-
 const DistributionsMap = ({
   records,
   onUnmappable,
@@ -215,6 +210,8 @@ const DistributionsMap = ({
   // MapLibre style URL or inline style object; falls back to the global
   // `configure({ basemapStyle })` value. Changing it rebuilds the map.
   basemapStyle,
+  // Called from the no-WebGL notice to switch the host to its list view.
+  onShowList,
 }) => {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -227,6 +224,7 @@ const DistributionsMap = ({
   const gbifAttachedRef = useRef(false);
   const descendantLayersRef = useRef(new Set()); // taxonIds currently attached
 
+  const [webglFailed, setWebglFailed] = useState(false);
   const [readyMap, setReadyMap] = useState(null);
   const [focalReady, setFocalReady] = useState(false);
   const [descendantState, setDescendantState] = useState({
@@ -323,17 +321,25 @@ const DistributionsMap = ({
   // new style.
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
-    if (!supported()) return;
-    const map = new maplibregl.Map({
-      container: containerRef.current,
-      style: styleSpec,
-      transformRequest: cartoTransformRequest(cartoKey),
-      center: [0, 20],
-      zoom: 1,
-      minZoom: 0,
-      attributionControl: false,
-      renderWorldCopies: true,
-    });
+    if (!isWebglSupported()) return;
+    let map;
+    try {
+      map = new maplibregl.Map({
+        container: containerRef.current,
+        style: styleSpec,
+        transformRequest: cartoTransformRequest(cartoKey),
+        center: [0, 20],
+        zoom: 1,
+        minZoom: 0,
+        attributionControl: false,
+        renderWorldCopies: true,
+      });
+    } catch (e) {
+      // The probe can pass while MapLibre's own context request still fails.
+      console.warn("Distribution map disabled:", e);
+      setWebglFailed(true);
+      return;
+    }
     map.addControl(
       new maplibregl.AttributionControl({ compact: true }),
       "bottom-right"
@@ -766,7 +772,7 @@ const DistributionsMap = ({
     });
   };
 
-  if (!supported()) {
+  if (webglFailed || !isWebglSupported()) {
     return (
       <div
         style={{
@@ -778,7 +784,20 @@ const DistributionsMap = ({
           fontSize: 12,
         }}
       >
-        Maps require WebGL, which your browser doesn't support.
+        <strong>
+          The distribution map can&apos;t be shown because WebGL is not
+          available in your browser.
+        </strong>{" "}
+        This usually means hardware acceleration is turned off or the graphics
+        drivers aren&apos;t set up for WebGL.
+        {typeof onShowList === "function" && (
+          <>
+            {" "}
+            <a onClick={onShowList} style={{ cursor: "pointer" }}>
+              Show distributions as a list
+            </a>
+          </>
+        )}
       </div>
     );
   }

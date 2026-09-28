@@ -8,6 +8,7 @@ import client, { publicClient } from "../api/client";
 import MergedDataBadge from "../components/MergedDataBadge";
 import PresentationItem from "../components/PresentationItem";
 import DistributionsMap from "./DistributionsMap";
+import { isWebglSupported } from "./DistributionsMap/webgl";
 
 const isMappable = (r) =>
   r?.area?.gazetteer !== "text" && !!r?.area?.globalId;
@@ -78,7 +79,9 @@ const DistributionsTable = ({
   const baseUnmappable = data.length - mappable.length;
   const hasGbifConfigured = !!gbifChecklistKey;
   const hasAnyRecords = data.length > 0;
-  const [view, setView] = useState("map");
+  const [view, setView] = useState(() =>
+    isWebglSupported() ? "map" : "list"
+  );
   const [fetchFailures, setFetchFailures] = useState(0);
 
   // null = unknown (loading or unconfigured), number = occurrence count.
@@ -173,6 +176,7 @@ const DistributionsTable = ({
               gbifChecklistKey={gbifChecklistKey}
               gbifAvailable={gbifAvailable}
               basemapStyle={basemapStyle}
+              onShowList={showToggle ? () => setView("list") : undefined}
             />
             {showToggle && unmappable > 0 && (
               <div style={{ marginTop: 6 }}>
