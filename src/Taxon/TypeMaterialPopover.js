@@ -45,10 +45,10 @@ class TypeMaterialPopover extends React.Component {
     if (data.length > 0)  {
       return (
         <div>
-          {data.map((s) => (
-            <div key={s.id} style={{ marginBottom: "8px", paddingLeft: "18px" }}>
+          {data.map(({ status, nameId, typeMaterial: s }) => (
+            <div key={`${s.id}-${nameId}`} style={{ marginBottom: "8px", paddingLeft: "18px" }}>
               <XrGutter merged={s.merged}>
-                <Tag color={getTypeColor(s?.status)}>{s?.status}</Tag>{" "}
+                <Tag color={getTypeColor(status)}>{status}</Tag>{" "}
                 {s?.citation && (
                   <span
                     dangerouslySetInnerHTML={{
