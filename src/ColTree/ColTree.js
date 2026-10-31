@@ -191,7 +191,8 @@ class ColTree extends React.Component {
             if (defaultExpandKey) {
               return this.expandToTaxon(defaultExpandKey);
             } else if (defaultTaxonKey) {
-              return this.expandToTaxon(defaultTaxonKey);
+              // Only a default: open it, but leave the host page where it is.
+              return this.expandToTaxon(defaultTaxonKey, false);
             }
           });
         if (treeData.length === 1) {
@@ -209,7 +210,7 @@ class ColTree extends React.Component {
       });
   };
 
-  expandToTaxon = async (defaultExpandKey) => {
+  expandToTaxon = async (defaultExpandKey, scrollToTaxon = true) => {
     const {
       showSourceTaxon,
       datasetKey,
@@ -297,7 +298,7 @@ const { treeData } = this.state;
     const loadedKeys = [...data.map((t) => t.id).reverse()];
 
     this.setState({ treeData }, () =>
-      this.reloadLoadedKeys(loadedKeys, defaultExpandKey)
+      this.reloadLoadedKeys(loadedKeys, defaultExpandKey, true, scrollToTaxon)
     );
   };
 
@@ -457,7 +458,7 @@ const { treeData } = this.state;
     return node;
   };
 
-  reloadLoadedKeys = async (keys, expandKey, expandAll = true) => {
+  reloadLoadedKeys = async (keys, expandKey, expandAll = true, scrollToTaxon = true) => {
     this.setState({ rootLoading: true });
     const { loadedKeys: storedKeys } = this.state;
     // const defaultExpandKey = get(qs.parse(get(location, "search")), 'taxonKey');
@@ -523,6 +524,7 @@ const { treeData } = this.state;
             // node.children = [targetTaxon, ...node.children];
             if (targetNode) {
               this.setState({ treeData: [...this.state.treeData] }, () => {
+                if (!scrollToTaxon) return;
                 setTimeout(() => {
                   const elmnt = document.getElementById(expandKey);
                   elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -559,7 +561,7 @@ const { treeData } = this.state;
       newState.expandedKeys = loadedKeys;
     }
     this.setState(newState, () => {
-      if (expandKey) {
+      if (expandKey && scrollToTaxon) {
         setTimeout(() => {
           const elmnt = document.getElementById(expandKey);
           elmnt.scrollIntoView({ behavior: "smooth", block: "center" });

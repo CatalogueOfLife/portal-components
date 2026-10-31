@@ -282,12 +282,13 @@ A [browsable taxonomic tree](https://www.catalogueoflife.org/data/browse). Compo
 1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
 2. `expandedTaxonKey` - (Optional, controlled) which taxon the tree is expanded down to. Pair with `onExpandedTaxonKeyChange` to keep host state in sync.
 3. `onExpandedTaxonKeyChange` - (Optional) called with the new key when the user expands a different taxon.
-4. `defaultTaxonKey` - (Optional, uncontrolled fallback) initial taxon to expand to when `expandedTaxonKey` is not provided. Nothing is expanded unless one of these is set — pass a root id to open it on load, e.g. `defaultTaxonKey="CS5HF"` opens Eukaryota in current Catalogue of Life releases.
+4. `defaultTaxonKey` - (Optional, uncontrolled fallback) initial taxon to expand to when `expandedTaxonKey` is not provided. Nothing is expanded unless one of these is set — pass a root id to open it on load, e.g. `defaultTaxonKey="CS5HF"` opens Eukaryota in current Catalogue of Life releases. The page scrolls to an `expandedTaxonKey` on load, but not to a `defaultTaxonKey`.
 5. `showTreeOptions` - (Optional) show toggles for extinct taxa and info (estimates, providers etc).
 6. `linkToSpeciesPage` - (Optional) when the searchbox finds a species or infraspecific taxon, jump directly to the taxon page rather than opening the tree.
 7. `citation` - (Optional) either `"top"` or `"bottom"`; include the necessary dataset citation above or below the tree component.
 8. `type` - (Optional) e.g. `type="project"` will show info about contributing sources on the tree nodes.
 9. `insertPlaceholder` - (Optional, defaults to `true`) when true, the API virtually groups children of lower ranks into a "Not assigned" placeholder node for a more compact browsing experience. Pass `false` to disable.
+10. `autoFocus` - (Optional, defaults to `true`) focus the search box when the tree loads. Pass `false` when the tree is not the main thing on the page, so it does not take the focus or scroll the page to itself.
 
 ```html
 <div id="tree"></div> <!-- Dom element for the tree to attach to -->

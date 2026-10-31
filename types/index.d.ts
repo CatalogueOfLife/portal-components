@@ -45,7 +45,8 @@ export interface TreeProps
    * Uncontrolled fallback: the taxon to expand to on load when
    * `expandedTaxonKey` is not set. Nothing is expanded unless one of these is
    * provided — pass a root id to open it, e.g. `"CS5HF"` opens Eukaryota in
-   * current Catalogue of Life releases.
+   * current Catalogue of Life releases. The page does not scroll to it, unlike
+   * to an `expandedTaxonKey`.
    */
   defaultTaxonKey?: string;
   expandedTaxonKey?: string;
@@ -56,6 +57,8 @@ export interface TreeProps
   type?: string;
   /** Render a placeholder row for incomplete branches. Defaults to true. */
   insertPlaceholder?: boolean;
+  /** Focus the search box when the tree loads. Defaults to true. */
+  autoFocus?: boolean;
   /** HTTP Basic Auth credentials in `user:password` form. */
   auth?: string;
 }

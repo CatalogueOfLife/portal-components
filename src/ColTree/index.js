@@ -62,6 +62,7 @@ class ColTreeWrapper extends React.Component {
       citation,
       type,
       insertPlaceholder = true,
+      autoFocus,
     } = this.props;
     const { hideExtinct, dataset } = this.state;
 
@@ -101,6 +102,7 @@ class ColTreeWrapper extends React.Component {
                 defaultTaxonKey={expandedTaxonKey || null}
                 onSelectName={handleSelectName}
                 onResetSearch={handleResetSearch}
+                autoFocus={autoFocus}
               />
             </Col>
             {showTreeOptions && (
@@ -157,6 +159,7 @@ export default function Tree({
   citation,
   type,
   insertPlaceholder,
+  autoFocus,
   auth,
   ...routerProps
 }) {
@@ -172,6 +175,7 @@ export default function Tree({
         citation={citation}
         type={type}
         insertPlaceholder={insertPlaceholder}
+        autoFocus={autoFocus}
         auth={auth}
       />
     </RouterContext.Provider>
