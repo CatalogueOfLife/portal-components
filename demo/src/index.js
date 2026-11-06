@@ -1,6 +1,11 @@
 import { Component } from "react";
 import { createRoot } from "react-dom/client";
 import "maplibre-gl/dist/maplibre-gl.css";
+// MapLibre 6 can't find its worker inside a bundle, so the host hands Vite's
+// worker URL to it once, before any map is created.
+import { setWorkerUrl } from "maplibre-gl";
+import maplibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+setWorkerUrl(maplibreWorkerUrl);
 
 import {
   Tree,

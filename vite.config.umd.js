@@ -36,8 +36,10 @@ export default defineConfig({
       // React 19 no longer ships a UMD build, so we can't expect consumers
       // to load it from a CDN; bundle it (and react-dom/client) into the
       // UMD bundle and re-expose them as ColBrowser.React / ColBrowser.ReactDOM
-      // (see src/umd.js). maplibre-gl is still UMD on jsDelivr, so it stays
-      // external and is loaded separately by Taxon / TaxonDistribution consumers.
+      // (see src/umd.js). maplibre-gl stays external: Taxon / TaxonDistribution
+      // consumers load it separately and expose it as the `maplibregl` global.
+      // MapLibre 6 ships ES modules only, so that takes a module script
+      // (see the README).
       external: ['maplibre-gl'],
       output: {
         globals: { 'maplibre-gl': 'maplibregl' },

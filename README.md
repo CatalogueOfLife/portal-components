@@ -61,7 +61,7 @@ Then mount any component using `ColBrowser.React` and `ColBrowser.ReactDOM`:
 </script>
 ```
 
-(`ColBrowser.Taxon` and `ColBrowser.TaxonDistribution` additionally need MapLibre GL JS loaded separately — see those components below.)
+(`ColBrowser.Taxon` and `ColBrowser.TaxonDistribution` additionally need MapLibre GL JS 6 loaded separately, from a module script — see [those components below](#colbrowsertaxon).)
 
 The full version list is on the [releases page](https://github.com/CatalogueOfLife/portal-components/releases).
 
@@ -379,7 +379,7 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
 2. `taxonKey` - (controlled) the taxon to render. Read by the host from its URL and passed in.
 3. `pageTitleTemplate` - (Optional) a template for formatting the page title. A string containing the variable `__taxon__` that will be replaced with the taxon name.
 4. `identifierLabel` - (Optional) label for the identifier listed on top of the taxon view. Defaults to `"Identifier"`.
-5. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL map for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. The basemap defaults to the keyless CARTO Positron vector style; override it with the `basemapStyle` prop below or globally via [`configure()`](#api-endpoint-optional). **Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency).
+5. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL map for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. The basemap defaults to the keyless CARTO Positron vector style; override it with the `basemapStyle` prop below or globally via [`configure()`](#api-endpoint-optional). **Requires the consumer to load MapLibre GL JS 6.4.1+ and its CSS** (peer dependency).
 6. `gbifChecklistKey` - (Optional) When set, the distribution map adds a GBIF occurrence overlay (iNaturalist.poly hex bins) for the focal taxon, using the GBIF v2 multitaxonomy tile endpoint. The value is passed as the `checklistKey` query parameter; the focal taxon's id is passed as `taxonKey`. **The consumer is responsible for only setting this when the configured `datasetKey` actually uses identifiers that GBIF recognises under the given checklist.** For datasets keyed by COL identifiers, use the Catalogue of Life backbone UUID:
 
     ```
@@ -390,12 +390,30 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
 
 To use the map, include MapLibre GL JS alongside React in your page:
 
+MapLibre 6 ships ES modules only, so load it from a module script and expose it as the `maplibregl` global the UMD bundle expects. Load `col-browser` with `defer` and mount from a module script, so all three run in document order after the page has parsed:
+
 ```html
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" />
-<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6/dist/maplibre-gl.css" />
+<script type="module">
+  import * as maplibregl from "https://unpkg.com/maplibre-gl@6/dist/maplibre-gl.mjs";
+  window.maplibregl = maplibregl;
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/CatalogueOfLife/portal-components@2/umd/col-browser.min.js"></script>
+<script type="module">
+  // ColBrowser.ReactDOM.createRoot(...).render(...)
+</script>
 ```
 
-ES module consumers: `npm install maplibre-gl` and `import "maplibre-gl/dist/maplibre-gl.css"` in your bundle entry.
+ES module consumers: `npm install maplibre-gl@6`, import its CSS in your bundle entry, and tell MapLibre where its worker is. MapLibre 6 can't find the worker inside a bundle, so call `setWorkerUrl` once before any map is created. With Vite (including Astro):
+
+```js
+import "maplibre-gl/dist/maplibre-gl.css";
+import { setWorkerUrl } from "maplibre-gl";
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+setWorkerUrl(workerUrl);
+```
+
+Other bundlers: see [MapLibre's installation guide](https://maplibre.org/maplibre-gl-js/docs/#installation).
 
 ```html
 <div id="taxon"></div>
@@ -499,12 +517,9 @@ The Taxon page's distribution block — a MapLibre GL vector map of the taxon's 
 4. `style` - (Optional) inline style passed through to the outer wrapper. Note this is the wrapper's CSS, not the map style — see `basemapStyle` below.
 5. `basemapStyle` - (Optional) MapLibre style for the basemap under the distribution polygons — a style URL with your provider's API key baked in, or an inline style object. Overrides the global [`configure({ basemapStyle })`](#basemap) default for this map only, and can be changed at runtime: the map rebuilds on the new style in place. Pass an inline style object from a stable reference, not an object literal.
 
-**Requires the consumer to load MapLibre GL JS 4+ or 5+ and its CSS** (peer dependency), same as `ColBrowser.Taxon` with `showDistributionMap`:
+**Requires the consumer to load MapLibre GL JS 6.4.1+ and its CSS** (peer dependency), same as `ColBrowser.Taxon` with `showDistributionMap`:
 
-```html
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" />
-<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-```
+See [`ColBrowser.Taxon`](#colbrowsertaxon) for how to load MapLibre 6 next to the UMD bundle.
 
 ```html
 <div id="distribution"></div>
