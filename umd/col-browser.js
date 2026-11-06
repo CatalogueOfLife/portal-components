@@ -68668,7 +68668,7 @@ html body {
               if (defaultExpandKey) {
                 return this.expandToTaxon(defaultExpandKey);
               } else if (defaultTaxonKey) {
-                return this.expandToTaxon(defaultTaxonKey);
+                return this.expandToTaxon(defaultTaxonKey, false);
               }
             }
           );
@@ -68685,7 +68685,7 @@ html body {
           });
         });
       });
-      __publicField(this, "expandToTaxon", async (defaultExpandKey) => {
+      __publicField(this, "expandToTaxon", async (defaultExpandKey, scrollToTaxon = true) => {
         const {
           showSourceTaxon,
           datasetKey,
@@ -68764,7 +68764,7 @@ html body {
         const loadedKeys = [...data.map((t2) => t2.id).reverse()];
         this.setState(
           { treeData },
-          () => this.reloadLoadedKeys(loadedKeys, defaultExpandKey)
+          () => this.reloadLoadedKeys(loadedKeys, defaultExpandKey, true, scrollToTaxon)
         );
       });
       __publicField(this, "fetchChildPage", async (dataRef, reloadAll, dontUpdateState) => {
@@ -68893,7 +68893,7 @@ html body {
         }
         return node2;
       });
-      __publicField(this, "reloadLoadedKeys", async (keys2, expandKey, expandAll = true) => {
+      __publicField(this, "reloadLoadedKeys", async (keys2, expandKey, expandAll = true, scrollToTaxon = true) => {
         this.setState({ rootLoading: true });
         const { loadedKeys: storedKeys } = this.state;
         let { treeData } = this.state;
@@ -68946,6 +68946,7 @@ html body {
                 );
                 if (targetNode) {
                   this.setState({ treeData: [...this.state.treeData] }, () => {
+                    if (!scrollToTaxon) return;
                     setTimeout(() => {
                       const elmnt = document.getElementById(expandKey);
                       elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -68977,7 +68978,7 @@ html body {
           newState.expandedKeys = loadedKeys;
         }
         this.setState(newState, () => {
-          if (expandKey) {
+          if (expandKey && scrollToTaxon) {
             setTimeout(() => {
               const elmnt = document.getElementById(expandKey);
               elmnt.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -69638,7 +69639,8 @@ html body {
           linkToSpeciesPage,
           citation,
           type: type2,
-          insertPlaceholder = true
+          insertPlaceholder = true,
+          autoFocus
         } = this.props;
         const { hideExtinct, dataset } = this.state;
         const handleSelectName = (name) => {
@@ -69673,7 +69675,8 @@ html body {
                   },
                   defaultTaxonKey: expandedTaxonKey || null,
                   onSelectName: handleSelectName,
-                  onResetSearch: handleResetSearch
+                  onResetSearch: handleResetSearch,
+                  autoFocus
                 }
               ) }),
               showTreeOptions && /* @__PURE__ */ jsxRuntimeExports.jsxs(Col, { style: { paddingLeft: "8px" }, children: [
@@ -69743,6 +69746,7 @@ html body {
     citation,
     type: type2,
     insertPlaceholder,
+    autoFocus,
     auth,
     ...routerProps
   }) {
@@ -69758,6 +69762,7 @@ html body {
         citation,
         type: type2,
         insertPlaceholder,
+        autoFocus,
         auth
       }
     ) });
@@ -77494,7 +77499,7 @@ html body {
     ] }) });
   };
   const TypeMaterial = ({ dataset, data, nameID, style: style2 }) => {
-    return data[nameID] ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: data[nameID].map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx(BorderedListItem$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return data[nameID] ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: style2, children: data[nameID].map(({ status, nameId, typeMaterial: s }) => /* @__PURE__ */ jsxRuntimeExports.jsx(BorderedListItem$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       XrGutter,
       {
         merged: s.merged,
@@ -77503,7 +77508,7 @@ html body {
         verbatimSourceKey: s == null ? void 0 : s.verbatimSourceKey,
         sourceDatasetKey: s == null ? void 0 : s.sourceDatasetKey,
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(s == null ? void 0 : s.status), children: s == null ? void 0 : s.status }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(status), children: status }),
           " ",
           getLinks(dataset, s),
           " ",
@@ -77515,7 +77520,7 @@ html body {
           )
         ]
       }
-    ) }, s.id)) }) : null;
+    ) }, `${s.id}-${nameId}`)) }) : null;
   };
   class TypeMaterialPopover extends React.Component {
     constructor(props) {
@@ -77539,8 +77544,8 @@ html body {
         const { typeMaterial, nameId } = this.props;
         const data = (typeMaterial == null ? void 0 : typeMaterial[nameId]) || [];
         if (data.length > 0) {
-          return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: data.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginBottom: "8px", paddingLeft: "18px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(XrGutter, { merged: s.merged, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(s == null ? void 0 : s.status), children: s == null ? void 0 : s.status }),
+          return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: data.map(({ status, nameId: nameId2, typeMaterial: s }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginBottom: "8px", paddingLeft: "18px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(XrGutter, { merged: s.merged, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Tag, { color: getTypeColor(status), children: status }),
             " ",
             (s == null ? void 0 : s.citation) && /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
@@ -77550,7 +77555,7 @@ html body {
                 }
               }
             )
-          ] }) }, s.id)) });
+          ] }) }, `${s.id}-${nameId2}`)) });
         }
       });
       __publicField(this, "render", () => {
@@ -86837,38 +86842,19 @@ html body {
   const HighchartsReact = /* @__PURE__ */ getDefaultExportFromCjs(highchartsReact_minExports);
   const BREAKDOWN_LEVEL_KEY = "breakdown-level";
   const MAX_SLICES_PER_RING = 100;
-  const canonicalRanks = [
-    "kingdom",
-    "phylum",
-    "class",
-    "order",
-    "family",
-    "genus",
-    "species"
-  ];
   const notAssignedLabel = (rk) => rk ? `Not assigned ${rk}` : "Not assigned";
-  const sortAndClip = (nodes) => {
-    if (!nodes || nodes.length === 0) return [];
-    const sorted = [...nodes].sort((a, b2) => (b2.species || 0) - (a.species || 0));
-    return sorted.length <= MAX_SLICES_PER_RING ? sorted : sorted.slice(0, MAX_SLICES_PER_RING);
-  };
-  const padNotAssigned = (kids, parentSpecies) => {
-    const sorted = sortAndClip(kids || []);
-    const sum = sorted.reduce((a, n2) => a + (n2.species || 0), 0);
-    if (sum >= parentSpecies) return sorted;
-    return [
-      ...sorted,
-      {
-        name: notAssignedLabel(get(sorted, "[0].rank", "")),
-        species: parentSpecies - sum,
-        children: []
-      }
-    ];
+  const ringNodes = (nodes, parentCount) => {
+    const named = (nodes || []).filter((n2) => n2.id).sort((a, b2) => (b2.count || 0) - (a.count || 0)).slice(0, MAX_SLICES_PER_RING);
+    const sum = named.reduce((a, n2) => a + (n2.count || 0), 0);
+    const rank = get(nodes, "[0].rank", "");
+    return sum < parentCount ? [
+      ...named,
+      { name: notAssignedLabel(rank), count: parentCount - sum, children: [] }
+    ] : named;
   };
   const TaxonBreakdown$1 = ({
     taxon,
     datasetKey,
-    rank = [],
     dataset,
     level = 1,
     showLevelSwitch = false,
@@ -86892,57 +86878,29 @@ html body {
         getData();
       }
     }, [taxon, datasetKey, activeLevel]);
-    const getOverView = async () => {
-      const res = await client(
-        `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${encodeURIComponent(
-          taxon.id
-        )}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
-      );
-      return keyBy(get(res, "data.facets.rank", []), "value");
-    };
     const getData = async () => {
       setLoading(true);
       try {
-        const counts = await getOverView();
-        const ranks2 = canonicalRanks;
-        let taxonRankIdx = ranks2.indexOf(get(taxon, "name.rank"));
-        if (taxonRankIdx === -1) {
-          let rankIndex2 = rank.indexOf(get(taxon, "name.rank")) + 1;
-          while (taxonRankIdx === -1 && rankIndex2 < rank.length - 1) {
-            const canonicalRankIndex = ranks2.indexOf(rank[rankIndex2]);
-            if (canonicalRankIndex > -1) {
-              taxonRankIdx = canonicalRankIndex - 1;
-            }
-            rankIndex2++;
-          }
-        }
-        let childRank;
-        let childRankIndex = taxonRankIdx + 1;
-        while (!childRank && childRankIndex < ranks2.length) {
-          const nextRank = get(ranks2, `[${childRankIndex}]`);
-          if (nextRank && get(counts, `${nextRank}.count`, 0) > 0) {
-            childRank = nextRank;
-          } else {
-            childRankIndex++;
-          }
-        }
-        if (!childRank) {
+        const res = await client(
+          `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(
+            taxon.id
+          )}/breakdown?level=${activeLevel}`
+        );
+        const bd = res.data || {};
+        setLoading(false);
+        if (!bd.countRank || !bd.children || bd.children.length === 0) {
           setInvalid(true);
-          setLoading(false);
           return;
         }
-        const res = await client(
-          `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${activeLevel}`
-        );
-        const children = res.data || [];
-        const totalSpecies = get(counts, "species.count", 0);
-        setLoading(false);
-        buildChart(children, totalSpecies);
+        setInvalid(false);
+        buildChart(bd);
       } catch (err) {
         setLoading(false);
+        setInvalid(true);
       }
     };
-    const buildChart = (children, totalSpecies) => {
+    const buildChart = ({ children, total, countRank }) => {
+      const seriesName = startCase(countRank === "genus" ? "genera" : countRank);
       const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
       const baseColors = Highcharts.getOptions().colors;
       const prefersDark = typeof darkMode === "boolean" ? darkMode : typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -86954,33 +86912,33 @@ html body {
           }
         }
       };
-      const innerNodes = padNotAssigned(children, totalSpecies);
+      const innerNodes = ringNodes(children, total);
       const innerData = innerNodes.map((n2, i) => ({
         name: n2.name,
-        y: n2.species,
+        y: n2.count,
         _id: n2.id,
         color: baseColors[i % baseColors.length],
         _kids: n2.children
       }));
       const outerData = [];
-      const hasOuterData = activeLevel >= 2 && innerData.some((s) => s._kids && s._kids.length > 0);
+      const hasOuterData = innerData.some((s) => s._kids && s._kids.length > 0);
       if (hasOuterData) {
         innerData.forEach((slice2) => {
-          const sorted = sortAndClip(slice2._kids || []);
-          const sum = sorted.reduce((a, n2) => a + (n2.species || 0), 0);
+          const sorted = (slice2._kids || []).filter((n2) => n2.id).sort((a, b2) => (b2.count || 0) - (a.count || 0)).slice(0, MAX_SLICES_PER_RING);
+          const sum = sorted.reduce((a, n2) => a + (n2.count || 0), 0);
           sorted.forEach((g2, j2) => {
             const t2 = sorted.length > 1 ? j2 / (sorted.length - 1) : 0;
             const shift = -0.1 + t2 * 0.4;
             outerData.push({
               name: g2.name,
-              y: g2.species,
+              y: g2.count,
               _id: g2.id,
               color: Highcharts.color(slice2.color).brighten(shift).get()
             });
           });
           if (sum < slice2.y) {
             outerData.push({
-              name: notAssignedLabel(get(sorted, "[0].rank", "")),
+              name: notAssignedLabel(get(slice2._kids, "[0].rank", "")),
               y: slice2.y - sum,
               color: gapColor,
               borderColor: gapColor,
@@ -86991,7 +86949,7 @@ html body {
         });
       }
       const clean = (rows) => rows.map(({ _kids, ...rest }) => rest);
-      const grandTotal = totalSpecies || innerData.reduce((a, s) => a + s.y, 0);
+      const grandTotal = total || innerData.reduce((a, s) => a + s.y, 0);
       const innerLabelStyle = {
         color: "contrast",
         textOutline: "1px contrast",
@@ -87005,12 +86963,12 @@ html body {
         style: innerLabelStyle
       } : {
         formatter: function() {
-          return this.y > 1 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
+          return this.y > 0 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
         }
       };
       const series = [
         {
-          name: "Species",
+          name: seriesName,
           data: clean(innerData),
           size: hasOuterData ? "60%" : "85%",
           dataLabels: innerDataLabels,
@@ -87019,13 +86977,13 @@ html body {
       ];
       if (hasOuterData) {
         series.push({
-          name: "Species",
+          name: seriesName,
           data: outerData,
           size: "85%",
           innerSize: "60%",
           dataLabels: {
             formatter: function() {
-              return this.y > 1 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
+              return this.y > 0 ? "<b>" + this.point.name + ":</b> " + this.y.toLocaleString("en-GB") : null;
             }
           },
           point: { events: taxonClickHandler }
@@ -87086,6 +87044,14 @@ html body {
       ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(HighchartsReact, { highcharts: Highcharts, options })
     ] });
   };
+  const groupBySource = (secondarySources) => Object.values(
+    Object.entries(secondarySources || {}).reduce((groups, [key2, src]) => {
+      const id = `${src.datasetKey}:${src.id}`;
+      groups[id] = groups[id] || { id, src, keys: [] };
+      groups[id].keys.push(key2);
+      return groups;
+    }, {})
+  );
   const SecondarySources = ({ info, datasetKey }) => {
     var _a2, _b2;
     const [datasets, setDatasets] = reactExports.useState({});
@@ -87113,20 +87079,20 @@ html body {
       }
       setDatasets(data);
     };
-    return ((_a2 = info == null ? void 0 : info.source) == null ? void 0 : _a2.secondarySources) ? Object.keys(((_b2 = info == null ? void 0 : info.source) == null ? void 0 : _b2.secondarySources) || {}).map((key2) => {
-      var _a3, _b3, _c, _d, _e2, _f, _g, _h, _i, _j, _k, _l, _m;
+    return ((_a2 = info == null ? void 0 : info.source) == null ? void 0 : _a2.secondarySources) ? groupBySource((_b2 = info == null ? void 0 : info.source) == null ? void 0 : _b2.secondarySources).map(({ id, src, keys: keys2 }) => {
+      var _a3;
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
-        startCase(key2),
+        keys2.map((key2) => startCase(key2)).join(", "),
         ":",
         " ",
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "a",
           {
-            href: `https://www.checklistbank.org/dataset/${(_c = (_b3 = (_a3 = info == null ? void 0 : info.source) == null ? void 0 : _a3.secondarySources) == null ? void 0 : _b3[key2]) == null ? void 0 : _c.datasetKey}/taxon/${encodeURIComponent((_f = (_e2 = (_d = info == null ? void 0 : info.source) == null ? void 0 : _d.secondarySources) == null ? void 0 : _e2[key2]) == null ? void 0 : _f.id)}`,
-            children: ((_j = datasets[(_i = (_h = (_g = info == null ? void 0 : info.source) == null ? void 0 : _g.secondarySources) == null ? void 0 : _h[key2]) == null ? void 0 : _i.datasetKey]) == null ? void 0 : _j.title) || ((_m = (_l = (_k = info == null ? void 0 : info.source) == null ? void 0 : _k.secondarySources) == null ? void 0 : _l[key2]) == null ? void 0 : _m.datasetKey)
+            href: `https://www.checklistbank.org/dataset/${src.datasetKey}/taxon/${encodeURIComponent(src.id)}`,
+            children: ((_a3 = datasets[src.datasetKey]) == null ? void 0 : _a3.title) || src.datasetKey
           }
         )
-      ] }, key2);
+      ] }, id);
     }) : null;
   };
   staticMethods.config({
@@ -88619,15 +88585,24 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
           (res) => this.setState({ rank: res.data.map((r2) => r2.name) })
         );
       });
+      // Accepted descendants by rank. Read from the taxon metrics, a single row
+      // lookup; only datasets without metrics (projects) fall back to a rank
+      // facet search, which costs elasticsearch a lot more.
       __publicField(this, "getIncludes", (taxonKey) => {
         const { datasetKey } = this.props;
-        client(
-          `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
-        ).then((res) => {
-          this.setState({
-            includesLoading: false,
-            includes: get(res, "data.facets.rank") || []
-          });
+        const base = `${config.dataApi}dataset/${datasetKey}`;
+        client(`${base}/taxon/${encodeURIComponent(taxonKey)}/metrics`).then(
+          (res) => Object.entries(get(res, "data.taxaByRankCount") || {}).map(
+            ([value, count]) => ({ value, count })
+          )
+        ).catch(
+          () => client(
+            `${base}/nameusage/search?TAXON_ID=${encodeURIComponent(
+              taxonKey
+            )}&facet=rank&facetLimit=500&status=accepted&status=provisionally%20accepted&limit=0`
+          ).then((res) => get(res, "data.facets.rank") || [])
+        ).then((includes2) => {
+          this.setState({ includesLoading: false, includes: includes2 });
         }).catch((err) => {
           this.setState({
             includesLoading: false,
@@ -88956,12 +88931,11 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
               {
                 taxon,
                 datasetKey,
-                rank,
                 dataset: catalogue,
                 showLevelSwitch: true
               }
             ) }),
-            !isSynonym && includes2.length > 1 && rank && taxon && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Statistics", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            !isSynonym && rank && taxon && includes2.some((t2) => t2.value !== get(taxon, "name.rank")) && /* @__PURE__ */ jsxRuntimeExports.jsx(PresentationItem$1, { md, label: "Statistics", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               IncludesTable,
               {
                 style: { marginTop: "-3px", marginLeft: "-3px" },
@@ -90044,29 +90018,21 @@ Please report this to https://github.com/markedjs/marked.`, e2) {
     setAuth(auth);
     const [taxon, setTaxon] = reactExports.useState(null);
     const [dataset, setDataset] = reactExports.useState(null);
-    const [rank, setRank] = reactExports.useState([]);
     reactExports.useEffect(() => {
       if (taxonId && datasetKey) getTaxon();
-      if (datasetKey) {
-        getDataset2();
-        getRank();
-      }
+      if (datasetKey) getDataset2();
     }, [taxonId, datasetKey]);
-    const getRank = () => client(`${config.dataApi}vocab/rank`).then(
-      (res) => setRank(res.data.map((r2) => r2.name))
-    );
     const getTaxon = () => client(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonId}`).then(
       (res) => setTaxon(res.data)
     );
     const getDataset2 = () => client(`${config.dataApi}dataset/${datasetKey}`).then(
       (res) => setDataset(res.data)
     );
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: !!taxon && !!dataset && rank.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(RouterContext.Provider, { value: buildRouter(routerProps), children: !!taxon && !!dataset ? /* @__PURE__ */ jsxRuntimeExports.jsx(
       TaxonBreakdown$1,
       {
         taxon,
         datasetKey,
-        rank,
         dataset,
         level,
         showLevelSwitch,
