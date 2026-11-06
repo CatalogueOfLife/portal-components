@@ -62,8 +62,9 @@ const getLinks = (dataset, s) => {
 const TypeMaterial = ({ dataset, data, nameID, style }) => {
   return data[nameID] ? (
     <div style={style}>
-      {data[nameID].map((s) => (
-        <BorderedListItem key={s.id}>
+      {/* type designations: the status for the name and the specimen, which can typify further names */}
+      {data[nameID].map(({ status, nameId, typeMaterial: s }) => (
+        <BorderedListItem key={`${s.id}-${nameId}`}>
           <XrGutter
             merged={s.merged}
             createdBy={s?.createdBy}
@@ -71,7 +72,7 @@ const TypeMaterial = ({ dataset, data, nameID, style }) => {
             verbatimSourceKey={s?.verbatimSourceKey}
             sourceDatasetKey={s?.sourceDatasetKey}
           >
-            <Tag color={getTypeColor(s?.status)}>{s?.status}</Tag>{" "}
+            <Tag color={getTypeColor(status)}>{status}</Tag>{" "}
             {getLinks(dataset, s)}{" "}
             {s?.citation && (
               <span
