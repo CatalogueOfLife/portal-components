@@ -301,17 +301,27 @@ class TaxonPage extends React.Component {
     );
   };
 
+  // Accepted descendants by rank. Read from the taxon metrics, a single row
+  // lookup; only datasets without metrics (projects) fall back to a rank
+  // facet search, which costs elasticsearch a lot more.
   getIncludes = (taxonKey) => {
     const { datasetKey } = this.props;
-
-    client(
-      `${config.dataApi}dataset/${datasetKey}/nameusage/search?TAXON_ID=${taxonKey}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
-    )
-      .then((res) => {
-        this.setState({
-          includesLoading: false,
-          includes: get(res, "data.facets.rank") || [],
-        });
+    const base = `${config.dataApi}dataset/${datasetKey}`;
+    client(`${base}/taxon/${encodeURIComponent(taxonKey)}/metrics`)
+      .then((res) =>
+        Object.entries(get(res, "data.taxaByRankCount") || {}).map(
+          ([value, count]) => ({ value, count })
+        )
+      )
+      .catch(() =>
+        client(
+          `${base}/nameusage/search?TAXON_ID=${encodeURIComponent(
+            taxonKey
+          )}&facet=rank&facetLimit=500&status=accepted&status=provisionally%20accepted&limit=0`
+        ).then((res) => get(res, "data.facets.rank") || [])
+      )
+      .then((includes) => {
+        this.setState({ includesLoading: false, includes });
       })
       .catch((err) => {
         this.setState({
@@ -673,13 +683,13 @@ class TaxonPage extends React.Component {
               <TaxonBreakdown
                 taxon={taxon}
                 datasetKey={datasetKey}
-                rank={rank}
                 dataset={catalogue}
                 showLevelSwitch
               />
             </PresentationItem>
           )}
-          {!isSynonym && includes.length > 1 && rank && taxon && (
+          {!isSynonym && rank && taxon &&
+            includes.some((t) => t.value !== get(taxon, "name.rank")) && (
             <PresentationItem md={md} label="Statistics">
               <IncludesTable
                 style={{ marginTop: "-3px", marginLeft: "-3px" }}

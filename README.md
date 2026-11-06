@@ -445,11 +445,11 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#taxon')).render(
 
 ### ColBrowser.TaxonBreakdown
 
-A Highcharts pie chart breaking the accepted children of a taxon down by rank, with click-to-drill into each child. Rendered inside the Taxon page but also exported standalone for use on dashboards or summary pages. Component-specific props:
+A Highcharts pie chart breaking the accepted children of a taxon down by rank, with click-to-drill into each child. The API decides what the slices count (species, or genera where genera outnumber species more than twofold) and which ranks form the rings, and adds a "Not assigned" slice for what sits in no child. Rendered inside the Taxon page but also exported standalone for use on dashboards or summary pages. Component-specific props:
 
 1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
-2. `taxonId` - (controlled) the taxon to break down. The chart loads the taxon, its rank vocabulary, and the dataset citation itself, so no preloading is needed.
-3. `level` - (Optional, `1` or `2`, default `1`) controls how deep the breakdown nests. `1` renders a single-ring donut (direct children of `taxonId`). `2` renders a two-ring donut adding grandchildren. The value is passed through as the `level` query parameter on the `/dataset/{key}/taxon/{id}/breakdown` API.
+2. `taxonId` - (controlled) the taxon to break down. The chart loads the taxon and the dataset citation itself, so no preloading is needed.
+3. `level` - (Optional, `1` or `2`, default `1`) the most rings to draw. `1` renders a single-ring donut (direct children of `taxonId`). `2` adds grandchildren as a second ring, unless the API decides that ring is not worth drawing (it would be the counted rank itself, or hold more than 1000 taxa). The value is passed through as the `level` query parameter on the `/dataset/{key}/taxon/{id}/breakdown` API, which returns a `TaxonBreakdown` object since ChecklistBank API 2026-11; older API versions are not supported.
 4. `showLevelSwitch` - (Optional, default `false`) when `true`, render an in-chart antd `Switch` that lets the user toggle between level 1 and 2 at runtime.
 5. `darkMode` - (Optional) when `true`, use the dark-mode outer-ring gap colour. Falls back to `prefers-color-scheme` when unset.
 

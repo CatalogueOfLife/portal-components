@@ -124,7 +124,7 @@ export interface BibTexProps extends ThemeProps {
 export interface TaxonBreakdownProps extends ThemeProps, NavigationProps {
   taxonId?: string;
   datasetKey?: string | number;
-  /** Breakdown depth. Defaults to 1. */
+  /** The most rings to draw, 1 or 2. Defaults to 1. */
   level?: number;
   showLevelSwitch?: boolean;
   /** HTTP Basic Auth credentials in `user:password` form. */

@@ -4,7 +4,7 @@ import client from "../api/client";
 import Highcharts from "highcharts";
 import "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
-import { get, keyBy } from "lodash-es";
+import { get, startCase } from "lodash-es";
 import { Spin, Row, Col, Switch } from "antd";
 import { useNavigateTo } from "../router";
 import { readSetting, writeSetting } from "../storage";
@@ -12,48 +12,32 @@ import { readSetting, writeSetting } from "../storage";
 const BREAKDOWN_LEVEL_KEY = "breakdown-level";
 
 const MAX_SLICES_PER_RING = 100;
-const canonicalRanks = [
-  "kingdom",
-  "phylum",
-  "class",
-  "order",
-  "family",
-  "genus",
-  "species",
-];
 
 const notAssignedLabel = (rk) => (rk ? `Not assigned ${rk}` : "Not assigned");
 
-const sortAndClip = (nodes) => {
-  if (!nodes || nodes.length === 0) return [];
-  const sorted = [...nodes].sort((a, b) => (b.species || 0) - (a.species || 0));
-  return sorted.length <= MAX_SLICES_PER_RING
-    ? sorted
-    : sorted.slice(0, MAX_SLICES_PER_RING);
-};
-
-// Append a "Not assigned <rank>" slice for the difference between a parent's
-// total species count and the sum of its visible children. Covers two cases:
-//   1. species that sit directly under the parent without an intermediate rank
-//   2. species under children that were clipped out by sortAndClip
-const padNotAssigned = (kids, parentSpecies) => {
-  const sorted = sortAndClip(kids || []);
-  const sum = sorted.reduce((a, n) => a + (n.species || 0), 0);
-  if (sum >= parentSpecies) return sorted;
-  return [
-    ...sorted,
-    {
-      name: notAssignedLabel(get(sorted, "[0].rank", "")),
-      species: parentSpecies - sum,
-      children: [],
-    },
-  ];
+// The breakdown endpoint returns the nodes of a ring plus at most one
+// remainder node without an id for the parent's counted descendants placed in
+// no node of the ring. Sort the named nodes, clip them to MAX_SLICES_PER_RING
+// and fold whatever the clipped nodes and the remainder held into a single
+// "Not assigned <rank>" slice, so the ring always adds up to the parent.
+const ringNodes = (nodes, parentCount) => {
+  const named = (nodes || [])
+    .filter((n) => n.id)
+    .sort((a, b) => (b.count || 0) - (a.count || 0))
+    .slice(0, MAX_SLICES_PER_RING);
+  const sum = named.reduce((a, n) => a + (n.count || 0), 0);
+  const rank = get(nodes, "[0].rank", "");
+  return sum < parentCount
+    ? [
+        ...named,
+        { name: notAssignedLabel(rank), count: parentCount - sum, children: [] },
+      ]
+    : named;
 };
 
 const TaxonBreakdown = ({
   taxon,
   datasetKey,
-  rank = [],
   dataset,
   level = 1,
   showLevelSwitch = false,
@@ -85,65 +69,33 @@ const TaxonBreakdown = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taxon, datasetKey, activeLevel]);
 
-  const getOverView = async () => {
-    const res = await client(
-      `${
-        config.dataApi
-      }dataset/${datasetKey}/nameusage/search?TAXON_ID=${encodeURIComponent(
-        taxon.id
-      )}&facet=rank&status=accepted&status=provisionally%20accepted&limit=0`
-    );
-    return keyBy(get(res, "data.facets.rank", []), "value");
-  };
-
+  // The backend decides what to count (species, or genera where they
+  // outnumber species), which ranks form the rings and the total; the switch
+  // only caps the rings at one or two.
   const getData = async () => {
     setLoading(true);
     try {
-      const counts = await getOverView();
-
-      // confirm the focal taxon has at least one child rank with content
-      const ranks = canonicalRanks;
-      let taxonRankIdx = ranks.indexOf(get(taxon, "name.rank"));
-      if (taxonRankIdx === -1) {
-        let rankIndex = rank.indexOf(get(taxon, "name.rank")) + 1;
-        while (taxonRankIdx === -1 && rankIndex < rank.length - 1) {
-          const canonicalRankIndex = ranks.indexOf(rank[rankIndex]);
-          if (canonicalRankIndex > -1) {
-            taxonRankIdx = canonicalRankIndex - 1;
-          }
-          rankIndex++;
-        }
-      }
-      let childRank;
-      let childRankIndex = taxonRankIdx + 1;
-      while (!childRank && childRankIndex < ranks.length) {
-        const nextRank = get(ranks, `[${childRankIndex}]`);
-        if (nextRank && get(counts, `${nextRank}.count`, 0) > 0) {
-          childRank = nextRank;
-        } else {
-          childRankIndex++;
-        }
-      }
-      if (!childRank) {
+      const res = await client(
+        `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(
+          taxon.id
+        )}/breakdown?level=${activeLevel}`
+      );
+      const bd = res.data || {};
+      setLoading(false);
+      if (!bd.countRank || !bd.children || bd.children.length === 0) {
         setInvalid(true);
-        setLoading(false);
         return;
       }
-
-      const res = await client(
-        `${config.dataApi}dataset/${datasetKey}/taxon/${taxon.id}/breakdown?level=${activeLevel}`
-      );
-      const children = res.data || [];
-      const totalSpecies = get(counts, "species.count", 0);
-
-      setLoading(false);
-      buildChart(children, totalSpecies);
+      setInvalid(false);
+      buildChart(bd);
     } catch (err) {
       setLoading(false);
+      setInvalid(true);
     }
   };
 
-  const buildChart = (children, totalSpecies) => {
+  const buildChart = ({ children, total, countRank }) => {
+    const seriesName = startCase(countRank === "genus" ? "genera" : countRank);
     const DOI = dataset.doi ? "https://doi.org/" + dataset.doi : null;
     const baseColors = Highcharts.getOptions().colors;
     // Colour used for outer-ring "gap" slices: match the page background so
@@ -164,12 +116,12 @@ const TaxonBreakdown = ({
       },
     };
 
-    // Inner pie: direct children of the focal taxon. Pad with a single
-    // "Not assigned <rank>" slice if focal-taxon species don't fully sum up.
-    const innerNodes = padNotAssigned(children, totalSpecies);
+    // Inner pie: direct children of the focal taxon, with a single
+    // "Not assigned <rank>" slice for what they do not hold.
+    const innerNodes = ringNodes(children, total);
     const innerData = innerNodes.map((n, i) => ({
       name: n.name,
-      y: n.species,
+      y: n.count,
       _id: n.id,
       color: baseColors[i % baseColors.length],
       _kids: n.children,
@@ -177,22 +129,24 @@ const TaxonBreakdown = ({
 
     // Outer ring: children of each inner slice (grandchildren of focal),
     // coloured as a monochrome brightness shift of the parent so each
-    // family of arcs reads as one hue group. Only rendered when level >= 2
-    // AND the response actually carries that depth. With level=1 we draw
-    // a single-ring pie even if the API returned nested children.
+    // family of arcs reads as one hue group. Only rendered when the response
+    // carries that depth, which it does for level=2 unless the backend
+    // decided a second ring is not worth drawing.
     const outerData = [];
-    const hasOuterData =
-      activeLevel >= 2 && innerData.some((s) => s._kids && s._kids.length > 0);
+    const hasOuterData = innerData.some((s) => s._kids && s._kids.length > 0);
     if (hasOuterData) {
       innerData.forEach((slice) => {
-        const sorted = sortAndClip(slice._kids || []);
-        const sum = sorted.reduce((a, n) => a + (n.species || 0), 0);
+        const sorted = (slice._kids || [])
+          .filter((n) => n.id)
+          .sort((a, b) => (b.count || 0) - (a.count || 0))
+          .slice(0, MAX_SLICES_PER_RING);
+        const sum = sorted.reduce((a, n) => a + (n.count || 0), 0);
         sorted.forEach((g, j) => {
           const t = sorted.length > 1 ? j / (sorted.length - 1) : 0;
           const shift = -0.1 + t * 0.4;
           outerData.push({
             name: g.name,
-            y: g.species,
+            y: g.count,
             _id: g.id,
             color: Highcharts.color(slice.color).brighten(shift).get(),
           });
@@ -203,7 +157,7 @@ const TaxonBreakdown = ({
         // (rather than a labelled "Not assigned" wedge).
         if (sum < slice.y) {
           outerData.push({
-            name: notAssignedLabel(get(sorted, "[0].rank", "")),
+            name: notAssignedLabel(get(slice._kids, "[0].rank", "")),
             y: slice.y - sum,
             color: gapColor,
             borderColor: gapColor,
@@ -215,7 +169,7 @@ const TaxonBreakdown = ({
     }
 
     const clean = (rows) => rows.map(({ _kids, ...rest }) => rest);
-    const grandTotal = totalSpecies || innerData.reduce((a, s) => a + s.y, 0);
+    const grandTotal = total || innerData.reduce((a, s) => a + s.y, 0);
 
     const innerLabelStyle = {
       color: "contrast",
@@ -237,7 +191,7 @@ const TaxonBreakdown = ({
         }
       : {
           formatter: function () {
-            return this.y > 1
+            return this.y > 0
               ? "<b>" +
                   this.point.name +
                   ":</b> " +
@@ -248,7 +202,7 @@ const TaxonBreakdown = ({
 
     const series = [
       {
-        name: "Species",
+        name: seriesName,
         data: clean(innerData),
         size: hasOuterData ? "60%" : "85%",
         dataLabels: innerDataLabels,
@@ -257,13 +211,13 @@ const TaxonBreakdown = ({
     ];
     if (hasOuterData) {
       series.push({
-        name: "Species",
+        name: seriesName,
         data: outerData,
         size: "85%",
         innerSize: "60%",
         dataLabels: {
           formatter: function () {
-            return this.y > 1
+            return this.y > 0
               ? "<b>" +
                   this.point.name +
                   ":</b> " +

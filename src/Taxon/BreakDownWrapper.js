@@ -15,25 +15,17 @@ export const BreakDownWrapper = ({
   ...routerProps
 }) => {
   // Private candidate releases (preview/dev) require Basic auth on every call,
-  // including the breakdown's taxon/dataset/rank fetches via `client`.
+  // including the breakdown's taxon/dataset fetches via `client`.
   setAuth(auth);
   const [taxon, setTaxon] = useState(null);
   const [dataset, setDataset] = useState(null);
-  const [rank, setRank] = useState([]);
 
   useEffect(() => {
     if (taxonId && datasetKey) getTaxon();
-    if (datasetKey) {
-      getDataset();
-      getRank();
-    }
+    if (datasetKey) getDataset();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taxonId, datasetKey]);
 
-  const getRank = () =>
-    client(`${config.dataApi}vocab/rank`).then((res) =>
-      setRank(res.data.map((r) => r.name))
-    );
   const getTaxon = () =>
     client(`${config.dataApi}dataset/${datasetKey}/taxon/${taxonId}`).then(
       (res) => setTaxon(res.data)
@@ -45,11 +37,10 @@ export const BreakDownWrapper = ({
 
   return (
     <RouterContext.Provider value={buildRouter(routerProps)}>
-      {!!taxon && !!dataset && rank.length > 0 ? (
+      {!!taxon && !!dataset ? (
         <TaxonBreakdown
           taxon={taxon}
           datasetKey={datasetKey}
-          rank={rank}
           dataset={dataset}
           level={level}
           showLevelSwitch={showLevelSwitch}
