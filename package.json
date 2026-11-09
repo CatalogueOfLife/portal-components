@@ -1,6 +1,6 @@
 {
   "name": "col-browser",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "Catalogue of Life browse and search React components",
   "main": "umd/col-browser.js",
   "module": "es/index.js",
@@ -56,7 +56,8 @@
   "files": [
     "es",
     "umd",
-    "types"
+    "types",
+    "basemap"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -68,12 +69,13 @@
     "build": "vite build",
     "build:umd": "vite build --config vite.config.umd.js && node scripts/minify.js",
     "build:demo": "vite build --config vite.config.demo.js",
-    "build:all": "npm run build && npm run build:umd",
+    "build:all": "npm run build:basemap && npm run build && npm run build:umd",
     "prepublishOnly": "npm run typecheck && npm run build:all",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.types.json"
+    "typecheck": "tsc -p tsconfig.types.json",
+    "build:basemap": "node scripts/build-basemap-style.mjs"
   },
   "dependencies": {
     "antd": "^6.4.3",

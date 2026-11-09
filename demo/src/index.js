@@ -4,6 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 // MapLibre 6 can't find its worker inside a bundle, so the host hands Vite's
 // worker URL to it once, before any map is created.
 import { setWorkerUrl } from "maplibre-gl";
+import basemapTemplate from "../../basemap/style.template.json";
 import maplibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -48,11 +49,16 @@ const environments = {
   development: "https://api.dev.checklistbank.org/",
 };
 
-// Keyless CARTO styles, so the demo needs no credentials. Swapping between
-// them exercises the live `basemapStyle` prop — note the map-bearing routes
-// below deliberately do NOT include the basemap in their `key`, so a switch
-// has to be handled by the component rebuilding its own map.
+// Keyless styles, so the demo needs no credentials. Swapping between them
+// exercises the live `basemapStyle` prop — note the map-bearing routes below
+// deliberately do NOT include the basemap in their `key`, so a switch has to
+// be handled by the component rebuilding its own map.
+// "col" is the bundled default style with its fonts and sprite served by the
+// dev server from basemap/, so it works before a release reaches jsDelivr.
 const basemaps = {
+  col: JSON.parse(
+    JSON.stringify(basemapTemplate).replaceAll("{{assets}}", `${window.location.origin}/basemap`)
+  ),
   positron: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
   darkmatter: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
   voyager: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
@@ -82,7 +88,7 @@ class Demo extends Component {
       env: "production",
       datasetKey: "3LXR",
       datasetKeyInput: "3LXR",
-      basemap: "positron",
+      basemap: "col",
     };
     this._onHash = () => this.setState({ route: parseRoute() || "/" });
     window.addEventListener("hashchange", this._onHash);
@@ -173,9 +179,10 @@ class Demo extends Component {
               <option value="development">Development</option>
             </select>
             <select value={basemap} onChange={this.switchBasemap} style={inputStyle}>
-              <option value="positron">Positron</option>
-              <option value="darkmatter">Dark Matter</option>
-              <option value="voyager">Voyager</option>
+              <option value="col">COL Positron (default, local assets)</option>
+              <option value="positron">CARTO Positron</option>
+              <option value="darkmatter">CARTO Dark Matter</option>
+              <option value="voyager">CARTO Voyager</option>
             </select>
           </form>
         </nav>

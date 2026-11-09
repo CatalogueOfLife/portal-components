@@ -16248,7 +16248,7 @@ ${heightStyle}
       lineHeight: getLineHeight(size)
     }));
   }
-  const version = "6.4.3";
+  const version$1 = "6.4.3";
   const defaultPresetColors = {
     blue: "#1677FF",
     purple: "#722ED1",
@@ -17773,7 +17773,7 @@ ${heightStyle}
       prefix: (ctxCssVar == null ? void 0 : ctxCssVar.prefix) ?? getPrefixCls(),
       key: (ctxCssVar == null ? void 0 : ctxCssVar.key) ?? "css-var-root"
     };
-    const salt = `${version}-${hashed || ""}`;
+    const salt = `${version$1}-${hashed || ""}`;
     const mergedTheme = theme || defaultTheme;
     const [token2, hashId, realToken] = useCacheToken(mergedTheme, [seedToken, rootDesignToken], {
       salt,
@@ -67811,6 +67811,8 @@ html body {
   };
   const client = makeClient(true);
   const publicClient = makeClient(false);
+  const version = "2.9.0";
+  const DEFAULT_BASEMAP_STYLE = `https://cdn.jsdelivr.net/npm/col-browser@${version}/basemap/style.json`;
   const config = {
     dataApi: "https://api.checklistbank.org/",
     // Human-facing ChecklistBank portal. Used for outbound links to
@@ -67824,13 +67826,14 @@ html body {
     gbifPortal: "https://www.gbif.org",
     // MapLibre basemap for the distribution map. Anything MapLibre accepts as
     // `style` works: a style URL (bake your provider's API key into it) or an
-    // inline style object. The default is CARTO's public Positron CDN, which
-    // needs no key.
-    basemapStyle: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
-    // CARTO Basemaps API key. Empty means unauthenticated (fine today, but
-    // CARTO is moving to enforce keys). Set it and every cartocdn.com request
-    // the map makes — style, vector tiles, glyphs, sprites — carries `?key=`.
-    // Not needed when `basemapStyle` points at a non-CARTO provider.
+    // inline style object. The default is the bundled COL Positron style:
+    // CARTO's open Positron design on GBIF's keyless OpenMapTiles vector tiles,
+    // with fonts and icons served from this package's own release on jsDelivr.
+    basemapStyle: DEFAULT_BASEMAP_STYLE,
+    // CARTO Basemaps API key. Only needed if you point `basemapStyle` at
+    // CARTO's hosted basemaps: every cartocdn.com request the map makes —
+    // style, vector tiles, glyphs, sprites — then carries `?key=`. The default
+    // basemap makes no CARTO requests.
     cartoKey: ""
   };
   const SLASH_TERMINATED = /* @__PURE__ */ new Set(["dataApi"]);

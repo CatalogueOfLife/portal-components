@@ -1,6 +1,8 @@
 import { cartoTransformRequest, resolveBasemapStyle } from 'src/Taxon/DistributionsMap/basemap'
 import { configure } from 'src/'
-import config from 'src/config'
+import config, { DEFAULT_BASEMAP_STYLE } from 'src/config'
+import { readFileSync } from 'node:fs'
+import { version } from '../package.json'
 
 const POSITRON = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json'
 
@@ -10,8 +12,11 @@ describe('resolveBasemapStyle', () => {
   beforeEach(() => { original = { ...config } })
   afterEach(() => { configure(original) })
 
-  it('defaults to the keyless CARTO Positron style', () => {
-    expect(resolveBasemapStyle()).toBe(POSITRON)
+  it('defaults to the bundled style for this release on jsDelivr', () => {
+    expect(resolveBasemapStyle()).toBe(DEFAULT_BASEMAP_STYLE)
+    expect(DEFAULT_BASEMAP_STYLE).toBe(
+      `https://cdn.jsdelivr.net/npm/col-browser@${version}/basemap/style.json`
+    )
   })
 
   it('follows the global configure() default', () => {
@@ -103,5 +108,39 @@ describe('cartoTransformRequest', () => {
     const t = cartoTransformRequest('abc123')
 
     expect(t('not-a-url').url).toBe('not-a-url')
+  })
+})
+
+describe('bundled basemap style', () => {
+  const template = JSON.parse(readFileSync('basemap/style.template.json', 'utf8'))
+  const raw = JSON.stringify(template)
+
+  it('makes no CARTO requests', () => {
+    expect(raw).not.toMatch(/cartocdn\.com/)
+  })
+
+  it('draws GBIF vector tiles', () => {
+    expect(template.sources.openmaptiles.tiles).toEqual([
+      'https://tile.gbif.org/3857/omt/{z}/{x}/{y}.pbf',
+    ])
+  })
+
+  it('has no continent labels', () => {
+    expect(template.layers.map((l) => l.id)).not.toContain('place_continent')
+  })
+
+  it('ships glyphs for every font it uses', () => {
+    const fonts = new Set(
+      template.layers.flatMap((l) => l.layout?.['text-font'] ?? [])
+    )
+    expect(fonts.size).toBeGreaterThan(0)
+    for (const f of fonts) {
+      expect(() => readFileSync(`basemap/glyphs/${f}/0-255.pbf`)).not.toThrow()
+    }
+  })
+
+  it('takes glyphs and sprite from the package assets', () => {
+    expect(template.glyphs).toBe('{{assets}}/glyphs/{fontstack}/{range}.pbf')
+    expect(template.sprite).toBe('{{assets}}/sprite')
   })
 })

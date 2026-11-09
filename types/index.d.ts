@@ -158,15 +158,17 @@ export interface ColBrowserConfig {
   gbifPortal: string;
   /**
    * MapLibre basemap for the distribution map: a style URL (with your
-   * provider's API key baked in) or an inline style object. Defaults to
-   * CARTO's keyless Positron CDN. Stored verbatim — not URL-normalised.
+   * provider's API key baked in) or an inline style object. Defaults to the
+   * bundled COL Positron style on GBIF's keyless vector tiles
+   * (`https://cdn.jsdelivr.net/npm/col-browser@<version>/basemap/style.json`).
+   * Stored verbatim — not URL-normalised.
    */
   basemapStyle: string | Record<string, unknown>;
   /**
    * CARTO Basemaps API key. When set, every cartocdn.com request the
    * distribution map makes — style, vector tiles, glyphs, sprites — carries
-   * `?key=`. Defaults to "" (unauthenticated). Not needed if `basemapStyle`
-   * points at a non-CARTO provider.
+   * `?key=`. Defaults to "". Only needed if `basemapStyle` points at CARTO's
+   * hosted basemaps; the default basemap makes no CARTO requests.
    */
   cartoKey: string;
 }

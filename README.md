@@ -207,16 +207,18 @@ configure({ dataApi: 'https://api.dev.checklistbank.org/' });
 | `clbPortal` | `https://www.checklistbank.org` | outbound links to dataset / publisher pages |
 | `gbifApi` | `https://api.gbif.org` | occurrence counts and distribution-map tiles |
 | `gbifPortal` | `https://www.gbif.org` | the GBIF occurrence-search attribution link |
-| `basemapStyle` | `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json` | the MapLibre basemap under the distribution map |
-| `cartoKey` | `""` | CARTO Basemaps API key, appended to every CARTO request the map makes |
+| `basemapStyle` | `https://cdn.jsdelivr.net/npm/col-browser@<version>/basemap/style.json` | the MapLibre basemap under the distribution map |
+| `cartoKey` | `""` | CARTO Basemaps API key, only for a CARTO-hosted `basemapStyle` |
 
 `configure()` merges into the shared config, so keys you leave out keep their current value, and trailing slashes are normalised — pass the URL in either form. Components read the base URL as they render and as they fire each request, so call `configure()` before mounting; to switch endpoints at runtime, remount afterwards (the demo app does this with a React `key`).
 
 #### Basemap
 
+The default basemap is **COL Positron**: CARTO's open-source Positron design ([CartoDB/basemap-styles](https://github.com/CartoDB/basemap-styles), BSD-3) drawn on GBIF's keyless OpenMapTiles vector tiles from `tile.gbif.org`, without continent labels. Its style, Montserrat label glyphs and icon sprite ship in this package's `basemap/` folder and load from jsDelivr, pinned to the installed version, so the default map needs no API key and makes no CARTO requests. Sources and licences are in [`basemap/LICENSE.md`](basemap/LICENSE.md). Non-React clients can use the same basemap as a plain MapLibre style URL: `https://cdn.jsdelivr.net/npm/col-browser@<version>/basemap/style.json`.
+
 `basemapStyle` is the one key that is not a base URL, so it is stored verbatim — path, query string and API key survive untouched. It takes anything MapLibre accepts as `style`: a style URL with your provider's key baked in, or an inline style object.
 
-`cartoKey` authenticates CARTO's own basemaps. CARTO's published styles are static files whose `glyphs`, `sprite` and vector-source URLs are absolute and key-free, so putting `?key=` in the style URL authenticates that one request and nothing else — while CARTO meters *tile* requests. Setting `cartoKey` instead installs a MapLibre `transformRequest` that appends the key to every `cartocdn.com` request the map makes, and leaves other hosts (GBIF occurrence tiles, ChecklistBank) alone:
+`cartoKey` is only for CARTO's hosted basemaps. CARTO's published styles are static files whose `glyphs`, `sprite` and vector-source URLs are absolute and key-free, so putting `?key=` in the style URL authenticates that one request and nothing else — while CARTO meters *tile* requests. Setting `cartoKey` instead installs a MapLibre `transformRequest` that appends the key to every `cartocdn.com` request the map makes, and leaves other hosts (GBIF occurrence tiles, ChecklistBank) alone:
 
 ```js
 configure({ cartoKey: "your-carto-key" });
@@ -235,7 +237,7 @@ configure({ basemapStyle: 'https://api.maptiler.com/maps/basic-v2/style.json?key
 configure({ basemapStyle: { version: 8, sources: { … }, layers: [ … ] } });
 ```
 
-The default is CARTO's public Positron CDN, which needs no key — check CARTO's terms before relying on it for production traffic. Map attribution comes from the style document, so switching providers updates the credit in the map's attribution control automatically.
+Map attribution comes from the style document, so switching providers updates the credit in the map's attribution control automatically.
 
 `Taxon` and `TaxonDistribution` also take a `basemapStyle` **prop**, which overrides this default for a single map. Unlike the config keys, the prop is live: changing it rebuilds the map on the new style in place, no remount needed. If you pass an inline style *object* as the prop, hold it in a stable reference (a module constant or `useMemo`) rather than an object literal.
 
@@ -379,7 +381,7 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#search')).render(
 2. `taxonKey` - (controlled) the taxon to render. Read by the host from its URL and passed in.
 3. `pageTitleTemplate` - (Optional) a template for formatting the page title. A string containing the variable `__taxon__` that will be replaced with the taxon name.
 4. `identifierLabel` - (Optional) label for the identifier listed on top of the taxon view. Defaults to `"Identifier"`.
-5. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL map for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. The basemap defaults to the keyless CARTO Positron vector style; override it with the `basemapStyle` prop below or globally via [`configure()`](#api-endpoint-optional). **Requires the consumer to load MapLibre GL JS 6.4.1+ and its CSS** (peer dependency).
+5. `showDistributionMap` - (Optional) When `true`, render an interactive MapLibre GL map for distributions whose areas have a known geometry, with a toggle to switch to the plain text list view. The basemap defaults to the bundled, keyless COL Positron vector style on GBIF tiles; override it with the `basemapStyle` prop below or globally via [`configure()`](#api-endpoint-optional). **Requires the consumer to load MapLibre GL JS 6.4.1+ and its CSS** (peer dependency).
 6. `gbifChecklistKey` - (Optional) When set, the distribution map adds a GBIF occurrence overlay (iNaturalist.poly hex bins) for the focal taxon, using the GBIF v2 multitaxonomy tile endpoint. The value is passed as the `checklistKey` query parameter; the focal taxon's id is passed as `taxonKey`. **The consumer is responsible for only setting this when the configured `datasetKey` actually uses identifiers that GBIF recognises under the given checklist.** For datasets keyed by COL identifiers, use the Catalogue of Life backbone UUID:
 
     ```
