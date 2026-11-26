@@ -43,6 +43,10 @@
       "types": "./types/taxonDistribution.d.ts",
       "import": "./es/taxonDistribution.js"
     },
+    "./map": {
+      "types": "./types/map.d.ts",
+      "import": "./es/map.js"
+    },
     "./config": {
       "types": "./types/config.d.ts",
       "import": "./es/config.js"

@@ -22,6 +22,7 @@ npm run build:all  # build both ES and UMD bundles (runs on npm publish)
 - **`src/config.js`** — base URLs (`dataApi` defaults to https://api.checklistbank.org/), plus the public `configure()` override exported from the barrel and from `col-browser/config`
 - **`src/api/`** — axios wrappers around the ChecklistBank API
 - **`src/url/index.js`** — the `withRouting` adapter; the only place react-router-dom (v7) is used.
+- **`src/entries/map.js`** (`col-browser/map`) — the distribution map from `src/Taxon/DistributionsMap/` without the Distributions block, and its helpers (area shapes with the land / EEZ variant, establishment means colours, GeoJSON bounds, GBIF layer). The ChecklistBank UI renders its taxon distribution map with it and uses the helpers for its names index and area maps, so changes there reach both apps. Keep it free of `withTheme` and of anything only the portal needs.
 
 Each component lives in its own directory (`src/Tree/`, `src/Search/`, etc.), a mix of class and function/hook components. As of v2 the components are **fully controlled**: they take their identifier and navigation as props and never read or write the URL themselves (the old shared `history` singleton was removed). Host URL wiring is opt-in via the `withRouting` adapter.
 

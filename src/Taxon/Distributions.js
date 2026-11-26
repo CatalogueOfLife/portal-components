@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Radio } from "antd";
 import { get, keyBy, startCase } from "lodash-es";
 import ReferencePopover from "./ReferencePopover";
 import config from "../config";
-// publicClient (no CoL auth) for the third-party GBIF occurrence API below.
-import client, { publicClient } from "../api/client";
+import client from "../api/client";
 import MergedDataBadge from "../components/MergedDataBadge";
 import PresentationItem from "../components/PresentationItem";
 import DistributionsMap from "./DistributionsMap";
 import { isWebglSupported } from "./DistributionsMap/webgl";
-
-const isMappable = (r) =>
-  r?.area?.gazetteer !== "text" && !!r?.area?.globalId;
+import { isMappable } from "./DistributionsMap/descendantFetch";
+import { useGbifCount } from "./DistributionsMap/gbif";
 
 const ListView = ({ datasetKey, data }) => {
   const [iso3Map, setIso3Map] = useState({});
@@ -75,7 +73,8 @@ const DistributionsTable = ({
   label,
   md,
 }) => {
-  const mappable = data.filter(isMappable);
+  // Kept stable across renders: the map refits its view when the records change.
+  const mappable = useMemo(() => data.filter(isMappable), [data]);
   const baseUnmappable = data.length - mappable.length;
   const hasGbifConfigured = !!gbifChecklistKey;
   const hasAnyRecords = data.length > 0;
@@ -84,40 +83,9 @@ const DistributionsTable = ({
   );
   const [fetchFailures, setFetchFailures] = useState(0);
 
-  // null = unknown (loading or unconfigured), number = occurrence count.
-  const [gbifCount, setGbifCount] = useState(null);
-  useEffect(() => {
-    if (!gbifChecklistKey || !focalTaxon?.id) {
-      setGbifCount(null);
-      return undefined;
-    }
-    setGbifCount(null);
-    let cancelled = false;
-    publicClient
-      .get(`${config.gbifApi}/v1/occurrence/search`, {
-        params: {
-          checklistKey: gbifChecklistKey,
-          taxonKey: focalTaxon.id,
-          hasCoordinate: true,
-          hasGeospatialIssue: false,
-          occurrenceStatus: 'PRESENT',
-          limit: 0,
-        },
-      })
-      .then(
-        (res) => {
-          if (!cancelled) setGbifCount(res?.data?.count ?? 0);
-        },
-        () => {
-          // On API failure, treat as "unknown" — leave the toggle enabled
-          // rather than greying it out for an outage.
-          if (!cancelled) setGbifCount(null);
-        }
-      );
-    return () => {
-      cancelled = true;
-    };
-  }, [gbifChecklistKey, focalTaxon?.id]);
+  // null = unknown (loading, unconfigured or GBIF failed), number = count.
+  // On a failure the toggle stays enabled rather than greyed out for an outage.
+  const gbifCount = useGbifCount(gbifChecklistKey, focalTaxon?.id);
 
   // true  → GBIF has occurrences (or unknown — still loading or API failed)
   // false → GBIF returned count = 0

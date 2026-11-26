@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./treeControl.css";
-import client from "../../api/client";
 import config from "../../config";
 import { fetchDescendants } from "./descendantFetch";
 import { getDescendantRanks, INFRASPECIFIC_RANKS } from "./descendantRanks";
@@ -11,6 +10,16 @@ import { cartoTransformRequest, resolveBasemapStyle } from "./basemap";
 import IncludedTaxaLegend from "./IncludedTaxaLegend";
 import { readSetting, writeSetting } from "../../storage";
 import { isWebglSupported } from "./webgl";
+import { computeBounds, flattenFeatures } from "./geo";
+import {
+  ESTABLISHMENT_MEANS,
+  MISSING_COLOR,
+  meansColor,
+  meansKey,
+} from "./establishmentMeans";
+import { defaultVariant, fetchShape, hasEezVariant } from "./areaShapes";
+import AreaVariantSwitch from "./AreaVariantSwitch";
+import { GbifLegendEntry, gbifSearchUrl, gbifTileUrl } from "./gbif";
 
 const POPUP_FIELDS = [
   "establishmentMeans",
@@ -21,41 +30,7 @@ const POPUP_FIELDS = [
   "lifeStage",
 ];
 
-export const ESTABLISHMENT_MEANS = [
-  { key: "nativeendemic", label: "Native endemic", color: "#0F8554" },
-  { key: "native", label: "Native", color: "#87C55F" },
-  { key: "nativereintroduced", label: "Native reintroduced", color: "#C9DB74" },
-  { key: "introduced", label: "Introduced", color: "#FE88B1" },
-  {
-    key: "introducedassistedcolonisation",
-    label: "Introduced assisted colonisation",
-    color: "#DCB0F2",
-  },
-  { key: "vagrant", label: "Vagrant", color: "#F6CF71" },
-  { key: "uncertain", label: "Uncertain", color: "#8BE0A4" },
-];
-
-const ESTABLISHMENT_COLORS = Object.fromEntries(
-  ESTABLISHMENT_MEANS.map((m) => [m.key, m.color])
-);
-export const MISSING_COLOR = "#66C5CC";
-
-const normalizeKey = (v) =>
-  String(v || "")
-    .toLowerCase()
-    .replace(/[^a-z]/g, "");
-
-const resolveKey = (record) => {
-  const raw = record?.establishmentMeans;
-  if (raw == null || raw === "") return null;
-  const k = normalizeKey(raw);
-  return ESTABLISHMENT_COLORS[k] ? k : "uncertain";
-};
-
-const colorFor = (record) => {
-  const k = resolveKey(record);
-  return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
-};
+const colorFor = (record) => meansColor(record?.establishmentMeans);
 
 // localStorage-backed GBIF overlay preference: a user who turns the overlay off
 // keeps it off across page loads and sessions. Applies to all maps, including
@@ -67,14 +42,6 @@ const readStoredGbifVisible = (defaultValue) =>
 const writeStoredGbifVisible = (visible) =>
   writeSetting(GBIF_VISIBLE_KEY, visible);
 
-// GBIF v2 occurrence-density tile path (multitaxonomy). Concatenated with
-// config.gbifApi at request time.
-const GBIF_TILE_PATH =
-  "/v2/map/occurrence/density/{z}/{x}/{y}@1x.png" +
-  "?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64" +
-  "&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT" +
-  "&checklistKey={checklistKey}&taxonKey={taxonKey}";
-
 // Layer IDs
 const FOCAL_SOURCE = "col-focal-distributions";
 const FOCAL_FILL = "col-focal-fill";
@@ -84,22 +51,6 @@ const GBIF_LAYER = "col-gbif-occurrences";
 const descendantSourceId = (id) => `col-descendant-${id}`;
 const descendantFillId = (id) => `col-descendant-fill-${id}`;
 const descendantLineId = (id) => `col-descendant-line-${id}`;
-
-const cache = new Map();
-
-const fetchShape = (gazetteer, id) => {
-  const key = `${gazetteer}:${id}`;
-  if (cache.has(key)) return cache.get(key);
-  const url = `${config.dataApi}vocab/area/${key}`;
-  const p = client(url, {
-    headers: { Accept: "application/geo+json" },
-  }).then(
-    (r) => r.data,
-    () => null
-  );
-  cache.set(key, p);
-  return p;
-};
 
 const escapeHtml = (s) =>
   String(s)
@@ -147,62 +98,17 @@ const epithet = (scientificName) => {
   return tokens[tokens.length - 1];
 };
 
-// Hex swatch + label for the GBIF density layer.
-const GbifLegendEntry = () => (
-  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-      <polygon
-        points="3,1 9,1 11,6 9,11 3,11 1,6"
-        fill="#de1e6e"
-        stroke="rgba(0,0,0,0.25)"
-        strokeWidth="0.75"
-      />
-    </svg>
-    <span>GBIF occurrences</span>
-  </div>
-);
-
-// Compute bounds [[minLng,minLat],[maxLng,maxLat]] of a FeatureCollection.
-const computeBounds = (features) => {
-  let minLng = Infinity,
-    minLat = Infinity,
-    maxLng = -Infinity,
-    maxLat = -Infinity;
-  const visit = (coords) => {
-    if (typeof coords[0] === "number") {
-      const [lng, lat] = coords;
-      if (lng < minLng) minLng = lng;
-      if (lng > maxLng) maxLng = lng;
-      if (lat < minLat) minLat = lat;
-      if (lat > maxLat) maxLat = lat;
-    } else {
-      for (let i = 0; i < coords.length; i++) visit(coords[i]);
-    }
-  };
-  for (let i = 0; i < features.length; i++) {
-    const g = features[i]?.geometry;
-    if (g?.coordinates) visit(g.coordinates);
-  }
-  if (minLng === Infinity) return null;
-  return [
-    [minLng, minLat],
-    [maxLng, maxLat],
-  ];
-};
-
-const flattenFeatures = (geojson) => {
-  if (!geojson) return [];
-  if (geojson.type === "FeatureCollection") return geojson.features || [];
-  return [geojson];
-};
-
 const DistributionsMap = ({
   records,
   onUnmappable,
   datasetKey,
   focalTaxon,
   rankOrder,
+  // GBIF checklist the occurrence layer uses; without one there is no layer.
   gbifChecklistKey,
+  // The taxon key in that checklist. Defaults to the focal taxon's id, which
+  // fits datasets keyed by the same ids as the checklist, e.g. COL releases.
+  gbifTaxonKey,
   // true | null → show GBIF layer; false → GBIF API returned 0 occurrences,
   // grey out the toggle and skip loading tiles. Defaults to true so the
   // component works without the count check.
@@ -212,6 +118,10 @@ const DistributionsMap = ({
   basemapStyle,
   // Called from the no-WebGL notice to switch the host to its list view.
   onShowList,
+  showListLabel = "Show distributions as a list",
+  // `fetchJson(url)` loads the descendants and their distributions. Defaults
+  // to the library's client; a host can pass its own to send its credentials.
+  fetchJson,
 }) => {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -223,6 +133,9 @@ const DistributionsMap = ({
   const focalAttachedRef = useRef(false);
   const gbifAttachedRef = useRef(false);
   const descendantLayersRef = useRef(new Set()); // taxonIds currently attached
+  // The records the view was last fitted to: switching between land and EEZ
+  // shapes redraws them without moving the view.
+  const fittedRecordsRef = useRef(null);
 
   const [webglFailed, setWebglFailed] = useState(false);
   const [readyMap, setReadyMap] = useState(null);
@@ -232,7 +145,22 @@ const DistributionsMap = ({
     taxa: [],
   });
   const [focalVisible, setFocalVisible] = useState(true);
-  const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
+  const [fullscreen, setFullscreen] = useState(false);
+  const gbifKey = gbifTaxonKey ?? focalTaxon?.id;
+  const gbifEnabled = !!gbifChecklistKey && !!gbifKey;
+  const isGbifOnly = gbifEnabled && (!records || records.length === 0);
+  // iso countries as land or with their EEZ. Marine taxa open on the EEZ.
+  const [variantChoice, setVariantChoice] = useState(null);
+  useEffect(() => setVariantChoice(null), [focalTaxon?.id]);
+  const variant = variantChoice ?? defaultVariant(focalTaxon?.environments);
+  const hasEez = useMemo(
+    () =>
+      (records || []).some((r) => hasEezVariant(r.area)) ||
+      descendantState.taxa.some((t) =>
+        t.mappable.some((r) => hasEezVariant(r.area))
+      ),
+    [records, descendantState]
+  );
   // Respect the saved GBIF preference on every map. On a GBIF-only map, an
   // off preference collapses to a small activate bar instead of an empty map.
   const [gbifVisible, setGbifVisible] = useState(() =>
@@ -259,7 +187,7 @@ const DistributionsMap = ({
     if (!records?.length) return [];
     const seen = new Set();
     records.forEach((r) => {
-      const k = resolveKey(r);
+      const k = meansKey(r?.establishmentMeans);
       if (k != null) seen.add(k);
     });
     return ESTABLISHMENT_MEANS.filter((m) => seen.has(m.key));
@@ -386,12 +314,28 @@ const DistributionsMap = ({
       focalAttachedRef.current = false;
       gbifAttachedRef.current = false;
       descendantLayersRef.current = new Set();
+      fittedRecordsRef.current = null;
       // The layer effects below key off this. Clearing it on teardown — and
       // setting it again only from the new map's "load" — means they can never
       // run against a map that is gone or whose style has not loaded yet.
       setReadyMap(null);
     };
   }, [styleKey]);
+
+  // Fill the screen in fullscreen. MapLibre's control expands the wrapper; the
+  // canvas would otherwise keep its fixed height.
+  useEffect(() => {
+    const onChange = () => {
+      const el = document.fullscreenElement || document.webkitFullscreenElement;
+      setFullscreen(!!el && el === wrapperRef.current);
+    };
+    document.addEventListener("fullscreenchange", onChange);
+    document.addEventListener("webkitfullscreenchange", onChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", onChange);
+      document.removeEventListener("webkitfullscreenchange", onChange);
+    };
+  }, []);
 
   // Focal taxon polygons.
   useEffect(() => {
@@ -402,7 +346,7 @@ const DistributionsMap = ({
 
     Promise.allSettled(
       records.map((r) =>
-        fetchShape(r.area.gazetteer, r.area.id).then((geojson) => ({
+        fetchShape(r.area, variant).then((geojson) => ({
           record: r,
           geojson,
         }))
@@ -473,7 +417,8 @@ const DistributionsMap = ({
         focalAttachedRef.current = true;
       }
 
-      if (features.length > 0) {
+      if (features.length > 0 && fittedRecordsRef.current !== records) {
+        fittedRecordsRef.current = records;
         const bounds = computeBounds(features);
         if (bounds) map.fitBounds(bounds, { padding: 20, animate: false });
       }
@@ -485,7 +430,7 @@ const DistributionsMap = ({
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readyMap, records]);
+  }, [readyMap, records, variant]);
 
   // Focal click handler — defined as stable closure that reads ref.
   const onFocalClick = (e) => {
@@ -530,24 +475,14 @@ const DistributionsMap = ({
       gbifAttachedRef.current = false;
     };
     removeGbif();
-    if (!gbifChecklistKey || !focalTaxon?.id) return;
+    if (!gbifEnabled) return;
     // GBIF API said this taxon has 0 occurrences — skip the tile request.
     if (gbifAvailable === false) return;
-    const url = (config.gbifApi + GBIF_TILE_PATH)
-      .replace("{checklistKey}", encodeURIComponent(gbifChecklistKey))
-      .replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
-    // Link to GBIF's multitaxonomy occurrence search for the focal taxon on
-    // the production portal (config.gbifPortal); same checklistKey we pass to
-    // the tile API.
-    const searchUrl =
-      config.gbifPortal +
-      "/occurrence/search?checklist_key=" +
-      encodeURIComponent(gbifChecklistKey) +
-      "&taxon_key=" +
-      encodeURIComponent(focalTaxon.id);
+    // Link to GBIF's multitaxonomy occurrence search for the same taxon.
+    const searchUrl = gbifSearchUrl(gbifChecklistKey, gbifKey);
     map.addSource(GBIF_SOURCE, {
       type: "raster",
-      tiles: [url],
+      tiles: [gbifTileUrl(gbifChecklistKey, gbifKey)],
       tileSize: 256,
       attribution:
         '<a href="' +
@@ -569,7 +504,7 @@ const DistributionsMap = ({
     // runs cleanups in reverse declaration order on unmount) and throw
     // because MapLibre nulls map.style during remove().
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readyMap, gbifChecklistKey, focalTaxon?.id, gbifAvailable]);
+  }, [readyMap, gbifChecklistKey, gbifKey, gbifAvailable]);
 
   // Sync GBIF visibility.
   useEffect(() => {
@@ -608,7 +543,7 @@ const DistributionsMap = ({
       descendantTaxonMapRef.current.set(t.id, t);
       Promise.allSettled(
         t.mappable.map((rec) =>
-          fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => ({
+          fetchShape(rec.area, variant).then((geojson) => ({
             record: rec,
             geojson,
           }))
@@ -671,7 +606,7 @@ const DistributionsMap = ({
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readyMap, descendantState, descendantColors]);
+  }, [readyMap, descendantState, descendantColors, variant]);
 
   const onDescendantClick = (e) => {
     const map = mapRef.current;
@@ -713,7 +648,7 @@ const DistributionsMap = ({
     if (ranks.length === 0) return;
     fetchTriggeredRef.current = true;
     setDescendantState({ status: "loading", taxa: [] });
-    fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
+    fetchDescendants({ datasetKey, focalTaxon, rankOrder, fetchJson }).then(
       ({ taxa, descendantsFailed }) => {
         if (descendantsFailed) {
           setDescendantState({ status: "error", taxa: [] });
@@ -794,7 +729,7 @@ const DistributionsMap = ({
           <>
             {" "}
             <a onClick={onShowList} style={{ cursor: "pointer" }}>
-              Show distributions as a list
+              {showListLabel}
             </a>
           </>
         )}
@@ -846,13 +781,36 @@ const DistributionsMap = ({
     <div
       className="col-distributions-map"
       ref={wrapperRef}
-      style={{ position: "relative" }}
+      style={
+        fullscreen
+          ? { position: "relative", width: "100%", height: "100%", background: "#fff" }
+          : { position: "relative" }
+      }
     >
       <div
         ref={containerRef}
         className="col-distributions-map__canvas"
-        style={{ height: 360, width: "100%", background: "#f5f5f5" }}
+        style={{
+          height: fullscreen ? "100%" : 360,
+          width: "100%",
+          background: "#f5f5f5",
+        }}
       />
+
+      {hasEez && (
+        <AreaVariantSwitch
+          value={variant}
+          onChange={setVariantChoice}
+          style={{
+            position: "absolute",
+            // Left of the fullscreen control, top right.
+            top: 10,
+            right: 50,
+            zIndex: 2,
+            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+          }}
+        />
+      )}
 
       <LayerControl
         open={controlOpen}
@@ -862,7 +820,7 @@ const DistributionsMap = ({
         focalReady={focalReady}
         focalVisible={focalVisible}
         onToggleFocal={() => setFocalVisible((v) => !v)}
-        gbifEnabled={!!gbifChecklistKey}
+        gbifEnabled={gbifEnabled}
         gbifVisible={gbifVisible}
         gbifAvailable={gbifAvailable}
         onToggleGbif={handleToggleGbif}
@@ -881,7 +839,7 @@ const DistributionsMap = ({
 
       {!showDescendantLegend &&
         (presentMeans.length > 0 ||
-          (gbifChecklistKey && gbifAvailable !== false && gbifVisible)) && (
+          (gbifEnabled && gbifAvailable !== false && gbifVisible)) && (
           <div
             style={{
               position: "absolute",
@@ -914,7 +872,7 @@ const DistributionsMap = ({
                 <span>{m.label}</span>
               </div>
             ))}
-            {gbifChecklistKey && gbifAvailable !== false && gbifVisible && (
+            {gbifEnabled && gbifAvailable !== false && gbifVisible && (
               <GbifLegendEntry />
             )}
           </div>
@@ -923,7 +881,7 @@ const DistributionsMap = ({
         <IncludedTaxaLegend
           visibleGroups={descendantLegend.visibleGroups}
           unmappableGroups={descendantLegend.unmappableGroups}
-          showGbif={!!gbifChecklistKey && gbifAvailable !== false && gbifVisible}
+          showGbif={gbifEnabled && gbifAvailable !== false && gbifVisible}
         />
       )}
     </div>

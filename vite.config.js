@@ -48,6 +48,7 @@ export default defineConfig({
         bibtex: resolve(__dirname, 'src/entries/bibtex.js'),
         taxonBreakdown: resolve(__dirname, 'src/entries/taxonBreakdown.js'),
         taxonDistribution: resolve(__dirname, 'src/entries/taxonDistribution.js'),
+        map: resolve(__dirname, 'src/entries/map.js'),
         routing: resolve(__dirname, 'src/entries/routing.js'),
         config: resolve(__dirname, 'src/entries/config.js'),
       },

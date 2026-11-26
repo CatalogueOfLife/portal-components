@@ -4,7 +4,8 @@ import { getDescendantRanks } from "./descendantRanks";
 
 const POOL_SIZE = 16;
 
-const isMappable = (r) =>
+// Distributions with an area that has a shape: not free text.
+export const isMappable = (r) =>
   r?.area?.gazetteer !== "text" && !!r?.area?.globalId;
 
 const runPool = async (items, worker, size) => {
@@ -21,7 +22,10 @@ const runPool = async (items, worker, size) => {
   return results;
 };
 
-const searchDescendants = async (datasetKey, focalId, ranks) => {
+// The default transport: the library's client, with Basic auth when set.
+export const clientJson = (url) => client(url).then((res) => res?.data);
+
+const searchDescendants = async (fetchJson, datasetKey, focalId, ranks) => {
   if (ranks.length === 0) return [];
   const params = new URLSearchParams();
   params.append("TAXON_ID", focalId);
@@ -31,8 +35,7 @@ const searchDescendants = async (datasetKey, focalId, ranks) => {
   );
   params.append("limit", "1000");
   const url = `${config.dataApi}dataset/${datasetKey}/nameusage/search?${params}`;
-  const res = await client(url);
-  const list = res?.data?.result || [];
+  const list = (await fetchJson(url))?.result || [];
   return list
     .filter((u) => u?.usage?.id)
     .map((u) => ({
@@ -44,11 +47,11 @@ const searchDescendants = async (datasetKey, focalId, ranks) => {
     }));
 };
 
-const fetchDistributions = async (datasetKey, taxonId) => {
+const fetchDistributions = async (fetchJson, datasetKey, taxonId) => {
   const url = `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}/distribution`;
   try {
-    const res = await client(url);
-    return Array.isArray(res?.data) ? res.data : [];
+    const data = await fetchJson(url);
+    return Array.isArray(data) ? data : [];
   } catch {
     return [];
   }
@@ -58,13 +61,20 @@ const fetchDistributions = async (datasetKey, taxonId) => {
  * Fetch all infraspecific descendants of `focalTaxon` and their distributions.
  * Returns { taxa, descendantsFailed } where each taxon carries `mappable` (the
  * mappable subset of its distributions) and `distributions` (the full list).
+ * `fetchJson(url)` resolves to the parsed response, so a host can send its own
+ * credentials.
  */
-export const fetchDescendants = async ({ datasetKey, focalTaxon, rankOrder }) => {
+export const fetchDescendants = async ({
+  datasetKey,
+  focalTaxon,
+  rankOrder,
+  fetchJson = clientJson,
+}) => {
   const ranks = getDescendantRanks(focalTaxon?.name?.rank, rankOrder);
   let descendantsFailed = false;
   let list = [];
   try {
-    list = await searchDescendants(datasetKey, focalTaxon.id, ranks);
+    list = await searchDescendants(fetchJson, datasetKey, focalTaxon.id, ranks);
   } catch {
     descendantsFailed = true;
     return { taxa: [], descendantsFailed };
@@ -72,7 +82,7 @@ export const fetchDescendants = async ({ datasetKey, focalTaxon, rankOrder }) =>
 
   const distributions = await runPool(
     list,
-    (t) => fetchDistributions(datasetKey, t.id),
+    (t) => fetchDistributions(fetchJson, datasetKey, t.id),
     POOL_SIZE
   );
 

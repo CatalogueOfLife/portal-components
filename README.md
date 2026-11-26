@@ -511,7 +511,7 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#breakdown')).render(
 
 ### ColBrowser.TaxonDistribution
 
-The Taxon page's distribution block — a MapLibre GL vector map of the taxon's distribution polygons, with an optional GBIF occurrence overlay and a Map/List toggle — exposed as a standalone component. Useful when you want to surface a taxon's distribution on a non-COL page without rendering the whole Taxon view. Component-specific props:
+The Taxon page's distribution block — a MapLibre GL vector map of the taxon's distribution polygons, with an optional GBIF occurrence overlay and a Map/List toggle — exposed as a standalone component. When the areas include iso countries, a switch on the map shows them as land only or as land with their exclusive economic zone (EEZ), as GBIF uses them; maps of marine taxa (`environments` including `marine`) open on the EEZ. Useful when you want to surface a taxon's distribution on a non-COL page without rendering the whole Taxon view. Component-specific props:
 
 1. `datasetKey` - the dataset key from the [Catalogue of Life ChecklistBank](https://www.checklistbank.org/).
 2. `taxonId` - (controlled) the taxon to render. The component loads the taxon, its distributions, and the rank vocabulary itself.
@@ -558,6 +558,34 @@ ColBrowser.ReactDOM.createRoot(document.querySelector('#distribution')).render(
 </script>
 ```
 
+
+
+### col-browser/map
+
+The distribution map without the surrounding block, plus the helpers behind it, for hosts that render their own distribution section. The ChecklistBank UI uses it for its taxon pages, its names index map and its area pages. It is ES module only and unthemed, so the host's antd theme applies. The host loads MapLibre GL JS 6 and its CSS, and sets MapLibre's worker URL.
+
+```js
+import { configure } from "col-browser/config";
+import { DistributionsMap, GBIF_COL_CHECKLIST, isMappable, useGbifCount } from "col-browser/map";
+
+configure({ dataApi: "https://api.dev.checklistbank.org/" });
+
+const records = useMemo(() => distributions.filter(isMappable), [distributions]);
+const count = useGbifCount(GBIF_COL_CHECKLIST, colTaxonId);
+
+<DistributionsMap
+  records={records}            // keep the array stable: a new one refits the view
+  datasetKey={datasetKey}
+  focalTaxon={taxon}           // its environments pick land or EEZ shapes
+  rankOrder={ranks}            // rank names from vocab/rank, for infraspecific layers
+  gbifChecklistKey={GBIF_COL_CHECKLIST}
+  gbifTaxonKey={colTaxonId}    // defaults to taxon.id
+  gbifAvailable={count === null || count > 0}
+  fetchJson={(url) => myClient(url).then((r) => r.data)}  // to send your own credentials
+/>
+```
+
+The helpers: `fetchShape(area, variant)` and `shapeUrl` for area shapes, `hasEezVariant`, `defaultVariant`, `AreaVariantSwitch`, the establishment means colours (`ESTABLISHMENT_MEANS`, `meansColor`), GeoJSON bounds (`computeBounds`, `computeWrappedBounds`, `flattenFeatures`), the GBIF layer (`gbifTileUrl`, `gbifSearchUrl`, `fetchGbifCount`, `GbifLegendEntry`) and `isWebglSupported`. See `types/map.d.ts`.
 
 ### ColBrowser.SourceDatasetList
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GbifLegendEntry } from "./gbif";
 
 const wrapStyle = {
   position: "absolute",
@@ -78,20 +79,6 @@ const footerNameStyle = {
 const totalCount = (groups) =>
   groups.reduce((sum, g) => sum + g.taxa.length, 0);
 
-const GbifHexEntry = () => (
-  <div style={rowStyle}>
-    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-      <polygon
-        points="3,1 9,1 11,6 9,11 3,11 1,6"
-        fill="#de1e6e"
-        stroke="rgba(0,0,0,0.25)"
-        strokeWidth="0.75"
-      />
-    </svg>
-    <span>GBIF occurrences</span>
-  </div>
-);
-
 const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups, showGbif }) => {
   const [showUnmappable, setShowUnmappable] = useState(false);
   const visibleCount = totalCount(visibleGroups);
@@ -115,7 +102,7 @@ const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups, showGbif }) => {
             ))}
           </div>
         ))}
-        {showGbif && <GbifHexEntry />}
+        {showGbif && <GbifLegendEntry style={rowStyle} />}
       </div>
       {unmappableCount > 0 && (
         <>
