@@ -6,7 +6,7 @@ const OPTIONS = [
   {
     label: (
       <Tooltip title="Countries with their exclusive economic zone, as GBIF uses them">
-        Land + EEZ
+        EEZ
       </Tooltip>
     ),
     value: EEZ,
