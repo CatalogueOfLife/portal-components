@@ -20,7 +20,7 @@ import {
   withRouting,
   configure,
 } from "../../src";
-import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap";
+import { ESTABLISHMENT_MEANS, MISSING_COLOR } from "../../src/Taxon/DistributionsMap/establishmentMeans";
 
 // All hosted on GitHub Pages with hash routing, so the URL adapter speaks
 // hash mode. Each top-level component gets its own wrapper that knows the
