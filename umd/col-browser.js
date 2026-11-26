@@ -2219,7 +2219,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       clipboardData: function(event) {
         return "clipboardData" in event ? event.clipboardData : window.clipboardData;
       }
-    }), SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface), CompositionEventInterface = assign2({}, EventInterface, { data: 0 }), SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface), normalizeKey2 = {
+    }), SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface), CompositionEventInterface = assign2({}, EventInterface, { data: 0 }), SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface), normalizeKey = {
       Esc: "Escape",
       Spacebar: " ",
       Left: "ArrowLeft",
@@ -2285,7 +2285,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     var KeyboardEventInterface = assign2({}, UIEventInterface, {
       key: function(nativeEvent) {
         if (nativeEvent.key) {
-          var key2 = normalizeKey2[nativeEvent.key] || nativeEvent.key;
+          var key2 = normalizeKey[nativeEvent.key] || nativeEvent.key;
           if ("Unidentified" !== key2) return key2;
         }
         return "keypress" === nativeEvent.type ? (nativeEvent = getEventCharCode(nativeEvent), 13 === nativeEvent ? "Enter" : String.fromCharCode(nativeEvent)) : "keydown" === nativeEvent.type || "keyup" === nativeEvent.type ? translateToKey[nativeEvent.keyCode] || "Unidentified" : "";
@@ -19350,7 +19350,7 @@ ${mergedStyleStr}
       }
     };
   };
-  const prepareComponentToken$k = (token2) => {
+  const prepareComponentToken$l = (token2) => {
     const paddingHorizontal = 12;
     return {
       withDescriptionIconSize: token2.fontSizeHeading3,
@@ -19358,7 +19358,7 @@ ${mergedStyleStr}
       withDescriptionPadding: `${token2.paddingMD}px ${token2.paddingContentHorizontalLG}px`
     };
   };
-  const useStyle$s = genStyleHooks("Alert", (token2) => [genBaseStyle$6(token2), genTypeStyle(token2), genActionStyle(token2)], prepareComponentToken$k);
+  const useStyle$t = genStyleHooks("Alert", (token2) => [genBaseStyle$6(token2), genTypeStyle(token2), genActionStyle(token2)], prepareComponentToken$l);
   const IconNode = (props) => {
     const {
       icon,
@@ -19447,7 +19447,7 @@ ${mergedStyleStr}
       errorIcon
     } = useComponentConfig("alert");
     const prefixCls = getPrefixCls("alert", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$s(prefixCls);
+    const [hashId, cssVarCls] = useStyle$t(prefixCls);
     const {
       onClose: closableOnClose,
       afterClose: closableAfterClose
@@ -24086,7 +24086,7 @@ html body {
     };
   };
   const DEFAULT_COLLAPSED_STACK_VISIBLE_COUNT = 3;
-  const prepareComponentToken$j = (token2) => ({
+  const prepareComponentToken$k = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + CONTAINER_MAX_OFFSET + 50,
     width: 384,
     progressBg: `linear-gradient(90deg, ${token2.colorPrimaryBorderHover}, ${token2.colorPrimary})`,
@@ -24220,7 +24220,7 @@ html body {
       }
     };
   };
-  genSubStyleComponent(["Notification", "PurePanel"], (token2) => genPurePanelStyle(prepareNotificationToken(token2)), prepareComponentToken$j);
+  genSubStyleComponent(["Notification", "PurePanel"], (token2) => genPurePanelStyle(prepareNotificationToken(token2)), prepareComponentToken$k);
   const sharedGenerateStyle = (token2, config2) => {
     const itemStyle = config2.itemStyle ?? genNotificationStyle;
     return [genNotificationListStyle(token2, config2), itemStyle(token2), genNotificationPlacementStyle(token2)];
@@ -24230,7 +24230,7 @@ html body {
     return sharedGenerateStyle(notificationToken, {
       listWidthKey: "width"
     });
-  }, prepareComponentToken$j);
+  }, prepareComponentToken$k);
   const prepareMessageToken = (token2) => {
     const messagePaddingVertical = token2.calc(token2.controlHeightLG).sub(token2.calc(token2.fontSize).mul(token2.lineHeight)).div(2).equal();
     const messagePaddingHorizontal = token2.paddingSM;
@@ -24241,7 +24241,7 @@ html body {
       notificationPaddingHorizontal: messagePaddingHorizontal
     });
   };
-  const prepareComponentToken$i = (token2) => ({
+  const prepareComponentToken$j = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + CONTAINER_MAX_OFFSET + 10,
     contentBg: token2.colorBgElevated,
     contentPadding: `${(token2.controlHeightLG - token2.fontSize * token2.lineHeight) / 2}px ${token2.paddingSM}px`
@@ -24342,17 +24342,17 @@ html body {
       }
     };
   };
-  const PurePanelStyle = genSubStyleComponent(["Message", "PurePanel"], (token2) => generateMessagePurePanelStyle(prepareMessageToken(token2)), prepareComponentToken$i);
+  const PurePanelStyle = genSubStyleComponent(["Message", "PurePanel"], (token2) => generateMessagePurePanelStyle(prepareMessageToken(token2)), prepareComponentToken$j);
   const generateMessageStyle = (token2) => ({
     [token2.componentCls]: genMessageItemStyle(token2)
   });
-  const useStyle$r = genStyleHooks("Message", (token2) => {
+  const useStyle$s = genStyleHooks("Message", (token2) => {
     const messageToken = prepareMessageToken(token2);
     return [sharedGenerateStyle(messageToken, {
       stackVisibleCount: 1,
       itemStyle: generateMessageStyle
     }), generateMessageStackStyle(messageToken)];
-  }, prepareComponentToken$i);
+  }, prepareComponentToken$j);
   const TypeIcon = {
     info: /* @__PURE__ */ reactExports.createElement(RefIcon$t, null),
     success: /* @__PURE__ */ reactExports.createElement(RefIcon$x, null),
@@ -24383,7 +24383,7 @@ html body {
     const prefixCls = staticPrefixCls || getPrefixCls("message");
     const noticePrefixCls = `${prefixCls}-notice`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$s(prefixCls, rootCls);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, messageClassNames], [contextStyles, styles2], {
       props
     });
@@ -24446,7 +24446,7 @@ html body {
     prefixCls
   }) => {
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$s(prefixCls, rootCls);
     return /* @__PURE__ */ reactExports.createElement(NotificationProvider, {
       classNames: {
         list: clsx(hashId, cssVarCls, rootCls)
@@ -24725,7 +24725,7 @@ html body {
       }
     };
   };
-  const useStyle$q = genComponentStyleHook("Wave", genWaveStyle);
+  const useStyle$r = genComponentStyleHook("Wave", genWaveStyle);
   const TARGET_CLS = `${defaultPrefixCls}-wave-target`;
   const isValidWaveColor = (color) => {
     if (!color) {
@@ -24919,7 +24919,7 @@ html body {
     } = reactExports.useContext(ConfigContext);
     const containerRef = reactExports.useRef(null);
     const prefixCls = getPrefixCls("wave");
-    const hashId = useStyle$q(prefixCls);
+    const hashId = useStyle$r(prefixCls);
     const showWave = useWave(containerRef, clsx(prefixCls, hashId), component, colorSource);
     React.useEffect(() => {
       const node2 = containerRef.current;
@@ -24983,7 +24983,7 @@ html body {
       }
     };
   };
-  const useStyle$p = genStyleHooks(["Space", "Compact"], genSpaceCompactStyle, () => ({}), {
+  const useStyle$q = genStyleHooks(["Space", "Compact"], genSpaceCompactStyle, () => ({}), {
     // Space component don't apply extra font style
     // https://github.com/ant-design/ant-design/issues/40315
     resetStyle: false
@@ -25050,7 +25050,7 @@ html body {
     const [mergedOrientation, mergedVertical] = useOrientation(orientation, vertical, direction);
     const mergedSize = useSize((ctx) => size ?? ctx);
     const prefixCls = getPrefixCls("space-compact", customizePrefixCls);
-    const [hashId] = useStyle$p(prefixCls);
+    const [hashId] = useStyle$q(prefixCls);
     const clx = clsx(prefixCls, hashId, {
       [`${prefixCls}-rtl`]: directionConfig === "rtl",
       [`${prefixCls}-block`]: block,
@@ -26117,7 +26117,7 @@ html body {
     });
     return buttonToken;
   };
-  const prepareComponentToken$h = (token2) => {
+  const prepareComponentToken$i = (token2) => {
     const contentFontSize = token2.contentFontSize ?? token2.fontSize;
     const contentFontSizeSM = token2.contentFontSizeSM ?? token2.fontSize;
     const contentFontSizeLG = token2.contentFontSizeLG ?? token2.fontSizeLG;
@@ -26635,7 +26635,7 @@ html body {
       }
     };
   };
-  const useStyle$o = genStyleHooks("Button", (token2) => {
+  const useStyle$p = genStyleHooks("Button", (token2) => {
     const buttonToken = prepareToken$4(token2);
     return [
       // Shared
@@ -26651,7 +26651,7 @@ html body {
       // Button Group
       genGroupStyle$1(buttonToken)
     ];
-  }, prepareComponentToken$h, {
+  }, prepareComponentToken$i, {
     unitless: {
       fontWeight: true,
       contentLineHeight: true,
@@ -26839,7 +26839,7 @@ html body {
       genCompactItemVerticalStyle(buttonToken),
       genButtonCompactStyle(buttonToken)
     ];
-  }, prepareComponentToken$h);
+  }, prepareComponentToken$i);
   function getLoadingConfig(loading) {
     if (isPlainObject$1(loading)) {
       let delay = loading == null ? void 0 : loading.delay;
@@ -26939,7 +26939,7 @@ html body {
     const mergedColorText = isDanger ? "dangerous" : mergedColor;
     const mergedInsertSpace = autoInsertSpace ?? contextAutoInsertSpace ?? true;
     const prefixCls = getPrefixCls("btn", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$o(prefixCls);
+    const [hashId, cssVarCls] = useStyle$p(prefixCls);
     const disabled = reactExports.useContext(DisabledContext);
     const mergedDisabled = customDisabled ?? disabled;
     const groupSize = reactExports.useContext(GroupSizeContext);
@@ -31373,7 +31373,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$g = (token2) => {
+  const prepareComponentToken$h = (token2) => {
     const {
       colorFillContent,
       colorFill
@@ -31391,7 +31391,7 @@ html body {
       paragraphLiHeight: token2.controlHeight / 2
     };
   };
-  const useStyle$n = genStyleHooks("Skeleton", (token2) => {
+  const useStyle$o = genStyleHooks("Skeleton", (token2) => {
     const {
       componentCls,
       calc
@@ -31411,7 +31411,7 @@ html body {
       skeletonLoadingMotionDuration: "1.4s"
     });
     return genBaseStyle$5(skeletonToken);
-  }, prepareComponentToken$g, {
+  }, prepareComponentToken$h, {
     deprecatedTokens: [["color", "gradientFromColor"], ["colorGradientEnd", "gradientToColor"]]
   });
   const SkeletonAvatar = (props) => {
@@ -31431,7 +31431,7 @@ html body {
       getPrefixCls
     } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$n(prefixCls);
+    const [hashId, cssVarCls] = useStyle$o(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active
@@ -31468,7 +31468,7 @@ html body {
       getPrefixCls
     } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$n(prefixCls);
+    const [hashId, cssVarCls] = useStyle$o(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active,
@@ -31504,7 +31504,7 @@ html body {
       getPrefixCls
     } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$n(prefixCls);
+    const [hashId, cssVarCls] = useStyle$o(prefixCls);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active
     }, hashId, classNames == null ? void 0 : classNames.root, className, rootClassName, cssVarCls);
@@ -31553,7 +31553,7 @@ html body {
       getPrefixCls
     } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$n(prefixCls);
+    const [hashId, cssVarCls] = useStyle$o(prefixCls);
     const mergedSize = useSize((ctx) => customSize ?? ctx);
     const cls = clsx(prefixCls, `${prefixCls}-element`, {
       [`${prefixCls}-active`]: active,
@@ -31686,7 +31686,7 @@ html body {
       styles: contextStyles
     } = useComponentConfig("skeleton");
     const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$n(prefixCls);
+    const [hashId, cssVarCls] = useStyle$o(prefixCls);
     const mergedProps = {
       ...props,
       avatar,
@@ -32321,7 +32321,7 @@ html body {
     });
     return modalToken;
   };
-  const prepareComponentToken$f = (token2) => ({
+  const prepareComponentToken$g = (token2) => ({
     footerBg: "transparent",
     headerBg: "transparent",
     titleLineHeight: token2.lineHeightHeading5,
@@ -32343,10 +32343,10 @@ html body {
     confirmBtnsMarginTop: token2.wireframe ? token2.marginLG : token2.marginSM,
     mask: true
   });
-  const useStyle$m = genStyleHooks("Modal", (token2) => {
+  const useStyle$n = genStyleHooks("Modal", (token2) => {
     const modalToken = prepareToken$3(token2);
     return [genModalStyle(modalToken), genRTLStyle(modalToken), genModalMaskStyle(modalToken), initZoomMotion(modalToken, "zoom"), genResponsiveWidthStyle(modalToken)];
-  }, prepareComponentToken$f, {
+  }, prepareComponentToken$g, {
     unitless: {
       titleLineHeight: true
     }
@@ -32441,7 +32441,7 @@ html body {
       onClose == null ? void 0 : onClose();
     };
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$m(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls, rootCls);
     const wrapClassNameExtended = clsx(wrapClassName, {
       [`${prefixCls}-centered`]: centered ?? contextCentered,
       [`${prefixCls}-wrap-rtl`]: direction === "rtl"
@@ -32655,7 +32655,7 @@ html body {
   const Confirm = genSubStyleComponent(["Modal", "confirm"], (token2) => {
     const modalToken = prepareToken$3(token2);
     return genModalConfirmStyle(modalToken);
-  }, prepareComponentToken$f, {
+  }, prepareComponentToken$g, {
     // confirm is weak than modal since no conflict here
     order: -1e3
   });
@@ -37546,7 +37546,7 @@ html body {
       }
     };
   };
-  const useStyle$l = genStyleHooks("Empty", (token2) => {
+  const useStyle$m = genStyleHooks("Empty", (token2) => {
     const {
       componentCls,
       controlHeightLG,
@@ -37586,7 +37586,7 @@ html body {
       image: contextImage
     } = useComponentConfig("empty");
     const prefixCls = getPrefixCls("empty", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$l(prefixCls);
+    const [hashId, cssVarCls] = useStyle$m(prefixCls);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props
     });
@@ -38389,7 +38389,7 @@ html body {
       ]
     };
   };
-  const prepareComponentToken$e = (token2) => {
+  const prepareComponentToken$f = (token2) => {
     const {
       fontSize,
       lineHeight,
@@ -38573,7 +38573,7 @@ html body {
       selectHeight: token2.controlHeight
     });
     return [genSelectStyle(selectToken), genSelectInputStyle(selectToken)];
-  }, prepareComponentToken$e, {
+  }, prepareComponentToken$f, {
     unitless: {
       optionLineHeight: true,
       optionSelectedFontWeight: true
@@ -39945,7 +39945,7 @@ html body {
       }
     ];
   };
-  const prepareComponentToken$d = (token2) => ({
+  const prepareComponentToken$e = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + 70,
     maxWidth: 250,
     ...getArrowOffsetToken({
@@ -39956,7 +39956,7 @@ html body {
       borderRadiusOuter: Math.min(token2.borderRadiusOuter, 4)
     }))
   });
-  const useStyle$k = (prefixCls, rootCls, injectStyle = true) => {
+  const useStyle$l = (prefixCls, rootCls, injectStyle = true) => {
     const useStyle2 = genStyleHooks("Tooltip", (token2) => {
       const {
         borderRadius,
@@ -39972,7 +39972,7 @@ html body {
         tooltipBg: colorBgSpotlight
       });
       return [genTooltipStyle(TooltipToken), initZoomMotion(token2, "zoom-big-fast")];
-    }, prepareComponentToken$d, {
+    }, prepareComponentToken$e, {
       resetStyle: false,
       // Popover use Tooltip as internal component. We do not need to handle this.
       injectStyle
@@ -40029,7 +40029,7 @@ html body {
     const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
     const rootPrefixCls = getPrefixCls();
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$l(prefixCls, rootCls);
     const colorInfo = parseColor(rootPrefixCls, prefixCls, color);
     const arrowContentStyle = colorInfo.arrowStyle;
     const innerStyles = reactExports.useMemo(() => {
@@ -40177,7 +40177,7 @@ html body {
     const childProps = child.props;
     const childCls = !childProps.className || typeof childProps.className === "string" ? clsx(childProps.className, openClassName || `${prefixCls}-open`) : childProps.className;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$k(prefixCls, rootCls, !injectFromPopover);
+    const [hashId, cssVarCls] = useStyle$l(prefixCls, rootCls, !injectFromPopover);
     const colorInfo = parseColor(rootPrefixCls, prefixCls, color);
     const arrowContentStyle = colorInfo.arrowStyle;
     const themeCls = clsx(rootCls, hashId, cssVarCls);
@@ -40352,7 +40352,7 @@ html body {
       })
     };
   };
-  const prepareComponentToken$c = (token2) => {
+  const prepareComponentToken$d = (token2) => {
     const {
       lineWidth,
       controlHeight,
@@ -40386,7 +40386,7 @@ html body {
       innerContentPadding: wireframe ? `${paddingSM}px ${popoverPaddingHorizontal}px` : 0
     };
   };
-  const useStyle$j = genStyleHooks("Popover", (token2) => {
+  const useStyle$k = genStyleHooks("Popover", (token2) => {
     const {
       colorBgElevated,
       colorText
@@ -40396,7 +40396,7 @@ html body {
       popoverColor: colorText
     });
     return [genBaseStyle$3(popoverToken), genColorStyle(popoverToken), initZoomMotion(popoverToken, "zoom-big")];
-  }, prepareComponentToken$c, {
+  }, prepareComponentToken$d, {
     resetStyle: false,
     deprecatedTokens: [["width", "titleMinWidth"], ["minWidth", "titleMinWidth"]]
   });
@@ -40471,7 +40471,7 @@ html body {
       getPrefixCls
     } = reactExports.useContext(ConfigContext);
     const prefixCls = getPrefixCls("popover", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$j(prefixCls);
+    const [hashId, cssVarCls] = useStyle$k(prefixCls);
     return /* @__PURE__ */ reactExports.createElement(RawPurePanel, {
       ...restProps,
       prefixCls,
@@ -40508,7 +40508,7 @@ html body {
       trigger: contextTrigger
     } = useComponentConfig("popover");
     const prefixCls = getPrefixCls("popover", customizePrefixCls);
-    const [hashId, cssVarCls] = useStyle$j(prefixCls);
+    const [hashId, cssVarCls] = useStyle$k(prefixCls);
     const rootPrefixCls = getPrefixCls();
     const mergedArrow = useMergedArrow(popoverArrow, contextArrow);
     const mergedTrigger = trigger || contextTrigger || "hover";
@@ -43533,7 +43533,7 @@ html body {
       }
     ];
   };
-  const prepareComponentToken$b = (token2) => {
+  const prepareComponentToken$c = (token2) => {
     const {
       colorPrimary,
       colorError,
@@ -43650,7 +43650,7 @@ html body {
       itemWidth: activeBarWidth ? `calc(100% + ${activeBarBorderWidth}px)` : `calc(100% - ${itemMarginInline * 2}px)`
     };
   };
-  const useStyle$i = (prefixCls, rootCls = prefixCls, injectStyle = true) => {
+  const useStyle$j = (prefixCls, rootCls = prefixCls, injectStyle = true) => {
     const useStyle2 = genStyleHooks("Menu", (token2) => {
       const {
         colorBgElevated,
@@ -43729,7 +43729,7 @@ html body {
         initSlideMotion(menuToken, "slide-down"),
         initZoomMotion(menuToken, "zoom-big")
       ];
-    }, prepareComponentToken$b, {
+    }, prepareComponentToken$c, {
       deprecatedTokens: [["colorGroupTitle", "groupTitleColor"], ["radiusItem", "itemBorderRadius"], ["radiusSubMenuItem", "subMenuItemBorderRadius"], ["colorItemText", "itemColor"], ["colorItemTextHover", "itemHoverColor"], ["colorItemTextHoverHorizontal", "horizontalItemHoverColor"], ["colorItemTextSelected", "itemSelectedColor"], ["colorItemTextSelectedHorizontal", "horizontalItemSelectedColor"], ["colorItemTextDisabled", "itemDisabledColor"], ["colorDangerItemText", "dangerItemColor"], ["colorDangerItemTextHover", "dangerItemHoverColor"], ["colorDangerItemTextSelected", "dangerItemSelectedColor"], ["colorDangerItemBgActive", "dangerItemActiveBg"], ["colorDangerItemBgSelected", "dangerItemSelectedBg"], ["colorItemBg", "itemBg"], ["colorItemBgHover", "itemHoverBg"], ["colorSubItemBg", "subMenuItemBg"], ["colorItemBgActive", "itemActiveBg"], ["colorItemBgSelectedHorizontal", "horizontalItemSelectedBg"], ["colorActiveBarWidth", "activeBarWidth"], ["colorActiveBarHeight", "activeBarHeight"], ["colorActiveBarBorderSize", "activeBarBorderWidth"], ["colorItemBgSelected", "itemSelectedBg"]],
       // Dropdown will handle menu style self. We do not need to handle this.
       injectStyle,
@@ -43886,7 +43886,7 @@ html body {
     };
     const prefixCls = getPrefixCls("menu", customizePrefixCls || overrideObj.prefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$i(prefixCls, rootCls, !override);
+    const [hashId, cssVarCls] = useStyle$j(prefixCls, rootCls, !override);
     const menuClassName = clsx(`${prefixCls}-${theme}`, contextClassName, className);
     const mergedExpandIcon = reactExports.useMemo(() => {
       var _a3;
@@ -44260,7 +44260,7 @@ html body {
       [initSlideMotion(token2, "slide-up"), initSlideMotion(token2, "slide-down"), initMoveMotion(token2, "move-up"), initMoveMotion(token2, "move-down"), initZoomMotion(token2, "zoom-big")]
     ];
   };
-  const prepareComponentToken$a = (token2) => ({
+  const prepareComponentToken$b = (token2) => ({
     zIndexPopup: token2.zIndexPopupBase + 50,
     paddingBlock: (token2.controlHeight - token2.fontSize * token2.lineHeight) / 2,
     ...getArrowOffsetToken({
@@ -44269,7 +44269,7 @@ html body {
     }),
     ...getArrowToken(token2)
   });
-  const useStyle$h = genStyleHooks("Dropdown", (token2) => {
+  const useStyle$i = genStyleHooks("Dropdown", (token2) => {
     const {
       marginXXS,
       sizePopupArrow,
@@ -44282,7 +44282,7 @@ html body {
       dropdownEdgeChildPadding: paddingXXS
     });
     return [genBaseStyle$2(dropdownToken), genStatusStyle(dropdownToken)];
-  }, prepareComponentToken$a, {
+  }, prepareComponentToken$b, {
     resetStyle: false
   });
   const Dropdown$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
@@ -44357,7 +44357,7 @@ html body {
     }, [placement, direction]);
     const prefixCls = getPrefixCls("dropdown", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$h(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$i(prefixCls, rootCls);
     const [, token2] = useToken();
     const child = reactExports.Children.only(isPrimitive(children) ? /* @__PURE__ */ reactExports.createElement("span", null, children) : children);
     const composedRef = useComposeRef(ref, child.ref);
@@ -45319,7 +45319,7 @@ html body {
       }
     };
   };
-  const prepareComponentToken$9 = (token2) => {
+  const prepareComponentToken$a = (token2) => {
     const {
       wireframe,
       padding,
@@ -45361,7 +45361,7 @@ html body {
       radioBgColor: wireframe ? colorBgContainer : colorPrimary
     };
   };
-  const useStyle$g = genStyleHooks("Radio", (token2) => {
+  const useStyle$h = genStyleHooks("Radio", (token2) => {
     const {
       controlOutline,
       controlOutlineWidth
@@ -45373,7 +45373,7 @@ html body {
       radioButtonFocusShadow
     });
     return [getGroupRadioStyle(radioToken), getRadioBasicStyle(radioToken), getRadioButtonStyle(radioToken)];
-  }, prepareComponentToken$9, {
+  }, prepareComponentToken$a, {
     unitless: {
       radioSize: true,
       dotSize: true
@@ -45415,7 +45415,7 @@ html body {
     const isButtonType = ((groupContext == null ? void 0 : groupContext.optionType) || radioOptionTypeContext) === "button";
     const prefixCls = isButtonType ? `${radioPrefixCls}-button` : radioPrefixCls;
     const rootCls = useCSSVarCls(radioPrefixCls);
-    const [hashId, cssVarCls] = useStyle$g(radioPrefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$h(radioPrefixCls, rootCls);
     const radioProps = {
       ...restProps
     };
@@ -45523,7 +45523,7 @@ html body {
     const prefixCls = getPrefixCls("radio", customizePrefixCls);
     const groupPrefixCls = `${prefixCls}-group`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$g(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$h(prefixCls, rootCls);
     let childrenToRender = children;
     if (options && options.length > 0) {
       childrenToRender = options.map((option) => {
@@ -46537,7 +46537,7 @@ html body {
   }, initComponentToken$1, {
     resetFont: false
   });
-  const useStyle$f = genStyleHooks(["Input", "Component"], (token2) => {
+  const useStyle$g = genStyleHooks(["Input", "Component"], (token2) => {
     const inputToken = merge$1(token2, initInputToken(token2));
     return [
       genGroupStyle(inputToken),
@@ -47290,7 +47290,7 @@ html body {
     });
     return genCheckboxStyle(checkboxToken);
   }
-  const useStyle$e = genStyleHooks("Checkbox", (token2, {
+  const useStyle$f = genStyleHooks("Checkbox", (token2, {
     prefixCls
   }) => [getStyle(prefixCls, token2)]);
   const GroupContext = /* @__PURE__ */ React.createContext(null);
@@ -47367,7 +47367,7 @@ html body {
     }, [indeterminate]);
     const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$e(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$f(prefixCls, rootCls);
     const checkboxProps = {
       ...restProps
     };
@@ -47480,7 +47480,7 @@ html body {
     const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
     const groupPrefixCls = `${prefixCls}-group`;
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$e(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$f(prefixCls, rootCls);
     const domProps = omit(restProps, ["value", "disabled"]);
     const childrenNode = options.length ? memoizedOptions.map((option) => /* @__PURE__ */ reactExports.createElement(Checkbox$1, {
       prefixCls,
@@ -47883,18 +47883,18 @@ html body {
       }
     };
   };
-  const prepareComponentToken$8 = (token2) => ({
+  const prepareComponentToken$9 = (token2) => ({
     textPaddingInline: "1em",
     orientationMargin: 0.05,
     verticalMarginInline: token2.marginXS
   });
-  const useStyle$d = genStyleHooks("Divider", (token2) => {
+  const useStyle$e = genStyleHooks("Divider", (token2) => {
     const dividerToken = merge$1(token2, {
       dividerHorizontalWithTextGutterMargin: token2.margin,
       sizePaddingEdgeHorizontal: 0
     });
     return [genSharedDividerStyle(dividerToken), genSizeDividerStyle(dividerToken)];
-  }, prepareComponentToken$8, {
+  }, prepareComponentToken$9, {
     unitless: {
       orientationMargin: true
     }
@@ -47930,7 +47930,7 @@ html body {
     } = props;
     const prefixCls = getPrefixCls("divider", customizePrefixCls);
     const railCls = `${prefixCls}-rail`;
-    const [hashId, cssVarCls] = useStyle$d(prefixCls);
+    const [hashId, cssVarCls] = useStyle$e(prefixCls);
     const sizeFullName = useSize(customSize);
     const hasChildren = !!children;
     const validTitlePlacement = titlePlacementList.includes(orientation || "");
@@ -48007,6 +48007,681 @@ html body {
       style: mergedStyles.rail
     })));
   };
+  const calcThumbStyle = (targetElement, vertical) => {
+    if (!targetElement) return null;
+    const style2 = {
+      left: targetElement.offsetLeft,
+      right: targetElement.parentElement.clientWidth - targetElement.clientWidth - targetElement.offsetLeft,
+      width: targetElement.clientWidth,
+      top: targetElement.offsetTop,
+      bottom: targetElement.parentElement.clientHeight - targetElement.clientHeight - targetElement.offsetTop,
+      height: targetElement.clientHeight
+    };
+    if (vertical) {
+      return {
+        left: 0,
+        right: 0,
+        width: 0,
+        top: style2.top,
+        bottom: style2.bottom,
+        height: style2.height
+      };
+    }
+    return {
+      left: style2.left,
+      right: style2.right,
+      width: style2.width,
+      top: 0,
+      bottom: 0,
+      height: 0
+    };
+  };
+  const toPX = (value) => value !== void 0 ? `${value}px` : void 0;
+  function MotionThumb(props) {
+    const {
+      prefixCls,
+      containerRef,
+      value,
+      getValueIndex,
+      motionName,
+      onMotionStart,
+      onMotionEnd,
+      direction,
+      vertical = false
+    } = props;
+    const thumbRef = reactExports.useRef(null);
+    const [prevValue, setPrevValue] = reactExports.useState(value);
+    const findValueElement = (val) => {
+      var _a2;
+      const index2 = getValueIndex(val);
+      const ele = (_a2 = containerRef.current) == null ? void 0 : _a2.querySelectorAll(`.${prefixCls}-item`)[index2];
+      return (ele == null ? void 0 : ele.offsetParent) && ele;
+    };
+    const [prevStyle, setPrevStyle] = reactExports.useState(null);
+    const [nextStyle, setNextStyle] = reactExports.useState(null);
+    useLayoutEffect(() => {
+      if (prevValue !== value) {
+        const prev2 = findValueElement(prevValue);
+        const next2 = findValueElement(value);
+        const calcPrevStyle = calcThumbStyle(prev2, vertical);
+        const calcNextStyle = calcThumbStyle(next2, vertical);
+        setPrevValue(value);
+        setPrevStyle(calcPrevStyle);
+        setNextStyle(calcNextStyle);
+        if (prev2 && next2) {
+          onMotionStart();
+        } else {
+          onMotionEnd();
+        }
+      }
+    }, [value]);
+    const thumbStart = reactExports.useMemo(() => {
+      if (vertical) {
+        return toPX((prevStyle == null ? void 0 : prevStyle.top) ?? 0);
+      }
+      if (direction === "rtl") {
+        return toPX(-(prevStyle == null ? void 0 : prevStyle.right));
+      }
+      return toPX(prevStyle == null ? void 0 : prevStyle.left);
+    }, [vertical, direction, prevStyle]);
+    const thumbActive = reactExports.useMemo(() => {
+      if (vertical) {
+        return toPX((nextStyle == null ? void 0 : nextStyle.top) ?? 0);
+      }
+      if (direction === "rtl") {
+        return toPX(-(nextStyle == null ? void 0 : nextStyle.right));
+      }
+      return toPX(nextStyle == null ? void 0 : nextStyle.left);
+    }, [vertical, direction, nextStyle]);
+    const onAppearStart = () => {
+      if (vertical) {
+        return {
+          transform: "translateY(var(--thumb-start-top))",
+          height: "var(--thumb-start-height)"
+        };
+      }
+      return {
+        transform: "translateX(var(--thumb-start-left))",
+        width: "var(--thumb-start-width)"
+      };
+    };
+    const onAppearActive = () => {
+      if (vertical) {
+        return {
+          transform: "translateY(var(--thumb-active-top))",
+          height: "var(--thumb-active-height)"
+        };
+      }
+      return {
+        transform: "translateX(var(--thumb-active-left))",
+        width: "var(--thumb-active-width)"
+      };
+    };
+    const onVisibleChanged = () => {
+      setPrevStyle(null);
+      setNextStyle(null);
+      onMotionEnd();
+    };
+    if (!prevStyle || !nextStyle) {
+      return null;
+    }
+    return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
+      visible: true,
+      motionName,
+      motionAppear: true,
+      onAppearStart,
+      onAppearActive,
+      onVisibleChanged
+    }, ({
+      className: motionClassName,
+      style: motionStyle
+    }, ref) => {
+      const mergedStyle = {
+        ...motionStyle,
+        "--thumb-start-left": thumbStart,
+        "--thumb-start-width": toPX(prevStyle == null ? void 0 : prevStyle.width),
+        "--thumb-active-left": thumbActive,
+        "--thumb-active-width": toPX(nextStyle == null ? void 0 : nextStyle.width),
+        "--thumb-start-top": thumbStart,
+        "--thumb-start-height": toPX(prevStyle == null ? void 0 : prevStyle.height),
+        "--thumb-active-top": thumbActive,
+        "--thumb-active-height": toPX(nextStyle == null ? void 0 : nextStyle.height)
+      };
+      const motionProps = {
+        ref: composeRef(thumbRef, ref),
+        style: mergedStyle,
+        className: clsx(`${prefixCls}-thumb`, motionClassName)
+      };
+      return /* @__PURE__ */ reactExports.createElement("div", motionProps);
+    });
+  }
+  function getValidTitle(option) {
+    var _a2;
+    if (typeof option.title !== "undefined") {
+      return option.title;
+    }
+    if (typeof option.label !== "object") {
+      return (_a2 = option.label) == null ? void 0 : _a2.toString();
+    }
+  }
+  function normalizeOptions(options) {
+    return options.map((option) => {
+      if (typeof option === "object" && option !== null) {
+        const validTitle = getValidTitle(option);
+        return {
+          ...option,
+          title: validTitle
+        };
+      }
+      return {
+        label: option == null ? void 0 : option.toString(),
+        title: option == null ? void 0 : option.toString(),
+        value: option
+      };
+    });
+  }
+  const InternalSegmentedOption = ({
+    prefixCls,
+    className,
+    style: style2,
+    styles: styles2,
+    classNames: segmentedClassNames,
+    data,
+    disabled,
+    checked,
+    label,
+    title,
+    value,
+    name,
+    onChange,
+    onFocus,
+    onBlur,
+    onKeyDown: onKeyDown2,
+    onKeyUp,
+    onMouseDown,
+    itemRender = (node2) => node2
+  }) => {
+    const handleChange = (event) => {
+      if (disabled) {
+        return;
+      }
+      onChange(event, value);
+    };
+    const itemContent = /* @__PURE__ */ reactExports.createElement("label", {
+      className: clsx(className, {
+        [`${prefixCls}-item-disabled`]: disabled
+      }),
+      style: style2,
+      onMouseDown
+    }, /* @__PURE__ */ reactExports.createElement("input", {
+      name,
+      className: `${prefixCls}-item-input`,
+      type: "radio",
+      disabled,
+      checked,
+      onChange: handleChange,
+      onFocus,
+      onBlur,
+      onKeyDown: onKeyDown2,
+      onKeyUp
+    }), /* @__PURE__ */ reactExports.createElement("div", {
+      className: clsx(`${prefixCls}-item-label`, segmentedClassNames == null ? void 0 : segmentedClassNames.label),
+      title,
+      style: styles2 == null ? void 0 : styles2.label
+    }, label));
+    return itemRender(itemContent, {
+      item: data
+    });
+  };
+  const Segmented$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+    var _a2;
+    const {
+      prefixCls = "rc-segmented",
+      direction,
+      vertical,
+      options = [],
+      disabled,
+      defaultValue,
+      value,
+      name,
+      onChange,
+      className = "",
+      style: style2,
+      styles: styles2,
+      classNames: segmentedClassNames,
+      motionName = "thumb-motion",
+      itemRender,
+      ...restProps
+    } = props;
+    const containerRef = reactExports.useRef(null);
+    const mergedRef = reactExports.useMemo(() => composeRef(containerRef, ref), [containerRef, ref]);
+    const segmentedOptions = reactExports.useMemo(() => {
+      return normalizeOptions(options);
+    }, [options]);
+    const [rawValue, setRawValue] = useControlledState(defaultValue ?? ((_a2 = segmentedOptions[0]) == null ? void 0 : _a2.value), value);
+    const [thumbShow, setThumbShow] = reactExports.useState(false);
+    const handleChange = (event, val) => {
+      setRawValue(val);
+      onChange == null ? void 0 : onChange(val);
+    };
+    const divProps = omit(restProps, ["children"]);
+    const [isKeyboard, setIsKeyboard] = reactExports.useState(false);
+    const [isFocused, setIsFocused] = reactExports.useState(false);
+    const handleFocus = () => {
+      setIsFocused(true);
+    };
+    const handleBlur = () => {
+      setIsFocused(false);
+    };
+    const handleMouseDown = () => {
+      setIsKeyboard(false);
+    };
+    const handleKeyUp = (event) => {
+      if (event.key === "Tab") {
+        setIsKeyboard(true);
+      }
+    };
+    const onOffset = (offset2) => {
+      const currentIndex = segmentedOptions.findIndex((option) => option.value === rawValue);
+      const total = segmentedOptions.length;
+      const nextIndex = (currentIndex + offset2 + total) % total;
+      const nextOption = segmentedOptions[nextIndex];
+      if (nextOption) {
+        setRawValue(nextOption.value);
+        onChange == null ? void 0 : onChange(nextOption.value);
+      }
+    };
+    const handleKeyDown = (event) => {
+      switch (event.key) {
+        case "ArrowLeft":
+        case "ArrowUp":
+          onOffset(-1);
+          break;
+        case "ArrowRight":
+        case "ArrowDown":
+          onOffset(1);
+          break;
+      }
+    };
+    const renderOption = (segmentedOption) => {
+      const {
+        value: optionValue,
+        disabled: optionDisabled
+      } = segmentedOption;
+      return /* @__PURE__ */ reactExports.createElement(InternalSegmentedOption, _extends$19({}, segmentedOption, {
+        name,
+        data: segmentedOption,
+        itemRender,
+        key: optionValue,
+        prefixCls,
+        className: clsx(segmentedOption.className, `${prefixCls}-item`, segmentedClassNames == null ? void 0 : segmentedClassNames.item, {
+          [`${prefixCls}-item-selected`]: optionValue === rawValue && !thumbShow,
+          [`${prefixCls}-item-focused`]: isFocused && isKeyboard && optionValue === rawValue
+        }),
+        style: styles2 == null ? void 0 : styles2.item,
+        classNames: segmentedClassNames,
+        styles: styles2,
+        checked: optionValue === rawValue,
+        onChange: handleChange,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
+        onKeyDown: handleKeyDown,
+        onKeyUp: handleKeyUp,
+        onMouseDown: handleMouseDown,
+        disabled: !!disabled || !!optionDisabled
+      }));
+    };
+    return /* @__PURE__ */ reactExports.createElement("div", _extends$19({
+      role: "radiogroup",
+      "aria-label": "segmented control",
+      tabIndex: disabled ? void 0 : 0,
+      "aria-orientation": vertical ? "vertical" : "horizontal",
+      style: style2
+    }, divProps, {
+      className: clsx(prefixCls, {
+        [`${prefixCls}-rtl`]: direction === "rtl",
+        [`${prefixCls}-disabled`]: disabled,
+        [`${prefixCls}-vertical`]: vertical
+      }, className),
+      ref: mergedRef
+    }), /* @__PURE__ */ reactExports.createElement("div", {
+      className: `${prefixCls}-group`
+    }, /* @__PURE__ */ reactExports.createElement(MotionThumb, {
+      vertical,
+      prefixCls,
+      value: rawValue,
+      containerRef,
+      motionName: `${prefixCls}-${motionName}`,
+      direction,
+      getValueIndex: (val) => segmentedOptions.findIndex((n2) => n2.value === val),
+      onMotionStart: () => {
+        setThumbShow(true);
+      },
+      onMotionEnd: () => {
+        setThumbShow(false);
+      }
+    }), segmentedOptions.map(renderOption)));
+  });
+  const TypedSegmented = Segmented$1;
+  function getItemDisabledStyle(cls, token2) {
+    return {
+      [`${cls}, ${cls}:hover, ${cls}:focus`]: {
+        color: token2.colorTextDisabled,
+        cursor: "not-allowed"
+      }
+    };
+  }
+  const getItemSelectedStyle = (token2) => {
+    return {
+      background: token2.itemSelectedBg,
+      boxShadow: token2.boxShadowTertiary
+    };
+  };
+  const segmentedTextEllipsisCss = {
+    overflow: "hidden",
+    // handle text ellipsis
+    ...textEllipsis
+  };
+  const genSegmentedStyle = (token2) => {
+    const {
+      componentCls,
+      motionDurationSlow,
+      motionEaseInOut,
+      motionDurationMid
+    } = token2;
+    const labelHeight = token2.calc(token2.controlHeight).sub(token2.calc(token2.trackPadding).mul(2)).equal();
+    const labelHeightLG = token2.calc(token2.controlHeightLG).sub(token2.calc(token2.trackPadding).mul(2)).equal();
+    const labelHeightSM = token2.calc(token2.controlHeightSM).sub(token2.calc(token2.trackPadding).mul(2)).equal();
+    return {
+      [componentCls]: {
+        ...resetComponent(token2),
+        display: "inline-block",
+        padding: token2.trackPadding,
+        color: token2.itemColor,
+        background: token2.trackBg,
+        borderRadius: token2.borderRadius,
+        transition: `all ${motionDurationMid}`,
+        ...genFocusStyle(token2),
+        [`${componentCls}-group`]: {
+          position: "relative",
+          display: "flex",
+          alignItems: "stretch",
+          justifyItems: "flex-start",
+          flexDirection: "row",
+          width: "100%"
+        },
+        // RTL styles
+        [`&${componentCls}-rtl`]: {
+          direction: "rtl"
+        },
+        [`&${componentCls}-vertical`]: {
+          [`${componentCls}-group`]: {
+            flexDirection: "column"
+          },
+          [`${componentCls}-thumb`]: {
+            width: "100%",
+            height: 0,
+            padding: `0 ${unit$1(token2.paddingXXS)}`
+          }
+        },
+        // block styles
+        [`&${componentCls}-block`]: {
+          display: "flex"
+        },
+        [`&${componentCls}-block ${componentCls}-item`]: {
+          flex: 1,
+          minWidth: 0
+        },
+        // item styles
+        [`${componentCls}-item`]: {
+          position: "relative",
+          textAlign: "center",
+          cursor: "pointer",
+          transition: `color ${motionDurationMid}`,
+          borderRadius: token2.borderRadiusSM,
+          // Fix Safari render bug
+          // https://github.com/ant-design/ant-design/issues/45250
+          transform: "translateZ(0)",
+          "&-selected": {
+            ...getItemSelectedStyle(token2),
+            color: token2.itemSelectedColor
+          },
+          "&-focused": genFocusOutline(token2),
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            zIndex: -1,
+            width: "100%",
+            height: "100%",
+            top: 0,
+            insetInlineStart: 0,
+            borderRadius: "inherit",
+            opacity: 0,
+            // This is mandatory to make it not clickable or hoverable
+            // Ref: https://github.com/ant-design/ant-design/issues/40888
+            pointerEvents: "none",
+            transition: ["opacity", "background-color"].map((prop) => `${prop} ${motionDurationMid}`).join(", ")
+          },
+          [`&:not(${componentCls}-item-selected):not(${componentCls}-item-disabled)`]: {
+            "&:hover, &:active": {
+              color: token2.itemHoverColor
+            },
+            "&:hover::after": {
+              opacity: 1,
+              backgroundColor: token2.itemHoverBg
+            },
+            "&:active::after": {
+              opacity: 1,
+              backgroundColor: token2.itemActiveBg
+            }
+          },
+          "&-label": {
+            minHeight: labelHeight,
+            lineHeight: unit$1(labelHeight),
+            padding: `0 ${unit$1(token2.segmentedPaddingHorizontal)}`,
+            ...segmentedTextEllipsisCss
+          },
+          // syntactic sugar to add `icon` for Segmented Item
+          "&-icon + *": {
+            marginInlineStart: token2.calc(token2.marginSM).div(2).equal()
+          },
+          "&-input": {
+            position: "absolute",
+            insetBlockStart: 0,
+            insetInlineStart: 0,
+            width: 0,
+            height: 0,
+            opacity: 0,
+            pointerEvents: "none"
+          }
+        },
+        // thumb styles
+        [`${componentCls}-thumb`]: {
+          ...getItemSelectedStyle(token2),
+          position: "absolute",
+          insetBlockStart: 0,
+          insetInlineStart: 0,
+          width: 0,
+          height: "100%",
+          padding: `${unit$1(token2.paddingXXS)} 0`,
+          borderRadius: token2.borderRadiusSM,
+          [`& ~ ${componentCls}-item:not(${componentCls}-item-selected):not(${componentCls}-item-disabled)::after`]: {
+            backgroundColor: "transparent"
+          }
+        },
+        // size styles
+        [`&${componentCls}-lg`]: {
+          borderRadius: token2.borderRadiusLG,
+          [`${componentCls}-item-label`]: {
+            minHeight: labelHeightLG,
+            lineHeight: unit$1(labelHeightLG),
+            padding: `0 ${unit$1(token2.segmentedPaddingHorizontal)}`,
+            fontSize: token2.fontSizeLG
+          },
+          [`${componentCls}-item, ${componentCls}-thumb`]: {
+            borderRadius: token2.borderRadius
+          }
+        },
+        [`&${componentCls}-sm`]: {
+          borderRadius: token2.borderRadiusSM,
+          [`${componentCls}-item-label`]: {
+            minHeight: labelHeightSM,
+            lineHeight: unit$1(labelHeightSM),
+            padding: `0 ${unit$1(token2.segmentedPaddingHorizontalSM)}`
+          },
+          [`${componentCls}-item, ${componentCls}-thumb`]: {
+            borderRadius: token2.borderRadiusXS
+          }
+        },
+        // disabled styles
+        ...getItemDisabledStyle(`&-disabled ${componentCls}-item`, token2),
+        ...getItemDisabledStyle(`${componentCls}-item-disabled`, token2),
+        // transition effect when `appear-active`
+        [`${componentCls}-thumb-motion-appear-active`]: {
+          willChange: "transform, width",
+          transition: [`transform`, `width`].map((prop) => `${prop} ${motionDurationSlow} ${motionEaseInOut}`).join(", ")
+        },
+        [`&${componentCls}-shape-round`]: {
+          borderRadius: 9999,
+          [`${componentCls}-item, ${componentCls}-thumb`]: {
+            borderRadius: 9999
+          }
+        }
+      }
+    };
+  };
+  const prepareComponentToken$8 = (token2) => {
+    const {
+      colorTextLabel,
+      colorText,
+      colorFillSecondary,
+      colorBgElevated,
+      colorFill,
+      lineWidthBold,
+      colorBgLayout
+    } = token2;
+    return {
+      trackPadding: lineWidthBold,
+      trackBg: colorBgLayout,
+      itemColor: colorTextLabel,
+      itemHoverColor: colorText,
+      itemHoverBg: colorFillSecondary,
+      itemSelectedBg: colorBgElevated,
+      itemActiveBg: colorFill,
+      itemSelectedColor: colorText
+    };
+  };
+  const useStyle$d = genStyleHooks("Segmented", (token2) => {
+    const {
+      lineWidth,
+      calc
+    } = token2;
+    const segmentedToken = merge$1(token2, {
+      segmentedPaddingHorizontal: calc(token2.controlPaddingHorizontal).sub(lineWidth).equal(),
+      segmentedPaddingHorizontalSM: calc(token2.controlPaddingHorizontalSM).sub(lineWidth).equal()
+    });
+    return genSegmentedStyle(segmentedToken);
+  }, prepareComponentToken$8);
+  function isSegmentedLabeledOptionWithIcon(option) {
+    return isPlainObject$1(option) && !!(option == null ? void 0 : option.icon);
+  }
+  const InternalSegmented = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+    const defaultName = useId();
+    const {
+      prefixCls: customizePrefixCls,
+      className,
+      rootClassName,
+      block,
+      options = [],
+      size: customSize,
+      style: style2,
+      vertical,
+      orientation,
+      shape = "default",
+      name = defaultName,
+      styles: styles2,
+      classNames,
+      ...restProps
+    } = props;
+    const {
+      getPrefixCls,
+      direction,
+      className: contextClassName,
+      style: contextStyle,
+      classNames: contextClassNames,
+      styles: contextStyles
+    } = useComponentConfig("segmented");
+    const mergedProps = {
+      ...props,
+      options,
+      size: customSize,
+      shape
+    };
+    const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
+      props: mergedProps
+    });
+    const prefixCls = getPrefixCls("segmented", customizePrefixCls);
+    const [hashId, cssVarCls] = useStyle$d(prefixCls);
+    const mergedSize = useSize(customSize);
+    const extendedOptions = reactExports.useMemo(() => options.map((option) => {
+      if (isSegmentedLabeledOptionWithIcon(option)) {
+        const {
+          icon,
+          label,
+          ...restOption
+        } = option;
+        return {
+          ...restOption,
+          label: /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("span", {
+            className: clsx(`${prefixCls}-item-icon`, mergedClassNames.icon),
+            style: mergedStyles.icon
+          }, icon), label && /* @__PURE__ */ reactExports.createElement("span", null, label))
+        };
+      }
+      return option;
+    }), [options, prefixCls, mergedClassNames.icon, mergedStyles.icon]);
+    const [, mergedVertical] = useOrientation(orientation, vertical);
+    const cls = clsx(className, rootClassName, contextClassName, mergedClassNames.root, {
+      [`${prefixCls}-block`]: block,
+      [`${prefixCls}-sm`]: mergedSize === "small",
+      [`${prefixCls}-lg`]: mergedSize === "large",
+      [`${prefixCls}-vertical`]: mergedVertical,
+      [`${prefixCls}-shape-${shape}`]: shape === "round"
+    }, hashId, cssVarCls);
+    const mergedStyle = {
+      ...mergedStyles.root,
+      ...contextStyle,
+      ...style2
+    };
+    const itemRender = (node2, {
+      item
+    }) => {
+      if (!item.tooltip) {
+        return node2;
+      }
+      const tooltipProps = isPlainObject$1(item.tooltip) ? item.tooltip : {
+        title: item.tooltip
+      };
+      return /* @__PURE__ */ reactExports.createElement(Tooltip, {
+        ...tooltipProps
+      }, node2);
+    };
+    return /* @__PURE__ */ reactExports.createElement(TypedSegmented, {
+      ...restProps,
+      name,
+      className: cls,
+      style: mergedStyle,
+      classNames: mergedClassNames,
+      styles: mergedStyles,
+      itemRender,
+      options: extendedOptions,
+      ref,
+      prefixCls,
+      direction,
+      vertical: mergedVertical
+    });
+  });
+  const Segmented = InternalSegmented;
   var UpOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z" } }] }, "name": "up", "theme": "outlined" };
   function _extends$H() {
     _extends$H = Object.assign ? Object.assign.bind() : function(target) {
@@ -49125,7 +49800,7 @@ html body {
     const inputRef = reactExports.useRef(null);
     const rootCls = useCSSVarCls(prefixCls);
     const [hashId, cssVarCls] = useSharedStyle(prefixCls, rootClassName);
-    useStyle$f(prefixCls, rootCls);
+    useStyle$g(prefixCls, rootCls);
     const {
       compactSize,
       compactItemClassnames
@@ -51136,7 +51811,7 @@ html body {
     } = props;
     const prefixCls = getPrefixCls("input-group", customizePrefixCls);
     const inputPrefixCls = getPrefixCls("input");
-    const [hashId, cssVarCls] = useStyle$f(inputPrefixCls);
+    const [hashId, cssVarCls] = useStyle$g(inputPrefixCls);
     const cls = clsx(prefixCls, cssVarCls, {
       [`${prefixCls}-lg`]: props.size === "large",
       [`${prefixCls}-sm`]: props.size === "small",
@@ -53990,7 +54665,7 @@ html body {
     } = useComponentConfig("message");
     const prefixCls = getPrefixCls("message");
     const rootCls = useCSSVarCls(prefixCls);
-    const [hashId, cssVarCls] = useStyle$r(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$s(prefixCls, rootCls);
     const noticePrefixCls = `${prefixCls}-notice`;
     const configList = items.map((item) => {
       const {
@@ -54274,7 +54949,7 @@ html body {
     const rootPrefixCls = getPrefixCls();
     const prefixCls = customizePrefixCls || getPrefixCls("modal");
     const rootCls = useCSSVarCls(rootPrefixCls);
-    const [hashId, cssVarCls] = useStyle$m(prefixCls, rootCls);
+    const [hashId, cssVarCls] = useStyle$n(prefixCls, rootCls);
     const [mergedClassNames, mergedStyles] = useMergeSemantic([contextClassNames, classNames], [contextStyles, styles2], {
       props
     });
@@ -67811,7 +68486,7 @@ html body {
   };
   const client = makeClient(true);
   const publicClient = makeClient(false);
-  const version = "2.9.0";
+  const version = "2.10.0";
   const DEFAULT_BASEMAP_STYLE = `https://cdn.jsdelivr.net/npm/col-browser@${version}/basemap/style.json`;
   const config = {
     dataApi: "https://api.checklistbank.org/",
@@ -78058,7 +78733,7 @@ html body {
     });
   };
   const POOL_SIZE = 16;
-  const isMappable$1 = (r2) => {
+  const isMappable = (r2) => {
     var _a2, _b2;
     return ((_a2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _a2.gazetteer) !== "text" && !!((_b2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _b2.globalId);
   };
@@ -78075,7 +78750,8 @@ html body {
     await Promise.all(runners);
     return results;
   };
-  const searchDescendants = async (datasetKey, focalId, ranks2) => {
+  const clientJson = (url) => client(url).then((res) => res == null ? void 0 : res.data);
+  const searchDescendants = async (fetchJson, datasetKey, focalId, ranks2) => {
     var _a2;
     if (ranks2.length === 0) return [];
     const params = new URLSearchParams();
@@ -78086,8 +78762,7 @@ html body {
     );
     params.append("limit", "1000");
     const url = `${config.dataApi}dataset/${datasetKey}/nameusage/search?${params}`;
-    const res = await client(url);
-    const list = ((_a2 = res == null ? void 0 : res.data) == null ? void 0 : _a2.result) || [];
+    const list = ((_a2 = await fetchJson(url)) == null ? void 0 : _a2.result) || [];
     return list.filter((u) => {
       var _a3;
       return (_a3 = u == null ? void 0 : u.usage) == null ? void 0 : _a3.id;
@@ -78101,34 +78776,39 @@ html body {
       };
     });
   };
-  const fetchDistributions = async (datasetKey, taxonId) => {
+  const fetchDistributions = async (fetchJson, datasetKey, taxonId) => {
     const url = `${config.dataApi}dataset/${datasetKey}/taxon/${encodeURIComponent(taxonId)}/distribution`;
     try {
-      const res = await client(url);
-      return Array.isArray(res == null ? void 0 : res.data) ? res.data : [];
+      const data = await fetchJson(url);
+      return Array.isArray(data) ? data : [];
     } catch {
       return [];
     }
   };
-  const fetchDescendants = async ({ datasetKey, focalTaxon, rankOrder }) => {
+  const fetchDescendants = async ({
+    datasetKey,
+    focalTaxon,
+    rankOrder,
+    fetchJson = clientJson
+  }) => {
     var _a2;
     const ranks2 = getDescendantRanks((_a2 = focalTaxon == null ? void 0 : focalTaxon.name) == null ? void 0 : _a2.rank, rankOrder);
     let descendantsFailed = false;
     let list = [];
     try {
-      list = await searchDescendants(datasetKey, focalTaxon.id, ranks2);
+      list = await searchDescendants(fetchJson, datasetKey, focalTaxon.id, ranks2);
     } catch {
       descendantsFailed = true;
       return { taxa: [], descendantsFailed };
     }
     const distributions = await runPool(
       list,
-      (t2) => fetchDistributions(datasetKey, t2.id),
+      (t2) => fetchDistributions(fetchJson, datasetKey, t2.id),
       POOL_SIZE
     );
     const taxa = list.map((t2, i) => {
       const all = distributions[i] || [];
-      return { ...t2, distributions: all, mappable: all.filter(isMappable$1) };
+      return { ...t2, distributions: all, mappable: all.filter(isMappable) };
     });
     return { taxa, descendantsFailed };
   };
@@ -78181,6 +78861,53 @@ html body {
       return { url: parsed.toString() };
     };
   };
+  const FILTER = "hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT";
+  const taxonQuery = (checklistKey, taxonKey) => `checklistKey=${encodeURIComponent(checklistKey)}&taxonKey=${encodeURIComponent(taxonKey)}`;
+  const gbifTileUrl = (checklistKey, taxonKey) => `${config.gbifApi}/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64&${FILTER}&${taxonQuery(checklistKey, taxonKey)}`;
+  const gbifSearchUrl = (checklistKey, taxonKey) => `${config.gbifPortal}/occurrence/search?checklist_key=${encodeURIComponent(
+    checklistKey
+  )}&taxon_key=${encodeURIComponent(
+    taxonKey
+  )}&has_coordinate=true&has_geospatial_issue=false&occurrence_status=present`;
+  const fetchGbifCount = async (checklistKey, taxonKey) => {
+    var _a2;
+    try {
+      const res = await fetch(
+        `${config.gbifApi}/v1/occurrence/search?${taxonQuery(checklistKey, taxonKey)}&${FILTER}&limit=0`
+      );
+      if (!res.ok) return null;
+      return ((_a2 = await res.json()) == null ? void 0 : _a2.count) ?? 0;
+    } catch {
+      return null;
+    }
+  };
+  const useGbifCount = (checklistKey, taxonKey) => {
+    const [count, setCount] = reactExports.useState(null);
+    reactExports.useEffect(() => {
+      setCount(null);
+      if (!checklistKey || !taxonKey) return void 0;
+      let cancelled = false;
+      fetchGbifCount(checklistKey, taxonKey).then((c) => {
+        if (!cancelled) setCount(c);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, [checklistKey, taxonKey]);
+    return count;
+  };
+  const GbifLegendEntry = ({ style: style2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6, ...style2 }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "12", height: "12", viewBox: "0 0 12 12", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "polygon",
+      {
+        points: "3,1 9,1 11,6 9,11 3,11 1,6",
+        fill: "#de1e6e",
+        stroke: "rgba(0,0,0,0.25)",
+        strokeWidth: "0.75"
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
+  ] });
   const wrapStyle = {
     position: "absolute",
     bottom: 8,
@@ -78246,18 +78973,6 @@ html body {
     paddingLeft: 4
   };
   const totalCount = (groups) => groups.reduce((sum, g2) => sum + g2.taxa.length, 0);
-  const GbifHexEntry = () => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: rowStyle, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "12", height: "12", viewBox: "0 0 12 12", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "polygon",
-      {
-        points: "3,1 9,1 11,6 9,11 3,11 1,6",
-        fill: "#de1e6e",
-        stroke: "rgba(0,0,0,0.25)",
-        strokeWidth: "0.75"
-      }
-    ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
-  ] });
   const IncludedTaxaLegend = ({ visibleGroups, unmappableGroups, showGbif }) => {
     const [showUnmappable, setShowUnmappable] = reactExports.useState(false);
     const visibleCount = totalCount(visibleGroups);
@@ -78272,7 +78987,7 @@ html body {
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontStyle: "italic" }, children: t2.displayName || t2.scientificName })
           ] }, t2.id))
         ] }, g2.rank)),
-        showGbif && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifHexEntry, {})
+        showGbif && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, { style: rowStyle })
       ] }),
       unmappableCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -78321,14 +79036,35 @@ html body {
     if (cached === null) cached = probe();
     return cached;
   };
-  const POPUP_FIELDS = [
-    "establishmentMeans",
-    "degreeOfEstablishment",
-    "pathway",
-    "threatStatus",
-    "year",
-    "lifeStage"
-  ];
+  const computeBounds = (features) => {
+    var _a2;
+    let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
+    const visit = (coords) => {
+      if (typeof coords[0] === "number") {
+        const [lng, lat] = coords;
+        if (lng < minLng) minLng = lng;
+        if (lng > maxLng) maxLng = lng;
+        if (lat < minLat) minLat = lat;
+        if (lat > maxLat) maxLat = lat;
+      } else {
+        for (let i = 0; i < coords.length; i++) visit(coords[i]);
+      }
+    };
+    for (let i = 0; i < features.length; i++) {
+      const g2 = (_a2 = features[i]) == null ? void 0 : _a2.geometry;
+      if (g2 == null ? void 0 : g2.coordinates) visit(g2.coordinates);
+    }
+    if (minLng === Infinity) return null;
+    return [
+      [minLng, minLat],
+      [maxLng, maxLat]
+    ];
+  };
+  const flattenFeatures = (geojson) => {
+    if (!geojson) return [];
+    if (geojson.type === "FeatureCollection") return geojson.features || [];
+    return [geojson];
+  };
   const ESTABLISHMENT_MEANS = [
     { key: "nativeendemic", label: "Native endemic", color: "#0F8554" },
     { key: "native", label: "Native", color: "#87C55F" },
@@ -78342,25 +79078,65 @@ html body {
     { key: "vagrant", label: "Vagrant", color: "#F6CF71" },
     { key: "uncertain", label: "Uncertain", color: "#8BE0A4" }
   ];
-  const ESTABLISHMENT_COLORS = Object.fromEntries(
-    ESTABLISHMENT_MEANS.map((m2) => [m2.key, m2.color])
-  );
+  const COLORS = Object.fromEntries(ESTABLISHMENT_MEANS.map((m2) => [m2.key, m2.color]));
   const MISSING_COLOR = "#66C5CC";
-  const normalizeKey = (v2) => String(v2 || "").toLowerCase().replace(/[^a-z]/g, "");
-  const resolveKey = (record) => {
-    const raw = record == null ? void 0 : record.establishmentMeans;
-    if (raw == null || raw === "") return null;
-    const k = normalizeKey(raw);
-    return ESTABLISHMENT_COLORS[k] ? k : "uncertain";
+  const meansKey = (value) => {
+    if (value == null || value === "") return null;
+    const k = String(value).toLowerCase().replace(/[^a-z]/g, "");
+    return COLORS[k] ? k : "uncertain";
   };
-  const colorFor = (record) => {
-    const k = resolveKey(record);
-    return k == null ? MISSING_COLOR : ESTABLISHMENT_COLORS[k];
+  const meansColor = (value) => {
+    const k = meansKey(value);
+    return k == null ? MISSING_COLOR : COLORS[k];
   };
+  const LAND = "land";
+  const EEZ = "eez";
+  const hasEezVariant = (area) => (area == null ? void 0 : area.gazetteer) === "iso" && /^[A-Z]{2}$/i.test((area == null ? void 0 : area.id) || "");
+  const shapeUrl = (area, variant = LAND) => `${config.dataApi}vocab/area/${area.gazetteer}:${encodeURIComponent(
+    area.id
+  )}.geojson${variant === EEZ && hasEezVariant(area) ? "?variant=eez" : ""}`;
+  const isMarine = (environments) => Array.isArray(environments) && environments.some((e2) => String(e2).toLowerCase() === "marine");
+  const defaultVariant = (environments) => isMarine(environments) ? EEZ : LAND;
+  const cache = /* @__PURE__ */ new Map();
+  const fetchShape = (area, variant = LAND) => {
+    const url = shapeUrl(area, variant);
+    if (!cache.has(url)) {
+      cache.set(
+        url,
+        fetch(url).then((r2) => r2.ok ? r2.json() : null).catch(() => null)
+      );
+    }
+    return cache.get(url);
+  };
+  const OPTIONS = [
+    { label: "Land", value: LAND },
+    {
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { title: "Countries with their exclusive economic zone, as GBIF uses them", children: "EEZ" }),
+      value: EEZ
+    }
+  ];
+  const AreaVariantSwitch = ({ value, onChange, style: style2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Segmented,
+    {
+      size: "small",
+      options: OPTIONS,
+      value,
+      onChange,
+      style: style2
+    }
+  );
+  const POPUP_FIELDS = [
+    "establishmentMeans",
+    "degreeOfEstablishment",
+    "pathway",
+    "threatStatus",
+    "year",
+    "lifeStage"
+  ];
+  const colorFor = (record) => meansColor(record == null ? void 0 : record.establishmentMeans);
   const GBIF_VISIBLE_KEY = "gbif-visible";
   const readStoredGbifVisible = (defaultValue) => readSetting(GBIF_VISIBLE_KEY, defaultValue);
   const writeStoredGbifVisible = (visible) => writeSetting(GBIF_VISIBLE_KEY, visible);
-  const GBIF_TILE_PATH = "/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?srs=EPSG%3A3857&style=iNaturalist.poly&bin=hex&hexPerTile=64&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&checklistKey={checklistKey}&taxonKey={taxonKey}";
   const FOCAL_SOURCE = "col-focal-distributions";
   const FOCAL_FILL = "col-focal-fill";
   const FOCAL_LINE = "col-focal-line";
@@ -78369,20 +79145,6 @@ html body {
   const descendantSourceId = (id) => `col-descendant-${id}`;
   const descendantFillId = (id) => `col-descendant-fill-${id}`;
   const descendantLineId = (id) => `col-descendant-line-${id}`;
-  const cache = /* @__PURE__ */ new Map();
-  const fetchShape = (gazetteer, id) => {
-    const key2 = `${gazetteer}:${id}`;
-    if (cache.has(key2)) return cache.get(key2);
-    const url = `${config.dataApi}vocab/area/${key2}`;
-    const p = client(url, {
-      headers: { Accept: "application/geo+json" }
-    }).then(
-      (r2) => r2.data,
-      () => null
-    );
-    cache.set(key2, p);
-    return p;
-  };
   const escapeHtml = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const popupHtml = (record) => {
     var _a2, _b2;
@@ -78414,54 +79176,17 @@ html body {
     const tokens = scientificName.trim().split(/\s+/);
     return tokens[tokens.length - 1];
   };
-  const GbifLegendEntry = () => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "12", height: "12", viewBox: "0 0 12 12", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "polygon",
-      {
-        points: "3,1 9,1 11,6 9,11 3,11 1,6",
-        fill: "#de1e6e",
-        stroke: "rgba(0,0,0,0.25)",
-        strokeWidth: "0.75"
-      }
-    ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "GBIF occurrences" })
-  ] });
-  const computeBounds = (features) => {
-    var _a2;
-    let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
-    const visit = (coords) => {
-      if (typeof coords[0] === "number") {
-        const [lng, lat] = coords;
-        if (lng < minLng) minLng = lng;
-        if (lng > maxLng) maxLng = lng;
-        if (lat < minLat) minLat = lat;
-        if (lat > maxLat) maxLat = lat;
-      } else {
-        for (let i = 0; i < coords.length; i++) visit(coords[i]);
-      }
-    };
-    for (let i = 0; i < features.length; i++) {
-      const g2 = (_a2 = features[i]) == null ? void 0 : _a2.geometry;
-      if (g2 == null ? void 0 : g2.coordinates) visit(g2.coordinates);
-    }
-    if (minLng === Infinity) return null;
-    return [
-      [minLng, minLat],
-      [maxLng, maxLat]
-    ];
-  };
-  const flattenFeatures = (geojson) => {
-    if (!geojson) return [];
-    if (geojson.type === "FeatureCollection") return geojson.features || [];
-    return [geojson];
-  };
   const DistributionsMap = ({
     records,
     onUnmappable,
     datasetKey,
     focalTaxon,
     rankOrder,
+    // GBIF checklist the occurrence layer uses; without one there is no layer.
     gbifChecklistKey,
+    // The taxon key in that checklist. Defaults to the focal taxon's id, which
+    // fits datasets keyed by the same ids as the checklist, e.g. COL releases.
+    gbifTaxonKey,
     // true | null → show GBIF layer; false → GBIF API returned 0 occurrences,
     // grey out the toggle and skip loading tiles. Defaults to true so the
     // component works without the count check.
@@ -78470,7 +79195,11 @@ html body {
     // `configure({ basemapStyle })` value. Changing it rebuilds the map.
     basemapStyle,
     // Called from the no-WebGL notice to switch the host to its list view.
-    onShowList
+    onShowList,
+    showListLabel = "Show distributions as a list",
+    // `fetchJson(url)` loads the descendants and their distributions. Defaults
+    // to the library's client; a host can pass its own to send its credentials.
+    fetchJson
   }) => {
     var _a2;
     const containerRef = reactExports.useRef(null);
@@ -78483,6 +79212,7 @@ html body {
     const focalAttachedRef = reactExports.useRef(false);
     const gbifAttachedRef = reactExports.useRef(false);
     const descendantLayersRef = reactExports.useRef(/* @__PURE__ */ new Set());
+    const fittedRecordsRef = reactExports.useRef(null);
     const [webglFailed, setWebglFailed] = reactExports.useState(false);
     const [readyMap, setReadyMap] = reactExports.useState(null);
     const [focalReady, setFocalReady] = reactExports.useState(false);
@@ -78492,7 +79222,19 @@ html body {
       taxa: []
     });
     const [focalVisible, setFocalVisible] = reactExports.useState(true);
-    const isGbifOnly = !!gbifChecklistKey && (!records || records.length === 0);
+    const [fullscreen, setFullscreen] = reactExports.useState(false);
+    const gbifKey = gbifTaxonKey ?? (focalTaxon == null ? void 0 : focalTaxon.id);
+    const gbifEnabled = !!gbifChecklistKey && !!gbifKey;
+    const isGbifOnly = gbifEnabled && (!records || records.length === 0);
+    const [variantChoice, setVariantChoice] = reactExports.useState(null);
+    reactExports.useEffect(() => setVariantChoice(null), [focalTaxon == null ? void 0 : focalTaxon.id]);
+    const variant = variantChoice ?? defaultVariant(focalTaxon == null ? void 0 : focalTaxon.environments);
+    const hasEez = reactExports.useMemo(
+      () => (records || []).some((r2) => hasEezVariant(r2.area)) || descendantState.taxa.some(
+        (t2) => t2.mappable.some((r2) => hasEezVariant(r2.area))
+      ),
+      [records, descendantState]
+    );
     const [gbifVisible, setGbifVisible] = reactExports.useState(
       () => readStoredGbifVisible(true)
     );
@@ -78514,7 +79256,7 @@ html body {
       if (!(records == null ? void 0 : records.length)) return [];
       const seen = /* @__PURE__ */ new Set();
       records.forEach((r2) => {
-        const k = resolveKey(r2);
+        const k = meansKey(r2 == null ? void 0 : r2.establishmentMeans);
         if (k != null) seen.add(k);
       });
       return ESTABLISHMENT_MEANS.filter((m2) => seen.has(m2.key));
@@ -78611,9 +79353,22 @@ html body {
         focalAttachedRef.current = false;
         gbifAttachedRef.current = false;
         descendantLayersRef.current = /* @__PURE__ */ new Set();
+        fittedRecordsRef.current = null;
         setReadyMap(null);
       };
     }, [styleKey]);
+    reactExports.useEffect(() => {
+      const onChange = () => {
+        const el2 = document.fullscreenElement || document.webkitFullscreenElement;
+        setFullscreen(!!el2 && el2 === wrapperRef.current);
+      };
+      document.addEventListener("fullscreenchange", onChange);
+      document.addEventListener("webkitfullscreenchange", onChange);
+      return () => {
+        document.removeEventListener("fullscreenchange", onChange);
+        document.removeEventListener("webkitfullscreenchange", onChange);
+      };
+    }, []);
     reactExports.useEffect(() => {
       const map = readyMap;
       if (!map || !(records == null ? void 0 : records.length)) return;
@@ -78621,7 +79376,7 @@ html body {
       setFocalReady(false);
       Promise.allSettled(
         records.map(
-          (r2) => fetchShape(r2.area.gazetteer, r2.area.id).then((geojson) => ({
+          (r2) => fetchShape(r2.area, variant).then((geojson) => ({
             record: r2,
             geojson
           }))
@@ -78687,7 +79442,8 @@ html body {
           map.on("mouseleave", FOCAL_FILL, onMouseLeave);
           focalAttachedRef.current = true;
         }
-        if (features.length > 0) {
+        if (features.length > 0 && fittedRecordsRef.current !== records) {
+          fittedRecordsRef.current = records;
           const bounds = computeBounds(features);
           if (bounds) map.fitBounds(bounds, { padding: 20, animate: false });
         }
@@ -78697,7 +79453,7 @@ html body {
       return () => {
         cancelled = true;
       };
-    }, [readyMap, records]);
+    }, [readyMap, records, variant]);
     const onFocalClick = (e2) => {
       var _a3, _b2;
       const map = mapRef.current;
@@ -78733,13 +79489,12 @@ html body {
         gbifAttachedRef.current = false;
       };
       removeGbif();
-      if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) return;
+      if (!gbifEnabled) return;
       if (gbifAvailable === false) return;
-      const url = (config.gbifApi + GBIF_TILE_PATH).replace("{checklistKey}", encodeURIComponent(gbifChecklistKey)).replace("{taxonKey}", encodeURIComponent(focalTaxon.id));
-      const searchUrl = config.gbifPortal + "/occurrence/search?checklist_key=" + encodeURIComponent(gbifChecklistKey) + "&taxon_key=" + encodeURIComponent(focalTaxon.id);
+      const searchUrl = gbifSearchUrl(gbifChecklistKey, gbifKey);
       map.addSource(GBIF_SOURCE, {
         type: "raster",
-        tiles: [url],
+        tiles: [gbifTileUrl(gbifChecklistKey, gbifKey)],
         tileSize: 256,
         attribution: '<a href="' + searchUrl + '" target="_blank" rel="noopener">GBIF</a> occurrence data'
       });
@@ -78751,7 +79506,7 @@ html body {
         layout: { visibility: gbifVisible ? "visible" : "none" }
       });
       gbifAttachedRef.current = true;
-    }, [readyMap, gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id, gbifAvailable]);
+    }, [readyMap, gbifChecklistKey, gbifKey, gbifAvailable]);
     reactExports.useEffect(() => {
       const map = mapRef.current;
       if (!map || !gbifAttachedRef.current) return;
@@ -78777,7 +79532,7 @@ html body {
         descendantTaxonMapRef.current.set(t2.id, t2);
         Promise.allSettled(
           t2.mappable.map(
-            (rec) => fetchShape(rec.area.gazetteer, rec.area.id).then((geojson) => ({
+            (rec) => fetchShape(rec.area, variant).then((geojson) => ({
               record: rec,
               geojson
             }))
@@ -78837,7 +79592,7 @@ html body {
           }
         });
       });
-    }, [readyMap, descendantState, descendantColors]);
+    }, [readyMap, descendantState, descendantColors, variant]);
     const onDescendantClick = (e2) => {
       var _a3, _b2;
       const map = mapRef.current;
@@ -78873,7 +79628,7 @@ html body {
       if (ranks2.length === 0) return;
       fetchTriggeredRef.current = true;
       setDescendantState({ status: "loading", taxa: [] });
-      fetchDescendants({ datasetKey, focalTaxon, rankOrder }).then(
+      fetchDescendants({ datasetKey, focalTaxon, rankOrder, fetchJson }).then(
         ({ taxa, descendantsFailed }) => {
           if (descendantsFailed) {
             setDescendantState({ status: "error", taxa: [] });
@@ -78942,7 +79697,7 @@ html body {
             "This usually means hardware acceleration is turned off or the graphics drivers aren't set up for WebGL.",
             typeof onShowList === "function" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
               " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: onShowList, style: { cursor: "pointer" }, children: "Show distributions as a list" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("a", { onClick: onShowList, style: { cursor: "pointer" }, children: showListLabel })
             ] })
           ]
         }
@@ -78992,14 +79747,33 @@ html body {
       {
         className: "col-distributions-map",
         ref: wrapperRef,
-        style: { position: "relative" },
+        style: fullscreen ? { position: "relative", width: "100%", height: "100%", background: "#fff" } : { position: "relative" },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
               ref: containerRef,
               className: "col-distributions-map__canvas",
-              style: { height: 360, width: "100%", background: "#f5f5f5" }
+              style: {
+                height: fullscreen ? "100%" : 360,
+                width: "100%",
+                background: "#f5f5f5"
+              }
+            }
+          ),
+          hasEez && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            AreaVariantSwitch,
+            {
+              value: variant,
+              onChange: setVariantChoice,
+              style: {
+                position: "absolute",
+                // Left of the fullscreen control, top right.
+                top: 10,
+                right: 50,
+                zIndex: 2,
+                boxShadow: "0 1px 4px rgba(0,0,0,0.2)"
+              }
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -79012,7 +79786,7 @@ html body {
               focalReady,
               focalVisible,
               onToggleFocal: () => setFocalVisible((v2) => !v2),
-              gbifEnabled: !!gbifChecklistKey,
+              gbifEnabled,
               gbifVisible,
               gbifAvailable,
               onToggleGbif: handleToggleGbif,
@@ -79029,7 +79803,7 @@ html body {
               }
             }
           ),
-          !showDescendantLegend && (presentMeans.length > 0 || gbifChecklistKey && gbifAvailable !== false && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          !showDescendantLegend && (presentMeans.length > 0 || gbifEnabled && gbifAvailable !== false && gbifVisible) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "div",
             {
               style: {
@@ -79068,7 +79842,7 @@ html body {
                   },
                   m2.key
                 )),
-                gbifChecklistKey && gbifAvailable !== false && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
+                gbifEnabled && gbifAvailable !== false && gbifVisible && /* @__PURE__ */ jsxRuntimeExports.jsx(GbifLegendEntry, {})
               ]
             }
           ),
@@ -79077,7 +79851,7 @@ html body {
             {
               visibleGroups: descendantLegend.visibleGroups,
               unmappableGroups: descendantLegend.unmappableGroups,
-              showGbif: !!gbifChecklistKey && gbifAvailable !== false && gbifVisible
+              showGbif: gbifEnabled && gbifAvailable !== false && gbifVisible
             }
           )
         ]
@@ -79266,10 +80040,6 @@ html body {
       }
     );
   };
-  const isMappable = (r2) => {
-    var _a2, _b2;
-    return ((_a2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _a2.gazetteer) !== "text" && !!((_b2 = r2 == null ? void 0 : r2.area) == null ? void 0 : _b2.globalId);
-  };
   const ListView = ({ datasetKey, data }) => {
     const [iso3Map, setIso3Map] = reactExports.useState({});
     reactExports.useEffect(() => {
@@ -79322,7 +80092,7 @@ html body {
     label,
     md: md2
   }) => {
-    const mappable = data.filter(isMappable);
+    const mappable = reactExports.useMemo(() => data.filter(isMappable), [data]);
     const baseUnmappable = data.length - mappable.length;
     const hasGbifConfigured = !!gbifChecklistKey;
     const hasAnyRecords = data.length > 0;
@@ -79330,36 +80100,7 @@ html body {
       () => isWebglSupported() ? "map" : "list"
     );
     const [fetchFailures, setFetchFailures] = reactExports.useState(0);
-    const [gbifCount, setGbifCount] = reactExports.useState(null);
-    reactExports.useEffect(() => {
-      if (!gbifChecklistKey || !(focalTaxon == null ? void 0 : focalTaxon.id)) {
-        setGbifCount(null);
-        return void 0;
-      }
-      setGbifCount(null);
-      let cancelled = false;
-      publicClient.get(`${config.gbifApi}/v1/occurrence/search`, {
-        params: {
-          checklistKey: gbifChecklistKey,
-          taxonKey: focalTaxon.id,
-          hasCoordinate: true,
-          hasGeospatialIssue: false,
-          occurrenceStatus: "PRESENT",
-          limit: 0
-        }
-      }).then(
-        (res) => {
-          var _a2;
-          if (!cancelled) setGbifCount(((_a2 = res == null ? void 0 : res.data) == null ? void 0 : _a2.count) ?? 0);
-        },
-        () => {
-          if (!cancelled) setGbifCount(null);
-        }
-      );
-      return () => {
-        cancelled = true;
-      };
-    }, [gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id]);
+    const gbifCount = useGbifCount(gbifChecklistKey, focalTaxon == null ? void 0 : focalTaxon.id);
     const gbifAvailable = !hasGbifConfigured ? false : gbifCount === null || gbifCount > 0;
     const allMappableFailed = mappable.length > 0 && fetchFailures >= mappable.length;
     const showMap = showDistributionMap && (mappable.length > 0 || gbifAvailable) && !(mappable.length > 0 && allMappableFailed && !gbifAvailable);
